@@ -175,15 +175,22 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import getNoteSummary from '../../../../../misc/get-note-summary';
-import getNotificationSummary from '../../../../../misc/get-notification-summary';
 import * as config from '../../../config';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n(),
+
+	props: {
+		type: {
+			type: String,
+			required: false
+		}
+	},
+
 	data() {
 		return {
-			fetching: true,
+			fetching: false,
 			fetchingMoreNotifications: false,
 			notifications: [],
 			moreNotifications: false,
@@ -206,24 +213,18 @@ export default Vue.extend({
 		}
 	},
 
+	watch: {
+		type() {
+			this.reload();
+		}
+	},
+
 	mounted() {
 		this.connection = this.$root.stream.useSharedConnection('main');
 
 		this.connection.on('notification', this.onNotification);
 
-		const max = 10;
-
-		this.$root.api('i/notifications', {
-			limit: max + 1
-		}).then(notifications => {
-			if (notifications.length == max + 1) {
-				this.moreNotifications = true;
-				notifications.pop();
-			}
-
-			this.notifications = notifications;
-			this.fetching = false;
-		});
+		this.reload();
 	},
 
 	beforeDestroy() {
@@ -231,6 +232,25 @@ export default Vue.extend({
 	},
 
 	methods: {
+		reload() {
+			this.fetching = true;
+
+			const max = 10;
+
+			this.$root.api('i/notifications', {
+				includeTypes: this.type ? [this.type] : undefined,
+				limit: max + 1
+			}).then(notifications => {
+				if (notifications.length == max + 1) {
+					this.moreNotifications = true;
+					notifications.pop();
+				}
+
+				this.notifications = notifications;
+				this.fetching = false;
+			});
+		},
+
 		fetchMoreNotifications() {
 			this.fetchingMoreNotifications = true;
 
@@ -239,6 +259,7 @@ export default Vue.extend({
 			const last = this.notifications.filter(x => x).pop();
 
 			this.$root.api('i/notifications', {
+				includeTypes: this.type ? [this.type] : undefined,
 				limit: max + 1,
 				untilId: last.id
 			}).then(notifications => {

@@ -39,9 +39,16 @@ export default Vue.extend({
 
 	inject: ['column', 'isScrollTop', 'count'],
 
+	props: {
+		type: {
+			type: String,
+			required: false
+		}
+	},
+
 	data() {
 		return {
-			fetching: true,
+			fetching: false,
 			fetchingMoreNotifications: false,
 			notifications: [],
 			queue: [],
@@ -66,6 +73,10 @@ export default Vue.extend({
 	watch: {
 		queue(q) {
 			this.count(q.length);
+		},
+
+		type() {
+			this.reload();
 		}
 	},
 
@@ -77,19 +88,7 @@ export default Vue.extend({
 		this.column.$on('top', this.onTop);
 		this.column.$on('bottom', this.onBottom);
 
-		const max = 10;
-
-		this.$root.api('i/notifications', {
-			limit: max + 1
-		}).then(notifications => {
-			if (notifications.length == max + 1) {
-				this.moreNotifications = true;
-				notifications.pop();
-			}
-
-			this.notifications = notifications;
-			this.fetching = false;
-		});
+		this.reload();
 	},
 
 	beforeDestroy() {
@@ -100,6 +99,25 @@ export default Vue.extend({
 	},
 
 	methods: {
+		reload() {
+			this.fetching = true;
+
+			const max = 10;
+
+			this.$root.api('i/notifications', {
+				includeTypes: this.type ? [this.type] : undefined,
+				limit: max + 1
+			}).then(notifications => {
+				if (notifications.length == max + 1) {
+					this.moreNotifications = true;
+					notifications.pop();
+				}
+
+				this.notifications = notifications;
+				this.fetching = false;
+			});
+		},
+
 		fetchMoreNotifications() {
 			this.fetchingMoreNotifications = true;
 
@@ -108,6 +126,7 @@ export default Vue.extend({
 			const last = this.notifications.filter(x => x).pop();
 
 			this.$root.api('i/notifications', {
+				includeTypes: this.type ? [this.type] : undefined,
 				limit: max + 1,
 				untilId: last.id
 			}).then(notifications => {
