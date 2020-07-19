@@ -402,6 +402,7 @@ common/views/components/url-preview.vue:
   enable-player: "Enable playback"
   disable-player: "Close the player"
   expandTweet: "Expand tweet"
+  collapseTweet: "Collapse tweet"
 
 common/views/components/user-list.vue:
   no-users: "There are no users."

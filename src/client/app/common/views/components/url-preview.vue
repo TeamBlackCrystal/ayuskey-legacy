@@ -5,6 +5,11 @@
 </div>
 <div v-else-if="tweetId && tweetExpanded" class="twitter" ref="twitter">
 	<iframe ref="tweet" scrolling="no" frameborder="no" :style="{ 'margin-top': '8px', left: `${tweetLeft}px`, width: `${tweetLeft < 0 ? 'auto' : '100%'}`, height: `${tweetHeight}px` }" :src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${$store.state.device.darkmode ? 'dark' : 'light'}&amp;id=${tweetId}`"></iframe>
+	<div class="expandTweet">
+		<a @click="tweetExpanded = false">
+			<fa :icon="faTwitter"/> {{ $t('collapseTweet') }}
+		</a>
+	</div>
 </div>
 <div v-else class="mk-url-preview">
 	<a :class="{ mini: narrow, compact }" :href="url" rel="nofollow noopener" target="_blank" :title="url" v-if="!fetching">
@@ -356,10 +361,10 @@ export default Vue.extend({
 					white-space nowrap
 					text-overflow ellipsis
 
-	> .expandTweet
-		display flex
+.expandTweet
+	display flex
 
-		> a
-			font-size small
-			color var(--text)
+	> a
+		font-size small
+		color var(--text)
 </style>
