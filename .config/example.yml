@@ -71,6 +71,9 @@ drive:
 # 未保存のリモートファイルをローカルでプロキシする (default: false)
 #proxyRemoteFiles: true
 
+# Disable Federation: (default: false)
+#disableFederation: true
+
 # Disable URL Preview (default: false)
 #disableUrlPreview: true
 
@@ -80,8 +83,6 @@ drive:
 # If enabled:
 #  The first account created is automatically marked as Admin.
 autoAdmin: true
-
-#disableFederation: true
 
 #
 # Below settings are optional
