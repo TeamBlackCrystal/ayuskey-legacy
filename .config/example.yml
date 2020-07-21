@@ -99,6 +99,9 @@ id: 'meid'
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
+# Disable URL Preview (default: false)
+disableUrlPreview: true
+
 # If enabled:
 #  The first account created is automatically marked as Admin.
 autoAdmin: true
