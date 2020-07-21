@@ -72,10 +72,10 @@ drive:
 #proxyRemoteFiles: true
 
 # Disable URL Preview (default: false)
-disableUrlPreview: true
+#disableUrlPreview: true
 
 # Disable Posts (default: false)
-disablePosts: true
+#disablePosts: true
 
 # If enabled:
 #  The first account created is automatically marked as Admin.
