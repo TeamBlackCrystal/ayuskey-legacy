@@ -35,18 +35,14 @@ module.exports = async (ctx: Router.RouterContext) => {
 		summary.thumbnail = wrap(summary.thumbnail);
 
 		// Cache 7days
-		ctx.set('Cache-Control', 'max-age=604800, immutable');
+		ctx.set('Cache-Control', 'max-age=604800');
 
 		ctx.body = summary;
 	} catch (e) {
 		logger.error(`Failed to get preview of ${ctx.query.url}: ${e}`);
 		ctx.status = 200;
 
-		if (e.statusCode <= 400 && e.statusCode < 500) {
-			ctx.set('Cache-Control', 'max-age=86400');
-		} else {
-			ctx.set('Cache-Control', 'max-age=3600');
-		}
+		ctx.set('Cache-Control', 'max-age=3600');
 
 		ctx.body = '{}';
 	}
