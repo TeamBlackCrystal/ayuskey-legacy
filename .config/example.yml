@@ -71,6 +71,12 @@ drive:
 # 未保存のリモートファイルをローカルでプロキシする (default: false)
 #proxyRemoteFiles: true
 
+# Disable URL Preview (default: false)
+disableUrlPreview: true
+
+# Disable Posts (default: false)
+disablePosts: true
+
 # If enabled:
 #  The first account created is automatically marked as Admin.
 autoAdmin: true

@@ -34,6 +34,8 @@ export type Source = {
 	autoAdmin?: boolean;
 
 	disableFederation?: boolean;
+	disableUrlPreview?: boolean;
+	disablePosts?: boolean;
 
 	proxy?: string;
 	proxySmtp?: string;

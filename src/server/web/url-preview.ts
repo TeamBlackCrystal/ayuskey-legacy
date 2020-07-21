@@ -9,6 +9,11 @@ import { query } from '../../prelude/url';
 const logger = new Logger('url-preview');
 
 module.exports = async (ctx: Router.RouterContext) => {
+	if (config.disableUrlPreview) {
+		ctx.body = '{}';
+		return;
+	}
+
 	const meta = await fetchMeta();
 
 	logger.info(meta.summalyProxy

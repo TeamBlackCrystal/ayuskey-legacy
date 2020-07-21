@@ -117,6 +117,8 @@ type Option = {
 };
 
 export default async (user: IUser, data: Option, silent = false) => new Promise<INote>(async (res, rej) => {
+	if (config.disablePosts) return rej({ status: 451 });
+
 	const isFirstNote = user.notesCount === 0;
 	const isPureRenote = data.text == null && data.poll == null && (data.files == null || data.files.length == 0);
 
