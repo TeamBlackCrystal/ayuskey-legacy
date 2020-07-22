@@ -17,6 +17,7 @@ import DriveFile from './drive-file';
 import getDriveFileUrl from '../misc/get-drive-file-url';
 import UserFilter from './user-filter';
 import { transform } from '../misc/cafy-id';
+import Usertag from './usertag';
 
 const User = db.get<IUser>('users');
 
@@ -444,6 +445,15 @@ export const pack = (
 				removeError: true,
 				detail: true
 			});
+		}
+
+		if (meId) {
+			const usertag = await Usertag.findOne({
+				ownerId: meId,
+				targetId: _user.id
+			});
+
+			_user.usertags = usertag?.tags || [];
 		}
 
 		if (meId && !meId.equals(_user.id)) {
