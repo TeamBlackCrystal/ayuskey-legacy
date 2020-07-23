@@ -1,6 +1,6 @@
 import * as Router from '@koa/router';
 import { getJson } from '../../misc/fetch';
-import summaly from 'summaly';
+import summaly from '../../misc/summaly';
 import fetchMeta from '../../misc/fetch-meta';
 import Logger from '../../services/logger';
 import config from '../../config';
@@ -24,10 +24,7 @@ module.exports = async (ctx: Router.RouterContext) => {
 		const summary = meta.summalyProxy ? await getJson(`${meta.summalyProxy}?${query({
 			url: ctx.query.url,
 			lang: ctx.query.lang || 'ja-JP'
-		})}`) : await summaly(ctx.query.url, {
-			followRedirects: false,
-			lang: ctx.query.lang || 'ja-JP'
-		});
+		})}`) : await summaly(ctx.query.url);
 
 		logger.succ(`Got preview of ${ctx.query.url}: ${summary.title}`);
 
