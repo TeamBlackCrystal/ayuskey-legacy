@@ -12,7 +12,7 @@
 	</div>
 </div>
 <div v-else class="mk-url-preview">
-	<a :class="{ mini: narrow, compact }" :href="url" rel="nofollow noopener" target="_blank" :title="url" v-if="!fetching">
+	<a :class="{ mini: narrow, compact }" :href="landingUrl" rel="nofollow noopener" target="_blank" :title="landingUrl" v-if="!fetching">
 		<div class="thumbnail" v-if="thumbnail && (!sensitive || $store.state.device.alwaysShowNsfw)" :style="`background-image: url('${thumbnail}')`">
 			<button v-if="!playerEnabled && player.url" @click.prevent="playerEnabled = true" :title="$t('enable-player')"><fa :icon="['far', 'play-circle']"/></button>
 		</div>
@@ -46,7 +46,7 @@ export default Vue.extend({
 	props: {
 		url: {
 			type: String,
-			require: true
+			required: true
 		},
 
 		detail: {
@@ -71,6 +71,7 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
+			landingUrl: this.url,
 			title: null,
 			description: null,
 			thumbnail: null,
@@ -116,6 +117,7 @@ export default Vue.extend({
 		fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`).then(res => {
 			res.json().then(info => {
 				if (info.url == null) return;
+				this.landingUrl = info.url;
 				this.title = info.title;
 				this.description = info.description;
 				this.thumbnail = info.thumbnail;
