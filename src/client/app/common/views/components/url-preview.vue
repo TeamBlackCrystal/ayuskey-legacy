@@ -121,6 +121,7 @@ export default Vue.extend({
 				this.sensitive = !!info.sensitive;
 				this.fetching = false;
 				this.player = info.player;
+				if (this.tweetId && this.player) this.player.url = null;
 			})
 		});
 
