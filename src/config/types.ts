@@ -63,6 +63,8 @@ export type Source = {
 		mecabBin: string;
 		mecabDic: string;
 	};
+
+	icons?: Icons
 };
 
 export type DriveConfig = {
@@ -80,6 +82,22 @@ export type DriveConfig = {
 		transport?: string;
 		sessionToken?: string;
 		partSize?: number;
+	};
+};
+
+export type Icons = {
+	favicon?: {
+		url?: string;
+		type?: string;
+	};
+	appleTouchIcon?: {
+		url?: string;
+	};
+	manifest192?: {
+		url?: string;
+	};
+	manifest512?: {
+		url?: string;
 	};
 };
 
