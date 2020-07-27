@@ -33,8 +33,8 @@ export default function load() {
 
 	const icons = {
 		favicon: {
-			url: '/favicon.png',
-			type: 'image/png'
+			url: '/favicon.ico',
+			type: 'image/x-icon'
 		},
 		appleTouchIcon: {
 			url: '/apple-touch-icon.png'

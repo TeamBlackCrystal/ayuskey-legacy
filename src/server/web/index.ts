@@ -6,6 +6,7 @@ import ms = require('ms');
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as send from 'koa-send';
+import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
 import { ObjectID } from 'mongodb';
 
@@ -41,6 +42,9 @@ app.use(views(__dirname + '/views', {
 	}
 }));
 
+// Serve favicon
+app.use(favicon(`${client}/assets/favicon.ico`));
+
 // Common request handler
 app.use(async (ctx, next) => {
 	// IFrameの中に入れられないようにする
@@ -64,17 +68,8 @@ router.get('/assets/*', async ctx => {
 	});
 });
 
-// favicon
-router.get('/favicon.png', async ctx => {
-	ctx.set('Cache-Control', 'public, max-age=86400');
-	await send(ctx, '/assets/favicon/favicon.png', {
-		root: client
-	});
-});
-
 // Apple touch icon
 router.get('/apple-touch-icon.png', async ctx => {
-	ctx.set('Cache-Control', 'public, max-age=86400');
 	await send(ctx, '/assets/apple-touch-icon.png', {
 		root: client
 	});

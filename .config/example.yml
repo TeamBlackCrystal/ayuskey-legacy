@@ -86,8 +86,8 @@ autoAdmin: true
 # アイコン等の設定
 icons:
   favicon:
-    url: '/favicon.png'
-    type: 'image/png'
+    url: '/favicon.ico'
+    type: 'image/x-icon'
   appleTouchIcon:
     url: '/apple-touch-icon.png'
   manifest192:
