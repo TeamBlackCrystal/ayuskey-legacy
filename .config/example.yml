@@ -84,6 +84,7 @@ drive:
 autoAdmin: true
 
 # アイコン等の設定
+# favicon.urlをpngにする場合は、favicon.typeを'image/png'にする
 icons:
   favicon:
     url: '/favicon.ico'
