@@ -166,8 +166,8 @@
 					<span>{{ $t('status') }}</span>
 				</header>
 				<div v-for="instance in instances" :key="instance.host" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
-					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none' }">
-						<mfm :text="ccToEmoji(instance.cc)" :plain="true" :nowrap="true" :key="instance.cc"/>
+					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none', display: 'inline-flex', overflow: 'hidden', 'word-break': 'break-all' }">
+						<img v-if="instance.iconUrl != null" :src="instance.iconUrl" :style="{ width: '1em', height: '1em' }"/>
 						{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}
 					</a>
 					<span>{{ `${instance.softwareName || 'unknown'}` }} <small :style="{ opacity: 0.7 }">{{ `${instance.softwareVersion || ''}` }}</small></span>
@@ -212,7 +212,7 @@ export default Vue.extend({
 			state: 'all',
 			softwareName: '',
 			cc: '',
-			limit: 100,
+			limit: 200,
 			instances: [],
 			chart: null,
 			chartSrc: 'requests',
