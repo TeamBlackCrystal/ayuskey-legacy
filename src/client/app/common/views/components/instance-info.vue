@@ -50,6 +50,8 @@ export default Vue.extend({
 		align-items center
 		font-size 0.9em
 		color var(--noteText)
+		cursor default
+		background linear-gradient(to right, rgba(64, 64, 255, .3), rgba(0, 0, 0, 0))
 
 		.icon
 			width 1em
