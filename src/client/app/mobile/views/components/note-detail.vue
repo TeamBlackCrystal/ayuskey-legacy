@@ -22,7 +22,7 @@
 			<div>
 				<router-link class="name" :to="appearNote.user | userPage"><mk-user-name :user="appearNote.user"/></router-link>
 				<span class="username"><mk-acct :user="appearNote.user"/></span>
-				<x-instance-info v-if="appearNote.user.instance" :instance="appearNote.user.instance" />
+				<x-instance-info v-if="appearNote.user.instance && !$store.state.device.disableShowingInstanceInfo" :instance="appearNote.user.instance" />
 			</div>
 		</header>
 		<div class="body">

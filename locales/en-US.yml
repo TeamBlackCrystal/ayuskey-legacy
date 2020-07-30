@@ -218,6 +218,7 @@ common:
     use-avatar-reversi-stones: "Use avatar as a stone in reversi"
     disable-animated-mfm: "Disable animated texts in a post"
     disable-showing-animated-images: "Do not play animated images"
+    disableShowingInstanceInfo: "Do not display instance information"
     suggest-recent-hashtags: "Show recent popular hashtags on the post form"
     always-show-nsfw: "Always show NSFW contents"
     alwaysOpenCw: "Show CW/NSFW content from the beginning"
