@@ -6,7 +6,6 @@
 			<ui-input :value="host" readonly>{{ $t('host') }}</ui-input>
 			<ui-input v-model="name">{{ $t('instance-name') }}</ui-input>
 			<ui-textarea v-model="description">{{ $t('instance-description') }}</ui-textarea>
-			<ui-input v-model="iconUrl"><template #icon><fa icon="link"/></template>{{ $t('icon-url') }}</ui-input>
 			<ui-input v-model="mascotImageUrl"><template #icon><fa icon="link"/></template>{{ $t('logo-url') }}</ui-input>
 			<ui-input v-model="bannerUrl"><template #icon><fa icon="link"/></template>{{ $t('banner-url') }}</ui-input>
 			<ui-input v-model="errorImageUrl"><template #icon><fa icon="link"/></template>{{ $t('error-image-url') }}</ui-input>
@@ -154,7 +153,6 @@ export default Vue.extend({
 			mascotImageUrl: null,
 			bannerUrl: null,
 			errorImageUrl: null,
-			iconUrl: null,
 			name: null,
 			description: null,
 			languages: null,
@@ -203,7 +201,6 @@ export default Vue.extend({
 			this.mascotImageUrl = meta.mascotImageUrl;
 			this.bannerUrl = meta.bannerUrl;
 			this.errorImageUrl = meta.errorImageUrl;
-			this.iconUrl = meta.iconUrl;
 			this.name = meta.name;
 			this.description = meta.description;
 			this.languages = meta.langs.join(' ');
@@ -262,7 +259,6 @@ export default Vue.extend({
 				mascotImageUrl: this.mascotImageUrl,
 				bannerUrl: this.bannerUrl,
 				errorImageUrl: this.errorImageUrl,
-				iconUrl: this.iconUrl,
 				name: this.name,
 				description: this.description,
 				langs: this.languages ? this.languages.split(' ') : [],
