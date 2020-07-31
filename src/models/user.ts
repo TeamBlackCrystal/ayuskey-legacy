@@ -489,6 +489,7 @@ export const pack = (
 			softwareName: null as unknown,
 			softwareVersion: null as unknown,
 			iconUrl: null as unknown,
+			themeColor: null as unknown,
 		};
 
 		const instance = await registerOrFetchInstanceDoc(_user.host);
@@ -497,6 +498,7 @@ export const pack = (
 		info.softwareName = instance?.softwareName || null;
 		info.softwareVersion = instance?.softwareVersion || null;
 		info.iconUrl = instance?.iconUrl || null;
+		info.themeColor = instance?.themeColor || null;
 		return info;
 	};
 

@@ -101,4 +101,5 @@ export interface IInstance {
 	org?: string;
 	as?: string;
 	iconUrl?: string;
+	themeColor?: string;
 }

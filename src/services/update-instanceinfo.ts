@@ -96,10 +96,15 @@ export async function UpdateInstanceinfo(instance: IInstance, request?: InboxReq
 		});
 	}
 
-	const iconUrl = await(fetchIconUrl(instance)).catch(e => {
-		logger.warn(`iconUrl failed for ${toApHost(instance.host!)} ${e}`);
-		return null;
+	// top
+	const { iconUrl, manifestUrl } = await(fetchTop(instance)).catch(e => {
+		logger.warn(`fetchTop failed for ${toApHost(instance.host!)} ${e}`);
+		return {
+			iconUrl: null,
+			manifestUrl: null,
+		};
 	});
+
 	if (iconUrl) {
 		logger.info(`iconUrl: ${toApHost(instance.host!)} => ${iconUrl}`);
 		await Instance.update({ _id: instance._id }, {
@@ -108,9 +113,26 @@ export async function UpdateInstanceinfo(instance: IInstance, request?: InboxReq
 			}
 		});
 	}
+
+	if (manifestUrl) {
+		const manifest = await fetchManifest(manifestUrl).catch(e => {
+			logger.warn(`fetchManifest failed for ${toApHost(instance.host!)} ${e}`);
+			return null;
+		});
+
+		if (manifest?.theme_color) {
+			logger.info(`themeColor: ${toApHost(instance.host!)} => ${manifest.theme_color}`);
+			await Instance.update({ _id: instance._id }, {
+				$set: {
+					themeColor: manifest.theme_color
+				}
+			});
+		}
+	}
 }
 
 export async function fetchInstanceinfo(host: string) {
+	// fetch nodeinfo
 	const info = await fetchNodeinfo(host).catch(() => null);
 
 	let name = info?.metadata?.nodeName || info?.metadata?.name || null;
@@ -173,7 +195,10 @@ async function fetchMastodonInstance(host: string) {
 	return json;
 }
 
-async function fetchIconUrl(instance: IInstance): Promise<string | null> {
+async function fetchTop(instance: IInstance): Promise<{
+	iconUrl: string | null;
+	manifestUrl: string | null;
+}> {
 	const host = toApHost(instance.host);
 
 	logger.info(`Fetching icon URL of ${host} ...`);
@@ -189,11 +214,22 @@ async function fetchIconUrl(instance: IInstance): Promise<string | null> {
 	const hrefAppleTouchIcon = doc.querySelector('link[rel="apple-touch-icon"]')?.getAttribute('href');
 	const hrefIcon = doc.querySelector('link[rel="icon"]')?.getAttribute('href');
 
-	const href = hrefIcon || hrefAppleTouchIconPrecomposed || hrefAppleTouchIcon;
+	const href = hrefIcon || hrefAppleTouchIconPrecomposed || hrefAppleTouchIcon || null;
+	const iconUrl = href ? (new URL(href, url)).href : null;
 
-	if (href) {
-		return (new URL(href, url)).href;
-	}
+	const manifestHref = doc.querySelector('link[rel="manifest"]')?.getAttribute('href');
+	const manifestUrl = manifestHref ? (new URL(manifestHref, url)).href : null;
 
-	return null;
+	return {
+		iconUrl,
+		manifestUrl,
+	};
+}
+
+async function fetchManifest(url: string) {
+	const json = (await getJson(url)) as {
+		theme_color?: string;
+	};
+
+	return json;
 }
