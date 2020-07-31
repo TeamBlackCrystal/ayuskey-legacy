@@ -96,6 +96,9 @@ icons:
   manifest512:
     url: '/assets/icons/512.png'
 
+# デフォルトのテーマカラー
+themeColor: '#fb4e4e'
+
 # Mecab検索インデックス
 #mecabSearch:
 #  mecabBin: mecab

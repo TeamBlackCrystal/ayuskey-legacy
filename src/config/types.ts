@@ -65,6 +65,7 @@ export type Source = {
 	};
 
 	icons?: Icons
+	themeColor?: string;
 };
 
 export type DriveConfig = {

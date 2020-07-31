@@ -21,6 +21,8 @@ module.exports = async (ctx: Router.RouterContext) => {
 		}
 	}
 
+	json.theme_color = config.themeColor || '#fb4e4e';
+
 	ctx.set('Cache-Control', 'max-age=300');
 	ctx.body = json;
 };
