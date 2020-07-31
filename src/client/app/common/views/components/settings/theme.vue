@@ -60,17 +60,19 @@
 					<span>{{ $t('desc') }}</span>
 				</ui-textarea>
 			</div>
-			<div>
-				<div style="padding-bottom:8px;">{{ $t('primary-color') }}:</div>
-				<color-picker v-model="myThemePrimary"/>
-			</div>
-			<div>
-				<div style="padding-bottom:8px;">{{ $t('secondary-color') }}:</div>
-				<color-picker v-model="myThemeSecondary"/>
-			</div>
-			<div>
-				<div style="padding-bottom:8px;">{{ $t('text-color') }}:</div>
-				<color-picker v-model="myThemeText"/>
+			<div style="display: flex; margin: -1em; flex-wrap: wrap;">
+				<div style="margin: 1em">
+					<div style="padding-bottom:8px;">{{ $t('primary-color') }}</div>
+					<color-picker v-model="myThemePrimary" style="width: 180px"/>
+				</div>
+				<div style="margin: 1em">
+					<div style="padding-bottom:8px;">{{ $t('secondary-color') }}</div>
+					<color-picker v-model="myThemeSecondary" style="width: 180px"/>
+				</div>
+				<div style="margin: 1em">
+					<div style="padding-bottom:8px;">{{ $t('text-color') }}</div>
+					<color-picker v-model="myThemeText" style="width: 180px"/>
+				</div>
 			</div>
 			<ui-button @click="preview()"><fa icon="eye"/> {{ $t('preview-created-theme') }}</ui-button>
 			<ui-button primary @click="gen()"><fa :icon="['far', 'save']"/> {{ $t('save-created-theme') }}</ui-button>
