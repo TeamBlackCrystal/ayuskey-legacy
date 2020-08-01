@@ -13,11 +13,15 @@
 			<option value="365">1 {{ $t('years') }}</option>
 			<option value="3650">10 {{ $t('years') }}</option>
 		</ui-select>
+		<ui-select v-model="filter" :disabled="fetching">
+			<template #label>{{ $t('filter') }}</template>
+			<option value="all">{{ $t('all') }}</option>
+			<option value="excludeNsfw">{{ $t('excludeNsfw') }}</option>
+			<option value="excludeSfw">{{ $t('excludeSfw') }}</option>
+		</ui-select>
 		<div>
 			<ui-switch v-model="includeGlobal" :disabled="fetching">{{ $t('include-global') }}</ui-switch>
 			<ui-switch v-model="mediaOnly" :disabled="fetching">{{ $t('media-only') }}</ui-switch>
-			<ui-switch v-model="sfwOnly" :disabled="fetching">{{ $t('sfw-only') }}</ui-switch>
-			<ui-switch v-model="nsfwOnly" :disabled="fetching">{{ $t('nsfw-only') }}</ui-switch>
 		</div>
 	</details>
 	<div v-if="!fetching">
@@ -40,8 +44,7 @@ export default Vue.extend({
 		return {
 			includeGlobal: false,
 			mediaOnly: false,
-			sfwOnly: false,
-			nsfwOnly: false,
+			filter: 'all',
 			days: 2,
 			fetching: true,
 			notes: [],
@@ -54,10 +57,7 @@ export default Vue.extend({
 		mediaOnly() {
 			this.fetch();
 		},
-		sfwOnly() {
-			this.fetch();
-		},
-		nsfwOnly() {
+		filter() {
 			this.fetch();
 		},
 		days() {
@@ -80,8 +80,8 @@ export default Vue.extend({
 				days: Number(this.days),
 				includeGlobal: this.includeGlobal,
 				fileType: this.mediaOnly ? ['image/jpeg', 'image/png', 'image/apng', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'] : undefined,
-				excludeNsfw: this.sfwOnly,
-				excludeSfw: this.nsfwOnly,
+				excludeNsfw: this.filter === 'excludeNsfw',
+				excludeSfw: this.filter === 'excludeSfw',
 			}, false, false).then((notes: any[]) => {
 				notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 				this.notes = notes;
