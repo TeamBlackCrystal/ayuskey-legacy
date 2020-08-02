@@ -26,6 +26,7 @@ export const getSpeechText = (note: any): string => {
 
 	let text = note.cw != null ? note.cw : note.text ? note.text : null;
 	text = text.replace(/https?:\/\/.*/g, 'URL');
+	// eslint-disable-next-line no-useless-escape
 	text = text.replace(/#([^\s\.,!\?'"#:\/\[\]]+)/g, () => `hashtag ${RegExp.$1}`);
 
 	let summary = text;

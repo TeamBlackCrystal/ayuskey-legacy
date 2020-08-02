@@ -42,6 +42,7 @@ export function formatDateTimeString(date: Date, format: string): string {
 }
 
 export function formatTimeString(date: Date, format: string): string {
+	// eslint-disable-next-line no-useless-escape
 	return format.replace(/\[(([^\[]|\[\])*)\]|(([yMdHhmst])\4{0,3})/g, (match: string, localeformat?: string, unused?, datetimeformat?: string) => {
 		if (localeformat) return formatLocaleString(date, localeformat);
 		if (datetimeformat) return formatDateTimeString(date, datetimeformat);

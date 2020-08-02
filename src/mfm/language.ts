@@ -41,6 +41,7 @@ export const mfmLanguage = P.createLanguage({
 	}),
 	title: r => r.startOfLine.then(P((input, i) => {
 		const text = input.substr(i);
+		// eslint-disable-next-line no-useless-escape
 		const match = text.match(/^([【\[]([^【\[】\]\n]+?)[】\]])(\n|$)/);
 		if (!match) return P.makeFailure(i, 'not a title');
 		const q = match[2].trim();
@@ -175,6 +176,7 @@ export const mfmLanguage = P.createLanguage({
 	mention: () => {
 		return P((input, i) => {
 			const text = input.substr(i);
+			// eslint-disable-next-line no-useless-escape
 			const match = text.match(/^@\w([\w-]*\w)?(?:@[\w\.\-]+\w)?/);
 			if (!match) return P.makeFailure(i, 'not a mention');
 			if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a mention');
@@ -187,6 +189,7 @@ export const mfmLanguage = P.createLanguage({
 	},
 	hashtag: () => P((input, i) => {
 		const text = input.substr(i);
+		// eslint-disable-next-line no-useless-escape
 		const match = text.match(/^#([^\s\.,!\?'"#:\/\[\]]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
 		let hashtag = match[1];
@@ -218,6 +221,7 @@ export const mfmLanguage = P.createLanguage({
 	link: r => {
 		return P.seqObj(
 			['silent', P.string('?').fallback(null).map(x => x != null)] as any,
+			// eslint-disable-next-line no-useless-escape
 			P.string('['), ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
 			P.string('('), ['url', r.url] as any, P.string(')'),
 		).map((x: any) => {

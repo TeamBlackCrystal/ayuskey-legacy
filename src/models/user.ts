@@ -235,6 +235,7 @@ export function isValidLocation(location: string): boolean {
 }
 
 export function isValidBirthday(birthday: string): boolean {
+	// eslint-disable-next-line no-useless-escape
 	return typeof birthday == 'string' && /^([0-9]{4})\-([0-9]{2})-([0-9]{2})$/.test(birthday);
 }
 //#endregion
