@@ -48,9 +48,13 @@ export default function() {
 // CPU STAT
 function cpuUsage() {
 	return new Promise((res, rej) => {
-		osUtils.cpuUsage((cpuUsage: number) => {
-			res(cpuUsage);
-		});
+		try {
+			osUtils.cpuUsage((cpuUsage: number) => {
+				res(cpuUsage);
+			});
+		} catch (e) {
+			rej(e);
+		}
 	});
 }
 
