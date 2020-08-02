@@ -35,7 +35,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				text += '\n';
 				break;
 
-			case 'a':
+			case 'a': {
 				const txt = getText(node);
 				const rel = node.attrs.find((x: any) => x.name == 'rel');
 				const href = node.attrs.find((x: any) => x.name == 'href');
@@ -60,6 +60,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					text += (!href || (txt === href.value && txt.match(urlRegex))) ? txt : `[${txt}](${href.value})`;
 				}
 				break;
+			}
 
 			case 'p':
 				text += '\n\n';

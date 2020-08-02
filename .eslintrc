@@ -21,9 +21,13 @@
 		"vue/no-v-html": 0,
 		"@typescript-eslint/no-empty-function": 0,
 		"@typescript-eslint/no-var-requires": 0,
+		"@typescript-eslint/no-explicit-any": 0,
+		"@typescript-eslint/explicit-module-boundary-types": 0,
 		"no-console": 0,
 		"no-unused-vars": 0,
+		"no-useless-escape": 0,
 		"no-constant-condition": ["error", { "checkLoops": false }],
+		"no-irregular-whitespace": 0,
 		"no-empty": 0
 	},
 	"globals": {

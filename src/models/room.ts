@@ -27,7 +27,7 @@ export interface IRoomData {
 			y: number;
 			z: number;
 		};
-		props?: {};
+		props?: Record<string, any>;
 	}[];
 	roomType: string;
 	carpetColor: string;

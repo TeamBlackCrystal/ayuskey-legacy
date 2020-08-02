@@ -4,7 +4,7 @@
 
 import * as gulp from 'gulp';
 import * as ts from 'gulp-typescript';
-import sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require('gulp-sourcemaps');
 const stylus = require('gulp-stylus');
 import * as rimraf from 'rimraf';
 import * as rename from 'gulp-rename';

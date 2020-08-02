@@ -303,7 +303,7 @@ export async function getRelation(me: mongo.ObjectId, target: mongo.ObjectId) {
  * @param options? serialize options
  * @return Packed user
  */
-export const pack = (
+export const pack = async (
 	user: string | mongo.ObjectID | IUser,
 	me?: string | mongo.ObjectID | IUser,
 	options?: {
@@ -311,7 +311,7 @@ export const pack = (
 		includeSecrets?: boolean,
 		includeHasUnreadNotes?: boolean
 	}
-) => new Promise<any>(async (resolve, reject) => {
+) => {
 	const opts = Object.assign({
 		detail: false,
 		includeSecrets: false
@@ -353,7 +353,7 @@ export const pack = (
 	// (データベースの欠損などで)ユーザーがデータベース上に見つからなかったとき
 	if (_user == null) {
 		dbLogger.warn(`user not found on database: ${user}`);
-		return resolve(null);
+		return null;
 	}
 
 	// Me
@@ -515,8 +515,8 @@ export const pack = (
 	// resolve promises in _user object
 	_user = await rap(_user);
 
-	resolve(_user);
-});
+	return _user;
+};
 
 /*
 function img(url) {
