@@ -17,9 +17,9 @@ export interface IUserList {
 	mediaOnly?: boolean;
 }
 
-export const pack = (
+export const pack = async (
 	userList: string | mongo.ObjectID | IUserList
-) => new Promise<any>(async (resolve, reject) => {
+) => {
 	let _userList: any;
 
 	if (isObjectId(userList)) {
@@ -45,5 +45,5 @@ export const pack = (
 	_userList.hideFromHome = !!_userList.hideFromHome;
 	_userList.mediaOnly = !!_userList.mediaOnly;
 
-	resolve(_userList);
-});
+	return _userList;
+};

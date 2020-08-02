@@ -62,7 +62,7 @@ export const packMany = (
 /**
  * Pack a notification for API response
  */
-export const pack = (notification: any) => new Promise<any>(async (resolve, reject) => {
+export const pack = async (notification: any) => {
 	let _notification: any;
 
 	// Populate the notification if 'notification' is ID
@@ -110,7 +110,7 @@ export const pack = (notification: any) => new Promise<any>(async (resolve, reje
 			// (データベースの不具合などで)投稿が見つからなかったら
 			if (_notification.note == null) {
 				dbLogger.warn(`[DAMAGED DB] (missing) pkg: notification -> note :: ${_notification.id} (note ${_notification.noteId})`);
-				return resolve(null);
+				return null;
 			}
 			break;
 		default:
@@ -120,5 +120,5 @@ export const pack = (notification: any) => new Promise<any>(async (resolve, reje
 
 	if (_notification.reaction) _notification.reaction = decodeReaction(_notification.reaction);
 
-	resolve(_notification);
-});
+	return _notification;
+};

@@ -26,10 +26,10 @@ export const packUserFilterMany = (
 	return Promise.all(filters.map(x => packUserFilter(x, me)));
 };
 
-export const packUserFilter = (
+export const packUserFilter = async (
 	src: any,
 	me?: any
-) => new Promise<any>(async (resolve, reject) => {
+) => {
 	let populated: IUserFilter;
 
 	// Populate the src if 'src' is ID
@@ -56,4 +56,4 @@ export const packUserFilter = (
 	};
 
 	return await rap(result);
-});
+};

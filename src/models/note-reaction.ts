@@ -22,10 +22,10 @@ export interface INoteReaction {
 /**
  * Pack a reaction for API response
  */
-export const pack = (
+export const pack = async (
 	reaction: any,
 	me?: any
-) => new Promise<any>(async (resolve, reject) => {
+) => {
 	let _reaction: any;
 
 	// Populate the reaction if 'reaction' is ID
@@ -48,5 +48,5 @@ export const pack = (
 	// Populate user
 	_reaction.user = await packUser(_reaction.userId, me);
 
-	resolve(_reaction);
-});
+	return _reaction;
+};

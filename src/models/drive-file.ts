@@ -145,14 +145,14 @@ export const packMany = (
 /**
  * Pack a drive file for API response
  */
-export const pack = (
+export const pack = async (
 	file: any,
 	options?: {
 		detail?: boolean,
 		self?: boolean,
 		withUser?: boolean,
 	}
-) => new Promise<any>(async (resolve, reject) => {
+) => {
 	const opts = Object.assign({
 		detail: false,
 		self: false
@@ -176,7 +176,7 @@ export const pack = (
 	// (データベースの欠損などで)ファイルがデータベース上に見つからなかったとき
 	if (_file == null) {
 		dbLogger.warn(`[DAMAGED DB] (missing) pkg: driveFile :: ${file}`);
-		return resolve(null);
+		return null;
 	}
 
 	// rendered target
@@ -235,5 +235,5 @@ export const pack = (
 		_target.url = getOriginalUrl(_file);
 	}
 
-	resolve(_target);
-});
+	return _target;
+};
