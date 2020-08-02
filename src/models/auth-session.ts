@@ -29,6 +29,7 @@ export const pack = async (
 	let _session: any;
 
 	// TODO: Populate session if it ID
+	// eslint-disable-next-line prefer-const
 	_session = deepcopy(session);
 
 	// Me

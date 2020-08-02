@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 import * as mongo from 'mongodb';
 import Notification from '../models/notification';
 import { pack } from '../models/notification';
