@@ -4,6 +4,8 @@ import toWord from '../mfm/toWord';
 import { promisify } from 'util';
 import config from '../config';
 import { unique } from '../prelude/array';
+import fetch from 'node-fetch';
+import { getAgentByUrl } from './fetch';
 const MeCab = require('mecab-async');
 
 export async function getIndexer(note: Partial<Record<'text' | 'cw', string>>): Promise<string[]> {
@@ -25,7 +27,45 @@ export async function getWordIndexer(note: Partial<Record<'text' | 'cw', string>
 }
 
 async function me(text: string): Promise<string[][]> {
+	if (config.mecabSearch?.mecabServer) {
+		const s = await req(config.mecabSearch.mecabServer, text);
+		return s.result;
+	}
+
 	const mecab = new MeCab();
 	mecab.command = config.mecabSearch?.mecabDic ? `${config.mecabSearch.mecabBin} -d ${config.mecabSearch.mecabDic}` : config.mecabSearch?.mecabBin;
 	return await promisify(mecab.parse).bind(mecab)(text);
+}
+
+export async function req(url: string, text: string) {
+	const res = await fetch(url, {
+		method: 'post',
+		body: JSON.stringify({
+			text
+		}),
+		headers: {
+			'User-Agent': config.userAgent,
+			'Content-Type': 'application/json'
+		},
+		timeout: 10000,
+		agent: getAgentByUrl,
+	});
+
+	if (!res.ok) {
+		throw {
+			name: `StatusError`,
+			statusCode: res.status,
+			message: `${res.status} ${res.statusText}`,
+		};
+	}
+
+	try {
+		return await res.json();
+	} catch (e) {
+		throw {
+			name: `JsonParseError`,
+			statusCode: 481,
+			message: `JSON parse error ${e.message || e}`
+		};
+	}
 }
