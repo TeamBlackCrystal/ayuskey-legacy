@@ -5,6 +5,7 @@
 .vscode
 Dockerfile
 build/
+built/
 docker-compose.yml
 node_modules/
 mongo/
