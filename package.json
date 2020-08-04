@@ -111,7 +111,7 @@
 		"cafy": "15.2.1",
 		"chalk": "4.1.0",
 		"cheerio-httpcli": "0.8.1",
-		"commander": "5.1.0",
+		"commander": "4.1.1",
 		"content-disposition": "0.5.3",
 		"crc-32": "1.2.0",
 		"css-loader": "3.6.0",
