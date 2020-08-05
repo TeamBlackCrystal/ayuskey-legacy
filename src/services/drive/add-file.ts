@@ -45,8 +45,14 @@ export type ProcessOptions = {
  */
 async function save(path: string, name: string, info: FileInfo, metadata: IMetadata, drive: DriveConfig, prsOpts: ProcessOptions = {}): Promise<IDriveFile> {
 	// thunbnail, webpublic を必要なら生成
+	let animation = info.type.mime === 'image/apng' ? 'yes' : info.type.mime === 'image/png' ? 'no' : undefined;
+
 	const alts = await generateAlts(path, info.type.mime, !metadata.uri, prsOpts).catch(err => {
-		logger.error(err);
+		if (err === 'ANIMATED') {
+			animation = 'yes';
+		} else {
+			logger.error(err);
+		}
 
 		return {
 			webpublic: null,
@@ -54,7 +60,6 @@ async function save(path: string, name: string, info: FileInfo, metadata: IMetad
 		};
 	});
 
-	const animation = info.type.mime === 'image/apng' ? 'yes' : info.type.mime === 'image/png' ? 'no' : undefined;
 
 	if (info.type.mime === 'image/apng') info.type.mime = 'image/png';
 
@@ -209,12 +214,27 @@ async function save(path: string, name: string, info: FileInfo, metadata: IMetad
  * @param generateWeb Generate webpublic or not
  */
 export async function generateAlts(path: string, type: string, generateWeb: boolean, prsOpts?: ProcessOptions) {
-	let webSize = prsOpts?.webSize || 2048;
-	if (webSize > 16383) webSize = 16383;
+	// video
+	if (type.startsWith('video/')) {
+		const thumbnail = await generateVideoThumbnail(path);
+		return {
+			webpublic: null,
+			thumbnail,
+		};
+	}
 
 	const img = sharp(path);
+	const metadata = await img.metadata();
+	const isAnimated = metadata.pages && metadata.pages > 1;
+
+	// skip animated
+	if (isAnimated) {
+		throw 'ANIMATED';
+	}
 
 	// #region webpublic
+	let webSize = prsOpts?.webSize || 2048;
+	if (webSize > 16383) webSize = 16383;
 	let webpublic: IImage | null = null;
 
 	if (generateWeb && !prsOpts?.isWebpublic) {
@@ -243,12 +263,6 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 		thumbnail = await convertSharpToJpeg(img, 530, 255);
 	} else if (['image/png'].includes(type)) {
 		thumbnail = await convertSharpToPngOrJpeg(img, 530, 255);
-	} else if (type.startsWith('video/')) {
-		try {
-			thumbnail = await generateVideoThumbnail(path);
-		} catch (e) {
-			logger.warn(`generateVideoThumbnail failed: ${e}`);
-		}
 	}
 	// #endregion thumbnail
 
