@@ -12,6 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { query as urlQuery } from '../../../../../prelude/url';
+import * as tinycolor from 'tinycolor2';
 
 type II = {
 	host?: string;
@@ -31,14 +32,13 @@ export default Vue.extend({
 	computed: {
 		themeColor(): string {
 			if (this.instance.themeColor) {
-				const m = this.instance.themeColor.match(/^#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);	// TODO: other format
-				const r = parseInt(m[1], 16);
-				const g = parseInt(m[2], 16);
-				const b = parseInt(m[3], 16);
-				return `rgba(${r}, ${g}, ${b}, 0.5)`;
-			} else {
-				return `rgba(64, 64, 255, 0.5)`;
+				try {
+					const c = tinycolor(this.instance.themeColor);
+					return c.setAlpha(0.5).toRgbString();
+				} catch {}
 			}
+
+			return `rgba(64, 64, 255, 0.5)`;
 		},
 	},
 	methods: {
