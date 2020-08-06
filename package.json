@@ -30,8 +30,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "3.8.0",
 		"@typescript-eslint/parser": "3.8.0",
-		"eslint": "7.6.0",
-		"eslint-plugin-vue": "6.2.2"
+		"eslint": "7.6.0"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "1.2.30",
