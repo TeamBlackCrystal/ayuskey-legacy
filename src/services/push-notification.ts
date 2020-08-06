@@ -41,10 +41,8 @@ export default async function(userId: mongo.ObjectID | string, type: string, bod
 			}
 		};
 
-		const url = config.url;
-
 		const payload = {
-			type, body, url
+			type, body
 		};
 
 		push.sendNotification(pushSubscription, JSON.stringify(payload), {
