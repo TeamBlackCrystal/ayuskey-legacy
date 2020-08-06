@@ -42,7 +42,8 @@
 			<span class="birthday" v-if="user.profile && user.profile.birthday"><fa icon="birthday-cake"/> {{ user.profile.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
 		</div>
 		<div class="status">
-			<router-link :to="user | userPage()" class="notes-count"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</router-link>
+			<a v-if="isPostsPage" class="notes-count" @click="scrollToTL()"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</a>
+			<router-link v-else :to="user | userPage()" class="notes-count"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</router-link>
 			<router-link :to="user | userPage('following')" class="following clickable"><b>{{ user.followingCount | number }}</b>{{ $t('following') }}</router-link>
 			<router-link :to="user | userPage('followers')" class="followers clickable"><b>{{ user.followersCount | number }}</b>{{ $t('followers') }}</router-link>
 		</div>
@@ -75,6 +76,9 @@ export default Vue.extend({
 		}
 	},
 	computed: {
+		isPostsPage(): boolean {
+			return this.$route.path.match(/@[^/]+$/);
+		},
 		style(): any {
 			if (this.user.bannerUrl == null) return {};
 			return {
@@ -128,6 +132,13 @@ export default Vue.extend({
 
 			const blur = top / 32
 			if (blur <= 10) banner.style.filter = `blur(${blur}px)`;
+		},
+
+		scrollToTL() {
+			const el = document.getElementById('user_timeline_52');
+			if (el) {
+				el.scrollIntoView();
+			}
 		},
 
 		menu() {

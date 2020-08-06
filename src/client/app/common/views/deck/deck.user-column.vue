@@ -44,7 +44,13 @@
 				</dl>
 			</div>
 			<div class="counts">
-				<div>
+				<div v-if="isPostsPage">
+					<a @click="scrollToTL()">
+						<b>{{ user.notesCount | number }}</b>
+						<span>{{ $t('posts') }}</span>
+					</a>
+				</div>
+				<div v-else>
 					<router-link :to="user | userPage()">
 						<b>{{ user.notesCount | number }}</b>
 						<span>{{ $t('posts') }}</span>
@@ -98,6 +104,9 @@ export default Vue.extend({
 	},
 
 	computed: {
+		isPostsPage(): boolean {
+			return this.$route.path.match(/@[^/]+$/);
+		},
 		bannerStyle(): any {
 			if (this.user == null) return {};
 			if (this.user.bannerUrl == null) return {};
@@ -135,6 +144,13 @@ export default Vue.extend({
 			this.$once('hook:beforeDestroy', () => {
 				viewer.close();
 			});
+		},
+
+		scrollToTL() {
+			const el = document.getElementById('user_timeline_53');
+			if (el) {
+				el.scrollIntoView();
+			}
 		},
 
 		menu() {

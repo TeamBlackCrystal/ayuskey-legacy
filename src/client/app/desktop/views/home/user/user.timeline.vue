@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="user_timeline_52">
 	<div class="command">
 		<ui-button @click="fetchOutbox()">{{ $t('fetch-posts') }}</ui-button>
 	</div>
