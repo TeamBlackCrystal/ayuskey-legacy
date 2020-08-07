@@ -179,12 +179,20 @@ export interface ILocalUser extends IUserBase {
 	twoFactorEnabled: boolean;
 	twoFactorTempSecret?: string;
 	clientSettings: any;
-	settings: {
+	settings?: {
 		autoWatch: boolean;
 		alwaysMarkNsfw?: boolean;
+		pushNotifications?: Record<string, boolean | undefined>;
 	};
 	hasUnreadNotification: boolean;
 	hasUnreadMessagingMessage: boolean;
+}
+
+export function getPushNotificationsValue(pushNotifications: Record<string, boolean | undefined> | undefined, key: string) {
+	if (pushNotifications == null) return true;
+	const value = pushNotifications[key];
+	if (value == null) return true;
+	return value;
 }
 
 export interface IRemoteUser extends IUserBase {

@@ -757,6 +757,15 @@ common/views/components/stream-indicator.vue:
 
 common/views/components/notification-settings.vue:
   title: "通知"
+  pushNotifications: "オフラインプッシュ通知の対象"
+  follow: "フォロー"
+  mention: "メンション"
+  reply: "返信"
+  renote: "リノート"
+  quote: "引用"
+  reaction: "リアクション"
+  poll_vote: "投票"
+  highlight: "ハイライトワード"
   mark-as-read-all-notifications: "すべての通知を既読にする"
   mark-as-read-all-unread-notes: "すべての投稿を既読にする"
   mark-as-read-all-talk-messages: "すべてのトークを既読にする"

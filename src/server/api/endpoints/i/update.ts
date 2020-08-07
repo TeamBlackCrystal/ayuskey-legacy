@@ -177,6 +177,22 @@ export const meta = {
 				'ja-JP': 'fields'
 			}
 		},
+
+		pushNotifications: {
+			validator: $.optional.object({
+				follow: $.optional.bool,
+				mention: $.optional.bool,
+				reply: $.optional.bool,
+				renote: $.optional.bool,
+				quote: $.optional.bool,
+				reaction: $.optional.bool,
+				poll_vote: $.optional.bool,
+				highlight: $.optional.bool
+			}),
+			desc: {
+				'ja-JP': 'オフラインプッシュ通知の対象'
+			}
+		},
 	},
 
 	errors: {
@@ -231,6 +247,7 @@ export default define(meta, async (ps, user, app) => {
 	if (typeof ps.isCat == 'boolean') updates.isCat = ps.isCat;
 	if (typeof ps.autoWatch == 'boolean') updates['settings.autoWatch'] = ps.autoWatch;
 	if (typeof ps.alwaysMarkNsfw == 'boolean') updates['settings.alwaysMarkNsfw'] = ps.alwaysMarkNsfw;
+	if (ps.pushNotifications) updates['settings.pushNotifications'] = ps.pushNotifications;
 
 	if (ps.avatarId) {
 		const avatar = await DriveFile.findOne({
