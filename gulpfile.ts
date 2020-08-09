@@ -5,6 +5,7 @@
 import * as gulp from 'gulp';
 import * as ts from 'gulp-typescript';
 const sourcemaps = require('gulp-sourcemaps');
+import tslint from 'gulp-tslint';
 const stylus = require('gulp-stylus');
 import * as rimraf from 'rimraf';
 import * as rename from 'gulp-rename';
@@ -44,6 +45,23 @@ gulp.task('build:copy', gulp.parallel('build:copy:views', 'build:copy:fonts', ()
 		'!./src/client/app/**/assets/**/*'
 	]).pipe(gulp.dest('./built/'))
 ));
+
+gulp.task('lint', () =>
+	gulp.src('./src/**/*.ts')
+		.pipe(tslint({
+			formatter: 'verbose'
+		}))
+		.pipe(tslint.report())
+);
+
+gulp.task('format', () =>
+	gulp.src('./src/**/*.ts')
+		.pipe(tslint({
+			formatter: 'verbose',
+			fix: true
+		}))
+		.pipe(tslint.report())
+);
 
 gulp.task('clean', gulp.parallel(
 	cb => rimraf('./built', cb),
