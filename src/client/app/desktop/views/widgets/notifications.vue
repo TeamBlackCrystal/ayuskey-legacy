@@ -27,7 +27,7 @@ export default define({
 				title: this.$t('@.notification-type'),
 				type: null,
 				select: {
-					items: ['all', 'follow', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote', 'receiveFollowRequest'].map(x => ({
+					items: ['all', 'follow', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote', 'receiveFollowRequest', 'highlight'].map(x => ({
 						value: x, text: this.$t('@.notification-types.' + x)
 					}))
 					default: this.props.type,

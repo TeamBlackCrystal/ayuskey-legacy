@@ -48,8 +48,9 @@ common:
     reply: "返信"
     quote: "引用"
     renote: "Renote"
-    mention: "言及"
+    mention: "メンション"
     reaction: "リアクション"
+    highlight: "ハイライト"
   got-it: "わかった"
   customization-tips:
     title: "カスタマイズのヒント"
