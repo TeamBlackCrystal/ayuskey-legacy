@@ -23,9 +23,11 @@ function visit(tree: MfmTree): string {
 			return tree.node.props.formula;
 		}
 
+		/*
 		case 'mention': {
 			return tree.node.props.canonical;
 		}
+		*/
 
 		case 'hashtag': {
 			return `#${tree.node.props.hashtag}`;
