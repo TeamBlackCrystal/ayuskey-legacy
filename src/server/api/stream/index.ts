@@ -52,6 +52,9 @@ export default class Connection {
 	 */
 	@autobind
 	private async onWsConnectionMessage(data: websocket.IMessage) {
+		if (data.utf8Data == null) return;
+		if (data.utf8Data === 'ping') return;
+
 		const { type, body } = JSON.parse(data.utf8Data);
 
 		switch (type) {
