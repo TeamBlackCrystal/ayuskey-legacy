@@ -10,6 +10,7 @@ import UserList from '../../../../models/user-list';
 import { concat } from '../../../../prelude/array';
 import { isSelfHost } from '../../../../misc/convert-host';
 import { getHideRenoteUserIds } from '../../common/get-hide-renote-users';
+import { oidIncludes } from '../../../../prelude/oid';
 
 export const meta = {
 	desc: {
@@ -166,8 +167,13 @@ export default define(meta, async (ps, user) => {
 		_id: -1
 	};
 
+	// どうせフィルタされるユーザーはフォローしてない扱いにして最初のuserのIXSCANの精度を少しでも高くする
+	const realFollowingIds = followingIds
+		.filter(x => !oidIncludes(hideUserIds, x))
+		.filter(x => !oidIncludes(hideFromHomeUsers, x));
+
 	const followQuery = [{
-		userId: { $in: followingIds }
+		userId: { $in: realFollowingIds }
 	}];
 
 	const visibleQuery = user == null ? [{
