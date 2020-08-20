@@ -346,7 +346,7 @@ export default define(meta, async (ps, user) => {
 	//#endregion
 
 	const timeline = await Note.find(query, {
-		maxTimeMS: 20000,
+		maxTimeMS: 25000,
 		limit: ps.limit,
 		sort: sort
 	});
