@@ -223,6 +223,14 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 		};
 	}
 
+	// unsupported image
+	if (!['image/jpeg', 'image/png', 'image/webp'].includes(type)) {
+		return {
+			webpublic: null,
+			thumbnail: null
+		};
+	}
+
 	const img = sharp(path);
 	const metadata = await img.metadata();
 	const isAnimated = metadata.pages && metadata.pages > 1;
