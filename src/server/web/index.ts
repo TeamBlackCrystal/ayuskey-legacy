@@ -296,6 +296,10 @@ router.get('/@:user/pages/:page', async ctx => {
 
 router.get('/info', async ctx => {
 	const meta = await fetchMeta();
+	let desc = meta.description;
+	try {
+		desc = fromHtml(desc || '') || undefined;
+	} catch { }
 	const emojis = await Emoji.find({ host: null }, {
 		fields: {
 			_id: false
@@ -304,7 +308,8 @@ router.get('/info', async ctx => {
 	await ctx.render('info', {
 		version: config.version,
 		emojis: emojis,
-		meta: meta
+		meta: meta,
+		desc,
 	});
 });
 
@@ -321,7 +326,7 @@ router.get('*', async ctx => {
 
 	let desc = meta.description;
 	try {
-		desc = fromHtml(desc || '');
+		desc = fromHtml(desc || '') || undefined;
 	} catch { }
 
 	await ctx.render('base', {
