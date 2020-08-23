@@ -61,7 +61,7 @@ export async function buildMeta(instance: IMeta, detail = true) {
 
 		enableServiceWorker: instance.enableServiceWorker,
 
-		proxyAccount: instance.proxyAccount || null,
+		proxyAccountName: instance.proxyAccount || null,
 	};
 
 	if (detail) {

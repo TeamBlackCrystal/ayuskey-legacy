@@ -77,7 +77,7 @@ const nodeinfo2 = async () => {
 			enableDiscordIntegration: meta.enableDiscordIntegration,
 			enableEmail: meta.enableEmail,
 			enableServiceWorker: meta.enableServiceWorker,
-			proxyAccount: meta.proxyAccount || null,
+			proxyAccountName: meta.proxyAccount || null,
 		}
 	};
 };
