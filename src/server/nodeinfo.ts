@@ -76,7 +76,8 @@ const nodeinfo2 = async () => {
 			enableGithubIntegration: meta.enableGithubIntegration,
 			enableDiscordIntegration: meta.enableDiscordIntegration,
 			enableEmail: meta.enableEmail,
-			enableServiceWorker: meta.enableServiceWorker
+			enableServiceWorker: meta.enableServiceWorker,
+			proxyAccount: meta.proxyAccount || null,
 		}
 	};
 };
