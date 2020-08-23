@@ -80,6 +80,9 @@ html
 						= meta.maintainer.name
 						|  &lt;#{meta.maintainer.email}&gt;
 				tr
+					th Proxy account
+					td= meta.proxyAccount || '(none)'
+				tr
 					th Original users
 					td= meta.stats.originalUsersCount
 				tr
