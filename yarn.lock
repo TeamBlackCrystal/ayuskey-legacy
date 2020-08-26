@@ -199,10 +199,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/bull@3.14.1":
-  version "3.14.1"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.14.1.tgz#043ce8569d9e9d2b9c7ed1534179507ad6dbeb99"
-  integrity sha512-p0qLVWGWvvAq5mqTw+5m4bWz56ydl7bQQsQgFG4lgPiKx2h6OeSDWsWUw8CGan+ISXwExCSLnlu796Lq0hgNQg==
+"@types/bull@3.14.2":
+  version "3.14.2"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.14.2.tgz#18c1d9a9dd079ca63971b4d0fac16fc9f5777491"
+  integrity sha512-+g3Qha7ObdadnM4v/Sz9WDx8eKEaRL4usQmkeUEC25uAltFLioDbAaLnUggfWHONVzW2AxOgzS19ekMmx6zLzA==
   dependencies:
     "@types/ioredis" "*"
 
@@ -488,10 +488,10 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/lodash@4.14.159":
-  version "4.14.159"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.159.tgz#61089719dc6fdd9c5cb46efc827f2571d1517065"
-  integrity sha512-gF7A72f7WQN33DpqOWw9geApQPh4M3PxluMtaHxWHXEGSN12/WbcEk/eNSqWNQcQhF66VSZ06vCF94CrHwXJDg==
+"@types/lodash@4.14.160":
+  version "4.14.160"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.160.tgz#2f1bba6500bc3cb9a732c6d66a083378fb0b0b29"
+  integrity sha512-aP03BShJoO+WVndoVj/WNcB/YBPt+CIU1mvaao2GRAHy2yg4pT/XS4XnVHEQBjPJGycWf/9seKEO9vopTJGkvA==
 
 "@types/mime@*":
   version "2.0.1"
@@ -612,19 +612,17 @@
   dependencies:
     "@types/node" "*"
 
-"@types/redis@2.8.25":
-  version "2.8.25"
-  resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.25.tgz#046bfff24b82effa59d74744c6fcf8995be17479"
-  integrity sha512-e5N5Dg712aZ1CPi1Li0XalukPSWd2RTLYzmrMsQ84NkYQ7cqKHC+HroXM1WP65O1zRGfzld72/u9ikumEe+ylA==
+"@types/redis@2.8.26":
+  version "2.8.26"
+  resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.26.tgz#c7e773cc59b7b8b887fa3e1bc45b5abee2326480"
+  integrity sha512-/Sot3oAGnrHQ9C3HRFXDApzBEugoYFyh4Pd8y1d9x4yCoOejFLbrD5gWQrsdANPpSj8VbucEJrNMJv1nzMptIA==
   dependencies:
     "@types/node" "*"
 
-"@types/rename@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@types/rename/-/rename-1.0.1.tgz#89ef152d73f2400835c5d835c5e22d3eb6b21ba6"
-  integrity sha512-/UCzEibV29OoEkc773GR9lzwrHnMl8wnNrvAir+WIICS4e7NG+Pe85pYH4CGyVvgmNuKiiWH5i0g0flHO/Uw4Q==
-  dependencies:
-    "@types/node" "*"
+"@types/rename@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/rename/-/rename-1.0.2.tgz#82a3b674d07b0936e9d7de00f5268faa45c237d7"
+  integrity sha512-0rTMy5prUJHfmXnjP8xv/Wyfo0c1GoMQx2uX/8+JApIVND64EQ00DgdeeeRLlFm0GwNrGxy23yhc2AD6KOF2Ag==
 
 "@types/request-stats@3.0.0":
   version "3.0.0"
