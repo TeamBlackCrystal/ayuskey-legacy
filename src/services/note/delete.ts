@@ -49,7 +49,7 @@ export default async function(user: IUser, note: INote, quiet = false) {
 		Note.update({ _id: note.renoteId }, {
 			$inc: {
 				renoteCount: -1,
-				score: -1
+				score: user.isBot ? 0 : -1
 			},
 			$pull: {
 				_quoteIds: note._id

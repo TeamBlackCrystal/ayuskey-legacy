@@ -311,7 +311,7 @@ export default async (user: IUser, data: Option, silent = false) => new Promise<
 	}
 
 	if (data.renote) {
-		incRenoteCount(data.renote);
+		incRenoteCount(data.renote, user);
 	}
 
 	if (isQuote(note)) {
@@ -454,11 +454,11 @@ async function renderNoteOrRenoteActivity(data: Option, note: INote, user: IUser
 	return renderActivity(content);
 }
 
-function incRenoteCount(renote: INote) {
+function incRenoteCount(renote: INote, user: IUser) {
 	Note.update({ _id: renote._id }, {
 		$inc: {
 			renoteCount: 1,
-			score: 1
+			score: user.isBot ? 0 : 1
 		}
 	});
 }

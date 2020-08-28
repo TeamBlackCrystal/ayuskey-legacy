@@ -41,7 +41,7 @@ export default async (user: IUser, note: INote, reaction: string) => {
 	await Note.update({ _id: note._id }, {
 		$inc: {
 			[`reactionCounts.${reaction}`]: 1,
-			score: 1
+			score: user.isBot ? 0 : 1
 		}
 	});
 
