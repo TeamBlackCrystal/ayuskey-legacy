@@ -516,14 +516,6 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/mongodb@^3.5.25":
-  version "3.5.25"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.25.tgz#ab187db04d79f8e3f15af236327dc9139d9d4736"
-  integrity sha512-2H/Owt+pHCl9YmBOYnXc3VdnxejJEjVdH+QCWL5ZAfPehEn3evygKBX3/vKRv7aTwfNbUd0E5vjJdQklH/9a6w==
-  dependencies:
-    "@types/bson" "*"
-    "@types/node" "*"
-
 "@types/node-fetch@2.5.7":
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.5.7.tgz#20a2afffa882ab04d44ca786449a276f9f6bbf3c"
@@ -6238,12 +6230,11 @@ monk-middleware-wait-for-connection@^0.2.0:
   resolved "https://registry.yarnpkg.com/monk-middleware-wait-for-connection/-/monk-middleware-wait-for-connection-0.2.0.tgz#312958d30e588b57d09754dd7c97b4843316835a"
   integrity sha1-MSlY0w5Yi1fQl1TdfJe0hDMWg1o=
 
-monk@7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/monk/-/monk-7.3.1.tgz#eb5816b0cff17e2cd3a84713b287ba7a5027ac57"
-  integrity sha512-09+K52A7vfdH7ZxyZyXS6E5C3LUMxXvd8ZLAYLJclXVbqxb6dsmA1ArIWGblhGFEgYOaTI9MOfWO3uE4b5IQkA==
+monk@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/monk/-/monk-7.3.0.tgz#d94ebde30c958b9ce0ed7475f990da40e0556836"
+  integrity sha512-WqyCLjz32Q3OybOT+fleYHRz5DuG5/E0XKWvrmlHt0vPzTrNZ/BRQ+f2vzWi4apethuvblGTKsOtuDciM018dQ==
   dependencies:
-    "@types/mongodb" "^3.5.25"
     debug "*"
     mongodb "^3.2.3"
     monk-middleware-cast-ids "^0.2.1"
