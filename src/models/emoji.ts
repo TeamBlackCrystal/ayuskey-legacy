@@ -16,7 +16,7 @@ export default Emoji;
 export type IEmoji = {
 	_id: mongo.ObjectID;
 	name: string;
-	host: string;
+	host: string | null;
 	url: string;
 	aliases?: string[];
 	updatedAt?: Date;

@@ -165,12 +165,23 @@ export default async function renderNote(note: INote, dive = true, isTalk = fals
 export async function getEmojis(names: string[]): Promise<IEmoji[]> {
 	if (names == null || names.length < 1) return [];
 
+	const nameToEmoji = async (name: string) => {
+		if (name == null) return null;
+
+		const m = name.match(/^([^@]+)(?:@(.+))?$/);
+		if (!m) return null;
+
+		const emoji = await Emoji.findOne({
+			name: m[1],
+			host: m[2] || null
+		});
+
+		return emoji;
+	};
+
 	const emojis = await Promise.all(
-		names.map(name => Emoji.findOne({
-			name,
-			host: null
-		}))
+		names.map(name => nameToEmoji(name))
 	);
 
-	return emojis.filter(emoji => emoji != null);
+	return emojis.filter((emoji): emoji is IEmoji => emoji != null);
 }
