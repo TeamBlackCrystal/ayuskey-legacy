@@ -171,6 +171,9 @@ export async function getEmojis(names: string[]): Promise<IEmoji[]> {
 		const m = name.match(/^([^@]+)(?:@(.+))?$/);
 		if (!m) return null;
 
+		// TODO: リモートが対応していないのでリモート分は除外する
+		if (m[2] != null) return null;
+
 		const emoji = await Emoji.findOne({
 			name: m[1],
 			host: m[2] || null
