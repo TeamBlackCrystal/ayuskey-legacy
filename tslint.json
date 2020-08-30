@@ -67,5 +67,10 @@
 		"unified-signatures": false,
 		"no-redundant-jump": false
 	},
-	"rulesDirectory": []
+	"rulesDirectory": [],
+	"linterOptions": {
+		"exclude": [
+			"node_modules/**"
+		]
+	}
 }
