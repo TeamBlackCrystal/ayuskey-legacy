@@ -479,7 +479,7 @@ export async function addFile(
 		properties: properties,
 		withoutChunks: isLink,
 		isRemote: isLink,
-		isSensitive: (isLocalUser(user) && user.settings.alwaysMarkNsfw) || sensitive
+		isSensitive: (isLocalUser(user) && user.settings?.alwaysMarkNsfw) || sensitive
 	} as IMetadata;
 
 	if (url !== null) {
@@ -538,9 +538,9 @@ export async function addFile(
 	// 統計を更新
 	driveChart.update(driveFile, true);
 	perUserDriveChart.update(driveFile, true);
-	if (isRemoteUser(driveFile.metadata._user)) {
+	if (isRemoteUser(driveFile.metadata?._user)) {
 		instanceChart.updateDrive(driveFile, true);
-		Instance.update({ host: driveFile.metadata._user.host }, {
+		Instance.update({ host: driveFile.metadata!._user.host }, {
 			$inc: {
 				driveUsage: driveFile.length,
 				driveFiles: 1
