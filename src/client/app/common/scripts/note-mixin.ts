@@ -173,10 +173,7 @@ export default (opts: Opts = {}) => ({
 			this.$root.api('notes/favorites/create', {
 				noteId: this.appearNote.id
 			}).then(() => {
-				this.$root.dialog({
-					type: 'success',
-					splash: true
-				});
+				this.$notify(this.$t('@.favorited'));
 			});
 		},
 

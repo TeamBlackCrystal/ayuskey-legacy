@@ -39,6 +39,7 @@ common:
   reload-to-apply-the-setting: "この設定を反映するにはページをリロードする必要があります。今すぐリロードしますか？"
   unfollow-confirm: "{name}さんをフォロー解除しますか？"
   delete-confirm: "この投稿を削除しますか？"
+  favorited: "お気に入りに追加しました"
   notification-type: "通知の種類"
   notification-types:
     all: "すべて"
