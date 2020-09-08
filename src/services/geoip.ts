@@ -20,6 +20,7 @@ export async function geoIpLookup(ip: string) {
 			'User-Agent': config.userAgent,
 		},
 		timeout: 10 * 1000,
+		size: 10 * 1024 * 1024,
 		agent: u => u.protocol == 'http:' ? httpAgent : httpsAgent,
 	});
 

@@ -48,6 +48,7 @@ export async function req(url: string, text: string) {
 			'Content-Type': 'application/json'
 		},
 		timeout: 10000,
+		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
 	});
 

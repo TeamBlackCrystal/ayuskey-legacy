@@ -114,6 +114,7 @@ export class LdSignature {
 				Accept: 'application/ld+json, application/json',
 			},
 			timeout: this.loderTimeout,
+			size: 10 * 1024 * 1024,
 			agent: u => u.protocol == 'http:' ? httpAgent : httpsAgent,
 		}).then(res => {
 			if (!res.ok) {

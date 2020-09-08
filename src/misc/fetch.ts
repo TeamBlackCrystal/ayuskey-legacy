@@ -13,6 +13,7 @@ export async function getJson(url: string, accept = 'application/json, */*', tim
 			Accept: accept
 		}, headers || {}),
 		timeout,
+		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
 	});
 
@@ -42,6 +43,7 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 			Accept: accept
 		}, headers || {}),
 		timeout,
+		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
 	});
 
@@ -76,14 +78,14 @@ const _https = new https.Agent({
  * Get http proxy or non-proxy agent
  */
 export const httpAgent = config.proxy
-	? new HttpProxyAgent(config.proxy)
+	? new HttpProxyAgent(config.proxy) as unknown as http.Agent
 	: _http;
 
 /**
  * Get https proxy or non-proxy agent
  */
 export const httpsAgent = config.proxy
-	? new HttpsProxyAgent(config.proxy)
+	? new HttpsProxyAgent(config.proxy) as unknown as https.Agent
 	: _https;
 
 /**
