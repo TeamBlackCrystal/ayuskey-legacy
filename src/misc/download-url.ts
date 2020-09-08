@@ -4,6 +4,7 @@ import * as util from 'util';
 import fetch from 'node-fetch';
 import { httpAgent, httpsAgent } from './fetch';
 import { AbortController } from 'abort-controller';
+import * as ContentDisposition from 'content-disposition';
 import config from '../config';
 import * as chalk from 'chalk';
 import Logger from '../services/logger';
@@ -49,4 +50,18 @@ export async function downloadUrl(url: string, path: string) {
 	}
 
 	logger.succ(`Download finished: ${chalk.cyan(url)}`);
+
+	let filename: string | null = null;
+	try {
+		const contentDisposition = response.headers.get('content-disposition');
+		if (contentDisposition) {
+			const cd = ContentDisposition.parse(contentDisposition);
+			if (cd.parameters?.filename) filename = cd.parameters.filename;
+		}
+	} catch { }
+
+	return {
+		filename,
+		url: response.url
+	};
 }

@@ -1,4 +1,4 @@
-import * as URL from 'url';
+import { URL } from 'url';
 
 import { IDriveFile, validateFileName } from '../../models/drive-file';
 import { addFile } from './add-file';
@@ -19,16 +19,23 @@ export const uploadFromUrl = async (
 	force = false,
 	link = false
 ): Promise<IDriveFile> => {
-	let name = URL.parse(url).pathname.split('/').pop();
-	if (!validateFileName(name)) {
-		name = null;
-	}
-
 	// Create temp file
 	const [path, cleanup] = await createTemp();
 
 	// write content at URL to temp file
-	await downloadUrl(url, path);
+	const info = await downloadUrl(url, path);
+
+	let name: string | null = null;
+
+	if (info.filename) {
+		name = info.filename;
+	} else if (info.url) {
+		name = new URL(info.url).pathname.split('/').pop() || null;
+	}
+
+	if (name && !validateFileName(name)) {
+		name = null;
+	}
 
 	let driveFile: IDriveFile;
 	let error;
