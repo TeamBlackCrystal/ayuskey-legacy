@@ -199,6 +199,7 @@ export default (opts) => ({
 		clear() {
 			this.preview = null;
 			this.text = '';
+			this.cw = '';
 			this.files = [];
 			this.poll = false;
 			this.$emit('change-attached-files', this.files);
