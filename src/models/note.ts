@@ -19,7 +19,6 @@ import { toString } from '../mfm/to-string';
 
 const Note = db.get<INote>('notes');
 Note.createIndex('uri', { sparse: true, unique: true });
-Note.createIndex('userId');
 Note.createIndex('mentions');
 Note.createIndex('visibleUserIds');
 Note.createIndex('replyId');
@@ -34,6 +33,7 @@ Note.createIndex({ '_user.host': 1, replyId: 1, _id: -1 });
 Note.createIndex('mecabWords');
 Note.createIndex('trendWords');
 Note.createIndex({ 'userId': 1, _id: -1 });
+Note.dropIndex('userId').catch(() => {});
 
 export default Note;
 
