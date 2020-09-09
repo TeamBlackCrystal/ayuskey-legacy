@@ -17,7 +17,7 @@
 				<a v-for="tag in recentHashtags.slice(0, 5)" @click="addTag(tag)" :key="tag" :title="$t('click-to-tagging')">#{{ tag }}</a>
 			</div>
 			<div class="local-only-remote" v-if="isUnreachable">ローカルのみでリモートリプライしてもとどきません</div>
-			<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('annotations')" v-autocomplete="{ model: 'cw' }">
+			<input v-show="useCw" ref="cw" v-model="cw" @keydown="onKeydown" :placeholder="$t('annotations')" v-autocomplete="{ model: 'cw' }">
 			<div class="textarea">
 				<textarea :class="{ with: (files.length != 0 || poll) }"
 					ref="text" v-model="text" :disabled="posting"
@@ -28,7 +28,7 @@
 					<fa :icon="['far', 'laugh']"/>
 				</button>
 				<x-post-form-attaches class="files" :files="files" :detachMediaFn="detachMedia"/>
-				<mk-poll-editor v-if="poll" ref="poll" @destroyed="poll = false" @updated="onPollUpdate()"/>
+				<mk-poll-editor v-if="poll" ref="poll" @destroyed="poll = false" @updated="onPollUpdate()" @keydown="onKeydown"/>
 			</div>
 		</div>
 		<mk-uploader ref="uploader" @uploaded="attachMedia" @change="onChangeUploadings"/>
