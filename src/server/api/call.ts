@@ -13,7 +13,7 @@ const accessDenied = {
 	id: '56f35758-7dd5-468b-8439-5d6fb8ec9b8e'
 };
 
-export default async (endpoint: string, user: IUser, app: IApp, data: any, file?: any) => {
+export default async (endpoint: string, user: IUser, app: IApp, data: any, file?: any, ip?: string) => {
 	const isSecure = user != null && app == null;
 
 	const ep = endpoints.find(e => e.name === endpoint);
@@ -60,9 +60,9 @@ export default async (endpoint: string, user: IUser, app: IApp, data: any, file?
 		});
 	}
 
-	if (ep.meta.requireCredential && ep.meta.limit) {
+	if (ep.meta.limit) {
 		// Rate limit
-		await limiter(ep, user).catch(e => {
+		await limiter(ep, user, ip).catch(e => {
 			throw new ApiError({
 				message: 'Rate limit exceeded. Please try again later.',
 				code: 'RATE_LIMIT_EXCEEDED',
