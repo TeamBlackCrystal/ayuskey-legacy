@@ -8,7 +8,7 @@ import renderCreate from '../../remote/activitypub/renderer/create';
 import renderAnnounce from '../../remote/activitypub/renderer/announce';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import DriveFile, { IDriveFile } from '../../models/drive-file';
-import notify from '../../services/create-notification';
+import { createNotification } from '../../services/create-notification';
 import NoteWatching from '../../models/note-watching';
 import watch from './watch';
 import { parse } from '../../mfm/parse';
@@ -85,7 +85,7 @@ class NotificationManager {
 				continue;
 			}
 
-			notify(x.target, this.notifier._id, x.reason, {
+			createNotification(x.target, this.notifier._id, x.reason, {
 				noteId: this.note._id
 			});
 		}

@@ -6,7 +6,7 @@ import { publishMainStream } from './stream';
 import User, { getMute } from '../models/user';
 import pushSw from './push-notification';
 
-export default (
+export const createNotification = (
 	notifiee: mongo.ObjectID,
 	notifier: mongo.ObjectID,
 	type: string,

@@ -1,6 +1,6 @@
 import User, { isLocalUser, isRemoteUser, pack as packUser, IUser } from '../../../models/user';
 import { publishMainStream } from '../../stream';
-import notify from '../../../services/create-notification';
+import { createNotification } from '../../../services/create-notification';
 import { renderActivity } from '../../../remote/activitypub/renderer';
 import renderFollow from '../../../remote/activitypub/renderer/follow';
 import { deliver } from '../../../queue';
@@ -82,7 +82,7 @@ export default async function(follower: IUser, followee: IUser, requestId?: stri
 		}).then(packed => publishMainStream(followee._id, 'meUpdated', packed));
 
 		// 通知を作成
-		notify(followee._id, follower._id, 'receiveFollowRequest');
+		createNotification(followee._id, follower._id, 'receiveFollowRequest');
 	}
 
 	if (isLocalUser(follower) && isRemoteUser(followee)) {

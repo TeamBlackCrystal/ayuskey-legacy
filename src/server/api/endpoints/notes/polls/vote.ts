@@ -5,7 +5,7 @@ import Note from '../../../../../models/note';
 import Watching from '../../../../../models/note-watching';
 import watch from '../../../../../services/note/watch';
 import { publishNoteStream } from '../../../../../services/stream';
-import notify from '../../../../../services/create-notification';
+import { createNotification } from '../../../../../services/create-notification';
 import define from '../../../define';
 import User, { IRemoteUser } from '../../../../../models/user';
 import { ApiError } from '../../../error';
@@ -133,7 +133,7 @@ export default define(meta, async (ps, user) => {
 	});
 
 	// Notify
-	notify(note.userId, user._id, 'poll_vote', {
+	createNotification(note.userId, user._id, 'poll_vote', {
 		noteId: note._id,
 		choice: ps.choice
 	});
@@ -152,7 +152,7 @@ export default define(meta, async (ps, user) => {
 		})
 		.then(watchers => {
 			for (const watcher of watchers) {
-				notify(watcher.userId, user._id, 'poll_vote', {
+				createNotification(watcher.userId, user._id, 'poll_vote', {
 					noteId: note._id,
 					choice: ps.choice
 				});

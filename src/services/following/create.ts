@@ -2,7 +2,7 @@ import User, { isLocalUser, isRemoteUser, pack as packUser, IUser } from '../../
 import Following from '../../models/following';
 import Blocking from '../../models/blocking';
 import { publishMainStream } from '../stream';
-import notify from '../../services/create-notification';
+import { createNotification } from '../../services/create-notification';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import renderFollow from '../../remote/activitypub/renderer/follow';
 import renderAccept from '../../remote/activitypub/renderer/accept';
@@ -114,7 +114,7 @@ export async function insertFollowingDoc(followee: IUser, follower: IUser) {
 		packUser(follower, followee).then(packed => publishMainStream(followee._id, 'followed', packed)),
 
 		// 通知を作成
-		notify(followee._id, follower._id, 'follow');
+		createNotification(followee._id, follower._id, 'follow');
 	}
 }
 
