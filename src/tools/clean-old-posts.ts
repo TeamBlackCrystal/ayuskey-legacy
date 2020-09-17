@@ -72,6 +72,9 @@ async function main(days = 90) {
 				{
 					renoteId: null,
 				},
+				{
+					mentions: { $exists: false }	// TODO: ローカルユーザーへのメンションが含まれている場合のみにする
+				},
 			],
 		});
 
