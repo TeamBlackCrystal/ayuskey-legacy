@@ -18,6 +18,7 @@ import instanceChart from '../../services/chart/instance';
 import Favorite from '../../models/favorite';
 import DeliverManager, { deliverToFollowers } from '../../remote/activitypub/deliver-manager';
 import { deliverToRelays } from '../relay';
+import Notification from '../../models/notification';
 
 /**
  * 投稿を削除します。
@@ -68,6 +69,10 @@ export default async function(user: IUser, note: INote, quiet = false) {
 
 	// この投稿をお気に入りから削除
 	Favorite.remove({
+		noteId: note._id
+	});
+
+	Notification.remove({
 		noteId: note._id
 	});
 

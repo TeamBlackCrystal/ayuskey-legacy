@@ -9,6 +9,7 @@ import { decodeReaction } from '../misc/reaction-lib';
 
 const Notification = db.get<INotification>('notifications');
 Notification.createIndex('notifieeId');
+Notification.createIndex('noteId', { sparse: true });
 export default Notification;
 
 export interface INotification {
@@ -51,6 +52,14 @@ export interface INotification {
 	 * 通知が読まれたかどうか
 	 */
 	isRead: boolean;
+
+	/**
+	 * mention/reply/renote/quote/highlightの場合notifierのNoteId
+	 * reaction/poll_voteの場合notifieeのNoteId
+	 */
+	noteId?: mongo.ObjectID;
+
+	choice?: number;
 }
 
 export const packMany = (
