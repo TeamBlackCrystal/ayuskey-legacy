@@ -32,6 +32,11 @@ async function me(text: string): Promise<string[][]> {
 		return s.result;
 	}
 
+	// mecab-async on Windows には OSコマンドインジェクションがある
+	if (process.platform === 'win32') {
+		return [];
+	}
+
 	const mecab = new MeCab();
 	mecab.command = config.mecabSearch?.mecabDic ? `${config.mecabSearch.mecabBin} -d ${config.mecabSearch.mecabDic}` : config.mecabSearch?.mecabBin;
 	return await promisify(mecab.parse).bind(mecab)(text);
