@@ -110,7 +110,9 @@ export const pack = async (notification: any) => {
 			// (データベースの不具合などで)投稿が見つからなかったら
 			if (_notification.note == null) {
 				dbLogger.warn(`[DAMAGED DB] (missing) pkg: notification -> note :: ${_notification.id} (note ${_notification.noteId})`);
-				return null;
+				_notification.type = '_missing_';
+				delete _notification.noteId;
+				delete _notification.note;
 			}
 			break;
 		default:

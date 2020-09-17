@@ -222,7 +222,7 @@ export const schemas = {
 			},
 			type: {
 				type: 'string',
-				enum: ['follow', 'receiveFollowRequest', 'mention', 'reply', 'renote', 'quote', 'reaction', 'poll_vote', 'highlight'],
+				enum: ['follow', 'receiveFollowRequest', 'mention', 'reply', 'renote', 'quote', 'reaction', 'poll_vote', 'highlight', '_missing_'],
 				description: 'The type of the notification.'
 			},
 		},
