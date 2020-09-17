@@ -66,6 +66,14 @@ class NotificationManager {
 			}
 		}
 
+		const existMention = this.queue.find(x => x.target.equals(notifiee) && x.reason == 'mention');
+
+		if (existMention) {
+			if (reason == 'quote') {
+				return;
+			}
+		}
+
 		this.queue.push({
 			reason: reason,
 			target: notifiee
