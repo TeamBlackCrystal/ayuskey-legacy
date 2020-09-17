@@ -2,7 +2,7 @@ import { IUser, isLocalUser, isRemoteUser } from '../../../models/user';
 import Note, { INote, pack } from '../../../models/note';
 import NoteReaction from '../../../models/note-reaction';
 import { publishNoteStream, publishHotStream } from '../../stream';
-import notify from '../../create-notification';
+import { createNotification } from '../../create-notification';
 import NoteWatching from '../../../models/note-watching';
 import watch from '../watch';
 import { renderLike } from '../../../remote/activitypub/renderer/like';
@@ -65,7 +65,7 @@ export default async (user: IUser, note: INote, reaction: string) => {
 
 	// リアクションされたユーザーがローカルユーザーなら通知を作成
 	if (isLocalUser(note._user)) {
-		notify(note.userId, user._id, 'reaction', {
+		createNotification(note.userId, user._id, 'reaction', {
 			noteId: note._id,
 			reaction: reaction
 		});
@@ -83,7 +83,7 @@ export default async (user: IUser, note: INote, reaction: string) => {
 		})
 		.then(watchers => {
 			for (const watcher of watchers) {
-				notify(watcher.userId, user._id, 'reaction', {
+				createNotification(watcher.userId, user._id, 'reaction', {
 					noteId: note._id,
 					reaction: reaction
 				});
