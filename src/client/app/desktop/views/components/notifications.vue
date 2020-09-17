@@ -402,6 +402,9 @@ export default Vue.extend({
 					.text header [data-icon]
 						color #555
 
+				&._missing_
+					display none
+
 			> .date
 				display block
 				margin 0
