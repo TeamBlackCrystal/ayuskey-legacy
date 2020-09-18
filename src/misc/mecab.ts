@@ -1,12 +1,17 @@
 import { parse as parseMfm } from '../mfm/parse';
 import toText from '../mfm/toText';
 import toWord from '../mfm/toWord';
-import { promisify } from 'util';
 import config from '../config';
 import { unique } from '../prelude/array';
 import fetch from 'node-fetch';
 import { getAgentByUrl } from './fetch';
-const MeCab = require('mecab-async');
+import { spawn } from 'child_process';
+import * as util from 'util';
+import * as stream from 'stream';
+import * as memoryStreams from 'memory-streams';
+import { EOL } from 'os';
+
+const pipeline = util.promisify(stream.pipeline);
 
 export async function getIndexer(note: Partial<Record<'text' | 'cw', string>>): Promise<string[]> {
 	const source = `${note.text || ''} ${note.cw || ''}`;
@@ -32,14 +37,11 @@ async function me(text: string): Promise<string[][]> {
 		return s.result;
 	}
 
-	// mecab-async on Windows には OSコマンドインジェクションがある
-	if (process.platform === 'win32') {
-		return [];
+	if (config.mecabSearch?.mecabBin) {
+		return await mecab(text, config.mecabSearch.mecabBin, config.mecabSearch.mecabDic)
 	}
 
-	const mecab = new MeCab();
-	mecab.command = config.mecabSearch?.mecabDic ? `${config.mecabSearch.mecabBin} -d ${config.mecabSearch.mecabDic}` : config.mecabSearch?.mecabBin;
-	return await promisify(mecab.parse).bind(mecab)(text);
+	return [];
 }
 
 export async function req(url: string, text: string) {
@@ -74,4 +76,42 @@ export async function req(url: string, text: string) {
 			message: `JSON parse error ${e.message || e}`
 		};
 	}
+}
+
+/**
+ * Run MeCab
+ * @param text Text to analyze
+ * @param mecab mecab bin
+ * @param dic mecab dictionaly path
+ */
+async function mecab(text: string, mecab = 'mecab', dic?: string): Promise<string[][]> {
+	const args: string[] = [];
+	if (dic) args.push('-d', dic);
+
+	const lines = await cmd(mecab, args, `${text.replace(/[\n\s\t]/g, ' ')}\n`);
+
+	const results: string[][] = [];
+
+	for (const line of lines) {
+		if (line === 'EOS') break;
+		const [word, value = ''] = line.split('\t');
+		const array = value.split(',');
+		array.unshift(word);
+		results.push(array);
+	}
+
+	return results;
+}
+
+async function cmd(command: string, args: string[], stdin: string): Promise<string[]> {
+	const mecab = spawn(command, args);
+
+	const writable = new memoryStreams.WritableStream();
+
+	mecab.stdin.write(stdin);
+	mecab.stdin.end();
+
+	await pipeline(mecab.stdout, writable);
+
+	return writable.toString().split(EOL);
 }
