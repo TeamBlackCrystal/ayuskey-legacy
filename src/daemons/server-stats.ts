@@ -1,5 +1,5 @@
 import * as os from 'os';
-import * as sysUtils from 'systeminformation';
+import * as systeminformation from 'systeminformation';
 import * as diskusage from 'diskusage';
 import * as Deque from 'double-ended-queue';
 import Xev from 'xev';
@@ -60,12 +60,12 @@ function cpuUsage() {
 
 // MEMORY(excl buffer + cache) STAT
 async function usedMem() {
-	const data = await sysUtils.mem();
+	const data = await systeminformation.mem();
 	return data.active;
 }
 
 // TOTAL MEMORY STAT
 async function totalMem() {
-	const data = await sysUtils.mem();
+	const data = await systeminformation.mem();
 	return data.total;
 }
