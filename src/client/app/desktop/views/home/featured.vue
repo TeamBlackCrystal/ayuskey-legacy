@@ -10,8 +10,6 @@
 			<option value="7">7 {{ $t('day') }}</option>
 			<option value="30">30 {{ $t('day') }}</option>
 			<option value="90">90 {{ $t('day') }}</option>
-			<option value="365">1 {{ $t('years') }}</option>
-			<option value="3650">10 {{ $t('years') }}</option>
 		</ui-select>
 		<ui-select v-model="filter" :disabled="fetching">
 			<template #label>{{ $t('filter') }}</template>

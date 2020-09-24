@@ -21,7 +21,7 @@ export const meta = {
 
 	params: {
 		days: {
-			validator: $.optional.either($.optional.num.range(0, 9999), $.str.pipe(v => 0 <= Number(v) && Number(v) <= 9999)),
+			validator: $.optional.either($.optional.num.range(0, 99), $.str.pipe(v => 0 <= Number(v) && Number(v) <= 99)),
 			default: 2,
 			transform: (v: any) => JSON.parse(v),
 			desc: {
