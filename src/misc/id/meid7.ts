@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { parseInt } from 'lodash';
 
 const CHARS = '0123456789abcdef';
 const CHARS_LEN = CHARS.length;
@@ -33,4 +34,11 @@ function getRandom() {
 export function genMeid7(date: Date): string {
 	if (date.toString() === 'Invalid Date') throw 'Invalid Date';
 	return '7' + getTime(date.getTime()) + getRandom();
+}
+
+export function meid7ToDate(id?: string): Date | null {
+	const m = id?.match(/^7([0-9a-f]{11})([0-9a-f]{12})$/);
+	if (m == null) return null;
+	const int = parseInt(m[1], 16);
+	return new Date(int);
 }
