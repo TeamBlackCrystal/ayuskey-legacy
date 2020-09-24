@@ -87,7 +87,7 @@ export default define(meta, async (ps, user) => {
 
 	const query = {
 		_id: {
-			$gt: new mongo.ObjectID(id);
+			$gt: new mongo.ObjectID(id)
 		},
 		deletedAt: null,
 		visibility: 'public',
