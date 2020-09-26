@@ -8,10 +8,9 @@
 		<div class="text">
 			<input v-model="text" placeholder="Emoji" @keyup.enter="reactText" @keydown.esc="close" @input="tryReactText" v-autocomplete="{ model: 'text', noZwsp: true }" ref="text">
 			<button title="OK" @click="reactText"><fa icon="check"/></button>
-			<button title="Pick" class="emoji" @click="emoji" ref="emoji">
-				<fa :icon="['far', 'laugh']"/>
-			</button>
 			<button title="Random" @click="reactRandom()"><fa :icon="faRandom"/></button>
+			<button title="Pick" class="emoji" @click="emoji" ref="emoji"><fa :icon="['far', 'laugh']"/></button>
+			<button title="Dislike" class="dislike" :class="{ disliked }" @click="disliked = !disliked"><fa :icon="faThumbsDown"/></button>
 			<button v-if="recentReaction != null" @click="react(recentReaction)" tabindex="11" v-particle><mk-reaction-icon :reaction="recentReaction"/></button>
 		</div>
 	</div>
@@ -23,7 +22,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import { emojiRegex } from '../../../../../misc/emoji-regex';
-import { faRandom } from '@fortawesome/free-solid-svg-icons';
+import { faRandom, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { emojilist } from '../../../../../misc/emojilist';
 
 export default Vue.extend({
@@ -46,10 +45,11 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faRandom,
+			faRandom, faThumbsDown,
 			rs: this.reactions || this.$store.state.settings.reactions,
 			text: null,
 			recentReaction: null,
+			disliked: false,
 		};
 	},
 
@@ -116,7 +116,7 @@ export default Vue.extend({
 
 	methods: {
 		react(reaction) {
-			this.$emit('chosen', reaction);
+			this.$emit('chosen', reaction, this.disliked);
 		},
 
 		reactText() {
@@ -294,5 +294,13 @@ export default Vue.extend({
 				outline none
 				border solid 1px transparent
 				border-radius 4px
+
+				&.emoji, &.dislike
+					color var(--text)
+					opacity 0.7
+
+				&.disliked
+					color var(--desktopPostFormTransparentButtonFg)
+					opacity 1
 
 </style>

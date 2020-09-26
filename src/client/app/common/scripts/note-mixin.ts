@@ -143,10 +143,11 @@ export default (opts: Opts = {}) => ({
 				showFocus: viaKeyboard,
 				animation: !viaKeyboard
 			});
-			w.$once('chosen', reaction => {
+			w.$once('chosen', (reaction, disliked)  => {
 				this.$root.api('notes/reactions/create', {
 					noteId: this.appearNote.id,
-					reaction: reaction
+					reaction: reaction,
+					dislike: disliked,
 				}).then(() => {
 					w.close();
 				});

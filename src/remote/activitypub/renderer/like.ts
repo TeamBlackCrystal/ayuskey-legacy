@@ -7,7 +7,7 @@ import renderEmoji from './emoji';
 export const renderLike = async (noteReaction: INoteReaction, note: INote) => {
 	const reaction = generalMap[noteReaction.reaction] || noteReaction.reaction;
 	const object =  {
-		type: 'Like',
+		type: noteReaction.dislike ? 'Dislike' : 'Like',
 		id: `${config.url}/likes/${noteReaction._id}`,
 		actor: `${config.url}/users/${noteReaction.userId}`,
 		object: note.uri ? note.uri : `${config.url}/notes/${noteReaction.noteId}`,
