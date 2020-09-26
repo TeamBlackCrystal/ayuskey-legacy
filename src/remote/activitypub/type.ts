@@ -299,7 +299,7 @@ export interface IRemove extends IActivity {
 }
 
 export interface ILike extends IActivity {
-	type: 'Like' | 'EmojiReaction' | 'EmojiReact';
+	type: 'Like' | 'Dislike' | 'EmojiReaction' | 'EmojiReact';
 	_misskey_reaction: string;
 }
 
@@ -325,7 +325,7 @@ export const isAccept = (object: IObject): object is IAccept => object.type === 
 export const isReject = (object: IObject): object is IReject => object.type === 'Reject';
 export const isAdd = (object: IObject): object is IAdd => object.type === 'Add';
 export const isRemove = (object: IObject): object is IRemove => object.type === 'Remove';
-export const isLike = (object: IObject): object is ILike => object.type === 'Like' || object.type === 'EmojiReaction' || object.type === 'EmojiReact';
+export const isLike = (object: IObject): object is ILike => object.type === 'Like' || object.type === 'Dislike' || object.type === 'EmojiReaction' || object.type === 'EmojiReact';
 export const isAnnounce = (object: IObject): object is IAnnounce => object.type === 'Announce';
 export const isBlock = (object: IObject): object is IBlock => object.type === 'Block';
 export const isFlag = (object: IObject): object is IFlag => object.type === 'Flag';

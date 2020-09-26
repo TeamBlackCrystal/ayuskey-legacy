@@ -33,7 +33,14 @@ export const meta = {
 			desc: {
 				'ja-JP': 'リアクションの種類'
 			}
-		}
+		},
+
+		dislike: {
+			validator: $.optional.bool,
+			desc: {
+				'ja-JP': 'きらい'
+			}
+		},
 	},
 
 	errors: {

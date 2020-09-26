@@ -13,7 +13,7 @@ import { toDbReaction, decodeReaction } from '../../../misc/reaction-lib';
 import deleteReaction from './delete';
 import { packEmojis } from '../../../misc/pack-emojis';
 
-export default async (user: IUser, note: INote, reaction: string) => {
+export default async (user: IUser, note: INote, reaction?: string, dislike = false) => {
 	reaction = await toDbReaction(reaction, true, user.host);
 
 	const exist = await NoteReaction.findOne({
@@ -34,14 +34,15 @@ export default async (user: IUser, note: INote, reaction: string) => {
 		createdAt: new Date(),
 		noteId: note._id,
 		userId: user._id,
-		reaction
+		reaction,
+		dislike
 	});
 
 	// Increment reactions count
 	await Note.update({ _id: note._id }, {
 		$inc: {
 			[`reactionCounts.${reaction}`]: 1,
-			score: user.isBot ? 0 : 1
+			score: (user.isBot || inserted.dislike) ? 0 : 1
 		}
 	});
 

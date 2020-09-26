@@ -17,6 +17,7 @@ export interface INoteReaction {
 	noteId: mongo.ObjectID;
 	userId: mongo.ObjectID;
 	reaction: string;
+	dislike?: boolean;
 }
 
 /**

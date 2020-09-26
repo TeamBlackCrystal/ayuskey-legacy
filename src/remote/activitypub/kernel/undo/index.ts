@@ -34,6 +34,7 @@ export default async (actor: IRemoteUser, activity: IUndo): Promise<string> => {
 		case 'Block':
 			return await unblock(actor, object as IBlock);
 		case 'Like':
+		case 'Dislike':
 		case 'EmojiReaction':
 		case 'EmojiReact':
 			return await undoLike(actor, object as ILike);

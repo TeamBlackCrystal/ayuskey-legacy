@@ -32,7 +32,7 @@ export default async (user: IUser, note: INote) => {
 
 	const dec: any = {};
 	dec[`reactionCounts.${exist.reaction}`] = -1;
-	dec.score = user.isBot ? 0 : -1;
+	dec.score = (user.isBot || exist.dislike) ? 0 : -1;
 
 	// Decrement reactions count
 	Note.update({ _id: note._id }, {
