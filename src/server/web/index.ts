@@ -321,6 +321,12 @@ router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'gam
 
 // Render base html for all requests
 router.get('*', async ctx => {
+	if (ctx.path === '/streaming') {
+		console.log(`UNEXPECTED_STREAMING Request base ${ctx.path}`);
+		ctx.set('Cache-Control', 'private, max-age=0');
+		return;
+	}
+
 	const meta = await fetchMeta();
 	const builded = await buildMeta(meta, false);
 
