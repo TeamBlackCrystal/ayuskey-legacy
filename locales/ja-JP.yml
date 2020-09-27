@@ -1246,6 +1246,7 @@ common/views/components/api-settings.vue:
 
 desktop/views/components/settings.apps.vue:
   no-apps: "連携しているアプリケーションはありません"
+  revokeTokenConfirm: "このアプリへのアクセス許可を削除しますか？"
 
 common/views/components/drive-settings.vue:
   max: "容量"
