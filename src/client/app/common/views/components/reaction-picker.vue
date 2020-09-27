@@ -10,7 +10,7 @@
 			<button title="OK" @click="reactText"><fa icon="check"/></button>
 			<button title="Random" @click="reactRandom()"><fa :icon="faRandom"/></button>
 			<button title="Pick" class="emoji" @click="emoji" ref="emoji"><fa :icon="['far', 'laugh']"/></button>
-			<button title="Dislike" class="dislike" :class="{ disliked }" @click="disliked = !disliked"><fa :icon="faThumbsDown"/></button>
+			<button title="Dislike" class="dislike" :class="{ disliked }" @click="toggleDisliked()"><fa :icon="disliked ? faThumbsDown : faThumbsUp"/></button>
 			<button v-if="recentReaction != null" @click="react(recentReaction)" tabindex="11" v-particle><mk-reaction-icon :reaction="recentReaction"/></button>
 		</div>
 	</div>
@@ -22,7 +22,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import { emojiRegex } from '../../../../../misc/emoji-regex';
-import { faRandom, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faRandom, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { emojilist } from '../../../../../misc/emojilist';
 
 export default Vue.extend({
@@ -45,7 +45,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faRandom, faThumbsDown,
+			faRandom, faThumbsUp, faThumbsDown,
 			rs: this.reactions || this.$store.state.settings.reactions,
 			text: null,
 			recentReaction: null,
@@ -194,6 +194,13 @@ export default Vue.extend({
 				}
 			});
 		},
+
+		toggleDisliked() {
+			const old = this.disliked;
+			this.$nextTick(() => {
+				this.disliked = !old;
+			});
+		},
 	}
 });
 </script>
@@ -300,7 +307,7 @@ export default Vue.extend({
 					opacity 0.7
 
 				&.disliked
-					color var(--desktopPostFormTransparentButtonFg)
+					color red
 					opacity 1
 
 </style>
