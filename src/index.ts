@@ -237,19 +237,19 @@ function spawnWorker(type: 'server' | 'queue' | 'worker' = 'worker'): Promise<cl
 
 // Listen new workers
 cluster.on('fork', worker => {
-	clusterLogger.debug(`Process forked: [${worker.id}]`);
+	clusterLogger.debug(`Process forked: [${worker.id}:${worker.process.pid}]`);
 });
 
 // Listen online workers
 cluster.on('online', worker => {
-	clusterLogger.debug(`Process is now online: [${worker.id}]`);
+	clusterLogger.debug(`Process is now online: [${worker.id}:${worker.process.pid}]`);
 });
 
 // Listen for dying workers
 cluster.on('exit', worker => {
 	// Replace the dead worker,
 	// we're not sentimental
-	clusterLogger.error(chalk.red(`[${worker.id}] died :(`));
+	clusterLogger.error(chalk.red(`[${worker.id}:${worker.process.pid}] died :(`));
 	const type = workerIndex[worker.id] || 'worker';
 	const w = cluster.fork({ WORKER_TYPE: type });
 	workerIndex[w.id] = type;
