@@ -321,13 +321,23 @@ router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'gam
 
 // streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる
 router.get('/streaming', async ctx => {
-	console.log(`UNEXPECTED_STREAMING Request ${ctx.path}`);
+	console.log(`UNEXPECTED_STREAMING_1 ${ctx.path}`);
 	ctx.status = 503;
 	ctx.set('Cache-Control', 'private, max-age=0');
 });
 
 // Render base html for all requests
 router.get('*', async ctx => {
+	// streamingに非WebSocketリクエストが来た場合 (v9以前のEPのうちの != /)
+	if (ctx.path === '/local-timeline'
+		|| ctx.path === '/global-timeline'
+		|| ctx.path === '/hybrid-timeline'
+	) {
+		console.log(`UNEXPECTED_STREAMING_2 ${ctx.path}`);
+		ctx.status = 503;
+		ctx.set('Cache-Control', 'private, max-age=0');
+	}
+
 	const meta = await fetchMeta();
 	const builded = await buildMeta(meta, false);
 
@@ -345,7 +355,8 @@ router.get('*', async ctx => {
 		icon: config.icons?.favicon?.url,
 		iconType: config.icons?.favicon?.type,
 		appleTouchIcon: config.icons?.appleTouchIcon?.url,
-});
+	});
+
 	ctx.set('Cache-Control', 'public, max-age=300');
 });
 
