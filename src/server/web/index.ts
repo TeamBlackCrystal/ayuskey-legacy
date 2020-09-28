@@ -336,6 +336,7 @@ router.get('*', async ctx => {
 		console.log(`UNEXPECTED_STREAMING_2 ${ctx.path}`);
 		ctx.status = 503;
 		ctx.set('Cache-Control', 'private, max-age=0');
+		return;
 	}
 
 	const meta = await fetchMeta();
