@@ -26,7 +26,7 @@ module.exports = (server: http.Server) => {
 		const connection = request.accept();
 
 		const connHash = rndstr(8);
-		const connPeer = `${connection?.remoteAddress} (xff=${request?.httpRequest?.headers['x-forwarded-for']})`;
+		const connPeer = `${connection?.remoteAddress}`;
 		const connUser = user ? `${user._id} (${user.username})` : 'anonymous';
 		streamLogger.info(`connect ${connHash} (${connPeer} ${connUser})`);
 
