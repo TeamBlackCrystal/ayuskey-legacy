@@ -13,6 +13,8 @@ import Logger from '../../services/logger';
 
 export const streamLogger = new Logger('stream', 'cyan');
 
+let connCount = 0;
+
 module.exports = (server: http.Server) => {
 	// Init websocket server
 	const ws = new websocket.server({
@@ -25,10 +27,11 @@ module.exports = (server: http.Server) => {
 
 		const connection = request.accept();
 
+		connCount++;
 		const connHash = rndstr(8);
 		const connPeer = `${connection?.remoteAddress}`;
 		const connUser = user ? `${user._id} (${user.username})` : 'anonymous';
-		streamLogger.info(`connect ${connHash} (${connPeer} ${connUser})`);
+		streamLogger.info(`connect ${connHash} (${connPeer} ${connUser} total=${connCount}`);
 
 		let ev: EventEmitter;
 
@@ -70,7 +73,8 @@ module.exports = (server: http.Server) => {
 		//#endregion 後方互換性のため
 
 		connection.once('close', () => {
-			streamLogger.info(`close ${connHash} (${connPeer} ${connUser})`);
+			connCount--;
+			streamLogger.info(`close ${connHash} (${connPeer} ${connUser}) total=${connCount}`);
 			ev.removeAllListeners();
 			main.dispose();
 		});
