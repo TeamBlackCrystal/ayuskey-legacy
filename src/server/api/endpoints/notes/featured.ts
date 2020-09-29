@@ -76,6 +76,9 @@ export const meta = {
 	},
 };
 
+// これは指定期間のをスコアが高い順にリストするが
+// クライアントではこれを日付順にソートしている
+
 export default define(meta, async (ps, user) => {
 	if (ps.excludeNsfw && ps.excludeSfw) return [];
 
@@ -91,6 +94,8 @@ export default define(meta, async (ps, user) => {
 		},
 		deletedAt: null,
 		visibility: 'public',
+		score: { $gt: 1 },
+		localOnly: { $ne: true },
 		...(hideUserIds && hideUserIds.length > 0 ? { userId: { $nin: hideUserIds } } : {})
 	} as any;
 
