@@ -74,6 +74,9 @@ drive:
 # Disable Federation: (default: false)
 #disableFederation: true
 
+# Ignore AP forwarded activities (default: false)
+#ignoreApForwarded: true
+
 # Disable URL Preview (default: false)
 #disableUrlPreview: true
 

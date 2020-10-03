@@ -34,6 +34,7 @@ export type Source = {
 	autoAdmin?: boolean;
 
 	disableFederation?: boolean;
+	ignoreApForwarded?: boolean;
 	disableUrlPreview?: boolean;
 	disablePosts?: boolean;
 
