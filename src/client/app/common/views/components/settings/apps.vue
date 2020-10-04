@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div>
-		<ui-button @click="terminate()">{{ $t('terminateStreaming') }}</ui-button>
+		<ui-button @click="terminate()" style="margin-top: 24px">{{ $t('terminateStreaming') }}</ui-button>
 	</div>
 </div>
 </template>
@@ -69,5 +69,5 @@ export default Vue.extend({
 .root
 	> .apps
 		> div
-			padding 16px 0
+			padding 0 0 24px 0
 </style>
