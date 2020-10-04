@@ -9,6 +9,9 @@
 			<ui-button @click="revoke(app.id)"><fa :icon="faTrashAlt"/></ui-button>
 		</div>
 	</div>
+	<div>
+		<ui-button @click="terminate()">{{ $t('terminateStreaming') }}</ui-button>
+	</div>
 </div>
 </template>
 
@@ -42,6 +45,10 @@ export default Vue.extend({
 			this.$root.api('i/revoke-token', { tokenId }).then(() => {
 				this.reload();
 			});
+		},
+
+		async terminate() {
+			this.$root.api('i/terminate-streaming', { });
 		},
 
 		async getConfirmed(text: string): Promise<Boolean> {

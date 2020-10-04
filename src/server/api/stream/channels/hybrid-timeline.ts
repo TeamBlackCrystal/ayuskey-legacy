@@ -15,7 +15,7 @@ export default class extends Channel {
 	public static requireCredential = true;
 
 	private hideFromUsers: string[] = [];
-	private hideFromHosts: string[] = [];
+	private hideFromHosts: (string | null)[] = [];
 	private hideRenoteUsers: string[] = [];
 	private followingIds: string[] = [];
 	private excludeForeignReply = false;
@@ -25,20 +25,30 @@ export default class extends Channel {
 		const meta = await fetchMeta();
 		if (meta.disableLocalTimeline) return;
 
-		// Subscribe events
-		this.subscriber.on('notesStream', this.onNewNote);
-
-		const followings = await Following.find({
-			followerId: this.user._id
-		});
-
-		this.followingIds = followings.map(x => `${x.followeeId}`);
+		await this.updateFollowing();
+		await this.updateFilter();
 
 		this.excludeForeignReply = !!params?.excludeForeignReply;
 
+		// Subscribe events
+		this.subscriber.on('notesStream', this.onNewNote);
+		this.subscriber.on(`serverEvent:${this.user!._id}`, this.onServerEvent);
+	}
+
+	@autobind
+	private async updateFollowing() {
+		const followings = await Following.find({
+			followerId: this.user!._id
+		});
+
+		this.followingIds = followings.map(x => `${x.followeeId}`);
+	}
+
+	@autobind
+	private async updateFilter() {
 		// Homeから隠すリストユーザー
 		const lists = await UserList.find({
-			userId: this.user._id,
+			userId: this.user!._id,
 			hideFromHome: true,
 		});
 
@@ -46,7 +56,7 @@ export default class extends Channel {
 		this.hideFromHosts = concat(lists.map(list => list.hosts || [])).map(x => isSelfHost(x) ? null : x);
 
 		const hideRenotes = await UserFilter.find({
-			ownerId: this.user._id,
+			ownerId: this.user!._id,
 			hideRenote: true
 		});
 
@@ -54,10 +64,21 @@ export default class extends Channel {
 	}
 
 	@autobind
+	private async onServerEvent(data: any) {
+		if (data.type === 'followingChanged') {
+			this.updateFollowing();
+		}
+
+		if (data.type === 'filterChanged') {
+			this.updateFilter();
+		}
+	}
+
+	@autobind
 	private async onNewNote(note: any) {
 		if (!(
 			(note.user.host == null && note.visibility === 'public') || // local public
-			oidEquals(note.userId, this.user._id) ||	// myself
+			oidEquals(note.userId, this.user!._id) ||	// myself
 			oidIncludes(this.followingIds, note.userId)	// from followers
 		)) return;
 
@@ -96,8 +117,8 @@ export default class extends Channel {
 		if (this.excludeForeignReply && note.replyId) {
 			if (!(
 				oidIncludes(this.followingIds, note.reply.userId)
-				|| oidEquals(this.user._id, note.reply.userId)
-				|| oidEquals(this.user._id, note.userId)
+				|| oidEquals(this.user!._id, note.reply.userId)
+				|| oidEquals(this.user!._id, note.userId)
 			)) return;
 		}
 
@@ -108,5 +129,6 @@ export default class extends Channel {
 	public dispose() {
 		// Unsubscribe events
 		this.subscriber.off('notesStream', this.onNewNote);
+		this.subscriber.off(`serverEvent:${this.user!._id}`, this.onServerEvent);
 	}
 }

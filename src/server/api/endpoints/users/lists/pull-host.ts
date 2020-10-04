@@ -5,6 +5,7 @@ import { publishUserListStream } from '../../../../../services/stream';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { toDbHost } from '../../../../../misc/convert-host';
+import { publishFilterChanged } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -61,4 +62,6 @@ export default define(meta, async (ps, me) => {
 	});
 
 	publishUserListStream(userList._id, 'hostRemoved', host);
+
+	publishFilterChanged(me._id);
 });

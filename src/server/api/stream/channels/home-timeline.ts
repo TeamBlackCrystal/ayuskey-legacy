@@ -1,5 +1,4 @@
 import autobind from 'autobind-decorator';
-import Mute from '../../../../models/mute';
 import { pack } from '../../../../models/note';
 import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
 import Channel from '../channel';
@@ -15,27 +14,37 @@ export default class extends Channel {
 	public static requireCredential = true;
 
 	private hideFromUsers: string[] = [];
-	private hideFromHosts: string[] = [];
+	private hideFromHosts: (string | null)[] = [];
 	private hideRenoteUsers: string[] = [];
 	private followingIds: string[] = [];
 	private excludeForeignReply = false;
 
 	@autobind
 	public async init(params: any) {
-		// Subscribe events
-		this.subscriber.on('notesStream', this.onNote);
-
-		const followings = await Following.find({
-			followerId: this.user._id
-		});
+		await this.updateFollowing();
+		await this.updateFilter();
 
 		this.excludeForeignReply = !!params?.excludeForeignReply;
 
-		this.followingIds = followings.map(x => `${x.followeeId}`);
+		// Subscribe events
+		this.subscriber.on('notesStream', this.onNote);
+		this.subscriber.on(`serverEvent:${this.user!._id}`, this.onServerEvent);
+	}
 
+	@autobind
+	private async updateFollowing() {
+		const followings = await Following.find({
+			followerId: this.user!._id
+		});
+
+		this.followingIds = followings.map(x => `${x.followeeId}`);
+	}
+
+	@autobind
+	private async updateFilter() {
 		// Homeから隠すリストユーザー
 		const lists = await UserList.find({
-			userId: this.user._id,
+			userId: this.user!._id,
 			hideFromHome: true,
 		});
 
@@ -43,7 +52,7 @@ export default class extends Channel {
 		this.hideFromHosts = concat(lists.map(list => list.hosts || [])).map(x => isSelfHost(x) ? null : x);
 
 		const hideRenotes = await UserFilter.find({
-			ownerId: this.user._id,
+			ownerId: this.user!._id,
 			hideRenote: true
 		});
 
@@ -51,9 +60,20 @@ export default class extends Channel {
 	}
 
 	@autobind
+	private async onServerEvent(data: any) {
+		if (data.type === 'followingChanged') {
+			this.updateFollowing();
+		}
+
+		if (data.type === 'filterChanged') {
+			this.updateFilter();
+		}
+	}
+
+	@autobind
 	private async onNote(note: any) {
 		if (!(
-			oidEquals(note.userId, this.user._id) ||	// myself
+			oidEquals(note.userId, this.user!._id) ||	// myself
 			oidIncludes(this.followingIds, note.userId)	// from followers
 		)) return;
 
@@ -92,8 +112,8 @@ export default class extends Channel {
 		if (this.excludeForeignReply && note.replyId) {
 			if (!(
 				oidIncludes(this.followingIds, note.reply.userId)
-				|| oidEquals(this.user._id, note.reply.userId)
-				|| oidEquals(this.user._id, note.userId)
+				|| oidEquals(this.user!._id, note.reply.userId)
+				|| oidEquals(this.user!._id, note.userId)
 			)) return;
 		}
 
@@ -104,5 +124,6 @@ export default class extends Channel {
 	public dispose() {
 		// Unsubscribe events
 		this.subscriber.off('notesStream', this.onNote);
+		this.subscriber.off(`serverEvent:${this.user!._id}`, this.onServerEvent);
 	}
 }

@@ -3,6 +3,7 @@ import ID, { transform } from '../../../../../misc/cafy-id';
 import UserList from '../../../../../models/user-list';
 import define from '../../../define';
 import { ApiError } from '../../../error';
+import { publishFilterChanged } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -49,4 +50,6 @@ export default define(meta, async (ps, user) => {
 	await UserList.remove({
 		_id: userList._id
 	});
+
+	publishFilterChanged(user._id);
 });

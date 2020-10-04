@@ -1,8 +1,9 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../misc/cafy-id';
 import define from '../../define';
-import User from '../../../../models/user';
+import User, { isLocalUser } from '../../../../models/user';
 import { doPostSuspend } from '../../../../services/suspend-user';
+import { publishTerminate } from '../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -51,6 +52,10 @@ export default define(meta, async (ps) => {
 			isSuspended: true
 		}
 	});
+
+	if (isLocalUser(user)) {
+		publishTerminate(user._id);
+	}
 
 	doPostSuspend(user);
 });

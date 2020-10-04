@@ -4,6 +4,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import UserFilter from '../../../../models/user-filter';
+import { publishFilterChanged } from '../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -80,6 +81,8 @@ export default define(meta, async (ps, me) => {
 	} else {
 		await UserFilter.insert(Object.assign(key, updates));
 	}
+
+	publishFilterChanged(me._id);
 
 	return;
 });

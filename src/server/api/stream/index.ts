@@ -25,7 +25,6 @@ export default class Connection {
 	private subscribingNotes: any = {};
 	public sendMessageToWsOverride: any = null; // 後方互換性のため
 	public muting: string[] = [];
-	private mutingClock: any;
 
 	constructor(
 		wsConnection: websocket.connection,
@@ -42,8 +41,7 @@ export default class Connection {
 
 		if (this.user) {
 			this.updateMuting();
-			const interval = (300 * 1000) + (Math.random() * 30 * 1000);
-			this.mutingClock = setInterval(this.updateMuting, interval);
+			this.subscriber.on(`serverEvent:${this.user._id}`, this.onServerEvent);
 		}
 	}
 
@@ -100,7 +98,7 @@ export default class Connection {
 	@autobind
 	private onReadNotification(payload: any) {
 		if (!payload.id) return;
-		readNotification(this.user._id, payload.id);
+		readNotification(this.user!._id, payload.id);
 	}
 
 	/**
@@ -121,7 +119,7 @@ export default class Connection {
 		}
 
 		if (payload.read) {
-			readNote(this.user._id, payload.id);
+			readNote(this.user!._id, payload.id);
 		}
 	}
 
@@ -225,6 +223,18 @@ export default class Connection {
 	}
 
 	@autobind
+	private async onServerEvent(data: any) {
+		if (data.type === 'mutingChanged') {
+			this.updateMuting();
+		}
+
+		if (data.type === 'terminate') {
+			this.wsConnection.close();
+			this.dispose();
+		}
+	}
+
+	@autobind
 	private async updateMuting() {
 		const hides = await getHideUserIdsById(this.user?._id, true, false);
 		this.muting = hides.map(x => `${x}`);
@@ -238,6 +248,6 @@ export default class Connection {
 		for (const c of this.channels.filter(c => c.dispose)) {
 			c.dispose();
 		}
-		if (this.mutingClock) clearInterval(this.mutingClock);
+		this.subscriber.off(`serverEvent:${this.user!._id}`, this.onServerEvent);
 	}
 }

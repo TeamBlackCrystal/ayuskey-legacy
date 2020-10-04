@@ -5,6 +5,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import { getMute } from '../../../../models/user';
+import { publishMutingChanged } from '../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -75,6 +76,8 @@ export default define(meta, async (ps, user) => {
 	await Mute.remove({
 		_id: exist._id
 	});
+
+	publishMutingChanged(muter._id);
 
 	return;
 });

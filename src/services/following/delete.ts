@@ -10,6 +10,7 @@ import Logger from '../logger';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
 import instanceChart from '../../services/chart/instance';
+import { publishFollowingChanged } from '../create-event';
 
 const logger = new Logger('following/delete');
 
@@ -35,6 +36,8 @@ export default async function(follower: IUser, followee: IUser, silent = false) 
 		packUser(followee, follower, {
 			detail: true
 		}).then(packed => publishMainStream(follower._id, 'unfollow', packed));
+
+		publishFollowingChanged(follower._id);
 	}
 
 	if (isLocalUser(follower) && isRemoteUser(followee)) {

@@ -7,7 +7,7 @@ import { oidIncludes } from '../prelude/oid';
  * @param hideFromUsers Hide指定のあるユーザーID
  * @param hideFromHosts Hide指定のあるホスト
  */
-export default function(note: any, mutedUserIds: string[], hideFromUsers?: string[], hideFromHosts?: string[]): boolean {
+export default function(note: any, mutedUserIds: string[], hideFromUsers?: string[], hideFromHosts?: (string | null)[]): boolean {
 	// ミュートしているユーザーの投稿
 	if (oidIncludes(mutedUserIds, note.userId)) {
 		return true;

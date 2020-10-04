@@ -6,6 +6,7 @@ import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
 import { pushUserToUserList } from '../../../../../services/user-list/push';
 import { oidIncludes } from '../../../../../prelude/oid';
+import { publishFilterChanged } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -79,4 +80,6 @@ export default define(meta, async (ps, me) => {
 
 	// Push the user
 	pushUserToUserList(user, userList);
+
+	publishFilterChanged(me._id);
 });

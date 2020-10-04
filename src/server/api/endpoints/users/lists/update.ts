@@ -4,6 +4,7 @@ import UserList, { pack } from '../../../../../models/user-list';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { publishUserListStream } from '../../../../../services/stream';
+import { publishFilterChanged } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -82,6 +83,8 @@ export default define(meta, async (ps, user) => {
 	});
 
 	publishUserListStream(userList._id, 'settingChanged');
+
+	publishFilterChanged(user._id);
 
 	return await pack(userList._id);
 });
