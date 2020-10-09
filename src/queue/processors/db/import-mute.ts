@@ -2,8 +2,7 @@ import * as Bull from 'bull';
 import * as mongo from 'mongodb';
 
 import { queueLogger } from '../../logger';
-import User, { IUser } from '../../../models/user';
-import follow from '../../../services/following/create';
+import User, { IUser, getMute } from '../../../models/user';
 import DriveFile from '../../../models/drive-file';
 import { getOriginalUrl } from '../../../misc/get-drive-file-url';
 import parseAcct from '../../../misc/acct/parse';
@@ -11,11 +10,12 @@ import resolveUser from '../../../remote/resolve-user';
 import { downloadTextFile } from '../../../misc/download-text-file';
 import { isSelfHost, toDbHost } from '../../../misc/convert-host';
 import { DbUserImportJobData } from '../..';
+import Mute from '../../../models/mute';
 
-const logger = queueLogger.createSubLogger('import-following');
+const logger = queueLogger.createSubLogger('import-mute');
 
-export async function importFollowing(job: Bull.Job<DbUserImportJobData>): Promise<string> {
-	logger.info(`Importing following of ${job.data.user._id} ...`);
+export async function importMute(job: Bull.Job<DbUserImportJobData>): Promise<string> {
+	logger.info(`Importing mute of ${job.data.user._id} ...`);
 
 	const user = await User.findOne({
 		_id: new mongo.ObjectID(job.data.user._id.toString())
@@ -67,9 +67,21 @@ export async function importFollowing(job: Bull.Job<DbUserImportJobData>): Promi
 			// skip myself
 			if (target._id.equals(job.data.user._id)) continue;
 
-			logger.info(`Follow[${linenum}] ${target._id} ...`);
+			logger.info(`Mute[${linenum}] ${target._id} ...`);
 
-			await follow(user, target);
+			// Check if already muting
+			const exist = await getMute(user._id, target._id);
+
+			if (exist != null) {
+				continue;
+			}
+
+			// Create mute
+			await Mute.insert({
+				createdAt: new Date(),
+				muterId: user._id,
+				muteeId: target._id,
+			});
 		} catch (e) {
 			logger.warn(`Error in line:${linenum} ${e}`);
 		}

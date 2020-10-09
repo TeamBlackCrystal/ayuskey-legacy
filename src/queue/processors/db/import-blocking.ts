@@ -3,7 +3,7 @@ import * as mongo from 'mongodb';
 
 import { queueLogger } from '../../logger';
 import User, { IUser } from '../../../models/user';
-import follow from '../../../services/following/create';
+import block from '../../../services/blocking/create';
 import DriveFile from '../../../models/drive-file';
 import { getOriginalUrl } from '../../../misc/get-drive-file-url';
 import parseAcct from '../../../misc/acct/parse';
@@ -12,10 +12,10 @@ import { downloadTextFile } from '../../../misc/download-text-file';
 import { isSelfHost, toDbHost } from '../../../misc/convert-host';
 import { DbUserImportJobData } from '../..';
 
-const logger = queueLogger.createSubLogger('import-following');
+const logger = queueLogger.createSubLogger('import-blocking');
 
-export async function importFollowing(job: Bull.Job<DbUserImportJobData>): Promise<string> {
-	logger.info(`Importing following of ${job.data.user._id} ...`);
+export async function importBlocking(job: Bull.Job<DbUserImportJobData>): Promise<string> {
+	logger.info(`Importing blocking of ${job.data.user._id} ...`);
 
 	const user = await User.findOne({
 		_id: new mongo.ObjectID(job.data.user._id.toString())
@@ -67,9 +67,9 @@ export async function importFollowing(job: Bull.Job<DbUserImportJobData>): Promi
 			// skip myself
 			if (target._id.equals(job.data.user._id)) continue;
 
-			logger.info(`Follow[${linenum}] ${target._id} ...`);
+			logger.info(`Block[${linenum}] ${target._id} ...`);
 
-			await follow(user, target);
+			await block(user, target);
 		} catch (e) {
 			logger.warn(`Error in line:${linenum} ${e}`);
 		}
