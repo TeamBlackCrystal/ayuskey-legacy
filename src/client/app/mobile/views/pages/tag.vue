@@ -4,7 +4,7 @@
 
 	<main>
 		<div class="search-area">
-			<x-search-box :word="$route.params.tag"/>
+			<x-search-box :word="`#${$route.params.tag}`"/>
 		</div>
 		<mk-notes ref="timeline" :make-promise="makePromise" @inited="inited"/>
 	</main>
