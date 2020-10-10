@@ -37,7 +37,7 @@
 						<li v-if="$store.getters.isSignedIn && ($store.state.i.isAdmin || $store.state.i.isModerator)"><a href="/admin"><i><fa icon="terminal" fixed-width/></i><span>{{ $t('admin') }}</span><i><fa icon="angle-right"/></i></a></li>
 					</ul>
 					<ul>
-						<li @click="toggleDeckMode"><p><i><fa :icon="$store.state.device.inDeckMode ? faHome : faColumns" fixed-width/></i><span>{{ $store.state.device.inDeckMode ? $t('@.home') : $t('@.deck') }}</span></p></li>
+						<li @click="toggleDeckMode"><p><i><fa :icon="$store.state.device.inDeckMode ? faHome : faColumns" fixed-width/></i><span>{{ $store.state.device.inDeckMode ? $t('@.undeck') : $t('@.deck') }}</span></p></li>
 						<li @click="toggleAppType">
 							<p><i><fa :icon="$root.isMobile ? faDesktop : faMobileAlt" fixed-width/></i>
 							<span>{{ $root.isMobile ? $t('@.desktop-mode') : $t('@.mobile-mode') }}</span></p>

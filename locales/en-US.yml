@@ -70,6 +70,7 @@ common:
   messaging: "Talk"
   home: "Home"
   deck: "Deck"
+  undeck: "Leave Deck"
   timeline: "Timeline"
   explore: "Explore"
   new-post: "New post"

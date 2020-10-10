@@ -84,6 +84,7 @@ common:
   messaging: "トーク"
   home: "ホーム"
   deck: "デッキ"
+  undeck: "デッキ解除"
   timeline: "タイムライン"
   explore: "みつける"
   new-post: "新規投稿"
