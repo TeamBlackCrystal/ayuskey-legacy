@@ -1,5 +1,5 @@
 <template>
-<div class="nav">
+<div class="nav" :class="navbar">
 	<ul>
 		<li class="timeline" :class="{ active: $route.name == 'index' }" @click="goToTop">
 			<router-link to="/"><fa icon="home"/><p>{{ $t('@.timeline') }}</p></router-link>
@@ -35,6 +35,11 @@ export default Vue.extend({
 			connection: null,
 			faNewspaper, faHashtag
 		};
+	},
+	computed: {
+		navbar(): string {
+			return this.$store.state.device.navbar;
+		},
 	},
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
@@ -80,6 +85,20 @@ export default Vue.extend({
 	line-height 3rem
 	vertical-align top
 
+	&.top
+		> ul
+			> li
+				&.active
+					> a
+						border-bottom solid 3px var(--primary)
+
+	&.bottom
+		> ul
+			> li
+				&.active
+					> a
+						border-top solid 3px var(--primary)
+
 	> ul
 		display inline-block
 		margin 0
@@ -93,10 +112,6 @@ export default Vue.extend({
 			vertical-align top
 			height 48px
 			line-height 48px
-
-			&.active
-				> a
-					border-bottom solid 3px var(--primary)
 
 			> a
 				display inline-block

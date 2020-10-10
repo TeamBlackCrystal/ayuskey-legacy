@@ -1,11 +1,20 @@
 <template>
 <div class="account" v-hotkey.global="keymap">
 	<button class="header" :data-active="isOpen" @click="toggle">
-		<span class="username">{{ $store.state.i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
+		<span class="username">{{ $store.state.i.username }}
+			<template v-if="!isOpen">
+				<fa v-if="navbar == 'bottom'" icon="angle-up"/>
+				<fa v-if="navbar == 'top'" icon="angle-down"/>
+			</template>
+			<template v-if="isOpen">
+				<fa v-if="navbar == 'top'" icon="angle-up"/>
+				<fa v-if="navbar == 'bottom'" icon="angle-down"/>
+			</template>
+		</span>
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
 	<transition name="zoom-in-top">
-		<div class="menu" v-if="isOpen">
+		<div class="menu" :class="navbar" v-if="isOpen">
 			<ul>
 				<li @click="closeMenu">
 					<router-link :to="`/@${ $store.state.i.username }`">
@@ -125,6 +134,9 @@ export default Vue.extend({
 		};
 	},
 	computed: {
+		navbar(): string {
+			return this.$store.state.device.navbar;
+		},
 		keymap(): any {
 			return {
 				'a|m': this.toggle
@@ -245,7 +257,6 @@ export default Vue.extend({
 		$bgcolor = var(--secondary)
 		display block
 		position absolute
-		top 56px
 		right -2px
 		width 230px
 		font-size 0.8em
@@ -253,16 +264,38 @@ export default Vue.extend({
 		border-radius 4px
 		box-shadow 0 var(--lineWidth) 4px rgba(#000, 0.25)
 
+		&.top
+			top 56px
+
+			&:before
+				border-bottom solid 14px rgba(#000, 0.1)
+				top -28px
+
+			&:after
+				border-bottom solid 14px $bgcolor
+				top -27px
+
+		&.bottom
+			bottom 56px
+
+			&:before
+				border-top solid 14px rgba(#000, 0.1)
+				bottom -27px
+
+
+			&:after
+				border-top solid 14px $bgcolor
+				bottom -27px
+
 		&:before
 			content ""
 			pointer-events none
 			display block
 			position absolute
-			top -28px
 			right 12px
 			border-top solid 14px transparent
 			border-right solid 14px transparent
-			border-bottom solid 14px rgba(#000, 0.1)
+			border-bottom solid 14px transparent
 			border-left solid 14px transparent
 
 		&:after
@@ -270,11 +303,10 @@ export default Vue.extend({
 			pointer-events none
 			display block
 			position absolute
-			top -27px
 			right 12px
 			border-top solid 14px transparent
 			border-right solid 14px transparent
-			border-bottom solid 14px $bgcolor
+			border-bottom solid 14px transparent
 			border-left solid 14px transparent
 
 		ul

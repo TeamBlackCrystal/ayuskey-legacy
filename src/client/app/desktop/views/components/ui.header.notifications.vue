@@ -4,7 +4,7 @@
 		<i class="bell"><fa :icon="['far', 'bell']"/></i>
 		<i class="circle" v-if="hasUnreadNotification"><fa icon="circle"/></i>
 	</button>
-	<div class="pop" v-if="isOpen">
+	<div class="pop" :class="navbar" v-if="isOpen">
 		<div class="read-all" v-if="hasUnreadNotification">
 			<button @click="readAllNotifications">{{ $t('mark-all-as-read') }}</button>
 		</div>
@@ -27,6 +27,10 @@ export default Vue.extend({
 	},
 
 	computed: {
+		navbar(): string {
+			return this.$store.state.device.navbar;
+		},
+
 		hasUnreadNotification(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadNotification;
 		},
@@ -102,9 +106,31 @@ export default Vue.extend({
 
 	> .pop
 		$bgcolor = var(--secondary)
+
+		&.top
+			top 56px
+
+			&:before
+				top -28px
+				border-bottom solid 14px rgba(#000, 0.1)
+
+			&:after
+				top -27px
+				border-bottom solid 14px $bgcolor
+
+		&.bottom
+			bottom 56px
+
+			&:before
+				bottom -28px
+				border-top solid 14px rgba(#000, 0.1)
+
+			&:after
+				bottom -27px
+				border-top solid 14px $bgcolor
+
 		display block
 		position absolute
-		top 56px
 		right -72px
 		width 300px
 		background $bgcolor
@@ -124,11 +150,10 @@ export default Vue.extend({
 			pointer-events none
 			display block
 			position absolute
-			top -28px
 			right 74px
 			border-top solid 14px transparent
 			border-right solid 14px transparent
-			border-bottom solid 14px rgba(#000, 0.1)
+			border-bottom solid 14px transparent
 			border-left solid 14px transparent
 
 		&:after
@@ -136,11 +161,10 @@ export default Vue.extend({
 			pointer-events none
 			display block
 			position absolute
-			top -27px
 			right 74px
 			border-top solid 14px transparent
 			border-right solid 14px transparent
-			border-bottom solid 14px $bgcolor
+			border-bottom solid 14px transparent
 			border-left solid 14px transparent
 
 		> .mk-notifications

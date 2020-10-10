@@ -1,5 +1,5 @@
 <template>
-<div class="header" :style="{'box-shadow': '0 0px 8px rgba(0, 0, 0, 0.2)'}">
+<div class="header" :class="navbar" :style="{'box-shadow': '0 0px 8px rgba(0, 0, 0, 0.2)'}">
 	<div class="main" ref="main">
 		<div class="backdrop"></div>
 		<div class="main">
@@ -57,6 +57,12 @@ export default Vue.extend({
 		};
 	},
 
+	computed: {
+		navbar(): string {
+			return this.$store.state.device.navbar;
+		},
+	},
+
 	mounted() {
 		this.$store.commit('setUiHeaderHeight', this.$el.offsetHeight);
 	},
@@ -75,9 +81,24 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .header
 	position fixed
-	top 0
 	z-index 1000
 	width 100%
+
+	&.top
+		top 0
+
+	&.bottom
+		bottom 0
+
+	&.top
+		> .main
+			> .backdrop
+				background var(--desktopHeaderBg)
+
+	&.bottom
+		> .main
+			> .backdrop
+				background var(--secondary)
 
 	> .warn
 		display block
@@ -97,7 +118,6 @@ export default Vue.extend({
 			z-index 1000
 			width 100%
 			height 48px
-			background var(--desktopHeaderBg)
 
 		> .main
 			z-index 1001

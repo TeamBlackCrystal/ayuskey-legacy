@@ -273,6 +273,7 @@ common:
     ShowAdvancedSettings: "Display unnecessary settings"
     navbar-position: "Navbar position"
     navbar-position-top: "Top"
+    navbar-position-bottom: "Bottom"
     navbar-position-left: "Left"
     navbar-position-right: "Right"
     i-am-under-limited-internet: "I have limited bandwidth"
