@@ -389,6 +389,16 @@ export default Vue.extend({
 
 		doImport() {
 			this.$chooseDriveFile().then(file => {
+				if (this.exportTarget === 'following' && file.name?.match(/mute|block/i)) {
+					throw new Error(`following but name is ${file.name}`);
+				}
+				if (this.exportTarget === 'mute' && file.name?.match(/follow/i)) {
+					throw new Error(`mute but name is ${file.name}`);
+				}
+				if (this.exportTarget === 'blocking' && file.name?.match(/follow/i)) {
+					throw new Error(`blocking but name is ${file.name}`);
+				}
+
 				this.$root.api(
 					this.exportTarget == 'following' ? 'i/import-following' :
 					this.exportTarget == 'blocking' ? 'i/import-blocking' :
@@ -406,6 +416,11 @@ export default Vue.extend({
 						text: e.message
 					});
 				});
+			}).catch((e: any) => {
+					this.$root.dialog({
+						type: 'error',
+						text: e.message
+					});
 			});
 		},
 
