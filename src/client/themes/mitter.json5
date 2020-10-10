@@ -1,0 +1,21 @@
+{
+	name: 'Mitter',
+	author: 'c0_ke',
+	desc: '',
+	base: 'light',
+	vars: {
+		primary: '#00D3D9',
+		secondary: '#FFFFFF',
+		text: 'rgb(102, 117, 127)',
+	},
+	props: {
+		face: '$secondary',
+		bg: 'rgba(0,0,0,0.1)',
+		renoteGradient: 'rgba(0,0,0,0)',
+		noteText: '#292f33',
+		noteHeaderName: '#292f33',
+		renoteText: '#19cf86',
+		quoteBorder: '#19cf86',
+	},
+	id: 'mitter-coke12103',
+}

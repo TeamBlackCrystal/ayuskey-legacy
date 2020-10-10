@@ -29,6 +29,8 @@ export const tweetDeckTheme: Theme = require('../themes/tweet-deck.json5');
 export const hikaemeTheme: Theme = require('../themes/hikaeme.json5');
 export const promoTheme: Theme = require('../themes/promo.json5');
 export const promoHalloweenTheme: Theme = require('../themes/promo_halloween.json5');
+export const mitterTheme: Theme = require('../themes/mitter.json5');
+// いるこれ？
 export const yupixTheme: Theme = require('../themes/yupix.json5');
 
 export const blackTweet: Theme = require('../themes/black-tweet.json5');
@@ -48,6 +50,7 @@ export const builtinThemes = [
 	halloweenTheme,
 	cafeTheme,
 	japaneseSushiSetTheme,
+	mitterTheme,
 	gruvboxDarkTheme,
 	monokaiTheme,
 	vividTheme,
