@@ -249,12 +249,10 @@ export default Vue.extend({
 
 	methods: {
 		updateAvatar() {
-			if (this.$root.isMobile) return;
 			updateAvatar(this.$root)();
 		},
 
 		updateBanner() {
-			if (this.$root.isMobile) return;
 			updateBanner(this.$root)();
 		},
 
