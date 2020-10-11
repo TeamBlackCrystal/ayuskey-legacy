@@ -13,7 +13,7 @@
 		</span>
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
-	<transition name="zoom-in-top">
+	<transition :name="navbar === 'top' ? 'zoom-in-top' : 'zoom-in-bottom'">
 		<div class="menu" :class="navbar" v-if="isOpen">
 			<ul>
 				<li @click="closeMenu">
