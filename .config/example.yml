@@ -111,8 +111,6 @@ themeColor: '#fb4e4e'
 #  mecabBin: mecab
 #  # mecab辞書 (オプション)
 #  mecabDic: /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd
-#  # リモートのmecabサーバーを使う場合は以下を指定
-#  #mecabServer: http://127.0.0.1:3062/
 
 # Elasticsearch
 #elasticsearch:
