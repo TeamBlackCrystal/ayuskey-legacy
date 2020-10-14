@@ -14,9 +14,7 @@ import deleteReaction from './delete';
 import { packEmojis } from '../../../misc/pack-emojis';
 
 export default async (user: IUser, note: INote, reaction?: string, dislike = false) => {
-	console.log(`★ service 0 ${reaction}`);
 	reaction = await toDbReaction(reaction, true, user.host);
-	console.log(`★ service toDbReaction ${reaction}`);
 
 	const exist = await NoteReaction.findOne({
 		noteId: note._id,
@@ -51,8 +49,6 @@ export default async (user: IUser, note: INote, reaction?: string, dislike = fal
 	perUserReactionsChart.update(user, note);
 
 	const decodedReaction = decodeReaction(reaction);
-	console.log(`★ service decodedReaction ${decodedReaction}`);
-
 	const emoji = (await packEmojis([], note._user.host, [decodedReaction.replace(/:/g, '')]))[0];
 
 	publishNoteStream(note._id, 'reacted', {
