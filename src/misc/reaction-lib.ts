@@ -105,10 +105,7 @@ export async function toDbReactionNoResolve(reaction: string): Promise<string> {
 		// 異体字セレクタ除去後の絵文字
 		const normalized = unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
 
-		// Unicodeプリンは寿司化不能とするため文字列化しない
-		if (normalized === '🍮') return normalized;
-
-		// プリン以外の既存のリアクションは文字列化する
+		// 旧絵文字リアクションに該当するものは文字列化する
 		if (basic10[normalized]) return basic10[normalized];
 
 		// それ以外はUnicodeのまま
