@@ -18,7 +18,7 @@ export async function downloadUrl(url: string, path: string) {
 
 	const timeout = 10 * 1000;
 	const operationTimeout = 10 * 60 * 1000;
-	const maxSize = 1 * 1024 * 1024 * 1024;
+	const maxSize = config.maxFileSize || 262144000;
 
 	let responseUrl = url;
 

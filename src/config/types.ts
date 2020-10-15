@@ -47,6 +47,8 @@ export type Source = {
 
 	useClientHttp2?: string;
 
+	maxFileSize?: number;
+
 	accesslog?: string;
 
 	workerStrategies?: {

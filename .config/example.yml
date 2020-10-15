@@ -159,3 +159,6 @@ themeColor: '#fb4e4e'
 # サーバーからのリモートリクエストにHTTP/2を使用する (default: false)
 # ActivityPubのPOST, signToActivityPubGet指定時のActivityPubのGET および proxy指定時には効きません
 #useClientHttp2: true
+
+# アップロードやリモート取得で処理できるファイルサイズの制限 (bytes)
+#maxFileSize: 262144000
