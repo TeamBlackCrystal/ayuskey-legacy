@@ -65,6 +65,7 @@ export default function load() {
 	mixin.userAgent = `Misskey/${meta.version} (${config.url})`;
 
 	if (config.autoAdmin == null) config.autoAdmin = false;
+	if (config.signToActivityPubGet == null) config.signToActivityPubGet = true;
 
 	if (!config.redis.prefix) config.redis.prefix = mixin.host;
 
