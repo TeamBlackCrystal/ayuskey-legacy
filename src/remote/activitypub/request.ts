@@ -11,7 +11,7 @@ import { ILocalUser } from '../../models/user';
 import { publishApLogStream } from '../../services/stream';
 
 export default async (user: ILocalUser, url: string, object: any) => {
-	const timeout = 20 * 1000;
+	const timeout = 10 * 1000;
 
 	const data = JSON.stringify(object);
 
