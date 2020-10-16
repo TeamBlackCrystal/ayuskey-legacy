@@ -55,7 +55,7 @@ app.use(bodyParser({
 const upload = multer({
 	storage: multer.diskStorage({}),
 	limits: {
-		fileSize: config.maxFileSize,
+		fileSize: config.maxFileSize || 262144000,
 		files: 1,
 	}
 });
