@@ -8,15 +8,10 @@ import * as ContentDisposition from 'content-disposition';
 import config from '../config';
 import * as chalk from 'chalk';
 import Logger from '../services/logger';
-import { TimeoutStream } from './timeout-stream';
 
 const pipeline = util.promisify(stream.pipeline);
 
 export async function downloadUrl(url: string, path: string) {
-	const wholeOperationTimeout = 300 * 1000;
-	const responseTimeout = 10 * 1000;
-	const readTimeout = 10 * 1000;
-
 	const logger = new Logger('download-url');
 
 	logger.info(`Downloading ${chalk.cyan(url)} ...`);
@@ -24,13 +19,13 @@ export async function downloadUrl(url: string, path: string) {
 	const controller = new AbortController();
 	setTimeout(() => {
 		controller.abort();
-	}, wholeOperationTimeout);
+	}, 60 * 1000);
 
 	const response = await fetch(new URL(url).href, {
 		headers: {
 			'User-Agent': config.userAgent
 		},
-		timeout: responseTimeout,
+		timeout: 10 * 1000,
 		size: config.maxFileSize || 262144000,
 		signal: controller.signal,
 		agent: u => u.protocol == 'http:' ? httpAgent : httpsAgent,
@@ -45,11 +40,7 @@ export async function downloadUrl(url: string, path: string) {
 	const contentLength = response.headers.get('content-length');
 	const expectedLength = contentLength != null ? Number(contentLength) : null;
 
-	await pipeline(
-		response.body,
-		new TimeoutStream(readTimeout, () => controller.abort()),
-		fs.createWriteStream(path)
-	);
+	await pipeline(response.body, fs.createWriteStream(path));
 
 	// 可能ならばサイズ比較
 	const actualLength = (await util.promisify(fs.stat)(path)).size;
