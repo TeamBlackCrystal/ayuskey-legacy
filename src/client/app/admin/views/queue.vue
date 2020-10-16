@@ -74,8 +74,8 @@
 				<ui-select v-model="state">
 					<template #label>{{ $t('state') }}</template>
 					<option value="delayed">{{ $t('states.delayed') }}</option>
-					<option value="delayed">{{ $t('states.active') }}</option>
-					<option value="delayed">{{ $t('states.waiting') }}</option>
+					<option value="active">{{ $t('states.active') }}</option>
+					<option value="waiting">{{ $t('states.waiting') }}</option>
 				</ui-select>
 			</ui-horizon-group>
 			<div class="xvvuvgsv" v-for="job in jobs" :key="job.id">
