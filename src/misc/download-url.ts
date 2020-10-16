@@ -67,6 +67,7 @@ export async function downloadUrl(url: string, path: string) {
 		}
 	});
 
+	logger.info(`setTimeout: ${url}`);
 	const timer = setTimeout(() => {
 		logger.warn(`TIMEOUT_X1: ${util.inspect(req)}`);
 		req.destroy();
@@ -74,6 +75,7 @@ export async function downloadUrl(url: string, path: string) {
 
 	await pipeline(req, fs.createWriteStream(path));
 
+	logger.info(`clearTimeout: ${url}`);
 	clearTimeout(timer);
 
 	logger.succ(`Download finished: ${chalk.cyan(url)}`);
