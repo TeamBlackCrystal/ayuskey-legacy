@@ -2,11 +2,14 @@ import * as https from 'https';
 import { sign } from 'http-signature';
 import { URL } from 'url';
 import * as crypto from 'crypto';
+import * as http from 'http';
+import got from 'got';
+import * as Got from 'got';
 
 import config from '../../config';
 import { ILocalUser } from '../../models/user';
 import { publishApLogStream } from '../../services/stream';
-import { httpsAgent } from '../../misc/fetch';
+import { httpsAgent, getAgentByUrl } from '../../misc/fetch';
 
 export default async (user: ILocalUser, url: string, object: any) => {
 	const timeout = 10 * 1000;
@@ -76,57 +79,78 @@ export default async (user: ILocalUser, url: string, object: any) => {
 export async function signedGet(url: string, user: ILocalUser) {
 	const timeout = 10 * 1000;
 
-	const { protocol, hostname, port, pathname, search } = new URL(url);
+	const req = got.get<any>(url, {
+		headers: {
+			'Accept': 'application/activity+json, application/ld+json',
+			'User-Agent': config.userAgent,
+		},
+		responseType: 'json',
+		timeout,
+		hooks: {
+			beforeRequest: [
+				options => {
+					options.request = (url: URL, opt: http.RequestOptions, callback?: (response: any) => void) => {
+						// Select custom agent by URL
+						opt.agent = getAgentByUrl(url, false);
 
-	const buffer: Buffer[] = [];
+						// Wrap original https?.request
+						const requestFunc = url.protocol === 'http:' ? http.request : https.request;
+						const clientRequest = requestFunc(url, opt, callback) as http.ClientRequest;
 
-	return await new Promise((resolve, reject) => {
-		const req = https.request({
-			agent: httpsAgent as https.Agent,
-			protocol,
-			hostname,
-			port,
-			method: 'GET',
-			path: pathname + search,
-			timeout,
-			headers: {
-				'Accept': 'application/activity+json, application/ld+json',
-				'User-Agent': config.userAgent,
-			}
-		});
+						// HTTP-Signature
+						sign(clientRequest, {
+							authorizationHeaderName: 'Signature',
+							key: user.keypair,
+							keyId: `${config.url}/users/${user._id}#main-key`,
+							headers: ['(request-target)', 'host', 'date', 'accept']
+						});
 
-		sign(req, {
-			authorizationHeaderName: 'Signature',
-			key: user.keypair,
-			keyId: `${config.url}/users/${user._id}#main-key`,
-			headers: ['(request-target)', 'host', 'date', 'accept']
-		});
-
-		req.on('timeout', () => req.abort());
-
-		req.on('error', e => {
-			if (req.aborted) reject('timeout');
-			reject(e);
-		});
-
-		req.on('response', res => {
-			if (res.statusCode >= 400) {
-				reject(res);
-			} else {
-				res.on('data', data => {
-					buffer.push(Buffer.from(data))
-				});
-				res.on('end', () => {
-					try {
-						resolve(JSON.parse(buffer.toString()));
-					} catch (e) {
-						reject(e);
-					}
-				});
-			}
-		});
-
-		req.end();
+						return clientRequest;
+					};
+				},
+			],
+		},
+		retry: 0,
 	});
+
+	const res = await receiveResponce(req, 10 * 1024 * 1024);
+
+	return res.body;
 }
 
+export async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response<T>>, maxSize: number) {
+	// 応答ヘッダでサイズチェック
+	req.on('response', (res: Got.Response) => {
+		const contentLength = res.headers['content-length'];
+		if (contentLength != null) {
+			const size = Number(contentLength);
+			if (size > maxSize) {
+				req.cancel();
+			}
+		}
+	});
+
+	// 受信中のデータでサイズチェック
+	req.on('downloadProgress', (progress: Got.Progress) => {
+		if (progress.transferred > maxSize) {
+			req.cancel();
+		}
+	});
+
+	// 応答取得 with ステータスコードエラーの整形
+	const res = await req.catch(e => {
+		if (e.name === 'HTTPError') {
+			const statusCode = (e as Got.HTTPError).response.statusCode;
+			const statusMessage = (e as Got.HTTPError).response.statusMessage;
+			throw {
+				name: `StatusError`,
+				statusCode,
+				message: `${statusCode} ${statusMessage}`,
+			};
+		} else {
+			throw e;
+		}
+	});
+
+	return res;
+}
