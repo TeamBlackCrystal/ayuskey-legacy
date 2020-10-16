@@ -17,7 +17,7 @@ export async function downloadUrl(url: string, path: string) {
 	logger.info(`Downloading ${chalk.cyan(url)} ...`);
 
 	const timeout = 10 * 1000;
-	const operationTimeout = 10 * 60 * 1000;
+	const operationTimeout = 5 * 60 * 1000;
 	const maxSize = config.maxFileSize || 262144000;
 
 	let responseUrl = url;
@@ -41,6 +41,8 @@ export async function downloadUrl(url: string, path: string) {
 			https: httpsAgent,
 		},
 		retry: 0,
+	}).on('request', request => {
+		setTimeout(() => request.destroy(), operationTimeout);
 	}).on('response', (res: Got.Response) => {
 		responseUrl = res.url;
 
