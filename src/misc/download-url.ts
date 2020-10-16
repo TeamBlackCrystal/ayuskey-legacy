@@ -41,8 +41,6 @@ export async function downloadUrl(url: string, path: string) {
 			https: httpsAgent,
 		},
 		retry: 0,
-	}).on('request', request => {
-		setTimeout(() => request.destroy(), operationTimeout);
 	}).on('response', (res: Got.Response) => {
 		responseUrl = res.url;
 
@@ -69,7 +67,14 @@ export async function downloadUrl(url: string, path: string) {
 		}
 	});
 
+	const timer = setTimeout(() => {
+		logger.warn(`TIMEOUT_X1: ${util.inspect(req)}`);
+		req.destroy();
+	}, operationTimeout + 10000);
+
 	await pipeline(req, fs.createWriteStream(path));
+
+	clearTimeout(timer);
 
 	logger.succ(`Download finished: ${chalk.cyan(url)}`);
 
