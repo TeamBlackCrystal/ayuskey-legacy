@@ -1,3 +1,14 @@
+## [11.37.1-rei0784-3.0.2](https://github.com/mei23/misskey-v11/compare/v3.0.0...v11.37.1-rei0784-3.0.2) (2020-10-24)
+
+
+
+ChangeLog
+=========
+### ✨Improvements
+* `/admin/federation`にアイコンが追加されます
+* `/admin/federation`の一部が翻訳されました
+
+
 ## [11.37.1-rei0784-3.0.1](https://github.com/mei23/misskey-v11/compare/v3.0.0...v11.37.1-rei0784-3.0.1) (2020-10-24)
 
 

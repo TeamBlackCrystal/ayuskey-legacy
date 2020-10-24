@@ -5,6 +5,7 @@
 		<section class="fit-top">
 			<ui-input class="target" v-model="target" type="text" @enter="showInstance()">
 				<span>{{ $t('host') }}</span>
+				<template #prefix><fa :icon="faServer"/></template>
 			</ui-input>
 			<ui-button @click="showInstance()"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
 
@@ -76,17 +77,21 @@
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.name" type="text" readonly>
 						<span>{{ $t('name') }}</span>
+						<template #prefix><fa :icon="faTag"/></template>
 					</ui-input>
 					<ui-input :value="instance.description" type="text" readonly>
 						<span>{{ $t('description') }}</span>
+						<template #prefix><fa :icon="faCommentAlt"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.maintainerName" type="text" readonly>
 						<span>{{ $t('maintainerName') }}</span>
+						<template #prefix><fa :icon="faUser"/></template>
 					</ui-input>
 					<ui-input :value="instance.maintainerEmail" type="text" readonly>
 						<span>{{ $t('maintainerEmail') }}</span>
+						<template #prefix><fa :icon="faEnvelope"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-switch v-model="instance.isBlocked" @change="updateInstance()">{{ $t('block') }}</ui-switch>
@@ -211,7 +216,7 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox, faUser, faEnvelope, faCommentAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
 import * as tinycolor from 'tinycolor2';
 import { query as urlQuery } from '../../../../prelude/url';
@@ -242,7 +247,7 @@ export default Vue.extend({
 			chartSpan: 'hour',
 			chartInstance: null,
 			urlQuery,
-			faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
+			faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox, faUser, faEnvelope, faCommentAlt, faTag
 		};
 	},
 
