@@ -5,7 +5,6 @@
 		<section class="fit-top">
 			<ui-input class="target" v-model="target" type="text" @enter="showInstance()">
 				<span>{{ $t('host') }}</span>
-				<template #prefix><fa :icon="faServer"/></template>
 			</ui-input>
 			<ui-button @click="showInstance()"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
 
@@ -13,49 +12,78 @@
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.host" type="text" readonly>
 						<span>{{ $t('host') }}</span>
-						<template #prefix><fa :icon="faServer"/></template>
 					</ui-input>
 					<ui-input :value="instance.caughtAt | date" type="text" readonly>
 						<span>{{ $t('caught-at') }}</span>
-						<template #prefix><fa :icon="faCrosshairs"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.notesCount | number" type="text" readonly>
 						<span>{{ $t('notes') }}</span>
-						<template #prefix><fa :icon="faEnvelopeOpenText"/></template>
 					</ui-input>
 					<ui-input :value="instance.usersCount | number" type="text" readonly>
 						<span>{{ $t('users') }}</span>
-						<template #prefix><fa :icon="faUsers"/></template>
 					</ui-input>
-				</ui-horizon-group>
-				<ui-horizon-group inputs>
 					<ui-input :value="instance.followingCount | number" type="text" readonly>
 						<span>{{ $t('following') }}</span>
-						<template #prefix><fa :icon="faCaretDown"/></template>
 					</ui-input>
 					<ui-input :value="instance.followersCount | number" type="text" readonly>
 						<span>{{ $t('followers') }}</span>
-						<template #prefix><fa :icon="faCaretUp"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.latestRequestSentAt | date" type="text" readonly>
 						<span>{{ $t('latest-request-sent-at') }}</span>
-						<template #prefix><fa :icon="faPaperPlane"/></template>
 					</ui-input>
 					<ui-input :value="instance.latestStatus" type="text" readonly>
 						<span>{{ $t('status') }}</span>
-						<template #prefix><fa :icon="faTrafficLight"/></template>
+					</ui-input>
+					<ui-input :value="instance.latestRequestReceivedAt | date" type="text" readonly>
+						<span>{{ $t('latest-request-received-at') }}</span>
 					</ui-input>
 				</ui-horizon-group>
-				<ui-input :value="instance.latestRequestReceivedAt | date" type="text" readonly>
-					<span>{{ $t('latest-request-received-at') }}</span>
-					<template #prefix><fa :icon="faInbox"/></template>
-				</ui-input>
-				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
-				<details>
+				<ui-horizon-group inputs>
+					<ui-input :value="instance.cc" type="text" readonly>
+						<template #prefix><mfm :text="ccToEmoji(instance.cc)" :plain="true" :nowrap="true" :key="instance.cc"/></template>
+						<span>CC</span>
+					</ui-input>
+					<ui-input :value="instance.isp" type="text" readonly>
+						<span>ISP</span>
+					</ui-input>
+					<ui-input :value="instance.org" type="text" readonly>
+						<span>ORG</span>
+					</ui-input>
+					<ui-input :value="instance.as" type="text" readonly>
+						<span>AS</span>
+					</ui-input>
+				</ui-horizon-group>
+				<ui-horizon-group inputs>
+					<ui-input :value="instance.softwareName" type="text" readonly>
+						<span>{{ $t('softwareName') }}</span>
+					</ui-input>
+					<ui-input :value="instance.softwareVersion" type="text" readonly>
+						<span>{{ $t('softwareVersion') }}</span>
+					</ui-input>
+				</ui-horizon-group>
+				<ui-horizon-group inputs>
+					<ui-input :value="instance.name" type="text" readonly>
+						<span>{{ $t('name') }}</span>
+					</ui-input>
+					<ui-input :value="instance.description" type="text" readonly>
+						<span>{{ $t('description') }}</span>
+					</ui-input>
+				</ui-horizon-group>
+				<ui-horizon-group inputs>
+					<ui-input :value="instance.maintainerName" type="text" readonly>
+						<span>{{ $t('maintainerName') }}</span>
+					</ui-input>
+					<ui-input :value="instance.maintainerEmail" type="text" readonly>
+						<span>{{ $t('maintainerEmail') }}</span>
+					</ui-input>
+				</ui-horizon-group>
+				<ui-switch v-model="instance.isBlocked" @change="updateInstance()" :disabled="!$store.getters.isAdminOrModerator">{{ $t('block') }}</ui-switch>
+				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()" :disabled="!$store.getters.isAdminOrModerator">{{ $t('marked-as-closed') }}</ui-switch>
+				<details :open="true">
 					<summary>{{ $t('charts') }}</summary>
 					<ui-horizon-group inputs>
 						<ui-select v-model="chartSrc">
@@ -78,11 +106,7 @@
 					</ui-horizon-group>
 					<div ref="chart"></div>
 				</details>
-				<details>
-					<summary>{{ $t('delete-all-files') }}</summary>
-					<ui-button @click="deleteAllFiles()" style="margin-top: 16px;"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
-				</details>
-				<details>
+				<details v-if="$store.getters.isAdminOrModerator">
 					<summary>{{ $t('remove-all-following') }}</summary>
 					<ui-button @click="removeAllFollowing()" style="margin-top: 16px;"><fa :icon="faMinusCircle"/> {{ $t('remove-all-following') }}</ui-button>
 					<ui-info warn>{{ $t('remove-all-following-info', { host: instance.host }) }}</ui-info>
@@ -122,18 +146,31 @@
 					<option value="markedAsClosed">{{ $t('states.marked-as-closed') }}</option>
 				</ui-select>
 			</ui-horizon-group>
+			<ui-horizon-group inputs>
+				<ui-input v-model="softwareName" type="text" spellcheck="false" @input="fetchInstances()">
+					<span>{{ $t('softwareName') }}</span>
+				</ui-input>
+				<ui-input v-model="cc" type="text" spellcheck="false" @input="fetchInstances()">
+					<span>CC</span>
+				</ui-input>
+			</ui-horizon-group>
 
 			<div class="instances">
 				<header>
 					<span>{{ $t('host') }}</span>
+					<span>{{ $t('system') }}</span>
 					<span>{{ $t('notes') }}</span>
 					<span>{{ $t('users') }}</span>
 					<span>{{ $t('following') }}</span>
 					<span>{{ $t('followers') }}</span>
 					<span>{{ $t('status') }}</span>
 				</header>
-				<div v-for="instance in instances" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
-					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none' }">{{ instance.host }}</a>
+				<div v-for="instance in instances" :key="instance.host" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
+					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none', display: 'inline-flex', overflow: 'hidden', 'word-break': 'break-all' }">
+						<img v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`" :style="{ width: '1em', height: '1em' }"/>
+						{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}
+					</a>
+					<span>{{ `${instance.softwareName || 'unknown'}` }} <small :style="{ opacity: 0.7 }">{{ `${instance.softwareVersion || ''}` }}</small></span>
 					<span>{{ instance.notesCount | number }}</span>
 					<span>{{ instance.usersCount | number }}</span>
 					<span>{{ instance.followingCount | number }}</span>
@@ -145,16 +182,6 @@
 			<ui-info v-if="instances.length == limit">{{ $t('result-is-truncated', { n: limit }) }}</ui-info>
 		</section>
 	</ui-card>
-
-	<ui-card>
-		<template #title><fa :icon="faBan"/> {{ $t('blocked-hosts') }}</template>
-		<section class="fit-top">
-			<ui-textarea v-model="blockedHosts">
-				<template #desc>{{ $t('blocked-hosts-info') }}</template>
-			</ui-textarea>
-			<ui-button @click="saveBlockedHosts">{{ $t('save') }}</ui-button>
-		</section>
-	</ui-card>
 </div>
 </template>
 
@@ -162,9 +189,10 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
 import * as tinycolor from 'tinycolor2';
+import { query as urlQuery } from '../../../../prelude/url';
 
 const chartLimit = 90;
 const sum = (...arr) => arr.reduce((r, a) => r.map((b, i) => a[i] + b));
@@ -183,14 +211,16 @@ export default Vue.extend({
 			target: null,
 			sort: '+lastCommunicatedAt',
 			state: 'all',
-			limit: 100,
+			softwareName: '',
+			cc: '',
+			limit: 200,
 			instances: [],
 			chart: null,
 			chartSrc: 'requests',
 			chartSpan: 'hour',
 			chartInstance: null,
-			blockedHosts: '',
-			faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
+			urlQuery,
+			faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
 		};
 	},
 
@@ -260,10 +290,6 @@ export default Vue.extend({
 
 	mounted() {
 		this.fetchInstances();
-
-		this.$root.getMeta().then(meta => {
-			this.blockedHosts = meta.blockedHosts.join('\n');
-		});
 	},
 
 	beforeDestroy() {
@@ -290,6 +316,8 @@ export default Vue.extend({
 		fetchInstances() {
 			this.instances = [];
 			this.$root.api('federation/instances', {
+				softwareName: this.softwareName,
+				cc: this.cc,
 				blocked: this.state === 'blocked' ? true : null,
 				notResponding: this.state === 'notResponding' ? true : null,
 				markedAsClosed: this.state === 'markedAsClosed' ? true : null,
@@ -302,17 +330,6 @@ export default Vue.extend({
 
 		removeAllFollowing() {
 			this.$root.api('admin/federation/remove-all-following', {
-				host: this.instance.host
-			}).then(() => {
-				this.$root.dialog({
-					type: 'success',
-					splash: true
-				});
-			});
-		},
-
-		deleteAllFiles() {
-			this.$root.api('admin/federation/delete-all-files', {
 				host: this.instance.host
 			}).then(() => {
 				this.$root.dialog({
@@ -367,7 +384,11 @@ export default Vue.extend({
 					width: 2
 				},
 				tooltip: {
-					theme: this.$store.state.device.darkmode ? 'dark' : 'light'
+					theme: this.$store.state.device.darkmode ? 'dark' : 'light',
+					x: {
+						show: true,
+						format: true ? 'dd MMM HH:mm' : 'dd MMM',
+					},
 				},
 				legend: {
 					labels: {
@@ -390,7 +411,7 @@ export default Vue.extend({
 				},
 				yaxis: {
 					labels: {
-						formatter: this.data.bytes ? v => Vue.filter('bytes')(v, 0) : v => Vue.filter('number')(v),
+						formatter: this.data.bytes ? v => Vue.filter('bytes')(v, 2) : v => Vue.filter('number')(v),
 						style: {
 							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
 						}
@@ -417,6 +438,12 @@ export default Vue.extend({
 
 		format(arr) {
 			return arr.map((v, i) => ({ x: this.getDate(i).getTime(), y: v }));
+		},
+
+		ccToEmoji(cc: string | null | undefined) {
+			if (cc == null) return '';
+			if (cc === '??') return '';
+			return cc.toUpperCase().replace(/./g, c => String.fromCodePoint(c.charCodeAt(0) + 127397));
 		},
 
 		requestsChart(): any {
@@ -506,22 +533,6 @@ export default Vue.extend({
 				}]
 			};
 		},
-
-		saveBlockedHosts() {
-			this.$root.api('admin/update-meta', {
-				blockedHosts: this.blockedHosts ? this.blockedHosts.split('\n') : []
-			}).then(() => {
-				this.$root.dialog({
-					type: 'success',
-					text: this.$t('saved')
-				});
-			}).catch(e => {
-				this.$root.dialog({
-					type: 'error',
-					text: e
-				});
-			});
-		}
 	}
 });
 </script>
