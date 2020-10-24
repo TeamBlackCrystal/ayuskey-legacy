@@ -12,31 +12,39 @@
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.host" type="text" readonly>
 						<span>{{ $t('host') }}</span>
+						<template #prefix><fa :icon="faServer"/></template>
 					</ui-input>
 					<ui-input :value="instance.caughtAt | date" type="text" readonly>
 						<span>{{ $t('caught-at') }}</span>
+						<template #prefix><fa :icon="faCrosshairs"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.notesCount | number" type="text" readonly>
 						<span>{{ $t('notes') }}</span>
+						<template #prefix><fa :icon="faEnvelopeOpenText"/></template>
 					</ui-input>
 					<ui-input :value="instance.usersCount | number" type="text" readonly>
 						<span>{{ $t('users') }}</span>
+						<template #prefix><fa :icon="faUsers"/></template>
 					</ui-input>
 					<ui-input :value="instance.followingCount | number" type="text" readonly>
 						<span>{{ $t('following') }}</span>
+						<template #prefix><fa :icon="faCaretDown"/></template>
 					</ui-input>
 					<ui-input :value="instance.followersCount | number" type="text" readonly>
 						<span>{{ $t('followers') }}</span>
+						<template #prefix><fa :icon="faCaretUp"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.latestRequestSentAt | date" type="text" readonly>
 						<span>{{ $t('latest-request-sent-at') }}</span>
+						<template #prefix><fa :icon="faPaperPlane"/></template>
 					</ui-input>
 					<ui-input :value="instance.latestStatus" type="text" readonly>
 						<span>{{ $t('status') }}</span>
+						<template #prefix><fa :icon="faTrafficLight"/></template>
 					</ui-input>
 					<ui-input :value="instance.latestRequestReceivedAt | date" type="text" readonly>
 						<span>{{ $t('latest-request-received-at') }}</span>
@@ -81,8 +89,8 @@
 						<span>{{ $t('maintainerEmail') }}</span>
 					</ui-input>
 				</ui-horizon-group>
-				<ui-switch v-model="instance.isBlocked" @change="updateInstance()" :disabled="!$store.getters.isAdminOrModerator">{{ $t('block') }}</ui-switch>
-				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()" :disabled="!$store.getters.isAdminOrModerator">{{ $t('marked-as-closed') }}</ui-switch>
+				<ui-switch v-model="instance.isBlocked" @change="updateInstance()">{{ $t('block') }}</ui-switch>
+				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
 				<details :open="true">
 					<summary>{{ $t('charts') }}</summary>
 					<ui-horizon-group inputs>
@@ -106,7 +114,11 @@
 					</ui-horizon-group>
 					<div ref="chart"></div>
 				</details>
-				<details v-if="$store.getters.isAdminOrModerator">
+				<details>
+					<summary>{{ $t('delete-all-files') }}</summary>
+					<ui-button @click="deleteAllFiles()" style="margin-top: 16px;"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
+				</details>
+				<details>
 					<summary>{{ $t('remove-all-following') }}</summary>
 					<ui-button @click="removeAllFollowing()" style="margin-top: 16px;"><fa :icon="faMinusCircle"/> {{ $t('remove-all-following') }}</ui-button>
 					<ui-info warn>{{ $t('remove-all-following-info', { host: instance.host }) }}</ui-info>
@@ -180,6 +192,16 @@
 			</div>
 
 			<ui-info v-if="instances.length == limit">{{ $t('result-is-truncated', { n: limit }) }}</ui-info>
+		</section>
+	</ui-card>
+
+	<ui-card>
+		<template #title><fa :icon="faBan"/> {{ $t('blocked-hosts') }}</template>
+		<section class="fit-top">
+			<ui-textarea v-model="blockedHosts">
+				<template #desc>{{ $t('blocked-hosts-info') }}</template>
+			</ui-textarea>
+			<ui-button @click="saveBlockedHosts">{{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 </div>
@@ -290,6 +312,10 @@ export default Vue.extend({
 
 	mounted() {
 		this.fetchInstances();
+
+		this.$root.getMeta().then(meta => {
+			this.blockedHosts = meta.blockedHosts.join('\n');
+		});
 	},
 
 	beforeDestroy() {
@@ -330,6 +356,17 @@ export default Vue.extend({
 
 		removeAllFollowing() {
 			this.$root.api('admin/federation/remove-all-following', {
+				host: this.instance.host
+			}).then(() => {
+				this.$root.dialog({
+					type: 'success',
+					splash: true
+				});
+			});
+		},
+
+		deleteAllFiles() {
+			this.$root.api('admin/federation/delete-all-files', {
 				host: this.instance.host
 			}).then(() => {
 				this.$root.dialog({
@@ -533,6 +570,22 @@ export default Vue.extend({
 				}]
 			};
 		},
+
+		saveBlockedHosts() {
+			this.$root.api('admin/update-meta', {
+				blockedHosts: this.blockedHosts ? this.blockedHosts.split('\n') : []
+			}).then(() => {
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('saved')
+				});
+			}).catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e
+				});
+			});
+		}
 	}
 });
 </script>
