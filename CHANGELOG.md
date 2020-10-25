@@ -1,5 +1,14 @@
-## [11.37.1-rei0784-3.1.0](https://github.com/TeamOrangeServer/misskey/compare/v3.0.0...v11.37.1-rei0784-3.1.0) (2020-10-24)
+## [11.37.1-rei0784-3.5.0b1](https://github.com/TeamOrangeServer/misskey/compare/v3.0.0...v11.37.1-rei0784-3.5.0b1) (2020-10-25)
 
+
+
+ChangeLog
+=========
+### ⚠️注意
+* ベータ版です
+### ✨Improvements
+* boot splashが追加されました
+* scssがサポートされました
 
 
 ## [11.37.1-rei0784-3.0.2](https://github.com/mei23/misskey-v11/compare/v3.0.0...v11.37.1-rei0784-3.0.2) (2020-10-24)
