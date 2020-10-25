@@ -45,7 +45,7 @@ function greet() {
 		//console.log('Powerd by rei0784(rei_k) aka sousuke0422');
 
 		console.log(' Reiskey is maintained by @aki@xe.akirin.xyz.');
-		console.log(' Between v1.0.0 to v2.0.0');
+		console.log(' Between v1.0.0 to v3.1.1');
 		console.log('');
 		console.log('');
 		console.log('                          _              ');
