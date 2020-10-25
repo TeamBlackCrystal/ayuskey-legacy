@@ -55,6 +55,8 @@ module.exports = {
 			use: [{
 				loader: 'vue-loader',
 				options: {
+					scss: 'vue-style-loader!css-loader!sass-loader',
+					sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
 					cssSourceMap: false,
 					compilerOptions: {
 						preserveWhitespace: false
@@ -124,6 +126,35 @@ module.exports = {
 					appendTsSuffixTo: [/\.vue$/]
 				}
 			}]
+		}, {
+			test: /\.scss?$/,
+			exclude: /node_modules/,
+			oneOf: [{
+				resourceQuery: /module/,
+				use: [{
+					loader: 'vue-style-loader'
+				}, {
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						esModule: false, // TODO: trueにすると壊れる。Vue3移行の折にはtrueにできるかもしれない
+						url: false,
+					}
+				}, postcss, {
+					loader: 'sass-loader',
+					options: {
+						implementation: require('sass'),
+						sassOptions: {
+							fiber: require('fibers')
+						}
+					}
+				}]
+			}]
+		}, {
+			loader: 'sass-resources-loader',
+			options: {
+				resources: __dirname + '/src/client/variables.scss'
+			}
 		}]
 	},
 	plugins: [

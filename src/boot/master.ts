@@ -32,6 +32,34 @@ function greet() {
 
 		console.log('');
 		console.log(chalk`< ${os.hostname()} {gray (PID: ${process.pid.toString()})} >`);
+		console.log('');
+		console.log('');
+		//kban
+		console.log('\'||\'\'|.            ||         \'||');
+		console.log(' ||   ||    ....  ...   ....   ||  ..    ....  .... ...');
+		console.log(' ||\'\'|\'   .|...||  ||  ||. \'   || .\'   .|...||  \'|.  |');
+		console.log(' ||   |.  ||       ||  . \'|..  ||\'|.   ||        \'|.|');
+		console.log('.||.  \'|\'  \'|...\' .||. |\'..|\' .||. ||.  \'|...\'    \'|');
+		console.log(chalk.gray('Powerd by rei0784(rei_k) aka sousuke0422') + '       .. |');
+		console.log('                                                \'\'\n');
+		//console.log('Powerd by rei0784(rei_k) aka sousuke0422');
+
+		console.log(' Reiskey is maintained by @aki@xe.akirin.xyz.');
+		console.log(' Between v1.0.0 to v2.0.0');
+		console.log('');
+		console.log('');
+		console.log('                          _              ');
+		console.log('     /\\                  | |             ');
+		console.log('    /  \\  _   _ _   _ ___| | _____ _   _ ');
+		console.log('   / /\\ \\| | | | | | / __| |/ / _ \\ | | |');
+		console.log('  / ____ \\ |_| | |_| \\__ \\   <  __/ |_| |');
+		console.log(' /_/    \\_\\__, |\\__,_|___/_|\\_\\___|\\__, |');
+		console.log('           __/ |                    __/ |');
+		console.log('          |___/                    |___/ \n');
+		console.log(' Ayuskey is maintained by @aki@xe.akirin.xyz, @yupix@ne.akarinext.org.');
+		console.log(' From v3.5.0');
+		console.log('');
+		console.log('');
 	}
 
 	bootLogger.info('Welcome to Misskey!');
