@@ -12,6 +12,8 @@ export type Theme = {
 
 export const lightTheme: Theme = require('../themes/light.json5');
 export const darkTheme: Theme = require('../themes/dark.json5');
+export const classic_lightTheme: Theme = require('../themes/classic-light.json5');
+export const classic_darkTheme: Theme = require('../themes/classic-dark.json5');
 export const lavenderTheme: Theme = require('../themes/lavender.json5');
 export const futureTheme: Theme = require('../themes/future.json5');
 export const halloweenTheme: Theme = require('../themes/halloween.json5');
@@ -24,10 +26,14 @@ export const rainyTheme: Theme = require('../themes/rainy.json5');
 export const mauveTheme: Theme = require('../themes/mauve.json5');
 export const grayTheme: Theme = require('../themes/gray.json5');
 export const tweetDeckTheme: Theme = require('../themes/tweet-deck.json5');
+export const hikaemeTheme: Theme = require('../themes/hikaeme.json5');
+export const promoTheme: Theme = require('../themes/promo.json5');
 
 export const builtinThemes = [
 	lightTheme,
 	darkTheme,
+	classic_lightTheme,
+	classic_darkTheme,
 	lavenderTheme,
 	futureTheme,
 	halloweenTheme,
@@ -40,6 +46,8 @@ export const builtinThemes = [
 	mauveTheme,
 	grayTheme,
 	tweetDeckTheme,
+	hikaemeTheme,
+	promoTheme,
 ];
 
 export function applyTheme(theme: Theme, persisted = true) {
