@@ -161,9 +161,6 @@ module.exports = {
 		],
 		alias: {
 			'const.styl': __dirname + '/src/client/const.styl'
-		},
-		fallback: {
-			'crypto': false
 		}
 	},
 	resolveLoader: {
