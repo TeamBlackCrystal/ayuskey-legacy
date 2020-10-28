@@ -43,6 +43,7 @@ export default Vue.extend({
 		cat(): boolean {
 			return this.user.isCat && this.$store.state.settings.circleIcons;
 		},
+		// TODO: 2020/10/28 お嬢様アイコン追加
 		style(): any {
 			return {
 				borderRadius: this.$store.state.settings.circleIcons ? '100%' : null

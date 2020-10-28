@@ -120,6 +120,7 @@ export class UserRepository extends Repository<User> {
 			isAdmin: user.isAdmin || falsy,
 			isBot: user.isBot || falsy,
 			isCat: user.isCat || falsy,
+			isLady: user.isLady || falsy,
 
 			// カスタム絵文字添付
 			emojis: user.emojis.length > 0 ? Emojis.find({
@@ -385,6 +386,11 @@ export const packedUserSchema = {
 			}
 		},
 		isCat: {
+			type: 'boolean' as const,
+			nullable: false as const, optional: true as const,
+			description: 'Whether this account is a cat.'
+		},
+		isLady: {
 			type: 'boolean' as const,
 			nullable: false as const, optional: true as const,
 			description: 'Whether this account is a cat.'

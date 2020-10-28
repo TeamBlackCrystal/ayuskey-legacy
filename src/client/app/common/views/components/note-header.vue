@@ -7,6 +7,7 @@
 	<span class="is-admin" v-if="note.user.isAdmin">admin</span>
 	<span class="is-bot" v-if="note.user.isBot">bot</span>
 	<span class="is-cat" v-if="note.user.isCat">cat</span>
+	<span class="is-cat" v-if="note.user.isLady">lady</span>
 	<span class="username"><mk-acct :user="note.user"/></span>
 	<div class="info">
 		<span class="app" v-if="note.app && !mini && $store.state.settings.showVia">via <b>{{ note.app.name }}</b></span>

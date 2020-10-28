@@ -72,6 +72,7 @@ export async function renderPerson(user: ILocalUser) {
 		manuallyApprovesFollowers: user.isLocked,
 		publicKey: renderKey(user, keypair, `#main-key`),
 		isCat: user.isCat,
+		isLady: user.isLady,
 		attachment: attachment.length ? attachment : undefined
 	};
 }

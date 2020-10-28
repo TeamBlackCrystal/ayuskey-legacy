@@ -80,6 +80,7 @@
 
 		<div>
 			<ui-switch v-model="isCat" @change="save(false)">{{ $t('is-cat') }}</ui-switch>
+			<ui-switch v-model="isLady" @change="save(false)">{{ $t('is-lady') }}</ui-switch>
 			<ui-switch v-model="isBot" @change="save(false)">{{ $t('is-bot') }}</ui-switch>
 			<ui-switch v-model="alwaysMarkNsfw">{{ $t('@._settings.always-mark-nsfw') }}</ui-switch>
 		</div>
@@ -172,6 +173,7 @@ export default Vue.extend({
 			avatarId: null,
 			bannerId: null,
 			isCat: false,
+			isLady: false,
 			isBot: false,
 			isLocked: false,
 			carefulBot: false,
@@ -213,6 +215,7 @@ export default Vue.extend({
 		this.avatarId = this.$store.state.i.avatarId;
 		this.bannerId = this.$store.state.i.bannerId;
 		this.isCat = this.$store.state.i.isCat;
+		this.isLady = this.$store.state.i.isLady;
 		this.isBot = this.$store.state.i.isBot;
 		this.isLocked = this.$store.state.i.isLocked;
 		this.carefulBot = this.$store.state.i.carefulBot;
@@ -293,6 +296,7 @@ export default Vue.extend({
 				bannerId: this.bannerId || undefined,
 				fields,
 				isCat: !!this.isCat,
+				isLady: !!this.isLady,
 				isBot: !!this.isBot,
 				isLocked: !!this.isLocked,
 				carefulBot: !!this.carefulBot,

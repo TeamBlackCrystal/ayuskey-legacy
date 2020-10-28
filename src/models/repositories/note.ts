@@ -251,7 +251,7 @@ export class NoteRepository extends Repository<Note> {
 		if (packed.user.isCat && packed.text) {
 			packed.text = nyaize(packed.text);
 		}
-
+		//TODO: 2020/10/28 お嬢様口調への変換追加
 		if (!opts.skipHide) {
 			await this.hideNote(packed, meId);
 		}

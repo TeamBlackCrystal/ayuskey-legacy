@@ -160,7 +160,8 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 				uri: person.id,
 				tags,
 				isBot,
-				isCat: (person as any).isCat === true
+				isCat: (person as any).isCat === true,
+				isLady: (person as any).isLady === true
 			})) as IRemoteUser;
 
 			await transactionalEntityManager.save(new UserProfile({
@@ -329,6 +330,7 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 		tags,
 		isBot: object.type == 'Service',
 		isCat: (person as any).isCat === true,
+		isLady: (person as any).isLady === true,
 		isLocked: !!person.manuallyApprovesFollowers,
 	} as Partial<User>;
 

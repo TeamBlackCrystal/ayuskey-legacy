@@ -818,6 +818,7 @@ common/views/components/profile-editor.vue:
   avatar: "アバター"
   banner: "バナー"
   is-cat: "このアカウントはCatです"
+  is-lady: "このアカウントはLadyです"
   is-bot: "このアカウントはBotです"
   is-locked: "フォローを承認制にする"
   careful-bot: "Botからのフォローだけ承認制にする"
