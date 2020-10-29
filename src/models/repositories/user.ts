@@ -393,7 +393,7 @@ export const packedUserSchema = {
 		isLady: {
 			type: 'boolean' as const,
 			nullable: false as const, optional: true as const,
-			description: 'Whether this account is a cat.'
+			description: 'Whether this account is a Lady.'
 		},
 		isAdmin: {
 			type: 'boolean' as const,
