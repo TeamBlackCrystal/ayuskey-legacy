@@ -125,6 +125,7 @@ export const envVarsDef: Record<string, Type> = {
 	FOLLOWERS_COUNT: 'number',
 	FOLLOWING_COUNT: 'number',
 	IS_CAT: 'boolean',
+	IS_LADY: 'boolean',
 	MY_NOTES_COUNT: 'number',
 	MY_FOLLOWERS_COUNT: 'number',
 	MY_FOLLOWING_COUNT: 'number',
