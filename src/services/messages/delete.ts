@@ -26,7 +26,7 @@ async function postDeleteMessage(message: IMessagingMessage) {
 	}
 
 	if (isLocalUser(user) && isRemoteUser(recipient)) {
-		const activity = renderActivity(renderDelete(renderTombstone(`${config.url}/notes/${message._id}`), user, `${config.url}/notes/${message._id}/delete`);
+		const activity = renderActivity(renderDelete(renderTombstone(`${config.url}/notes/${message._id}`), user, `${config.url}/notes/${message._id}/delete`));
 		deliver(user, activity, recipient.inbox);
 	}
 }
