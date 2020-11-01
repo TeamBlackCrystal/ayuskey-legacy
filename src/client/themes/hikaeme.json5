@@ -14,6 +14,7 @@
 	},
 
 	props: {
+		announcementsBg: '#660000',
 		announcementsTitle: '#e3e5e8',
 		renoteGradient: '#b72ddc',
 		noteText: '#f0d0d0',
