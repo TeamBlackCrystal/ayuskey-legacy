@@ -28,6 +28,7 @@ export const grayTheme: Theme = require('../themes/gray.json5');
 export const tweetDeckTheme: Theme = require('../themes/tweet-deck.json5');
 export const hikaemeTheme: Theme = require('../themes/hikaeme.json5');
 export const promoTheme: Theme = require('../themes/promo.json5');
+export const promoHalloweenTheme: Theme = require('../themes/promo_halloween.json5');
 export const yupixTheme: Theme = require('../themes/yupix.json5');
 
 export const builtinThemes = [
@@ -49,6 +50,7 @@ export const builtinThemes = [
 	tweetDeckTheme,
 	hikaemeTheme,
 	promoTheme,
+	promoHalloweenTheme,
 	yupixTheme,
 ];
 
