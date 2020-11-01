@@ -285,6 +285,7 @@ router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'gam
 
 // streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる
 router.get('/streaming', async ctx => {
+	console.log(`UNEXPECTED_STREAMING Request ${ctx.path}`);
 	ctx.status = 503;
 	ctx.set('Cache-Control', 'private, max-age=0');
 });
