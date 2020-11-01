@@ -1,3 +1,23 @@
+## [11.37.1-rei0784-4.0.0](https://github.com/TeamOrangeServer/misskey/compare/v3.6.0...v11.37.1-rei0784-4.0.0) (2020-11-01)
+
+
+
+ChangeLog
+=========
+### ⚠️注意
+* プロセスを起動(もしくは再起動)する前に`yarn migrate`を実行してください
+* 既存インスタンスの場合、`update.sh`または`update_no_docker.sh`を実行してから起動してください
+    * `update.sh` を動かす際はデータベースがあるコンテナーを起動した上で実行する必要があります
+### ✨Improvements
+* お嬢様スイッチを追加
+* 検索窓がびよ～んするようになった
+### 🐛Fixes
+* docker環境においてfilesをマウントするように
+* 内部的な修正をたくさん
+## More
+* コミットログをご確認ください
+
+
 ## [11.37.1-rei0784-3.6.0](https://github.com/TeamOrangeServer/misskey/compare/v3.0.0...v11.37.1-rei0784-3.6.0) (2020-10-27)
 
 
