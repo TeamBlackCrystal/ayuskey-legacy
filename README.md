@@ -2,6 +2,11 @@
 Fork of https://github.com/syuilo/misskey/tree/v11
 ----------------------------------------------------------------
 
+## 注意
+
+* 既存インスタンスの場合、`update.sh`または`update_no_docker.sh`を実行してから起動してください
+    * `update.sh` を動かす際はデータベースがあるコンテナーを起動した上で実行する必要があります
+
 ## 主な変更点
 
 [11.37.1-20200514113754](https://github.com/mei23/misskey-v11/releases/tag/11.37.1-20200514113754)  
