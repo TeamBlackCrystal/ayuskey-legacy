@@ -72,6 +72,18 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		xspin(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		yspin(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		jump(token) {
 			const el = doc.createElement('i');
 			appendChildren(token.children, el);
@@ -79,6 +91,18 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 		},
 
 		flip(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		vflip(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		blink(token) {
 			const el = doc.createElement('span');
 			appendChildren(token.children, el);
 			return el;
@@ -159,8 +183,8 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 					break;
 				default:
 					const remoteUserInfo = mentionedRemoteUsers.find(remoteUser => remoteUser.username === username && remoteUser.host === host);
-					a.href = remoteUserInfo ? (remoteUserInfo.url ? remoteUserInfo.url : remoteUserInfo.uri) : `${config.url}/${acct}`;
-					a.className = 'u-url mention';
+					a.href = remoteUserInfo ? remoteUserInfo.uri : `${config.url}/${acct}`;
+					a.className = 'mention';
 					break;
 			}
 			a.textContent = acct;

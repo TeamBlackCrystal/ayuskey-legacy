@@ -442,10 +442,10 @@ export default Vue.extend({
 			const browserHeight = window.innerHeight;
 			const windowWidth = main.offsetWidth;
 			const windowHeight = main.offsetHeight;
-			if (position.left < 0) main.style.left = 0;     // 左はみ出し
-			if (position.top + windowHeight > browserHeight) main.style.top = browserHeight - windowHeight + 'px';  // 下はみ出し
-			if (position.left + windowWidth > browserWidth) main.style.left = browserWidth - windowWidth + 'px';    // 右はみ出し
-			if (position.top < 0) main.style.top = 0;       // 上はみ出し
+			if (position.top + windowHeight > browserHeight) main.style.top = browserHeight - windowHeight + 'px';	// 下はみ出し
+			if (position.left < 0) main.style.left = 0;	// 左はみ出し
+			if (position.top < 0) main.style.top = 0;	// 上はみ出し
+			if (position.left + windowWidth > browserWidth) main.style.left = browserWidth - windowWidth + 'px';	// 右はみ出し
 		}
 	}
 });
