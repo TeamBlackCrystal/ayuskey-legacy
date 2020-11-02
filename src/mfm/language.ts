@@ -29,6 +29,8 @@ export const mfmLanguage = P.createLanguage({
 		r.blockCode,
 		r.mathBlock,
 		r.center,
+		r.right,
+		r.marquee
 	),
 	startOfLine: () => P((input, i) => {
 		if (i == 0 || input[i] == '\n' || input[i - 1] == '\n') {
@@ -66,11 +68,23 @@ export const mfmLanguage = P.createLanguage({
 		if (!match) return P.makeFailure(i, 'not a blockCode');
 		return P.makeSuccess(i + match[0].length, createLeaf('blockCode', { code: match[2], lang: match[1] ? match[1].trim() : null }));
 	})),
+	marquee: r => {
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^<marquee(\s[a-z]+?)?>(.+?)<\/marquee>/i);
+			if (!match) return P.makeFailure(i, 'not a marquee');
+			return P.makeSuccess(i + match[0].length, {
+				content: match[2], attr: match[1] ? match[1].trim() : null
+			});
+		}).map(x => createTree('marquee', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
+	},
 	inline: r => P.alt(
 		r.big,
 		r.bold,
 		r.small,
 		r.italic,
+		r.sup,
+		r.sub,
 		r.strike,
 		r.motion,
 		r.spin,
@@ -104,6 +118,16 @@ export const mfmLanguage = P.createLanguage({
 
 		return P.alt(xml, underscore).map(x => createTree('italic', r.inline.atLeast(1).tryParse(x), {}));
 	},
+	sup: r => {
+		const paren = P.regexp(/\(\(\(([\s\S]+?)\)\)\)/, 1);
+		const xml = P.regexp(/<sup>(.+?)<\/sup>/, 1);
+		return P.alt(paren, xml).map(x => createTree('sup', r.inline.atLeast(1).tryParse(x), {}));
+	},
+	sub: r => {
+		const paren = P.regexp(/\(\(\(([\s\S]+?)\)\)\)/, 1);
+		const xml = P.regexp(/<sub>(.+?)<\/sub>/, 1);
+		return P.alt(paren, xml).map(x => createTree('sub', r.inline.atLeast(1).tryParse(x), {}));
+	},
 	strike: r => P.regexp(/~~([^\n~]+?)~~/, 1).map(x => createTree('strike', r.inline.atLeast(1).tryParse(x), {})),
 	motion: r => {
 		const paren = P.regexp(/\(\(\(([\s\S]+?)\)\)\)/, 1);
@@ -123,6 +147,7 @@ export const mfmLanguage = P.createLanguage({
 	jump: r => P.regexp(/<jump>(.+?)<\/jump>/, 1).map(x => createTree('jump', r.inline.atLeast(1).tryParse(x), {})),
 	flip: r => P.regexp(/<flip>(.+?)<\/flip>/, 1).map(x => createTree('flip', r.inline.atLeast(1).tryParse(x), {})),
 	center: r => r.startOfLine.then(P.regexp(/<center>([\s\S]+?)<\/center>/, 1).map(x => createTree('center', r.inline.atLeast(1).tryParse(x), {}))),
+	right: r => r.startOfLine.then(P.regexp(/<right>([\s\S]+?)<\/right>/, 1).map(x => createTree('right', r.inline.atLeast(1).tryParse(x), {}))),
 	inlineCode: () => P.regexp(/`([^´\n]+?)`/, 1).map(x => createLeaf('inlineCode', { code: x })),
 	mathBlock: r => r.startOfLine.then(P.regexp(/\\\[([\s\S]+?)\\\]/, 1).map(x => createLeaf('mathBlock', { formula: x.trim() }))),
 	mathInline: () => P.regexp(/\\\((.+?)\\\)/, 1).map(x => createLeaf('mathInline', { formula: x })),
