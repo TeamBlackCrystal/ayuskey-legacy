@@ -13,6 +13,18 @@
 				<div class="actions">
 					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa :icon="faSync"/> {{ $t('update-remote-user') }}</ui-button>
 					<ui-button @click="resetPassword"><fa :icon="faKey"/> {{ $t('reset-password') }}</ui-button>
+fe					<ui-horizon-group v-if="user.host == null" >
+						<ui-button :disabled="changing" @click="markAsAdmin">{{ $t('mark-admin') }}</ui-button>
+						<ui-button :disabled="changing" @click="unmarkAsAdmin">{{ $t('unmark-admin') }}</ui-button>
+					</ui-horizon-group>
+					<ui-horizon-group>
+						<ui-button @click="setPremium" :disabled="changing"><fa :icon="crown"/> {{ $t('set-premium') }}</ui-button>
+						<ui-button @click="unsetPremium" :disabled="changing">{{ $t('unset-premium') }}</ui-button>
+					</ui-horizon-group>
+					<ui-horizon-group>
+						<ui-button @click="verifyUser" :disabled="verifying"><fa :icon="faCertificate"/> {{ $t('verify') }}</ui-button>
+						<ui-button @click="unverifyUser" :disabled="unverifying">{{ $t('unverify') }}</ui-button>
+					</ui-horizon-group>
 					<ui-horizon-group>
 						<ui-button @click="silenceUser"><fa :icon="faMicrophoneSlash"/> {{ $t('make-silence') }}</ui-button>
 						<ui-button @click="unsilenceUser">{{ $t('unmake-silence') }}</ui-button>
@@ -45,6 +57,7 @@
 					<option value="available">{{ $t('users.state.available') }}</option>
 					<option value="admin">{{ $t('users.state.admin') }}</option>
 					<option value="moderator">{{ $t('users.state.moderator') }}</option>
+					<option value="verified">{{ $t('users.state.verified') }}</option>
 					<option value="silenced">{{ $t('users.state.silenced') }}</option>
 					<option value="suspended">{{ $t('users.state.suspended') }}</option>
 				</ui-select>
@@ -76,7 +89,7 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import parseAcct from "../../../../misc/acct/parse";
-import { faUsers, faTerminal, faSearch, faKey, faSync, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faUsers, faTerminal, faSearch, faKey, faSync, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSnowflake, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import XUser from './users.user.vue';
 
@@ -89,6 +102,8 @@ export default Vue.extend({
 		return {
 			user: null,
 			target: null,
+			verifying: false,
+			unverifying: false,
 			suspending: false,
 			unsuspending: false,
 			sort: '+createdAt',
@@ -100,7 +115,8 @@ export default Vue.extend({
 			offset: 0,
 			users: [],
 			existMore: false,
-			faTerminal, faUsers, faSnowflake, faSearch, faKey, faSync, faMicrophoneSlash, faTrashAlt
+			changing: false,
+			faTerminal, faCertificate, faUsers, faSnowflake, faSearch, faKey, faSync, faMicrophoneSlash, faTrashAlt
 		};
 	},
 
@@ -195,10 +211,118 @@ export default Vue.extend({
 				});
 			});
 		},
-
+		async markAsAdmin() {
+			this.changing = true;
+			const process = async () => {
+				await this.$root.api('admin/admins/add', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('marked-admin')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.message
+				});
+			});
+			this.changing = false;
+		},
+		async unmarkAsAdmin() {
+			this.changing = true;
+			const process = async () => {
+				await this.$root.api('admin/admins/remove', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('unmarked-admin')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.message;
+				});
+			});
+			this.changing = false;
+		},
+		async verifyUser() {
+			if (!await this.getConfirmed(this.$t('verify-confirm'))) return;
+			this.verifying = true;
+			const process = async () => {
+				await this.$root.api('admin/verify-user', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('verified')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.toString()
+				});
+			});
+			this.verifying = false;
+			this.refreshUser();
+		},
+		async unverifyUser() {
+			if (!await this.getConfirmed(this.$t('unverify-confirm'))) return;
+			this.unverifying = true;
+			const process = async () => {
+				await this.$root.api('admin/unverify-user', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('unverified')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.toString()
+				});
+			});
+			this.unverifying = false;
+			this.refreshUser();
+		},
+		async setPremium() {
+			if (!await this.getConfirmed(this.$t('set-premium-confirm'))) return;
+			this.changing = true;
+			const process = async () => {
+				await this.$root.api('admin/set-premium', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('become-premium')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.toString()
+				});
+			});
+			this.changing = false;
+			this.refreshUser();
+		},
+		async unsetPremium() {
+			if (!await this.getConfirmed(this.$t('unverify-confirm'))) return;
+			this.changing = true;
+			const process = async () => {
+				await this.$root.api('admin/unset-premium', { userId: this.user.id });
+				this.$root.dialog({
+					type: 'success',
+					text: this.$t('unverified')
+				});
+			};
+			await process().catch(e => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.toString()
+				});
+			});
+			this.changing = false;
+			this.refreshUser();
+		},
 		async silenceUser() {
 			if (!await this.getConfirmed(this.$t('silence-confirm'))) return;
-
 			const process = async () => {
 				await this.$root.api('admin/silence-user', { userId: this.user.id });
 				this.$root.dialog({
@@ -210,7 +334,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.message
 				});
 			});
 
@@ -231,7 +355,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.message
 				});
 			});
 
@@ -254,7 +378,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.message
 				});
 			});
 
@@ -279,7 +403,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.message
 				});
 			});
 
@@ -313,7 +437,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.message
 				});
 			});
 		},
