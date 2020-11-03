@@ -24,9 +24,7 @@ Misskey, Mastodon 全般で使える, AP連携あり
 
 ※ 絵文字の類は表示された投稿を選択してコピペできる
 
-## Misskey標準文字装飾
-MFMと呼ばれるMisskeyの文字装飾  
-Misskey間では基本的に連携できる, 同じ対応をしているインスタンスとは連携できる
+## 文字装飾
 
 `**太字**`
 
@@ -54,6 +52,10 @@ Misskey間では基本的に連携できる, 同じ対応をしているイン�
 ```
 
 `<jump>ジャンプ</jump>`  
+
+`<twitch>twitch</twitch>`  
+
+`<shake>shake</shake>`  
 
 ````
 ```
@@ -85,8 +87,6 @@ Misskey間では基本的に連携できる, 同じ対応をしているイン�
 ]\
 ```
 
-## 独自追加文字装飾
-
 ```
 <vflip>上下反転</vflip>
 
@@ -103,4 +103,4 @@ Misskey間では基本的に連携できる, 同じ対応をしているイン�
 <marquee reverse-slide>マーキー (左から出てきて右で停止)</marquee>
 ```
 
-<div class="copyright"><small>Copyright (c) 2019 mei23</small></div>
+<div class="copyright"><small>Copyright (c) 2019, 2020 mei23</small></div>
