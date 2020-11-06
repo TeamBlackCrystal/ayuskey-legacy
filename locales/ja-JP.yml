@@ -324,6 +324,8 @@ common:
     preview: "プレビュー"
     home-profile: "ホームのプロファイル"
     deck-profile: "デッキのプロファイル"
+    recentReactionsCount: "履歴の数"
+    showDislikeInPicker: "Dislikeを表示する"
     room: "ルーム"
     _room:
       graphicsQuality: "グラフィックの品質"

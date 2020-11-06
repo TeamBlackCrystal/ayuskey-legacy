@@ -294,6 +294,8 @@ common:
     preview: "Preview"
     home-profile: "Home profile"
     deck-profile: "Deck profile"
+    recentReactionsCount: "Number of histories"
+    showDislikeInPicker: "Show Dislike"
     room: "Room"
     _room:
       graphicsQuality: "Graphics Quality"
