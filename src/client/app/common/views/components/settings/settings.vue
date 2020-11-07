@@ -126,8 +126,8 @@
 				<header>{{ $t('@._settings.note-visibility') }}</header>
 				<ui-switch v-model="rememberNoteVisibility">{{ $t('@._settings.remember-note-visibility') }}</ui-switch>
 				<section>
-					<header>{{ $t('@._settings.default-note-visibility') }}</header>
 					<ui-select v-model="defaultNoteVisibility">
+						<template #label>{{ $t('@._settings.default-note-visibility') }}</template>
 						<option value="public">{{ $t('@.note-visibility.public') }}</option>
 						<option value="home">{{ $t('@.note-visibility.home') }}</option>
 						<option value="followers">{{ $t('@.note-visibility.followers') }}</option>
@@ -140,8 +140,8 @@
 					</ui-select>
 				</section>
 				<section>
-					<header>{{ $t('@._settings.secondary-note-visibility') }}</header>
 					<ui-select v-model="secondaryNoteVisibility">
+						<template #label>{{ $t('@._settings.secondary-note-visibility') }}</template>
 						<option value="none">None</option>
 						<option value="public">{{ $t('@.note-visibility.public') }}</option>
 						<option value="home">{{ $t('@.note-visibility.home') }}</option>
@@ -155,8 +155,8 @@
 					</ui-select>
 				</section>
 				<section>
-					<header>{{ $t('@._settings.tertiary-note-visibility') }}</header>
 					<ui-select v-model="tertiaryNoteVisibility">
+						<template #label>{{ $t('@._settings.tertiary-note-visibility') }}</template>
 						<option value="none">None</option>
 						<option value="public">{{ $t('@.note-visibility.public') }}</option>
 						<option value="home">{{ $t('@.note-visibility.home') }}</option>
@@ -196,13 +196,15 @@
 				</ui-switch>
 				<ui-switch style="margin-left: 2em" :disabled="!enableSounds" v-model="enableSoundsInNotifications">{{ $t('@._settings.Notifications') }}
 				</ui-switch>
-				<label>{{ $t('@._settings.volume') }}</label>
-				<input type="range"
-					v-model="soundVolume"
-					:disabled="!enableSounds"
-					max="1"
-					step="0.1"
-				/>
+				<div style="display: flex; margin: 1em 0; gap: 1em;">
+					<label>{{ $t('@._settings.volume') }}</label>
+					<input type="range"
+						v-model="soundVolume"
+						:disabled="!enableSounds"
+						max="1"
+						step="0.1"
+					/>
+				</div>
 				<ui-button @click="soundTest"><fa icon="volume-up"/> {{ $t('@._settings.test') }}</ui-button>
 			</section>
 
