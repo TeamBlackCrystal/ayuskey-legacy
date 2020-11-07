@@ -90,6 +90,10 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		twitch(token) {
+			return `<twitch>${appendChildren(token.children, opts)}</twitch>`;
+		},
+
 		flip(token) {
 			const el = doc.createElement('span');
 			appendChildren(token.children, el);
