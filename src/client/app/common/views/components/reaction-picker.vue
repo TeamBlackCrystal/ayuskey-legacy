@@ -151,10 +151,13 @@ export default Vue.extend({
 		},
 
 		reactRandom() {
-			const list = emojilist.filter(x => x.category !== 'flags');
+			let list = emojilist.filter(x => x.category !== 'flags').map((x: any) => x.char);
+			let local = ((this.$root.getMetaSync() || { emojis: [] }).emojis || []).map((x: any) => `:${x.name}:`);
+			list = list.concat(local);
+
 			const index = Math.floor(Math.random() * list.length);
-			const char = list[index].char;
-			this.react(char);
+			const reaction = list[index];
+			this.react(reaction);
 		},
 
 		async emoji() {
