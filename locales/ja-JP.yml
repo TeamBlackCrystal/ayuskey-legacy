@@ -101,6 +101,7 @@ common:
   only-moved: "引っ越したユーザーのみ"
   desktop-mode: 'デスクトップ版'
   mobile-mode: 'モバイル版'
+  empty: 'ありません！'
 
   favorites: "お気に入り"
   noteReactions: "リアクションした投稿"
