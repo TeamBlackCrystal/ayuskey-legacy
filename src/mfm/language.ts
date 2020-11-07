@@ -94,7 +94,6 @@ export const mfmLanguage = P.createLanguage({
 		r.vflip,
 		r.rotate,
 		r.twitch,
-		r.shake,
 		r.inlineCode,
 		r.mathInline,
 		r.mention,
@@ -172,7 +171,6 @@ export const mfmLanguage = P.createLanguage({
 		}).map(x => createTree('rotate', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
 	twitch: r => P.regexp(/<twitch>(.+?)<\/twitch>/, 1).map(x => createTree('twitch', r.inline.atLeast(1).tryParse(x), {})),
-	shake: r => P.regexp(/<shake>(.+?)<\/shake>/, 1).map(x => createTree('shake', r.inline.atLeast(1).tryParse(x), {})),
 	center: r => r.startOfLine.then(P.regexp(/<center>([\s\S]+?)<\/center>/, 1).map(x => createTree('center', r.inline.atLeast(1).tryParse(x), {}))),
 	inlineCode: () => P.regexp(/`([^´\n]+?)`/, 1).map(x => createLeaf('inlineCode', { code: x })),
 	mathBlock: r => r.startOfLine.then(P.regexp(/\\\[([\s\S]+?)\\\]/, 1).map(x => createLeaf('mathBlock', { formula: x.trim() }))),
