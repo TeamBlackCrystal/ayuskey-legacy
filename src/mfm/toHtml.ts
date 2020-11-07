@@ -91,7 +91,15 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 		},
 
 		twitch(token) {
-			return `<twitch>${appendChildren(token.children, opts)}</twitch>`;
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		shake(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
 		},
 
 		flip(token) {
