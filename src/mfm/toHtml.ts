@@ -114,6 +114,12 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		rotate(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		blink(token) {
 			const el = doc.createElement('span');
 			appendChildren(token.children, el);

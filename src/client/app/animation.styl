@@ -27,35 +27,6 @@
 	}
 }
 
-.marquee {
-  overflow: hidden;
-  position: relative;
-
-	.marquee-inner {
-		position: absolute;
-		top: 0;
-		white-space: nowrap;
-		animation-name: marquee;
-		animation-timing-function: linear;
-		animation-duration: 10s;
-		animation-iteration-count: infinite;
-
-		&.reverse {
-			animation-direction: reverse;
-		}
-		
-		&.alternate {
-			animation-direction: alternate;
-		}
-	}
-
-	&::after {
-		content: "";
-		white-space: nowrap;
-		display: inline-block;
-	}
-}
-
 @keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
@@ -136,10 +107,4 @@
 	90% { transform: translate(1px, 0px) rotate(3deg) }
 	95% { transform: translate(-2px, 0px) rotate(-3deg) }
 	100% { transform: translate(2px, 1px) rotate(2deg) }
-}
-
-/** マーキーアニメーション */
-@keyframes marquee {
-    0% { left: 100%; transform: translate(0); }
-  100% { left: 0; transform: translate(-100%); }
 }
