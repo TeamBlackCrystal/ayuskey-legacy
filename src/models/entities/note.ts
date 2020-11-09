@@ -44,7 +44,7 @@ export class Note {
 	public renote: Note | null;
 
 	@Column('varchar', {
-		length: 8192, nullable: true
+		length: 10240, nullable: true
 	})
 	public text: string | null;
 
