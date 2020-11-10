@@ -298,6 +298,7 @@ common:
     deck-profile: "Deck profile"
     recentReactionsCount: "Number of histories"
     showDislikeInPicker: "Show Dislike"
+    enableRandomReactionPicker: "Randomly set for each picker display"
     room: "Room"
     _room:
       graphicsQuality: "Graphics Quality"

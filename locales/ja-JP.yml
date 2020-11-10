@@ -328,6 +328,7 @@ common:
     deck-profile: "デッキのプロファイル"
     recentReactionsCount: "履歴の数"
     showDislikeInPicker: "Dislikeを表示する"
+    enableRandomReactionPicker: "ピッカー表示ごとにランダムに設定する"
     room: "ルーム"
     _room:
       graphicsQuality: "グラフィックの品質"

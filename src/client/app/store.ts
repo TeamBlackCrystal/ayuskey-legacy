@@ -83,6 +83,7 @@ const defaultDeviceSettings = Object.assign({
 	recentReactions: [],
 	recentReactionsCount: 5,
 	showDislikeInPicker: false,
+	enableRandomReactionPicker: false,
 	appType: 'auto',
 }, mods.defaultDeviceSettings || {});
 

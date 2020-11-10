@@ -111,6 +111,7 @@
 					<option value="15">15</option>
 					<option value="20">20</option>
 				</ui-select>
+				<ui-switch v-model="enableRandomReactionPicker">{{ $t('@._settings.enableRandomReactionPicker') }}</ui-switch>
 				<ui-switch v-model="showDislikeInPicker">{{ $t('@._settings.showDislikeInPicker') }}</ui-switch>
 			</section>
 
@@ -599,6 +600,11 @@ export default Vue.extend({
 		showDislikeInPicker: {
 			get() { return this.$store.state.device.showDislikeInPicker; },
 			set(value) { this.$store.commit('device/set', { key: 'showDislikeInPicker', value }); }
+		},
+
+		enableRandomReactionPicker: {
+			get() { return this.$store.state.device.enableRandomReactionPicker; },
+			set(value) { this.$store.commit('device/set', { key: 'enableRandomReactionPicker', value }); }
 		},
 
 		recentReactionsCount: {
