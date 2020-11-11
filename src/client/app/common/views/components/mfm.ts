@@ -260,6 +260,29 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
+				case 'rotate': {
+					const isLong = sumTextsLength(token.children) > 100 || countNodesF(token.children) > 20;
+					const deg = token.node.props.attr;
+
+					return (createElement as any)('span', {
+						attrs: {
+							style: isLong ? '' : `display: inline-block; transform: rotate(${deg}deg);`
+						},
+					}, genEl(token.children));
+				}
+
+				case 'twitch': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-twitch 0.5s ease infinite;' : 'display: inline-block;'
+					}, genEl(token.children));
+				}
+
+				case 'shake': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-shake 0.5s ease infinite;' : 'display: inline-block;'
+					}, genEl(token.children));
+				}
+
 				case 'url': {
 					return [createElement(MkUrl, {
 						key: Math.random(),
@@ -406,11 +429,31 @@ export default Vue.component('misskey-flavored-markdown', {
 					return [createElement('marquee', { class: 'marquee' }, genEl(token.children))];
 				}
 
-				default: {
-					console.log('unknown ast type:', token.node.type);
+				let behavior = 'scroll';
+				let direction = 'left';
+				let scrollamount = '5';
 
-					return [];
+				if (token.node.props.attr === 'reverse') {
+					direction = 'right';
+				} else if (token.node.props.attr === 'alternate') {
+					behavior = 'alternate';
+					scrollamount = '10';
+				} else if (token.node.props.attr === 'slide') {
+					behavior = 'slide';
+				} else if (token.node.props.attr === 'reverse-slide') {
+					direction = 'right';
+					behavior = 'slide';
 				}
+
+				return [createElement('marquee', {
+						attrs: {
+							behavior,
+							direction,
+							scrolldelay: '60',
+							scrollamount,
+						}
+					}, genEl(token.children)),
+				];
 			}
 		}));
 
