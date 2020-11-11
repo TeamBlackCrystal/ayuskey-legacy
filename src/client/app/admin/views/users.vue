@@ -240,7 +240,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message;
+					text: e.message
 				});
 			});
 			this.changing = false;
@@ -309,7 +309,7 @@ export default Vue.extend({
 				await this.$root.api('admin/unset-premium', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unverified')
+					text: this.$t('unpremium')
 				});
 			};
 			await process().catch(e => {
