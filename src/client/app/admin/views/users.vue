@@ -223,7 +223,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 			this.changing = false;
@@ -240,7 +240,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 			this.changing = false;
@@ -334,7 +334,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 
@@ -355,7 +355,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 
@@ -378,7 +378,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 
@@ -403,7 +403,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 
@@ -437,7 +437,7 @@ export default Vue.extend({
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.toString()
 				});
 			});
 		},
