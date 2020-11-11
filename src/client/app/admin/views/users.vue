@@ -13,7 +13,7 @@
 				<div class="actions">
 					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa :icon="faSync"/> {{ $t('update-remote-user') }}</ui-button>
 					<ui-button @click="resetPassword"><fa :icon="faKey"/> {{ $t('reset-password') }}</ui-button>
-fe					<ui-horizon-group v-if="user.host == null" >
+					<ui-horizon-group v-if="user.host == null" >
 						<ui-button :disabled="changing" @click="markAsAdmin">{{ $t('mark-admin') }}</ui-button>
 						<ui-button :disabled="changing" @click="unmarkAsAdmin">{{ $t('unmark-admin') }}</ui-button>
 					</ui-horizon-group>
