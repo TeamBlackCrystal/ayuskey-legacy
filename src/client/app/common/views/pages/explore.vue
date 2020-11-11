@@ -58,6 +58,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { faChartLine, faPlus, faHashtag, faRocket, faCertificate  } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
+import endpoint from '../../../../../server/api/endpoints/endpoint';
 
 export default Vue.extend({
 	i18n: i18n('common/views/pages/explore.vue'),
@@ -78,12 +79,11 @@ export default Vue.extend({
 	data() {
 		return {
 			pinnedUsers: { endpoint: 'pinned-users' },
-			verifiedUsers: () => this.$root.api('users', {
+			verifiedUsers: { endpoint: 'users', limit: 10, params: {
 				state: 'verified',
 				origin: 'local',
 				sort: '+follower',
-				limit: 10
-			}),
+			} },
 			popularUsers: { endpoint: 'users', limit: 10, params: {
 				state: 'alive',
 				origin: 'local',
