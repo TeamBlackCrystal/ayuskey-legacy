@@ -3,6 +3,8 @@ import config from '../config';
 import { INote } from '../models/note';
 import { concat } from '../prelude/array';
 import { MfmForest, MfmTree } from './prelude';
+import { inspect } from 'util';
+import note from '../remote/activitypub/kernel/create/note';
 
 export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentionedRemoteUsers'] = []) {
 	if (tokens == null) {
@@ -49,49 +51,63 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		},
 
 		motion(token) {
-			const el = doc.createElement('i');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'jelly');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		spin(token) {
-			const el = doc.createElement('i');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'spin');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		xspin(token) {
-			const el = doc.createElement('i');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'spin');
+			el.setAttribute('data-mfm-x', '1');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		yspin(token) {
-			const el = doc.createElement('i');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'spin');
+			el.setAttribute('data-mfm-y', '1');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		jump(token) {
-			const el = doc.createElement('i');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'jump');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		flip(token) {
 			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'flip');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		vflip(token) {
 			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'flip');
+			el.setAttribute('data-mfm-v', '1');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		rotate(token) {
 			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'rotate');
+			el.setAttribute('data-mfm-deg', token.node.props.attr);
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -99,6 +115,7 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		blockCode(token) {
 			const pre = doc.createElement('pre');
 			const inner = doc.createElement('code');
+			if (token.node.props.lang) inner.setAttribute('data-mfm-lang', token.node.props.lang);
 			inner.textContent = token.node.props.code;
 			pre.appendChild(inner);
 			return pre;
@@ -106,12 +123,23 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 
 		center(token) {
 			const el = doc.createElement('div');
+			el.setAttribute('align', 'center');
 			appendChildren(token.children, el);
 			return el;
 		},
 
 		marquee(token) {
-			const el = doc.createElement('div');
+			const el = doc.createElement('marquee');
+			if (token.node.props.attr === 'reverse') {
+				el.setAttribute('direction', 'right');
+			} else if (token.node.props.attr === 'alternate') {
+				el.setAttribute('behavior', 'alternate');
+			} else if (token.node.props.attr === 'slide') {
+				el.setAttribute('behavior', 'slide');
+			} else if (token.node.props.attr === 'reverse-slide') {
+				el.setAttribute('direction', 'right');
+				el.setAttribute('behavior', 'slide');
+			}
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -136,12 +164,14 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 
 		mathInline(token) {
 			const el = doc.createElement('code');
+			el.setAttribute('data-mfm', 'math');
 			el.textContent = token.node.props.formula;
 			return el;
 		},
 
 		mathBlock(token) {
 			const el = doc.createElement('code');
+			el.setAttribute('data-mfm', 'math');
 			el.textContent = token.node.props.formula;
 			return el;
 		},
