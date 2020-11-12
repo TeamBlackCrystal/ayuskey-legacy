@@ -1,5 +1,5 @@
 <template>
-<mfm :text="user.name || user.username" :plain="true" :nowrap="nowrap" :custom-emojis="user.emojis"/>
+<mfm :text="user.name || user.username" :class="{ premium: user.isPremium }" :plain="true" :nowrap="nowrap" :custom-emojis="user.emojis"/>
 </template>
 
 <script lang="ts">

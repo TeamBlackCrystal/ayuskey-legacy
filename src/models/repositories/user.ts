@@ -121,6 +121,8 @@ export class UserRepository extends Repository<User> {
 			isBot: user.isBot || falsy,
 			isCat: user.isCat || falsy,
 			isLady: user.isLady || falsy,
+			isVerified: user.isVerified || falsy,
+			isPremium: user.isPremium || falsy,
 			instance: user.host ? Instances.findOne({ host: user.host }).then(instance => instance ? {
 				name: instance.name,
 				softwareName: instance.softwareName,
@@ -413,6 +415,10 @@ export const packedUserSchema = {
 			type: 'boolean' as const,
 			nullable: false as const, optional: true as const,
 			description: 'Whether this account is a moderator.'
+		},
+		isVerified: {
+			type: 'boolean' as const,
+			nullable: false as const, optional: true as const,
 		},
 		isLocked: {
 			type: 'boolean' as const,
