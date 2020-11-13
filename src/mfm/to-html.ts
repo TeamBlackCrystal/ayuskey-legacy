@@ -3,8 +3,6 @@ import config from '../config';
 import { INote } from '../models/note';
 import { concat } from '../prelude/array';
 import { MfmForest, MfmTree } from './prelude';
-import { inspect } from 'util';
-import note from '../remote/activitypub/kernel/create/note';
 
 export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentionedRemoteUsers'] = []) {
 	if (tokens == null) {
