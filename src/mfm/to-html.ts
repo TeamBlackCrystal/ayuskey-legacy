@@ -25,7 +25,8 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		},
 
 		big(token) {
-			const el = doc.createElement('strong');
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', 'tada');
 			appendChildren(token.children, el);
 			return el;
 		},

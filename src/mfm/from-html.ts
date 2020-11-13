@@ -120,6 +120,10 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					text += '<motion>';
 					appendChildren(node.childNodes);
 					text += '</motion>';
+				} else if (name === 'tada') {
+						text += '***';
+						appendChildren(node.childNodes);
+						text += '***';
 				} else if (name === 'spin') {
 					const tag = hasAttribute(node, 'data-mfm-x') ? 'xspin' : hasAttribute(node, 'data-mfm-y') ? 'yspin' : 'spin';
 					const attr = hasAttribute(node, 'data-mfm-left') ? ' left' : hasAttribute(node, 'data-mfm-alternate') ? ' alternate' : '';
