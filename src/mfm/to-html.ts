@@ -69,6 +69,8 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'spin');
 			el.setAttribute('data-mfm-x', '1');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -77,6 +79,8 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'spin');
 			el.setAttribute('data-mfm-y', '1');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
 			appendChildren(token.children, el);
 			return el;
 		},

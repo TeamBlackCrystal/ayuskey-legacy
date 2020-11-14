@@ -50,11 +50,15 @@ export function toString(tokens: MfmForest | null, opts?: RestoreOptions): strin
 		},
 
 		xspin(token, opts) {
-			return `<xspin>${appendChildren(token.children, opts)}</xspin>`;
+			const attr = token.node.props?.attr;
+			const post = attr ? ` ${attr}` : '';
+			return `<xspin${post}>${appendChildren(token.children, opts)}</xspin>`;
 		},
 
 		yspin(token, opts) {
-			return `<yspin>${appendChildren(token.children, opts)}</yspin>`;
+			const attr = token.node.props?.attr;
+			const post = attr ? ` ${attr}` : '';
+			return `<yspin${post}>${appendChildren(token.children, opts)}</yspin>`;
 		},
 
 		jump(token, opts) {

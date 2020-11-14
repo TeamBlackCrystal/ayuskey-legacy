@@ -158,9 +158,13 @@ export default Vue.component('misskey-flavored-markdown', {
 					motionCount++;
 					const isLong = sumTextsLength(token.children) > 100 || countNodesF(token.children) > 20;
 					const isMany = motionCount > 50;
+					const direction =
+						token.node.props.attr == 'left' ? 'reverse' :
+						token.node.props.attr == 'alternate' ? 'alternate' :
+						'normal';
 					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
 						? ''
-						: `animation: xspin 1.5s linear infinite;`;
+						: `animation: xspin 1.5s linear infinite; animation-direction: ${direction};`;
 					return (createElement as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style
@@ -172,9 +176,13 @@ export default Vue.component('misskey-flavored-markdown', {
 					motionCount++;
 					const isLong = sumTextsLength(token.children) > 100 || countNodesF(token.children) > 20;
 					const isMany = motionCount > 50;
+					const direction =
+						token.node.props.attr == 'left' ? 'reverse' :
+						token.node.props.attr == 'alternate' ? 'alternate' :
+						'normal';
 					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
 						? ''
-						: `animation: yspin 1.5s linear infinite;`;
+						: `animation: yspin 1.5s linear infinite; animation-direction: ${direction};`;
 					return (createElement as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style

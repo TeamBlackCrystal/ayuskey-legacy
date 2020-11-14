@@ -146,8 +146,34 @@ export const mfmLanguage = P.createLanguage({
 			}
 		}).map(x => createTree('spin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
-	xspin: r => P.regexp(/<xspin>(.+?)<\/xspin>/, 1).map(x => createTree('xspin', r.inline.atLeast(1).tryParse(x), {})),
-	yspin: r => P.regexp(/<yspin>(.+?)<\/yspin>/, 1).map(x => createTree('yspin', r.inline.atLeast(1).tryParse(x), {})),
+	xspin: r => {
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^<xspin(\s[a-z]+?)?>(.+?)<\/xspin>/i);
+
+			if (match) {
+				return P.makeSuccess(i + match[0].length, {
+					content: match[2], attr: match[1] ? match[1].trim() : null
+				});
+			} else {
+				return P.makeFailure(i, 'not a spin');
+			}
+		}).map(x => createTree('xspin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
+	},
+	yspin: r => {
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^<yspin(\s[a-z]+?)?>(.+?)<\/yspin>/i);
+
+			if (match) {
+				return P.makeSuccess(i + match[0].length, {
+					content: match[2], attr: match[1] ? match[1].trim() : null
+				});
+			} else {
+				return P.makeFailure(i, 'not a spin');
+			}
+		}).map(x => createTree('yspin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
+	},
 	jump: r => P.alt(P.regexp(/<jump>(.+?)<\/jump>/, 1), P.regexp(/\{\{\{([\s\S]+?)\}\}\}/, 1)).map(x => createTree('jump', r.inline.atLeast(1).tryParse(x), {})),
 	flip: r => {
 		const a = P.regexp(/<flip>(.+?)<\/flip>/, 1);
