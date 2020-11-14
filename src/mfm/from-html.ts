@@ -135,7 +135,19 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					appendChildren(node.childNodes);
 					text += '</jump>';
 				} else if (name === 'flip') {
-					const tag = hasAttribute(node, 'data-mfm-v') ? 'vflip' : 'flip';
+					if (hasAttribute(node, 'data-mfm-h') && hasAttribute(node, 'data-mfm-v')) {
+						text += `<flip><vflip>`;
+						appendChildren(node.childNodes);
+						text += `</vflip></flip>`;
+					} else if (hasAttribute(node, 'data-mfm-v')) {
+						text += `<vflip>`;
+						appendChildren(node.childNodes);
+						text += `</vflip>`;
+					} else {
+						text += `<flip>`;
+						appendChildren(node.childNodes);
+						text += `</flip>`;
+					}
 					text += `<${tag}>`;
 					appendChildren(node.childNodes);
 					text += `</${tag}>`;
