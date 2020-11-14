@@ -125,6 +125,7 @@
 			<div class="instances">
 				<header>
 					<span>{{ $t('host') }}</span>
+					<span>{{ $t('system') }}</span>
 					<span>{{ $t('notes') }}</span>
 					<span>{{ $t('users') }}</span>
 					<span>{{ $t('following') }}</span>
@@ -134,8 +135,9 @@
 				<div v-for="instance in instances" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
 					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none' }">
 						<img v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`" :style="{ width: '1em', height: '1em' }"/>
-						{{ instance.host }}
+						{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}
 					</a>
+					<span>{{ `${instance.softwareName || 'unknown'}` }} <small :style="{ opacity: 0.7 }">{{ `${instance.softwareVersion || ''}` }}</small></span>
 					<span>{{ instance.notesCount | number }}</span>
 					<span>{{ instance.usersCount | number }}</span>
 					<span>{{ instance.followingCount | number }}</span>

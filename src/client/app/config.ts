@@ -5,6 +5,7 @@ declare const _CODENAME_: string;
 declare const _ENV_: string;
 
 const address = new URL(location.href);
+const siteName = (document.querySelector('meta[property="og:site_name"]') as HTMLMetaElement)?.content;
 
 export const host = address.host;
 export const hostname = address.hostname;
@@ -16,5 +17,6 @@ export const langs = _LANGS_;
 export const locale = JSON.parse(localStorage.getItem('locale'));
 export const copyright = _COPYRIGHT_;
 export const version = _VERSION_;
+export const instanceName = siteName === 'Misskey' ? host : siteName;
 export const codename = _CODENAME_;
 export const env = _ENV_;

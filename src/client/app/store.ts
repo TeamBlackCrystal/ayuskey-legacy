@@ -77,6 +77,7 @@ const defaultDeviceSettings = {
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
 	enableMobileQuickNotificationView: false,
+	instanceTicker: 'remote', // none, remote, always
 	roomGraphicsQuality: 'medium',
 	roomUseOrthographicCamera: true,
 	activeEmojiCategoryName: undefined,

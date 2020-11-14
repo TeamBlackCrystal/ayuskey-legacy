@@ -22,12 +22,12 @@ export default Vue.extend({
 			type: Object,
 			required: true
 		},
-	},
+	},/*
 	computed: {
 		isMe(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.id === this.note.userId;
 		},
-	},
+	},*/
 });
 </script>
 
