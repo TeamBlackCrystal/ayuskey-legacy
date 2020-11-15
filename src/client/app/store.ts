@@ -66,6 +66,7 @@ const defaultDeviceSettings = {
 	lang: null,
 	appTypeForce: 'auto',
 	debug: false,
+	showAdvancedSettings: false,
 	lightmode: false,
 	loadRawImages: false,
 	alwaysShowNsfw: false,
@@ -376,6 +377,15 @@ export default (os: MiOS) => new Vuex.Store({
 			state: defaultDeviceSettings,
 
 			mutations: {
+				overwrite(state, x) {
+					for (const k of Object.keys(state)) {
+						if (x[k] === undefined) delete state[k];
+					}
+					for (const k of Object.keys(x)) {
+						state[k] = x[k];
+					}
+				},
+
 				set(state, x: { key: string; value: any }) {
 					state[x.key] = x.value;
 				},
