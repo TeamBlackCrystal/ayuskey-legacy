@@ -1,6 +1,10 @@
 {
 	"name": "misskey",
-	"author": "syuilo <i@syuilo.com>",
+	"author": "sousuke0422 <sousuke20xx@gmail.com>",
+	"contributors": [
+		"yupix <yupi0982@outlook.jp>",
+		"syuilo <i@syuilo.com>"
+	],
 	"version": "11.37.1-rei0784-next",
 	"codename": "daybreak",
 	"repository": {
