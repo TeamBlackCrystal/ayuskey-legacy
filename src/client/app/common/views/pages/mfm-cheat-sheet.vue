@@ -256,7 +256,7 @@ export default Vue.extend({
 			preview_fnFlip: '[flip MisskeyでFediverseの世界が広がります]\n[flip.v MisskeyでFediverseの世界が広がります]\n[flip.h,v MisskeyでFediverseの世界が広がります]',
 			preview_fnSpin: '[spin あいう] [spin.left あいう] [spin.alternate あいう]\n[spin.x あいう] [spin.x,left あいう] [spin.x,alternate あいう]\n[spin.y あいう] [spin.y,left あいう] [spin.y,alternate あいう]',
 			preview_fnSpeed: '[spin.y,left,speed=1s あいう]\n[spin.y,left,speed=2s あいう]\n[spin.y,left,speed=3s あいう]',
-			preview_rgbshift: '[rgbshift 色ズレアニメーション効果です]'
+			preview_rgbshift: '[rgbshift 色ズレアニメーション効果です]',
 
 			faQuestionCircle
 		};
