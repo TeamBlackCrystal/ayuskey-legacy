@@ -155,6 +155,18 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					text += `<rotate ${deg.value}>`;
 					appendChildren(node.childNodes);
 					text += `</rotate>`;
+				} else if (name?.match(/^[a-z]+$/)) {
+					const args = [];
+					for (const attr of node.attrs) {
+						const m = attr.name.match(/^data-mfm-([a-z]+)$/);
+						if (!m) continue;
+						const key = m[1];
+						args.push(attr.name === attr.value ? key : `${key}=${attr.value}`);
+					}
+
+					text += args.length > 0 ? `[${name}.${args.join(',')} ` : `[${name} `;
+					appendChildren(node.childNodes);
+					text += ']';
 				} else {
 					appendChildren(node.childNodes);
 				}
