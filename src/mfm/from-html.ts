@@ -1,6 +1,6 @@
 import { parseFragment, DefaultTreeDocumentFragment } from 'parse5';
 import { URL } from 'url';
-import { urlRegexFull } from './prelude';
+import { urlRegexFull, urlRegex } from './prelude';
 
 export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 	if (html == null) return null;
@@ -59,7 +59,9 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 						: txt === href.value
 							? txt.match(urlRegexFull) ? txt
 							: `<${txt}>`
-						: `[${txt}](${href.value})`;
+						: (href.value.match(urlRegex) && !href.value.match(urlRegexFull))	// URLぽいがエンコードされてない
+							? `[${txt}](<${href.value}>)`
+							: `[${txt}](${href.value})`;
 				}
 				break;
 			}
