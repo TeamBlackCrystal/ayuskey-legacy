@@ -105,6 +105,67 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children, inQuote));
 				}
 
+				case 'fn': {
+					// TODO: CSSを文字列で組み立てていくと token.node.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
+					let style;
+					switch (token.node.props.name) {
+						case 'tada': {
+							style = `font-size: 150%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: tada 1s linear infinite both;' : '');
+							break;
+						}
+						case 'jelly': {
+							const speed = token.node.props.args.speed || '1s';
+							style = (!this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-rubberBand ${speed} linear infinite both;` : '');
+							break;
+						}
+						case 'twitch': {
+							const speed = token.node.props.args.speed || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-twitch ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'shake': {
+							const speed = token.node.props.args.speed || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-shake ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'spin': {
+							const direction =
+								token.node.props.args.left ? 'reverse' :
+								token.node.props.args.alternate ? 'alternate' :
+								'normal';
+							const anime =
+								token.node.props.args.x ? 'mfm-spinX' :
+								token.node.props.args.y ? 'mfm-spinY' :
+								'mfm-spin';
+							const speed = token.node.props.args.speed || '1.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};` : '';
+							break;
+						}
+						case 'jump': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-jump 0.75s linear infinite;' : '';
+							break;
+						}
+						case 'bounce': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-bounce 0.75s linear infinite; transform-origin: center bottom;' : '';
+							break;
+						}
+						case 'flip': {
+							const transform =
+								(token.node.props.args.h && token.node.props.args.v) ? 'scale(-1, -1)' :
+								token.node.props.args.v ? 'scaleY(-1)' :
+								'scaleX(-1)';
+							style = `transform: ${transform};`;
+							break;
+						}
+					}
+
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block;' + style
+						},
+					}, genEl(token.children, inQuote));
+				}
+
 				case 'small': {
 					return [createElement('small', {
 						attrs: {

@@ -21,6 +21,13 @@ export function toString(tokens: MfmForest | null, opts?: RestoreOptions): strin
 			return `***${appendChildren(token.children, opts)}***`;
 		},
 
+		fn(token, opts) {
+			const name = token.node.props?.name;
+			const args = token.node.props?.args || {};
+			const argsStr = Object.entries(args).map(([k, v]) => v === true ? k : `${k}=${v}`).join(',');
+			return `[${name}${argsStr !== '' ? '.' + argsStr : ''} ${appendChildren(token.children, opts)}]`;
+		},
+
 		small(token, opts) {
 			return `<small>${appendChildren(token.children, opts)}</small>`;
 		},

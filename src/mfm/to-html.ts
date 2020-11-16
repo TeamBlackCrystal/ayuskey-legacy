@@ -49,6 +49,18 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 			return el;
 		},
 
+		fn(token) {
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', token.node.props.name);
+			for (const [key, value] of Object.entries(token.node.props.args || {})) {
+				if (!key.match(/^[a-z]+$/)) continue;
+				if (value === false) continue;
+				el.setAttribute(`data-mfm-${key}`, (value === true) ? `data-mfm-${key}` : value as string);
+			}
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		motion(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'jelly');
