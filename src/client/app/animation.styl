@@ -163,3 +163,59 @@
 	75% { transform: scale3d(1.05, 0.95, 1); }
 	to { transform: scale3d(1, 1, 1); }
 }
+
+// https://codepen.io/TheOld/pen/gzwpPP
+@keyframes mfm-rgbshift {
+	0%{
+		transform:rotate(0deg);
+		text-shadow:5px 10px 0px rgb(245, 245, 241);
+		opacity:1;
+	}
+	6%{
+	 transform:rotate(0.5deg) scale(1.01);
+		text-shadow:
+		 1px 1px 0px rgba(255,0,0,0.5),
+		 -5px -2px 0px rgba(0,255,0,0.5),
+		 -2px 4px 0px rgba(0,0,255,0.5);
+		opacity:1;
+	}
+	10%{
+		transform:rotate(0deg);
+		text-shadow:
+		 8px -2px 0px rgba(255,0,0,0.5),
+		 -5px -2px 0px rgba(0,255,0,0.5),
+		 2px -2px 0px rgba(0,0,255,0.5);
+		opacity:0.6;
+	}
+	12%{
+		text-shadow:none;
+		opacity:1;
+	}
+	58%{
+		transform:rotate(0deg);
+		text-shadow:none;
+		opacity:1;
+	}
+	59%{
+		 text-shadow:-5px -8px 0px rgb(245, 245, 241);
+		opacity:0.6;
+	}
+	62%{
+		transform:rotate(-0.5deg) scale(1.01);
+		text-shadow:
+		 8px -2px 0px rgba(255,0,0,0.5),
+		 -5px -2px 0px rgba(0,255,0,0.5),
+		 2px -2px 0px rgba(0,0,255,0.5);
+		opacity:1;
+	}
+	64%{
+		transform:rotate(-0.75deg) scale(1.01);
+	}
+	67%{
+		text-shadow:none;
+		transform:rotate(0deg);
+	}
+	100%{
+		transform:rotate(0deg);
+	}
+}

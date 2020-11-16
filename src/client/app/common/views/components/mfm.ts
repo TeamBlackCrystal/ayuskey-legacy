@@ -157,6 +157,10 @@ export default Vue.component('misskey-flavored-markdown', {
 							style = `transform: ${transform};`;
 							break;
 						}
+						case 'rgbshift': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-rgbshift 2s linear infinite;' : '';
+							break;
+						}
 					}
 
 					return (createElement as any)('span', {
