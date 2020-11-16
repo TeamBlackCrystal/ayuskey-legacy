@@ -138,7 +138,8 @@ export default Vue.component('misskey-flavored-markdown', {
 								token.node.props.args.y ? 'mfm-spinY' :
 								'mfm-spin';
 							const speed = token.node.props.args.speed || '1.5s';
-							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};` : '';
+							const delay = token.node.props.args.delay || '0s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: ${anime} ${speed} ${delay} linear infinite; animation-direction: ${direction};` : '';
 							break;
 						}
 						case 'jump': {
