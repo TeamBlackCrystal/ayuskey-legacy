@@ -150,9 +150,6 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 						appendChildren(node.childNodes);
 						text += `</flip>`;
 					}
-					text += `<${tag}>`;
-					appendChildren(node.childNodes);
-					text += `</${tag}>`;
 				} else if (name === 'rotate') {
 					const deg = node.attrs.find((x: any) => x.name == 'data-mfm-deg');
 					text += `<rotate ${deg.value}>`;
