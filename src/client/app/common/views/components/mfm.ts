@@ -394,7 +394,8 @@ export default Vue.component('misskey-flavored-markdown', {
 						key: Math.random(),
 						attrs: {
 							emoji: token.node.props.emoji,
-							name: token.node.props.name
+							name: token.node.props.name,
+							vendor: token.node.props.vendor,
 						},
 						props: {
 							customEmojis: this.customEmojis || customEmojis,

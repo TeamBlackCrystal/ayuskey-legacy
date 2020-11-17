@@ -1,5 +1,6 @@
 <template>
 <img v-if="customEmoji" class="fvgwvorwhxigeolkkrcderjzcawqrscl custom" :class="{ normal: normal }" :src="url" :alt="alt" :title="title"/>
+<span v-else-if="char && vendor">{{ char }}</span>
 <img v-else-if="char" class="fvgwvorwhxigeolkkrcderjzcawqrscl" :src="url" :alt="alt" :title="alt"/>
 <span v-else-if="isReaction">❔</span>
 <span v-else>:{{ name }}:</span>
@@ -30,6 +31,10 @@ export default Vue.extend({
 			default: () => []
 		},
 		isReaction: {
+			type: Boolean,
+			default: false
+		},
+		vendor: {
 			type: Boolean,
 			default: false
 		},
