@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 
 // Style
 import './style.styl';
+import './style.scss';
 
 import init from '../init';
 import composeNotification from '../common/scripts/compose-notification';

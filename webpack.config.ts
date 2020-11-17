@@ -168,11 +168,6 @@ module.exports = {
 					}
 				}]
 			}]
-		}, {
-			loader: 'sass-resources-loader',
-			options: {
-				resources: __dirname + '/src/client/variables.scss'
-			}
 		}]
 	},
 	plugins: [
