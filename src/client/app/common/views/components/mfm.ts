@@ -194,6 +194,19 @@ export default Vue.component('misskey-flavored-markdown', {
 							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-rgbshift 2s linear infinite;' : '';
 							break;
 						}
+						case 'rainbow': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'color: var(--primary); animation: mfm-rainbow 1s linear infinite both' : '';
+							break;
+						}
+						case 'blink': {
+							const speed = validTime(token.node.props.args.speed) || '1s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-blink ${speed} step-end infinite` : '';
+							break;
+						}
+						case 'wobble': {
+							style = `font-size: 300%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-wobble 1s ease-out infinite both;' : '');
+							break;
+						}
 					}
 
 					return (createElement as any)('span', {
