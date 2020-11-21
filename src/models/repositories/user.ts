@@ -6,6 +6,7 @@ import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
+import { toPunyNullable } from '../../misc/convert-host';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -124,6 +125,7 @@ export class UserRepository extends Repository<User> {
 			isVerified: user.isVerified || falsy,
 			isPremium: user.isPremium || falsy,
 			instance: user.host ? Instances.findOne({ host: user.host }).then(instance => instance ? {
+				host: toPunyNullable(user.host),
 				name: instance.name,
 				softwareName: instance.softwareName,
 				softwareVersion: instance.softwareVersion,
