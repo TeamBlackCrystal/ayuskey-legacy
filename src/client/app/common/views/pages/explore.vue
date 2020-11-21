@@ -1,6 +1,6 @@
 <template>
 <div>
-	<ui-input v-model="query" style="margin: 16px 0 24px 0;">
+	<ui-input v-model="query" style="margin: 1em 0.5em 1.5em;">
 		<span>{{ $t('searchUser') }}</span>
 	</ui-input>
 	<mk-user-list v-if="query && query !== ''" :make-promise="foundUsers" :key="`${query}`">
