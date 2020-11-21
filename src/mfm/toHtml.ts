@@ -208,6 +208,9 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 				case 'github.com':
 					a.href = `https://github.com/${username}`;
 					break;
+				case 'gitlab.com':
+					a.href = `https://gitlab.com/${username}`;
+					break;
 				case 'twitter.com':
 					a.href = `https://twitter.com/${username}`;
 					break;

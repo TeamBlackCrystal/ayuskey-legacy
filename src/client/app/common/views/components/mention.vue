@@ -42,6 +42,7 @@ export default Vue.extend({
 			switch (this.host) {
 				case 'twitter.com':
 				case 'github.com':
+				case 'gitlab.com':
 					return `https://${this.host}/${this.username}`;
 				default:
 					return `/${this.canonical}`;
