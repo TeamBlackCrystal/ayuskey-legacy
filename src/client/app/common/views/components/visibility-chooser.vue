@@ -6,6 +6,7 @@
 			<div><fa icon="globe"/></div>
 			<div>
 				<span>{{ $t('public') }}</span>
+				<span>{{ $t('public-desc') }}</span>
 			</div>
 		</div>
 		<div @click="choose('home')" :class="{ active: v == 'home' }">
@@ -29,25 +30,42 @@
 				<span>{{ $t('specified-desc') }}</span>
 			</div>
 		</div>
+		<!--
+		<div @click="choose('once-public')" :class="{ active: v == 'once-public' }">
+			<x-visibility-icon v="once-public"/>
+			<div>
+				<span>{{ $t('once-public') }}</span>
+				<span>{{ $t('once-public-desc') }}</span>
+			</div>
+		</div>
+		-->
 		<div @click="choose('local-public')" :class="{ active: v == 'local-public' }">
-			<div><fa icon="globe"/></div>
+			<x-visibility-icon v="local-public"/>
 			<div>
 				<span>{{ $t('local-public') }}</span>
 				<span>{{ $t('local-public-desc') }}</span>
 			</div>
 		</div>
 		<div @click="choose('local-home')" :class="{ active: v == 'local-home' }">
-			<div><fa icon="home"/></div>
+			<x-visibility-icon v="local-home"/>
 			<div>
 				<span>{{ $t('local-home') }}</span>
 			</div>
 		</div>
 		<div @click="choose('local-followers')" :class="{ active: v == 'local-followers' }">
-			<div><fa icon="unlock"/></div>
+			<x-visibility-icon v="local-followers"/>
 			<div>
 				<span>{{ $t('local-followers') }}</span>
 			</div>
 		</div>
+		<!--
+		<div @click="choose('once-specified')" :class="{ active: v == 'once-specified' }">
+			<x-visibility-icon v="once-specified"/>
+			<div>
+				<span>{{ $t('once-specified') }}</span>
+			</div>
+		</div>
+		-->
 	</div>
 </div>
 </template>
@@ -56,9 +74,13 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
+import XVisibilityIcon from './visibility-icon.vue';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/visibility-chooser.vue'),
+	components: {
+		XVisibilityIcon,
+	},
 	props: {
 		source: {
 			required: true

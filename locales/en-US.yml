@@ -179,6 +179,10 @@ common:
     local-public: "Public (Only local)"
     local-home: "Home (Only local)"
     local-followers: "Followers (Only local)"
+    local-only: "Only local"
+    once-public: "Only remote followers and local"
+    once-home: "Only remote followers and home"
+    once-specified: "Only remote followers"
   note-placeholders:
     a: "What are you doing?"
     b: "What's happening?"
@@ -739,6 +743,7 @@ common/views/components/visibility-chooser.vue:
   local-public-desc: "Do not publish to remote"
   local-home: "Home (Only local)"
   local-followers: "Followers (Only local)"
+  local-only: "Only local"
 common/views/components/trends.vue:
   count: "{} users mentioned"
   empty: "No popular hashtag trends"

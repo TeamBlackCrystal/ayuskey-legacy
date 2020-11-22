@@ -189,6 +189,10 @@ common:
     local-public: "公開 (ローカルのみ)"
     local-home: "ホーム (ローカルのみ)"
     local-followers: "フォロワー (ローカルのみ)"
+    local-only: "ローカルのみ"
+    once-public: "リモートフォロワーとローカル"
+    once-home: "リモートフォロワーとホーム"
+    once-specified: "リモートフォロワーのみ"
 
   note-placeholders:
     a: "今どうしてる？"
