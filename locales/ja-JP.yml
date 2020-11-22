@@ -751,6 +751,10 @@ common/views/components/stream-indicator.vue:
   connecting: "接続中"
   reconnecting: "再接続中"
   connected: "接続完了"
+  has-disconnected: "サーバーから切断されていました"
+  reload: "リロードする"
+  ignore: "なにもしない"
+  update-available: "新しいバージョンが利用可能です"
 
 common/views/components/notification-settings.vue:
   title: "通知"
