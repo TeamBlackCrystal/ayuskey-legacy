@@ -53,7 +53,7 @@
 				<header>{{ $t('@._settings.instance-ticker') }}</header>
 				<ui-radio v-model="instanceTicker" value="none">{{ $t('@._settings.instance-ticker-none') }}</ui-radio>
 				<ui-radio v-model="instanceTicker" value="remote">{{ $t('@._settings.instance-ticker-remote') }}</ui-radio>
-				<ui-radio v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
+				<ui-radio disabled v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
 			</section>
 			<section>
 				<header>{{ $t('@._settings.line-width') }}</header>
