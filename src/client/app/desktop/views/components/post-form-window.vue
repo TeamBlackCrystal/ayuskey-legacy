@@ -14,6 +14,7 @@
 		<mk-note-preview v-if="reply" class="notePreview" :note="reply"/>
 		<x-post-form ref="form"
 			:reply="reply"
+			:airReply="airReply"
 			:mention="mention"
 			:initial-text="initialText"
 			:initial-note="initialNote"
@@ -42,6 +43,10 @@ export default Vue.extend({
 
 	props: {
 		reply: {
+			type: Object,
+			required: false
+		},
+		airReply: {
 			type: Object,
 			required: false
 		},

@@ -23,6 +23,10 @@ export default (opts) => ({
 			type: Object,
 			required: false
 		},
+		airReply: {
+			type: Object,
+			required: false
+		},
 		renote: {
 			type: Object,
 			required: false
@@ -186,6 +190,15 @@ export default (opts) => ({
 		this.$nextTick(() => {
 			this.focus();
 		});
+
+		// 空リプ
+		if (this.airReply) {
+			this.localOnly = this.airReply.user.host == null && this.airReply.visibility === 'public';
+			this.visibility = this.airReply.visibility;
+			if (this.airReply.user.host != null && this.visibility === 'public') {
+				this.visibility = 'home';
+			}
+		}
 
 		this.$nextTick(() => {
 			// 書きかけの投稿を復元
