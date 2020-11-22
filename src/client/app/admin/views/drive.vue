@@ -48,7 +48,7 @@
 							<header>
 								<b>{{ file.name }}</b>
 								<span v-if="file.user" class="username">@{{ file.user | acct }}</span>
-								<span v-else class="username">SYSTEM</span>
+								<span v-else>SYSTEM</span>
 							</header>
 							<div>
 								<div>
