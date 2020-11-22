@@ -147,7 +147,17 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 		},
 
 		marquee(token) {
-			const el = doc.createElement('div');
+			const el = doc.createElement('marquee');
+			if (token.node.props.attr === 'reverse') {
+				el.setAttribute('direction', 'right');
+			} else if (token.node.props.attr === 'alternate') {
+				el.setAttribute('behavior', 'alternate');
+			} else if (token.node.props.attr === 'slide') {
+				el.setAttribute('behavior', 'slide');
+			} else if (token.node.props.attr === 'reverse-slide') {
+				el.setAttribute('direction', 'right');
+				el.setAttribute('behavior', 'slide');
+			}
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -189,12 +199,27 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return a;
 		},
 
+		fn(token) {
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', token.node.props.name);
+			for (const [key, value] of Object.entries(token.node.props.args || {})) {
+				if (!key.match(/^[a-z]+$/)) continue;
+				if (value === false) continue;
+				el.setAttribute(`data-mfm-${key}`, (value === true) ? `data-mfm-${key}` : value as string);
+			}
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		mention(token) {
 			const a = doc.createElement('a');
 			const { username, host, acct } = token.node.props;
 			switch (host) {
 				case 'github.com':
 					a.href = `https://github.com/${username}`;
+					break;
+				case 'gitlab.com':
+					a.href = `https://gitlab.com/${username}`;
 					break;
 				case 'twitter.com':
 					a.href = `https://twitter.com/${username}`;

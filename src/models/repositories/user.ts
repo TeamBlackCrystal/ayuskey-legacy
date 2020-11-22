@@ -1,11 +1,12 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
+import { toPunyNullable } from '../../misc/convert-host';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -123,6 +124,15 @@ export class UserRepository extends Repository<User> {
 			isLady: user.isLady || falsy,
 			isVerified: user.isVerified || falsy,
 			isPremium: user.isPremium || falsy,
+			instance: user.host ? Instances.findOne({ host: user.host }).then(instance => instance ? {
+				host: toPunyNullable(user.host),
+				name: instance.name,
+				softwareName: instance.softwareName,
+				softwareVersion: instance.softwareVersion,
+				iconUrl: instance.iconUrl,
+				faviconUrl: instance.faviconUrl,
+				themeColor: instance.themeColor,
+			} : undefined) : undefined,
 
 			// カスタム絵文字添付
 			emojis: user.emojis.length > 0 ? Emojis.find({

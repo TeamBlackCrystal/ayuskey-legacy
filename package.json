@@ -1,7 +1,11 @@
 {
 	"name": "misskey",
-	"author": "syuilo <i@syuilo.com>",
-	"version": "11.37.1-rei0784-4.0.0",
+	"author": "sousuke0422 <sousuke20xx@gmail.com>",
+	"contributors": [
+		"yupix <yupi0982@outlook.jp>",
+		"syuilo <i@syuilo.com>"
+	],
+	"version": "11.37.1-rei0784-next",
 	"codename": "daybreak",
 	"repository": {
 		"type": "git",
@@ -216,7 +220,6 @@
 		"s-age": "1.1.2",
 		"sass": "1.27.0",
 		"sass-loader": "10.0.4",
-		"sass-resources-loader": "2.1.1",
 		"seedrandom": "3.0.5",
 		"sharp": "0.25.4",
 		"showdown": "1.9.1",

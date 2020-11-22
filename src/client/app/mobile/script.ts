@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 
 // Style
 import './style.styl';
+import './style.scss'
 
 import init from '../init';
 

@@ -12,6 +12,14 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 
 	return text.trim();
 
+	function appendChildren(childNodes: any,): void {
+		if (childNodes) {
+			for (const n of childNodes) {
+				analyze(n);
+			}
+		}
+	}
+
 	function getText(node: any): string {
 		if (node.nodeName == '#text') return node.value;
 
@@ -71,6 +79,22 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 				}
 				break;
 
+			case 'marquee': {
+				const direction = getValue(node, 'direction');
+				const behavior = getValue(node, 'behavior');
+
+				const attr
+					= behavior === 'alternate' ? ' alternate'
+					: behavior === 'slide'
+						? direction === 'right' ? ' reverse-slide' : ' slide'
+						: direction === 'right' ? ' reverse' : ''
+
+						text += `<marquee${attr}>`;
+					appendChildren(node.childNodes);
+					text += `</marquee>`;
+				break;
+			}
+
 			default:
 				if (node.childNodes) {
 					for (const n of node.childNodes) {
@@ -80,4 +104,8 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 				break;
 		}
 	}
+}
+
+function getValue(node: any, name: string): string | undefined {
+	return node.attrs.find((x: any) => x.name == name)?.value || undefined;
 }

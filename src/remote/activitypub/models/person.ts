@@ -26,7 +26,7 @@ import { validActor } from '../../../remote/activitypub/type';
 import { getConnection } from 'typeorm';
 import { ensure } from '../../../prelude/ensure';
 import { toArray } from '../../../prelude/array';
-import { fetchNodeinfo } from '../../../services/fetch-nodeinfo';
+import { fetchInstanceMetadata } from '../../../services/fetch-instance-metadata';
 
 const logger = apLogger;
 
@@ -138,6 +138,8 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 
 	const isBot = object.type == 'Service';
 
+	const bday = person['vcard:bday']?.match(/^\d{4}-\d{2}-\d{2}/);
+
 	// Create user
 	let user: IRemoteUser;
 	try {
@@ -169,6 +171,8 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 				description: person.summary ? htmlToMfm(person.summary, person.tag) : null,
 				url: getOneApHrefNullable(person.url),
 				fields,
+				birthday: bday ? bday[0] : null,
+				location: person['vcard:Address'] || null,
 				userHost: host
 			}));
 
@@ -201,7 +205,7 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 	registerOrFetchInstanceDoc(host).then(i => {
 		Instances.increment({ id: i.id }, 'usersCount', 1);
 		instanceChart.newUser(i.host);
-		fetchNodeinfo(i);
+		fetchInstanceMetadata(i);
 	});
 
 	usersChart.update(user!, true);
@@ -320,6 +324,8 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 
 	const tags = extractApHashtags(person.tag).map(tag => tag.toLowerCase()).splice(0, 32);
 
+	const bday = person['vcard:bday']?.match(/^\d{4}-\d{2}-\d{2}/);
+
 	const updates = {
 		lastFetchedAt: new Date(),
 		inbox: person.inbox,
@@ -358,6 +364,8 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 		url: person.url,
 		fields,
 		description: person.summary ? fromHtml(person.summary) : null,
+		birthday: bday ? bday[0] : null,
+		location: person['vcard:Address'] || null,
 		twitterUserId: null,
 		twitterScreenName: null,
 		githubId: null,
@@ -433,7 +441,7 @@ export async function updateFeatured(userId: User['id']) {
 	const limit = promiseLimit<Note | null>(2);
 	const featuredNotes = await Promise.all(items
 		.filter(item => item.type === 'Note')
-		.slice(0, 5)
+		.slice(0, 20)
 		.map(item => limit(() => resolveNote(item, resolver))));
 
 	// delete

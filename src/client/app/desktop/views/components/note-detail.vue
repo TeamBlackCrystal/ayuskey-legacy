@@ -24,6 +24,7 @@
 				<mk-user-name :user="appearNote.user"/>
 			</router-link>
 			<span class="username"><mk-acct :user="appearNote.user"/></span>
+			<x-instance-ticker v-if="$store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
 			<div class="info">
 				<router-link class="time" :to="appearNote | notePage">
 					<mk-time :time="appearNote.createdAt"/>
@@ -75,10 +76,10 @@
 			<button v-else class="inhibitedButton">
 				<fa icon="ban"/>
 			</button>
-			<button v-if="!isMyNote && appearNote.myReaction == null" class="reactionButton" @click="react()" ref="reactButton" :title="$t('add-reaction')">
+			<button v-if="appearNote.myReaction == null" class="reactionButton" @click="react()" ref="reactButton" :title="$t('add-reaction')">
 				<fa icon="plus"/>
 			</button>
-			<button v-if="!isMyNote && appearNote.myReaction != null" class="reactionButton reacted" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
+			<button v-if="appearNote.myReaction != null" class="reactionButton reacted" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
 				<fa icon="minus"/>
 			</button>
 			<button @click="menu()" ref="menuButton">
@@ -96,6 +97,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import XSub from './note.sub.vue';
+import XInstanceTicker from '../../../common/views/components/instance-ticker.vue';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 import noteMixin from '../../../common/scripts/note-mixin';
 
@@ -103,7 +105,8 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/note-detail.vue'),
 
 	components: {
-		XSub
+		XSub,
+		XInstanceTicker
 	},
 
 	mixins: [noteMixin(), noteSubscriber('note')],
@@ -149,6 +152,11 @@ export default Vue.extend({
 				this.conversationFetching = false;
 				this.conversation = conversation.reverse();
 			});
+		},
+		showTicker() {
+			if (this.$store.state.device.instanceTicker === 'always') return true;
+			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
+			return false;
 		}
 	}
 });

@@ -149,12 +149,25 @@ module.exports = {
 						}
 					}
 				}]
+			}, {
+				use: [{
+					loader: 'vue-style-loader'
+				}, {
+					loader: 'css-loader',
+					options: {
+						url: false,
+						esModule: false, // TODO: trueにすると壊れる。Vue3移行の折にはtrueにできるかもしれない
+					}
+				}, postcss, {
+					loader: 'sass-loader',
+					options: {
+						implementation: require('sass'),
+						sassOptions: {
+							fiber: require('fibers')
+						}
+					}
+				}]
 			}]
-		}, {
-			loader: 'sass-resources-loader',
-			options: {
-				resources: __dirname + '/src/client/variables.scss'
-			}
 		}]
 	},
 	plugins: [

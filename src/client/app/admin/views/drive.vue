@@ -47,7 +47,8 @@
 						<div>
 							<header>
 								<b>{{ file.name }}</b>
-								<span class="username">@{{ file.user | acct }}</span>
+								<span v-if="file.user" class="username">@{{ file.user | acct }}</span>
+								<span v-else class="system">SYSTEM</span>
 							</header>
 							<div>
 								<div>
@@ -286,6 +287,10 @@ export default Vue.extend({
 				word-break break-word
 
 				> .username
+					margin-left 8px
+					opacity 0.7
+				
+				> .system 
 					margin-left 8px
 					opacity 0.7
 

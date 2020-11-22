@@ -55,6 +55,11 @@ export default Vue.component('misskey-flavored-markdown', {
 		let bigCount = 0;
 		let motionCount = 0;
 
+		const validTime = (t: string | null | undefined) => {
+			if (t == null) return null;
+			return t.match(/^[0-9.]+s$/) ? t : null;
+		}
+
 		const genEl = (ast: MfmForest): VNode[] => concat(ast.map((token): VNode[] => {
 			switch (token.node.type) {
 				case 'text': {
@@ -129,6 +134,85 @@ export default Vue.component('misskey-flavored-markdown', {
 							name: 'animate-css',
 							value: { classes: 'wobble', iteration: 'infinite' }
 						}]
+					}, genEl(token.children));
+				}
+
+				case 'fn': {
+					// TODO: CSSを文字列で組み立てていくと token.node.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
+					let style;
+					switch (token.node.props.name) {
+						case 'tada': {
+							style = `font-size: 150%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: tada 1s linear infinite both;' : '');
+							break;
+						}
+						case 'jelly': {
+							const speed = validTime(token.node.props.args.speed) || '1s';
+							style = (!this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-rubberBand ${speed} linear infinite both;` : '');
+							break;
+						}
+						case 'twitch': {
+							const speed = validTime(token.node.props.args.speed) || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-twitch ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'shake': {
+							const speed = validTime(token.node.props.args.speed) || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-shake ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'spin': {
+							const direction =
+								token.node.props.args.left ? 'reverse' :
+								token.node.props.args.alternate ? 'alternate' :
+								'normal';
+							const anime =
+								token.node.props.args.x ? 'mfm-spinX' :
+								token.node.props.args.y ? 'mfm-spinY' :
+								'mfm-spin';
+							const speed = validTime(token.node.props.args.speed) || '1.5s';
+							const delay = validTime(token.node.props.args.delay) || '0s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: ${anime} ${speed} ${delay} linear infinite; animation-direction: ${direction};` : '';
+							break;
+						}
+						case 'jump': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-jump 0.75s linear infinite;' : '';
+							break;
+						}
+						case 'bounce': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-bounce 0.75s linear infinite; transform-origin: center bottom;' : '';
+							break;
+						}
+						case 'flip': {
+							const transform =
+								(token.node.props.args.h && token.node.props.args.v) ? 'scale(-1, -1)' :
+								token.node.props.args.v ? 'scaleY(-1)' :
+								'scaleX(-1)';
+							style = `transform: ${transform};`;
+							break;
+						}
+						case 'rgbshift': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-rgbshift 2s linear infinite;' : '';
+							break;
+						}
+						case 'rainbow': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'color: var(--primary); animation: mfm-rainbow 1s linear infinite both' : '';
+							break;
+						}
+						case 'blink': {
+							const speed = validTime(token.node.props.args.speed) || '1s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-blink ${speed} step-end infinite` : '';
+							break;
+						}
+						case 'wobble': {
+							style = `font-size: 300%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-wobble 1s ease-out infinite both;' : '');
+							break;
+						}
+					}
+
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block;' + style
+						},
 					}, genEl(token.children));
 				}
 
@@ -426,34 +510,32 @@ export default Vue.component('misskey-flavored-markdown', {
 						return genEl(token.children);
 					}
 
-					return [createElement('marquee', { class: 'marquee' }, genEl(token.children))];
+					let behavior = 'scroll';
+					let direction = 'left';
+					let scrollamount = '5';
+
+					if (token.node.props.attr === 'reverse') {
+						direction = 'right';
+					} else if (token.node.props.attr === 'alternate') {
+						behavior = 'alternate';
+						scrollamount = '10';
+					} else if (token.node.props.attr === 'slide') {
+						behavior = 'slide';
+					} else if (token.node.props.attr === 'reverse-slide') {
+						direction = 'right';
+						behavior = 'slide';
+					}
+
+					return [createElement('marquee', {
+							attrs: {
+								behavior,
+								direction,
+								scrolldelay: '60',
+								scrollamount,
+							}
+						}, genEl(token.children)),
+					];
 				}
-
-				let behavior = 'scroll';
-				let direction = 'left';
-				let scrollamount = '5';
-
-				if (token.node.props.attr === 'reverse') {
-					direction = 'right';
-				} else if (token.node.props.attr === 'alternate') {
-					behavior = 'alternate';
-					scrollamount = '10';
-				} else if (token.node.props.attr === 'slide') {
-					behavior = 'slide';
-				} else if (token.node.props.attr === 'reverse-slide') {
-					direction = 'right';
-					behavior = 'slide';
-				}
-
-				return [createElement('marquee', {
-						attrs: {
-							behavior,
-							direction,
-							scrolldelay: '60',
-							scrollamount,
-						}
-					}, genEl(token.children)),
-				];
 			}
 		}));
 
