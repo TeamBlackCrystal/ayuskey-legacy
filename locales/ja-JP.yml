@@ -606,6 +606,7 @@ common/views/components/nav.vue:
   tos: "利用規約"
 
 common/views/components/note-menu.vue:
+  air-reply: "空リプ"
   mention: "メンション"
   detail: "詳細"
   copy-content: "内容をコピー"
@@ -798,16 +799,21 @@ common/views/components/uploader.vue:
 
 common/views/components/visibility-chooser.vue:
   public: "公開"
+  public-desc: "ローカル/グローバルに表示する"
   home: "ホーム"
-  home-desc: "ホームタイムラインにのみ公開"
+  home-desc: "ローカル/グローバルに表示しない"
   followers: "フォロワー"
-  followers-desc: "自分のフォロワーにのみ公開"
+  followers-desc: "フォロワーにのみ公開"
   specified: "ダイレクト"
   specified-desc: "指定したユーザーにのみ公開"
   local-public: "公開 (ローカルのみ)"
   local-public-desc: "リモートへは公開しない"
   local-home: "ホーム (ローカルのみ)"
   local-followers: "フォロワー (ローカルのみ)"
+  once-public: "リモートフォロワーとローカル"
+  once-public-desc: "リモートでの二次拡散を拒否する"
+  once-home: "リモートフォロワーとホーム"
+  once-specified: "リモートフォロワーのみ"
 
 common/views/components/trends.vue:
   count: "{}人が投稿"
