@@ -1,5 +1,5 @@
 <template>
-<div class="mk-reactions-viewer" :class="{ isMe }">
+<div class="mk-reactions-viewer">
 	<x-reaction v-for="(count, reaction) in note.reactions" :reaction="reaction" :count="count" :is-initial="initialReactions.has(reaction)" :note="note" :key="reaction"/>
 </div>
 </template>
@@ -22,12 +22,7 @@ export default Vue.extend({
 			type: Object,
 			required: true
 		},
-	},/*
-	computed: {
-		isMe(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.id === this.note.userId;
-		},
-	},*/
+	}
 });
 </script>
 
@@ -38,10 +33,4 @@ export default Vue.extend({
 	&:empty
 		display none
 
-	&.isMe
-		> span
-			cursor default !important
-
-			&:hover
-				background var(--reactionViewerButtonBg) !important
 </style>
