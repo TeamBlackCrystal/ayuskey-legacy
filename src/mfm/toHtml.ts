@@ -147,7 +147,17 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 		},
 
 		marquee(token) {
-			const el = doc.createElement('div');
+			const el = doc.createElement('marquee');
+			if (token.node.props.attr === 'reverse') {
+				el.setAttribute('direction', 'right');
+			} else if (token.node.props.attr === 'alternate') {
+				el.setAttribute('behavior', 'alternate');
+			} else if (token.node.props.attr === 'slide') {
+				el.setAttribute('behavior', 'slide');
+			} else if (token.node.props.attr === 'reverse-slide') {
+				el.setAttribute('direction', 'right');
+				el.setAttribute('behavior', 'slide');
+			}
 			appendChildren(token.children, el);
 			return el;
 		},
