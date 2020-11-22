@@ -441,7 +441,7 @@ export async function updateFeatured(userId: User['id']) {
 	const limit = promiseLimit<Note | null>(2);
 	const featuredNotes = await Promise.all(items
 		.filter(item => item.type === 'Note')
-		.slice(0, 5)
+		.slice(0, 20)
 		.map(item => limit(() => resolveNote(item, resolver))));
 
 	// delete
