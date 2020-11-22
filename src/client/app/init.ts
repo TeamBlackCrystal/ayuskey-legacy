@@ -348,7 +348,8 @@ Vue.mixin({
  * APP ENTRY POINT!
  */
 
-console.info(`Misskey v${version} (${codename})`);
+console.info(`Misskey v11.37.1 (daybreak)`);
+console.info(`Ayuskey v${version} (${codename})`);
 console.info(
 	`%c${locale['common']['do-not-copy-paste']}`,
 	'color: red; background: yellow; font-size: 16px; font-weight: bold;');
