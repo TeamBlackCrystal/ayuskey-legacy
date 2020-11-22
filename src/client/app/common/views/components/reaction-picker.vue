@@ -8,6 +8,7 @@
 		</div>
 		<div v-if="enableEmojiReaction" class="text">
 			<input v-model="text" :placeholder="$t('input-reaction-placeholder')" @keyup.enter="reactText" @input="tryReactText" v-autocomplete="{ model: 'text' }">
+			<button title="Pick" class="emoji" @click="emoji" ref="emoji"><fa :icon="['far', 'laugh']"/></button>
 		</div>
 	</div>
 </div>
@@ -142,6 +143,23 @@ export default Vue.extend({
 			if (!this.text) return;
 			if (!this.text.match(emojiRegex)) return;
 			this.reactText();
+		},
+
+		async emoji() {
+			const Picker = await import('../../../desktop/views/components/emoji-picker-dialog.vue').then(m => m.default);
+			const button = this.$refs.emoji;
+			const rect = button.getBoundingClientRect();
+			const vm = this.$root.new(Picker, {
+				reaction: true,
+				x: button.offsetWidth + rect.left + window.pageXOffset,
+				y: rect.top + window.pageYOffset
+			});
+			vm.$once('chosen', emoji => {
+				this.react(emoji);
+			});
+			this.$once('hook:beforeDestroy', () => {
+				vm.close();
+			});
 		},
 
 		onMouseover(e) {
