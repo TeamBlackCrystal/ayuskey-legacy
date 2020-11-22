@@ -292,5 +292,6 @@ export default Vue.extend({
 				
 				> .system 
 					margin-left 8px
+					opacity 0.7
 
 </style>
