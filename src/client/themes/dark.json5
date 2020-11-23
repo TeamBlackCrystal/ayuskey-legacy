@@ -7,9 +7,9 @@
 	kind: 'dark',
 
 	vars: {
-		primary: '#fb4e4e',
-		secondary: '#282C37',
-		text: '#d6dae0',
+		primary: '#99CC00',
+		secondary: '#272727',
+		text: '#C7D1D8',
 	},
 
 	props: {
