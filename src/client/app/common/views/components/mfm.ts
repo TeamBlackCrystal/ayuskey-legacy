@@ -207,6 +207,25 @@ export default Vue.component('misskey-flavored-markdown', {
 							style = `font-size: 300%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-wobble 1s ease-out infinite both;' : '');
 							break;
 						}
+						/*
+						case 'rotate': {
+							//const x = token.node.props.args.x;
+							//const y = token.node.props.args.y;
+							const f =
+								token.node.props.args.x ? 'perspective(128px) rotateX' :
+								token.node.props.args.y ? 'perspective(128px) rotateY' :
+								'rotate';
+							const angle = token.node.props.args.angel || '90';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `transform: ${f}(${angle}deg); transform-origin: center center` : '';
+							break;
+						}
+						*/
+						case 'font': {
+							const size = token.node.props.args.size;
+							const color = token.node.props.args.color;
+							style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}`;
+							break;
+						}
 					}
 
 					return (createElement as any)('span', {
