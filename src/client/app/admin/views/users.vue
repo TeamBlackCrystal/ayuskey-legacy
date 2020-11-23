@@ -18,8 +18,8 @@
 						<ui-button :disabled="changing" @click="unmarkAsAdmin">{{ $t('unmark-admin') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="setPremium" :disabled="changing"><fa :icon="crown"/> {{ $t('set-premium') }}</ui-button>
-						<ui-button @click="unsetPremium" :disabled="changing">{{ $t('unset-premium') }}</ui-button>
+						<ui-button @click="setPremium" :disabled="changing"><fa :icon="crown"/> {{ $t('premium') }}</ui-button>
+						<ui-button @click="unsetPremium" :disabled="changing">{{ $t('unpremium') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
 						<ui-button @click="verifyUser" :disabled="verifying"><fa :icon="faCertificate"/> {{ $t('verify') }}</ui-button>
@@ -284,13 +284,13 @@ export default Vue.extend({
 			this.refreshUser();
 		},
 		async setPremium() {
-			if (!await this.getConfirmed(this.$t('set-premium-confirm'))) return;
+			if (!await this.getConfirmed(this.$t('premium-confirm'))) return;
 			this.changing = true;
 			const process = async () => {
 				await this.$root.api('admin/set-premium', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('become-premium')
+					text: this.$t('premiumed')
 				});
 			};
 			await process().catch(e => {
@@ -303,13 +303,13 @@ export default Vue.extend({
 			this.refreshUser();
 		},
 		async unsetPremium() {
-			if (!await this.getConfirmed(this.$t('unverify-confirm'))) return;
+			if (!await this.getConfirmed(this.$t('unpremium-confirm'))) return;
 			this.changing = true;
 			const process = async () => {
 				await this.$root.api('admin/unset-premium', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unpremium')
+					text: this.$t('unpremiumed')
 				});
 			};
 			await process().catch(e => {

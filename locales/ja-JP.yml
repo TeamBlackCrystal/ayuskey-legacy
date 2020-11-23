@@ -494,7 +494,7 @@ common/views/components/games/reversi/reversi.room.vue:
 common/views/components/connect-failed.vue:
   title: "サーバーに接続できません"
   description: "インターネット回線に問題があるか、サーバーがダウンまたはメンテナンスしている可能性があります。しばらくしてから{再度お試し}ください。"
-  thanks: "いつもMisskeyをご利用いただきありがとうございます。"
+  thanks: "いつも本Misskeyインスタンスをご利用いただきありがとうございます。"
   troubleshoot: "トラブルシュート"
 
 common/views/components/connect-failed.troubleshooter.vue:
@@ -1580,6 +1580,12 @@ admin/views/users.vue:
   unmark-admin: "管理者権限を解除する"
   marked-admin: "管理者にしました"
   unmarked-admin: "管理者権限を解除しました"
+  premium: "プレミアムアカウントにする"
+  premium-confirm: "プレミアムアカウントにしますか？"
+  premiumed: "プレミアムアカウントにしました"
+  unpremium: "プレミアムアカウントを解除する"
+  unpremium-confirm: "プレミアムアカウントを解除しますか？"
+  unpremiumed: "プレミアムアカウントを解除しました"
   verify: "公式アカウントにする"
   verify-confirm: "公式アカウントにしますか？"
   verified: "公式アカウントにしました"
