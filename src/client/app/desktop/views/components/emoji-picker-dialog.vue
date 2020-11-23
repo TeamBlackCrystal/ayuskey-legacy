@@ -39,9 +39,14 @@ export default Vue.extend({
 			if (y + height - window.pageYOffset > window.innerHeight) {
 				y = window.innerHeight - height + window.pageYOffset;
 			}
+			if (this.$root.isMobile) {
+				this.$el.style.top = y + 50 + 'px';
+			} else {
+				this.$el.style.left = x + 'px';
+				this.$el.style.top = y + 'px';
+			}
 
-			this.$el.style.left = x + 'px';
-			this.$el.style.top = y + 'px';
+
 
 			for (const el of Array.from(document.querySelectorAll('body *'))) {
 				el.addEventListener('mousedown', this.onMousedown);
@@ -78,7 +83,7 @@ export default Vue.extend({
 	position absolute
 	top 0
 	left 0
-	z-index 3000
+	z-index 10100
 	box-shadow 0 2px 12px 0 rgba(0, 0, 0, 0.3)
 
 </style>
