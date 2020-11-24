@@ -117,7 +117,7 @@ export const meta = {
 			validator: $.optional.bool,
 			default: false,
 			desc: {
-				'ja-JP': 'preview'
+				'ja-JP': 'プレビューか否か'
 			}
 		},
 
