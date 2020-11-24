@@ -3,28 +3,28 @@
 	<div class="backdrop" ref="backdrop" @click="close"></div>
 	<div class="popover" :class="{ isMobile: $root.isMobile }" ref="popover">
 		<div @click="choose('public')" :class="{ active: v == 'public' }">
-			<div><fa icon="globe"/></div>
+			<x-visibility-icon v="public"/>
 			<div>
 				<span>{{ $t('public') }}</span>
 				<span>{{ $t('public-desc') }}</span>
 			</div>
 		</div>
 		<div @click="choose('home')" :class="{ active: v == 'home' }">
-			<div><fa icon="home"/></div>
+			<x-visibility-icon v="home"/>
 			<div>
 				<span>{{ $t('home') }}</span>
 				<span>{{ $t('home-desc') }}</span>
 			</div>
 		</div>
 		<div @click="choose('followers')" :class="{ active: v == 'followers' }">
-			<div><fa icon="unlock"/></div>
+			<x-visibility-icon v="followers"/>
 			<div>
 				<span>{{ $t('followers') }}</span>
 				<span>{{ $t('followers-desc') }}</span>
 			</div>
 		</div>
 		<div @click="choose('specified')" :class="{ active: v == 'specified' }">
-			<div><fa icon="envelope"/></div>
+			<x-visibility-icon v="specified"/>
 			<div>
 				<span>{{ $t('specified') }}</span>
 				<span>{{ $t('specified-desc') }}</span>
@@ -183,6 +183,7 @@ export default Vue.extend({
 		width 100%
 		height 100%
 		background var(--modalBackdrop)
+		backdrop-filter blur(4px)
 		opacity 0
 
 	> .popover
