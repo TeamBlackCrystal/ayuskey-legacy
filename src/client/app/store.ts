@@ -77,6 +77,7 @@ const defaultDeviceSettings = {
 	disableShowingAnimatedImages: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
+	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
 	instanceTicker: 'remote', // none, remote, always
 	roomGraphicsQuality: 'medium',

@@ -507,6 +507,28 @@ export default (opts) => ({
 			this.text += getFace();
 		},
 
+		togglePreview() {
+			this.$store.commit('device/set', { key: 'showPostPreview', value: this.$refs.preview.open });
+		},
+
+		doPreview() {
+			this.preview = this.canPost ? {
+				id: `${Math.random()}`,
+				createdAt: new Date().toISOString(),
+				userId: this.$store.state.i.id,
+				user: this.$store.state.i,
+				text: this.text == '' ? undefined : this.text,
+				visibility: this.visibility,
+				localOnly: this.localOnly,
+				fileIds: this.files.length > 0 ? this.files.map(f => f.id) : undefined,
+				files: this.files || [],
+				replyId: this.reply ? this.reply.id : undefined,
+				reply: this.reply,
+				renoteId: this.renote ? this.renote.id : this.quoteId ? this.quoteId : undefined,
+				renote: this.renote,
+			} : null;
+		},
+
 		post() {
 			this.posting = true;
 			const viaMobile = opts.mobile && !this.$store.state.settings.disableViaMobile;
