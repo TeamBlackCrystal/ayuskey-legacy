@@ -9,6 +9,8 @@ import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { Emoji } from '../entities/emoji';
 import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '../../misc/reaction-lib';
+import parseAcct from '../../misc/acct/parse';
+import { resolveUser } from '../../remote/resolve-user';
 
 export type PackedNote = SchemaType<typeof packedNoteSchema>;
 
@@ -143,6 +145,8 @@ export class NoteRepository extends Repository<Note> {
 				url: string
 			}[];
 
+			const accts = emojiNames.filter(n => n.startsWith('@'));
+
 			// カスタム絵文字
 			if (emojiNames?.length > 0) {
 				const tmp = await Emojis.find({
@@ -160,6 +164,26 @@ export class NoteRepository extends Repository<Note> {
 
 				all = concat([all, tmp]);
 			}
+
+			if (accts.length > 0) { 
+				const tmp = await Promise.all(
+					accts
+						.map(acct => ({ acct, parsed: parseAcct(acct) }))
+						.map(async ({ acct, parsed }) => {
+							const user = await resolveUser(parsed.username.toLowerCase(), parsed.host || note.userHost).catch(() => null);
+							return ({ acct, user: user ? await Users.pack(user) : undefined })
+						})
+				).then(users => users.filter((u) => u.user != null).map(u => {
+					const res = {
+						name: u.acct,
+						url: u.user?.avatarUrl || ''
+					};
+					return res;
+				}));
+
+				all = concat([all, tmp]);
+			}
+
 
 			const customReactions = reactionNames?.map(x => decodeReaction(x)).filter(x => x.name);
 
