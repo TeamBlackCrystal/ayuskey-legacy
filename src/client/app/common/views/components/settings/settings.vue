@@ -686,7 +686,7 @@ export default Vue.extend({
 				reactions: this.reactions.trim().split('\n'),
 				showFocus: false,
 			});
-			picker.$once('chosen', reaction => {
+			picker.$once('chosen', ({ reaction } : { reaction: string }) => {
 				picker.close();
 			});
 		}
