@@ -38,7 +38,7 @@ export default Vue.extend({
 		this.$nextTick(() => {
 			// nextTickだと間に合わない？ので最小サイズを指定
 			const width = Math.max(this.$el.offsetWidth, 350);
-			const height = Math.max(this.$el.offsetHeight, 340);
+			const height = Math.max(this.$el.offsetHeight, 390);
 
 			let x = this.x - window.pageXOffset;
 			let y = this.y - window.pageYOffset;

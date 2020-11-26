@@ -402,7 +402,7 @@ export default Vue.extend({
 				transition color 0s
 
 	> .emojis
-		height 300px
+		height 350px
 		overflow-y auto
 		overflow-x hidden
 
