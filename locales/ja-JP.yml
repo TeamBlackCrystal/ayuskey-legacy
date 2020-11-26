@@ -718,6 +718,7 @@ common/views/components/reaction-picker.vue:
 
 common/views/components/emoji-picker.vue:
   pinned: "ピッカーを開いたままにする"
+  search: "絵文字を検索"
   recent-emoji: "最近使った絵文字"
   custom-emoji: "カスタム絵文字"
   remote-emoji: "リモートカスタム絵文字"

@@ -63,9 +63,13 @@ export default Vue.extend({
 
 	methods: {
 		onMousedown(e) {
-			e.preventDefault();
-			if (!contains(this.$el, e.target) && (this.$el != e.target)) this.close();
-			return false;
+			if (!contains(this.$el, e.target) && (this.$el != e.target)) {
+				e.preventDefault();
+				this.close();
+				return false;
+			} else {
+				return true;
+			}
 		},
 
 		chosen(args: { emoji: string, close: boolean }) {
