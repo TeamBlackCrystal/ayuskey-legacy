@@ -16,22 +16,24 @@
 		<header v-if="!reaction" class="menu">
 			<ui-switch v-model="pinned">{{ $t('pinned') }}</ui-switch>
 		</header>
+
+		<!-- 検索 -->
+		<ui-input v-model="q" :autofocus="true" style="margin: 0.6em 0.6em 0.8em 0.6em;">
+			<span>{{ $t('search') }}</span>
+		</ui-input>
+		<div class="list" v-if="searchResults.length > 0">
+			<button v-for="(emoji, i) in (searchResults || [])"
+				:title="emoji.sources ? emoji.sources.map(x => `${x.name}@${x.host}`).join(',\n') : emoji.name"
+				@click="chosen(emoji)"
+				:key="i"
+			>
+				<mk-emoji v-if="emoji.char != null" :emoji="emoji.char" :local="emoji.local"/>
+				<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
+			</button>
+		</div>
+
 		<!-- *カテゴリの追加分 -->
 		<template v-if="categories[0].isActive">
-			<!-- 検索 -->
-			<ui-input v-model="q" :autofocus="true" style="margin: 0.6em;">
-				<span>{{ $t('search') }}</span>
-			</ui-input>
-			<div class="list" v-if="searchResults.length > 0">
-				<button v-for="(emoji, i) in (searchResults || [])"
-					:title="emoji.sources ? emoji.sources.map(x => `${x.name}@${x.host}`).join(',\n') : emoji.name"
-					@click="chosen(emoji)"
-					:key="i"
-				>
-					<mk-emoji v-if="emoji.char != null" :emoji="emoji.char" :local="emoji.local"/>
-					<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
-				</button>
-			</div>
 			<!-- 最近使った -->
 			<header class="category"><fa :icon="faHistory" fixed-width/> {{ $t('recent-emoji') }}</header>
 			<div class="list">
