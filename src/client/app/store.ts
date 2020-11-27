@@ -51,7 +51,7 @@ const defaultDeviceSettings = {
 	deckMode: false,
 	deckColumnAlign: 'center',
 	deckColumnWidth: 'normal',
-	useShadow: false,
+	useShadow: true,
 	roundedCorners: true,
 	reduceMotion: false,
 	darkmode: true,
