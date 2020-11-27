@@ -306,5 +306,6 @@ export default Vue.extend({
 		top 16px
 		right 16px
 		width 256px
+		backdrop-filter blur(6px)
 	
 </style>
