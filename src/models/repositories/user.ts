@@ -206,6 +206,7 @@ export class UserRepository extends Repository<User> {
 				alwaysMarkNsfw: profile!.alwaysMarkNsfw,
 				carefulBot: profile!.carefulBot,
 				autoAcceptFollowed: profile!.autoAcceptFollowed,
+				noCrawle: profile!.noCrawle,
 				hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(user.id),
 				hasUnreadNotification: Notifications.count({
 					where: {

@@ -691,6 +691,7 @@ common/views/components/reaction-picker.vue:
   input-reaction-placeholder: "または絵文字を入力"
 
 common/views/components/emoji-picker.vue:
+  search: "絵文字を検索"
   recent-emoji: "最近使った絵文字"
   custom-emoji: "カスタム絵文字"
   no-category: "カテゴリなし"
@@ -848,6 +849,7 @@ common/views/components/profile-editor.vue:
   is-locked: "フォローを承認制にする"
   careful-bot: "Botからのフォローだけ承認制にする"
   auto-accept-followed: "フォローしているユーザーからのフォローを自動承認する"
+  no-crawle: "クローラーによるインデックスを拒否"
   advanced: "その他"
   privacy: "プライバシー"
   save: "保存"
