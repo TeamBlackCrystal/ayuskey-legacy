@@ -288,6 +288,8 @@
 			</section>
 		</ui-card>
 
+		<x-account-info/>
+
 		<ui-card>
 			<template #title><fa icon="cogs"/> {{ $t('@._settings.advanced-settings') }}</template>
 			<section>
@@ -307,13 +309,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from '@vue/composition-api';
 import i18n from '../../../../i18n';
 import X2fa from './2fa.vue';
 import XApps from './apps.vue';
 import XSignins from './signins.vue';
 import XTags from './tags.vue';
 import XIntegration from './integration.vue';
+import XAccountInfo from './account-info.vue';
 import XTheme from './theme.vue';
 import XDrive from './drive.vue';
 import XMuteAndBlock from './mute-and-block.vue';
@@ -331,7 +334,7 @@ import checkForUpdate from '../../../scripts/check-for-update';
 import { formatTimeString } from '../../../../../../misc/format-time-string';
 import { faSave, faEye } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		X2fa,
@@ -339,6 +342,7 @@ export default Vue.extend({
 		XSignins,
 		XTags,
 		XIntegration,
+		XAccountInfo,
 		XTheme,
 		XDrive,
 		XMuteAndBlock,
