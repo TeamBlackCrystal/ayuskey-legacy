@@ -11,8 +11,17 @@ url: https://example.tld/
 # ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE
 # URL SETTINGS AFTER THAT!
 
-#   ┌───────────────────────┐
-#───┘ Port settings └───────────────────────────────────
+#   ┌───────────────┐
+#───┘ Port settings └───────────────────────────────────────────
+
+#                 +----- https://example.tld/ ------------+
+#   +------+      |+-------------+      +----------------+|
+#   | User | ---> || Proxy (443) | ---> | Misskey (3000) ||
+#   +------+      |+-------------+      +----------------+|
+#                 +---------------------------------------+
+#
+#   You need to setup reverse proxy. (eg. nginx)
+#   You do not define 'https' section.
 
 # Listen port
 port: 3000
@@ -54,7 +63,9 @@ redis:
 #elasticsearch:
 #  host: localhost
 #  port: 9200
-#  pass: null
+#  ssl: false
+#  user: 
+#  pass: 
 
 #   ┌─────────────────────┐
 #───┘ Sonic configuration └─────────────────────────────
