@@ -101,9 +101,6 @@ id: 'aid'
 #  The first account created is automatically marked as Admin.
 autoAdmin: true
 
-# Whether disable HSTS
-#disableHsts: true
-
 # Number of worker processes
 #clusterLimit: 1
 
