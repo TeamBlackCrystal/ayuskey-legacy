@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
-export default defineComponent({
+import Vue from 'vue';
+export default Vue.extend({
 	data() {
 		return {
 			fetching: true,

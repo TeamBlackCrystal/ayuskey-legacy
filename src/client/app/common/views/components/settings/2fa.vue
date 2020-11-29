@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { hostname } from '../../../../config';
 import { hexifyAB } from '../../../scripts/2fa';
@@ -78,7 +78,7 @@ function stringifyAB(buffer) {
 	return String.fromCharCode.apply(null, new Uint8Array(buffer));
 }
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('desktop/views/components/settings.2fa.vue'),
 	data() {
 		return {
