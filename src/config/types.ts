@@ -36,6 +36,7 @@ export type Source = {
 
 	proxy?: string;
 	proxySmtp?: string;
+	proxyBypassHosts?: string[];
 
 	accesslog?: string;
 
