@@ -17,12 +17,7 @@
 		<router-link class="created-at" :to="note | notePage">
 			<mk-time :time="note.createdAt"/>
 		</router-link>
-		<span class="visibility" v-if="note.visibility != 'public'">
-			<fa class="home" v-if="note.visibility == 'home'" :title="$t('@.note-visibility.home')" icon="home"/>
-			<fa class="followers" v-if="note.visibility == 'followers'" :title="$t('@.note-visibility.followers')" icon="lock"/>
-			<fa class="specified" v-if="note.visibility == 'specified'" :title="$t('@.note-visibility.specified')" icon="envelope"/>
-		</span>
-		<span class="localOnly" v-if="note.localOnly == true" :title="$t('@.note-visibility.local-only')"><fa icon="heart"/></span>
+		<x-visibility-icon class="visibility" :v="note.visibility" :localOnly="note.localOnly" :copyOnce="note.copyOnce"/>
 		<span class="remote" title="Remote post" v-if="note.user.host != null"><fa :icon="faGlobeAmericas"/></span>
 	</div>
 </header>
@@ -32,9 +27,13 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
+import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
 
 export default Vue.extend({
 	i18n: i18n(),
+	components: {
+		XVisibilityIcon,
+	},
 	data() {
 		return {
 			faGlobeAmericas
@@ -129,7 +128,7 @@ export default Vue.extend({
 
 		> .visibility
 			margin-left 8px
-			color var(--noteActionsReactionHover)
+			display inline-block
 
 		> .localOnly
 			margin-left 4px
