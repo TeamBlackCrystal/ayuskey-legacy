@@ -227,6 +227,7 @@ export default Vue.extend({
 				margin-left 8px
 
 	> .menu
+		backdrop-filter blur(8px)
 		$bgcolor = var(--face)
 		display block
 		position absolute
