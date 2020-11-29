@@ -93,6 +93,7 @@
 			<ui-switch v-model="isLocked" @change="save(false)">{{ $t('is-locked') }}</ui-switch>
 			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ $t('careful-bot') }}</ui-switch>
 			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ $t('auto-accept-followed') }}</ui-switch>
+			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
 		</div>
 	</section>
 
@@ -137,7 +138,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from '@vue/composition-api';
 import i18n from '../../../../i18n';
 import { apiUrl, host } from '../../../../config';
 import { toUnicode } from 'punycode';
@@ -146,7 +147,7 @@ import { unique } from '../../../../../../prelude/array';
 import { faDownload, faUpload, faUnlockAlt, faBoxes, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/profile-editor.vue'),
 
 	data() {
@@ -178,6 +179,7 @@ export default Vue.extend({
 			isLocked: false,
 			carefulBot: false,
 			autoAcceptFollowed: false,
+			noCrawle: false,
 			saving: false,
 			avatarUploading: false,
 			bannerUploading: false,
@@ -220,6 +222,7 @@ export default Vue.extend({
 		this.isLocked = this.$store.state.i.isLocked;
 		this.carefulBot = this.$store.state.i.carefulBot;
 		this.autoAcceptFollowed = this.$store.state.i.autoAcceptFollowed;
+		this.noCrawle = this.$store.state.i.noCrawle;
 
 		this.fieldName0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].name : null;
 		this.fieldValue0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].value : null;
@@ -300,7 +303,8 @@ export default Vue.extend({
 				isBot: !!this.isBot,
 				isLocked: !!this.isLocked,
 				carefulBot: !!this.carefulBot,
-				autoAcceptFollowed: !!this.autoAcceptFollowed
+				autoAcceptFollowed: !!this.autoAcceptFollowed,
+				noCrawle: !!this.noCrawle
 			}).then(i => {
 				this.saving = false;
 				this.$store.state.i.avatarId = i.avatarId;

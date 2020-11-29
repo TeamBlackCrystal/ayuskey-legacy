@@ -102,6 +102,7 @@ type Option = {
 	apHashtags?: string[] | null;
 	apEmojis?: string[] | null;
 	uri?: string | null;
+	url?: string | null;
 	app?: App | null;
 	preview?: boolean;
 };
@@ -389,6 +390,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 	});
 
 	if (data.uri != null) insert.uri = data.uri;
+	if (data.url != null) insert.url = data.url;
 
 	// Append mentions data
 	if (mentionedUsers.length > 0) {

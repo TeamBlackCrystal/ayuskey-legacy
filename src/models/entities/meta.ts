@@ -350,4 +350,14 @@ export class Meta {
 		default: true,
 	})
 	public objectStorageUseSSL: boolean;
+
+	@Column('boolean', {
+		default: true,
+	})
+	public objectStorageUseProxy: boolean;
+
+	@Column('boolean', {
+		default: false,
+	})
+	public objectStorageSetPublicRead: boolean;
 }

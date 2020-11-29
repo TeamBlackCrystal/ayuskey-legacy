@@ -5,7 +5,7 @@
 		<header @click="signin._show = !signin._show">
 			<template v-if="signin.success"><fa icon="check"/></template>
 			<template v-else><fa icon="times"/></template>
-			<span class="ip">{{ signin.ip }}</span>
+			<span class="ip _monospace">{{ signin.ip }}</span>
 			<mk-time :time="signin.createdAt"/>
 		</header>
 		<div class="headers" v-show="signin._show">
@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-export default Vue.extend({
+import { defineComponent } from '@vue/composition-api';
+export default defineComponent({
 	data() {
 		return {
 			fetching: true,
@@ -77,10 +77,6 @@ export default Vue.extend({
 					text-align left
 					padding 8px
 					line-height 16px
-					font-family monospace
-					font-size 14px
-					color #444
-					background #f8f8f8
 					border-radius 4px
 
 				> .mk-time
