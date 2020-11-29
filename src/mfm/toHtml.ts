@@ -48,6 +48,18 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		sup(token) {
+			const el = doc.createElement('sup');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		sub(token) {
+			const el = doc.createElement('sub');
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		motion(token) {
 			const el = doc.createElement('i');
 			appendChildren(token.children, el);
@@ -60,7 +72,31 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		xspin(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		yspin(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		jump(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		twitch(token) {
+			const el = doc.createElement('i');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		shake(token) {
 			const el = doc.createElement('i');
 			appendChildren(token.children, el);
 			return el;
@@ -72,16 +108,56 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return el;
 		},
 
+		vflip(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		rotate(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		blink(token) {
+			const el = doc.createElement('span');
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		blockCode(token) {
 			const pre = doc.createElement('pre');
 			const inner = doc.createElement('code');
-			inner.innerHTML = token.node.props.code;
+			inner.textContent = token.node.props.code;
 			pre.appendChild(inner);
 			return pre;
 		},
 
 		center(token) {
 			const el = doc.createElement('div');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		right(token) {
+			const el = doc.createElement('div');
+			appendChildren(token.children, el);
+			return el;
+		},
+
+		marquee(token) {
+			const el = doc.createElement('marquee');
+			if (token.node.props.attr === 'reverse') {
+				el.setAttribute('direction', 'right');
+			} else if (token.node.props.attr === 'alternate') {
+				el.setAttribute('behavior', 'alternate');
+			} else if (token.node.props.attr === 'slide') {
+				el.setAttribute('behavior', 'slide');
+			} else if (token.node.props.attr === 'reverse-slide') {
+				el.setAttribute('direction', 'right');
+				el.setAttribute('behavior', 'slide');
+			}
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -123,6 +199,18 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			return a;
 		},
 
+		fn(token) {
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', token.node.props.name);
+			for (const [key, value] of Object.entries(token.node.props.args || {})) {
+				if (!key.match(/^[a-z]+$/)) continue;
+				if (value === false) continue;
+				el.setAttribute(`data-mfm-${key}`, (value === true) ? `data-mfm-${key}` : value as string);
+			}
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		mention(token) {
 			const a = doc.createElement('a');
 			const { username, host, acct } = token.node.props;
@@ -130,13 +218,16 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 				case 'github.com':
 					a.href = `https://github.com/${username}`;
 					break;
+				case 'gitlab.com':
+					a.href = `https://gitlab.com/${username}`;
+					break;
 				case 'twitter.com':
 					a.href = `https://twitter.com/${username}`;
 					break;
 				default:
 					const remoteUserInfo = mentionedRemoteUsers.find(remoteUser => remoteUser.username === username && remoteUser.host === host);
 					a.href = remoteUserInfo ? (remoteUserInfo.url ? remoteUserInfo.url : remoteUserInfo.uri) : `${config.url}/${acct}`;
-					a.className = 'u-url mention';
+					a.className = 'mention';
 					break;
 			}
 			a.textContent = acct;

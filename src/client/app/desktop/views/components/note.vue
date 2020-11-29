@@ -16,6 +16,7 @@
 		<mk-avatar class="avatar" :user="appearNote.user"/>
 		<div class="main">
 			<mk-note-header class="header" :note="appearNote" :mini="narrow"/>
+			<x-instance-ticker v-if="$store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
 			<div class="body" v-if="appearNote.deletedAt == null">
 				<p v-if="appearNote.cw != null" class="cw">
 					<mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis" />
@@ -37,7 +38,7 @@
 					<mk-url-preview v-for="url in urls" :url="url" :key="url" :compact="compact"/>
 				</div>
 			</div>
-			<footer v-if="appearNote.deletedAt == null" class="footer">
+			<footer v-if="appearNote.deletedAt == null && !preview" class="footer">
 				<span class="app" v-if="appearNote.app && narrow && $store.state.settings.showVia">via <b>{{ appearNote.app.name }}</b></span>
 				<mk-reactions-viewer :note="appearNote" ref="reactionsViewer"/>
 				<button class="replyButton button" @click="reply()" :title="$t('reply')">
@@ -52,11 +53,11 @@
 				<button v-else class="inhibitedButton button">
 					<fa icon="ban"/>
 				</button>
-				<button v-if="!isMyNote && appearNote.myReaction == null" class="reactionButton button" @click="react()" ref="reactButton" :title="$t('add-reaction')">
+				<button v-if="appearNote.myReaction == null" class="reactionButton button" @click="react()" ref="reactButton" :title="$t('add-reaction')">
 					<fa icon="plus"/>
 					<p class="count" v-if="Object.values(appearNote.reactions).some(x => x)">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
 				</button>
-				<button v-if="!isMyNote && appearNote.myReaction != null" class="reactionButton reacted button" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
+				<button v-if="appearNote.myReaction != null" class="reactionButton reacted button" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
 					<fa icon="minus"/>
 					<p class="count" v-if="Object.values(appearNote.reactions).some(x => x)">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
 				</button>
@@ -76,6 +77,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 
 import XSub from './note.sub.vue';
+import XInstanceTicker from '../../../common/views/components/instance-ticker.vue';
 import noteMixin from '../../../common/scripts/note-mixin';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 
@@ -83,7 +85,8 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/note.vue'),
 
 	components: {
-		XSub
+		XSub,
+		XInstanceTicker
 	},
 
 	mixins: [
@@ -102,6 +105,11 @@ export default Vue.extend({
 			default: false
 		},
 		compact: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+		preview: {
 			type: Boolean,
 			required: false,
 			default: false
@@ -135,6 +143,13 @@ export default Vue.extend({
 			}).then(conversation => {
 				this.conversation = conversation.reverse();
 			});
+		}
+	},
+	methods: {
+		showTicker() {
+			if (this.$store.state.device.instanceTicker === 'always') return true;
+			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
+			return false;
 		}
 	}
 });

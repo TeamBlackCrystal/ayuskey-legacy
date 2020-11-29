@@ -2,14 +2,14 @@
 	id: 'light',
 
 	name: 'Light',
-	author: 'syuilo',
+	author: 'yupix',
 	desc: 'Default light theme',
 	kind: 'light',
 
 	vars: {
-		primary: '#f18570',
-		secondary: '#fff',
-		text: '#666',
+		primary: '#709df1',
+		secondary: '#ffffff',
+		text: '#666666',
 	},
 
 	props: {

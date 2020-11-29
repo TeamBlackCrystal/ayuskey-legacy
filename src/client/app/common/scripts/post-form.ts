@@ -23,6 +23,10 @@ export default (opts) => ({
 			type: Object,
 			required: false
 		},
+		airReply: {
+			type: Object,
+			required: false
+		},
 		renote: {
 			type: Object,
 			required: false
@@ -186,6 +190,15 @@ export default (opts) => ({
 		this.$nextTick(() => {
 			this.focus();
 		});
+
+		// 空リプ
+		if (this.airReply) {
+			this.localOnly = this.airReply.user.host == null && this.airReply.visibility === 'public';
+			this.visibility = this.airReply.visibility;
+			if (this.airReply.user.host != null && this.visibility === 'public') {
+				this.visibility = 'home';
+			}
+		}
 
 		this.$nextTick(() => {
 			// 書きかけの投稿を復元
@@ -492,6 +505,28 @@ export default (opts) => ({
 
 		kao() {
 			this.text += getFace();
+		},
+
+		togglePreview() {
+			this.$store.commit('device/set', { key: 'showPostPreview', value: this.$refs.preview.open });
+		},
+
+		doPreview() {
+			this.preview = this.canPost ? {
+				id: `${Math.random()}`,
+				createdAt: new Date().toISOString(),
+				userId: this.$store.state.i.id,
+				user: this.$store.state.i,
+				text: this.text == '' ? undefined : this.text,
+				visibility: this.visibility,
+				localOnly: this.localOnly,
+				fileIds: this.files.length > 0 ? this.files.map(f => f.id) : undefined,
+				files: this.files || [],
+				replyId: this.reply ? this.reply.id : undefined,
+				reply: this.reply,
+				renoteId: this.renote ? this.renote.id : this.quoteId ? this.quoteId : undefined,
+				renote: this.renote,
+			} : null;
 		},
 
 		post() {

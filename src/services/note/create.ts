@@ -28,6 +28,7 @@ import { Poll, IPoll } from '../../models/entities/poll';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
 import { ensure } from '../../prelude/ensure';
+import { deliverToRelays } from '../relay';
 
 type NotificationType = 'reply' | 'renote' | 'quote' | 'mention';
 
@@ -101,7 +102,9 @@ type Option = {
 	apHashtags?: string[] | null;
 	apEmojis?: string[] | null;
 	uri?: string | null;
+	url?: string | null;
 	app?: App | null;
+	preview?: boolean;
 };
 
 export default async (user: User, data: Option, silent = false) => new Promise<Note>(async (res, rej) => {
@@ -188,6 +191,8 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 	const note = await insertNote(user, data, tags, emojis, mentionedUsers);
 
 	res(note);
+
+	if (data.preview) return;
 
 	// 統計を更新
 	notesChart.update(note, true);
@@ -320,6 +325,10 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 					dm.addFollowersRecipe();
 				}
 
+				if (['public'].includes(note.visibility)) {
+					deliverToRelays(user, noteActivity);
+				}
+
 				dm.execute();
 			})();
 		}
@@ -381,6 +390,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 	});
 
 	if (data.uri != null) insert.uri = data.uri;
+	if (data.url != null) insert.url = data.url;
 
 	// Append mentions data
 	if (mentionedUsers.length > 0) {
@@ -398,32 +408,43 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 		}));
 	}
 
+	if (data.preview) {
+		return Object.assign({
+			preview: true,
+			renoteCount: 0,
+			repliesCount: 0,
+			reactions: {},
+			score: 0,
+			mentions: [],
+			mentionedRemoteUsers: []
+		}, insert) as Note;
+	}
+
 	// 投稿を作成
 	try {
-		let note: Note;
 		if (insert.hasPoll) {
 			// Start transaction
 			await getConnection().transaction(async transactionalEntityManager => {
-				note = await transactionalEntityManager.save(insert);
+				await transactionalEntityManager.insert(Note, insert);
 
 				const poll = new Poll({
-					noteId: note.id,
+					noteId: insert.id,
 					choices: data.poll!.choices,
 					expiresAt: data.poll!.expiresAt,
 					multiple: data.poll!.multiple,
 					votes: new Array(data.poll!.choices.length).fill(0),
-					noteVisibility: note.visibility,
+					noteVisibility: insert.visibility,
 					userId: user.id,
 					userHost: user.host
 				});
 
-				await transactionalEntityManager.save(poll);
+				await transactionalEntityManager.insert(Poll, poll);
 			});
 		} else {
-			note = await Notes.save(insert);
+			await Notes.insert(insert);
 		}
 
-		return note!;
+		return await Notes.findOneOrFail(insert.id);
 	} catch (e) {
 		// duplicate key error
 		if (isDuplicateKeyValueError(e)) {
@@ -434,7 +455,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 
 		console.error(e);
 
-		throw new Error('something happened');
+		throw e;
 	}
 }
 

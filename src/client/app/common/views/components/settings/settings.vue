@@ -50,6 +50,12 @@
 				<ui-switch v-model="enableMobileQuickNotificationView">{{ $t('@._settings.enable-quick-notification-view') }}</ui-switch>
 			</section>
 			<section>
+				<header>{{ $t('@._settings.instance-ticker') }}</header>
+				<ui-radio v-model="instanceTicker" value="none">{{ $t('@._settings.instance-ticker-none') }}</ui-radio>
+				<ui-radio v-model="instanceTicker" value="remote">{{ $t('@._settings.instance-ticker-remote') }}</ui-radio>
+				<ui-radio disabled v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
+			</section>
+			<section>
 				<header>{{ $t('@._settings.line-width') }}</header>
 				<ui-radio v-model="lineWidth" :value="0.5">{{ $t('@._settings.line-width-thin') }}</ui-radio>
 				<ui-radio v-model="lineWidth" :value="1">{{ $t('@._settings.line-width-normal') }}</ui-radio>
@@ -228,16 +234,14 @@
 		<x-mute-and-block/>
 	</template>
 
-	<!--
 	<template v-if="page == null || page == 'apps'">
 		<ui-card>
-			<template #title><fa icon="puzzle-piece"/> {{ $t('@._settings.apps') }}</template>
+			<template #title><fa icon="puzzle-piece"/> wip:{{ $t('@._settings.apps') }}</template>
 			<section>
 				<x-apps/>
 			</section>
 		</ui-card>
 	</template>
-	-->
 
 	<template v-if="page == null || page == 'security'">
 		<ui-card>
@@ -254,14 +258,12 @@
 			</section>
 		</ui-card>
 
-		<!--
 		<ui-card>
 			<template #title><fa icon="sign-in-alt"/> {{ $t('@._settings.signin') }}</template>
 			<section>
 				<x-signins/>
 			</section>
 		</ui-card>
-		-->
 	</template>
 
 	<template v-if="page == null || page == 'api'">
@@ -286,12 +288,20 @@
 			</section>
 		</ui-card>
 
+		<x-account-info/>
+
 		<ui-card>
 			<template #title><fa icon="cogs"/> {{ $t('@._settings.advanced-settings') }}</template>
 			<section>
-				<ui-switch v-model="debug">
+				<ui-switch v-model="showAdvancedSettings">
+					{{ $t('@._settings.ShowAdvancedSettings') }}
+				</ui-switch>
+				<ui-switch v-model="debug" v-if="isAdvanced">
 					{{ $t('@._settings.debug-mode') }}<template #desc>{{ $t('@._settings.debug-mode-desc') }}</template>
 				</ui-switch>
+				<section v-if="isAdvanced">
+					<x-reg-edit/>
+				</section>
 			</section>
 		</ui-card>
 	</template>
@@ -299,13 +309,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from '@vue/composition-api';
 import i18n from '../../../../i18n';
 import X2fa from './2fa.vue';
 import XApps from './apps.vue';
 import XSignins from './signins.vue';
 import XTags from './tags.vue';
 import XIntegration from './integration.vue';
+import XAccountInfo from './account-info.vue';
 import XTheme from './theme.vue';
 import XDrive from './drive.vue';
 import XMuteAndBlock from './mute-and-block.vue';
@@ -315,6 +326,7 @@ import XApi from './api.vue';
 import XLanguage from './language.vue';
 import XAppType from './app-type.vue';
 import XNotification from './notification.vue';
+import XRegEdit from './regedit.vue';
 import MkReactionPicker from '../reaction-picker.vue';
 
 import { url, version } from '../../../../config';
@@ -322,7 +334,7 @@ import checkForUpdate from '../../../scripts/check-for-update';
 import { formatTimeString } from '../../../../../../misc/format-time-string';
 import { faSave, faEye } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		X2fa,
@@ -330,6 +342,7 @@ export default Vue.extend({
 		XSignins,
 		XTags,
 		XIntegration,
+		XAccountInfo,
 		XTheme,
 		XDrive,
 		XMuteAndBlock,
@@ -338,6 +351,7 @@ export default Vue.extend({
 		XApi,
 		XLanguage,
 		XAppType,
+		XRegEdit,
 		XNotification,
 	},
 	props: {
@@ -360,6 +374,10 @@ export default Vue.extend({
 		};
 	},
 	computed: {
+		isAdvanced(): boolean {
+			return this.$store.state.device.showAdvancedSettings;
+		},
+
 		useOsDefaultEmojis: {
 			get() { return this.$store.state.device.useOsDefaultEmojis; },
 			set(value) { this.$store.commit('device/set', { key: 'useOsDefaultEmojis', value }); }
@@ -405,6 +423,11 @@ export default Vue.extend({
 			set(value) { this.$store.commit('device/set', { key: 'debug', value }); }
 		},
 
+		showAdvancedSettings: {
+			get() { return this.$store.state.device.showAdvancedSettings; },
+			set(value) { this.$store.commit('device/set', { key: 'showAdvancedSettings', value }); }
+		},
+
 		alwaysShowNsfw: {
 			get() { return this.$store.state.device.alwaysShowNsfw; },
 			set(value) { this.$store.commit('device/set', { key: 'alwaysShowNsfw', value }); }
@@ -428,6 +451,11 @@ export default Vue.extend({
 		roundedCorners: {
 			get() { return this.$store.state.device.roundedCorners; },
 			set(value) { this.$store.commit('device/set', { key: 'roundedCorners', value }); }
+		},
+
+		instanceTicker: {
+			get() { return this.$store.state.device.instanceTicker; },
+			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); }
 		},
 
 		lineWidth: {

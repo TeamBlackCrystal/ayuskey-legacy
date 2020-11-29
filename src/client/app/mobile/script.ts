@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 
 // Style
 import './style.styl';
+import './style.scss'
 
 import init from '../init';
 
@@ -54,6 +55,7 @@ init((launch, os) => {
 
 				const vm = this.$root.new(PostFormDialog, {
 					reply: o.reply,
+					airReply: o.airReply,
 					mention: o.mention,
 					renote: o.renote,
 					initialText: o.initialText,

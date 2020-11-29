@@ -4,10 +4,13 @@
 	<router-link class="name" :to="note.user | userPage" v-user-preview="note.user.id">
 		<mk-user-name :user="note.user"/>
 	</router-link>
+	<span class="is-premium" v-if="note.user.isPremium"><fa icon="crown"/></span>
 	<span class="is-admin" v-if="note.user.isAdmin">admin</span>
 	<span class="is-bot" v-if="note.user.isBot">bot</span>
 	<span class="is-cat" v-if="note.user.isCat">cat</span>
+	<span class="is-lady" v-if="note.user.isLady">lady</span>
 	<span class="username"><mk-acct :user="note.user"/></span>
+	<span class="is-verified" v-if="note.user.isVerified" :title="$t('@.verified-user')"><fa icon="star"/></span>
 	<div class="info">
 		<span class="app" v-if="note.app && !mini && $store.state.settings.showVia">via <b>{{ note.app.name }}</b></span>
 		<span class="mobile" v-if="note.viaMobile"><fa icon="mobile-alt"/></span>
@@ -15,11 +18,12 @@
 			<mk-time :time="note.createdAt"/>
 		</router-link>
 		<span class="visibility" v-if="note.visibility != 'public'">
-			<fa v-if="note.visibility == 'home'" icon="home"/>
-			<fa v-if="note.visibility == 'followers'" icon="unlock"/>
-			<fa v-if="note.visibility == 'specified'" icon="envelope"/>
+			<fa class="home" v-if="note.visibility == 'home'" :title="$t('@.note-visibility.home')" icon="home"/>
+			<fa class="followers" v-if="note.visibility == 'followers'" :title="$t('@.note-visibility.followers')" icon="lock"/>
+			<fa class="specified" v-if="note.visibility == 'specified'" :title="$t('@.note-visibility.specified')" icon="envelope"/>
 		</span>
-		<span class="localOnly" v-if="note.localOnly == true"><fa icon="heart"/></span>
+		<span class="localOnly" v-if="note.localOnly == true" :title="$t('@.note-visibility.local-only')"><fa icon="heart"/></span>
+		<span class="remote" title="Remote post" v-if="note.user.host != null"><fa :icon="faGlobeAmericas"/></span>
 	</div>
 </header>
 </template>
@@ -27,9 +31,15 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
+import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n(),
+	data() {
+		return {
+			faGlobeAmericas
+		}
+	},
 	props: {
 		note: {
 			type: Object,
@@ -74,6 +84,7 @@ export default Vue.extend({
 	> .is-admin
 	> .is-bot
 	> .is-cat
+	> .is-lady
 		flex-shrink 0
 		align-self center
 		margin 0 .5em 0 0
@@ -94,6 +105,13 @@ export default Vue.extend({
 		color var(--noteHeaderAcct)
 		flex-shrink 2147483647
 
+	> .is-verified
+		margin 0 .5em 0 0
+		color #4dabf7
+	> .is-premium
+		margin 0 .5em 0 0
+		color #FFC107
+
 	> .info
 		margin-left auto
 		font-size 0.9em
@@ -111,8 +129,14 @@ export default Vue.extend({
 
 		> .visibility
 			margin-left 8px
+			color var(--noteActionsReactionHover)
 
 		> .localOnly
 			margin-left 4px
+			color var(--primary)
+
+		> .remote
+			margin-left 4px
+			color #4dabf7
 
 </style>

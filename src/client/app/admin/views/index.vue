@@ -27,6 +27,8 @@
 			<li><router-link to="/users" active-class="active"><fa icon="users" fixed-width/>{{ $t('users') }}</router-link></li>
 			<li><router-link to="/drive" active-class="active"><fa icon="cloud" fixed-width/>{{ $t('@.drive') }}</router-link></li>
 			<li><router-link to="/federation" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }}</router-link></li>
+			<li><router-link to="/federation-classic" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }} (classic)</router-link></li>
+			<li><router-link to="/relays" active-class="active"><fa :icon="faProjectDiagram" fixed-width/>{{ $t('relays') }}</router-link></li>
 			<li><router-link to="/emoji" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }}</router-link></li>
 			<li><router-link to="/announcements" active-class="active"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
 			<li><router-link to="/abuse" active-class="active"><fa :icon="faExclamationCircle" fixed-width/>{{ $t('abuse') }}</router-link></li>
@@ -51,6 +53,8 @@
 			<div v-if="page == 'announcements'"><x-announcements/></div>
 			<div v-if="page == 'drive'"><x-drive/></div>
 			<div v-if="page == 'federation'"><x-federation/></div>
+			<div v-if="page == 'federation-classic'"><x-federation-classic/></div>
+			<div v-if="page == 'relays'"><x-relays/></div>
 			<div v-if="page == 'abuse'"><x-abuse/></div>
 		</div>
 	</main>
@@ -73,8 +77,10 @@ import XUsers from './users.vue';
 import XDrive from './drive.vue';
 import XAbuse from './abuse.vue';
 import XFederation from './federation.vue';
+import XFederationClassic from './federation-classic.vue';
+import XRelays from "./relays.vue";
 
-import { faHeadset, faArrowLeft, faGlobe, faExclamationCircle, faTasks, faStream, faDatabase } from '@fortawesome/free-solid-svg-icons';
+import { faHeadset, faArrowLeft, faGlobe, faProjectDiagram, faExclamationCircle, faTasks, faStream, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
 
 // Detect the user agent
@@ -96,6 +102,8 @@ export default Vue.extend({
 		XDrive,
 		XAbuse,
 		XFederation,
+		XFederationClassic,
+		XRelays,
 	},
 	provide: {
 		isMobile
@@ -109,6 +117,7 @@ export default Vue.extend({
 			faArrowLeft,
 			faHeadset,
 			faGlobe,
+			faProjectDiagram,
 			faExclamationCircle,
 			faTasks,
 			faStream,

@@ -77,6 +77,8 @@
 					<ui-input v-model="objectStorageSecretKey" :disabled="!useObjectStorage"><template #icon><fa icon="key"/></template>{{ $t('object-storage-secret-key') }}</ui-input>
 				</ui-horizon-group>
 				<ui-switch v-model="objectStorageUseSSL" :disabled="!useObjectStorage">{{ $t('object-storage-use-ssl') }}</ui-switch>
+				<ui-switch v-model="objectStorageUseProxy" :disabled="!useObjectStorage">{{ $t('object-storage-use-proxy') }}</ui-switch>
+				<ui-switch v-model="objectStorageSetPublicRead" :disabled="!useObjectStorage">{{ $t('object-storage-set-public-read') }}</ui-switch>
 			</template>
 		</section>
 		<section>
@@ -143,7 +145,7 @@
 		<section>
 			<ui-switch v-model="enableServiceWorker">{{ $t('enable-serviceworker') }}<template #desc>{{ $t('serviceworker-info') }}</template></ui-switch>
 			<template v-if="enableServiceWorker">
-				<ui-info>{{ $t('vapid-info') }}<br><code>npm i web-push -g<br>web-push generate-vapid-keys</code></ui-info>
+				<ui-info>{{ $t('vapid-info') }}<br><code>npm i web-push -g<br>web-push generate-vapid-keys</code><br>or<br><code>npx web-push generate-vapid-keys</code></ui-info>
 				<ui-horizon-group inputs class="fit-bottom">
 					<ui-input v-model="swPublicKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ $t('vapid-publickey') }}</ui-input>
 					<ui-input v-model="swPrivateKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ $t('vapid-privatekey') }}</ui-input>
@@ -261,7 +263,7 @@ export default Vue.extend({
 			maintainerName: null,
 			maintainerEmail: null,
 			ToSUrl: null,
-			repositoryUrl: "https://github.com/syuilo/misskey",
+			repositoryUrl: "https://github.com/TeamOrangeServer/misskey",
 			feedbackUrl: null,
 			disableRegistration: false,
 			disableLocalTimeline: false,
@@ -317,6 +319,8 @@ export default Vue.extend({
 			objectStorageAccessKey: null,
 			objectStorageSecretKey: null,
 			objectStorageUseSSL: false,
+			objectStorageUseProxy: false,
+			objectStorageSetPublicRead: false,
 			faHeadset, faShieldAlt, faGhost, faUserPlus, farEnvelope, faBolt, faThumbtack, faPencilAlt, faSave, faHashtag
 		};
 	},
@@ -382,6 +386,8 @@ export default Vue.extend({
 			this.objectStorageAccessKey = meta.objectStorageAccessKey;
 			this.objectStorageSecretKey = meta.objectStorageSecretKey;
 			this.objectStorageUseSSL = meta.objectStorageUseSSL;
+			this.objectStorageUseProxy = meta.objectStorageUseProxy;
+			this.objectStorageSetPublicRead = meta.objectStorageSetPublicRead;
 		});
 	},
 
@@ -506,6 +512,8 @@ export default Vue.extend({
 				objectStorageAccessKey: this.objectStorageAccessKey ? this.objectStorageAccessKey : null,
 				objectStorageSecretKey: this.objectStorageSecretKey ? this.objectStorageSecretKey : null,
 				objectStorageUseSSL: this.objectStorageUseSSL,
+				objectStorageUseProxy: this.objectStorageUseProxy,
+				objectStorageSetPublicRead: this.objectStorageSetPublicRead,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',

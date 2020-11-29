@@ -80,6 +80,7 @@
 
 		<div>
 			<ui-switch v-model="isCat" @change="save(false)">{{ $t('is-cat') }}</ui-switch>
+			<ui-switch v-model="isLady" @change="save(false)">{{ $t('is-lady') }}</ui-switch>
 			<ui-switch v-model="isBot" @change="save(false)">{{ $t('is-bot') }}</ui-switch>
 			<ui-switch v-model="alwaysMarkNsfw">{{ $t('@._settings.always-mark-nsfw') }}</ui-switch>
 		</div>
@@ -92,6 +93,7 @@
 			<ui-switch v-model="isLocked" @change="save(false)">{{ $t('is-locked') }}</ui-switch>
 			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ $t('careful-bot') }}</ui-switch>
 			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ $t('auto-accept-followed') }}</ui-switch>
+			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
 		</div>
 	</section>
 
@@ -121,7 +123,7 @@
 			</ui-select>
 			<ui-horizon-group class="fit-bottom">
 				<ui-button @click="doExport()"><fa :icon="faDownload"/> {{ $t('export') }}</ui-button>
-				<ui-button @click="doImport()" :disabled="!['following', 'user-lists'].includes(exportTarget)"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
+				<ui-button @click="doImport()" :disabled="!['following', 'blocking', 'user-lists'].includes(exportTarget)"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
 			</ui-horizon-group>
 		</div>
 	</section>
@@ -172,10 +174,12 @@ export default Vue.extend({
 			avatarId: null,
 			bannerId: null,
 			isCat: false,
+			isLady: false,
 			isBot: false,
 			isLocked: false,
 			carefulBot: false,
 			autoAcceptFollowed: false,
+			noCrawle: false,
 			saving: false,
 			avatarUploading: false,
 			bannerUploading: false,
@@ -213,10 +217,12 @@ export default Vue.extend({
 		this.avatarId = this.$store.state.i.avatarId;
 		this.bannerId = this.$store.state.i.bannerId;
 		this.isCat = this.$store.state.i.isCat;
+		this.isLady = this.$store.state.i.isLady;
 		this.isBot = this.$store.state.i.isBot;
 		this.isLocked = this.$store.state.i.isLocked;
 		this.carefulBot = this.$store.state.i.carefulBot;
 		this.autoAcceptFollowed = this.$store.state.i.autoAcceptFollowed;
+		this.noCrawle = this.$store.state.i.noCrawle;
 
 		this.fieldName0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].name : null;
 		this.fieldValue0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].value : null;
@@ -293,10 +299,12 @@ export default Vue.extend({
 				bannerId: this.bannerId || undefined,
 				fields,
 				isCat: !!this.isCat,
+				isLady: !!this.isLady,
 				isBot: !!this.isBot,
 				isLocked: !!this.isLocked,
 				carefulBot: !!this.carefulBot,
-				autoAcceptFollowed: !!this.autoAcceptFollowed
+				autoAcceptFollowed: !!this.autoAcceptFollowed,
+				noCrawle: !!this.noCrawle
 			}).then(i => {
 				this.saving = false;
 				this.$store.state.i.avatarId = i.avatarId;
@@ -375,6 +383,7 @@ export default Vue.extend({
 			this.$chooseDriveFile().then(file => {
 				this.$root.api(
 					this.exportTarget == 'following' ? 'i/import-following' :
+					this.exportTarget == 'blocking' ? 'i/import-blocking' :
 					this.exportTarget == 'user-lists' ? 'i/import-user-lists' :
 					null, {
 						fileId: file.id

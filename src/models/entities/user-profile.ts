@@ -117,6 +117,12 @@ export class UserProfile {
 
 	@Column('boolean', {
 		default: false,
+		comment: 'Whether reject index by crawler.'
+	})
+	public noCrawle: boolean;
+
+	@Column('boolean', {
+		default: false,
 	})
 	public alwaysMarkNsfw: boolean;
 

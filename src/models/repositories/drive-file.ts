@@ -39,7 +39,7 @@ export class DriveFileRepository extends Repository<DriveFile> {
 			const key = thumbnail ? file.thumbnailAccessKey : file.webpublicAccessKey;
 
 			if (key && !key.match('/')) {	// 古いものはここにオブジェクトストレージキーが入ってるので除外
-				return `/files/${key}`;
+				return `${config.url}/files/${key}`;
 			}
 		}
 
@@ -122,7 +122,8 @@ export class DriveFileRepository extends Repository<DriveFile> {
 			folder: opts.detail && file.folderId ? DriveFolders.pack(file.folderId, {
 				detail: true
 			}) : null,
-			user: opts.withUser ? Users.pack(file.userId!) : null
+			//userId: opts.withUser ? file.userId : null,
+			user: (opts.withUser && file.userId) ? Users.pack(file.userId) : null
 		});
 	}
 

@@ -1,7 +1,7 @@
 import { parseFragment, DefaultTreeDocumentFragment } from 'parse5';
-import { urlRegex } from './prelude';
+import { urlRegexFull } from './prelude';
 
-export function fromHtml(html: string): string {
+export function fromHtml(html: string, hashtagNames?: string[]): string {
 	const dom = parseFragment(html) as DefaultTreeDocumentFragment;
 
 	let text = '';
@@ -11,6 +11,14 @@ export function fromHtml(html: string): string {
 	}
 
 	return text.trim();
+
+	function appendChildren(childNodes: any,): void {
+		if (childNodes) {
+			for (const n of childNodes) {
+				analyze(n);
+			}
+		}
+	}
 
 	function getText(node: any): string {
 		if (node.nodeName == '#text') return node.value;
@@ -36,12 +44,10 @@ export function fromHtml(html: string): string {
 				const txt = getText(node);
 				const rel = node.attrs.find((x: any) => x.name == 'rel');
 				const href = node.attrs.find((x: any) => x.name == 'href');
-				const _class = node.attrs.find((x: any) => x.name == 'class');
-				const isHashtag = rel?.value?.match('tag') || _class?.value?.match('hashtag');
 
-				// ハッシュタグ / hrefがない / txtがURL
-				if (isHashtag || !href || href.value == txt) {
-					text += isHashtag || txt.match(urlRegex) ? txt : `<${txt}>`;
+				// ハッシュタグ
+				if (hashtagNames && href && hashtagNames.map(x => x.toLowerCase()).includes(txt.toLowerCase())) {
+					text += txt;
 				// メンション
 				} else if (txt.startsWith('@') && !(rel && rel.value.match(/^me /))) {
 					const part = txt.split('@');
@@ -56,7 +62,11 @@ export function fromHtml(html: string): string {
 					}
 				// その他
 				} else {
-					text += `[${txt}](${href.value})`;
+					text += !href ? txt
+						: txt === href.value
+							? txt.match(urlRegexFull) ? txt
+							: `<${txt}>`
+						: `[${txt}](${href.value})`;
 				}
 				break;
 
@@ -69,6 +79,22 @@ export function fromHtml(html: string): string {
 				}
 				break;
 
+			case 'marquee': {
+				const direction = getValue(node, 'direction');
+				const behavior = getValue(node, 'behavior');
+
+				const attr
+					= behavior === 'alternate' ? ' alternate'
+					: behavior === 'slide'
+						? direction === 'right' ? ' reverse-slide' : ' slide'
+						: direction === 'right' ? ' reverse' : ''
+
+						text += `<marquee${attr}>`;
+					appendChildren(node.childNodes);
+					text += `</marquee>`;
+				break;
+			}
+
 			default:
 				if (node.childNodes) {
 					for (const n of node.childNodes) {
@@ -78,4 +104,8 @@ export function fromHtml(html: string): string {
 				break;
 		}
 	}
+}
+
+function getValue(node: any, name: string): string | undefined {
+	return node.attrs.find((x: any) => x.name == name)?.value || undefined;
 }

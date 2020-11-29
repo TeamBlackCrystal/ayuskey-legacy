@@ -1,11 +1,12 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
+import { toPunyNullable } from '../../misc/convert-host';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -120,6 +121,18 @@ export class UserRepository extends Repository<User> {
 			isAdmin: user.isAdmin || falsy,
 			isBot: user.isBot || falsy,
 			isCat: user.isCat || falsy,
+			isLady: user.isLady || falsy,
+			isVerified: user.isVerified || falsy,
+			isPremium: user.isPremium || falsy,
+			instance: user.host ? Instances.findOne({ host: user.host }).then(instance => instance ? {
+				host: toPunyNullable(user.host),
+				name: instance.name,
+				softwareName: instance.softwareName,
+				softwareVersion: instance.softwareVersion,
+				iconUrl: instance.iconUrl,
+				faviconUrl: instance.faviconUrl,
+				themeColor: instance.themeColor,
+			} : undefined) : undefined,
 
 			// カスタム絵文字添付
 			emojis: user.emojis.length > 0 ? Emojis.find({
@@ -193,6 +206,7 @@ export class UserRepository extends Repository<User> {
 				alwaysMarkNsfw: profile!.alwaysMarkNsfw,
 				carefulBot: profile!.carefulBot,
 				autoAcceptFollowed: profile!.autoAcceptFollowed,
+				noCrawle: profile!.noCrawle,
 				hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(user.id),
 				hasUnreadNotification: Notifications.count({
 					where: {
@@ -259,6 +273,7 @@ export class UserRepository extends Repository<User> {
 	public validateRemoteUsername = $.str.match(/^\w([\w-]*\w)?$/);
 	public validatePassword = $.str.min(1);
 	public validateName = $.str.min(1).max(50);
+	public validateRemoteName = $.str.min(1).max(128);
 	public validateDescription = $.str.min(1).max(500);
 	public validateLocation = $.str.min(1).max(50);
 	public validateBirthday = $.str.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/);
@@ -389,6 +404,11 @@ export const packedUserSchema = {
 			nullable: false as const, optional: true as const,
 			description: 'Whether this account is a cat.'
 		},
+		isLady: {
+			type: 'boolean' as const,
+			nullable: false as const, optional: true as const,
+			description: 'Whether this account is a Lady.'
+		},
 		isAdmin: {
 			type: 'boolean' as const,
 			nullable: false as const, optional: true as const,
@@ -398,6 +418,10 @@ export const packedUserSchema = {
 			type: 'boolean' as const,
 			nullable: false as const, optional: true as const,
 			description: 'Whether this account is a moderator.'
+		},
+		isVerified: {
+			type: 'boolean' as const,
+			nullable: false as const, optional: true as const,
 		},
 		isLocked: {
 			type: 'boolean' as const,

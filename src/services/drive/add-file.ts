@@ -7,7 +7,7 @@ import { deleteFile } from './delete-file';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { GenerateVideoThumbnail } from './generate-video-thumbnail';
 import { driveLogger } from './logger';
-import { IImage, convertToJpeg, convertToWebp, convertToPng } from './image-processor';
+import { IImage, convertToJpeg, convertToWebp, convertToPng, convertToPngOrJpeg } from './image-processor';
 import { contentDisposition } from '../../misc/content-disposition';
 import { getFileInfo } from '../../misc/get-file-info';
 import { DriveFiles, DriveFolders, Users, Instances, UserProfiles } from '../../models';
@@ -38,15 +38,7 @@ async function save(file: DriveFile, path: string, name: string, type: string, h
 
 	if (meta.useObjectStorage) {
 		//#region ObjectStorage params
-		let [ext] = (name.match(/\.([a-zA-Z0-9_-]+)$/) || ['']);
-
-		if (ext === '') {
-			if (type === 'image/jpeg') ext = '.jpg';
-			if (type === 'image/png') ext = '.png';
-			if (type === 'image/webp') ext = '.webp';
-			if (type === 'image/apng') ext = '.apng';
-			if (type === 'image/vnd.mozilla.apng') ext = '.apng';
-		}
+		const ext = getExt(name, type);
 
 		const baseUrl = meta.objectStorageBaseUrl
 			|| `${ meta.objectStorageUseSSL ? 'https' : 'http' }://${ meta.objectStorageEndpoint }${ meta.objectStoragePort ? `:${meta.objectStoragePort}` : '' }/${ meta.objectStorageBucket }`;
@@ -105,18 +97,21 @@ async function save(file: DriveFile, path: string, name: string, type: string, h
 		const thumbnailAccessKey = 'thumbnail-' + uuid();
 		const webpublicAccessKey = 'webpublic-' + uuid();
 
-		const url = InternalStorage.saveFromPath(accessKey, path);
+		let url = InternalStorage.saveFromPath(accessKey, path);
+		url += `/${accessKey}${getExt(name, type)}`;
 
 		let thumbnailUrl: string | null = null;
 		let webpublicUrl: string | null = null;
 
 		if (alts.thumbnail) {
 			thumbnailUrl = InternalStorage.saveFromBuffer(thumbnailAccessKey, alts.thumbnail.data);
+			thumbnailUrl += `/${thumbnailAccessKey}.jpg`;
 			logger.info(`thumbnail stored: ${thumbnailAccessKey}`);
 		}
 
 		if (alts.webpublic) {
 			webpublicUrl = InternalStorage.saveFromBuffer(webpublicAccessKey, alts.webpublic.data);
+			webpublicUrl += `/${webpublicAccessKey}${getExt(name, type)}`;
 			logger.info(`web stored: ${webpublicAccessKey}`);
 		}
 
@@ -174,7 +169,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 		if (['image/jpeg', 'image/webp'].includes(type)) {
 			thumbnail = await convertToJpeg(path, 498, 280);
 		} else if (['image/png'].includes(type)) {
-			thumbnail = await convertToPng(path, 498, 280);
+			thumbnail = await convertToPngOrJpeg(path, 498, 280);
 		} else if (type.startsWith('video/')) {
 			try {
 				thumbnail = await GenerateVideoThumbnail(path);
@@ -212,12 +207,16 @@ async function upload(key: string, stream: fs.ReadStream | Buffer, type: string,
 	} as S3.PutObjectRequest;
 
 	if (filename) params.ContentDisposition = contentDisposition('inline', filename);
+	if (meta.objectStorageSetPublicRead) params.ACL = 'public-read';
 
 	const s3 = getS3(meta);
 
-	const upload = s3.upload(params);
+	const upload = s3.upload(params, {
+		partSize: s3.endpoint?.hostname === 'storage.googleapis.com' ? 500 * 1024 * 1024 : 8 * 1024 * 1024
+	});
 
-	await upload.promise();
+	const result = await upload.promise();
+	if (result) logger.debug(`Uploaded: ${result.Bucket}/${result.Key} => ${result.Location}`);
 }
 
 async function deleteOldFile(user: IRemoteUser) {
@@ -241,6 +240,25 @@ async function deleteOldFile(user: IRemoteUser) {
 	}
 }
 
+function getExt(name?: string, type?: string) {
+	let ext = '';
+
+	if (name) {
+		[ext] = (name.match(/\.([a-zA-Z0-9_-]+)$/) || ['']);
+	}
+
+	if (ext === '') {
+		if (type === 'image/jpeg') ext = '.jpg';
+		if (type === 'image/png') ext = '.png';
+		if (type === 'image/webp') ext = '.webp';
+		if (type === 'image/apng') ext = '.apng';
+		if (type === 'image/vnd.mozilla.apng') ext = '.apng';
+		if (type === 'video/mp4') ext = '.mp4';
+	}
+
+	return ext;
+}
+
 /**
  * Add file to drive
  *
@@ -257,7 +275,7 @@ async function deleteOldFile(user: IRemoteUser) {
  * @return Created drive file
  */
 export default async function(
-	user: User,
+	user: User | null,
 	path: string,
 	name: string | null = null,
 	comment: string | null = null,
@@ -274,7 +292,7 @@ export default async function(
 	// detect name
 	const detectedName = name || (info.type.ext ? `untitled.${info.type.ext}` : 'untitled');
 
-	if (!force) {
+	if (user && !force) {
 		// Check if there is a file with the same hash
 		const much = await DriveFiles.findOne({
 			md5: info.md5,
@@ -288,7 +306,7 @@ export default async function(
 	}
 
 	//#region Check drive usage
-	if (!isLink) {
+	if (user && !isLink) {
 		const usage = await DriveFiles.clacDriveUsageOf(user);
 
 		const instance = await fetchMeta();
@@ -315,7 +333,7 @@ export default async function(
 
 		const driveFolder = await DriveFolders.findOne({
 			id: folderId,
-			userId: user.id
+			userId: user ? user.id : null
 		});
 
 		if (driveFolder == null) throw new Error('folder-not-found');
@@ -338,23 +356,25 @@ export default async function(
 		properties['avgColor'] = `rgb(${info.avgColor.join(',')}`;
 	}
 
-	const profile = await UserProfiles.findOne(user.id);
+	const profile = user ? await UserProfiles.findOne(user.id) : null;
 
 	const folder = await fetchFolder();
 
 	let file = new DriveFile();
 	file.id = genId();
 	file.createdAt = new Date();
-	file.userId = user.id;
-	file.userHost = user.host;
+	file.userId = user ? user.id : null;
+	file.userHost = user ? user.host : null;
 	file.folderId = folder !== null ? folder.id : null;
 	file.comment = comment;
 	file.properties = properties;
 	file.isLink = isLink;
-	file.isSensitive = Users.isLocalUser(user) && profile!.alwaysMarkNsfw ? true :
-		(sensitive !== null && sensitive !== undefined)
-			? sensitive
-			: false;
+	file.isSensitive = user
+		? Users.isLocalUser(user) && profile!.alwaysMarkNsfw ? true :
+			(sensitive !== null && sensitive !== undefined)
+				? sensitive
+				: false
+		: false;
 
 	if (url !== null) {
 		file.src = url;
@@ -388,7 +408,7 @@ export default async function(
 
 				file = await DriveFiles.findOne({
 					uri: file.uri,
-					userId: user.id
+					userId: user ? user.id : null
 				}) as DriveFile;
 			} else {
 				logger.error(e);
@@ -401,11 +421,13 @@ export default async function(
 
 	logger.succ(`drive file has been created ${file.id}`);
 
-	DriveFiles.pack(file, { self: true }).then(packedFile => {
-		// Publish driveFileCreated event
-		publishMainStream(user.id, 'driveFileCreated', packedFile);
-		publishDriveStream(user.id, 'fileCreated', packedFile);
-	});
+	if (user) {
+		DriveFiles.pack(file, { self: true }).then(packedFile => {
+			// Publish driveFileCreated event
+			publishMainStream(user.id, 'driveFileCreated', packedFile);
+			publishDriveStream(user.id, 'fileCreated', packedFile);
+		});
+	}
 
 	// 統計を更新
 	driveChart.update(file, true);

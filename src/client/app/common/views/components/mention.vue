@@ -42,6 +42,7 @@ export default Vue.extend({
 			switch (this.host) {
 				case 'twitter.com':
 				case 'github.com':
+				case 'gitlab.com':
 					return `https://${this.host}/${this.username}`;
 				default:
 					return `/${this.canonical}`;
@@ -54,7 +55,7 @@ export default Vue.extend({
 			return this.$store.getters.isSignedIn && (
 				`@${this.username}@${toUnicode(this.host)}` === `@${this.$store.state.i.username}@${toUnicode(localHost)}`.toLowerCase()
 			);
-		}
+		},
 	},
 	methods: {
 		toUnicode

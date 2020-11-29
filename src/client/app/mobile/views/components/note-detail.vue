@@ -22,6 +22,7 @@
 			<div>
 				<router-link class="name" :to="appearNote.user | userPage"><mk-user-name :user="appearNote.user"/></router-link>
 				<span class="username"><mk-acct :user="appearNote.user"/></span>
+				<x-instance-ticker v-if="$store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
 			</div>
 		</header>
 		<div class="body">
@@ -52,11 +53,12 @@
 		</router-link>
 		<div class="visibility-info">
 			<span class="visibility" v-if="appearNote.visibility != 'public'">
-				<fa v-if="appearNote.visibility == 'home'" icon="home"/>
-				<fa v-if="appearNote.visibility == 'followers'" icon="unlock"/>
-				<fa v-if="appearNote.visibility == 'specified'" icon="envelope"/>
+				<fa class="home" v-if="appearNote.visibility == 'home'" :title="$t('@.note-visibility.home')" icon="home"/>
+				<fa class="followers" v-if="appearNote.visibility == 'followers'" :title="$t('@.note-visibility.followers')" icon="lock"/>
+				<fa class="specified" v-if="appearNote.visibility == 'specified'" :title="$t('@.note-visibility.specified')" icon="envelope"/>
 			</span>
-			<span class="localOnly" v-if="appearNote.localOnly == true"><fa icon="heart"/></span>
+			<span class="localOnly" v-if="appearNote.localOnly == true" :title="$t('@.note-visibility.local-only')"><fa icon="heart"/></span>
+			<span class="remote" title="Remote post" v-if="appearNote.user.host != null"><fa :icon="faGlobeAmericas"/></span>
 		</div>
 		<footer>
 			<mk-reactions-viewer :note="appearNote"/>
@@ -71,10 +73,10 @@
 			<button v-else>
 				<fa icon="ban"/>
 			</button>
-			<button v-if="!isMyNote && appearNote.myReaction == null" class="reactionButton" @click="react()" ref="reactButton">
+			<button v-if="appearNote.myReaction == null" class="reactionButton" @click="react()" ref="reactButton">
 				<fa icon="plus"/>
 			</button>
-			<button v-if="!isMyNote && appearNote.myReaction != null" class="reactionButton reacted" @click="undoReact(appearNote)" ref="reactButton">
+			<button v-if="appearNote.myReaction != null" class="reactionButton reacted" @click="undoReact(appearNote)" ref="reactButton">
 				<fa icon="minus"/>
 			</button>
 			<button @click="menu()" ref="menuButton">
@@ -92,14 +94,17 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import XSub from './note.sub.vue';
+import XInstanceTicker from '../../../common/views/components/instance-ticker.vue';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 import noteMixin from '../../../common/scripts/note-mixin';
+import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/note-detail.vue'),
 
 	components: {
-		XSub
+		XSub,
+		XInstanceTicker
 	},
 
 	mixins: [noteMixin(), noteSubscriber('note')],
@@ -116,6 +121,7 @@ export default Vue.extend({
 
 	data() {
 		return {
+			faGlobeAmericas,
 			conversation: [],
 			conversationFetching: false,
 			replies: []
@@ -153,6 +159,12 @@ export default Vue.extend({
 				this.conversationFetching = false;
 				this.conversation = conversation.reverse();
 			});
+		},
+
+		showTicker() {
+			if (this.$store.state.device.instanceTicker === 'always') return true;
+			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
+			return false;
 		}
 	}
 });
@@ -313,8 +325,16 @@ export default Vue.extend({
 		> .visibility-info
 			color var(--noteHeaderInfo)
 
+			> .visibility 
+				color var(--noteActionsReactionHover)
+
 			> .localOnly
 				margin-left 4px
+				color var(--primary)
+
+			> .remote
+				margin-left 4px
+				color #4dabf7
 
 		> footer
 			font-size 1.2em

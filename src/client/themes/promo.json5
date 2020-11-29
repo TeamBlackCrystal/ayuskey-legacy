@@ -1,0 +1,23 @@
+{
+	id: 'f5ab99e6-808c-4ff3-bd60-984d55196279',
+
+	name: 'エレガントなお嬢様',
+	author: 'めいめい',
+	desc: 'エレガントなお嬢様のためのテーマなのだわ',
+
+	base: 'dark',
+
+	vars: {
+		primary: 'rgb(24, 192, 24)',
+		secondary: 'rgb(128, 0, 0)',
+		text: 'rgb(255, 251, 185)',
+	},
+
+	props: {
+		announcementsBg: '#800000',
+		announcementsTitle: '#e3e5e8',
+		renoteGradient: '#b72ddc',
+		noteText: '#ffe0e0',
+		noteHeaderName: '#ffe0e0',
+	},
+}

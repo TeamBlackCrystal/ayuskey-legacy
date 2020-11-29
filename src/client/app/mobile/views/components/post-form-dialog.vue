@@ -7,6 +7,7 @@
 	<div class="main" ref="main">
 		<x-post-form ref="form"
 			:reply="reply"
+			:airReply="airReply"
 			:renote="renote"
 			:mention="mention"
 			:initial-text="initialText"
@@ -30,6 +31,10 @@ export default Vue.extend({
 
 	props: {
 		reply: {
+			type: Object,
+			required: false
+		},
+		airReply: {
 			type: Object,
 			required: false
 		},

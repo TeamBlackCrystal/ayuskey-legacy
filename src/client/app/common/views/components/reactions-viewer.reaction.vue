@@ -4,12 +4,11 @@
 	:class="{ reacted: note.myReaction == reaction }"
 	@click="toggleReaction(reaction)"
 	v-if="count > 0"
-	v-particle="!isMe"
 	@mouseover="onMouseover"
 	@mouseleave="onMouseleave"
 	ref="reaction"
 >
-	<mk-reaction-icon :reaction="reaction" ref="icon"/>
+	<mk-reaction-icon :reaction="reaction" :customEmojis="note.emojis" ref="icon"/>
 	<span>{{ count }}</span>
 </span>
 </template>
@@ -51,11 +50,6 @@ export default Vue.extend({
 			isHovering: false
 		};
 	},
-	computed: {
-		isMe(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.id === this.note.userId;
-		},
-	},
 	mounted() {
 		if (!this.isInitial) this.anime();
 	},
@@ -67,7 +61,6 @@ export default Vue.extend({
 	},
 	methods: {
 		toggleReaction() {
-			if (this.isMe) return;
 			if (!this.canToggle) return;
 
 			const oldReaction = this.note.myReaction;
@@ -113,6 +106,7 @@ export default Vue.extend({
 				if (!this.isHovering) return;
 				this.details = this.$root.new(XDetails, {
 					reaction: this.reaction,
+					customEmojis: this.note.emojis,
 					users,
 					count: this.count,
 					source: this.$refs.reaction

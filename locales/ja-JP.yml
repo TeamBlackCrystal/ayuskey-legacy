@@ -147,6 +147,7 @@ common:
     cw-placeholder: "内容への注釈 (オプション)"
     username-prompt: "ユーザー名を入力してください"
     enter-file-name: "ファイル名を編集"
+    preview: "プレビュー"
 
   weekday-short:
     sunday: "日"
@@ -189,6 +190,10 @@ common:
     local-public: "公開 (ローカルのみ)"
     local-home: "ホーム (ローカルのみ)"
     local-followers: "フォロワー (ローカルのみ)"
+    local-only: "ローカルのみ"
+    once-public: "リモートフォロワーとローカル"
+    once-home: "リモートフォロワーとホーム"
+    once-specified: "リモートフォロワーのみ"
 
   note-placeholders:
     a: "今どうしてる？"
@@ -242,6 +247,10 @@ common:
     reduce-motion: "UIの動きを減らす"
     this-setting-is-this-device-only: "このデバイスのみ"
     use-os-default-emojis: "OS標準の絵文字を使用"
+    instance-ticker: "ノートのインスタンス情報"
+    instance-ticker-none: "表示しない"
+    instance-ticker-remote: "リモートユーザーに表示"
+    instance-ticker-always: "常に表示"
     line-width: "線の太さ"
     line-width-thin: "細い"
     line-width-normal: "普通"
@@ -334,6 +343,8 @@ common:
   update-available-title: "更新があります"
   update-available: "Misskeyの新しいバージョンがあります({newer}。現在{current}を利用中)。ページを再度読み込みすると更新が適用されます。"
   my-token-regenerated: "あなたのトークンが更新されたのでサインアウトします。"
+  verified-user: "公式アカウント"
+  premium-user: "プレミアムユーザー"
   hide-password: "パスワードを隠す"
   show-password: "パスワードを表示する"
   enter-username: "ユーザー名を入力してください"
@@ -410,6 +421,7 @@ auth/views/index.vue:
   sign-in: "サインインしてください"
 
 common/views/pages/explore.vue:
+  verified-users: "公式アカウント"
   pinned-users: "ピン留めされたユーザー"
   popular-users: "人気のユーザー"
   recently-updated-users: "最近投稿したユーザー"
@@ -428,6 +440,7 @@ common/views/components/reactions-viewer.details.vue:
 common/views/components/url-preview.vue:
   enable-player: "プレイヤーを開く"
   disable-player: "プレイヤーを閉じる"
+  expandTweet: "ツイートを展開する"
 
 common/views/components/user-list.vue:
   no-users: "ユーザーがいません"
@@ -482,7 +495,7 @@ common/views/components/games/reversi/reversi.room.vue:
 common/views/components/connect-failed.vue:
   title: "サーバーに接続できません"
   description: "インターネット回線に問題があるか、サーバーがダウンまたはメンテナンスしている可能性があります。しばらくしてから{再度お試し}ください。"
-  thanks: "いつもMisskeyをご利用いただきありがとうございます。"
+  thanks: "いつも本Misskeyインスタンスをご利用いただきありがとうございます。"
   troubleshoot: "トラブルシュート"
 
 common/views/components/connect-failed.troubleshooter.vue:
@@ -527,7 +540,8 @@ common/views/components/theme.vue:
   base-theme: "ベーステーマ"
   base-theme-light: "Light"
   base-theme-dark: "Dark"
-  find-more-theme: "その他のテーマを入手"
+  find-more-theme: "Misskey Assets Storeからテーマを入手"
+  find-ayuki-theme: "Ayuki Theme Storeからテーマを入手"
   theme-name: "テーマ名"
   preview-created-theme: "プレビュー"
   invalid-theme: "テーマが正しくありません。"
@@ -594,6 +608,7 @@ common/views/components/nav.vue:
   tos: "利用規約"
 
 common/views/components/note-menu.vue:
+  air-reply: "空リプ"
   mention: "メンション"
   detail: "詳細"
   copy-content: "内容をコピー"
@@ -634,6 +649,8 @@ common/views/components/user-menu.vue:
   unsuspend: "凍結解除"
   suspend-confirm: "このユーザーを凍結しますか？"
   unsuspend-confirm: "このユーザーを凍結解除しますか？"
+  update-remote-user: "リモートユーザー情報の更新"
+  remote-user-updated: "リモートユーザー情報を更新しました"
 
 common/views/components/poll.vue:
   vote-to: "「{}」に投票する"
@@ -674,9 +691,11 @@ common/views/components/reaction-picker.vue:
   input-reaction-placeholder: "または絵文字を入力"
 
 common/views/components/emoji-picker.vue:
+  search: "絵文字を検索"
   recent-emoji: "最近使った絵文字"
   custom-emoji: "カスタム絵文字"
   no-category: "カテゴリなし"
+  face: "顔文字"
   people: "人"
   animals-and-nature: "動物&自然"
   food-and-drink: "食べ物&飲み物"
@@ -742,6 +761,10 @@ common/views/components/stream-indicator.vue:
   connecting: "接続中"
   reconnecting: "再接続中"
   connected: "接続完了"
+  has-disconnected: "サーバーから切断されていました"
+  reload: "リロードする"
+  ignore: "なにもしない"
+  update-available: "新しいバージョンが利用可能です"
 
 common/views/components/notification-settings.vue:
   title: "通知"
@@ -781,16 +804,21 @@ common/views/components/uploader.vue:
 
 common/views/components/visibility-chooser.vue:
   public: "公開"
+  public-desc: "ローカル/グローバルに表示する"
   home: "ホーム"
-  home-desc: "ホームタイムラインにのみ公開"
+  home-desc: "ローカル/グローバルに表示しない"
   followers: "フォロワー"
-  followers-desc: "自分のフォロワーにのみ公開"
+  followers-desc: "フォロワーにのみ公開"
   specified: "ダイレクト"
   specified-desc: "指定したユーザーにのみ公開"
   local-public: "公開 (ローカルのみ)"
   local-public-desc: "リモートへは公開しない"
   local-home: "ホーム (ローカルのみ)"
   local-followers: "フォロワー (ローカルのみ)"
+  once-public: "リモートフォロワーとローカル"
+  once-public-desc: "リモートでの二次拡散を拒否する"
+  once-home: "リモートフォロワーとホーム"
+  once-specified: "リモートフォロワーのみ"
 
 common/views/components/trends.vue:
   count: "{}人が投稿"
@@ -816,10 +844,12 @@ common/views/components/profile-editor.vue:
   avatar: "アバター"
   banner: "バナー"
   is-cat: "このアカウントはCatです"
+  is-lady: "このアカウントはLadyです"
   is-bot: "このアカウントはBotです"
   is-locked: "フォローを承認制にする"
   careful-bot: "Botからのフォローだけ承認制にする"
   auto-accept-followed: "フォローしているユーザーからのフォローを自動承認する"
+  no-crawle: "クローラーによるインデックスを拒否"
   advanced: "その他"
   privacy: "プライバシー"
   save: "保存"
@@ -1132,6 +1162,7 @@ desktop/views/components/post-form.vue:
   note-failed: "投稿に失敗しました"
   reply-failed: "返信に失敗しました"
   renote-failed: "Renoteに失敗しました"
+  preview: "プレビュー"
 
 desktop/views/components/post-form-window.vue:
   note: "新規投稿"
@@ -1191,6 +1222,30 @@ desktop/views/components/settings.2fa.vue:
 common/views/components/media-image.vue:
   sensitive: "閲覧注意"
   click-to-show: "クリックして表示"
+
+common/views/components/account-info.vue:
+  registered-date: "アカウント情報"
+  notes-count: "ノートの数"
+  replies-count: "返信した数"
+  renotes-count: "Renoteした数"
+  replied-count: "返信された数"
+  renoted-count: "Renoteされた数"
+  following-count: "フォロー数"
+  followers-count: "フォロワー数"
+  sent-reactions-count: "リアクションした数"
+  received-reactions-count: "リアクションされた数"
+  poll-votes-count: "アンケートに投票した数"
+  poll-voted-count: "アンケートに投票された数"
+  yes: "はい"
+  no: "いいえ"
+  drive-files-count: "ドライブのファイル数"
+  drive-usage: "ドライブ使用量"
+  note-favorites-count: "お気に入りノートの数"
+  page-likes-count: "Pageにいいねした数"
+  page-liked-count: "Pageにいいねされた数"
+  reversi-count: "リバーシの対局数"
+  other: "その他"
+  statistics: 統計
 
 common/views/components/api-settings.vue:
   intro: "APIを利用するには、上記のトークンを「i」というキーでパラメータに付加してリクエストします。"
@@ -1319,6 +1374,7 @@ admin/views/index.vue:
   moderators: "モデレーター"
   users: "ユーザー"
   federation: "連合"
+  relays: "リレー"
   announcements: "お知らせ"
   abuse: "スパム報告"
   queue: "ジョブキュー"
@@ -1409,6 +1465,8 @@ admin/views/instance.vue:
   object-storage-access-key: "アクセスキー"
   object-storage-secret-key: "シークレットキー"
   object-storage-use-ssl: "SSLを使用"
+  object-storage-use-proxy: "Proxyを利用する"
+  object-storage-set-public-read: "アップロード時に'public-read'を設定する"
   object-storage-s3-info: "Amazon S3をオブジェクトストレージとして使用する場合の「エンドポイント」と「リージョン」の設定については{0}をご確認ください。"
   object-storage-s3-info-here: "こちら"
   object-storage-gcs-info: "Google Cloud Storageをオブジェクトストレージとして使用する場合、「エンドポイント」は storage.googleapis.com に設定し、「リージョン」は空欄にします。"
@@ -1551,6 +1609,22 @@ admin/views/users.vue:
   silence-confirm: "サイレンスしますか？"
   unmake-silence: "サイレンスの解除"
   unsilence-confirm: "サイレンスを解除しますか？"
+  mark-admin: "管理者にする"
+  unmark-admin: "管理者権限を解除する"
+  marked-admin: "管理者にしました"
+  unmarked-admin: "管理者権限を解除しました"
+  premium: "プレミアムアカウントにする"
+  premium-confirm: "プレミアムアカウントにしますか？"
+  premiumed: "プレミアムアカウントにしました"
+  unpremium: "プレミアムアカウントを解除する"
+  unpremium-confirm: "プレミアムアカウントを解除しますか？"
+  unpremiumed: "プレミアムアカウントを解除しました"
+  verify: "公式アカウントにする"
+  verify-confirm: "公式アカウントにしますか？"
+  verified: "公式アカウントにしました"
+  unverify: "公式アカウントを解除する"
+  unverify-confirm: "公式アカウントを解除しますか？"
+  unverified: "公式アカウントを解除しました"
   update-remote-user: "リモートユーザー情報の更新"
   remote-user-updated: "リモートユーザー情報を更新しました"
   delete-all-files: "すべてのファイルを削除"
@@ -1572,6 +1646,7 @@ admin/views/users.vue:
       admin: "管理者"
       moderator: "モデレーター"
       adminOrModerator: "管理者+モデレーター"
+      verified: "公式アカウント"
       silenced: "サイレンス済み"
       suspended: "凍結済み"
     origin:
@@ -1637,6 +1712,8 @@ admin/views/federation.vue:
   host: "ホスト"
   notes: "投稿"
   users: "ユーザー"
+  system: "システム"
+  softwareName: "ソフトウェア"
   following: "フォロー中"
   followers: "フォロワー"
   caught-at: "登録日時"
@@ -1695,6 +1772,17 @@ admin/views/federation.vue:
   blocked-hosts: "ブロック"
   blocked-hosts-info: "ブロックしたいホストを改行で区切って記述します。"
   save: "保存"
+
+admin/views/relay.vue:
+  add-relay: "リレーの追加"
+  inbox: "inboxのURL"
+  add: "追加"
+  remove: "削除"
+  added-relays: "追加済みのリレー"
+  status:
+    requesting: "承認待ち"
+    accepted: "承認済み"
+    rejected: "拒否済み"
 
 desktop/views/pages/welcome.vue:
   about: "詳しく..."
@@ -2385,3 +2473,5 @@ room:
     cup-noodle: "カップ麺"
     holo-display: "ホログラフィックディスプレイ"
     energy-drink: "エナジードリンク"
+    doll-ai: "藍ちゃん人形"
+    banknote: "札束"

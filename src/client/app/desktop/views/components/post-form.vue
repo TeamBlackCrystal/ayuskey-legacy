@@ -1,60 +1,66 @@
 <template>
-<div class="gjisdzwh"
-	@dragover.stop="onDragover"
-	@dragenter="onDragenter"
-	@dragleave="onDragleave"
-	@drop.stop="onDrop"
->
-	<div class="content">
-		<div class="hashtags" v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags">
-			<b>{{ $t('@.post-form.recent-tags') }}:</b>
-			<a v-for="tag in recentHashtags.slice(0, 5)" @click="addTag(tag)" :title="$t('@.post-form.click-to-tagging')">#{{ tag }}</a>
-		</div>
-		<div class="with-quote" v-if="quoteId"><fa icon="quote-left"/> {{ $t('@.post-form.quote-attached') }}<button @click="quoteId = null"><fa icon="times"/></button></div>
-		<div v-if="visibility === 'specified'" class="to-specified">
-			<fa icon="envelope"/> {{ $t('@.post-form.specified-recipient') }}
-			<div class="visibleUsers">
-				<span v-for="u in visibleUsers">
-					<mk-user-name :user="u"/>
-					<button @click="removeVisibleUser(u)"><fa icon="times"/></button>
-				</span>
-				<button @click="addVisibleUser">{{ $t('@.post-form.add-visible-user') }}</button>
+<div>
+	<div class="gjisdzwh"
+		@dragover.stop="onDragover"
+		@dragenter="onDragenter"
+		@dragleave="onDragleave"
+		@drop.stop="onDrop"
+	>
+		<div class="content">
+			<div class="hashtags" v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags">
+				<b>{{ $t('@.post-form.recent-tags') }}:</b>
+				<a v-for="tag in recentHashtags.slice(0, 5)" @click="addTag(tag)" :title="$t('@.post-form.click-to-tagging')">#{{ tag }}</a>
+			</div>
+			<div class="with-quote" v-if="quoteId"><fa icon="quote-left"/> {{ $t('@.post-form.quote-attached') }}<button @click="quoteId = null"><fa icon="times"/></button></div>
+			<div v-if="visibility === 'specified'" class="to-specified">
+				<fa icon="envelope"/> {{ $t('@.post-form.specified-recipient') }}
+				<div class="visibleUsers">
+					<span v-for="u in visibleUsers">
+						<mk-user-name :user="u"/>
+						<button @click="removeVisibleUser(u)"><fa icon="times"/></button>
+					</span>
+					<button @click="addVisibleUser">{{ $t('@.post-form.add-visible-user') }}</button>
+				</div>
+			</div>
+			<div class="local-only" v-if="localOnly === true"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
+			<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('@.post-form.cw-placeholder')" v-autocomplete="{ model: 'cw' }">
+			<div class="textarea">
+				<textarea :class="{ with: (files.length != 0 || poll) }"
+					ref="text" v-model="text" :disabled="posting"
+					@keydown="onKeydown" @paste="onPaste" :placeholder="placeholder"
+					v-autocomplete="{ model: 'text' }"
+				></textarea>
+				<button class="emoji" @click="emoji" ref="emoji">
+					<fa :icon="['far', 'laugh']"/>
+				</button>
+				<x-post-form-attaches class="files" :class="{ with: poll }" :files="files"/>
+				<x-poll-editor class="poll-editor" v-if="poll" ref="poll" @destroyed="poll = false" @updated="onPollUpdate()"/>
 			</div>
 		</div>
-		<div class="local-only" v-if="localOnly === true"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
-		<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('@.post-form.cw-placeholder')" v-autocomplete="{ model: 'cw' }">
-		<div class="textarea">
-			<textarea :class="{ with: (files.length != 0 || poll) }"
-				ref="text" v-model="text" :disabled="posting"
-				@keydown="onKeydown" @paste="onPaste" :placeholder="placeholder"
-				v-autocomplete="{ model: 'text' }"
-			></textarea>
-			<button class="emoji" @click="emoji" ref="emoji">
-				<fa :icon="['far', 'laugh']"/>
-			</button>
-			<x-post-form-attaches class="files" :class="{ with: poll }" :files="files"/>
-			<x-poll-editor class="poll-editor" v-if="poll" ref="poll" @destroyed="poll = false" @updated="onPollUpdate()"/>
-		</div>
+		<mk-uploader ref="uploader" @uploaded="attachMedia" @change="onChangeUploadings"/>
+		<button class="upload" :title="$t('@.post-form.attach-media-from-local')" @click="chooseFile"><fa icon="upload"/></button>
+		<button class="drive" :title="$t('@.post-form.attach-media-from-drive')" @click="chooseFileFromDrive"><fa icon="cloud"/></button>
+		<button class="kao" :title="$t('@.post-form.insert-a-kao')" @click="kao"><fa :icon="['far', 'smile']"/></button>
+		<button class="poll" :title="$t('@.post-form.create-poll')" @click="poll = !poll"><fa icon="chart-pie"/></button>
+		<button class="cw" :title="$t('@.post-form.hide-contents')" @click="useCw = !useCw"><fa :icon="['far', 'eye-slash']"/></button>
+		<button class="geo" :title="$t('@.post-form.attach-location-information')" @click="geo ? removeGeo() : setGeo()"><fa icon="map-marker-alt"/></button>
+		<button class="visibility" :title="$t('@.post-form.visibility')" @click="setVisibility" ref="visibilityButton">
+			<span v-if="visibility === 'public'"><fa icon="globe"/></span>
+			<span v-if="visibility === 'home'"><fa icon="home"/></span>
+			<span v-if="visibility === 'followers'"><fa icon="unlock"/></span>
+			<span v-if="visibility === 'specified'"><fa icon="envelope"/></span>
+		</button>
+		<p class="text-count" :class="{ over: trimmedLength(text) > maxNoteTextLength }">{{ maxNoteTextLength - trimmedLength(text) }}</p>
+		<ui-button primary :wait="posting" class="submit" :disabled="!canPost" @click="post">
+			{{ posting ? $t('@.post-form.posting') : submitText }}<mk-ellipsis v-if="posting"/>
+		</ui-button>
+		<input ref="file" type="file" multiple="multiple" tabindex="-1" @change="onChangeFile"/>
+		<div class="dropzone" v-if="draghover"></div>
 	</div>
-	<mk-uploader ref="uploader" @uploaded="attachMedia" @change="onChangeUploadings"/>
-	<button class="upload" :title="$t('@.post-form.attach-media-from-local')" @click="chooseFile"><fa icon="upload"/></button>
-	<button class="drive" :title="$t('@.post-form.attach-media-from-drive')" @click="chooseFileFromDrive"><fa icon="cloud"/></button>
-	<button class="kao" :title="$t('@.post-form.insert-a-kao')" @click="kao"><fa :icon="['far', 'smile']"/></button>
-	<button class="poll" :title="$t('@.post-form.create-poll')" @click="poll = !poll"><fa icon="chart-pie"/></button>
-	<button class="cw" :title="$t('@.post-form.hide-contents')" @click="useCw = !useCw"><fa :icon="['far', 'eye-slash']"/></button>
-	<button class="geo" :title="$t('@.post-form.attach-location-information')" @click="geo ? removeGeo() : setGeo()"><fa icon="map-marker-alt"/></button>
-	<button class="visibility" :title="$t('@.post-form.visibility')" @click="setVisibility" ref="visibilityButton">
-		<span v-if="visibility === 'public'"><fa icon="globe"/></span>
-		<span v-if="visibility === 'home'"><fa icon="home"/></span>
-		<span v-if="visibility === 'followers'"><fa icon="unlock"/></span>
-		<span v-if="visibility === 'specified'"><fa icon="envelope"/></span>
-	</button>
-	<p class="text-count" :class="{ over: trimmedLength(text) > maxNoteTextLength }">{{ maxNoteTextLength - trimmedLength(text) }}</p>
-	<ui-button primary :wait="posting" class="submit" :disabled="!canPost" @click="post">
-		{{ posting ? $t('@.post-form.posting') : submitText }}<mk-ellipsis v-if="posting"/>
-	</ui-button>
-	<input ref="file" type="file" multiple="multiple" tabindex="-1" @change="onChangeFile"/>
-	<div class="dropzone" v-if="draghover"></div>
+	<details v-if="preview" class="preview" ref="preview" :open="$store.state.device.showPostPreview" @toggle="togglePreview">
+		<summary>{{ $t('@.post-form.preview') }}</summary>
+		<mk-note class="note" :note="preview" :key="preview.id" :compact="true" :preview="true" />
+	</details>
 </div>
 </template>
 
@@ -65,6 +71,22 @@ import form from '../../../common/scripts/post-form';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/post-form.vue'),
+
+	watch: {
+		text() {
+			this.doPreview();
+		},
+		files() {
+			this.doPreview();
+		},
+		visibility() {
+			this.doPreview();
+		},
+		localOnly() {
+			this.doPreview();
+		},
+	},
+
 
 	mixins: [
 		form({
@@ -327,5 +349,16 @@ export default Vue.extend({
 		height 100%
 		border dashed 2px var(--primaryAlpha05)
 		pointer-events none
+
+.preview
+	background var(--desktopPostFormBg)
+
+	> summary
+		padding 0px 16px 16px 20px
+		font-size 14px
+		color var(--text)
+
+	> .note
+		border-top solid var(--lineWidth) var(--faceDivider)
 
 </style>

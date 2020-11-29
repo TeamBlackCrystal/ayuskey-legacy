@@ -55,7 +55,7 @@ const defaultDeviceSettings = {
 	roundedCorners: true,
 	reduceMotion: false,
 	darkmode: true,
-	darkTheme: 'bb5a8287-a072-4b0a-8ae5-ea2a0d33f4f2',
+	darkTheme: 'dark',
 	lightTheme: 'light',
 	lineWidth: 1,
 	fontSize: 0,
@@ -66,6 +66,7 @@ const defaultDeviceSettings = {
 	lang: null,
 	appTypeForce: 'auto',
 	debug: false,
+	showAdvancedSettings: false,
 	lightmode: false,
 	loadRawImages: false,
 	alwaysShowNsfw: false,
@@ -76,7 +77,9 @@ const defaultDeviceSettings = {
 	disableShowingAnimatedImages: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
+	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
+	instanceTicker: 'remote', // none, remote, always
 	roomGraphicsQuality: 'medium',
 	roomUseOrthographicCamera: true,
 	activeEmojiCategoryName: undefined,
@@ -375,6 +378,15 @@ export default (os: MiOS) => new Vuex.Store({
 			state: defaultDeviceSettings,
 
 			mutations: {
+				overwrite(state, x) {
+					for (const k of Object.keys(state)) {
+						if (x[k] === undefined) delete state[k];
+					}
+					for (const k of Object.keys(x)) {
+						state[k] = x[k];
+					}
+				},
+
 				set(state, x: { key: string; value: any }) {
 					state[x.key] = x.value;
 				},

@@ -55,6 +55,8 @@ module.exports = {
 			use: [{
 				loader: 'vue-loader',
 				options: {
+					scss: 'vue-style-loader!css-loader!sass-loader',
+					sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
 					cssSourceMap: false,
 					compilerOptions: {
 						preserveWhitespace: false
@@ -73,7 +75,9 @@ module.exports = {
 				}, {
 					loader: 'css-loader',
 					options: {
-						modules: true
+						modules: true,
+						esModule: false,
+						url: false,
 					}
 				}, postcss, {
 					loader: 'stylus-loader'
@@ -82,7 +86,11 @@ module.exports = {
 				use: [{
 					loader: 'vue-style-loader'
 				}, {
-					loader: 'css-loader'
+					loader: 'css-loader',
+					options: {
+						url: false,
+						esModule: false
+					}
 				}, postcss, {
 					loader: 'stylus-loader'
 				}]
@@ -92,14 +100,21 @@ module.exports = {
 			use: [{
 				loader: 'vue-style-loader'
 			}, {
-				loader: 'css-loader'
+				loader: 'css-loader',
+				options: {
+					esModule: false,
+				}
 			}, postcss]
 		}, {
 			test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
 			loader: 'url-loader'
 		}, {
 			test: /\.json5$/,
-			loader: 'json5-loader'
+			loader: 'json5-loader',
+			options: {
+				esModule: false,
+			},
+			type: 'javascript/auto'
 		}, {
 			test: /\.ts$/,
 			exclude: /node_modules/,
@@ -110,6 +125,48 @@ module.exports = {
 					configFile: __dirname + '/src/client/app/tsconfig.json',
 					appendTsSuffixTo: [/\.vue$/]
 				}
+			}]
+		}, {
+			test: /\.scss?$/,
+			exclude: /node_modules/,
+			oneOf: [{
+				resourceQuery: /module/,
+				use: [{
+					loader: 'vue-style-loader'
+				}, {
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						esModule: false, // TODO: trueにすると壊れる。Vue3移行の折にはtrueにできるかもしれない
+						url: false,
+					}
+				}, postcss, {
+					loader: 'sass-loader',
+					options: {
+						implementation: require('sass'),
+						sassOptions: {
+							fiber: require('fibers')
+						}
+					}
+				}]
+			}, {
+				use: [{
+					loader: 'vue-style-loader'
+				}, {
+					loader: 'css-loader',
+					options: {
+						url: false,
+						esModule: false, // TODO: trueにすると壊れる。Vue3移行の折にはtrueにできるかもしれない
+					}
+				}, postcss, {
+					loader: 'sass-loader',
+					options: {
+						implementation: require('sass'),
+						sassOptions: {
+							fiber: require('fibers')
+						}
+					}
+				}]
 			}]
 		}]
 	},
@@ -137,8 +194,7 @@ module.exports = {
 			for (const [lang, locale] of Object.entries(locales))
 				fs.writeFileSync(`./built/client/assets/locales/${lang}.json`, JSON.stringify(locale), 'utf-8');
 		}),
-		new VueLoaderPlugin(),
-		new webpack.optimize.ModuleConcatenationPlugin()
+		new VueLoaderPlugin()
 	],
 	output: {
 		path: __dirname + '/built/client/assets',
@@ -157,7 +213,9 @@ module.exports = {
 		modules: ['node_modules']
 	},
 	optimization: {
-		minimizer: [new TerserPlugin()]
+		minimizer: [new TerserPlugin({
+			parallel: 1
+		})]
 	},
 	cache: true,
 	devtool: false, //'source-map',

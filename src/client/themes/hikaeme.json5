@@ -1,0 +1,23 @@
+{
+	id: '4f310726-e3b0-46ac-b95e-9d01065d299a',
+
+	name: '控えめなお嬢様',
+	author: 'めいめい',
+	desc: '控えめなお嬢様のためのテーマなのだわ',
+
+	base: 'dark',
+
+	vars: {
+		primary: 'rgb(24, 192, 24)',
+		secondary: 'rgb(102, 0, 0)',
+		text: 'rgb(255, 251, 185)',
+	},
+
+	props: {
+		announcementsBg: '#660000',
+		announcementsTitle: '#e3e5e8',
+		renoteGradient: '#b72ddc',
+		noteText: '#f0d0d0',
+		noteHeaderName: '#ffe0e0',
+	},
+}

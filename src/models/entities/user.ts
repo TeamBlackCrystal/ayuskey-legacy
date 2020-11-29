@@ -147,6 +147,12 @@ export class User {
 
 	@Column('boolean', {
 		default: false,
+		comment: 'Whether the User is a Lady.'
+	})
+	public isLady: boolean;
+
+	@Column('boolean', {
+		default: false,
 		comment: 'Whether the User is the admin.'
 	})
 	public isAdmin: boolean;
@@ -156,6 +162,16 @@ export class User {
 		comment: 'Whether the User is a moderator.'
 	})
 	public isModerator: boolean;
+
+	@Column('boolean', {
+		default: false,
+	})
+	public isVerified: boolean;
+
+	@Column('boolean', {
+		default: false,
+	})
+	public isPremium: boolean;
 
 	@Column('varchar', {
 		length: 128, array: true, default: '{}'

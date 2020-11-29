@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 
 // Style
 import './style.styl';
+import './style.scss';
 
 import init from '../init';
 import composeNotification from '../common/scripts/compose-notification';
@@ -61,6 +62,7 @@ init(async (launch, os) => {
 				} else {
 					this.$root.newAsync(() => import('./views/components/post-form-window.vue').then(m => m.default), {
 						reply: o.reply,
+						airReply: o.airReply,
 						mention: o.mention,
 						animation: o.animation == null ? true : o.animation,
 						initialText: o.initialText,

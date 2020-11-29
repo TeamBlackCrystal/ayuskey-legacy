@@ -1,6 +1,6 @@
 import Vue, { VNode } from 'vue';
 import { length } from 'stringz';
-import { MfmForest } from '../../../../../mfm/types';
+import { MfmForest } from '../../../../../mfm/prelude';
 import { parse, parsePlain } from '../../../../../mfm/parse';
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
@@ -48,14 +48,19 @@ export default Vue.component('misskey-flavored-markdown', {
 	},
 
 	render(createElement) {
-		if (this.text == null || this.text == '') return;
+		if (this.text == null || this.text == '') return createElement('span');
 
 		const ast = (this.plain ? parsePlain : parse)(this.text);
 
 		let bigCount = 0;
 		let motionCount = 0;
 
-		const genEl = (ast: MfmForest) => concat(ast.map((token): VNode[] => {
+		const validTime = (t: string | null | undefined) => {
+			if (t == null) return null;
+			return t.match(/^[0-9.]+s$/) ? t : null;
+		}
+
+		const genEl = (ast: MfmForest): VNode[] => concat(ast.map((token): VNode[] => {
 			switch (token.node.type) {
 				case 'text': {
 					const text = token.node.props.text.replace(/(\r\n|\n|\r)/g, '\n');
@@ -86,6 +91,22 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
+				case 'sup': {
+					return (createElement as any)('sup', {
+						attrs: {
+							style: 'vertical-align: super; font-size: smaller;'
+						},
+					}, genEl(token.children));
+				}
+
+				case 'sub': {
+					return (createElement as any)('sub', {
+						attrs: {
+							style: 'vertical-align: sub; font-size: smaller;'
+						},
+					}, genEl(token.children));
+				}
+
 				case 'big': {
 					bigCount++;
 					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
@@ -101,6 +122,119 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
+				case 'bigger': {
+					bigCount++;
+					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
+					const isMany = bigCount > 3;
+					return (createElement as any)('strong', {
+						attrs: {
+							style: `display: inline-block; font-size: ${ isMany ? '100%' : '300%' };`
+						},
+						directives: [this.$store.state.settings.disableAnimatedMfm || isLong || isMany ? {} : {
+							name: 'animate-css',
+							value: { classes: 'wobble', iteration: 'infinite' }
+						}]
+					}, genEl(token.children));
+				}
+
+				case 'fn': {
+					// TODO: CSSを文字列で組み立てていくと token.node.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
+					let style;
+					switch (token.node.props.name) {
+						case 'tada': {
+							style = `font-size: 150%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: tada 1s linear infinite both;' : '');
+							break;
+						}
+						case 'jelly': {
+							const speed = validTime(token.node.props.args.speed) || '1s';
+							style = (!this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-rubberBand ${speed} linear infinite both;` : '');
+							break;
+						}
+						case 'twitch': {
+							const speed = validTime(token.node.props.args.speed) || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-twitch ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'shake': {
+							const speed = validTime(token.node.props.args.speed) || '0.5s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-shake ${speed} ease infinite;` : '';
+							break;
+						}
+						case 'spin': {
+							const direction =
+								token.node.props.args.left ? 'reverse' :
+								token.node.props.args.alternate ? 'alternate' :
+								'normal';
+							const anime =
+								token.node.props.args.x ? 'mfm-spinX' :
+								token.node.props.args.y ? 'mfm-spinY' :
+								'mfm-spin';
+							const speed = validTime(token.node.props.args.speed) || '1.5s';
+							const delay = validTime(token.node.props.args.delay) || '0s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: ${anime} ${speed} ${delay} linear infinite; animation-direction: ${direction};` : '';
+							break;
+						}
+						case 'jump': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-jump 0.75s linear infinite;' : '';
+							break;
+						}
+						case 'bounce': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-bounce 0.75s linear infinite; transform-origin: center bottom;' : '';
+							break;
+						}
+						case 'flip': {
+							const transform =
+								(token.node.props.args.h && token.node.props.args.v) ? 'scale(-1, -1)' :
+								token.node.props.args.v ? 'scaleY(-1)' :
+								'scaleX(-1)';
+							style = `transform: ${transform};`;
+							break;
+						}
+						case 'rgbshift': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-rgbshift 2s linear infinite;' : '';
+							break;
+						}
+						case 'rainbow': {
+							style = !this.$store.state.settings.disableAnimatedMfm ? 'color: var(--primary); animation: mfm-rainbow 1s linear infinite both' : '';
+							break;
+						}
+						case 'blink': {
+							const speed = validTime(token.node.props.args.speed) || '1s';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `animation: mfm-blink ${speed} step-end infinite` : '';
+							break;
+						}
+						case 'wobble': {
+							style = `font-size: 300%;` + (!this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-wobble 1s ease-out infinite both;' : '');
+							break;
+						}
+						/*
+						case 'rotate': {
+							//const x = token.node.props.args.x;
+							//const y = token.node.props.args.y;
+							const f =
+								token.node.props.args.x ? 'perspective(128px) rotateX' :
+								token.node.props.args.y ? 'perspective(128px) rotateY' :
+								'rotate';
+							const angle = token.node.props.args.angel || '90';
+							style = !this.$store.state.settings.disableAnimatedMfm ? `transform: ${f}(${angle}deg); transform-origin: center center` : '';
+							break;
+						}
+						*/
+						case 'font': {
+							const size = token.node.props.args.size;
+							const color = token.node.props.args.color;
+							style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}`;
+							break;
+						}
+					}
+
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block;' + style
+						},
+					}, genEl(token.children));
+				}
+
 				case 'small': {
 					return [createElement('small', {
 						attrs: {
@@ -113,6 +247,14 @@ export default Vue.component('misskey-flavored-markdown', {
 					return [createElement('div', {
 						attrs: {
 							style: 'text-align:center;'
+						}
+					}, genEl(token.children))];
+				}
+
+				case 'right': {
+					return [createElement('div', {
+						attrs: {
+							style: 'text-align:right;'
 						}
 					}, genEl(token.children))];
 				}
@@ -150,6 +292,42 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
+				case 'xspin': {
+					motionCount++;
+					const isLong = sumTextsLength(token.children) > 10 || countNodesF(token.children) > 5;
+					const isMany = motionCount > 5;
+					const direction =
+						token.node.props.attr == 'left' ? 'reverse' :
+						token.node.props.attr == 'alternate' ? 'alternate' :
+						'normal';
+					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
+						? ''
+						: `animation: xspin 1.5s linear infinite; animation-direction: ${direction};`;
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block;' + style
+						},
+					}, genEl(token.children));
+				}
+
+				case 'yspin': {
+					motionCount++;
+					const isLong = sumTextsLength(token.children) > 10 || countNodesF(token.children) > 5;
+					const isMany = motionCount > 5;
+					const direction =
+						token.node.props.attr == 'left' ? 'reverse' :
+						token.node.props.attr == 'alternate' ? 'alternate' :
+						'normal';
+					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
+						? ''
+						: `animation: yspin 1.5s linear infinite; animation-direction: ${direction};`;
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block;' + style
+						},
+					}, genEl(token.children));
+				}
+
 				case 'jump': {
 					motionCount++;
 					const isLong = sumTextsLength(token.children) > 30 || countNodesF(token.children) > 5;
@@ -161,11 +339,50 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
+				case 'blink': {
+					return (createElement as any)('span', {
+						attrs: {
+							style: (this.$store.state.settings.disableAnimatedMfm) ? 'display: inline-block;' : 'display: inline-block; animation: blink 0.75s linear infinite;'
+						},
+					}, genEl(token.children));
+				}
+
 				case 'flip': {
 					return (createElement as any)('span', {
 						attrs: {
 							style: 'display: inline-block; transform: scaleX(-1);'
 						},
+					}, genEl(token.children));
+				}
+
+				case 'vflip': {
+					return (createElement as any)('span', {
+						attrs: {
+							style: 'display: inline-block; transform: scaleY(-1);'
+						},
+					}, genEl(token.children));
+				}
+
+				case 'rotate': {
+					const isLong = sumTextsLength(token.children) > 100 || countNodesF(token.children) > 20;
+					const deg = token.node.props.attr;
+
+					return (createElement as any)('span', {
+						attrs: {
+							style: isLong ? '' : `display: inline-block; transform: rotate(${deg}deg);`
+						},
+					}, genEl(token.children));
+				}
+
+				case 'twitch': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-twitch 0.5s ease infinite;' : 'display: inline-block;'
+					}, genEl(token.children));
+				}
+
+				case 'shake': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-shake 0.5s ease infinite;' : 'display: inline-block;'
 					}, genEl(token.children));
 				}
 
@@ -307,10 +524,36 @@ export default Vue.component('misskey-flavored-markdown', {
 					})];
 				}
 
-				default: {
-					console.log('unknown ast type:', token.node.type);
+				case 'marquee': {
+					if (this.$store.state.settings.disableAnimatedMfm) {
+						return genEl(token.children);
+					}
 
-					return [];
+					let behavior = 'scroll';
+					let direction = 'left';
+					let scrollamount = '5';
+
+					if (token.node.props.attr === 'reverse') {
+						direction = 'right';
+					} else if (token.node.props.attr === 'alternate') {
+						behavior = 'alternate';
+						scrollamount = '10';
+					} else if (token.node.props.attr === 'slide') {
+						behavior = 'slide';
+					} else if (token.node.props.attr === 'reverse-slide') {
+						direction = 'right';
+						behavior = 'slide';
+					}
+
+					return [createElement('marquee', {
+							attrs: {
+								behavior,
+								direction,
+								scrolldelay: '60',
+								scrollamount,
+							}
+						}, genEl(token.children)),
+					];
 				}
 			}
 		}));

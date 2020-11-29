@@ -38,6 +38,7 @@ export class ASEvaluator {
 			FOLLOWERS_COUNT: opts.visitor ? opts.visitor.followersCount : 0,
 			FOLLOWING_COUNT: opts.visitor ? opts.visitor.followingCount : 0,
 			IS_CAT: opts.visitor ? opts.visitor.isCat : false,
+			IS_LADY: opts.visitor ? opts.visitor.isLady : false,
 			MY_NOTES_COUNT: opts.user ? opts.user.notesCount : 0,
 			MY_FOLLOWERS_COUNT: opts.user ? opts.user.followersCount : 0,
 			MY_FOLLOWING_COUNT: opts.user ? opts.user.followingCount : 0,

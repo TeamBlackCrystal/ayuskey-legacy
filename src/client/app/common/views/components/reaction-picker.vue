@@ -8,6 +8,7 @@
 		</div>
 		<div v-if="enableEmojiReaction" class="text">
 			<input v-model="text" :placeholder="$t('input-reaction-placeholder')" @keyup.enter="reactText" @input="tryReactText" v-autocomplete="{ model: 'text' }">
+			<button title="Pick" class="emoji" @click="emoji" ref="emoji" :style="emoji_style"><fa :icon="['far', 'laugh']"/></button>
 		</div>
 	</div>
 </div>
@@ -49,7 +50,8 @@ export default Vue.extend({
 			title: this.$t('choose-reaction'),
 			text: null,
 			enableEmojiReaction: false,
-			focus: null
+			focus: null,
+			emoji_style: {}
 		};
 	},
 
@@ -101,13 +103,13 @@ export default Vue.extend({
 			const height = popover.offsetHeight;
 
 			if (this.$root.isMobile) {
-				const x = rect.left + window.pageXOffset + (this.source.offsetWidth / 2);
 				const y = rect.top + window.pageYOffset + (this.source.offsetHeight / 2);
-				popover.style.left = (x - (width / 2)) + 'px';
+				this.$set(this.emoji_style, 'bottom', '0.2em');
 				popover.style.top = (y - (height / 2)) + 'px';
 			} else {
 				const x = rect.left + window.pageXOffset + (this.source.offsetWidth / 2);
 				const y = rect.top + window.pageYOffset + this.source.offsetHeight;
+				this.$set(this.emoji_style, 'bottom', '0.4em');
 				popover.style.left = (x - (width / 2)) + 'px';
 				popover.style.top = y + 'px';
 			}
@@ -142,6 +144,23 @@ export default Vue.extend({
 			if (!this.text) return;
 			if (!this.text.match(emojiRegex)) return;
 			this.reactText();
+		},
+
+		async emoji() {
+			const Picker = await import('../../../desktop/views/components/emoji-picker-dialog.vue').then(m => m.default);
+			const button = this.$refs.emoji;
+			const rect = button.getBoundingClientRect();
+			const vm = this.$root.new(Picker, {
+				reaction: true,
+				x: button.offsetWidth + rect.left + window.pageXOffset,
+				y: rect.top + window.pageYOffset
+			});
+			vm.$once('chosen', emoji => {
+				this.react(emoji);
+			});
+			this.$once('hook:beforeDestroy', () => {
+				vm.close();
+			});
 		},
 
 		onMouseover(e) {
@@ -210,6 +229,7 @@ export default Vue.extend({
 		width 100%
 		height 100%
 		background var(--modalBackdrop)
+		backdrop-filter blur(4px)
 		opacity 0
 
 	> .popover
@@ -224,7 +244,8 @@ export default Vue.extend({
 
 		&.isMobile
 			> div
-				width 280px
+				max-width: 500px;
+				width: calc(100% - 16px);
 
 				> button
 					width 50px
@@ -239,7 +260,6 @@ export default Vue.extend({
 			transform-origin center -($arrow-size)
 
 			&:before
-				content ""
 				display block
 				position absolute
 				top -($arrow-size * 2)
@@ -298,6 +318,7 @@ export default Vue.extend({
 		> .text
 			width 216px
 			padding 0 8px 8px 8px
+			color var(--text)
 
 			> input
 				width 100%
@@ -311,6 +332,15 @@ export default Vue.extend({
 				border solid 1px var(--primaryAlpha01)
 				border-radius 4px
 				transition border-color .2s ease
+
+			> .emoji
+				position absolute
+				bottom 0.4em
+				right 5px
+				padding 10px
+				font-size 18px
+				color var(--text)
+				opacity .5
 
 				&:hover
 					border-color var(--primaryAlpha02)
