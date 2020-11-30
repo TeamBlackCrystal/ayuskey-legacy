@@ -10403,6 +10403,11 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+sonic-channel@1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/sonic-channel/-/sonic-channel-1.2.6.tgz#b8ae761eeaa5a3854f073f0865309103d2eefb52"
+  integrity sha512-vJaC27/bYvd2v2ZKx6njHoQGxoLOHLjXHc7XF+3BAyNSULJ/A1lYyJkCdVgskvpIfpX5khpsg0aWAT4sORppSA==
+
 sort-keys@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
