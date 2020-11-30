@@ -93,7 +93,7 @@
 			<ui-switch v-model="isLocked" @change="save(false)">{{ $t('is-locked') }}</ui-switch>
 			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ $t('careful-bot') }}</ui-switch>
 			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ $t('auto-accept-followed') }}</ui-switch>
-			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
+			<ui-switch v-model="noCrawle" disabled @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
 		</div>
 	</section>
 
@@ -304,7 +304,7 @@ export default Vue.extend({
 				isLocked: !!this.isLocked,
 				carefulBot: !!this.carefulBot,
 				autoAcceptFollowed: !!this.autoAcceptFollowed,
-				noCrawle: !!this.noCrawle
+				noCrawle: !!this.noCrawle,
 			}).then(i => {
 				this.saving = false;
 				this.$store.state.i.avatarId = i.avatarId;
