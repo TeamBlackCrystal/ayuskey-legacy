@@ -16,9 +16,8 @@
 		<header v-if="!reaction" class="menu">
 			<ui-switch v-model="pinned">{{ $t('pinned') }}</ui-switch>
 		</header>
-
 		<!-- 検索 -->
-		<ui-input v-model="q" :autofocus="true" style="margin: 0.6em 0.6em 0.8em 0.6em;">
+		<ui-input v-model="q" :autofocus="!$root.isMobile" style="margin: 0.6em 0.6em 0.8em 0.6em;">
 			<span>{{ $t('search') }}</span>
 		</ui-input>
 		<div class="list" v-if="searchResults.length > 0">
