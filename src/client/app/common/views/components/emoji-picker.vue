@@ -22,10 +22,10 @@
 			<span>{{ $t('search') }}</span>
 		</ui-input>
 		<div class="list" v-if="searchResults.length > 0">
-			<button v-for="(emoji, i) in (searchResults || [])"
+			<button v-for="emoji in (searchResults || [])"
 				:title="emoji.sources ? emoji.sources.map(x => `${x.name}@${x.host}`).join(',\n') : emoji.name"
 				@click="chosen(emoji)"
-				:key="i"
+				:key="emoji.char || emoji.name"
 			>
 				<mk-emoji v-if="emoji.char != null" :emoji="emoji.char" :local="emoji.local"/>
 				<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
@@ -37,10 +37,10 @@
 			<!-- 最近使った -->
 			<header class="category"><fa :icon="faHistory" fixed-width/> {{ $t('recent-emoji') }}</header>
 			<div class="list">
-				<button v-for="(emoji, i) in ($store.state.device.recentEmojis || [])"
+				<button v-for="emoji in ($store.state.device.recentEmojis || [])"
 					:title="emoji.sources ? emoji.sources.map(x => `${x.name}@${x.host}`).join(',\n') : emoji.name"
 					@click="chosen(emoji)"
-					:key="i"
+					:key="emoji.char || emoji.name"
 				>
 					<mk-emoji v-if="emoji.char != null" :emoji="emoji.char" :local="emoji.local"/>
 					<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
