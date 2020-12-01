@@ -1,6 +1,6 @@
 import { getRepository, getCustomRepository } from 'typeorm';
 import { Instance } from './entities/instance';
-import { Emoji } from './entities/emoji';
+//import { Emoji } from './entities/emoji';
 import { Poll } from './entities/poll';
 import { PollVote } from './entities/poll-vote';
 import { Meta } from './entities/meta';
@@ -45,6 +45,7 @@ import { PageLikeRepository } from './repositories/page-like';
 import { ModerationLogRepository } from './repositories/moderation-logs';
 import { UsedUsername } from './entities/used-username';
 import { RelayRepository } from './repositories/relay';
+import { EmojiRepository } from './repositories/emoji';
 
 export const Apps = getCustomRepository(AppRepository);
 export const Notes = getCustomRepository(NoteRepository);
@@ -70,7 +71,8 @@ export const UsedUsernames = getRepository(UsedUsername);
 export const Followings = getCustomRepository(FollowingRepository);
 export const FollowRequests = getCustomRepository(FollowRequestRepository);
 export const Instances = getRepository(Instance);
-export const Emojis = getRepository(Emoji);
+//export const Emojis = getRepository(Emoji);
+export const Emojis = getCustomRepository(EmojiRepository);
 export const DriveFiles = getCustomRepository(DriveFileRepository);
 export const DriveFolders = getCustomRepository(DriveFolderRepository);
 export const Notifications = getCustomRepository(NotificationRepository);

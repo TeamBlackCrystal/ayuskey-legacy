@@ -26,11 +26,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { apiUrl } from '../../../../config';
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('common/views/components/integration-settings.vue'),
 
 	data() {

@@ -260,7 +260,6 @@ export default Vue.extend({
 			transform-origin center -($arrow-size)
 
 			&:before
-				content ""
 				display block
 				position absolute
 				top -($arrow-size * 2)

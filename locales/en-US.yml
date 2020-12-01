@@ -637,6 +637,7 @@ common/views/components/reaction-picker.vue:
   choose-reaction: "Send a reaction"
   input-reaction-placeholder: "or input Emoji"
 common/views/components/emoji-picker.vue:
+  search: "Search Emoji"
   recent-emoji: "Recently used"
   custom-emoji: "Custom Emoji"
   no-category: "Uncategorized"

@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('common/views/components/password-settings.vue'),
 	methods: {
 		async reset() {

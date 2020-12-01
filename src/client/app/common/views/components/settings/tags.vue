@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { v4 as uuid } from 'uuid';
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('desktop/views/components/settings.tags.vue'),
 	data() {
 		return {

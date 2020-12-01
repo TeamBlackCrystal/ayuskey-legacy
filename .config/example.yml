@@ -11,8 +11,17 @@ url: https://example.tld/
 # ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE
 # URL SETTINGS AFTER THAT!
 
-#   ┌───────────────────────┐
-#───┘ Port settings └───────────────────────────────────
+#   ┌───────────────┐
+#───┘ Port settings └───────────────────────────────────────────
+
+#                 +----- https://example.tld/ ------------+
+#   +------+      |+-------------+      +----------------+|
+#   | User | ---> || Proxy (443) | ---> | Misskey (3000) ||
+#   +------+      |+-------------+      +----------------+|
+#                 +---------------------------------------+
+#
+#   You need to setup reverse proxy. (eg. nginx)
+#   You do not define 'https' section.
 
 # Listen port
 port: 3000
@@ -54,7 +63,18 @@ redis:
 #elasticsearch:
 #  host: localhost
 #  port: 9200
-#  pass: null
+#  ssl: false
+#  user: 
+#  pass: 
+
+#   ┌─────────────────────┐
+#───┘ Sonic configuration └─────────────────────────────
+
+#sonic:
+#  host: localhost
+#  port: 1491
+#  pass: example-pass
+
 
 #   ┌───────────────┐
 #───┘ ID generation └───────────────────────────────────────────
@@ -64,15 +84,17 @@ redis:
 # change it according to your preferences.
 
 # Available methods:
-# aid ... Short, Millisecond accuracy
+# aid ... Short, Millisecond accuracy. Not recommended.
 # meid ... Similar to ObjectID, Millisecond accuracy
 # ulid ... Millisecond accuracy
 # objectid ... This is left for backward compatibility
 
+# Use meid or ulid
+
 # ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE
 # ID SETTINGS AFTER THAT!
 
-id: 'aid'
+id: 'meid'
 
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
@@ -80,9 +102,6 @@ id: 'aid'
 # If enabled:
 #  The first account created is automatically marked as Admin.
 autoAdmin: true
-
-# Whether disable HSTS
-#disableHsts: true
 
 # Number of worker processes
 #clusterLimit: 1

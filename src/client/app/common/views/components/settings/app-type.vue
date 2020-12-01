@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('common/views/components/settings/app-type.vue'),
 
 	data() {

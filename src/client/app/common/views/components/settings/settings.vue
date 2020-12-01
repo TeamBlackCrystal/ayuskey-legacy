@@ -259,7 +259,7 @@
 		</ui-card>
 
 		<ui-card>
-			<template #title><fa icon="sign-in-alt"/> wip:{{ $t('@._settings.signin') }}</template>
+			<template #title><fa icon="sign-in-alt"/> {{ $t('@._settings.signin') }}</template>
 			<section>
 				<x-signins/>
 			</section>

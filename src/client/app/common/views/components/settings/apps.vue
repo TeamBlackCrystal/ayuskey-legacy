@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n('desktop/views/components/settings.apps.vue'),
 	data() {
 		return {
