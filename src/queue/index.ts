@@ -304,14 +304,25 @@ export default function() {
 	processDb(dbQueue);
 }
 
-export function destroy() {
-	deliverQueue.once('cleaned', (jobs, status) => {
-		deliverLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
-	});
-	deliverQueue.clean(0, 'delayed');
+export function destroy(domain?: string) {
+	if (domain == null || domain === 'deliver') {
+		deliverQueue.once('cleaned', (jobs, status) => {
+			deliverLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		deliverQueue.clean(0, 'delayed');
+	}
 
-	inboxQueue.once('cleaned', (jobs, status) => {
-		inboxLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
-	});
-	inboxQueue.clean(0, 'delayed');
+	if (domain == null || domain === 'inbox') {
+		inboxQueue.once('cleaned', (jobs, status) => {
+			inboxLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		inboxQueue.clean(0, 'delayed');
+	}
+
+	if (domain === 'db') {
+		dbQueue.once('cleaned', (jobs, status) => {
+			dbLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		dbQueue.clean(0, 'delayed');
+	}
 }

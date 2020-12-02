@@ -1427,7 +1427,20 @@ admin/views/dashboard.vue:
 
 admin/views/queue.vue:
   title: "キュー"
+  promoteJobs: "50個再実行"
+  clearJobs: "すべてクリア"
   remove-all-jobs: "すべてのジョブをクリア"
+  jobs: "ジョブ"
+  queue: "キュー"
+  state: "状態"
+  domains:
+    deliver: "Deliver"
+    inbox: "Inbox"
+    db: "DB"
+  states:
+    delayed: "Delayed"
+    active: "Active"
+    waiting: "Waiting"
 
 admin/views/abuse.vue:
   title: "スパム報告"
