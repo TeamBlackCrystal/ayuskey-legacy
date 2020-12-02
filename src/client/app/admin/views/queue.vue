@@ -76,6 +76,7 @@
 					<template #label>{{ $t('queue') }}</template>
 					<option value="deliver">{{ $t('domains.deliver') }}</option>
 					<option value="inbox">{{ $t('domains.inbox') }}</option>
+					<option value="db">{{ $t('domains.db') }}</option>
 				</ui-select>
 				<ui-select v-model="state">
 					<template #label>{{ $t('state') }}</template>
@@ -92,7 +93,7 @@
 				<template v-if="domain === 'inbox'">
 					<span>{{ job.data.activity.id }}</span>
 				</template>
-				<span>{{ `(${job.attempts}/${job.maxAttempts}, ${Math.floor((jobsFetched - job.timestamp) / 1000 / 60)}min)` }}</span>
+				<span>{{ `(${job.attempts}/${job.maxAttempts}, age=${Math.floor((jobsFetched - job.timestamp) / 1000 / 60)}min${job.delay ? `, firstAttemptDelay=${Math.floor(job.delay / 1000 / 60)}min` : ''})` }}</span>
 			</div>
 			<ui-info v-if="jobs.length == jobsLimit">{{ $t('result-is-truncated', { n: jobsLimit }) }}</ui-info>
 		</section>
