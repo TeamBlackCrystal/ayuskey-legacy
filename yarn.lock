@@ -1738,10 +1738,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-vue@2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.20.0.tgz#bc53b028016473cd3401e199e1fc2538e6b2c298"
-  integrity sha512-yM/EK4w+qKo9niniBfUJdTUClB2Qk92NAkx2Buu79rBSRUbB09+eax3Ei3aLnOa99XrV1gDffEP2ZanVdCBTiw==
+bootstrap-vue@2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.20.1.tgz#1b6cd4368632c1a6dd4a5ed161242baa131c3cd5"
+  integrity sha512-s+w83q0T2mo/RbFwTM8gExbLJMEOYpdTUqmyFaHv2Ir+TFprMvTWpeAzeNuawJ130W1gePZ3LW3cNp1t/tZbOw==
   dependencies:
     "@nuxt/opencollective" "^0.3.2"
     bootstrap ">=4.5.3 <5.0.0"
@@ -8807,10 +8807,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-systeminformation@*, systeminformation@4.30.8:
-  version "4.30.8"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.30.8.tgz#dc5c6f83c6e74331b28066dc86650e5c5e906abc"
-  integrity sha512-hXLppzUBxOK8po3Q4Y9xRTESJgYrik+ZDInHh6O8f58TLCTXHtTZs5YbWg06rFk6RfupgNTABLyryQF2yS89NA==
+systeminformation@*, systeminformation@4.30.10:
+  version "4.30.10"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.30.10.tgz#7fa94b3da5247a64d070b2b4100c0dbc18e20858"
+  integrity sha512-BndDV7hjRomUGkHK6MO661KUUWcDRbr5SlepDvREidYnR2QJIyHln0iSysH9GPOT7YJgwtswdyg/up/ZFYxHrQ==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
