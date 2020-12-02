@@ -107,7 +107,7 @@ common:
 
   favorites: "お気に入り"
   noteReactions: "リアクションした投稿"
-  poll_finished: "アンケート完了"
+  poll_finished: "アンケートが完了しました"
 
   permissions:
     "read:account": "アカウントの情報を見る"

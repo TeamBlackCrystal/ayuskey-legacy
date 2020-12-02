@@ -80,7 +80,7 @@
 		</div>
 	</div>
 
-	<div class="notification pollVote" v-if="notification.type == 'poll_finished'">
+	<div class="notification pollFinished" v-if="notification.type == 'poll_finished'">
 		<mk-avatar class="avatar" :user="notification.user"/>
 		<div>
 			<header>
@@ -222,8 +222,17 @@ export default Vue.extend({
 			> div > header [data-icon]
 				color #555
 
-		&.pollVote
+		&.pollVote, &.pollFinished
 			> div > header
 				color var(--text)
 				align-items center
+
+		&.pollFinished
+			> .avatar
+				display none
+
+			> div
+				float none
+				width auto
+				padding 0
 </style>

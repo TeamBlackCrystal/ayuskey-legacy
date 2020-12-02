@@ -151,10 +151,18 @@ export default Vue.extend({
 		.text p [data-icon]
 			color #fff
 
-	&.pollVote
+	&.poll_vote, &.poll_finished
 		.text
 			color var(--text)
 			align-items center
 
+		&.poll_finished
+			.avatar
+				display none
+
+			.text
+				float none
+				width auto
+				padding 0
 </style>
 

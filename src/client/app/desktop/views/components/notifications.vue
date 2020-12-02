@@ -423,6 +423,15 @@ export default Vue.extend({
 						color var(--text)
 						align-items center
 
+				&.poll_finished
+					.avatar
+						display none
+
+					.text
+						float none
+						width auto
+						padding 0
+
 				&._missing_
 					display none
 
