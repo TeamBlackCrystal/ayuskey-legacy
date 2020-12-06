@@ -73,10 +73,11 @@ const state: any = { // < https://github.com/Microsoft/TypeScript/issues/1863
 		]
 	},
 	'verified': { isVerified: true },
-	'alive': {
-		updatedAt: { $gt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5) }
-	},
-	[fallback]: {}
+	'alive': { $and: [
+		{ updatedAt: { $gt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5) } },
+		{ isExplorable: true }
+	]},
+	[fallback]: { isExplorable: true }
 };
 
 const origin: any = { // < https://github.com/Microsoft/TypeScript/issues/1863
@@ -102,8 +103,7 @@ export default define(meta, async (ps, me) => {
 		.find({
 			$and: [
 				state[ps.state] || state[fallback],
-				origin[ps.origin] || origin[fallback],
-				{ isExplorable: true }
+				origin[ps.origin] || origin[fallback]
 			],
 			...(hideUserIds && hideUserIds.length > 0 ? { _id: { $nin: hideUserIds } } : {})
 		}, {
