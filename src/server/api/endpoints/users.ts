@@ -102,7 +102,8 @@ export default define(meta, async (ps, me) => {
 		.find({
 			$and: [
 				state[ps.state] || state[fallback],
-				origin[ps.origin] || origin[fallback]
+				origin[ps.origin] || origin[fallback],
+				{ isExplorable: true }
 			],
 			...(hideUserIds && hideUserIds.length > 0 ? { _id: { $nin: hideUserIds } } : {})
 		}, {

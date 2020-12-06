@@ -129,6 +129,11 @@ type IUserBase = {
 	noFederation?: boolean;
 
 	/**
+	 * みつけるに表示するか
+	 */
+	isExplorable?: boolean;
+
+	/**
 	 * このアカウントに届いているフォローリクエストの数
 	 */
 	pendingReceivedFollowRequestsCount: number;
@@ -337,6 +342,7 @@ export const pack = async (
 		bannerId: true,
 		emojis: true,
 		avoidSearchIndex: true,
+		isExplorable: true,
 		hideFollows: true,
 		isCat: true,
 		isBot: true,
