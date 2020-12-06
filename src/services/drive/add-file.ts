@@ -344,7 +344,6 @@ export default async function(
 	const properties: {
 		width?: number;
 		height?: number;
-		avgColor?: string;
 	} = {};
 
 	if (info.width) {
@@ -352,11 +351,8 @@ export default async function(
 		properties['height'] = info.height;
 	}
 
-	if (info.avgColor) {
-		properties['avgColor'] = `rgb(${info.avgColor.join(',')}`;
-	}
-
 	const profile = user ? await UserProfiles.findOne(user.id) : null;
+	//const profile = await UserProfiles.findOne(user.id); // よくわからないから残しておく
 
 	const folder = await fetchFolder();
 
@@ -368,6 +364,7 @@ export default async function(
 	file.folderId = folder !== null ? folder.id : null;
 	file.comment = comment;
 	file.properties = properties;
+	file.blurhash = info.blurhash || null;
 	file.isLink = isLink;
 	file.isSensitive = user
 		? Users.isLocalUser(user) && profile!.alwaysMarkNsfw ? true :
