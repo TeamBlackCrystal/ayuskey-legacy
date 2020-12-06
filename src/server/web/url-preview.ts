@@ -9,6 +9,11 @@ import { getJson } from '../../misc/fetch';
 const logger = new Logger('url-preview');
 
 module.exports = async (ctx: Koa.Context) => {
+	if (config.disableUrlPreview) {
+		ctx.body = '{}';
+		return;
+	}
+
 	const meta = await fetchMeta();
 
 	logger.info(meta.summalyProxy

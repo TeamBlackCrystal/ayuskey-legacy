@@ -40,6 +40,8 @@ export type Source = {
 
 	autoAdmin?: boolean;
 
+	disableUrlPreview?: boolean;
+
 	proxy?: string;
 	proxySmtp?: string;
 	proxyBypassHosts?: string[];

@@ -99,6 +99,9 @@ id: 'meid'
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
+# Disable URL Preview (default: false)
+disableUrlPreview: true
+
 # If enabled:
 #  The first account created is automatically marked as Admin.
 autoAdmin: true
@@ -142,5 +145,5 @@ autoAdmin: true
 # Media Proxy
 #mediaProxy: https://example.com/proxy
 
-# Sign to ActivityPub GET request (default: false)
+# Sign to ActivityPub GET request (default: true)
 #signToActivityPubGet: true

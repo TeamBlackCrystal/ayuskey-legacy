@@ -4,6 +4,7 @@ import { DriveFolder } from './drive-folder';
 import { id } from '../id';
 
 @Entity()
+@Index(['userId', 'folderId', 'id'])
 export class DriveFile {
 	@PrimaryColumn(id())
 	public id: string;
@@ -138,6 +139,7 @@ export class DriveFile {
 	@JoinColumn()
 	public folder: DriveFolder | null;
 
+	@Index()
 	@Column('boolean', {
 		default: false,
 		comment: 'Whether the DriveFile is NSFW.'
