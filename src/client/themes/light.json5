@@ -35,7 +35,8 @@
 
 		face: ':alpha<0.6<$secondary',
 		faceText: '$text',
-		faceHeader: ':lightenA<5<$secondary',
+		faceHeader: ':lighten<5<$secondary',
+		faceHeaderA: ':lightenA<5<$secondary',
 		faceHeaderText: '$text',
 		faceDivider: 'rgba(0, 0, 0, 0.082)',
 		faceTextButton: ':alpha<0.7<$text',
@@ -71,7 +72,8 @@
 
 		modalBackdrop: 'rgba(0, 0, 0, 0.1)',
 
-		dateDividerBg: ':darkenA<2<$secondary',
+		dateDividerBg: ':darken<2<$secondary',
+		dateDividerBgA: ':darkenA<2<$secondary',
 		dateDividerFg: ':alpha<0.7<$text',
 
 		switchTrack: 'rgba(0, 0, 0, 0.25)',
@@ -160,7 +162,8 @@
 		formButtonHoverBorder: ':alpha<0.3<$primary',
 		formButtonActiveBg: ':alpha<0.12<$primary',
 
-		desktopHeaderBg: ':lightenA<5<$secondary',
+		desktopHeaderBg: ':lighten<5<$secondary',
+		desktopHeaderBgA: ':lightenA<5<$secondary',
 		desktopHeaderFg: '$text',
 		desktopHeaderHoverFg: ':darken<7<$text',
 		desktopHeaderSearchBg: 'rgba(0, 0, 0, 0.05)',
