@@ -309,7 +309,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import Vue from 'vue';
 import i18n from '../../../../i18n';
 import X2fa from './2fa.vue';
 import XApps from './apps.vue';
@@ -334,7 +334,7 @@ import checkForUpdate from '../../../scripts/check-for-update';
 import { formatTimeString } from '../../../../../../misc/format-time-string';
 import { faSave, faEye } from '@fortawesome/free-regular-svg-icons';
 
-export default defineComponent({
+export default Vue.extend({
 	i18n: i18n(),
 	components: {
 		X2fa,
