@@ -273,8 +273,10 @@ export const mfmLanguage = P.createLanguage({
 				for (const arg of x.fn.substr(separator + 1).split(',')) {
 					const kv = arg.split('=');
 					if (kv.length === 1) {
+						// @ts-ignore
 						args[kv[0]] = true;
 					} else {
+						// @ts-ignore
 						args[kv[0]] = kv[1];
 					}
 				}
