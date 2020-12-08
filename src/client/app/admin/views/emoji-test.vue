@@ -184,7 +184,7 @@ export default Vue.extend({
 		fetchEmojis(kind?: string, truncate?: boolean) {
 			if (!kind || kind === 'local') {
 				if (truncate) this.offset = 0;
-				this.$root.api('admin/emoji/list', {
+				this.$root.api('admin/emoji/list-m544', {
 					remote: false,
 					name: this.searchLocal,
 					offset: this.offset,
@@ -205,7 +205,7 @@ export default Vue.extend({
 			}
 			if (!kind || kind === 'remote') {
 				if (truncate) this.remoteOffset = 0;
-				this.$root.api('admin/emoji/list', {
+				this.$root.api('admin/emoji/list-m544', {
 					remote: true,
 					name: this.searchRemote,
 					host: this.searchHost || undefined,
