@@ -99,6 +99,9 @@ id: 'meid'
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
+# Disable Federation: (default: false)
+#disableFederation: true
+
 # Disable URL Preview (default: false)
 disableUrlPreview: true
 

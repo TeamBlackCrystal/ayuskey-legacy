@@ -40,6 +40,7 @@ export type Source = {
 
 	autoAdmin?: boolean;
 
+	disableFederation?: boolean;
 	disableUrlPreview?: boolean;
 
 	proxy?: string;

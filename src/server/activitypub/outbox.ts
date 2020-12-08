@@ -18,6 +18,8 @@ import { Note } from '../../models/entities/note';
 import { ensure } from '../../prelude/ensure';
 
 export default async (ctx: Router.RouterContext) => {
+	if (config.disableFederation) ctx.throw(404);
+
 	const userId = ctx.params.user;
 
 	// Get 'sinceId' parameter

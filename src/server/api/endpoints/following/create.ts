@@ -6,6 +6,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import { Followings, Users } from '../../../../models';
+import config from '../../../../config';
 
 export const meta = {
 	stability: 'stable',
@@ -82,6 +83,11 @@ export default define(meta, async (ps, user) => {
 		if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
 		throw e;
 	});
+
+	// disableFederation
+	if (config.disableFederation && isRemoteUser(followee)) {
+		throw new ApiError(meta.errors.noFederation);
+	}
 
 	// Check if already following
 	const exist = await Followings.findOne({

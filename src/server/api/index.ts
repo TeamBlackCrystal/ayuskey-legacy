@@ -16,6 +16,7 @@ import discord from './service/discord';
 import github from './service/github';
 import twitter from './service/twitter';
 import { Instances } from '../../models';
+import config from '../../config';
 
 // Init app
 const app = new Koa();
@@ -66,6 +67,8 @@ router.use(github.routes());
 router.use(twitter.routes());
 
 router.get('/v1/instance/peers', async ctx => {
+	if (config.disableFederation) ctx.throw(404);
+
 	const instances = await Instances.find({
 		select: ['host']
 	});

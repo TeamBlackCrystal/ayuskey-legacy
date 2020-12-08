@@ -17,6 +17,7 @@ import { Notes, Users, Emojis, UserKeypairs } from '../models';
 import { ILocalUser, User } from '../models/entities/user';
 import { In } from 'typeorm';
 import { ensure } from '../prelude/ensure';
+import config from '../config';
 
 // Init router
 const router = new Router();
@@ -24,6 +25,8 @@ const router = new Router();
 //#region Routing
 
 function inbox(ctx: Router.RouterContext) {
+	if (config.disableFederation) ctx.throw(404);
+
 	let signature;
 
 	try {
