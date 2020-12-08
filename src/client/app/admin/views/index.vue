@@ -30,6 +30,7 @@
 			<li><router-link to="/federation-classic" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }} (classic)</router-link></li>
 			<li><router-link to="/relays" active-class="active"><fa :icon="faProjectDiagram" fixed-width/>{{ $t('relays') }}</router-link></li>
 			<li><router-link to="/emoji" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }}</router-link></li>
+			<li><router-link to="/emoji-test" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }} (test)</router-link></li>
 			<li><router-link to="/announcements" active-class="active"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
 			<li><router-link to="/abuse" active-class="active"><fa :icon="faExclamationCircle" fixed-width/>{{ $t('abuse') }}</router-link></li>
 		</ul>
@@ -50,6 +51,7 @@
 			<div v-if="page == 'moderators'"><x-moderators/></div>
 			<div v-if="page == 'users'"><x-users/></div>
 			<div v-if="page == 'emoji'"><x-emoji/></div>
+			<div v-if="page == 'emoji-test'"><x-emoji-test/></div>
 			<div v-if="page == 'announcements'"><x-announcements/></div>
 			<div v-if="page == 'drive'"><x-drive/></div>
 			<div v-if="page == 'federation'"><x-federation/></div>
@@ -72,6 +74,7 @@ import XLogs from './logs.vue';
 import XDb from './db.vue';
 import XModerators from './moderators.vue';
 import XEmoji from './emoji.vue';
+import XEmojiTest from './emoji-test.vue';
 import XAnnouncements from './announcements.vue';
 import XUsers from './users.vue';
 import XDrive from './drive.vue';
@@ -97,6 +100,7 @@ export default Vue.extend({
 		XDb,
 		XModerators,
 		XEmoji,
+		XEmojiTest,
 		XAnnouncements,
 		XUsers,
 		XDrive,
