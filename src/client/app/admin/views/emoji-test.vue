@@ -89,7 +89,7 @@
 				<img :src="emoji.url" :alt="emoji.name" style="width: 32px;"/>
 			</div>
 			<div class="detail">
-				<div style="margin-bottom: 0.5em;">{{ `${emoji.name}@${emoji.host} / MD5=${emoji.md5}` }}</div>
+				<div style="margin-bottom: 0.5em;">{{ `${emoji.name}@${emoji.host}` }}</div>
 				<ui-button @click="copy(emoji.id)">{{ $t('copy') }}</ui-button>
 			</div>
 		</section>
@@ -184,7 +184,7 @@ export default Vue.extend({
 		fetchEmojis(kind?: string, truncate?: boolean) {
 			if (!kind || kind === 'local') {
 				if (truncate) this.offset = 0;
-				this.$root.api('admin/emoji/list-m544', {
+				this.$root.api('admin/emoji/list', {
 					remote: false,
 					name: this.searchLocal,
 					offset: this.offset,
@@ -205,7 +205,7 @@ export default Vue.extend({
 			}
 			if (!kind || kind === 'remote') {
 				if (truncate) this.remoteOffset = 0;
-				this.$root.api('admin/emoji/list-m544', {
+				this.$root.api('admin/emoji/list-remote', {
 					remote: true,
 					name: this.searchRemote,
 					host: this.searchHost || undefined,
