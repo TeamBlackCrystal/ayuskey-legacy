@@ -13,6 +13,8 @@ import { LessThan, FindConditions } from 'typeorm';
 import { Following } from '../../models/entities/following';
 
 export default async (ctx: Router.RouterContext) => {
+	if (config.disableFederation) ctx.throw(404);
+
 	const userId = ctx.params.user;
 
 	// Get 'cursor' parameter

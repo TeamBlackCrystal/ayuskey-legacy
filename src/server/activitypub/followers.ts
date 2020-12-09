@@ -12,6 +12,8 @@ import { Users, Followings } from '../../models';
 import { LessThan } from 'typeorm';
 
 export default async (ctx: Router.RouterContext) => {
+	if (config.disableFederation) ctx.throw(404);
+
 	const userId = ctx.params.user;
 
 	// Get 'cursor' parameter
