@@ -5,7 +5,7 @@
 		"yupix <yupi0982@outlook.jp>",
 		"syuilo <i@syuilo.com>"
 	],
-	"version": "11.37.1-rei0784-5.0.0-rc.1",
+	"version": "11.37.1-rei0784-5.0.0-rc.2",
 	"codename": "daybreak",
 	"repository": {
 		"type": "git",
@@ -177,6 +177,7 @@
 		"koa-views": "6.3.1",
 		"langmap": "0.0.16",
 		"loader-utils": "2.0.0",
+		"lodash": "4.17.20",
 		"lookup-dns-cache": "2.1.0",
 		"mocha": "8.2.1",
 		"moji": "0.5.1",

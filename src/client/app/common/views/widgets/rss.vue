@@ -22,7 +22,7 @@ export default define({
 	name: 'rss',
 	props: () => ({
 		compact: false,
-		url: 'http://feeds.afpbb.com/rss/afpbb/afpbbnews'
+		url: 'https://www.gizmodo.jp/index.xml'
 	})
 }).extend({
 	i18n: i18n(),

@@ -1,5 +1,5 @@
 <template>
-<router-link class="instance-info-wrap" v-if="instance != null" :to="`/search?q=${ encodeURIComponent(`host:${instance.host}`) }`">
+<router-link class="instance-info-wrap" v-if="instance != null" :to="`/search?q=${ encodeURIComponent(`${instance.host}`) }`">
 	<div class="instance-info" :title="getDetail(instance)" :style="{ background: `linear-gradient(to right, ${themeColor}, rgba(0, 0, 0, 0))` }">
 		<img class="icon" v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`"/>
 		<div class="name">
