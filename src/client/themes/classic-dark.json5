@@ -147,7 +147,7 @@
 		infoWarnBg: '#42321c',
 		infoWarnFg: '#ffbd3e',
 
-		messagingRoomBg: '@bg',
+		messagingRoomBg: ':alpha<0.6<@bg',
 		messagingRoomInfo: '#fff',
 		messagingRoomDateDividerLine: 'rgba(255, 255, 255, 0.1)',
 		messagingRoomDateDividerText: 'rgba(255, 255, 255, 0.3)',

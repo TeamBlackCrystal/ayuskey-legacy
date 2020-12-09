@@ -33,7 +33,7 @@
 		switchActiveTrack: ':alpha<0.4<@switchActive',
 		radioActive: '$primary',
 
-		face: ':alpha<0.6<$secondary',
+		face: ':alpha<0.9<$secondary',
 		faceText: '$text',
 		faceHeader: ':lighten<5<$secondary',
 		faceHeaderA: ':lightenA<5<$secondary',
@@ -147,7 +147,7 @@
 		infoWarnBg: '#fff0db',
 		infoWarnFg: '#573c08',
 
-		messagingRoomBg: '#fff',
+		messagingRoomBg: ':lighten<5<$secondary',
 		messagingRoomInfo: '#000',
 		messagingRoomDateDividerLine: 'rgba(0, 0, 0, 0.1)',
 		messagingRoomDateDividerText: 'rgba(0, 0, 0, 0.3)',

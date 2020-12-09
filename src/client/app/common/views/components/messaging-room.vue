@@ -1,7 +1,7 @@
 <template>
 <div class="mk-messaging-room"
 	@dragover.prevent.stop="onDragover"
-	@drop.prevent.stop="onDrop"
+	@drop.prevent.stop="onDrop" :style="messagingRoomBlur_style"
 >
 	<div class="body">
 		<p class="init" v-if="init"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}</p>
@@ -68,7 +68,8 @@ export default Vue.extend({
 			connection: null,
 			showIndicator: false,
 			timer: null,
-			faArrowCircleDown, faFlag
+			faArrowCircleDown, faFlag,
+			messagingRoomBlur_style: {}
 		};
 	},
 
@@ -294,19 +295,26 @@ export default Vue.extend({
 				}
 			}
 		}
-	}
+	},
+	mounted() {
+		console.log(this.$store.state.device.darkmode)
+		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
+			this.$set(this.messagingRoomBlur_style, 'backdrop-filter', 'blur(1.2em)');
+		} else {
+			this.$set(this.messagingRoomBlur_style, 'backdrop-filter', 'blur(0.2em)');
+		}
 });
 </script>
 
 <style lang="stylus" scoped>
 .mk-messaging-room
-	background var(--messagingRoomBg)
 
 	> .body
 		width 100%
 		max-width 600px
 		margin 0 auto
 		min-height calc(100% - 103px)
+		background var(--face)
 
 		> .init,
 		> .empty

@@ -5,7 +5,7 @@
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
 	<transition name="zoom-in-top">
-		<div class="menu" v-if="isOpen">
+		<div class="menu" v-if="isOpen" :style="menublur_style">
 			<ul>
 				<li>
 					<router-link :to="`/@${ $store.state.i.username }`">
@@ -121,7 +121,8 @@ export default Vue.extend({
 	data() {
 		return {
 			isOpen: false,
-			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen
+			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen,
+			menublur_style: {}
 		};
 	},
 	computed: {
@@ -172,6 +173,14 @@ export default Vue.extend({
 			this.$store.commit('device/set', { key: 'deckMode', value: !this.$store.state.device.inDeckMode });
 			location.replace('/');
 		},
+	},
+	mounted() {
+		console.log(this.$store.state.device.darkmode)
+		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
+			this.$set(this.menublur_style, 'backdrop-filter', 'blur(2em)');
+		} else {
+			this.$set(this.menublur_style, 'backdrop-filter', 'blur(0.3em)');
+		}
 	}
 });
 </script>
@@ -227,7 +236,6 @@ export default Vue.extend({
 				margin-left 8px
 
 	> .menu
-		backdrop-filter blur(8px)
 		$bgcolor = var(--face)
 		display block
 		position absolute

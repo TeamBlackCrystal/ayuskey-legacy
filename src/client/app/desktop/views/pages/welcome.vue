@@ -245,6 +245,7 @@ export default Vue.extend({
 	.v--modal-box
 		background var(--face)
 		color var(--text)
+		backdrop-filter blur(1.3em)
 
 		.formHeader
 			border-bottom solid 1px rgba(#000, 0.2)
