@@ -347,6 +347,7 @@ describe('MFM', () => {
 		});
 
 		describe('motion', () => {
+			/*
 			it('by triple brackets', () => {
 				const tokens = parse('(((foo)))');
 				assert.deepStrictEqual(tokens, [
@@ -355,7 +356,9 @@ describe('MFM', () => {
 					], {}),
 				]);
 			});
+			*/
 
+			/*
 			it('by triple brackets (with other texts)', () => {
 				const tokens = parse('bar(((foo)))bar');
 				assert.deepStrictEqual(tokens, [
@@ -366,6 +369,7 @@ describe('MFM', () => {
 					text('bar'),
 				]);
 			});
+			*/
 
 			it('by <motion> tag', () => {
 				const tokens = parse('<motion>foo</motion>');
