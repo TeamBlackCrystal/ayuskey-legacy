@@ -94,7 +94,7 @@ describe('Get file info', () => {
 			},
 			width: 256,
 			height: 256,
-			blurhash: 'y74P29kDpdp{k?VDZ#krkCaefkf6fQf5HXZ$krkqadaKaJkCaKkXfkkCf5fkQ8kXZ#VDaKk?krZ~kCf6kDf6f5f6U]krZ#Z#aekrkq'
+			blurhash: 'y74r*daKpdp{kWZ#Z#k=fkf5f5f6fkfPHXa0krkrkCZ~aJf+aekCkDfRe.e.L#kWZ~Z#e.krkraJe.kCkDfke.f6UukrZ#VDadk?kr'
 		});
 	}));
 
@@ -111,7 +111,7 @@ describe('Get file info', () => {
 			},
 			width: 256,
 			height: 256,
-			blurhash: 'yMEKyd1U1?=nZN-2EwofR*oHnijYX6S50J=m]WEVl9JE$SR*xHR;XSX8nQxB-WS6Nts*aKskWnaxR%s*i_n~X6S5=#NgOAs*enoIWU'
+			blurhash: 'ySFzz31U1?=nZO,+JOofR*oHnhjYX6S50J=n]DEol8JEw}R*xaNgXTW=ruxBxbWZS2obe.n~bFaxR%s*aKoIW.WY=}NgOAs*enoIWU'
 		});
 	}));
 
@@ -129,7 +129,7 @@ describe('Get file info', () => {
 			},
 			width: 256,
 			height: 256,
-			blurhash: 'yMEKyd1U1?=nZN-2EwofR*oHnijYX6S50J=m]WEVl9JE$SR*xHR;XSX8nQxB-WS6Nts*aKskWnaxR%s*i_n~X6S5=#NgOAs*enoIWU'
+			blurhash: 'ySFzz31U1?=nZO,+JOofR*oHnhjYX6S50J=n]DEol8JEw}R*xaNgXTW=ruxBxbWZS2obe.n~bFaxR%s*aKoIW.WY=}NgOAs*enoIWU'
 		});
 	}));
 
