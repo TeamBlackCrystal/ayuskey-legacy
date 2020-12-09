@@ -1,6 +1,7 @@
 <template>
 <div>
 	<ui-card>
+		<ui-info warn>This is Insider Preview</ui-info>
 		<template #title><fa icon="plus"/> {{ $t('add-emoji.title') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
