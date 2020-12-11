@@ -103,7 +103,7 @@ id: 'meid'
 #disableFederation: true
 
 # Disable URL Preview (default: false)
-disableUrlPreview: true
+# disableUrlPreview: true
 
 # If enabled:
 #  The first account created is automatically marked as Admin.
