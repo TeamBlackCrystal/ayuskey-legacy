@@ -23,7 +23,7 @@ export const meta = {
 
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 50
 		},
 
 		sinceId: {
