@@ -6,6 +6,26 @@
 			<ui-info warn>警告: 試験運用の機能です。これらの機能を有効にすると、Misskeyが正しく動作しなくなる可能性があります。また、ここにあるすべての機能が動作するわけではありません。</ui-info>
 		</section>
 	</ui-card>
+
+	<ui-card>
+		<template #title>アカウント設定</template>
+		<section>
+			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
+		</section>
+	</ui-card>
+
+	<ui-card>
+		<template #title>クライアント設定</template>
+		<section>
+			<header>{{ $t('@._settings.instance-ticker') }}</header>
+			<ui-radio v-model="instanceTicker" value="none">{{ $t('@._settings.instance-ticker-none') }}</ui-radio>
+			<ui-radio v-model="instanceTicker" value="remote">{{ $t('@._settings.instance-ticker-remote') }}</ui-radio>
+			<ui-radio v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
+		</section>
+		<section>
+			<ui-switch v-model="disableBlur">ダークテーマのぼかしを抑える</ui-switch>
+		</section>
+	</ui-card>
 </div>
 </template>
 
@@ -14,7 +34,22 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 
 export default Vue.extend({
-	i18n: i18n()
+	i18n: i18n(),
+	data() {
+		return {
+			noCrawle: false,
+		}
+	},
+	computed: {
+		instanceTicker: {
+			get() { return this.$store.state.device.instanceTicker; },
+			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); }
+		},
+		disableBlur: {
+			get() { return this.$store.state.device.disableBlur; },
+			set(value) { this.$store.commit('device/set', { key: 'disableBlur', value }); }
+		},
+	}
 });
 </script>
 

@@ -56,6 +56,7 @@ const defaultDeviceSettings = {
 	reduceMotion: false,
 	darkmode: true,
 	darkTheme: 'dark',
+	disableBlur: false,
 	lightTheme: 'light',
 	lineWidth: 1,
 	fontSize: 0,

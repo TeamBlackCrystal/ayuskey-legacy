@@ -93,7 +93,9 @@
 			<ui-switch v-model="isLocked" @change="save(false)">{{ $t('is-locked') }}</ui-switch>
 			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ $t('careful-bot') }}</ui-switch>
 			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ $t('auto-accept-followed') }}</ui-switch>
+			<!--
 			<ui-switch v-model="noCrawle" disabled @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
+			-->
 		</div>
 	</section>
 
