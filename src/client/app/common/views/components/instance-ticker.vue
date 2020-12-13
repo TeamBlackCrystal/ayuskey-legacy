@@ -1,7 +1,7 @@
 <template>
 <router-link class="instance-info-wrap" v-if="instance != null" :to="`/search?q=${ encodeURIComponent(`${instance.host}`) }`">
 	<div class="instance-info" :title="getDetail(instance)" :style="{ background: `linear-gradient(to right, ${themeColor}, rgba(0, 0, 0, 0))` }">
-		<img class="icon" v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`"/>
+		<img class="icon" v-if="instance.faviconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.faviconUrl })}`"/>
 		<div class="name">
 			{{ (instance.name && instance.name !== instance.host) ? `${instance.name} (${instance.host})` : `${instance.host}` }}
 		</div>
@@ -17,7 +17,8 @@ type II = {
 	name?: string;
 	softwareName?: string;
 	softwareVersion?: string;
-	iconUrl?: string;
+	// 本家と同じ仕様?
+	faviconUrl: '/favicon.ico';
 };
 export default Vue.extend({ 
 	props: ['instance'],
