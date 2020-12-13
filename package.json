@@ -5,7 +5,7 @@
 		"yupix <yupi0982@outlook.jp>",
 		"syuilo <i@syuilo.com>"
 	],
-	"version": "11.37.1-rei0784-5.0.0-rc.6",
+	"version": "11.37.1-rei0784-5.0.0-rc.6b",
 	"codename": "daybreak",
 	"repository": {
 		"type": "git",
@@ -20,6 +20,7 @@
 		"migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
 		"migrateandstart": "npm run migrate && npm run start",
 		"build": "webpack && gulp build",
+		"build:product": "cross-env NODE_ENV=production webpack && gulp build",
 		"webpack": "webpack",
 		"dev": "run-p watch gulpstart",
 		"gulpstart": "run-s gulp start",
