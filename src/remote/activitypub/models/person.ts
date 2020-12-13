@@ -140,6 +140,8 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 
 	const bday = person['vcard:bday']?.match(/^\d{4}-\d{2}-\d{2}/);
 
+	const bday = person['vcard:bday']?.match(/^\d{4}-\d{2}-\d{2}/);
+
 	// Create user
 	let user: IRemoteUser;
 	try {
@@ -373,6 +375,8 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 		discordId: null,
 		discordUsername: null,
 		discordDiscriminator: null,
+		// こっちを使うようにしてもいいかも？(v12由来)
+		//description: person.summary ? htmlToMfm(person.summary, person.tag) : null,
 	});
 
 	// ハッシュタグ更新
