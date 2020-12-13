@@ -194,6 +194,7 @@ init(async (launch, os) => {
 			{ path: '/games/reversi/:game?', component: MkReversi },
 			{ path: '/authorize-follow', component: MkFollow },
 			{ path: '/deck', redirect: '/' },
+			{ path: '/flags', component: () => import('../common/views/pages/flags.vue').then(m => m.default) },
 			{ path: '*', component: MkNotFound }
 		],
 		scrollBehavior(to, from, savedPosition) {
