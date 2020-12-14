@@ -4,7 +4,7 @@ const defaultMeta: any = {
 	name: 'Misskey',
 	maintainer: {},
 	langs: [],
-	cacheRemoteFiles: true,
+	cacheRemoteFiles: false,
 	localDriveCapacityMb: 256,
 	remoteDriveCapacityMb: 8,
 	hidedTags: [],
