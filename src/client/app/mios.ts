@@ -232,8 +232,8 @@ export default class MiOS extends EventEmitter {
 			const main = this.stream.useSharedConnection('main');
 
 			main.on('metaUpdated', body => {
-				//const timestamp = body.timestamp;
-				//this.refreshMeta(timestamp);
+				const timestamp = body.timestamp;
+				this.refreshMeta(timestamp);
 			});
 
 			// 自分の情報が更新されたとき
