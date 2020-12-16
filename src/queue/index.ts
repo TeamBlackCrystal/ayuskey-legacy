@@ -4,7 +4,6 @@ import * as httpSignature from 'http-signature';
 
 import config from '../config';
 import { ILocalUser } from '../models/user';
-import { program } from '../argv';
 
 import processDeliver from './processors/deliver';
 import processInbox from './processors/inbox';
