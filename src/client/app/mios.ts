@@ -231,11 +231,6 @@ export default class MiOS extends EventEmitter {
 		if (this.store.getters.isSignedIn) {
 			const main = this.stream.useSharedConnection('main');
 
-			main.on('metaUpdated', body => {
-				const timestamp = body.timestamp;
-				this.refreshMeta(timestamp);
-			});
-
 			// 自分の情報が更新されたとき
 			main.on('meUpdated', i => {
 				this.store.dispatch('mergeMe', i);
@@ -484,28 +479,11 @@ export default class MiOS extends EventEmitter {
 	}
 
 	/**
-	 * Misskeyのキャッシュ済みメタ情報を即時返します
+	 * Misskeyのメタ情報を取得します
 	 */
 	@autobind
 	public getMetaSync() {
 		return this.meta ? this.meta.data : null;
-	}
-
-	/**
-	 * Misskeyのキャッシュ済みメタ情報を更新します
-	 * @param timestamp イベントから受け取ったタイムスタンプ
-	 */
-	@autobind
-	public refreshMeta(timestamp: number) {
-		this.api('meta', {
-			detail: false,
-			_ts: `${timestamp}`
-		}, false, true).then(meta => {
-			this.meta = {
-				data: meta,
-				chachedAt: new Date()
-			};
-		});
 	}
 
 	/**

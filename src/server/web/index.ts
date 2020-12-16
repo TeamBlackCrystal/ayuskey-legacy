@@ -358,7 +358,7 @@ router.get('*', async ctx => {
 		appleTouchIcon: config.icons?.appleTouchIcon?.url,
 	});
 
-	ctx.set('Cache-Control', 'public, max-age=60');
+	ctx.set('Cache-Control', 'public, max-age=300');
 });
 
 // Register router

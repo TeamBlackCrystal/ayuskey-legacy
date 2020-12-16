@@ -26,16 +26,5 @@ export default class extends Channel {
 
 			this.send(type, body);
 		});
-
-		this.subscriber.on(`serverEvent`, this.onServerEvent);
-	}
-
-	@autobind
-	private async onServerEvent(data: any) {
-		if (data.type === 'metaUpdated') {
-			this.send('metaUpdated', {
-				timestamp: data.body.timestamp
-			});
-		}
 	}
 }
