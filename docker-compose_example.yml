@@ -1,0 +1,71 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    restart: always
+    links:
+      - db
+      - redis
+#      - es
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - internal_network
+      - external_network
+    volumes:
+      - ./files:/misskey/files
+
+  redis:
+    restart: always
+    image: redis:4.0-alpine
+    networks:
+      - internal_network
+    volumes:
+      - ./redis:/data
+
+  db:
+    restart: always
+    image: postgres:11.2-alpine
+    networks:
+      - internal_network
+    env_file:
+      - .config/docker.env
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+# for arm64
+# git clone https://github.com/sousuke0422/Elasticsearch-OSS6.x-for-arm64.git es
+#  es:
+#    restart: always
+#    build: ./es
+#    networks: 
+#      - internal_network
+#    volumes: 
+#      - ./elasticsearch:/usr/share/elasticsearch/data
+
+# amd64 only
+#  es:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    networks:
+#      - internal_network
+#    volumes:
+#      - ./elasticsearch:/usr/share/elasticsearch/data
+
+# amd64 only
+#  sonic:
+#    restart: true
+#    image: valeriansaliou/sonic:v1.3.0
+#    networks: 
+#      - internal_network
+#    volumes: 
+#      - ./config/sonic.cfg:/etc/sonic.cfg
+#      - ./sonic:/var/lib/sonic/store
+
+networks:
+  internal_network:
+    internal: true
+  external_network:
