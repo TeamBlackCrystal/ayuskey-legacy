@@ -1,6 +1,7 @@
 import $ from 'cafy';
 import Meta from '../../../../models/meta';
 import define from '../../define';
+import { publishMetaUpdated } from '../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -496,6 +497,8 @@ export default define(meta, async (ps) => {
 	await Meta.update({}, {
 		$set: set
 	}, { upsert: true });
+
+	publishMetaUpdated();
 
 	return;
 });

@@ -2,6 +2,7 @@ import $ from 'cafy';
 import Emoji from '../../../../../models/emoji';
 import define from '../../../define';
 import { detectUrlMime } from '../../../../../misc/detect-url-mime';
+import { publishMetaUpdated } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -46,6 +47,8 @@ export default define(meta, async (ps) => {
 		type: mime,
 		md5,
 	});
+
+	publishMetaUpdated();
 
 	return {
 		id: emoji._id

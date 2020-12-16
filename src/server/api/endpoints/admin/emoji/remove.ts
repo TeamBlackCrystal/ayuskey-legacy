@@ -2,6 +2,7 @@ import $ from 'cafy';
 import Emoji from '../../../../../models/emoji';
 import define from '../../../define';
 import ID from '../../../../../misc/cafy-id';
+import { publishMetaUpdated } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -28,6 +29,8 @@ export default define(meta, async (ps) => {
 	if (emoji == null) throw new Error('emoji not found');
 
 	await Emoji.remove({ _id: emoji._id });
+
+	publishMetaUpdated();
 
 	return;
 });

@@ -3,6 +3,7 @@ import Emoji from '../../../../../models/emoji';
 import define from '../../../define';
 import ID from '../../../../../misc/cafy-id';
 import { detectUrlMime } from '../../../../../misc/detect-url-mime';
+import { publishMetaUpdated } from '../../../../../services/create-event';
 
 export const meta = {
 	desc: {
@@ -57,6 +58,8 @@ export default define(meta, async (ps) => {
 			md5,
 		}
 	});
+
+	publishMetaUpdated();
 
 	return;
 });

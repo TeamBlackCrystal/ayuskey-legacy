@@ -4,6 +4,7 @@ import { ApiError } from '../../../error';
 import Emoji, { IEmoji } from '../../../../../models/emoji';
 import ID from '../../../../../misc/cafy-id';
 import { tryStockEmoji } from '../../../../../services/emoji-store';
+import { publishMetaUpdated } from '../../../../../services/create-event';
 
 export const meta = {
 	tags: ['admin'],
@@ -61,6 +62,8 @@ export default define(meta, async (ps, me) => {
 		type: emoji.type,
 		md5: emoji.md5
 	});
+
+	publishMetaUpdated();
 
 	return {
 		id: copied._id
