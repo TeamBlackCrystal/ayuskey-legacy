@@ -93,6 +93,9 @@
 				<template v-if="domain === 'inbox'">
 					<span>{{ job.data.activity.id }}</span>
 				</template>
+				<template v-if="domain === 'db'">
+					<span>{{ job.name }}</span>
+				</template>
 				<span>{{ `(${job.attempts}/${job.maxAttempts}, age=${Math.floor((jobsFetched - job.timestamp) / 1000 / 60)}min${job.delay ? `, firstAttemptDelay=${Math.floor(job.delay / 1000 / 60)}min` : ''})` }}</span>
 			</div>
 			<ui-info v-if="jobs.length == jobsLimit">{{ $t('result-is-truncated', { n: jobsLimit }) }}</ui-info>
