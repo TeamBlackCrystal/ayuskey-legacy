@@ -108,7 +108,7 @@ class Autocomplete {
 
 		if (isHashtag && opened == false && !this.opts.userOnly) {
 			const hashtag = text.substr(hashtagIndex + 1);
-			if (hashtag === '' || hashtag.match(/^[^\s.,!?'"#:/[]]+$/)) {
+			if (!hashtag.includes(' ')) {
 				this.open('hashtag', hashtag);
 				opened = true;
 			}
