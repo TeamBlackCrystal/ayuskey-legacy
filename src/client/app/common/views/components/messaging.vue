@@ -1,5 +1,5 @@
 <template>
-<div class="mk-messaging" :data-compact="compact" :style="messagingblur_style">
+<div class="mk-messaging" :data-compact="compact">
 	<div class="search" v-if="!compact" :style="{ top: headerTop + 'px' }">
 		<div class="form">
 			<label for="search-input"><i><fa icon="search"/></i></label>
@@ -82,7 +82,6 @@ export default Vue.extend({
 			result: [],
 			connection: null,
 			faUser, faUsers,
-			messagingblur_style: {}
 		};
 	},
 	mounted() {
@@ -214,14 +213,7 @@ export default Vue.extend({
 			if (canceled) return;
 			this.navigateGroup(group);
 		}
-	},
-	mounted() {
-		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.$set(this.messagingblur_style, 'backdrop-filter', 'blur(1.2em)');
-		} else {
-			this.$set(this.messagingblur_style, 'backdrop-filter', 'blur(0.2em)');
-		}
-});
+	});
 </script>
 
 <style lang="stylus" scoped>
