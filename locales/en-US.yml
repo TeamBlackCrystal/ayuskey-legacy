@@ -1383,6 +1383,7 @@ admin/views/charts.vue:
   notes: "Posts"
   users: "Users"
   drive: "Media storage"
+  queue: "Queue"
   network: "Network"
   charts:
     federation-instances: "The number of instances: increase/decrease"
@@ -1400,6 +1401,8 @@ admin/views/charts.vue:
     drive-total: "Total usage of Drive"
     drive-files: "The number of files on the storage: increase/decrease"
     drive-files-total: "Total number of files on Drive"
+    queue-deliver: "Number of deliver queue processings"
+    queue-inbox: "Number of inbox queue processings"
     network-requests: "Requests"
     network-time: "Response time"
     network-usage: "Traffic"

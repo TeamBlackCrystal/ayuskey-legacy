@@ -1551,6 +1551,7 @@ admin/views/charts.vue:
   notes: "投稿"
   users: "ユーザー"
   drive: "ドライブ"
+  queue: "キュー"
   network: "ネットワーク"
   charts:
     federation-instances: "インスタンスの増減"
@@ -1568,6 +1569,8 @@ admin/views/charts.vue:
     drive-total: "ドライブ使用量の積算"
     drive-files: "ドライブのファイル数の増減"
     drive-files-total: "ドライブのファイル数の積算"
+    queue-deliver: "Deliverキューの処理数"
+    queue-inbox: "Inboxキューの処理数"
     network-requests: "リクエスト"
     network-time: "応答時間"
     network-usage: "通信量"

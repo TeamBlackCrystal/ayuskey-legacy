@@ -9,6 +9,7 @@ import Logger from '../../services/logger';
 import { registerOrFetchInstanceDoc } from '../../services/register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
 import instanceChart from '../../services/chart/instance';
+import queueChart from '../../services/chart/queue';
 import { getApId } from '../../remote/activitypub/type';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
 import { isBlockedHost } from '../../misc/instance-info';
@@ -144,6 +145,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		UpdateInstanceinfo(i, job.data.request);
 
 		instanceChart.requestReceived(i.host);
+		queueChart.update(0, 1);
 	});
 	//#endregion
 
