@@ -23,6 +23,16 @@ import config from '../../config';
 
 const logger = new Logger('inbox');
 
+let counts: number = 0;
+
+// Bulk write
+setInterval(() => {
+	if (counts === 0) return;
+	queueChart.update(0, counts);
+	counts = 0;
+}, 5000);
+//#endregion
+
 // ユーザーのinboxにアクティビティが届いた時の処理
 export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	const signature = job.data.signature;
@@ -145,7 +155,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		UpdateInstanceinfo(i, job.data.request);
 
 		instanceChart.requestReceived(i.host);
-		queueChart.update(0, 1);
+		counts += 1;
 	});
 	//#endregion
 

@@ -12,6 +12,15 @@ import { DeliverJobData } from '..';
 const logger = new Logger('deliver');
 
 let latest: string = null;
+let counts: number = 0;
+
+// Bulk write
+setInterval(() => {
+	if (counts === 0) return;
+	queueChart.update(counts, 0);
+	counts = 0;
+}, 5000);
+//#endregion
 
 export default async (job: Bull.Job<DeliverJobData>) => {
 	const { protocol, host } = new URL(job.data.to);
@@ -47,7 +56,7 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			UpdateInstanceinfo(i);
 
 			instanceChart.requestSent(i.host, true);
-			queueChart.update(1, 0);
+			counts += 1;
 		});
 
 		return 'Success';
@@ -63,7 +72,7 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			});
 
 			instanceChart.requestSent(i.host, false);
-			queueChart.update(1, 0);
+			counts += 1;
 		});
 
 		if (res != null && res.hasOwnProperty('statusCode')) {
