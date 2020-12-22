@@ -31,6 +31,13 @@ export const promoTheme: Theme = require('../themes/promo.json5');
 export const promoHalloweenTheme: Theme = require('../themes/promo_halloween.json5');
 export const yupixTheme: Theme = require('../themes/yupix.json5');
 
+export const blackTweet: Theme = require('../themes/black-tweet.json5');
+export const blackStar: Theme = require('../themes/black-star.json5');
+export const blackSakura: Theme = require('../themes/black-sakura.json5');
+export const blackOctopus: Theme = require('../themes/black-octopus.json5');
+export const blackFire: Theme = require('../themes/black-fire.json5');
+export const blackAvocado: Theme = require('../themes/black-avocado.json5');
+
 export const builtinThemes = [
 	lightTheme,
 	darkTheme,
@@ -52,6 +59,12 @@ export const builtinThemes = [
 	promoTheme,
 	promoHalloweenTheme,
 	yupixTheme,
+	blackTweet,
+	blackStar,
+	blackSakura,
+	blackOctopus,
+	blackFire,
+	blackAvocado,
 ];
 
 export function applyTheme(theme: Theme, persisted = true) {
