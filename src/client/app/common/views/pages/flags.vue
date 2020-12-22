@@ -10,7 +10,7 @@
 	<ui-card>
 		<template #title>アカウント設定</template>
 		<section>
-			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
+			<p>なし</p>
 		</section>
 	</ui-card>
 
@@ -37,7 +37,6 @@ export default Vue.extend({
 	i18n: i18n(),
 	data() {
 		return {
-			noCrawle: false,
 		}
 	},
 	computed: {
