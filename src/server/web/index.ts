@@ -207,6 +207,7 @@ router.get('/notes/:note', async ctx => {
 
 	if (note) {
 		const _note = await Notes.pack(note);
+		const profile = await UserProfiles.findOne(note.userId).then(ensure);
 
 		let imageUrl;
 		// use attached
@@ -224,6 +225,7 @@ router.get('/notes/:note', async ctx => {
 		const meta = await fetchMeta();
 		await ctx.render('note', {
 			note: _note,
+			profile,
 			summary: getNoteSummary(_note),
 			imageUrl,
 			instanceName: meta.name || 'Misskey',
@@ -259,9 +261,11 @@ router.get('/@:user/pages/:page', async ctx => {
 
 	if (page) {
 		const _page = await Pages.pack(page);
+		const profile = await UserProfiles.findOne(page.userId).then(ensure);
 		const meta = await fetchMeta();
 		await ctx.render('page', {
 			page: _page,
+			profile,
 			instanceName: meta.name || 'Misskey'
 		});
 
