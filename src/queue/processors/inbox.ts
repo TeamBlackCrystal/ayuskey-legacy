@@ -7,6 +7,7 @@ import { Instances } from '../../models';
 import { instanceChart } from '../../services/chart';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { toPuny, extractDbHost } from '../../misc/convert-host';
+import queueChart from '../../services/chart/queue';
 import { getApId } from '../../remote/activitypub/type';
 import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { InboxJobData } from '../type';
@@ -121,6 +122,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		fetchInstanceMetadata(i);
 
 		instanceChart.requestReceived(i.host);
+		queueChart.update(0, 1);
 	});
 
 	// アクティビティを処理
