@@ -1,7 +1,6 @@
 import * as Bull from 'bull';
 import request from '../../remote/activitypub/request';
 import { registerOrFetchInstanceDoc } from '../../services/register-or-fetch-instance-doc';
-import queueChart from '../../services/chart/queue';
 import Logger from '../../services/logger';
 import { Instances } from '../../models';
 import { instanceChart } from '../../services/chart';
@@ -53,7 +52,6 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			fetchInstanceMetadata(i);
 
 			instanceChart.requestSent(i.host, true);
-			queueChart.update(1, 0);
 		});
 
 		return 'Success';
@@ -67,7 +65,6 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			});
 
 			instanceChart.requestSent(i.host, false);
-			queueChart.update(1, 0);
 		});
 
 		if (res != null && res.hasOwnProperty('statusCode')) {

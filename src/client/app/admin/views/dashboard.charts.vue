@@ -24,10 +24,6 @@
 				<option value="drive">{{ $t('charts.drive') }}</option>
 				<option value="drive-total">{{ $t('charts.drive-total') }}</option>
 			</optgroup>
-			<optgroup :label="$t('queue')">
-				<option value="queue-deliver">{{ $t('charts.queue-deliver') }}</option>
-				<option value="queue-inbox">{{ $t('charts.queue-inbox') }}</option>
-			</optgroup>
 			<optgroup :label="$t('network')">
 				<option value="network-requests">{{ $t('charts.network-requests') }}</option>
 				<option value="network-time">{{ $t('charts.network-time') }}</option>
@@ -81,8 +77,6 @@ export default Vue.extend({
 				case 'drive-total': return this.driveTotalChart();
 				case 'drive-files': return this.driveFilesChart();
 				case 'drive-files-total': return this.driveFilesTotalChart();
-				case 'queue-deliver': return this.queueDeliverChart();
-				case 'queue-inbox': return this.queueInboxChart();
 				case 'network-requests': return this.networkRequestsChart();
 				case 'network-time': return this.networkTimeChart();
 				case 'network-usage': return this.networkUsageChart();
@@ -118,7 +112,6 @@ export default Vue.extend({
 			this.$root.api('charts/active-users', { limit: limit, span: 'hour' }),
 			this.$root.api('charts/notes', { limit: limit, span: 'hour' }),
 			this.$root.api('charts/drive', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/queue', { limit: limit, span: 'hour' }),
 			this.$root.api('charts/network', { limit: limit, span: 'hour' })
 		]), Promise.all([
 			this.$root.api('charts/federation', { limit: limit, span: 'day' }),
@@ -126,7 +119,6 @@ export default Vue.extend({
 			this.$root.api('charts/active-users', { limit: limit, span: 'day' }),
 			this.$root.api('charts/notes', { limit: limit, span: 'day' }),
 			this.$root.api('charts/drive', { limit: limit, span: 'day' }),
-			this.$root.api('charts/queue', { limit: limit, span: 'day' }),
 			this.$root.api('charts/network', { limit: limit, span: 'day' })
 		])]);
 
@@ -137,8 +129,7 @@ export default Vue.extend({
 				activeUsers: perHour[2],
 				notes: perHour[3],
 				drive: perHour[4],
-				queue: perHour[5],
-				network: perHour[6]
+				network: perHour[5]
 			},
 			perDay: {
 				federation: perDay[0],
@@ -146,8 +137,7 @@ export default Vue.extend({
 				activeUsers: perDay[2],
 				notes: perDay[3],
 				drive: perDay[4],
-				queue: perDay[5],
-				network: perDay[6]
+				network: perDay[5]
 			}
 		};
 
@@ -461,24 +451,6 @@ export default Vue.extend({
 					name: 'Remote',
 					type: 'area',
 					data: this.format(this.stats.drive.remote.totalCount)
-				}]
-			};
-		},
-
-		queueDeliverChart(): any {
-			return {
-				series: [{
-					name: 'Deliver',
-					data: this.format(this.stats.queue.deliverCounts)
-				}]
-			};
-		},
-
-		queueInboxChart(): any {
-			return {
-				series: [{
-					name: 'Inbox',
-					data: this.format(this.stats.queue.inboxCounts)
 				}]
 			};
 		},
