@@ -233,7 +233,7 @@
 		"stylus-loader": "4.3.1",
 		"summaly": "2.4.0",
 		"syslog-pro": "1.0.0",
-		"systeminformation": "4.33.1",
+		"systeminformation": "4.33.4",
 		"syuilo-password-strength": "0.0.1",
 		"terser-webpack-plugin": "4.2.3",
 		"textarea-caret": "3.1.0",
@@ -272,7 +272,7 @@
 		"vuex-persistedstate": "3.1.0",
 		"web-push": "3.4.4",
 		"webpack": "5.11.0",
-		"webpack-cli": "4.2.0",
+		"webpack-cli": "4.3.0",
 		"websocket": "1.0.33",
 		"ws": "7.4.1",
 		"xev": "2.0.1"
