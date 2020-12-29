@@ -227,6 +227,7 @@ common:
     disable-animated-mfm: "Disable animated texts in a post"
     disable-showing-animated-images: "Do not play animated images"
     enable-quick-notification-view: "Enable Quick Notification View"
+    useAbsoluteTime: "Use absolute time"
     suggest-recent-hashtags: "Show recent popular hashtags on the post form"
     always-show-nsfw: "Always show NSFW contents"
     always-mark-nsfw: "Always mark posts with media attachments as NSFW"

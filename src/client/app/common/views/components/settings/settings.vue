@@ -46,6 +46,7 @@
 				<ui-switch v-model="showReplyTarget">{{ $t('@._settings.show-reply-target') }}</ui-switch>
 				<ui-switch v-model="disableAnimatedMfm">{{ $t('@._settings.disable-animated-mfm') }}</ui-switch>
 				<ui-switch v-model="disableShowingAnimatedImages">{{ $t('@._settings.disable-showing-animated-images') }}</ui-switch>
+				<ui-switch v-model="useAbsoluteTime">{{ $t('@._settings.useAbsoluteTime') }}</ui-switch>
 				<ui-switch v-model="remainDeletedNote">{{ $t('@._settings.remain-deleted-note') }}</ui-switch>
 				<ui-switch v-model="enableMobileQuickNotificationView">{{ $t('@._settings.enable-quick-notification-view') }}</ui-switch>
 			</section>
@@ -640,6 +641,11 @@ export default Vue.extend({
 		remainDeletedNote: {
 			get() { return this.$store.state.settings.remainDeletedNote; },
 			set(value) { this.$store.dispatch('settings/set', { key: 'remainDeletedNote', value }); }
+		},
+
+		useAbsoluteTime: {
+			get() { return !!this.$store.state.device.useAbsoluteTime; },
+			set(value) { this.$store.commit('device/set', { key: 'useAbsoluteTime', value }); }
 		},
 
 		mobileNotificationPosition: {

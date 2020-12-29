@@ -81,6 +81,7 @@ const defaultDeviceSettings = {
 	mobileNotificationPosition: 'bottom',
 	useOsDefaultEmojis: false,
 	disableShowingAnimatedImages: false,
+	useAbsoluteTime: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
 	showPostPreview: true,
