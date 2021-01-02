@@ -223,7 +223,17 @@ export default Vue.component('misskey-flavored-markdown', {
 						case 'font': {
 							const size = token.node.props.args.size;
 							const color = token.node.props.args.color;
-							style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}`;
+							// 動くかしら？
+							const family =
+								token.node.props.args.serif ? 'serif' :
+								token.node.props.args.monospace ? 'monospace' :
+								token.node.props.args.cursive ? 'cursive' :
+								token.node.props.args.fantasy ? 'fantasy' :
+								token.node.props.args.emoji ? 'emoji' :
+								token.node.props.args.math ? 'math' :
+								null;
+							//style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}`;
+							style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}; font-family: ${family|| 'unset'}`;
 							break;
 						}
 						case 'x2': {
@@ -237,7 +247,7 @@ export default Vue.component('misskey-flavored-markdown', {
 						case 'x4': {
 							style = `font-size: 600%;`;
 							break;
-						}
+						}/*
 						case 'font': {
 							const family =
 								token.node.props.args.serif ? 'serif' :
@@ -249,7 +259,7 @@ export default Vue.component('misskey-flavored-markdown', {
 								null;
 							if (family) style = `font-family: ${family};`;
 							break;
-						}
+						}*/
 						case 'blur': {
 							return [createElement('span', {
 								attrs: {
