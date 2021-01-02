@@ -226,6 +226,25 @@ export default Vue.component('misskey-flavored-markdown', {
 							style = `font-size: ${size || 'unset'}; color: ${color || 'unset'}`;
 							break;
 						}
+						case 'x2': {
+							style = `font-size: 200%;`;
+							break;
+						}
+						case 'x3': {
+							style = `font-size: 400%;`;
+							break;
+						}
+						case 'x4': {
+							style = `font-size: 600%;`;
+							break;
+						}
+						case 'blur': {
+							return [createElement('span', {
+								attrs: {
+									class: '_mfm_blur_'
+								}
+							}, genEl(token.children, inQuote))];
+						}
 					}
 
 					return (createElement as any)('span', {
