@@ -265,7 +265,7 @@ export default Vue.component('misskey-flavored-markdown', {
 								attrs: {
 									class: '_mfm_blur_'
 								}
-							}, genEl(token.children, inQuote))];
+							}, genEl(token.children))];
 						}
 					}
 
