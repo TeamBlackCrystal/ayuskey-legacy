@@ -790,6 +790,7 @@ common/views/components/profile-editor.vue:
   is-locked: "Follower requests require approval"
   careful-bot: "Follower requests from bots require approval"
   auto-accept-followed: "Automatically approve follows from the people you follow"
+  isExplorable: "Show in explore"
   advanced: "Other"
   privacy: "Privacy"
   save: "Save"

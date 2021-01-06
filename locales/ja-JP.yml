@@ -863,6 +863,7 @@ common/views/components/profile-editor.vue:
   careful-bot: "Botからのフォローだけ承認制にする"
   auto-accept-followed: "フォローしているユーザーからのフォローを自動承認する"
   no-crawle: "クローラーによるインデックスを拒否"
+  isExplorable: "みつけるに表示する"
   advanced: "その他"
   privacy: "プライバシー"
   save: "保存"
