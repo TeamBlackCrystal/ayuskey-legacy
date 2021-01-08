@@ -34,7 +34,11 @@
 			<div class="local-only" v-if="localOnly === true"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
 			<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('@.post-form.cw-placeholder')" v-autocomplete="{ model: 'cw' }">
 			<div class="textarea">
-				<textarea v-if="!renote || quote" v-model="text" ref="text" :disabled="posting" :placeholder="placeholder" v-autocomplete="{ model: 'text' }"></textarea>
+								<textarea :class="{ with: (files.length != 0 || poll) }"
+													ref="text" v-model="text" :disabled="posting"
+													@keydown="onKeydown" @paste="onPaste" :placeholder="placeholder"
+													v-autocomplete="{ model: 'text' }"
+								></textarea>
 				<button class="emoji" @click="emoji" ref="emoji">
 					<fa :icon="['far', 'laugh']"/>
 				</button>
