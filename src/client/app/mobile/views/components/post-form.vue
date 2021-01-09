@@ -34,18 +34,11 @@
 			<div class="local-only" v-if="localOnly === true"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
 			<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('@.post-form.cw-placeholder')" v-autocomplete="{ model: 'cw' }">
 			<div class="textarea">
-								<textarea :class="{ with: (files.length != 0 || poll) }"
-													ref="text" v-model="text" :disabled="posting"
-													@keydown="onKeydown" @paste="onPaste" :placeholder="placeholder"
-													v-autocomplete="{ model: 'text' }"
-								></textarea>
+				<textarea v-model="text" ref="text" :disabled="posting" :placeholder="placeholder" v-autocomplete="{ model: 'text' }"></textarea>
 				<button class="emoji" @click="emoji" ref="emoji">
 					<fa :icon="['far', 'laugh']"/>
 				</button>
 			</div>
-			<!--
-			<textarea v-model="text" ref="text" :disabled="posting" :placeholder="placeholder" v-autocomplete="{ model: 'text' }" @paste="onPaste"></textarea>
-			-->
 			<x-post-form-attaches class="attaches" :files="files"/>
 			<x-poll-editor v-if="poll" ref="poll" @destroyed="poll = false" @updated="onPollUpdate()"/>
 			<mk-uploader ref="uploader" @uploaded="attachMedia" @change="onChangeUploadings"/>
