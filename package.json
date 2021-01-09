@@ -6,7 +6,7 @@
 		"syuilo <i@syuilo.com>"
 	],
 	"version": "11.37.1-rei0784-5.0.0-rc.17",
-	"codename": "daybreak",
+	"codename": "malachite",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/TeamOrangeServer/misskey.git"
