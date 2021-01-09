@@ -71,7 +71,9 @@ export default Vue.extend({
 				if (self.isScrollTop()) {
 					// サウンドを再生する
 					if (self.$store.state.device.enableSounds && self.$store.state.device.enableSoundsInTimeline && !silent) {
-						const sound = new Audio(`${config.url}/assets/post.mp3`);
+						const sound = new Audio(note.userId === self.$store.state.i.id
+						? `${config.url}/assets/up.mp3`
+						: `${config.url}/assets/down.mp3`);
 						sound.volume = self.$store.state.device.soundVolume;
 						sound.play();
 					}

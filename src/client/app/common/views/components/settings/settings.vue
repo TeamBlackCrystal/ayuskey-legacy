@@ -727,7 +727,7 @@ export default Vue.extend({
 			});
 		},
 		soundTest() {
-			const sound = new Audio(`${url}/assets/message.mp3`);
+			const sound = new Audio(`${url}/assets/waon.mp3`);
 			sound.volume = this.$store.state.device.soundVolume;
 			sound.play();
 		},

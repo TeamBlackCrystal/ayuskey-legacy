@@ -230,7 +230,7 @@ export default Vue.extend({
 
 			// サウンドを再生する
 			if (this.$store.state.device.enableSounds && this.$store.state.device.enableSoundsInNotifications) {
-				const sound = new Audio(`${config.url}/assets/piko.mp3`);
+				const sound = new Audio(`${config.url}/assets/pope2.mp3`);
 				sound.volume = this.$store.state.device.soundVolume;
 				sound.play();
 			}
