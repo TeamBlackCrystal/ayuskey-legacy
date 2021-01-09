@@ -66,6 +66,7 @@ const defaultDeviceSettings = {
 	enableSounds: true,
 	soundVolume: 0.5,
 	mediaVolume: 0.5,
+	enableSpeech: false,
 	lang: null,
 	appTypeForce: 'auto',
 	debug: false,
