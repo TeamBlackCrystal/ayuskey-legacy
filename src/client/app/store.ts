@@ -66,6 +66,8 @@ const defaultDeviceSettings = {
 	enableSounds: true,
 	enableSoundsInTimeline: true,
 	enableSoundsInNotifications: true,
+	enableMobileSounds: false,
+	soundsNoScrollTop: false,
 	soundVolume: 0.5,
 	mediaVolume: 0.5,
 	enableSpeech: false,
