@@ -227,6 +227,7 @@ export default Vue.extend({
 			});
 
 			this.prepend(notification);
+			this.notifications.unshift(notification);
 
 			// サウンドを再生する
 			if (this.$store.state.device.enableSounds && this.$store.state.device.enableSoundsInNotifications) {
