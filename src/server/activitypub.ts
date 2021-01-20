@@ -46,7 +46,8 @@ const LD_JSON = 'application/ld+json; profile="https://www.w3.org/ns/activitystr
 
 function isActivityPubReq(ctx: Router.RouterContext) {
 	ctx.response.vary('Accept');
-	const accepted = ctx.accepts('html', ACTIVITY_JSON, LD_JSON);
+	// 明確にAPよりHTMLが優先されていなければAPとみなす
+	const accepted = ctx.accepts(ACTIVITY_JSON, LD_JSON, 'html');
 	return typeof accepted === 'string' && !accepted.match(/html/);
 }
 
