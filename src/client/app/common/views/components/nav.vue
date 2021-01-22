@@ -6,6 +6,8 @@
 		<a :href="ToSUrl" target="_blank">{{ $t('tos') }}</a>
 	</template>
 	<i>・</i>
+	<router-link to="/about">{{ $t('@.aboutInstance') }}</router-link>
+	<i>・</i>
 	<a :href="repositoryUrl" rel="noopener" target="_blank">{{ $t('repository') }}</a>
 	<i>・</i>
 	<a :href="feedbackUrl" rel="noopener" target="_blank">{{ $t('feedback') }}</a>

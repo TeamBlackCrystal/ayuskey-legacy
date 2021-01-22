@@ -81,6 +81,7 @@ common:
   explore: "Explore"
   following: "Following"
   followers: "Followers"
+  aboutInstance: "About this instance"
   favorites: "Favorites"
   permissions:
     "read:account": "View account information"
@@ -423,6 +424,15 @@ common/views/pages/explore.vue:
 common/views/components/reactions-viewer.details.vue:
   few-users: "{users} reacted with {reaction}"
   many-users: "{users}, and {omitted} more reacted with {reaction}"
+common/views/pages/about.vue:
+  about: "About {host}"
+  basic: "Basic"
+  maintainerName: "Administrator"
+  maintainerEmail: "Contanct"
+  stats: "Statistics"
+  users: "Users"
+  notes: "Posts"
+  instances: "Instances"
 common/views/components/url-preview.vue:
   enable-player: "Enable playback"
   disable-player: "Close the player"

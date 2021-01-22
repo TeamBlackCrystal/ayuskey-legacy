@@ -128,6 +128,7 @@ init((launch, os) => {
 					{ path: '/featured', name: 'featured', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/featured.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/explore', name: 'explore', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 					{ path: '/explore/tags/:tag', name: 'explore-tag', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
+					{ path: '/about', name: 'about', component: DeckColumn, props: route => ({component: () => import('../common/views/deck/deck.about-column.vue').then(m => m.default) }) },
 					{ path: '/i/favorites', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/favorites.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/i/pages', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/pages.vue').then(m => m.default) }) },
 					{ path: '/i/lists', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/user-lists.vue').then(m => m.default) }) },
@@ -166,6 +167,7 @@ init((launch, os) => {
 			{ path: '/featured', name: 'featured', component: UI, props: route => ({ component: () => import('../common/views/pages/featured.vue').then(m => m.default), platform: 'mobile' }) },
 			{ path: '/explore', name: 'explore', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 			{ path: '/explore/tags/:tag', name: 'explore-tag', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
+			{ path: '/about', name: 'about', component: UI, props: route => ({component: () => import('./views/pages/about.vue').then(m => m.default) }) },
 			{ path: '/share', component: MkShare },
 			{ path: '/games/reversi/:game?', name: 'reversi', component: MkReversi },
 			{ path: '/@:user', name: 'user', component: () => import('./views/pages/user/index.vue').then(m => m.default), children: [

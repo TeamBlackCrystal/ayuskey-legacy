@@ -85,6 +85,7 @@ common:
   following: "フォロー中"
   followers: "フォロワー"
   favorites: "お気に入り"
+  aboutInstance: "このインスタンスについて"
 
   permissions:
     "read:account": "アカウントの情報を見る"
@@ -455,6 +456,16 @@ common/views/pages/explore.vue:
 common/views/components/reactions-viewer.details.vue:
   few-users: "{users}が{reaction}をリアクション"
   many-users: "{users}と他{omitted}人が{reaction}をリアクション"
+
+common/views/pages/about.vue:
+  about: "{host} について"
+  basic: "基本"
+  maintainerName: "管理者"
+  maintainerEmail: "連絡先"
+  stats: "統計"
+  users: "ユーザー数"
+  notes: "投稿数"
+  instances: "インスタンス数"
 
 common/views/components/url-preview.vue:
   enable-player: "プレイヤーを開く"
@@ -1986,6 +1997,7 @@ mobile/views/components/ui.nav.vue:
   game: "ゲーム"
   admin: "管理"
   about: "Misskeyについて"
+  aboutInstance: "このインスタンスについて"
 
 mobile/views/pages/drive.vue:
   contextmenu:
