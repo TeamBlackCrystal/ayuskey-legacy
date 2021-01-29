@@ -6,8 +6,8 @@ import { toUnicode } from 'punycode';
 import { emojiRegex } from '../misc/emoji-regex';
 
 export function removeOrphanedBrackets(s: string): string {
-	const openBrackets = ['(', '「', '['];
-	const closeBrackets = [')', '」', ']'];
+	const openBrackets = ['(', '['];
+	const closeBrackets = [')', ']'];
 	const xs = cumulativeSum(s.split('').map(c => {
 		if (openBrackets.includes(c)) return 1;
 		if (closeBrackets.includes(c)) return -1;
@@ -214,7 +214,11 @@ export const mfmLanguage = P.createLanguage({
 	},
 	hashtag: () => P((input, i) => {
 		const text = input.substr(i);
-		const match = text.match(/^#([^\s.,!?'"#:\/\[\]【】]+)/i);
+		const match = text.match(/^#([^\s.,!?'"#:\/()\[\]【】]+)/i);
+		//m544
+		// eslint-disable-next-line no-useless-escape
+		// const match = text.match(/^#([^\s\.,!\?'"#:\/()\[\]]+)/i);
+    //end
 		if (!match) return P.makeFailure(i, 'not a hashtag');
 		const hashtag = match[1];
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
