@@ -216,8 +216,7 @@ export const mfmLanguage = P.createLanguage({
 		const text = input.substr(i);
 		const match = text.match(/^#([^\s.,!?'"#:\/\[\]【】]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
-		let hashtag = match[1];
-		hashtag = removeOrphanedBrackets(hashtag);
+		const hashtag = match[1];
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 		if (hashtag.match(/^[0-9]+$/)) return P.makeFailure(i, 'not a hashtag');
 		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
