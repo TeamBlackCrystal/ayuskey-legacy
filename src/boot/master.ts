@@ -44,7 +44,7 @@ function greet() {
 		console.log('                                                \'\'\n');
 		//console.log('Powerd by rei0784(rei_k) aka sousuke0422');
 
-		console.log(' Reiskey is maintained by @aki@xe.akirin.xyz.');
+		console.log(' Reiskey is maintained by @aki@kr.akirin.xyz.');
 		console.log(' Between v1.0.0 to v3.1.1');
 		console.log('');
 		console.log('');
@@ -56,7 +56,7 @@ function greet() {
 		console.log(' /_/    \\_\\__, |\\__,_|___/_|\\_\\___|\\__, |');
 		console.log('           __/ |                    __/ |');
 		console.log('          |___/                    |___/ \n');
-		console.log(' Ayuskey is maintained by @aki@xe.akirin.xyz, @yupix@ne.akarinext.org.');
+		console.log(' Ayuskey is maintained by @aki@kr.akirin.xyz, @yupix@ne.akarinext.org.');
 		console.log(' From v3.5.0');
 		console.log('');
 		console.log('');
