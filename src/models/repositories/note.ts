@@ -255,6 +255,7 @@ export class NoteRepository extends Repository<Note> {
 			mentions: note.mentions.length > 0 ? note.mentions : undefined,
 			uri: note.uri || undefined,
 			url: note.url || undefined,
+			geo: note.geo || undefined,
 
 			...(opts.detail ? {
 				reply: note.replyId ? this.pack(note.replyId, meId, {
