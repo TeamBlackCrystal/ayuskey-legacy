@@ -32,7 +32,6 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import paging from '../../../common/scripts/paging';
-import * as config from '../../../config';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/notifications.vue'),
@@ -108,13 +107,6 @@ export default Vue.extend({
 			});
 
 			this.prepend(notification);
-
-			// サウンドを再生する
-			if (this.$store.state.device.enableSounds && this.$store.state.device.enableSoundsInNotifications && self.$store.state.device.enableMobileSounds) {
-				const sound = new Audio(`${config.url}/assets/pope2.mp3`);
-				sound.volume = this.$store.state.device.soundVolume;
-				sound.play();
-			}
 		},
 	}
 });

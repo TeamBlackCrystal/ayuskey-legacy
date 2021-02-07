@@ -33,7 +33,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import * as config from '../../../config';
 import shouldMuteNote from '../../../common/scripts/should-mute-note';
 import paging from '../../../common/scripts/paging';
 import { getSpeechName, getSpeechText } from '../../../../../misc/get-note-speech';
@@ -55,7 +54,7 @@ export default Vue.extend({
 				}
 			},
 
-			onPrepend: (self, note, silent) => {
+			onPrepend: (self, note) => {
 				// 弾く
 				if (shouldMuteNote(self.$store.state.i, self.$store.state.settings, note)) return false;
 
@@ -64,16 +63,6 @@ export default Vue.extend({
 					self.$store.commit('pushBehindNote', note);
 				}
 
-				if (self.isScrollTop() || self.$store.state.device.soundsNoScrollTop) {
-					// サウンドを再生する
-					if (self.$store.state.device.enableSounds && self.$store.state.device.enableSoundsInTimeline && self.$store.state.device.enableMobileSounds && !silent) {
-						const sound = new Audio(note.userId === self.$store.state.i.id
-						? `${config.url}/assets/up.mp3`
-						: `${config.url}/assets/down.mp3`);
-						sound.volume = self.$store.state.device.soundVolume;
-						sound.play();
-					}
-				}
 				if (self.$store.state.device.enableSpeech && (note.cw || note.text) && !silent) {
 					const name = getSpeechName(note);
 					const nameUttr = new SpeechSynthesisUtterance(name);

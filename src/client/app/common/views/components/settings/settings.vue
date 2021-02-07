@@ -213,12 +213,7 @@
 				<ui-switch v-model="enableSounds">{{ $t('@._settings.enable-sounds') }}
 					<template #desc>{{ $t('@._settings.enable-sounds-desc') }}</template>
 				</ui-switch>
-				<ui-switch :disabled="!enableSounds" v-model="enableMobileSounds">{{ $t('@._settings.enable-mobile-sounds') }}
-				</ui-switch>
 				<ui-switch :disabled="!enableSounds" v-model="enableSoundsInTimeline">{{ $t('@._settings.enable-sounds-timeline') }}
-				</ui-switch>
-				<ui-switch :disabled="!enableSoundsInTimeline" v-model="soundsNoScrollTop">{{ $t('@._settings.sounds-no-scroll-top') }}
-					<template #desc>Depends on {{ $t('@._settings.enable-sounds-timeline') }}</template>
 				</ui-switch>
 				<ui-switch :disabled="!enableSounds" v-model="enableSoundsInNotifications">{{ $t('@._settings.enable-sounds-notifications') }}
 				</ui-switch>
@@ -461,16 +456,6 @@ export default Vue.extend({
 		enableSoundsInNotifications: {
 			get() { return this.$store.state.device.enableSoundsInNotifications; },
 			set(value) { this.$store.commit('device/set', { key: 'enableSoundsInNotifications', value }); }
-		},
-
-		enableMobileSounds: {
-			get() { return this.$store.state.device.enableMobileSounds; },
-			set(value) { this.$store.commit('device/set', { key: 'enableMobileSounds', value }); }
-		},
-
-		soundsNoScrollTop: {
-			get() { return this.$store.state.device.soundsNoScrollTop; },
-			set(value) { this.$store.commit('device/set', { key: 'soundsNoScrollTop', value }); }
 		},
 
 		enableSpeech: {
