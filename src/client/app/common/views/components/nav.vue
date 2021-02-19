@@ -11,8 +11,10 @@
 	<a :href="repositoryUrl" rel="noopener" target="_blank">{{ $t('repository') }}</a>
 	<i>・</i>
 	<a :href="feedbackUrl" rel="noopener" target="_blank">{{ $t('feedback') }}</a>
+	<!--
 	<i>・</i>
 	<a href="/dev" target="_blank">{{ $t('develop') }}</a>
+	-->
 </span>
 </template>
 
