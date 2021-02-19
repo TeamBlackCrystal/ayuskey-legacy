@@ -38,6 +38,7 @@
 	let app = null;
 
 	if (`${url.pathname}/`.startsWith('/docs/')) app = 'docs';
+	// ↓Deprecated
 	if (`${url.pathname}/`.startsWith('/dev/')) app = 'dev';
 	if (`${url.pathname}/`.startsWith('/auth/')) app = 'auth';
 	if (`${url.pathname}/`.startsWith('/admin/')) app = 'admin';
