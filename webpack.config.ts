@@ -7,7 +7,6 @@ import * as webpack from 'webpack';
 import * as chalk from 'chalk';
 import rndstr from 'rndstr';
 const { VueLoaderPlugin } = require('vue-loader');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -22,7 +21,6 @@ class WebpackOnBuildPlugin {
 
 const isProduction = process.env.NODE_ENV == 'production';
 const isTesting = process.env.RK_MODE == 'testing';
-const useHardSource = process.env.MISSKEY_USE_HARD_SOURCE;
 
 const constants = require('./src/const.json');
 
@@ -31,6 +29,7 @@ const meta = require('./package.json');
 const codename = meta.codename;
 
 const version = isProduction ? isTesting ? meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' }) : meta.version : meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' });
+//const version = isProduction ? meta.version : meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' });
 
 const postcss = {
 	loader: 'postcss-loader',
@@ -176,7 +175,6 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		...(useHardSource ? [new HardSourceWebpackPlugin()] : []),
 		new ProgressBarPlugin({
 			format: chalk`  {cyan.bold webpack} {bold [}:bar{bold ]} {green.bold :percent} :msg :elapseds`,
 			clear: false
