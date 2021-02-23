@@ -3,6 +3,20 @@ import { fetchMeta } from './fetch-meta';
 import { Emojis } from '../models';
 import { toPunyNullable } from './convert-host';
 
+const legacies: Record<string, string> = {
+	'like':     '👍',
+	'love':     '❤', // ここに記述する場合は異体字セレクタを入れない
+	'laugh':    '😆',
+	'hmm':      '🤔',
+	'surprise': '😮',
+	'congrats': '🎉',
+	'angry':    '💢',
+	'confused': '😥',
+	'rip':      '😇',
+	'pudding':  '🍮',
+	'star':     '⭐',
+};
+
 const basic10: Record<string, string> = {
 	'👍': 'like',
 	'❤': 'love',	// ここに記述する場合は異体字セレクタを入れない
@@ -18,7 +32,7 @@ const basic10: Record<string, string> = {
 
 export async function getFallbackReaction(): Promise<string> {
 	const meta = await fetchMeta();
-	return  meta.useStarForReactionFallback ? 'star' : 'like';
+	return meta.useStarForReactionFallback ? '⭐' : '👍';
 }
 
 export function convertLegacyReactions(reactions: Record<string, number>) {
@@ -106,7 +120,8 @@ export function decodeReaction(str: string): DecodedReaction {
 	}
 
 	return {
-		reaction: str,
+		reaction: legacies[str] || str, //m544由来
+		//reaction: str,
 		name: undefined,
 		host: undefined
 	};
