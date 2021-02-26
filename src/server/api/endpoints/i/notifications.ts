@@ -4,6 +4,7 @@ import { readNotification } from '../../common/read-notification';
 import define from '../../define';
 import { makePaginationQuery } from '../../common/make-pagination-query';
 import { Notifications, Followings, Mutings, Users } from '../../../../models';
+import { notificationTypes } from '../../../../types';
 
 export const meta = {
 	desc: {
@@ -13,7 +14,7 @@ export const meta = {
 
 	tags: ['account', 'notifications'],
 
-	requireCredential: true,
+	requireCredential: true as const,
 
 	kind: 'read:notifications',
 
@@ -42,13 +43,11 @@ export const meta = {
 		},
 
 		includeTypes: {
-			validator: $.optional.arr($.str.or(['follow', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote', 'receiveFollowRequest'])),
-			default: [] as string[]
+			validator: $.optional.arr($.str.or(notificationTypes as unknown as string[])),
 		},
 
 		excludeTypes: {
-			validator: $.optional.arr($.str.or(['follow', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote', 'receiveFollowRequest'])),
-			default: [] as string[]
+			validator: $.optional.arr($.str.or(notificationTypes as unknown as string[])),
 		}
 	},
 
@@ -64,6 +63,14 @@ export const meta = {
 };
 
 export default define(meta, async (ps, user) => {
+	// includeTypes が空の場合はクエリしない
+	if (ps.includeTypes && ps.includeTypes.length === 0) {
+		return [];
+	}
+	// excludeTypes に全指定されている場合はクエリしない
+	if (notificationTypes.every(type => ps.excludeTypes?.includes(type))) {
+		return [];
+	}
 	const followingQuery = Followings.createQueryBuilder('following')
 		.select('following.followeeId')
 		.where('following.followerId = :followerId', { followerId: user.id });
@@ -73,7 +80,7 @@ export default define(meta, async (ps, user) => {
 		.where('muting.muterId = :muterId', { muterId: user.id });
 
 	const suspendedQuery = Users.createQueryBuilder('users')
-		.select('id')
+		.select('users.id')
 		.where('users.isSuspended = TRUE');
 
 	const query = makePaginationQuery(Notifications.createQueryBuilder('notification'), ps.sinceId, ps.untilId)
@@ -90,9 +97,9 @@ export default define(meta, async (ps, user) => {
 		query.setParameters(followingQuery.getParameters());
 	}
 
-	if (ps.includeTypes!.length > 0) {
+	if (ps.includeTypes?.length > 0) {
 		query.andWhere(`notification.type IN (:...includeTypes)`, { includeTypes: ps.includeTypes });
-	} else if (ps.excludeTypes!.length > 0) {
+	} else if (ps.excludeTypes?.length > 0) {
 		query.andWhere(`notification.type NOT IN (:...excludeTypes)`, { excludeTypes: ps.excludeTypes });
 	}
 
