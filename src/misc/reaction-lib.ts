@@ -120,7 +120,7 @@ export function decodeReaction(str: string): DecodedReaction {
 	}
 
 	return {
-		reaction: legacies[str] || str, //m544由来
+		reaction: legacies[str] || str, //m544由来 何かがおかしい
 		//reaction: str,
 		name: undefined,
 		host: undefined

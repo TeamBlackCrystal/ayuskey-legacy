@@ -49,6 +49,8 @@ import { Page } from '../models/entities/page';
 import { PageLike } from '../models/entities/page-like';
 import { ModerationLog } from '../models/entities/moderation-log';
 import { UsedUsername } from '../models/entities/used-username';
+import { Clip } from '../models/entities/clip';
+import { ClipNote } from '../models/entities/clip-note';
 import { Relay } from '../models/entities/relay';
 
 const sqlLogger = dbLogger.createSubLogger('sql', 'white', false);
@@ -129,6 +131,8 @@ export const entities = [
 	MessagingMessage,
 	Signin,
 	ModerationLog,
+	Clip,
+	ClipNote,
 	ReversiGame,
 	ReversiMatching,
 	Relay,

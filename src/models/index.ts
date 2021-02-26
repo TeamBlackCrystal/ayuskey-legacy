@@ -44,6 +44,8 @@ import { PageRepository } from './repositories/page';
 import { PageLikeRepository } from './repositories/page-like';
 import { ModerationLogRepository } from './repositories/moderation-logs';
 import { UsedUsername } from './entities/used-username';
+import { ClipRepository } from './repositories/clip';
+import { ClipNote } from './entities/clip-note';
 import { RelayRepository } from './repositories/relay';
 import { EmojiRepository } from './repositories/emoji';
 
@@ -93,4 +95,6 @@ export const Logs = getRepository(Log);
 export const Pages = getCustomRepository(PageRepository);
 export const PageLikes = getCustomRepository(PageLikeRepository);
 export const ModerationLogs = getCustomRepository(ModerationLogRepository);
+export const Clips = getCustomRepository(ClipRepository);
+export const ClipNotes = getRepository(ClipNote);
 export const Relays = getCustomRepository(RelayRepository);
