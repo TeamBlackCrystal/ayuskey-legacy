@@ -17,7 +17,7 @@ export class v1251579977526288 implements MigrationInterface {
         await queryRunner.query(`CREATE INDEX "IDX_bd0397be22147e17210940e125" ON "antenna_note" ("noteId") `, undefined);
         await queryRunner.query(`CREATE INDEX "IDX_0d775946662d2575dfd2068a5f" ON "antenna_note" ("antennaId") `, undefined);
         await queryRunner.query(`CREATE UNIQUE INDEX "IDX_335a0bf3f904406f9ef3dd51c2" ON "antenna_note" ("noteId", "antennaId") `, undefined);
-        await queryRunner.query(`ALTER TABLE "note" DROP COLUMN "geo"`, undefined);
+        //await queryRunner.query(`ALTER TABLE "note" DROP COLUMN "geo"`, undefined);
         await queryRunner.query(`ALTER TABLE "clip" ADD CONSTRAINT "FK_2b5ec6c574d6802c94c80313fb2" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`, undefined);
         await queryRunner.query(`ALTER TABLE "clip_note" ADD CONSTRAINT "FK_a012eaf5c87c65da1deb5fdbfa3" FOREIGN KEY ("noteId") REFERENCES "note"("id") ON DELETE CASCADE ON UPDATE NO ACTION`, undefined);
         await queryRunner.query(`ALTER TABLE "clip_note" ADD CONSTRAINT "FK_ebe99317bbbe9968a0c6f579adf" FOREIGN KEY ("clipId") REFERENCES "clip"("id") ON DELETE CASCADE ON UPDATE NO ACTION`, undefined);
@@ -35,7 +35,7 @@ export class v1251579977526288 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "clip_note" DROP CONSTRAINT "FK_ebe99317bbbe9968a0c6f579adf"`, undefined);
         await queryRunner.query(`ALTER TABLE "clip_note" DROP CONSTRAINT "FK_a012eaf5c87c65da1deb5fdbfa3"`, undefined);
         await queryRunner.query(`ALTER TABLE "clip" DROP CONSTRAINT "FK_2b5ec6c574d6802c94c80313fb2"`, undefined);
-        await queryRunner.query(`ALTER TABLE "note" ADD "geo" jsonb`, undefined);
+        //await queryRunner.query(`ALTER TABLE "note" ADD "geo" jsonb`, undefined);
         await queryRunner.query(`DROP INDEX "IDX_335a0bf3f904406f9ef3dd51c2"`, undefined);
         await queryRunner.query(`DROP INDEX "IDX_0d775946662d2575dfd2068a5f"`, undefined);
         await queryRunner.query(`DROP INDEX "IDX_bd0397be22147e17210940e125"`, undefined);
