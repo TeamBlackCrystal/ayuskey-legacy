@@ -29,7 +29,7 @@ export async function addPinned(user: User, noteId: Note['id']) {
 
 	const pinings = await UserNotePinings.find({ userId: user.id });
 
-	if (pinings.length >= 5) {
+	if (pinings.length >= 10) {
 		throw new IdentifiableError('15a018eb-58e5-4da1-93be-330fcc5e4e1a', 'You can not pin notes any more.');
 	}
 
