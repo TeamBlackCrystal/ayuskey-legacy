@@ -51,6 +51,8 @@ import { ModerationLog } from '../models/entities/moderation-log';
 import { UsedUsername } from '../models/entities/used-username';
 import { Clip } from '../models/entities/clip';
 import { ClipNote } from '../models/entities/clip-note';
+import { Antenna } from '../models/entities/antenna';
+import { AntennaNote } from '../models/entities/antenna-note';
 import { Relay } from '../models/entities/relay';
 
 const sqlLogger = dbLogger.createSubLogger('sql', 'white', false);
@@ -133,6 +135,8 @@ export const entities = [
 	ModerationLog,
 	Clip,
 	ClipNote,
+	Antenna,
+	AntennaNote,
 	ReversiGame,
 	ReversiMatching,
 	Relay,
