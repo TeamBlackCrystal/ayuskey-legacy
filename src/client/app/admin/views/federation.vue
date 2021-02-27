@@ -355,7 +355,7 @@ export default Vue.extend({
 				cc: this.cc,
 				blocked: this.state === 'blocked' ? true : null,
 				notResponding: this.state === 'notResponding' ? true : null,
-				markedAsClosed: this.state === 'markedAsClosed' ? true : null,
+				suspended: this.state === 'markedAsClosed' ? true : null,
 				sort: this.sort,
 				limit: this.limit
 			}).then(instances => {
