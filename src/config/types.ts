@@ -70,6 +70,7 @@ export type Source = {
 	mediaProxy?: string;
 
 	signToActivityPubGet?: boolean;
+	urlPreviewCors?: boolean;
 };
 
 /**

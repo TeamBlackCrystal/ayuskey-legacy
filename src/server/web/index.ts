@@ -100,6 +100,15 @@ router.get('/api-doc', async ctx => {
 });
 
 // URL preview endpoint
+if (config.urlPreviewCors) {
+	router.use('/url', async (ctx, next) => {
+		ctx.set({
+			'Access-Control-Allow-Methods': 'GET',
+			'Access-Control-Allow-Origin': '*',
+		});
+		await next();
+	});
+}
 router.get('/url', require('./url-preview'));
 
 router.get('/api.json', async ctx => {

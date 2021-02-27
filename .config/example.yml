@@ -150,3 +150,6 @@ autoAdmin: true
 
 # Sign to ActivityPub GET request (default: true)
 #signToActivityPubGet: true
+
+# url-preview "Access-Control-Allow-Origin: *" (default: false)
+#urlPreviewCors: true
