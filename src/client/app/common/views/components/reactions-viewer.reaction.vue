@@ -134,7 +134,8 @@ export default Vue.extend({
 				const icon = new Icon({
 					parent: this,
 					propsData: {
-						reaction: this.reaction
+						reaction: this.reaction,
+						customEmojis: this.note.emojis
 					}
 				}).$mount();
 
@@ -189,11 +190,19 @@ export default Vue.extend({
 		&:hover
 			background rgba(0, 0, 0, 0.1)
 
-	&:not(.canToggle)
-		cursor default
-	
+	&.canToggle
+		background var(--reactionViewerButtonBg)
+		cursor pointer
+
+		&:hover
+			background var(--reactionViewerButtonHoverBg)
+
 	&.reacted
 		background var(--primary)
+		cursor pointer
+
+		> span
+			color var(--primaryForeground)
 
 	> span
 		font-size 1.1em
