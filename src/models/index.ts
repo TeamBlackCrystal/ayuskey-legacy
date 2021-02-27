@@ -1,6 +1,7 @@
 import { getRepository, getCustomRepository } from 'typeorm';
 import { Instance } from './entities/instance';
 //import { Emoji } from './entities/emoji';
+import { EmojiRepository } from './repositories/emoji';
 import { Poll } from './entities/poll';
 import { PollVote } from './entities/poll-vote';
 import { Meta } from './entities/meta';
@@ -49,7 +50,7 @@ import { ClipNote } from './entities/clip-note';
 import { AntennaRepository } from './repositories/antenna';
 import { AntennaNote } from './entities/antenna-note';
 import { RelayRepository } from './repositories/relay';
-import { EmojiRepository } from './repositories/emoji';
+import { RegistryItem } from './entities/registry-item';
 
 export const Apps = getCustomRepository(AppRepository);
 export const Notes = getCustomRepository(NoteRepository);
@@ -102,3 +103,4 @@ export const ClipNotes = getRepository(ClipNote);
 export const Antennas = getCustomRepository(AntennaRepository);
 export const AntennaNotes = getRepository(AntennaNote);
 export const Relays = getCustomRepository(RelayRepository);
+export const RegistryItems = getRepository(RegistryItem);

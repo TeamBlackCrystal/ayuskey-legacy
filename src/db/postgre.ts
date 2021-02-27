@@ -54,6 +54,7 @@ import { ClipNote } from '../models/entities/clip-note';
 import { Antenna } from '../models/entities/antenna';
 import { AntennaNote } from '../models/entities/antenna-note';
 import { Relay } from '../models/entities/relay';
+import { RegistryItem } from '../models/entities/registry-item';
 
 const sqlLogger = dbLogger.createSubLogger('sql', 'white', false);
 
@@ -140,6 +141,7 @@ export const entities = [
 	ReversiGame,
 	ReversiMatching,
 	Relay,
+	RegistryItem,
 	...charts as any
 ];
 
