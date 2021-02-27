@@ -1,7 +1,7 @@
 <template>
 <span
 	class="reaction"
-	:class="{ reacted: note.myReaction == reaction }"
+	:class="{ reacted: note.myReaction == reaction, canToggle }"
 	@click="toggleReaction(reaction)"
 	v-if="count > 0"
 	@mouseover="onMouseover"
@@ -37,11 +37,6 @@ export default Vue.extend({
 			type: Object,
 			required: true,
 		},
-		canToggle: {
-			type: Boolean,
-			required: false,
-			default: true,
-		},
 	},
 	data() {
 		return {
@@ -49,6 +44,11 @@ export default Vue.extend({
 			detailsTimeoutId: null,
 			isHovering: false
 		};
+	},
+	computed: {
+		canToggle(): boolean {
+			return !this.reaction.match(/@\w/);
+		},
 	},
 	mounted() {
 		if (!this.isInitial) this.anime();
@@ -183,17 +183,17 @@ export default Vue.extend({
 		user-select none
 		pointer-events none
 
-	&.reacted
-		background var(--primary)
-
-		> span
-			color var(--primaryForeground)
-
-	&:not(.reacted)
-		background var(--reactionViewerButtonBg)
+	&.canToggle
+		background rgba(0, 0, 0, 0.05)
 
 		&:hover
-			background var(--reactionViewerButtonHoverBg)
+			background rgba(0, 0, 0, 0.1)
+
+	&:not(.canToggle)
+		cursor default
+	
+	&.reacted
+		background var(--primary)
 
 	> span
 		font-size 1.1em
