@@ -37,7 +37,7 @@
 				<ui-switch v-model="showFullAcct">{{ $t('@._settings.show-full-acct') }}</ui-switch>
 				<ui-switch v-model="showVia">{{ $t('@._settings.show-via') }}</ui-switch>
 				<ui-switch v-model="useOsDefaultEmojis">{{ $t('@._settings.use-os-default-emojis') }}</ui-switch>
-				<ui-switch v-model="iLikeSushi">{{ $t('@._settings.i-like-sushi') }}</ui-switch>
+				<ui-switch v-model="iLikeSushi" disabled>{{ $t('@._settings.i-like-sushi') }}</ui-switch>
 			</section>
 			<section>
 				<ui-switch v-model="suggestRecentHashtags">{{ $t('@._settings.suggest-recent-hashtags') }}</ui-switch>

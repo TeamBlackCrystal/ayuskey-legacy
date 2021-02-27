@@ -3,6 +3,8 @@ import { fetchMeta } from './fetch-meta';
 import { Emojis } from '../models';
 import { toPunyNullable } from './convert-host';
 
+// あまり乗り気じゃないけど、動くようにするためにv12のをそのまま使う by aki
+
 const legacies: Record<string, string> = {
 	'like':     '👍',
 	'love':     '❤', // ここに記述する場合は異体字セレクタを入れない
@@ -17,31 +19,36 @@ const legacies: Record<string, string> = {
 	'star':     '⭐',
 };
 
-const basic10: Record<string, string> = {
-	'👍': 'like',
-	'❤': 'love',	// ここに記述する場合は異体字セレクタを入れない
-	'😆': 'laugh',
-	'🤔': 'hmm',
-	'😮': 'surprise',
-	'🎉': 'congrats',
-	'💢': 'angry',
-	'😥': 'confused',
-	'😇': 'rip',
-	'🍮': 'pudding',
-};
-
 export async function getFallbackReaction(): Promise<string> {
 	const meta = await fetchMeta();
 	return meta.useStarForReactionFallback ? '⭐' : '👍';
 }
 
 export function convertLegacyReactions(reactions: Record<string, number>) {
-	// v12, m544 では ここに文字列 => Unicode 処理があるが対応しない
+	const _reactions = {} as Record<string, number>;
+
+	for (const reaction of Object.keys(reactions)) {
+		if (reactions[reaction] <= 0) continue;
+
+		if (Object.keys(legacies).includes(reaction)) {
+			if (_reactions[legacies[reaction]]) {
+				_reactions[legacies[reaction]] += reactions[reaction];
+			} else {
+				_reactions[legacies[reaction]] = reactions[reaction];
+			}
+		} else {
+			if (_reactions[reaction]) {
+				_reactions[reaction] += reactions[reaction];
+			} else {
+				_reactions[reaction] = reactions[reaction];
+			}
+		}
+	}
 
 	const _reactions2 = {} as Record<string, number>;
 
-	for (const reaction of Object.keys(reactions)) {
-		_reactions2[decodeReaction(reaction).reaction] = reactions[reaction];
+	for (const reaction of Object.keys(_reactions)) {
+		_reactions2[decodeReaction(reaction).reaction] = _reactions[reaction];
 	}
 
 	return _reactions2;
@@ -52,8 +59,8 @@ export async function toDbReaction(reaction?: string | null, reacterHost?: strin
 
 	reacterHost = toPunyNullable(reacterHost);
 
-	// 既存の文字列リアクションはそのまま
-	if (Object.values(basic10).includes(reaction)) return reaction;
+	// 文字列タイプのリアクションを絵文字に変換
+	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 
 	// Unicode絵文字
 	const match = emojiRegex.exec(reaction);
@@ -61,17 +68,8 @@ export async function toDbReaction(reaction?: string | null, reacterHost?: strin
 		// 合字を含む1つの絵文字
 		const unicode = match[0];
 
-		// 異体字セレクタ除去後の絵文字
-		const normalized = unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
-
-		// Unicodeプリンは寿司化不能とするため文字列化しない
-		if (normalized === '🍮') return normalized;
-
-		// プリン以外の既存のリアクションは文字列化する
-		if (basic10[normalized]) return basic10[normalized];
-
-		// それ以外はUnicodeのまま
-		return normalized;
+		// 異体字セレクタ除去
+		return unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
 	}
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);
@@ -120,8 +118,7 @@ export function decodeReaction(str: string): DecodedReaction {
 	}
 
 	return {
-		reaction: legacies[str] || str, //m544由来 何かがおかしい
-		//reaction: str,
+		reaction: str,
 		name: undefined,
 		host: undefined
 	};
@@ -129,6 +126,6 @@ export function decodeReaction(str: string): DecodedReaction {
 
 export function convertLegacyReaction(reaction: string): string {
 	reaction = decodeReaction(reaction).reaction;
-	//if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
+	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 	return reaction;
 }
