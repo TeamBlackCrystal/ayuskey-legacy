@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Antennas, AntennaNotes } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
@@ -83,6 +83,71 @@ export class UserRepository extends Repository<User> {
 		]);
 
 		return withUser || withGroups.some(x => x);
+	}
+	// 使うかも？
+	/*
+		public async getHasUnreadAnnouncement(userId: User['id']): Promise<boolean> {
+		const reads = await AnnouncementReads.find({
+			userId: userId
+		});
+
+		const count = await Announcements.count(reads.length > 0 ? {
+			id: Not(In(reads.map(read => read.announcementId)))
+		} : {});
+
+		return count > 0;
+	}
+	*/
+
+	public async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
+		const antennas = await Antennas.find({ userId });
+
+		const unread = antennas.length > 0 ? await AntennaNotes.findOne({
+			antennaId: In(antennas.map(x => x.id)),
+			read: false
+		}) : null;
+
+		return unread != null;
+	}
+
+	// 使うかも？
+	/*
+	public async getHasUnreadChannel(userId: User['id']): Promise<boolean> {
+		const channels = await ChannelFollowings.find({ followerId: userId });
+
+		const unread = channels.length > 0 ? await NoteUnreads.findOne({
+			userId: userId,
+			noteChannelId: In(channels.map(x => x.id)),
+		}) : null;
+
+		return unread != null;
+	}
+	*/
+
+	public async getHasUnreadNotification(userId: User['id']): Promise<boolean> {
+		const mute = await Mutings.find({
+			muterId: userId
+		});
+		const mutedUserIds = mute.map(m => m.muteeId);
+
+		const count = await Notifications.count({
+			where: {
+				notifieeId: userId,
+				...(mutedUserIds.length > 0 ? { notifierId: Not(In(mutedUserIds)) } : {}),
+				isRead: false
+			},
+			take: 1
+		});
+
+		return count > 0;
+	}
+
+	public async getHasPendingReceivedFollowRequest(userId: User['id']): Promise<boolean> {
+		const count = await FollowRequests.count({
+			followeeId: userId
+		});
+
+		return count > 0;
 	}
 
 	public async pack(
@@ -221,17 +286,13 @@ export class UserRepository extends Repository<User> {
 				autoAcceptFollowed: profile!.autoAcceptFollowed,
 				noCrawle: profile!.noCrawle,
 				isExplorable: user.isExplorable,
+				//hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
+				hasUnreadAntenna: this.getHasUnreadAntenna(user.id),
+				//hasUnreadChannel: this.getHasUnreadChannel(user.id),
 				hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(user.id),
-				hasUnreadNotification: Notifications.count({
-					where: {
-						notifieeId: user.id,
-						isRead: false
-					},
-					take: 1
-				}).then(count => count > 0),
-				pendingReceivedFollowRequestsCount: FollowRequests.count({
-					followeeId: user.id
-				}),
+				hasUnreadNotification: this.getHasUnreadNotification(user.id),
+				pendingReceivedFollowRequestsCount: this.getHasPendingReceivedFollowRequest(user.id),
+				mutingNotificationTypes: profile?.mutingNotificationTypes,
 			} : {}),
 
 			...(opts.includeSecrets ? {

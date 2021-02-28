@@ -1,6 +1,6 @@
 import { publishMainStream } from './stream';
 import pushSw from './push-notification';
-import { Notifications, Mutings } from '../models';
+import { Notifications, Mutings, UserProfiles } from '../models';
 import { genId } from '../misc/gen-id';
 import { User } from '../models/entities/user';
 import { Note } from '../models/entities/note';
@@ -9,7 +9,7 @@ import { Notification } from '../models/entities/notification';
 export async function createNotification(
 	notifieeId: User['id'],
 	notifierId: User['id'],
-	type: string,
+	type: Notification['type'],
 	content?: {
 		noteId?: Note['id'];
 		reaction?: string;
@@ -20,13 +20,18 @@ export async function createNotification(
 		return null;
 	}
 
+	const profile = await UserProfiles.findOne({ userId: notifieeId });
+
+	const isMuted = profile?.mutingNotificationTypes.includes(type);
+
 	const data = {
 		id: genId(),
 		createdAt: new Date(),
 		notifieeId: notifieeId,
 		notifierId: notifierId,
 		type: type,
-		isRead: false,
+		// 相手がこの通知をミュートしているようなら、既読を予めつけておく
+		isRead: isMuted,
 	} as Partial<Notification>;
 
 	if (content) {

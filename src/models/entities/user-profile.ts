@@ -2,6 +2,7 @@ import { Entity, Column, Index, OneToOne, JoinColumn, PrimaryColumn } from 'type
 import { id } from '../id';
 import { User } from './user';
 import { Page } from './page';
+import { notificationTypes } from '../../types';
 
 @Entity()
 export class UserProfile {
@@ -224,6 +225,13 @@ export class UserProfile {
 	})
 	public discordDiscriminator: string | null;
 	//#endregion
+
+	@Column('enum', {
+		enum: notificationTypes,
+		array: true,
+		default: [],
+	})
+	public mutingNotificationTypes: typeof notificationTypes[number][];
 
 	//#region Denormalized fields
 	@Index()

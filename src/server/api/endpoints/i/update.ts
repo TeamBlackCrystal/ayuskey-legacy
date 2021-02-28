@@ -14,6 +14,7 @@ import { Users, DriveFiles, UserProfiles, Pages } from '../../../../models';
 import { User } from '../../../../models/entities/user';
 import { UserProfile } from '../../../../models/entities/user-profile';
 import { ensure } from '../../../../prelude/ensure';
+import { notificationTypes } from '../../../../types';
 import { normalizeTag } from '../../../../misc/normalize-tag';
 
 export const meta = {
@@ -159,7 +160,11 @@ export const meta = {
 			validator: $.optional.nullable.type(ID),
 			desc: {
 				'ja-JP': 'ピン留めするページID'
-			}
+			},
+
+			mutingNotificationTypes: {
+				validator: $.optional.arr($.str.or(notificationTypes as unknown as string[]))
+			},
 		}
 	},
 
@@ -211,6 +216,7 @@ export default define(meta, async (ps, user, app) => {
 	if (ps.birthday !== undefined) profileUpdates.birthday = ps.birthday;
 	if (ps.avatarId !== undefined) updates.avatarId = ps.avatarId;
 	if (ps.bannerId !== undefined) updates.bannerId = ps.bannerId;
+	if (ps.mutingNotificationTypes !== undefined) profileUpdates.mutingNotificationTypes = ps.mutingNotificationTypes as typeof notificationTypes[number][];
 	if (typeof ps.isLocked == 'boolean') updates.isLocked = ps.isLocked;
 	if (typeof ps.isExplorable == 'boolean') updates.isExplorable = ps.isExplorable;
 	if (typeof ps.isBot == 'boolean') updates.isBot = ps.isBot;
