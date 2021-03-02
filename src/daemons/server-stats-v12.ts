@@ -15,8 +15,8 @@ const round = (num: number) => Math.round(num * 10) / 10;
 export default function() {
 	const log = [] as any[];
 
-	ev.on('requestServerStatsLog', x => {
-		ev.emit(`serverStatsLog:${x.id}`, log.slice(0, x.length || 50));
+	ev.on('requestServerStatsV12Log', x => {
+		ev.emit(`serverStatsV12Log:${x.id}`, log.slice(0, x.length || 50));
 	});
 
 	async function tick() {
@@ -40,7 +40,7 @@ export default function() {
 				w: round(Math.max(0, fsStats.wIO_sec)),
 			}
 		};
-		ev.emit('serverStats', stats);
+		ev.emit('serverStatsV12', stats);
 		log.unshift(stats);
 		if (log.length > 200) log.pop();
 	}
