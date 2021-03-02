@@ -5,7 +5,8 @@ import { RegistryItems } from '../../../../../models';
 export const meta = {
 	requireCredential: true as const,
 
-	secure: true,
+	//secure: true,
+	kind: 'read:registry',
 
 	params: {
 		scope: {

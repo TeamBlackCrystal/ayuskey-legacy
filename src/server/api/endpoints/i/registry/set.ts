@@ -7,7 +7,8 @@ import { genId } from '../../../../../misc/gen-id';
 export const meta = {
 	requireCredential: true as const,
 
-	secure: true,
+	//secure: true,
+	kind: 'write:registry',
 
 	params: {
 		key: {

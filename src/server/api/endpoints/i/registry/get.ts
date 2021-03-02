@@ -6,7 +6,8 @@ import { ApiError } from '../../../error';
 export const meta = {
 	requireCredential: true as const,
 
-	secure: true,
+	//secure: true,
+	kind: 'read:registry',
 
 	params: {
 		key: {
