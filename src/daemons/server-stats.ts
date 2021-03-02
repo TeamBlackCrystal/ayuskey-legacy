@@ -9,6 +9,8 @@ const ev = new Xev();
 
 const interval = 1000;
 
+const round = (num: number) => Math.round(num * 10) / 10;
+
 /**
  * Report server stats regularly
  */
@@ -22,6 +24,9 @@ export default function() {
 	async function tick() {
 		const cpu = await cpuUsage();
 		const usedmem = await usedMem();
+		const memStats = await mem();
+		const netStats = await net();
+		const fsStats = await fs();
 		const totalmem = await totalMem();
 		const disk = await diskusage.check(os.platform() == 'win32' ? 'c:' : '/');
 
@@ -29,11 +34,20 @@ export default function() {
 			cpu_usage: cpu,
 			mem: {
 				total: totalmem,
-				used: usedmem
+				used: usedmem,
+				active: round(memStats.active),
 			},
 			disk,
 			os_uptime: os.uptime(),
-			process_uptime: process.uptime()
+			process_uptime: process.uptime(),
+			net: {
+				rx: round(Math.max(0, netStats.rx_sec)),
+				tx: round(Math.max(0, netStats.tx_sec)),
+			},/*
+			fs: {
+				r: round(Math.max(0, fsStats.rIO_sec)),
+				w: round(Math.max(0, fsStats.wIO_sec)),
+			}*/
 		};
 		ev.emit('serverStats', stats);
 		log.unshift(stats);
@@ -64,4 +78,23 @@ async function usedMem() {
 async function totalMem() {
 	const data = await sysUtils.mem();
 	return data.total;
+}
+
+// MEMORY STAT
+async function mem() {
+	const data = await sysUtils.mem();
+	return data;
+}
+
+// NETWORK STAT
+async function net() {
+	const iface = await sysUtils.networkInterfaceDefault();
+	const data = await sysUtils.networkStats(iface);
+	return data[0];
+}
+
+// FS STAT
+async function fs() {
+	const data = await sysUtils.disksIO().catch(() => ({ rIO_sec: 0, wIO_sec: 0 }));
+	return data;
 }
