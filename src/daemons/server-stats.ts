@@ -43,11 +43,11 @@ export default function() {
 			net: {
 				rx: round(Math.max(0, netStats.rx_sec)),
 				tx: round(Math.max(0, netStats.tx_sec)),
-			},/*
+			},
 			fs: {
-				r: round(Math.max(0, fsStats.rIO_sec)),
-				w: round(Math.max(0, fsStats.wIO_sec)),
-			}*/
+				r: os.platform() != 'win32' ? round(Math.max(0, fsStats.rIO_sec)) : round(0),
+				w: os.platform() != 'win32' ? round(Math.max(0, fsStats.wIO_sec)) : round(0),
+			}
 		};
 		ev.emit('serverStats', stats);
 		log.unshift(stats);
