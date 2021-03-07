@@ -24,6 +24,7 @@ import redis from '../../db/redis';
 
 const env = process.env.NODE_ENV;
 
+const staticAssets = `${__dirname}/../../../assets/client/`;
 const client = `${__dirname}/../../client/`;
 
 // Init app
@@ -55,6 +56,13 @@ app.use(async (ctx, next) => {
 const router = new Router();
 
 //#region static assets
+
+router.get('/static-assets/*', async ctx => {
+	await send(ctx as any, ctx.path.replace('/static-assets/', ''), {
+		root: staticAssets,
+		maxage: ms('7 days'),
+	});
+});
 
 router.get('/assets/*', async ctx => {
 	if (env !== 'production') {
