@@ -40,6 +40,17 @@ export default Vue.extend({
 			}
 		},
 	},
+	mounted() {
+		if (this.instance.softwareName != undefined) {
+			if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-gp-')) {
+				this.instance.softwareName = 'groundpolis';
+			} else if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-rei0784-')) {
+				this.instance.softwareName = 'ayuskey';
+			} else if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-m544')) {
+				this.instance.softwareName = 'meisskey';
+			}
+		}
+	},
 	methods: {
 		getName(instance: II): string {
 			if (!instance) return 'Unknown';
@@ -52,17 +63,6 @@ export default Vue.extend({
 			}
 			return s;
 		},
-	},
-	mounted() {
-		if (this.instance.softwareName = undefined) {
-      return
-		} else if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-gp-')) { 
-			this.instance.softwareName = 'groundpolis';
-		} else if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-rei0784-')) { 
-			this.instance.softwareName = 'ayuskey';
-		} else if (this.instance.softwareName === 'misskey' && this.instance.softwareVersion && this.instance.softwareVersion.includes('-m544')) { 
-			this.instance.softwareName = 'meisskey';
-		}
 	}
 });
 </script>
