@@ -278,6 +278,11 @@ export class NoteRepository extends Repository<Note> {
 			packed.text = nyaize(packed.text);
 		}
 		//TODO: 2020/10/28 お嬢様口調への変換追加
+		//2021/03/07 準備工事
+		//if (packed.user.isLady && packed.text) {
+		//	packed.text = nanodawaize(packed.text);
+		//}
+
 		if (!opts.skipHide) {
 			await this.hideNote(packed, meId);
 		}
