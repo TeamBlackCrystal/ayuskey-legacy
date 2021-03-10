@@ -170,7 +170,7 @@ export default Vue.extend({
 	margin 2px
 	padding 0 6px
 	border-radius 4px
-	cursor pointer
+	cursor default
 
 	&, *
 		-webkit-touch-callout none
