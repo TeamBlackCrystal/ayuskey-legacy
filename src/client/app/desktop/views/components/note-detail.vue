@@ -24,7 +24,7 @@
 				<mk-user-name :user="appearNote.user"/>
 			</router-link>
 			<span class="username"><mk-acct :user="appearNote.user"/></span>
-			<x-instance-ticker v-if="$store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
+			<x-instance-ticker v-if="appearNote.user.instance && $store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
 			<div class="info">
 				<router-link class="time" :to="appearNote | notePage">
 					<mk-time :time="appearNote.createdAt"/>
