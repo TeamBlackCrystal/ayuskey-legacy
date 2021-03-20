@@ -1,9 +1,12 @@
-import { EntityRepository, Repository } from 'typeorm';
-import { Users, Notes } from '..';
+import { EntityRepository, In, Repository } from 'typeorm';
+import { Users, Notes, NoteReactions } from '..';
 import { Notification } from '../entities/notification';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 import { SchemaType } from '../../misc/schema';
+import { Note } from '../entities/note';
+import { NoteReaction } from '../entities/note-reaction';
+import { User } from '../entities/user';
 
 export type PackedNotification = SchemaType<typeof packedNotificationSchema>;
 
@@ -11,6 +14,11 @@ export type PackedNotification = SchemaType<typeof packedNotificationSchema>;
 export class NotificationRepository extends Repository<Notification> {
 	public async pack(
 		src: Notification['id'] | Notification,
+		options: {
+			_hintForEachNotes_: {
+				myReactions: Map<Note['id'], NoteReaction | null>;
+			};
+		}
 	): Promise<PackedNotification> {
 		const notification = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -21,32 +29,71 @@ export class NotificationRepository extends Repository<Notification> {
 			userId: notification.notifierId,
 			user: Users.pack(notification.notifier || notification.notifierId),
 			...(notification.type === 'mention' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 			} : {}),
 			...(notification.type === 'reply' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 			} : {}),
 			...(notification.type === 'renote' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 			} : {}),
 			...(notification.type === 'quote' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 			} : {}),
 			...(notification.type === 'reaction' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 				reaction: notification.reaction
 			} : {}),
 			...(notification.type === 'pollVote' ? {
-				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId),
+				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
+					detail: true,
+					_hint_: options._hintForEachNotes_
+				}),
 				choice: notification.choice
 			} : {})
 		});
 	}
 
-	public packMany(
+	public async packMany(
 		notifications: Notification[],
+		meId: User['id']
 	) {
-		return Promise.all(notifications.map(x => this.pack(x)));
+		if (notifications.length === 0) return [];
+
+		const notes = notifications.filter(x => x.note != null).map(x => x.note!);
+		const noteIds = notes.map(n => n.id);
+		const myReactionsMap = new Map<Note['id'], NoteReaction | null>();
+		const renoteIds = notes.filter(n => n.renoteId != null).map(n => n.renoteId!);
+		const targets = [...noteIds, ...renoteIds];
+		const myReactions = await NoteReactions.find({
+			userId: meId,
+			noteId: In(targets),
+		});
+
+		for (const target of targets) {
+			myReactionsMap.set(target, myReactions.find(reaction => reaction.noteId === target) || null);
+		}
+
+		return await Promise.all(notifications.map(x => this.pack(x, {
+			_hintForEachNotes_: {
+				myReactions: myReactionsMap
+			}
+		})));
 	}
 }
 
