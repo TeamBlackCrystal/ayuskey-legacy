@@ -7,6 +7,7 @@ import config from '../../config';
 import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
+import { Emoji } from '../entities/emoji';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -153,6 +154,9 @@ export class UserRepository extends Repository<User> {
 			includeSecrets?: boolean,
 			// TODO: remove
 			includeHasUnreadNotes?: boolean
+			_hint_?: {
+				emojis: Emoji[] | null;
+			};
 		}
 	): Promise<PackedUser> {
 		const opts = Object.assign({
@@ -181,6 +185,34 @@ export class UserRepository extends Repository<User> {
 		}) : [];
 		const profile = opts.detail ? await UserProfiles.findOne(user.id).then(ensure) : null;
 
+		let emojis: Emoji[] = [];
+		if (user.emojis.length > 0) {
+			// 与えられたhintだけで十分(=新たにクエリする必要がない)かどうかを表すフラグ
+			let enough = true;
+			if (options?._hint_?.emojis) {
+				for (const name of user.emojis) {
+					const matched = options._hint_.emojis.find(x => x.name === name && x.host === user.host);
+					if (matched) {
+						emojis.push(matched);
+					} else {
+						enough = false;
+					}
+				}
+			} else {
+				enough = false;
+			}
+
+			if (!enough) {
+				emojis = await Emojis.find({
+					where: {
+						name: In(user.emojis),
+						host: user.host
+					},
+					select: ['name', 'host', 'url', 'aliases']
+				});
+			}
+		}
+
 		const falsy = opts.detail ? false : undefined;
 
 		const packed = {
@@ -208,13 +240,7 @@ export class UserRepository extends Repository<User> {
 			} : undefined) : undefined,
 
 			// カスタム絵文字添付
-			emojis: user.emojis.length > 0 ? Emojis.find({
-				where: {
-					name: In(user.emojis),
-					host: user.host
-				},
-				select: ['name', 'host', 'url', 'aliases']
-			}) : [],
+			emojis: emojis,
 
 			...(opts.includeHasUnreadNotes ? {
 				hasUnreadSpecifiedNotes: NoteUnreads.count({
