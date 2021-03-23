@@ -8,6 +8,7 @@ import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
 import { Emoji } from '../entities/emoji';
+import { getAntennas } from '../../misc/antenna-cache';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -99,10 +100,10 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
-		const antennas = await Antennas.find({ userId });
+		const myAntennas = (await getAntennas()).filter(a => a.userId === userId);
 
-		const unread = antennas.length > 0 ? await AntennaNotes.findOne({
-			antennaId: In(antennas.map(x => x.id)),
+		const unread = myAntennas.length > 0 ? await AntennaNotes.findOne({
+			antennaId: In(myAntennas.map(x => x.id)),
 			read: false
 		}) : null;
 

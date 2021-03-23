@@ -33,6 +33,8 @@ import { addNoteToAntenna } from '../add-note-to-antenna';
 import { deliverToRelays } from '../relay';
 import { normalizeTag } from '../../misc/normalize-tag';
 import { Channel } from '../../models/entities/channel';
+import { normalizeForSearch } from '../../misc/normalize-for-search';
+import { getAntennas } from '../../misc/antenna-cache';
 
 type NotificationType = 'reply' | 'renote' | 'quote' | 'mention';
 
@@ -235,21 +237,40 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 	// Increment notes count (user)
 	incNotesCountOfUser(user);
 
+	// Word mute
+	// TODO: cache
+	/*
+	UserProfiles.find({
+		enableWordMute: true
+	}).then(us => {
+		for (const u of us) {
+			checkWordMute(note, { id: u.userId }, u.mutedWords).then(shouldMute => {
+				if (shouldMute) {
+					MutedNotes.insert({
+						id: genId(),
+						userId: u.userId,
+						noteId: note.id,
+						reason: 'word',
+					});
+				}
+			});
+		}
+	});
+	*/
+
 	// Antenna
 	Followings.createQueryBuilder('following')
 		.andWhere(`following.followeeId = :userId`, { userId: note.userId })
 		.getMany()
-		.then(followings => {
+		.then(async followings => {
 			const followers = followings.map(f => f.followerId);
-			Antennas.find().then(async antennas => {
-				for (const antenna of antennas) {
-					checkHitAntenna(antenna, note, user, followers).then(hit => {
-						if (hit) {
-							addNoteToAntenna(antenna, note, user);
-						}
-					});
-				}
-			});
+			for (const antenna of (await getAntennas())) {
+				checkHitAntenna(antenna, note, user, followers).then(hit => {
+					if (hit) {
+						addNoteToAntenna(antenna, note, user);
+					}
+				});
+			}
 		});
 
 	// Channel
