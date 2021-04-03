@@ -12,7 +12,7 @@ export async function isClosedHost(host: string | null) {
 
 async function Update() {
 	const closed = await Instances.find({
-		isMarkedAsClosed: true
+		isSuspended: true
 	});
 	closedHosts = new Set(closed.map(x => toPuny(x.host)));
 }
