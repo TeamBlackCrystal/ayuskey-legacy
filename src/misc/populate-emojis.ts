@@ -1,7 +1,9 @@
-import { Emojis } from '../models';
+import { Emojis, Users } from '../models';
 import { Emoji } from '../models/entities/emoji';
 import { Cache } from './cache';
 import { isSelfHost, toPunyNullable } from './convert-host';
+import parseAcct from './acct/parse';
+import { resolveUser } from '../remote/resolve-user';
 
 const cache = new Cache<Emoji | null>(1000 * 60 * 60);
 
@@ -20,10 +22,27 @@ type PopulatedEmoji = {
  * @returns 絵文字情報, nullは未マッチを意味する
  */
 export async function populateEmoji(emojiName: string, noteUserHost: string | null): Promise<PopulatedEmoji | null> {
+	const accts = emojiName.startsWith('@');
 	const match = emojiName.match(/^(\w+)(?:@([\w.-]+))?$/);
 	if (!match) return null;
 
 	const name = match[1];
+
+	if (accts) { 
+		await Promise.all(
+			match
+				.map(acct => ({ acct, parsed: parseAcct(acct) }))
+				.map(async ({ acct, parsed }) => {
+					const user = await resolveUser(parsed.username.toLowerCase(), parsed.host || noteUserHost).catch(() => null);
+					return ({ acct, user: user ? await Users.pack(user) : undefined })
+				})
+		).then(users => users.filter((u) => u.user != null).map(u => {
+			return {
+				name: u.acct,
+				url: u.user?.avatarUrl || ''
+			};
+		}));
+	}
 
 	// クエリに使うホスト
 	let host = match[2] === '.' ? null	// .はローカルホスト (ここがマッチするのはリアクションのみ)
