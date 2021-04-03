@@ -3,8 +3,7 @@ export function nyaize(text: string): string {
 		// ja-JP
 		.replace(/な/g, 'にゃ').replace(/ナ/g, 'ニャ').replace(/ﾅ/g, 'ﾆｬ')
 		// en-US
-		//TODO: 絵文字の文字列まで置き換えるのを何とかする
-		//.replace(/(?<=n)a/gi, x => x === 'A' ? 'YA' : 'ya')
+		.replace(/(?<=n)a/gi, x => x === 'A' ? 'YA' : 'ya')
 		.replace(/(?<=morn)ing/gi, x => x === 'ING' ? 'YAN' : 'yan')
 		.replace(/(?<=every)one/gi, x => x === 'ONE' ? 'NYAN' : 'nyan')
 		// ko-KR
