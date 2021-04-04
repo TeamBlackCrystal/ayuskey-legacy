@@ -8,6 +8,7 @@ import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { toPuny } from '../../misc/convert-host';
 import { DeliverJobData } from '../type';
+import { isClosedHost } from '../../services/instance-moderation';
 
 const logger = new Logger('deliver');
 
@@ -22,15 +23,9 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 		return 'skip (blocked)';
 	}
 
-	// isSuspendedなら中断
-	const suspendedHosts = await Instances.find({
-		where: {
-			isSuspended: true
-		},
-		cache: 60 * 1000
-	});
-	if (suspendedHosts.map(x => x.host).includes(toPuny(host))) {
-		return 'skip (suspended)';
+	// closedなら中断
+	if (await isClosedHost(host)) {
+		return 'skip (closed)';
 	}
 
 	try {
