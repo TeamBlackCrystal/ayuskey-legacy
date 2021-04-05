@@ -8,11 +8,9 @@
 		<template #title><fa :icon="faGrin"/> {{ $t('remoteEmojis') }}</template>
 		<section style="padding: 16px 32px">
 			<ui-horizon-group searchboxes>
-				<!--
 				<ui-input v-model="searchRemote" type="text" spellcheck="false" @input="fetchEmojis('remote', true)">
 					<span>{{ $t('name') }}</span>
 				</ui-input>
-				-->
 				<ui-input v-model="searchHost" type="text" spellcheck="false" @input="fetchEmojis('remote', true)">
 					<span>{{ $t('host') }}</span>
 				</ui-input>
@@ -27,6 +25,11 @@
 				<div style="margin-bottom: 0.5em;">{{ `${emoji.name}@${emoji.host}` }}</div>
 				<ui-button @click="copy(emoji.id)">{{ $t('copy') }}</ui-button>
 			</div>
+		</section>
+
+		<section style="padding: 16px 32px">
+			<ui-button v-if="remoteExistMore" @click="fetchEmojis('remote')">{{ $t('loadNext') }}</ui-button>
+			<ui-button v-else @click="fetchEmojis('remote', true)">{{ $t('loadFirst') }}</ui-button>
 		</section>
 	</ui-card>
 
@@ -46,15 +49,11 @@ export default Vue.extend({
 			category: '',
 			url: '',
 			aliases: '',
-			limit: 10,
-			remoteLimit: 50,
+			remoteLimit: 30,
 			emojis: [],
 			existMore: false,
-			offset: 0,
 			remoteEmojis: [],
 			remoteExistMore: false,
-			remoteOffset: 0,
-			searchLocal: '',
 			searchRemote: '',
 			searchHost: '',
 			origin: 'all',
@@ -94,12 +93,9 @@ export default Vue.extend({
 		},
 		fetchEmojis(kind?: string, truncate?: boolean) {
 			if (!kind || kind === 'remote') {
-				if (truncate) this.remoteOffset = 0;
-				this.$root.api('admin/emoji/list', {
-					remote: true,
-					name: this.searchRemote,
+				this.$root.api('admin/emoji/list-remote', {
+					query: this.searchRemote,
 					host: this.searchHost || undefined,
-					offset: this.remoteOffset,
 					limit: this.remoteLimit + 1,
 				}).then((emojis: any[]) => {
 					if (emojis.length === this.remoteLimit + 1) {
@@ -109,7 +105,6 @@ export default Vue.extend({
 						this.remoteExistMore = false;
 					}
 					this.remoteEmojis = emojis;
-					this.remoteOffset += emojis.length;
 				});
 			}
 		}
