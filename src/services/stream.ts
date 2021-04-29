@@ -77,11 +77,6 @@ class Publisher {
 	public publishAdminStream = (userId: User['id'], type: string, value?: any): void => {
 		this.publish(`adminStream:${userId}`, type, typeof value === 'undefined' ? null : value);
 	}
-
-	public publishServerEvent = (userId: User['id'] | null, type: string, value?: any): void => {
-		const name = userId ? `serverEvent:${userId}` : `serverEvent`;
-		this.publish(name, type, typeof value === 'undefined' ? null : value);
-	}
 }
 
 const publisher = new Publisher();
@@ -102,4 +97,3 @@ export const publishReversiStream = publisher.publishReversiStream;
 export const publishReversiGameStream = publisher.publishReversiGameStream;
 export const publishApLogStream = publisher.publishApLogStream;
 export const publishAdminStream = publisher.publishAdminStream;
-export const publishServerEvent = publisher.publishServerEvent;

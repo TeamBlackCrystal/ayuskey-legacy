@@ -213,7 +213,13 @@ export class UserRepository extends Repository<User> {
 			} : undefined) : undefined,
 
 			// カスタム絵文字添付
-			emojis: populateEmojis(user.emojis, user.host),
+			emojis: user.emojis.length > 0 ? Emojis.find({
+				where: {
+					name: In(user.emojis),
+					host: user.host
+				},
+				select: ['name', 'host', 'url', 'aliases']
+			}) : [],
 
 			...(opts.includeHasUnreadNotes ? {
 				hasUnreadSpecifiedNotes: NoteUnreads.count({

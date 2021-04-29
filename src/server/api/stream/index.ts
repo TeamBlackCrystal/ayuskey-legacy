@@ -22,6 +22,8 @@ export default class Connection {
 	public subscriber: EventEmitter;
 	private channels: Channel[] = [];
 	private subscribingNotes: any = {};
+	private followingClock: NodeJS.Timer;
+	private mutingClock: NodeJS.Timer;
 
 	constructor(
 		wsConnection: websocket.connection,
@@ -38,8 +40,10 @@ export default class Connection {
 
 		if (this.user) {
 			this.updateFollowing();
+			this.followingClock = setInterval(this.updateFollowing, 5000);
+
 			this.updateMuting();
-			this.subscriber.on(`serverEvent:${this.user.id}`, this.onServerEvent);
+			this.mutingClock = setInterval(this.updateMuting, 5000);
 		}
 	}
 
@@ -216,17 +220,6 @@ export default class Connection {
 	}
 
 	@autobind
-	private async onServerEvent(data: any) {
-		if (data.type === 'followingChanged') {
-			this.updateFollowing();
-		}
-
-		if (data.type === 'mutingChanged') {
-			this.updateMuting();
-		}
-	}
-
-	@autobind
 	private async updateFollowing() {
 		const followings = await Followings.find({
 			where: {
@@ -259,8 +252,7 @@ export default class Connection {
 			if (c.dispose) c.dispose();
 		}
 
-		if (this.user) {
-			this.subscriber.off(`serverEvent:${this.user.id}`, this.onServerEvent);
-		}
+		if (this.followingClock) clearInterval(this.followingClock);
+		if (this.mutingClock) clearInterval(this.mutingClock);
 	}
 }

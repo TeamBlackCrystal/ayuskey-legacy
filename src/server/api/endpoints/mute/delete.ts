@@ -4,7 +4,6 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import { Mutings } from '../../../../models';
-import { publishMutingChanged } from '../../../../services/server-event';
 
 export const meta = {
 	desc: {
@@ -77,6 +76,4 @@ export default define(meta, async (ps, user) => {
 	await Mutings.delete({
 		id: exist.id
 	});
-
-	publishMutingChanged(muter.id);
 });

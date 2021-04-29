@@ -8,7 +8,6 @@ import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { toPuny } from '../../misc/convert-host';
 import { DeliverJobData } from '../type';
-import { isClosedHost } from '../../services/instance-moderation';
 
 const logger = new Logger('deliver');
 
@@ -24,7 +23,13 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 	}
 
 	// closedなら中断
-	if (await isClosedHost(host)) {
+	const closedHosts = await Instances.find({
+		where: {
+			isMarkedAsClosed: true
+		},
+		cache: 60 * 1000
+	});
+	if (closedHosts.map(x => x.host).includes(toPuny(host))) {
 		return 'skip (closed)';
 	}
 
