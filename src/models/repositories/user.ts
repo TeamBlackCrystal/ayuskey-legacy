@@ -1,13 +1,12 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Antennas, AntennaNotes } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Antennas, AntennaNotes } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
-import { populateEmojis } from '../../misc/populate-emojis';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
