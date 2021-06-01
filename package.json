@@ -5,7 +5,7 @@
 		"yupix <yupi0982@outlook.jp>",
 		"syuilo <i@syuilo.com>"
 	],
-	"version": "11.37.1-rei0784-5.11.1",
+	"version": "11.37.1-rei0784-5.11.2",
 	"codename": "malachite",
 	"repository": {
 		"type": "git",
@@ -165,7 +165,7 @@
 		"json5": "2.2.0",
 		"json5-loader": "4.0.1",
 		"jsonld": "4.0.1",
-		"jsrsasign": "8.0.23",
+		"jsrsasign": "10.2.0",
 		"katex": "0.13.0",
 		"koa": "2.13.1",
 		"koa-bodyparser": "4.3.0",
@@ -207,7 +207,7 @@
 		"randomcolor": "0.6.2",
 		"ratelimiter": "3.4.1",
 		"reconnecting-websocket": "4.4.0",
-		"redis": "3.0.2",
+		"redis": "3.1.1",
 		"redis-lock": "0.1.4",
 		"reflect-metadata": "0.1.13",
 		"rename": "1.0.4",
@@ -231,7 +231,7 @@
 		"stylus-loader": "5.0.0",
 		"summaly": "2.4.0",
 		"syslog-pro": "1.0.0",
-		"systeminformation": "5.6.3",
+		"systeminformation": "5.6.4",
 		"syuilo-password-strength": "0.0.1",
 		"terser-webpack-plugin": "4.2.3",
 		"textarea-caret": "3.1.0",
@@ -271,7 +271,7 @@
 		"webpack": "5.25.1",
 		"webpack-cli": "4.5.0",
 		"websocket": "1.0.33",
-		"ws": "7.4.4",
+		"ws": "7.4.6",
 		"xev": "2.0.1"
 	},
 	"devDependencies": {
