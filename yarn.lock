@@ -10707,10 +10707,10 @@ syslog-pro@1.0.0:
   dependencies:
     moment "^2.22.2"
 
-systeminformation@5.6.3:
-  version "5.6.3"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.6.3.tgz#1460ed546b9a9db49889ca773f42b4f5577ccfa9"
-  integrity sha512-xG0Fha8qyePA2twefxV+xSGhRHhyqDeMLN9uPcugYroVaG4q07DBoLHpCCb7a5t68S68jnoC1m21K7Jftzg96g==
+systeminformation@5.6.4:
+  version "5.6.4"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.6.4.tgz#5f32fcb05a5849e2a0e71b182c1f56ce32219310"
+  integrity sha512-b2tvW1R+qjNEoAGgh734EGLgqbDMghjsHRaWo36skAC6JM1tw1pitcGz/REt+qSIRSXbE4PKECojhaSrBRrEmw==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
