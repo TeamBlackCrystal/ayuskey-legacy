@@ -111,7 +111,7 @@
 		"@vue/composition-api": "1.0.0-rc.10",
 		"abort-controller": "3.0.0",
 		"animejs": "3.2.1",
-		"apexcharts": "3.24.0",
+		"apexcharts": "3.26.3",
 		"autobind-decorator": "2.4.0",
 		"autosize": "5.0.0",
 		"autwh": "0.1.0",
