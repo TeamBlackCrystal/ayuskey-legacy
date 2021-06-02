@@ -166,7 +166,7 @@
 		"json5-loader": "4.0.1",
 		"jsonld": "4.0.1",
 		"jsrsasign": "10.2.0",
-		"katex": "0.13.0",
+		"katex": "0.13.11",
 		"koa": "2.13.1",
 		"koa-bodyparser": "4.3.0",
 		"koa-favicon": "2.1.0",
