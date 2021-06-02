@@ -57,7 +57,7 @@
 		"@types/gulp": "4.0.8",
 		"@types/gulp-mocha": "0.0.33",
 		"@types/gulp-rename": "2.0.0",
-		"@types/gulp-replace": "0.0.31",
+		"@types/gulp-replace": "1.1.0",
 		"@types/is-url": "1.2.29",
 		"@types/js-yaml": "3.12.5",
 		"@types/jsdom": "16.2.10",
