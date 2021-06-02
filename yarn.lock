@@ -2086,16 +2086,16 @@ builtin-modules@^1.1.1:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bull@3.20.1:
-  version "3.20.1"
-  resolved "https://registry.yarnpkg.com/bull/-/bull-3.20.1.tgz#97c4156f48001565baf3c04b81267a5604f40754"
-  integrity sha512-wDwpVu47WKaGhiguEPa/US5UMrtGLPKNPiGFPo4OgVs3EEGzJEWwv3LRPfjJVIf1COdMAN/yowGhZwYmoOonjQ==
+bull@3.22.7:
+  version "3.22.7"
+  resolved "https://registry.yarnpkg.com/bull/-/bull-3.22.7.tgz#be17398edad4e17e54db9b9c7388d92381f6ea1d"
+  integrity sha512-hrpfs1InzliuevKUOxAfGVctViic8uKP5zOkFAeNI4yVhlR5Ai3pSXFBiC78p2dl/t2AlC504pOqYJw3W9eSSA==
   dependencies:
     cron-parser "^2.13.0"
     debuglog "^1.0.0"
     get-port "^5.1.1"
     ioredis "^4.22.0"
-    lodash "^4.17.19"
+    lodash "^4.17.21"
     p-timeout "^3.2.0"
     promise.prototype.finally "^3.1.2"
     semver "^7.3.2"
@@ -9793,13 +9793,6 @@ semver@6.3.0, semver@^6.0.0, semver@^6.1.2, semver@^6.3.0:
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 semver@^7.3.2, semver@^7.3.4, semver@^7.3.5:
-  version "7.3.5"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
-  integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
-  dependencies:
-    lru-cache "^6.0.0"
-
-semver@^7.3.5:
   version "7.3.5"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
   integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
