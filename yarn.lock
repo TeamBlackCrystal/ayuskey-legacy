@@ -859,10 +859,10 @@
     "@types/node" "*"
     safe-buffer "*"
 
-"@types/redis@2.8.28":
-  version "2.8.28"
-  resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.28.tgz#5862b2b64aa7f7cbc76dafd7e6f06992b52c55e3"
-  integrity sha512-8l2gr2OQ969ypa7hFOeKqtFoY70XkHxISV0pAwmQ2nm6CSPb1brmTmqJCGGrekCo+pAZyWlNXr+Kvo6L/1wijA==
+"@types/redis@2.8.29":
+  version "2.8.29"
+  resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.29.tgz#f272dba985156e599e2523afb4f5f7e7586b56b5"
+  integrity sha512-/pjQ9lwnL/t1bEfRHQFEJB3kHCR65tpB19NEWmbqcgGgqrfeGo/9b4tUtHbClxQoy3+g6Esx2QRtV7fk7kBPYg==
   dependencies:
     "@types/node" "*"
 
@@ -1131,12 +1131,12 @@
   optionalDependencies:
     prettier "^1.18.2"
 
-"@vue/composition-api@1.0.0-beta.19":
-  version "1.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.19.tgz#54355c5b6143337aafb37b022b240c90c431571c"
-  integrity sha512-FYl3DofSJAKdLO2Ig18ITelcOAWc1CWwfgMrqh7op38aqR5RfcJ7RA3kiDu38iZB0r86dMxcaOHoszIGKpU98g==
+"@vue/composition-api@1.0.0-rc.10":
+  version "1.0.0-rc.10"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-rc.10.tgz#a98e2b810613531bbbbd3b4c0a9fc46198cc931d"
+  integrity sha512-ftm4OU8H1Ipw64gxIVqzlCW9lJrtr9iOJME0/KJ/fWmVGy55Qbd0uIgIttOkCdLL94A5cjTSbJFTQhu9jBDRXw==
   dependencies:
-    tslib "^2.0.1"
+    tslib "^2.2.0"
 
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
@@ -2380,10 +2380,10 @@ chalk@4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@4.1.0, chalk@^4.0.0, chalk@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+chalk@4.1.1, chalk@^4.0.0, chalk@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.1.tgz#c80b3fab28bf6371e6863325eee67e618b77e6ad"
+  integrity sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -2946,7 +2946,7 @@ content-type@^1.0.4:
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
-conventional-changelog-angular@^5.0.12:
+conventional-changelog-angular@^5.0.12, conventional-changelog-angular@^5.0.6:
   version "5.0.12"
   resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.12.tgz#c979b8b921cbfe26402eb3da5bbfda02d865a2b9"
   integrity sha512-5GLsbnkR/7A89RyHLvvoExbiGbd9xKdKqDTrArnPbOqBqG/2wIosu0fHwpeIRI8Tl94MhVNBXcLJZl92ZQ5USw==
@@ -2988,7 +2988,7 @@ conventional-changelog-conventionalcommits@^4.5.0:
     lodash "^4.17.15"
     q "^1.5.1"
 
-conventional-changelog-core@^4.2.1:
+conventional-changelog-core@^4.1.4, conventional-changelog-core@^4.2.1:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/conventional-changelog-core/-/conventional-changelog-core-4.2.2.tgz#f0897df6d53b5d63dec36b9442bd45354f8b3ce5"
   integrity sha512-7pDpRUiobQDNkwHyJG7k9f6maPo9tfPzkSWbRq97GGiZqisElhnvUZSvyQH20ogfOjntB5aadvv6NNcKL1sReg==
@@ -3045,7 +3045,7 @@ conventional-changelog-jshint@^2.0.9:
     compare-func "^2.0.0"
     q "^1.5.1"
 
-conventional-changelog-preset-loader@^2.3.4:
+conventional-changelog-preset-loader@^2.3.0, conventional-changelog-preset-loader@^2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/conventional-changelog-preset-loader/-/conventional-changelog-preset-loader-2.3.4.tgz#14a855abbffd59027fd602581f1f34d9862ea44c"
   integrity sha512-GEKRWkrSAZeTq5+YjUZOYxdHq+ci4dNwHvpaBC3+ENalzFWuCWa9EZXSuZBpkr72sMdKB+1fyDV4takK1Lf58g==
@@ -3066,7 +3066,7 @@ conventional-changelog-writer@^4.0.18:
     split "^1.0.0"
     through2 "^4.0.0"
 
-conventional-changelog@^3.1.15, conventional-changelog@^3.1.23:
+conventional-changelog@^3.1.23:
   version "3.1.24"
   resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-3.1.24.tgz#ebd180b0fd1b2e1f0095c4b04fd088698348a464"
   integrity sha512-ed6k8PO00UVvhExYohroVPXcOJ/K1N0/drJHx/faTH37OIZthlecuLIRX/T6uOp682CAoVoFpu+sSEaeuH6Asg==
@@ -10018,10 +10018,10 @@ shelljs@0.8.4, shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shipjs-lib@0.22.0:
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/shipjs-lib/-/shipjs-lib-0.22.0.tgz#e9413529b3cb03d971f14a6ce7502bddf40d0ed9"
-  integrity sha512-49xomVWwy3Bbu7ieF/D9GURVltJcFZTSYVVM3fa1w/vrZMxskTHjS0UWm/jiUL/EHACyp+7mbTWK8qPHEKz6xA==
+shipjs-lib@0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/shipjs-lib/-/shipjs-lib-0.23.2.tgz#3f02c97455d2699a463488cafa6a61a924da8e29"
+  integrity sha512-IfPFv8AWErc+K4lZPKe/CeWGbKAMisiVEgkVAci5iqGDiUIP5wNo1iCtHBgwY9ezKeH9TJasZocHpqwlCQJe1w==
   dependencies:
     deepmerge "^4.2.2"
     dotenv "^8.1.0"
@@ -10029,10 +10029,10 @@ shipjs-lib@0.22.0:
     semver "6.3.0"
     shelljs "0.8.4"
 
-shipjs@0.22.0:
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/shipjs/-/shipjs-0.22.0.tgz#01641f12d464cc4442f1686c4174a36e3e6d351c"
-  integrity sha512-43Ia3tnnM5lCOY0XqkoWZ55WqVRWO/b5ce51zh42TfHvNYhFL/5WYb9/avhUHs1ey0Rtxfq4YAAIjAyKx0RVhA==
+shipjs@0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/shipjs/-/shipjs-0.23.2.tgz#4f2fd4b0727c77533d9b0ab42eb0c7a0bf45a88f"
+  integrity sha512-am/kLj0ZVQK97Gss/J4dCbVwLsZK/aDUQTlgt0ZgqB/qqPWGDxDVdjFiTEydSDHTWsgLYD6IQ5NlFWQkAmziUQ==
   dependencies:
     "@babel/runtime" "^7.6.3"
     "@octokit/rest" "^17.0.0"
@@ -10041,7 +10041,10 @@ shipjs@0.22.0:
     arg "4.1.3"
     chalk "4.0.0"
     change-case "4.1.1"
-    conventional-changelog "^3.1.15"
+    conventional-changelog-angular "^5.0.6"
+    conventional-changelog-core "^4.1.4"
+    conventional-changelog-preset-loader "^2.3.0"
+    deepmerge "^4.2.2"
     dotenv "^8.2.0"
     ejs "^3.0.0"
     esm "3.2.25"
@@ -10053,7 +10056,7 @@ shipjs@0.22.0:
     prettier "^2.0.0"
     serialize-javascript "^3.0.0"
     shell-quote "^1.7.2"
-    shipjs-lib "0.22.0"
+    shipjs-lib "0.23.2"
     temp-write "4.0.0"
     tempfile "^3.0.0"
 
@@ -11158,10 +11161,10 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.1, tslib@^2.0.3:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
-  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+tslib@^2.0.3, tslib@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
+  integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
 tslint-sonarts@1.9.0:
   version "1.9.0"
