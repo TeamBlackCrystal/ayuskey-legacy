@@ -29,7 +29,7 @@
 		"clean": "gulp clean",
 		"cleanall": "gulp cleanall",
 		"lint": "gulp lint",
-		"test": "cross-env TS_NODE_FILES=true gulp test",
+		"test": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
 		"format": "gulp format",
 		"release": "shipjs prepare"
 	},
@@ -54,6 +54,7 @@
 		"@types/cbor": "6.0.0",
 		"@types/dateformat": "3.0.1",
 		"@types/double-ended-queue": "2.1.1",
+		"@types/escape-regexp": "0.0.0",
 		"@types/fluent-ffmpeg": "2.1.18",
 		"@types/gulp": "4.0.9",
 		"@types/gulp-mocha": "0.0.33",
