@@ -16,11 +16,18 @@ export default async (
 	uri: string | null = null,
 	sensitive = false,
 	force = false,
-	link = false
+	link = false,
+	comment = null
 ): Promise<DriveFile> => {
 	let name = new URL(url).pathname.split('/').pop() || null;
 	if (name == null || !DriveFiles.validateFileName(name)) {
 		name = null;
+	}
+
+	// If the comment is same as the name, skip comment
+	// (image.name is passed in when receiving attachment)
+	if (comment !== null && name == comment) {
+		comment = null;
 	}
 
 	// Create temp file
@@ -33,7 +40,7 @@ export default async (
 	let error;
 
 	try {
-		driveFile = await create(user, path, name, null, folderId, force, link, url, uri, sensitive);
+		driveFile = await create(user, path, name, comment, folderId, force, link, url, uri, sensitive);
 		logger.succ(`Got: ${driveFile.id}`);
 	} catch (e) {
 		error = e;
