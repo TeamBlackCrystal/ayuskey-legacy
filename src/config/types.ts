@@ -16,6 +16,7 @@ export type Source = {
 		pass: string;
 		disableCache?: boolean;
 		extra?: { [x: string]: string };
+		pgroonga?: boolean;
 	};
 	redis: {
 		host: string;
@@ -71,6 +72,8 @@ export type Source = {
 
 	signToActivityPubGet?: boolean;
 	urlPreviewCors?: boolean;
+
+	searchFalse?: boolean;
 };
 
 /**
