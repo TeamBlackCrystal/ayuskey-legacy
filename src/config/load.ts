@@ -2,6 +2,7 @@
  * Config loader
  */
 
+import { URL } from 'url';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { Source, Mixin } from './types';

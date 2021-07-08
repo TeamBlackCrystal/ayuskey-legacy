@@ -8,6 +8,7 @@ import { ILocalUser } from '../../models/entities/user';
 import { UserKeypairs } from '../../models';
 import { ensure } from '../../prelude/ensure';
 import { getAgentByUrl } from '../../misc/fetch';
+import { URL } from 'url';
 import got from 'got';
 import * as Got from 'got';
 
@@ -26,7 +27,7 @@ export default async (user: ILocalUser, url: string, object: any) => {
 		userId: user.id
 	}).then(ensure);
 
-	await new Promise((resolve, reject) => {
+	await new Promise<void>((resolve, reject) => {
 		const req = https.request({
 			agent: getAgentByUrl(new URL(`https://example.net`)),
 			protocol,
