@@ -96,7 +96,7 @@
 		"@types/seedrandom": "3.0.1",
 		"@types/sharp": "0.28.4",
 		"@types/showdown": "1.9.3",
-		"@types/speakeasy": "2.0.5",
+		"@types/speakeasy": "2.0.6",
 		"@types/throttle-debounce": "2.1.0",
 		"@types/tinycolor2": "1.4.3",
 		"@types/tmp": "0.2.1",
