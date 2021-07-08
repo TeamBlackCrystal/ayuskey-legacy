@@ -73,7 +73,7 @@
 		"@types/koa__cors": "3.0.3",
 		"@types/koa__multer": "2.0.2",
 		"@types/koa__router": "8.0.5",
-		"@types/lolex": "5.1.0",
+		"@types/lolex": "5.1.1",
 		"@types/mocha": "8.2.2",
 		"@types/node": "16.0.0",
 		"@types/node-fetch": "2.5.11",
