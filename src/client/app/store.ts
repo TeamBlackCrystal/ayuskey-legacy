@@ -87,6 +87,7 @@ const defaultDeviceSettings = {
 	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
 	instanceTicker: 'remote', // none, remote, always
+	hasDisconnectedAction: 'notify', // nothing, notify, reload
 	roomGraphicsQuality: 'medium',
 	roomUseOrthographicCamera: true,
 	activeEmojiCategoryName: undefined,
