@@ -3,7 +3,7 @@
 	<!-- (今は繋がってるけど) 切断履歴があったときに出るやつ -->
 	<div class="disconnect-notify" v-if="stream.state == 'connected' && hasDisconnected
 		&& ($store.state.device.hasDisconnectedAction !== 'nothing' || newVersion != null)" @click="resetDisconnected">
-		<div><fa icon="exclamation-triangle"/> {{ $t('has-disconnected') }} ({{ disconnectedTime }})</div>
+		<div><fa icon="exclamation-triangle"/> {{ $t('has-disconnected') }}</div>
 		<div v-if="newVersion != null">
 			{{ $t('update-available') }} ({{ newVersion }})<br />
 		</div>
@@ -36,13 +36,12 @@ import i18n from '../../../i18n';
 import anime from 'animejs';
 import checkForUpdate from '../../scripts/check-for-update';
 import { env } from '../../../config';
+
 export default Vue.extend({
 	i18n: i18n('common/views/components/stream-indicator.vue'),
 	data() {
 		return {
 			hasDisconnected: false,
-			t0: 0,
-			tSum: 0,
 			newVersion: null,
 			reloadTimer: null,
 		}
@@ -50,14 +49,6 @@ export default Vue.extend({
 	computed: {
 		stream() {
 			return this.$root.stream;
-		},
-		disconnectedTime(): string {
-			const t = this.tSum / 1000;
-			return (
-				t >= 86400    ? `${~~(t / 86400)} days` :
-				t >= 3600     ? `${~~(t / 3600)} hours` :
-				t >= 60       ? `${~~(t / 60)} min` :
-				`${~~(t % 60)} sec`);
 		},
 	},
 	created() {
@@ -77,8 +68,6 @@ export default Vue.extend({
 	methods: {
 		onConnected() {
 			if (this.hasDisconnected) {
-				this.tSum += Date.now() - this.t0;
-
 				if (this.$store.state.device.hasDisconnectedAction === 'reload') {
 					this.reloadTimer = setTimeout(() => {
 						this.reload();
@@ -99,7 +88,6 @@ export default Vue.extend({
 		},
 		onDisconnected() {
 			this.hasDisconnected = true;
-			this.t0 = Date.now();
 			anime({
 				targets: this.$refs.indicator,
 				opacity: 1,
@@ -109,7 +97,6 @@ export default Vue.extend({
 		},
 		resetDisconnected() {
 			this.hasDisconnected = false;
-			this.tSum = 0;
 		},
 		reload() {
 			location.reload();
