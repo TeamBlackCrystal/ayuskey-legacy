@@ -47,6 +47,9 @@ db:
   #extra:
   #  ssl: true
 
+  # Use PGroonga
+  #pgroonga: false
+
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────
 
