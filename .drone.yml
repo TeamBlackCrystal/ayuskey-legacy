@@ -1,6 +1,11 @@
 pipeline:
-  DOCKERIMAGECI:
-    image: ubuntu:latest
+  NODEJSCI16:
+    name: Node16 CI
+    image: node:16-alpine3.13
 
     command: 
-      - docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - apk add --no-cache autoconf automake file g++ gcc libc-dev libtool make nasm pkgconfig python3 zlib-dev vips-dev vips
+      - NODE_ENV=production yarn install
+      - NODE_ENV=production yarn build
+      #- cp test/test.yml .config
+      #- yarn test
