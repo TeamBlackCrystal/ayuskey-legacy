@@ -654,10 +654,10 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa-cors@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@types/koa-cors/-/koa-cors-0.0.1.tgz#5c681704938acf45ce871fdb1ca084dc57dd4f97"
-  integrity sha512-pSpsfmXQ2pf6h8Jv3S5bKL4OmlcUW29mIcdhB7lb6kduoMNwKF7Ztf7kup2Z8Cst6BwfjnDx+/J9vsvS/jpCbA==
+"@types/koa-cors@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@types/koa-cors/-/koa-cors-0.0.2.tgz#369c753fb383640f225579c70a4f9a286b4931b7"
+  integrity sha512-uNaDY26HUVO+2C6arK8ZFODs9mBjYprD8mlvkVe2bYdX9wzEeKtycVXPafXpUkePhMh4sffIMkhRDyedokG/QA==
   dependencies:
     "@types/koa" "*"
 
