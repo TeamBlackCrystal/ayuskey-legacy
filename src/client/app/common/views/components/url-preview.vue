@@ -122,6 +122,9 @@ export default Vue.extend({
 				this.fetching = false;
 				this.player = info.player;
 				if (this.tweetId && this.player) this.player.url = null;
+				if (this.player && this.player.url != null && this.thumbnail == null) {
+					this.thumbnail = 'data:image/gif;base64,R0lGODlhAQABAGAAACH5BAEKAP8ALAAAAAABAAEAAAgEAP8FBAA7';
+				}
 			})
 		});
 
