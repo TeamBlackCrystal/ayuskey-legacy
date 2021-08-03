@@ -57,8 +57,12 @@ function validateActor(x: IObject, uri: string): IActor {
 	validate('id', x.id, $.str.min(1));
 	validate('inbox', x.inbox, $.str.min(1));
 	validate('preferredUsername', x.preferredUsername, $.str.min(1).max(128).match(/^\w([\w-.]*\w)?$/));
-	validate('name', x.name, $.optional.nullable.str.max(128));
-	validate('summary', x.summary, $.optional.nullable.str.max(5000));
+
+	// サロゲートペアは2文字としてカウントされるので、サロゲートペアと合字を考慮して大きめにしておく
+	validate('name', x.name, $.optional.nullable.str.max(512));
+
+	// 入力値はHTMLなので大きめにしておく
+	validate('summary', x.summary, $.optional.nullable.str.max(8192));
 
 	const idHost = toPuny(new URL(x.id!).hostname);
 	if (idHost !== expectHost) {
