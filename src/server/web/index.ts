@@ -328,6 +328,10 @@ const override = (source: string, target: string, depth: number = 0) =>
 router.get('/othello', async ctx => ctx.redirect(override(ctx.URL.pathname, 'games/reversi', 1)));
 router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'games')));
 
+router.get('/flush', async ctx => {
+	await ctx.render('flush');
+});
+
 // streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる
 router.get('/streaming', async ctx => {
 	console.log(`UNEXPECTED_STREAMING Request ${ctx.path}`);
