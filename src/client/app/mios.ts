@@ -468,13 +468,7 @@ export default class MiOS extends EventEmitter {
 	 */
 	@autobind
 	public getMetaSync() {
-		this.getMeta();	// バックグラウンドで最新化
-		if (this.meta) {	// 必ずあるはず
-			return this.meta.data;
-		} else {
-			console.error('getMetaSync but no data');	// 起きないはず
-			return null;
-		}
+		return this.meta ? this.meta.data : null;
 	}
 
 	/**
