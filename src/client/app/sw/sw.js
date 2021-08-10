@@ -2,7 +2,7 @@
  * Service Worker
  */
 
-import composeNotification from './common/scripts/compose-notification';
+import composeNotification from './compose-notification';
 
 // インストールされたとき
 self.addEventListener('install', ev => {
@@ -33,6 +33,13 @@ self.addEventListener('push', ev => {
 });
 
 self.addEventListener('fetch', ev => {
+	ev.respondWith(
+		fetch(ev.request)
+		.catch(e => {
+			console.error(e, ev.request);
+			return new Response(`Offline. Service Worker @${version}\n${e}`, { status: 200, statusText: 'NG SW' });
+		})
+	);
 });
 
 self.addEventListener('notificationclick', function(event) {
