@@ -175,7 +175,6 @@ export default Vue.extend({
 		},
 	},
 	mounted() {
-		console.log(this.$store.state.device.darkmode)
 		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
 			this.$set(this.menublur_style, 'backdrop-filter', 'blur(2em)');
 		} else {
