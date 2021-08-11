@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ayuskey/summaly@2.4.1-rei0784.2":
-  version "2.4.1-rei0784.2"
-  resolved "https://registry.yarnpkg.com/@ayuskey/summaly/-/summaly-2.4.1-rei0784.2.tgz#875e8c51d4a72f1cb88be981e736f9e177cf5f96"
-  integrity sha512-NR9CMD8aAt6ZQtgO0NokS8naYSrDfo3MPuaqV3+MrD/9iGEBhqyM0dTYJ4zjcfOw51N6bZbraLGvH3DNBp+vkw==
+"@ayuskey/summaly@2.4.1-rei0784.3":
+  version "2.4.1-rei0784.3"
+  resolved "https://registry.yarnpkg.com/@ayuskey/summaly/-/summaly-2.4.1-rei0784.3.tgz#f4d3e0cafd0f393b27766e2048566a60ac3c7196"
+  integrity sha512-qUmTZmXEIl0ZrslPZXNxX+2K6avK4AgyLvL9+LgO3h3gbpfIirVwXnEDtf0QaBa7PBhJVfFp5JCZ3UOZZ+p2mA==
   dependencies:
     cheerio-httpcli "0.8.2"
     debug "4.3.2"
