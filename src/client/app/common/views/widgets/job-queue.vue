@@ -127,6 +127,7 @@ export default defineComponent({
 }
 .mkw-jobQueue {
 	font-size: 0.9em;
+	color: var(--text);
 	> div {
 		padding: 16px;
 		&:not(:first-child) {
