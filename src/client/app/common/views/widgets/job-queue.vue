@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="mkw-job-queue">
 	<ui-container :show-header="!props.compact">
 		<template #header><fa :icon="faTasks"/>Job Queue</template>
 
