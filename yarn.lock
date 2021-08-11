@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@ayuskey/summaly@2.4.1-rei0784.2":
+  version "2.4.1-rei0784.2"
+  resolved "https://registry.yarnpkg.com/@ayuskey/summaly/-/summaly-2.4.1-rei0784.2.tgz#875e8c51d4a72f1cb88be981e736f9e177cf5f96"
+  integrity sha512-NR9CMD8aAt6ZQtgO0NokS8naYSrDfo3MPuaqV3+MrD/9iGEBhqyM0dTYJ4zjcfOw51N6bZbraLGvH3DNBp+vkw==
+  dependencies:
+    cheerio-httpcli "0.8.2"
+    debug "4.3.2"
+    escape-regexp "0.0.1"
+    html-entities "2.3.2"
+    koa "2.13.1"
+    request "2.88.2"
+    request-promise-native "1.0.9"
+    require-all "3.0.0"
+    trace-redirect "1.0.6"
+
 "@babel/code-frame@^7.0.0":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
