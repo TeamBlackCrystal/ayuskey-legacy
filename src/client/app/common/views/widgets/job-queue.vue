@@ -5,7 +5,7 @@
 
 		<div class="mkw-jobQueue _monospace">
 			<div class="inbox">
-				<div class="label">Inbox queue<Fa :icon="faExclamationTriangle" v-if="inbox.waiting > 0" class="icon"/></div>
+				<div class="label">Inbox queue<fa :icon="faExclamationTriangle" v-if="inbox.waiting > 0" class="icon"/></div>
 				<div class="values">
 					<div>
 						<div>Process</div>
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="deliver">
-				<div class="label">Deliver queue<Fa :icon="faExclamationTriangle" v-if="deliver.waiting > 0" class="icon"/></div>
+				<div class="label">Deliver queue<fa :icon="faExclamationTriangle" v-if="deliver.waiting > 0" class="icon"/></div>
 				<div class="values">
 					<div>
 						<div>Process</div>
@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faTasks } from '@fortawesome/free-solid-svg-icons';
 import define from '../../define-widget';
 import number from '../filters/v12/number';
 const widget = define({
@@ -81,6 +81,7 @@ export default defineComponent({
 			},
 			prev: {},
 			faExclamationTriangle,
+			faTasks,
 		};
 	},
 	created() {
