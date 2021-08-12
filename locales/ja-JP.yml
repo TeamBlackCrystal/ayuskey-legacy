@@ -86,6 +86,7 @@ common:
   followers: "フォロワー"
   favorites: "お気に入り"
   aboutInstance: "このインスタンスについて"
+  flush: "キャッシュをクリア"
 
   permissions:
     "read:account": "アカウントの情報を見る"

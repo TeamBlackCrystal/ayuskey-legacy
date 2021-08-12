@@ -1,6 +1,8 @@
 # Ayuskey
 
-Fork of <https://github.com/syuilo/misskey/tree/v11>
+[![][fork-of-badge]][fork-of-link]
+[![][summaly-badge]][summaly-link]
+[![][mfmjs-badge]][mfmjs-link]
 
 ----------------------------------------------------------------
 
@@ -17,3 +19,10 @@ Fork of <https://github.com/syuilo/misskey/tree/v11>
 
 * [TenCha](https://github.com/coke12103/TenCha)
   * isLadyをサポート
+
+[fork-of-link]:  https://github.com/syuilo/misskey/tree/v11
+[fork-of-badge]: https://img.shields.io/badge/fork%20of-misskey--dev%2Fmisskey-important.svg?style=flat-square
+[summaly-link]:  https://www.npmjs.com/package/@ayuskey/summaly
+[summaly-badge]: https://img.shields.io/badge/summaly-%40ayuskey%2Fsummaly-blue.svg?style=flat-square
+[mfmjs-link]:    https://github.com/TeamBlackCrystal/misskey/issues/222
+[mfmjs-badge]:   https://img.shields.io/badge/mfm.js-none(%23222)-blue.svg?style=flat-square
