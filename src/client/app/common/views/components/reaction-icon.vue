@@ -23,8 +23,9 @@ export default Vue.extend({
 		};
 	},
 	created() {
-		const meta = this.$root.getMetaSync();
-		if (meta && meta.emojis) this.customEmojis = meta.emojis;
+		this.$root.getMeta().then(meta => {
+			if (meta && meta.emojis) this.customEmojis = meta.emojis;
+		});
 	},
 	computed: {
 		str(): any {
