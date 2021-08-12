@@ -1,6 +1,6 @@
 # Ayuskey
 
-[![][fork-of-badge][fork-of-link]]
+[![][fork-of-badge]][fork-of-link]
 
 ----------------------------------------------------------------
 
