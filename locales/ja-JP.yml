@@ -1339,6 +1339,9 @@ common/views/components/post-form-attaches.vue:
   mark-as-sensitive: "閲覧注意に設定"
   unmark-as-sensitive: "閲覧注意を解除"
 
+common/views/components/tag-cloud.vue:
+  empty: "タグは空っぽのようです"
+  
 desktop/views/components/sub-note-content.vue:
   private: "この投稿は非公開です"
   deleted: "この投稿は削除されました"
@@ -1829,6 +1832,7 @@ desktop/views/pages/welcome.vue:
   photos: "最近の画像"
   powered-by-misskey: "Powered by <b>Misskey</b>."
   info: "情報"
+  not-found-maintainerName: "メンテナが設定されていません"
 
 desktop/views/pages/drive.vue:
   title: "Misskey Drive"
