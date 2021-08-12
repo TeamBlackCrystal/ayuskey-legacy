@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-5.14.0]
+
+### Added
+
+- 5.11.2からたくさんの機能が追加されました
+
+### Fixed
+
+- 5.11.2から検索した際プログレスバーが検索し終わっても消えないなどのいくつかのバグが修正されています。
+- beta.6からの修正
+  - 仕様を以前の戻し、絵文字表示バグに終止符を打ちました。
+
 ## [11.37.1-rei0784-5.14.0-beta.6] - 2021-08-12
 
 ### Added
@@ -47,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker環境においてfilesをマウントするように
 - 内部的な修正をたくさん
 
-[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0-beta.5...11.37.1-rei0784-5.14.0-beta.6...HEAD
+[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0...HEAD
+[11.37.1-rei0784-5.14.0]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0-beta.6...11.37.1-rei0784-5.14.0
 [11.37.1-rei0784-5.14.0-beta.6]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0-beta.5...11.37.1-rei0784-5.14.0-beta.6
 [11.37.1-rei0784-4.0.0]: https://github.com/TeamOrangeServer/misskey/compare/v3.6.0...v11.37.1-rei0784-4.0.0
