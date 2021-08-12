@@ -1,6 +1,6 @@
 # Ayuskey
 
-Fork of <https://github.com/syuilo/misskey/tree/v11>
+[![][fork-of-badge][fork-of-link]]
 
 ----------------------------------------------------------------
 
@@ -17,3 +17,6 @@ Fork of <https://github.com/syuilo/misskey/tree/v11>
 
 * [TenCha](https://github.com/coke12103/TenCha)
   * isLadyをサポート
+
+[fork-of-link]:  https://github.com/syuilo/misskey/tree/v11
+[fork-of-badge]: https://img.shields.io/badge/fork%20of-misskey--dev%2Fmisskey-important.svg?style=flat-square
