@@ -13,12 +13,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 言語ファイルにwelcomeのタグリストが空の際の言語を追加
+- ウィジェットにv12仕様のjob queueを追加
+- キャッシュを消す機能を追加
+- フォロー/ミュート/ブロック インポートでファイル名を見るように
 
 ### Fixed
 
+- 同じインスタンスからの絵文字が通知欄に表示されない
 - 検索した際プログレスバーが検索し終わっても消えない
 - welcomeページのタイムラインで画像が表示されない
 - welcomeページで管理者が設定されていない場合空白が表示される
+- パスワードを空に変更できてしまうのを修正 Fix [mei23#1455](https://github.com/mei23/misskey-v11/issues/1455)
+- 投票に数字で終わるリプライを付けられているとinboxで処理できないのを修正 Fix [mei23#1522](https://github.com/mei23/misskey-v11/issues/1522)
+
+### Changed
+
+- Tokenの生成方法を変更
+- Twitterウィジットが使える時はプレイヤーを使わないように
+
+### Removed
+
+- テーマの状態をログに出していた物を削除
 
 ## [11.37.1-rei0784-4.0.0] - 2020-11-01
 
