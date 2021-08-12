@@ -12,6 +12,7 @@ RUN apk add --no-cache \
     file \
     g++ \
     gcc \
+		git \
     libc-dev \
     libtool \
     make \
