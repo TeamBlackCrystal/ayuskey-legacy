@@ -21,14 +21,14 @@ class WebpackOnBuildPlugin {
 
 const isProduction = process.env.NODE_ENV == 'production';
 const isTesting = process.env.RK_MODE == 'testing';
+let gitHash
 
 const constants = require('./src/const.json');
 
 const locales = require('./locales');
 const meta = require('./package.json');
 const codename = meta.codename;
-
-const gitHash = execSync('git rev-parse HEAD').toString().replace(/\r?\n/g, '').slice(0, 8)
+if (!isProduction || isTesting) {}gitHash = execSync('git rev-parse HEAD').toString().replace(/\r?\n/g, '').slice(0, 8)
 //const version = isProduction ? isTesting ? meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' }) : meta.version : meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' });
 const version = isProduction ? isTesting ? meta.version + '-' + gitHash : meta.version : meta.version + '-' + gitHash;
 //const version = isProduction ? meta.version : meta.version + '-' + rndstr({ length: 8, chars: '0-9a-z' });
