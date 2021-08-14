@@ -46,7 +46,7 @@ gulp.task('build:copy:fonts', () =>
 );
 
 gulp.task('build:copy:docs', () =>
-	gulp.src('./src/docs/*.md').pipe(gulp.dest('./built/docs/'))
+	gulp.src('./src/docs/*/*.md').pipe(gulp.dest('./built/docs/'))
 );
 
 gulp.task('build:copy', gulp.parallel('build:copy:views', 'build:copy:fonts', 'build:copy:docs', () =>
