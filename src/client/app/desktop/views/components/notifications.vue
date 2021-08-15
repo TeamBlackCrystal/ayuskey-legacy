@@ -26,11 +26,9 @@
 								<fa icon="quote-right"/>
 							</router-link>
 						</div>
-						<div class="sub-icon-border">
 							<div class="sub-icon">
 								<mk-reaction-icon :reaction="notification.reaction" :custom-emojis="notification.note.emojis" class="icon"/>
 							</div>
-						</div>
 					</template>
 
 					<template v-if="notification.type == 'renote'" style="position: relative;">
@@ -286,37 +284,34 @@ export default Vue.extend({
 					display block
 					clear both
 
-				> .sub-icon-border
-					padding 3px
-					background #36d298
+				> .sub-icon
+					position: absolute;
+					z-index: 1
+					bottom: 1em
+					width: 20px
+					height: 20px
+					box-sizing: border-box
+					line-height: 20px
+					border-radius: 50%
+					font-size: 12px
+					pointer-events: none
+					background-color: var(--notifiCationBg)
+					left: 3em
 
-					> .sub-icon
-						position: absolute;
-						z-index: 1
-						bottom: 1em
-						width: 20px
-						height: 20px
-						box-sizing: border-box
-						line-height: 20px
-						border-radius: 50%
-						font-size: 12px
-						pointer-events: none
-						left: 3em
+					> .icon
+						height: 100%;
+						padding: 3px
+						white-space nowrap
+						text-overflow ellipsis
+						display inline-block
+						width: 100%
+						overflow hidden
 
-						> .icon
-							height: 100%;
-							padding: 3px
-							white-space nowrap
-							text-overflow ellipsis
+						[data-icon]
+							font-size 1.2em
+							font-weight normal
+							font-style normal
 							display inline-block
-							width: 100%
-							overflow hidden
-
-							[data-icon]
-								font-size 1.2em
-								font-weight normal
-								font-style normal
-								display inline-block
 
 				> .avatar
 					display block
