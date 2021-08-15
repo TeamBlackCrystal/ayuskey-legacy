@@ -19,9 +19,7 @@ RUN apk add --no-cache \
     nasm \
     pkgconfig \
     python3 \
-    zlib-dev \
-    vips-dev \
-    vips
+    zlib-dev
 
 COPY package.json yarn.lock ./
 RUN yarn install
@@ -32,8 +30,7 @@ FROM base AS runner
 
 RUN apk add --no-cache \
     ffmpeg \
-    tini \
-    vips
+    tini
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
