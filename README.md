@@ -20,6 +20,21 @@
 * [TenCha](https://github.com/coke12103/TenCha)
   * isLadyをサポート
 
+## Contribution
+
+### Collaborators
+
+<table>
+ <tr>
+  <td><img src="https://avatars.githubusercontent.com/u/33174568?s=120&v=4"></img></td>
+	<td><img src="https://avatars.githubusercontent.com/u/50538210?s=120&v=4"></img></td>
+ </tr>
+ <tr>
+  <td align="center"><a href="https://github.com/sousuke0422">@sousuke0422</a></td>
+	<td align="center"><a href="https://github.com/sousuke0422">@yupix</a></td>
+ </tr>
+</table>
+
 [fork-of-link]:  https://github.com/syuilo/misskey/tree/v11
 [fork-of-badge]: https://img.shields.io/badge/fork%20of-misskey--dev%2Fmisskey-important.svg?style=flat-square
 [summaly-link]:  https://www.npmjs.com/package/@ayuskey/summaly

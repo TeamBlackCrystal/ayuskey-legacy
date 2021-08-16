@@ -1,8 +1,8 @@
-import { markRaw, reactive, ref } from '@vue/composition-api';
+import { markRaw, reactive, Ref, ref } from '@vue/composition-api';
+import { Component } from 'vue';
 import { apiUrl, version, locale, env, debug } from './config';
 import { query } from '../../prelude/url';
-
-import MiOS from './mios';
+import { $i } from './account';
 
 export const pendingApiRequestsCount = ref(0);
 let apiRequestsCount = 0; // for debug
@@ -29,7 +29,7 @@ export function api(endpoint: string, data: Record<string, any> = {}, token?: st
 
 	const promise = new Promise<void>((resolve, reject) => {
 		// Append a credential
-		if (MiOS.store.state.i.token) (data as any).i = MiOS.store.state.i.token;
+		if ($i) (data as any).i = $i.token;
 		if (token !== undefined) (data as any).i = token;
 
 		let url = endpoint.indexOf('://') > -1 ? endpoint : `${apiUrl}/${endpoint}`;
@@ -79,3 +79,60 @@ export function api(endpoint: string, data: Record<string, any> = {}, token?: st
 
 	return promise;
 }
+
+/*
+function isModule(x: any): x is typeof import('*.vue') {
+	return x.default != null;
+}
+
+let popupIdCount = 0;
+export const popups = ref([]) as Ref<{
+	id: any;
+	component: any;
+	props: Record<string, any>;
+}[]>;
+
+export async function popup(component: Component | typeof import('*.vue') | Promise<Component | typeof import('*.vue')>, props: Record<string, any>, events = {}, disposeEvent?: string) {
+	if (component.then) component = await component;
+
+	if (isModule(component)) component = component.default;
+	markRaw(component);
+
+	const id = ++popupIdCount;
+	const dispose = () => {
+		//if (_DEV_) console.log('os:popup close', id, component, props, events);
+		// このsetTimeoutが無いと挙動がおかしくなる(autocompleteが閉じなくなる)。Vueのバグ？
+		setTimeout(() => {
+			popups.value = popups.value.filter(popup => popup.id !== id);
+		}, 0);
+	};
+	const state = {
+		component,
+		props,
+		events: disposeEvent ? {
+			...events,
+			[disposeEvent]: dispose
+		} : events,
+		id,
+	};
+
+	//if (_DEV_) console.log('os:popup open', id, component, props, events);
+	popups.value.push(state);
+
+	return {
+		dispose,
+	};
+}
+
+export function waiting() {
+	return new Promise<void>((resolve, reject) => {
+		const showing = ref(true);
+		popup(import('@client/components/waiting-dialog.vue'), {
+			success: false,
+			showing: showing
+		}, {
+			done: () => resolve(),
+		}, 'closed');
+	});
+}
+*/
