@@ -12,27 +12,21 @@
 			<template v-for="(notification, i) in _notifications">
 				<div class="notification" :class="notification.type" :key="notification.id">
 					<template v-if="notification.type == 'reaction'">
-						<mk-avatar class="avatar" :user="notification.user"/>
+						<mk-notification-avatar class="avatar" :user="notification.user" :notification="notification"/>
 						<div class="text">
 							<header>
 								<router-link :to="notification.user | userPage" v-user-preview="notification.user.id" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
+								<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+									<fa icon="quote-left"/>
+										<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
+									<fa icon="quote-right"/>
+								</router-link>
 							</header>
-							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
-								<fa icon="quote-left"/>
-									<mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="true" :custom-emojis="notification.note.emojis"/>
-								<fa icon="quote-right"/>
-							</router-link>
-						</div>
-						<div class="sub-icon-border">
-							<div class="sub-icon">
-								<mk-reaction-icon :reaction="notification.reaction" :custom-emojis="notification.note.emojis" class="icon"/>
-							</div>
 						</div>
 					</template>
-
 					<template v-if="notification.type == 'renote'" style="position: relative;">
 						<mk-avatar class="avatar" :user="notification.note.user"/>
 						<div class="text">
@@ -44,12 +38,9 @@
 							</header>
 							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note.renote)">
 								<fa icon="quote-left"/>
-									<mfm :text="getNoteSummary(notification.note.renote)" :plain="true" :nowrap="true" :custom-emojis="notification.note.renote.emojis"/>
+									<mfm :text="getNoteSummary(notification.note.renote)" :plain="true" :custom-emojis="notification.note.renote.emojis"/>
 								<fa icon="quote-right"/>
 							</router-link>
-						</div>
-						<div class="sub-icon">
-								<fa icon="retweet" class="icon"/>
 						</div>
 					</template>
 
@@ -63,11 +54,8 @@
 								<mk-time :time="notification.createdAt"/>
 							</header>
 							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
-								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
+								<mfm :text="getNoteSummary(notification.note)" :plain="false" :custom-emojis="notification.note.emojis"/>
 							</router-link>
-						</div>
-						<div class="sub-icon">
-							<fa icon="quote-left" class="icon"/>
 						</div>
 					</template>
 
@@ -81,9 +69,6 @@
 								<mk-time :time="notification.createdAt"/>
 							</header>
 						</div>
-						<div class="sub-icon">
-							<fa icon="user-plus" class="icon"/>
-						</div>
 					</template>
 
 					<template v-if="notification.type == 'receiveFollowRequest'">
@@ -95,9 +80,6 @@
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-						</div>
-						<div class="sub-icon">
-							<fa icon="user-clock" class="icon"/>
 						</div>
 					</template>
 
@@ -114,9 +96,6 @@
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
 						</div>
-						<div class="sub-icon">
-							<fa icon="reply" class="icon"/>
-						</div>
 					</template>
 
 					<template v-if="notification.type == 'mention'">
@@ -132,9 +111,6 @@
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
 						</div>
-						<div class="sub-icon">
-								<fa icon="at" class="icon"/>
-						</div>
 					</template>
 
 					<template v-if="notification.type == 'pollVote'">
@@ -149,7 +125,7 @@
 							</header>
 							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
 								<fa icon="quote-left"/>
-									<mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="true" :custom-emojis="notification.note.emojis"/>
+									<mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="false" :custom-emojis="notification.note.emojis"/>
 								<fa icon="quote-right"/>
 							</router-link>
 						</div>
@@ -287,37 +263,40 @@ export default Vue.extend({
 					display block
 					clear both
 
-				> .sub-icon-border
-					padding 3px
-					background #36d298
+				> .sub-icon
+					overflow hidden
+					position -webkit-sticky
+					position sticky
+					top 3.1em
+					z-index: 1
+					bottom: 1em
+					width: 20px
+					height: 20px
+					box-sizing: border-box
+					line-height: 20px
+					border-radius: 50%
+					font-size: 12px
+					pointer-events: none
+					left: 3em
 
-					> .sub-icon
-						position: absolute;
-						z-index: 1
-						bottom: 1em
-						width: 20px
-						height: 20px
-						box-sizing: border-box
-						line-height: 20px
-						border-radius: 50%
-						font-size: 12px
-						pointer-events: none
-						left: 3em
+					> .sub-icon-background
+						background-color: var(--notifiCationBg)
 
-						> .icon
-							height: 100%;
-							padding: 3px
-							white-space nowrap
-							text-overflow ellipsis
+
+					> .icon
+						height: 100%;
+						padding: 3px
+						white-space nowrap
+						text-overflow ellipsis
+						display inline-block
+						width: 100%
+						overflow hidden
+
+						[data-icon]
+							font-size 1.2em
+							font-weight normal
+							font-style normal
 							display inline-block
-							width: 100%
-							overflow hidden
-
-							[data-icon]
-								font-size 1.2em
-								font-weight normal
-								font-style normal
-								display inline-block
 
 				> .avatar
 					display block
@@ -422,3 +401,4 @@ export default Vue.extend({
 		color var(--text)
 
 </style>
+>>>>>>> Stashed changes
