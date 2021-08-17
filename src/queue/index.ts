@@ -73,8 +73,7 @@ export function deliver(user: ILocalUser, content: any, to: string) {
 	return deliverQueue.add(data, {
 		attempts: config.deliverJobMaxAttempts || 12,
 		backoff: {
-			type: 'exponential',
-			delay: 60 * 1000
+			type: 'apBackoff'
 		},
 		removeOnComplete: true,
 		removeOnFail: true
@@ -90,8 +89,7 @@ export function inbox(activity: IActivity, signature: httpSignature.IParsedSigna
 	return inboxQueue.add(data, {
 		attempts: config.inboxJobMaxAttempts || 8,
 		backoff: {
-			type: 'exponential',
-			delay: 60 * 1000
+			type: 'apBackoff'
 		},
 		removeOnComplete: true,
 		removeOnFail: true
