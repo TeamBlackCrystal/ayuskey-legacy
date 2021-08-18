@@ -15,6 +15,7 @@
 						<mk-avatar class="avatar" :user="notification.user"/>
 						<div class="text">
 							<header>
+								<mk-reaction-icon :reaction="notification.reaction" :custom-emojis="notification.note.emojis" class="icon"/>
 								<router-link :to="notification.user | userPage" v-user-preview="notification.user.id" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
@@ -26,15 +27,13 @@
 								<fa icon="quote-right"/>
 							</router-link>
 						</div>
-							<div class="sub-icon">
-								<mk-reaction-icon :reaction="notification.reaction" :custom-emojis="notification.note.emojis" class="icon"/>
-							</div>
 					</template>
 
-					<template v-if="notification.type == 'renote'" style="position: relative;">
+					<template v-if="notification.type == 'renote'">
 						<mk-avatar class="avatar" :user="notification.note.user"/>
 						<div class="text">
 							<header>
+								<fa icon="retweet" class="icon"/>
 								<router-link :to="notification.note.user | userPage" v-user-preview="notification.note.userId" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
@@ -46,15 +45,13 @@
 								<fa icon="quote-right"/>
 							</router-link>
 						</div>
-						<div class="sub-icon">
-								<fa icon="retweet" class="icon"/>
-						</div>
 					</template>
 
 					<template v-if="notification.type == 'quote'">
 						<mk-avatar class="avatar" :user="notification.note.user"/>
 						<div class="text">
 							<header>
+								<fa icon="quote-left" class="icon"/>
 								<router-link :to="notification.note.user | userPage" v-user-preview="notification.note.userId" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
@@ -63,9 +60,6 @@
 							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
-						</div>
-						<div class="sub-icon">
-							<fa icon="quote-left" class="icon"/>
 						</div>
 					</template>
 
@@ -73,14 +67,12 @@
 						<mk-avatar class="avatar" :user="notification.user"/>
 						<div class="text">
 							<header>
+								<fa icon="user-plus" class="icon"/>
 								<router-link :to="notification.user | userPage" v-user-preview="notification.user.id" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-						</div>
-						<div class="sub-icon">
-							<fa icon="user-plus" class="icon"/>
 						</div>
 					</template>
 
@@ -88,14 +80,12 @@
 						<mk-avatar class="avatar" :user="notification.user"/>
 						<div class="text">
 							<header>
+								<fa icon="user-clock" class="icon"/>
 								<router-link :to="notification.user | userPage" v-user-preview="notification.user.id" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-						</div>
-						<div class="sub-icon">
-							<fa icon="user-clock" class="icon"/>
 						</div>
 					</template>
 
@@ -103,6 +93,7 @@
 						<mk-avatar class="avatar" :user="notification.note.user"/>
 						<div class="text">
 							<header>
+								<fa icon="reply" class="icon"/>
 								<router-link :to="notification.note.user | userPage" v-user-preview="notification.note.userId" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
@@ -111,9 +102,6 @@
 							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
-						</div>
-						<div class="sub-icon">
-							<fa icon="reply" class="icon"/>
 						</div>
 					</template>
 
@@ -121,6 +109,7 @@
 						<mk-avatar class="avatar" :user="notification.note.user"/>
 						<div class="text">
 							<header>
+								<fa icon="at" class="icon"/>
 								<router-link :to="notification.note.user | userPage" v-user-preview="notification.note.userId" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
@@ -129,9 +118,6 @@
 							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
-						</div>
-						<div class="sub-icon">
-								<fa icon="at" class="icon"/>
 						</div>
 					</template>
 
@@ -284,35 +270,6 @@ export default Vue.extend({
 					display block
 					clear both
 
-				> .sub-icon
-					position: absolute;
-					z-index: 1
-					bottom: 1em
-					width: 20px
-					height: 20px
-					box-sizing: border-box
-					line-height: 20px
-					border-radius: 50%
-					font-size: 12px
-					pointer-events: none
-					background-color: var(--notifiCationBg)
-					left: 3em
-
-					> .icon
-						height: 100%;
-						padding: 3px
-						white-space nowrap
-						text-overflow ellipsis
-						display inline-block
-						width: 100%
-						overflow hidden
-
-						[data-icon]
-							font-size 1.2em
-							font-weight normal
-							font-style normal
-							display inline-block
-
 				> .avatar
 					display block
 					float left
@@ -327,16 +284,14 @@ export default Vue.extend({
 					float right
 					width calc(100% - 36px)
 					padding-left 8px
-					> a
-						color var(--noteText)
+
 					> header
 						display flex
 						align-items baseline
 						white-space nowrap
 
-						/*旧アイコンのcss*/
-						/*> .icon
-							margin-right 4px*/
+						> .icon
+							margin-right 4px
 
 						> .name
 							overflow hidden
@@ -352,27 +307,40 @@ export default Vue.extend({
 					display inline-block
 					word-break break-word
 
-				/*aaa*/
+				.note-ref
+					color var(--noteText)
+					display inline-block
+					width: 100%
+					overflow hidden
+					white-space nowrap
+					text-overflow ellipsis
 
-			> .reaction
-				.sub-icon [data-icon]
-					align-items normal
+					[data-icon]
+						font-size 1em
+						font-weight normal
+						font-style normal
+						display inline-block
+						margin-right 3px
 
-			> .renote, .quote
-				.sub-icon [data-icon]
-					color #77B255
+				&.reaction
+					.text header
+						align-items normal
 
-			> .follow
-				.sub-icon [data-icon]
-					color #53c7ce
+				&.renote, &.quote
+					.text header [data-icon]
+						color #77B255
 
-			> .ReceiveFollowRequest
-				.sub-icon [data-icon]
-					color #888
+				&.follow
+					.text header [data-icon]
+						color #53c7ce
 
-			> .reply, .mention
-				.sub-icon [data-icon]
-					color #555
+				&.receiveFollowRequest
+					.text header [data-icon]
+						color #888
+
+				&.reply, &.mention
+					.text header [data-icon]
+						color #555
 
 			> .date
 				display block
