@@ -48,9 +48,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: pip install
+    - name: Run pip install
       run: pip install -r requirements.txt
-    - name: run E2E Test
+    - name: Run E2E Test
       run: pytest run.py
     - name: kill misskey
       run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
