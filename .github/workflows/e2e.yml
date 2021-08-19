@@ -49,7 +49,8 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: cp e2e/e2e.yml .config/default.yml
-    - run: screen -dmS misskey yarn migrateandstart
+    #- run: screen -dmS misskey yarn migrateandstart
+    - run: yarn migrateandstart &
 
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
@@ -71,5 +72,5 @@ jobs:
       run: pytest run.py
       working-directory: ./e2e
 
-    - name: kill misskey
-      run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
+    #- name: kill misskey
+    #  run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
