@@ -60,3 +60,9 @@ jobs:
     - name: Run E2E Test
       run: pytest run.py
       working-directory: ./e2e
+    
+    - name: Upload E2E ScreenShots
+      uses: actions/upload-artifact@v2
+      with:
+        name: ScreenShots
+        path: e2e/ScreenShots
