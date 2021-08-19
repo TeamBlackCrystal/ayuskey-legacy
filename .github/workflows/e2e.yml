@@ -35,6 +35,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: actions/cache@v2
       with:
         path: ${YARN_CACHE_FOLDER}
         key: ${{ runner.os }}-yarn-cache-v1
