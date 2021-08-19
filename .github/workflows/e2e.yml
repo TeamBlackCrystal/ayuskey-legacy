@@ -55,6 +55,8 @@ jobs:
     - name: Setup playwright
       run: python -m playwright install
       working-directory: ./e2e
+    - name: Check misskey
+      run: curl -iL "http://localhost:61811"
     - name: Run E2E Test
       run: pytest run.py
       working-directory: ./e2e
