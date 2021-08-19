@@ -1,5 +1,7 @@
 # Ayuskey
 
+[![][e2e-badge]][e2e-link]
+
 [![][fork-of-badge]][fork-of-link]
 [![][summaly-badge]][summaly-link]
 [![][mfmjs-badge]][mfmjs-link]
@@ -35,6 +37,8 @@
  </tr>
 </table>
 
+[e2e-link]:      https://github.com/TeamBlackCrystal/misskey/actions/workflows/e2e.yml
+[e2e-badge]:     https://img.shields.io/github/workflow/status/TeamBlackCrystal/misskey/Ayuskey%20E2E%20Test?label=E2E%20Test&style=flat-square
 [fork-of-link]:  https://github.com/syuilo/misskey/tree/v11
 [fork-of-badge]: https://img.shields.io/badge/fork%20of-misskey--dev%2Fmisskey-important.svg?style=flat-square
 [summaly-link]:  https://www.npmjs.com/package/@ayuskey/summaly
