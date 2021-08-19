@@ -30,9 +30,6 @@ jobs:
       with:
         submodules: true
 
-    - name: install screen, gawk
-      run: sudo apt-get install screen gawk
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -63,6 +60,3 @@ jobs:
     - name: Run E2E Test
       run: pytest run.py
       working-directory: ./e2e
-
-    #- name: kill misskey
-    #  run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
