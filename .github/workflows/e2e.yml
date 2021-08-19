@@ -43,14 +43,14 @@ jobs:
     - run: yarn build
     - run: cp test/test.yml .config
     - run: screen -dmS misskey NODE_ENV=test yarn start
-    - run: cd e2e
+    #- run: cd e2e
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Run pip install
-      run: pip install -r requirements.txt
+      run: cd e2e; pip install -r requirements.txt
     - name: Run E2E Test
-      run: pytest run.py
+      run: cd e2e; pytest run.py
     - name: kill misskey
       run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
