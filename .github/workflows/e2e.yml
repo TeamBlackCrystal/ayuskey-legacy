@@ -42,8 +42,7 @@ jobs:
     - run: yarn install --prefer-offline
     - run: yarn build
     - run: cp e2e/e2e.yml .config/default.yml
-    #- run: screen -dmS misskey yarn migrateandstart
-    - run: yarn migrateandstart
+    - run: yarn migrateandstart &
 
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
