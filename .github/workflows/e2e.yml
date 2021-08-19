@@ -43,8 +43,8 @@ jobs:
         key: ${{ runner.os }}-yarn-cache-v1
     - run: yarn install
     - run: yarn build
-    - run: cp test/test.yml .config
-    - run: screen -dmS misskey NODE_ENV=test yarn migrateandstart
+    - run: cp test/test.yml .config/default.yml
+    - run: screen -dmS misskey yarn migrateandstart
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
