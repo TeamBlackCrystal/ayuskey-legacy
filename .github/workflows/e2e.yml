@@ -2,6 +2,9 @@ name: Ayuskey E2E Test
 
 on: [push]
 
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
+
 jobs:
   build:
 
@@ -32,6 +35,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      with:
+        path: ${YARN_CACHE_FOLDER}
+        key: ${{ runner.os }}-yarn-cache-v1
     - run: yarn install
     - run: yarn build
     - run: cp test/test.yml .config
