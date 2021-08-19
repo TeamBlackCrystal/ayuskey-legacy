@@ -2,9 +2,6 @@ name: Ayuskey E2E Test
 
 on: [push]
 
-env:
-  YARN_CACHE_FOLDER: .cache/yarn
-
 jobs:
   build:
 
