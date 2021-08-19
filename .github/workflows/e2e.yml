@@ -61,5 +61,5 @@ jobs:
     - name: Upload E2E ScreenShots
       uses: actions/upload-artifact@v2
       with:
-        name: ScreenShots
+        name: ScreenShots-${{ matrix.node-version }}
         path: e2e/ScreenShots
