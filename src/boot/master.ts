@@ -5,7 +5,6 @@ import * as os from 'os';
 import * as cluster from 'cluster';
 import * as chalk from 'chalk';
 import * as portscanner from 'portscanner';
-import * as isRoot from 'is-root';
 
 import Logger from '../services/logger';
 import loadConfig from '../config/load';
@@ -72,6 +71,11 @@ function greet() {
 
 	bootLogger.info('Welcome to Misskey!');
 	bootLogger.info(`Misskey v${meta.version}`, null, true);
+}
+
+function isRoot() {
+	// maybe process.getuid will be undefined under not POSIX environment (e.g. Windows)
+	return process.getuid != null && process.getuid() === 0;
 }
 
 /**
