@@ -1,0 +1,49 @@
+name: Ayuskey E2E Test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+        node-version: [12.x, 14.x, 16.x]
+
+    services:
+      postgres:
+        image: postgres:10-alpine
+        ports:
+          - 54311:5432
+        env:
+          POSTGRES_DB: test-misskey
+          POSTGRES_HOST_AUTH_METHOD: trust
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install screen, gawk
+    - run: sudo apt-get install screen gawk
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
+    - run: yarn build
+    - run: cp test/test.yml .config
+    - run: screen -S misskey NODE_ENV=test yarn start
+    - run: cd e2e
+    - name: Use Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+    - name: pip install
+    - run: pip install -r requirements.txt
+    - name: run E2E Test
+    - run: pytest run.py
+    - name: kill misskey
+    - run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
