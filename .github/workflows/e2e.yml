@@ -41,7 +41,7 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: cp test/test.yml .config
-    - run: screen -S misskey NODE_ENV=test yarn start
+    - run: screen -r -S misskey NODE_ENV=test yarn start
     - run: cd e2e
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
