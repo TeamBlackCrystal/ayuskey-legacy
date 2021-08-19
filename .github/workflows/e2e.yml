@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install screen, gawk
-    - run: sudo apt-get install screen gawk
+      run: sudo apt-get install screen gawk
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -42,8 +42,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: pip install
-    - run: pip install -r requirements.txt
+      run: pip install -r requirements.txt
     - name: run E2E Test
-    - run: pytest run.py
+      run: pytest run.py
     - name: kill misskey
-    - run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
+      run: sudo kill `screen -ls | gawk '/\.misskey\t/ {print strtonum($1)}'`
