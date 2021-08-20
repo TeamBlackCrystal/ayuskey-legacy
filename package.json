@@ -122,7 +122,7 @@
 		"blurhash": "1.1.4",
 		"bootstrap-vue": "2.21.2",
 		"broadcast-channel": "4.2.0",
-		"bull": "3.28.1",
+		"bull": "3.29.0",
 		"cafy": "15.2.1",
 		"cbor": "8.0.0",
 		"chalk": "4.1.2",
