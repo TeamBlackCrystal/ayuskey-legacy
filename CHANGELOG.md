@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- pizzaxを部分的に移植
+
+### Fixed
+
+- ドキュメント内のgithubへ飛ぶリンクが古いのが修正されました。
+- InBoxのDelayed発生が軽減されました
+
+### Changed
+
+- 音の鳴らし方がv12と同様になりました。
+  - 古い音源は次のバージョンで削除予定です。
+- ActivityPub: ジョブキューの試行タイミングを調整
+
 ## [11.37.1-rei0784-5.14.0] - 2021-08-12
 
 ### Added
