@@ -98,14 +98,11 @@
 		}
 	}
 
-	// Get the <head> element
-	const head = document.getElementsByTagName('head')[0];
-
 	// If mobile, insert the viewport meta tag
 	if (isMobile) {
 		const viewport = document.getElementsByName("viewport").item(0);
 		viewport.content = `${viewport.content},minimum-scale=1,maximum-scale=1,user-scalable=no`;
-		head.appendChild(viewport);
+		document.head.appendChild(viewport);
 	}
 
 	// Switch desktop or mobile version
