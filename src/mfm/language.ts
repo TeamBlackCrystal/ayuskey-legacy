@@ -266,7 +266,7 @@ export const mfmLanguage = P.createLanguage({
 	},
 	fn: r => {
 		return P.seqObj(
-			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
+			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']') ||
 			P.string('$['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
 		).map((x: any) => {
 			let name = x.fn;
