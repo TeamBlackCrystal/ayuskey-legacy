@@ -123,7 +123,7 @@ export default defineComponent({
 				this[domain].delayed = stats[domain].delayed;
 
 				//if (this[domain].waiting > 0 && this.props.sound && this.sound.paused) {
-				if (this[domain].waiting > 0 && this.$store.state.device.enableSpeech && this.sound.paused) {
+				if (this[domain].waiting > 0 && this.$store.state.device.enableQueueJammed && this.sound.paused) {
 					this.sound.play();
 				}
 			}
