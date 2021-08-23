@@ -91,9 +91,10 @@ export default Vue.extend({
 	},
 
 	mounted() {
+		const head = document.getElementsByTagName('head')[0];
 		const script = document.createElement('script');
 		script.setAttribute('src', 'https://www.recaptcha.net/recaptcha/api.js');
-		document.head.appendChild(script);
+		head.appendChild(script);
 	},
 
 	methods: {

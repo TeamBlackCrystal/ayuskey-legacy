@@ -405,9 +405,10 @@ export default Vue.extend({
 			renderRecaptchaPreview();
 		};
 
+		const head = document.getElementsByTagName('head')[0];
 		const script = document.createElement('script');
 		script.setAttribute('src', 'https://www.recaptcha.net/recaptcha/api.js?onload=onRecaotchaLoad');
-		document.head.appendChild(script);
+		head.appendChild(script);
 
 		this.$watch('enableRecaptcha', () => {
 			renderRecaptchaPreview();
