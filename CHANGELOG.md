@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - html mail
+- Job Queueが詰まったとき音を鳴らす機能
 
 ### Changed
 
@@ -20,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- 古い音源を削除
+- 不要な音源を削除
 
 ## [11.37.1-rei0784-5.15.0] 2021-08-22
 
