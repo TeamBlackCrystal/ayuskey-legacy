@@ -8,10 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- html mail
+
 ### Changed
 
 - 不明な絵文字(mastodonのlike含む)のフォールバックが👍ではなく⭐がデフォルトに
   - 👍にしたい場合は設定が必要です
+- 改造以前の音源の場所を変更
+
+### Removed
+
+- 古い音源を削除
 
 ## [11.37.1-rei0784-5.15.0] 2021-08-22
 
