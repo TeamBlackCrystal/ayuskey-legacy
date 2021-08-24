@@ -7,7 +7,7 @@ import { fetchMeta } from '../../../../misc/fetch-meta';
 import { ApiError } from '../../error';
 import { ID } from '../../../../misc/cafy-id';
 import { User } from '../../../../models/entities/user';
-import { Users, DriveFiles, Notes } from '../../../../models';
+import { Users, DriveFiles, Notes, Channels  } from '../../../../models';
 import { DriveFile } from '../../../../models/entities/drive-file';
 import { Note } from '../../../../models/entities/note';
 import { DB_MAX_NOTE_TEXT_LENGTH } from '../../../../misc/hard-limits';
@@ -154,16 +154,23 @@ export const meta = {
 		},
 
 		replyId: {
-			validator: $.optional.type(ID),
+			validator: $.optional.nullable.type(ID),
 			desc: {
 				'ja-JP': '返信対象'
 			}
 		},
 
 		renoteId: {
-			validator: $.optional.type(ID),
+			validator: $.optional.nullable.type(ID),
 			desc: {
 				'ja-JP': 'Renote対象'
+			}
+		},
+
+		channelId: {
+			validator: $.optional.nullable.type(ID),
+			desc: {
+				'ja-JP': 'チャンネル'
 			}
 		},
 
@@ -232,7 +239,13 @@ export const meta = {
 			message: 'Poll is already expired.',
 			code: 'CANNOT_CREATE_ALREADY_EXPIRED_POLL',
 			id: '04da457d-b083-4055-9082-955525eda5a5'
-		}
+		},
+
+		noSuchChannel: {
+			message: 'No such channel.',
+			code: 'NO_SUCH_CHANNEL',
+			id: 'b1653923-5453-4edc-b786-7c4f39bb0bbb'
+		},
 	}
 };
 
@@ -295,6 +308,15 @@ export default define(meta, async (ps, user, app) => {
 		throw new ApiError(meta.errors.contentRequired);
 	}
 
+	let channel: Channel | undefined;
+	if (ps.channelId != null) {
+		channel = await Channels.findOne(ps.channelId);
+
+		if (channel == null) {
+			throw new ApiError(meta.errors.noSuchChannel);
+		}
+	}
+
 	// 投稿を作成
 	const note = await create(user, {
 		preview: ps.preview,
@@ -314,6 +336,7 @@ export default define(meta, async (ps, user, app) => {
 		localOnly: ps.localOnly,
 		visibility: ps.visibility,
 		visibleUsers,
+		channel,
 		apMentions: ps.noExtractMentions ? [] : undefined,
 		apHashtags: ps.noExtractHashtags ? [] : undefined,
 		apEmojis: ps.noExtractEmojis ? [] : undefined,
