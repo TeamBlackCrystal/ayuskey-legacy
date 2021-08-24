@@ -1,4 +1,6 @@
 import { getRepository, getCustomRepository } from 'typeorm';
+import { Announcement } from './entities/announcement';
+import { AnnouncementRead } from './entities/announcement-read';
 import { Instance } from './entities/instance';
 //import { Emoji } from './entities/emoji';
 import { EmojiRepository } from './repositories/emoji';
@@ -52,6 +54,8 @@ import { AntennaNote } from './entities/antenna-note';
 import { RelayRepository } from './repositories/relay';
 import { RegistryItem } from './entities/registry-item';
 
+export const Announcements = getRepository(Announcement);
+export const AnnouncementReads = getRepository(AnnouncementRead);
 export const Apps = getCustomRepository(AppRepository);
 export const Notes = getCustomRepository(NoteRepository);
 export const NoteFavorites = getCustomRepository(NoteFavoriteRepository);

@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Antennas, AntennaNotes } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Announcements, AnnouncementReads, Antennas, AntennaNotes } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
@@ -84,9 +84,8 @@ export class UserRepository extends Repository<User> {
 
 		return withUser || withGroups.some(x => x);
 	}
-	// 使うかも？
-	/*
-		public async getHasUnreadAnnouncement(userId: User['id']): Promise<boolean> {
+
+	public async getHasUnreadAnnouncement(userId: User['id']): Promise<boolean> {
 		const reads = await AnnouncementReads.find({
 			userId: userId
 		});
@@ -97,7 +96,6 @@ export class UserRepository extends Repository<User> {
 
 		return count > 0;
 	}
-	*/
 
 	public async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
 		const antennas = await Antennas.find({ userId });
