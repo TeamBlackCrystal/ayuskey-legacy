@@ -17,7 +17,7 @@ import extractMentions from '../../misc/extract-mentions';
 import extractEmojis from '../../misc/extract-emojis';
 import extractHashtags from '../../misc/extract-hashtags';
 import { Note, IMentionedRemoteUsers } from '../../models/entities/note';
-import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles } from '../../models';
+import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Antennas, Followings } from '../../models';
 import { DriveFile } from '../../models/entities/drive-file';
 import { App } from '../../models/entities/app';
 import { Not, getConnection, In } from 'typeorm';
@@ -28,6 +28,8 @@ import { Poll, IPoll } from '../../models/entities/poll';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
 import { ensure } from '../../prelude/ensure';
+import { checkHitAntenna } from '../../misc/check-hit-antenna';
+import { addNoteToAntenna } from '../add-note-to-antenna';
 import { deliverToRelays } from '../relay';
 import { normalizeTag } from '../../misc/normalize-tag';
 
@@ -212,6 +214,23 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 
 	// Increment notes count (user)
 	incNotesCountOfUser(user);
+
+	// Antenna
+	Antennas.find().then(async antennas => {
+		const followings = await Followings.createQueryBuilder('following')
+			.andWhere(`following.followeeId = :userId`, { userId: note.userId })
+			.getMany();
+
+		const followers = followings.map(f => f.followerId);
+
+		for (const antenna of antennas) {
+			await checkHitAntenna(antenna, note, user, followers).then(async hit => {
+				if (hit) {
+					await addNoteToAntenna(antenna, note, user);
+				}
+			}).catch(() => {});
+		}
+	});
 
 	if (data.reply) {
 		saveReply(data.reply, note);

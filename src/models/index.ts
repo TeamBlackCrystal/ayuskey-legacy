@@ -53,6 +53,10 @@ import { AntennaRepository } from './repositories/antenna';
 import { AntennaNote } from './entities/antenna-note';
 import { RelayRepository } from './repositories/relay';
 import { RegistryItem } from './entities/registry-item';
+import { ChannelRepository } from './repositories/channel';
+//mute
+import { ChannelFollowing } from './entities/channel-following';
+import { ChannelNotePining } from './entities/channel-note-pining';
 
 export const Announcements = getRepository(Announcement);
 export const AnnouncementReads = getRepository(AnnouncementRead);
@@ -108,3 +112,6 @@ export const Antennas = getCustomRepository(AntennaRepository);
 export const AntennaNotes = getRepository(AntennaNote);
 export const Relays = getCustomRepository(RelayRepository);
 export const RegistryItems = getRepository(RegistryItem);
+export const Channels = getCustomRepository(ChannelRepository);
+export const ChannelFollowings = getRepository(ChannelFollowing);
+export const ChannelNotePinings = getRepository(ChannelNotePining);

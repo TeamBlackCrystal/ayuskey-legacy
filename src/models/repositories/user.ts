@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Announcements, AnnouncementReads, Antennas, AntennaNotes } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings  } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
@@ -108,8 +108,6 @@ export class UserRepository extends Repository<User> {
 		return unread != null;
 	}
 
-	// 使うかも？
-	/*
 	public async getHasUnreadChannel(userId: User['id']): Promise<boolean> {
 		const channels = await ChannelFollowings.find({ followerId: userId });
 
@@ -120,7 +118,6 @@ export class UserRepository extends Repository<User> {
 
 		return unread != null;
 	}
-	*/
 
 	public async getHasUnreadNotification(userId: User['id']): Promise<boolean> {
 		const mute = await Mutings.find({
@@ -154,6 +151,7 @@ export class UserRepository extends Repository<User> {
 		options?: {
 			detail?: boolean,
 			includeSecrets?: boolean,
+			// TODO: remove
 			includeHasUnreadNotes?: boolean
 		}
 	): Promise<PackedUser> {
@@ -283,11 +281,19 @@ export class UserRepository extends Repository<User> {
 				carefulBot: profile!.carefulBot,
 				carefulMassive: profile!.carefulMassive,
 				autoAcceptFollowed: profile!.autoAcceptFollowed,
+				hasUnreadSpecifiedNotes: NoteUnreads.count({
+					where: { userId: user.id, isSpecified: true },
+					take: 1
+				}).then(count => count > 0),
+				hasUnreadMentions: NoteUnreads.count({
+					where: { userId: user.id, isMentioned: true },
+					take: 1
+				}).then(count => count > 0),
 				noCrawle: profile!.noCrawle,
 				isExplorable: user.isExplorable,
-				//hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
+				hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
 				hasUnreadAntenna: this.getHasUnreadAntenna(user.id),
-				//hasUnreadChannel: this.getHasUnreadChannel(user.id),
+				hasUnreadChannel: this.getHasUnreadChannel(user.id),
 				hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(user.id),
 				hasUnreadNotification: this.getHasUnreadNotification(user.id),
 				pendingReceivedFollowRequestsCount: this.getHasPendingReceivedFollowRequest(user.id),
@@ -328,6 +334,7 @@ export class UserRepository extends Repository<User> {
 		options?: {
 			detail?: boolean,
 			includeSecrets?: boolean,
+			// TODO: remove
 			includeHasUnreadNotes?: boolean
 		}
 	) {
