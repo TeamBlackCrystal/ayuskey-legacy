@@ -49,8 +49,6 @@ export default async function(
 			});
 		}
 
-		// TODO: Channel
-		/*
 		if (exist.noteChannelId) {
 			NoteUnreads.count({
 				userId: userId,
@@ -62,7 +60,6 @@ export default async function(
 				}
 			});
 		}
-		*/
 	}
 
 	async function careAntenna() {

@@ -7,7 +7,7 @@ import { fetchMeta } from '../../../../misc/fetch-meta';
 import { ApiError } from '../../error';
 import { ID } from '../../../../misc/cafy-id';
 import { User } from '../../../../models/entities/user';
-import { Users, DriveFiles, Notes, Channels  } from '../../../../models';
+import { Users, DriveFiles, Notes, Channels } from '../../../../models';
 import { DriveFile } from '../../../../models/entities/drive-file';
 import { Note } from '../../../../models/entities/note';
 import { DB_MAX_NOTE_TEXT_LENGTH } from '../../../../misc/hard-limits';

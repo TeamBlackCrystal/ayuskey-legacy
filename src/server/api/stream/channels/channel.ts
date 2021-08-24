@@ -1,32 +1,26 @@
 import autobind from 'autobind-decorator';
-import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
 import Channel from '../channel';
-import { fetchMeta } from '../../../../misc/fetch-meta';
 import { Notes } from '../../../../models';
+import { isMutedUserRelated } from '../../../../misc/is-muted-user-related';
 import { PackedNote } from '../../../../models/repositories/note';
-import { PackedUser } from '../../../../models/repositories/user';
 
 export default class extends Channel {
-	public readonly chName = 'localTimeline';
-	public static shouldShare = true;
+	public readonly chName = 'channel';
+	public static shouldShare = false;
 	public static requireCredential = false;
+	private channelId: string;
 
 	@autobind
 	public async init(params: any) {
-		const meta = await fetchMeta();
-		if (meta.disableLocalTimeline) {
-			if (this.user == null || (!this.user.isAdmin && !this.user.isModerator)) return;
-		}
+		this.channelId = params.channelId as string;
 
-		// Subscribe events
+		// Subscribe stream
 		this.subscriber.on('notesStream', this.onNote);
 	}
 
 	@autobind
 	private async onNote(note: PackedNote) {
-		if ((note.user as PackedUser).host !== null) return;
-		if (note.visibility !== 'public') return;
-		if (note.channelId != null && !this.followingChannels.includes(note.channelId)) return;
+		if (note.channelId !== this.channelId) return;
 
 		// リプライなら再pack
 		if (note.replyId != null) {
@@ -42,7 +36,7 @@ export default class extends Channel {
 		}
 
 		// 流れてきたNoteがミュートしているユーザーが関わるものだったら無視する
-		if (shouldMuteThisNote(note, this.muting)) return;
+		if (isMutedUserRelated(note, this.muting)) return;
 
 		this.send('note', note);
 	}
