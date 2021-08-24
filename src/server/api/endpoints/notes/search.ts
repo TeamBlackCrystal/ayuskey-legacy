@@ -53,10 +53,12 @@ export const meta = {
 			default: null
 		},
 
+		/*
 		channelId: {
 			validator: $.optional.nullable.type(ID),
 			default: null
 		},
+		*/
 	},
 
 	res: {
