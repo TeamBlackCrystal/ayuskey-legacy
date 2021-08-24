@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 不明な絵文字(mastodonのlike含む)のフォールバックが👍ではなく⭐がデフォルトに
   - 👍にしたい場合は設定が必要です
 - 改造以前の音源の場所を変更
+- リモートユーザーの一定以上のbioとnameを切り捨てるように
 
 ### Removed
 
