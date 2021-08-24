@@ -110,13 +110,12 @@ export default define(meta, async (ps, me) => {
 		if (hostRegex.test(ps.query)) {
 			if (RegExp.$1 === 'local') {
 				query.andWhere('note.userHost IS NULL');
-			} else if (RegExp.$1 !== 'local' && !isQuery) {
+			} else if (!isQuery) {
 				query.andWhere('note.userHost = :host', {host: `${RegExp.$1}`});
+
 				generateVisibilityQuery(query, me);
 				if (me) generateMutedUserQuery(query, me);
-
 				const notes = await query.take(ps.limit!).getMany();
-
 				return await Notes.packMany(notes, me);
 			} else {
 				query.andWhere('note.userHost = :host', {host: `${RegExp.$1}`});
