@@ -106,9 +106,18 @@ export default define(meta, async (ps, me) => {
 			query.andWhere('note.createdAt < :until', {until: `${RegExp.$1} 23:59:59`});
 			ps.query = ps.query.replaceAll(untilRegex, '');
 		}
+		const isQuery = ps.query.replaceAll(hostRegex, '');
 		if (hostRegex.test(ps.query)) {
 			if (RegExp.$1 === 'local') {
 				query.andWhere('note.userHost IS NULL');
+			} else if (RegExp.$1 !== 'local' && !isQuery) {
+				query.andWhere('note.userHost = :host', {host: `${RegExp.$1}`});
+				generateVisibilityQuery(query, me);
+				if (me) generateMutedUserQuery(query, me);
+
+				const notes = await query.take(ps.limit!).getMany();
+
+				return await Notes.packMany(notes, me);
 			} else {
 				query.andWhere('note.userHost = :host', {host: `${RegExp.$1}`});
 			}
@@ -162,5 +171,5 @@ export default define(meta, async (ps, me) => {
 		});
 
 		return await Notes.packMany(notes, me);
-}
+	}
 });
