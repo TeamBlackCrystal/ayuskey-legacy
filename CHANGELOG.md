@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - html mail
 - Job Queueが詰まったとき音を鳴らす機能
+- `$[fn text]`のタイプのmfmとの簡易的な互換性確保(ネストは不可)
 
 ### Changed
 
