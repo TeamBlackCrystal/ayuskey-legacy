@@ -17,6 +17,9 @@ import { packedUserGroupSchema } from '../../../models/repositories/user-group';
 import { packedNoteFavoriteSchema } from '../../../models/repositories/note-favorite';
 import { packedChannelSchema } from '../../../models/repositories/channel';
 
+//何故か無いとだめかも
+import { packedClipSchema } from '../../../models/repositories/clip';
+
 export function convertSchemaToOpenApiSchema(schema: Schema) {
 	const res: any = schema;
 
@@ -84,4 +87,6 @@ export const schemas = {
 	Hashtag: convertSchemaToOpenApiSchema(packedHashtagSchema),
 	Page: convertSchemaToOpenApiSchema(packedPageSchema),
 	Channel: convertSchemaToOpenApiSchema(packedChannelSchema),
+
+	Clip: convertSchemaToOpenApiSchema(packedClipSchema),
 };
