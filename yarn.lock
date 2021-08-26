@@ -1920,10 +1920,10 @@ autwh@0.1.0:
   dependencies:
     oauth "0.9.15"
 
-aws-sdk@2.974.0:
-  version "2.974.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.974.0.tgz#4380e4746b2a799e3833a0ab021f3292b045ac63"
-  integrity sha512-/oNslIqWT8f9MKgl4jMS+B/M0pIPjWYsXC+DeiFKSH6xMAaVDURr+Qtze5FqEz13mMroO5PDQKfHaC/Z/yoZ3w==
+aws-sdk@2.975.0:
+  version "2.975.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.975.0.tgz#0adc8126fd5cd48ea70bf7741fe7ef2e88ad17be"
+  integrity sha512-cmRcM+gU+rfW1RZjca3bdbRTQV6WHuCI6NuqnDgd5HoqufylCrNI/wtysPK1IMJLsAhrcsY0U0YRx+Y/hxQNoQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -10818,10 +10818,10 @@ syslog-pro@1.0.0:
   dependencies:
     moment "^2.22.2"
 
-systeminformation@5.8.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.8.0.tgz#43e6d0918d7d42c65e53e36059f0849354ab2873"
-  integrity sha512-l4drbK2PtNynGKblaShY9hDLW/gg1zxUq2+Yk4gTyd6a2JUvFyTGP8PhHV9iOh+MzS25PQa8W1t0kvcIvr9n7Q==
+systeminformation@5.8.2:
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.8.2.tgz#c9cfada753dcb5eadb27e2350eecd509f3a34d42"
+  integrity sha512-XxK/gHdfGFtCAv7JLwGlPoU8bfkcTHgcGSU9LqgbdURwOgwyYlfX+jailzh2eX//9r+Wg53oOv+/DE30KNK2qA==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
