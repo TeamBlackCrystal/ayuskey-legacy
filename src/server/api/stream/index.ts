@@ -10,22 +10,21 @@ import { User } from '../../../models/entities/user';
 import { App } from '../../../models/entities/app';
 import { Channel as ChannelModel } from '../../../models/entities/channel';
 import { Users, Followings, Mutings, UserProfiles, ChannelFollowings } from '../../../models';
+import { UserProfile } from '../../../models/entities/user-profile';
+
 /**
  * Main stream connection
  */
 export default class Connection {
 	public user?: User;
-	public following: User['id'][] = [];
-	public muting: User['id'][] = [];
-	public followingChannels: ChannelModel['id'][] = [];
+	public following: Set<User['id']> = new Set();
+	public muting: Set<User['id']> = new Set();
+	public followingChannels: Set<ChannelModel['id']> = new Set();
 	public app: App;
 	private wsConnection: websocket.connection;
 	public subscriber: EventEmitter;
 	private channels: Channel[] = [];
 	private subscribingNotes: any = {};
-	private followingClock: NodeJS.Timer;
-	private mutingClock: NodeJS.Timer;
-	private followingChannelsClock: NodeJS.Timer;
 
 	constructor(
 		wsConnection: websocket.connection,
@@ -42,13 +41,52 @@ export default class Connection {
 
 		if (this.user) {
 			this.updateFollowing();
-			this.followingClock = setInterval(this.updateFollowing, 5000);
 
 			this.updateMuting();
-			this.mutingClock = setInterval(this.updateMuting, 5000);
 
 			this.updateFollowingChannels();
-			this.followingChannelsClock = setInterval(this.updateFollowingChannels, 5000);
+
+			this.subscriber.on(`user:${this.user.id}`, ({ type, body }) => {
+				this.onUserEvent(type, body);
+			});
+		}
+	}
+
+	@autobind
+	private onUserEvent(type: string, body: any) {
+		switch (type) {
+			case 'follow':
+				this.following.add(body.id);
+				break;
+
+			case 'unfollow':
+				this.following.delete(body.id);
+				break;
+
+			case 'mute':
+				this.muting.add(body.id);
+				break;
+
+			case 'unmute':
+				this.muting.delete(body.id);
+				break;
+
+			case 'followChannel':
+				this.followingChannels.add(body.id);
+				break;
+
+			case 'unfollowChannel':
+				this.followingChannels.delete(body.id);
+				break;
+
+			/*
+			case 'updateUserProfile':
+				this.userProfile = body;
+				break;
+			*/
+
+			default:
+				break;
 		}
 	}
 
@@ -233,7 +271,7 @@ export default class Connection {
 			select: ['followeeId']
 		});
 
-		this.following = followings.map(x => x.followeeId);
+		this.following = new Set<string>(followings.map(x => x.followeeId));
 	}
 
 	@autobind
@@ -245,7 +283,7 @@ export default class Connection {
 			select: ['muteeId']
 		});
 
-		this.muting = mutings.map(x => x.muteeId);
+		this.muting = new Set<string>(mutings.map(x => x.muteeId));
 	}
 
 	@autobind
@@ -257,7 +295,7 @@ export default class Connection {
 			select: ['followeeId']
 		});
 
-		this.followingChannels = followings.map(x => x.followeeId);
+		this.followingChannels = new Set<string>(followings.map(x => x.followeeId));
 	}
 
 	/**
@@ -269,8 +307,5 @@ export default class Connection {
 			if (c.dispose) c.dispose();
 		}
 
-		if (this.followingClock) clearInterval(this.followingClock);
-		if (this.mutingClock) clearInterval(this.mutingClock);
-		if (this.followingChannelsClock) clearInterval(this.followingChannelsClock);
 	}
 }
