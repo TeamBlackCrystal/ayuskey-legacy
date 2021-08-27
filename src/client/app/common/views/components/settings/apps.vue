@@ -2,7 +2,7 @@
 <div class="root">
 	<ui-info v-if="!fetching && apps.length == 0">{{ $t('no-apps') }}</ui-info>
 	<div class="apps" v-if="apps.length != 0">
-		<div v-for="app in apps">
+		<div v-for="app in apps" :key="app.id">
 			<p><b>{{ app.name }}</b></p>
 			<p>{{ app.description }}</p>
 			<ui-button @click="revoke(app.id)"><fa :icon="faTrashAlt"/></ui-button>
