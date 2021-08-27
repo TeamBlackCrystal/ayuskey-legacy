@@ -5,7 +5,7 @@ import define from '../define';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { Emojis } from '../../../models';
 import { getConnection } from 'typeorm';
-import redis from '../../../db/redis';
+import { redisClient } from '@/db/redis';
 import { DB_MAX_NOTE_TEXT_LENGTH } from '../../../misc/hard-limits';
 
 export const meta = {
@@ -131,7 +131,7 @@ export default define(meta, async (ps, me) => {
 		os: os.platform(),
 		node: process.version,
 		psql: await getConnection().query('SHOW server_version').then(x => x[0].server_version),
-		redis: redis.server_info.redis_version,
+		redis: redisClient.server_info.redis_version,
 
 		cpu: {
 			model: os.cpus()[0].model,
