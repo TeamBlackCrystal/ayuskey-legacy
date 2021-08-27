@@ -145,8 +145,6 @@ export class NoteRepository extends Repository<Note> {
 		 * @param reactionNames Note等にリアクションされたカスタム絵文字名 (:は含めない)
 		 */
 		async function populateEmojis(emojiNames: string[], noteUserHost: string | null, reactionNames: string[]) {
-			const customReactions = reactionNames?.map(x => decodeReaction(x)).filter(x => x.name);
-
 			let all = [] as {
 				name: string,
 				url: string
