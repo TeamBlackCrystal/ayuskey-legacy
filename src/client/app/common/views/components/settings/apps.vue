@@ -30,7 +30,7 @@ export default Vue.extend({
 	},
 	methods: {
 		reload() {
-			this.$root.api('i/authorized_apps').then(apps => {
+			this.$root.api('i/apps').then((apps: object[]) => {
 				this.apps = apps;
 				this.fetching = false;
 			});
