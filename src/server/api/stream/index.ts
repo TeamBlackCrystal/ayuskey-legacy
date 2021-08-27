@@ -10,7 +10,9 @@ import { User } from '../../../models/entities/user';
 import { App } from '../../../models/entities/app';
 import { Channel as ChannelModel } from '../../../models/entities/channel';
 import { Users, Followings, Mutings, UserProfiles, ChannelFollowings } from '../../../models';
+import { publishChannelStream } from '../../../services/stream';
 import { UserProfile } from '../../../models/entities/user-profile';
+import { PackedNote } from '../../../models/repositories/note';
 
 /**
  * Main stream connection
@@ -25,6 +27,7 @@ export default class Connection {
 	public subscriber: EventEmitter;
 	private channels: Channel[] = [];
 	private subscribingNotes: any = {};
+	private cachedNotes: PackedNote[] = [];
 
 	constructor(
 		wsConnection: websocket.connection,
@@ -104,12 +107,51 @@ export default class Connection {
 			case 'readNotification': this.onReadNotification(body); break;
 			case 'subNote': this.onSubscribeNote(body); break;
 			case 'sn': this.onSubscribeNote(body); break; // alias
+			case 's': this.onSubscribeNote(body); break; // alias
+			case 'sr': this.onSubscribeNote(body); this.readNote(body); break;
 			case 'unsubNote': this.onUnsubscribeNote(body); break;
 			case 'un': this.onUnsubscribeNote(body); break; // alias
 			case 'connect': this.onChannelConnectRequested(body); break;
 			case 'disconnect': this.onChannelDisconnectRequested(body); break;
 			case 'channel': this.onChannelMessageRequested(body); break;
 			case 'ch': this.onChannelMessageRequested(body); break; // alias
+
+			case 'typingOnChannel': this.typingOnChannel(body.channel); break;
+		}
+	}
+
+	@autobind
+	public cacheNote(note: PackedNote) {
+		const add = (note: PackedNote) => {
+			const existIndex = this.cachedNotes.findIndex(n => n.id === note.id);
+			if (existIndex > -1) {
+				this.cachedNotes[existIndex] = note;
+				return;
+			}
+
+			this.cachedNotes.unshift(note);
+			if (this.cachedNotes.length > 32) {
+				this.cachedNotes.splice(32);
+			}
+		};
+
+		add(note);
+		if (note.reply) add(note.reply as PackedNote);
+		if (note.renote) add(note.renote as PackedNote);
+	}
+
+	@autobind
+	private readNote(body: any) {
+		const id = body.id;
+
+		const note = this.cachedNotes.find(n => n.id === id);
+		if (note == null) return;
+
+		if (this.user && (note.userId !== this.user.id)) {
+			readNote(this.user.id, [note], {
+				following: this.following,
+				followingChannels: this.followingChannels,
+			});
 		}
 	}
 
@@ -259,6 +301,13 @@ export default class Connection {
 		const channel = this.channels.find(c => c.id === data.id);
 		if (channel != null && channel.onMessage != null) {
 			channel.onMessage(data.type, data.body);
+		}
+	}
+
+	@autobind
+	private typingOnChannel(channel: ChannelModel['id']) {
+		if (this.user) {
+			publishChannelStream(channel, 'typing', this.user.id);
 		}
 	}
 
