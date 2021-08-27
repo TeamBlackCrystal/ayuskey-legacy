@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-5.15.1] 2021-08-28
+
+### Security
+
+- XSS GHSA-669q-w6qc-75h3
+
 ## [11.37.1-rei0784-5.15.0] 2021-08-22
 
 ### Added
@@ -93,6 +99,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 内部的な修正をたくさん
 
 [Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.15.0...HEAD
+[11.37.1-rei0784-5.15.1]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.15.0...11.37.1-rei0784-5.15.1
 [11.37.1-rei0784-5.15.0]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0...11.37.1-rei0784-5.15.0
 [11.37.1-rei0784-5.14.0]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0-beta.6...11.37.1-rei0784-5.14.0
 [11.37.1-rei0784-5.14.0-beta.6]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0-beta.5...11.37.1-rei0784-5.14.0-beta.6
