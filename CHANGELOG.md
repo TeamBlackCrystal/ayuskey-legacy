@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- XSS GHSA-669q-w6qc-75h3
+
 ### Added
 
 - html mail
