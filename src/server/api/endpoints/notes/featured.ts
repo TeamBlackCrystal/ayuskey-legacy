@@ -13,6 +13,9 @@ export const meta = {
 
 	requireCredential: false,
 
+	allowGet: true,
+	cacheSec: 300,
+
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 30),
