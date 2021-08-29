@@ -33,7 +33,7 @@
  </tr>
  <tr>
   <td align="center"><a href="https://github.com/sousuke0422">@sousuke0422</a></td>
-	<td align="center"><a href="https://github.com/sousuke0422">@yupix</a></td>
+	<td align="center"><a href="https://github.com/yupix">@yupix</a></td>
  </tr>
 </table>
 
