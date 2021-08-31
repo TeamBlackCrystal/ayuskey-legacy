@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Channels API
 - Clip API
 - tokenを消せるように
+- リアクション数の取得
 
 ### Fixed
 
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 改造以前の音源の場所を変更
 - リモートユーザーの一定以上のbioとnameを切り捨てるように
 - 検索を調整(`host:address`形式のみ)
+- CSPやCookieの調整
 
 ### Removed
 
