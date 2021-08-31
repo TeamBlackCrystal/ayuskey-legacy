@@ -78,6 +78,8 @@ export default define(meta, async () => {
 		originalNotesCount,
 		usersCount,
 		originalUsersCount,
+		reactionsCount,
+		//originalReactionsCount,
 		instances,
 		driveUsageLocal,
 		driveUsageRemote
