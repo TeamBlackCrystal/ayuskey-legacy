@@ -41,6 +41,16 @@ export const meta = {
 				optional: false as const, nullable: false as const,
 				description: 'The count of all local accounts of this instance.',
 			},
+			reactionsCount: {
+				type: 'number' as const,
+				optional: false as const, nullable: false as const,
+				description: 'The count of all (local/remote) reactions of this instance.',
+			},/*
+			originalReactionsCount: {
+				type: 'number' as const,
+				optional: false as const, nullable: false as const,
+				description: 'The count of all local reactions of this instance.',
+			},*/
 			instances: {
 				type: 'number' as const,
 				optional: false as const, nullable: false as const,
