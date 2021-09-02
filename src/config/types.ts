@@ -19,7 +19,7 @@ export type Source = {
 		pgroonga?: boolean;
 	};
 	redis: {
-		url: string;
+		path: string;
 		host: string;
 		port: number;
 		pass: string;

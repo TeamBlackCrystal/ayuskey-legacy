@@ -2,7 +2,7 @@ import * as redis from 'redis';
 import config from '../config';
 
 export function createConnection() {
-	if (!config.redis.url) { 
+	if (config.redis.path == null) { 
 		return redis.createClient(
 			config.redis.port,
 			config.redis.host,
@@ -14,7 +14,7 @@ export function createConnection() {
 		);
 	} else {
 		return redis.createClient(
-			config.redis.url,
+			config.redis.path,
 			{
 				password: config.redis.pass,
 				prefix: config.redis.prefix,
