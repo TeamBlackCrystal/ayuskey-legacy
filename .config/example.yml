@@ -30,6 +30,7 @@ port: 3000
 #───┘ PostgreSQL configuration └────────────────────────────────
 
 db:
+  #host: /var/run/postgresql #unixsocket
   host: localhost
   port: 5432
 
@@ -54,6 +55,7 @@ db:
 #───┘ Redis configuration └─────────────────────────────────────
 
 redis:
+  #url: unix:///var/run/redis/redis-server.sock #unixsocket
   host: localhost
   port: 6379
   #pass: example-pass
