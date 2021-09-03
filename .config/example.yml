@@ -151,6 +151,10 @@ autoAdmin: true
 #  '192.0.2.8'
 #]
 
+#allowedPrivateNetworks: [
+#  '127.0.0.1/32'
+#]
+
 # Proxy for SMTP/SMTPS
 #proxySmtp: http://127.0.0.1:3128   # use HTTP/1.1 CONNECT
 #proxySmtp: socks4://127.0.0.1:1080 # use SOCKS4
