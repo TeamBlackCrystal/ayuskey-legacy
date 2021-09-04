@@ -7,7 +7,7 @@
  * To specify test:
  * > TS_NODE_FILES=true mocha test/reaction-lib.ts --require ts-node/register -g 'test name'
  */
-
+/*
 import * as assert from 'assert';
 
 import { initTestDb } from './utils';
@@ -46,3 +46,4 @@ describe('toDbReaction', async () => {
 		assert.strictEqual(await toDbReaction('unknown'), '⭐');
 	});
 });
+*/
