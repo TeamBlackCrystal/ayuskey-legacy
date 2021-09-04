@@ -97,7 +97,7 @@ describe('ActivityPub', () => {
 
 			const user = await createPerson(actor.id, resolver);
 
-			assert.deepStrictEqual(user.name, actor.name.substr(0, 128));
+			assert.deepStrictEqual(user.name, actor.name.substr(0, 512));
 		});
 	});
 });
