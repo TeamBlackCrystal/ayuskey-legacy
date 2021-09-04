@@ -76,7 +76,7 @@ describe('ActivityPub', () => {
 		const preferredUsername = `${rndstr('A-Z', 4)}${rndstr('a-z', 4)}`;
 		const actorId = `${host}/users/${preferredUsername.toLowerCase()}`;
 
-		const name = rndstr('0-9a-z', 129);
+		const name = rndstr('0-9a-z', 513);
 
 		const actor = {
 			'@context': 'https://www.w3.org/ns/activitystreams',
