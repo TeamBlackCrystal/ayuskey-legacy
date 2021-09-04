@@ -40,7 +40,7 @@ export class User {
 	public usernameLower: string;
 
 	@Column('varchar', {
-		length: 128, nullable: true,
+		length: 512, nullable: true,
 		comment: 'The name of the User.'
 	})
 	public name: string | null;
