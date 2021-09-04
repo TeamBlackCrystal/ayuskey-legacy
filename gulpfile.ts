@@ -5,9 +5,9 @@
 import * as gulp from 'gulp';
 import tslint from 'gulp-tslint';
 const stylus = require('gulp-stylus');
-import * as rimraf from 'rimraf';
-import * as chalk from 'chalk';
-import * as rename from 'gulp-rename';
+import rimraf from 'rimraf';
+import chalk from 'chalk';
+import rename from 'gulp-rename';
 const replace = require('gulp-replace');
 const cleanCSS = require('gulp-clean-css');
 const terser = require('gulp-terser');
