@@ -10,9 +10,14 @@
 
 import * as assert from 'assert';
 
+import { initTestDb } from './utils';
 import { toDbReaction } from '../src/misc/reaction-lib';
 
 describe('toDbReaction', async () => {
+	before(async () => {
+		await initTestDb();
+	});
+
 	it('Unicodeのまま', async () => {
 		assert.strictEqual(await toDbReaction('🍅'), '🍅');
 	});
