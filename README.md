@@ -53,6 +53,12 @@
  </tr>
 </table>
 
+## Screenshots
+
+<p align="center">
+  <a href="https://ayuskey-hub.readthedocs.io/"><img src="https://s3.akarinext.org/assets/*/ayuskey-desk-3.png" alt="Ayuskey"></a>
+</p>
+
 [e2e-link]:      https://github.com/TeamBlackCrystal/misskey/actions/workflows/e2e.yml
 [e2e-badge]:     https://img.shields.io/github/workflow/status/TeamBlackCrystal/misskey/Ayuskey%20E2E%20Test?label=E2E%20Test&style=flat-square
 [fork-of-link]:  https://github.com/syuilo/misskey/tree/v11
