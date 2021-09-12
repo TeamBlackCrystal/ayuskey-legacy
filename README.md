@@ -16,6 +16,7 @@
 ## ドキュメント
 
 * [misskeyからの移行](https://github.com/sousuke0422/notes/blob/master/misskey/migrate-misskey-to-ayuskey.md)
+* [Ayuskey Hub](https://ayuskey-hub.readthedocs.io/)
 
 ## クライアント
 
