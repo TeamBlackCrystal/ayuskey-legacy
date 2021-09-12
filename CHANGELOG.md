@@ -5,12 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
+
+## [11.37.1-rei0784-5.16.0] 2021-09-12
 
 ### Security
 
 - XSS GHSA-669q-w6qc-75h3
+  - 5.15.1へバックポートされています
+- SSRF GHSA-x9q4-5jhg-9mpf
+  - URLからのアップロード, APの添付ファイル, 外部ファイルのプロキシ等では、Privateアドレス等へのリクエストは拒否されるようになりました。
+    - developmentで動作している場合は、この制限は適用されません。
+    - Proxy使用時には、この制限は適用されません。 Proxy使用時に同等の制限を行いたい場合は、Proxy側で設定を行う必要があります。
+    - default.ymlにてallowedPrivateNetworksにCIDRを追加することにより、宛先ネットワークを指定してこの制限から除外することが出来ます。
 
 ### Added
 
@@ -30,12 +37,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- 不明な絵文字(mastodonのlike含む)のフォールバックが👍ではなく⭐がデフォルトに
+- 不明な絵文字(mastodon等のlike含む)のフォールバックが👍ではなく⭐がデフォルトに
   - 👍にしたい場合は設定が必要です
 - 改造以前の音源の場所を変更
 - リモートユーザーの一定以上のbioとnameを切り捨てるように
 - 検索を調整(`host:address`形式のみ)
 - CSPやCookieの調整
+- TLに流れてくる画像をv12と同じ感じに
 
 ### Removed
 
