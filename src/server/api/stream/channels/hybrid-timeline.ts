@@ -4,7 +4,6 @@ import Channel from '../channel';
 import { fetchMeta } from '../../../../misc/fetch-meta';
 import { Notes } from '../../../../models';
 import { PackedNote } from '../../../../models/repositories/note';
-import { PackedUser } from '../../../../models/repositories/user';
 
 export default class extends Channel {
 	public readonly chName = 'hybridTimeline';
@@ -29,7 +28,7 @@ export default class extends Channel {
 		if (!(
 			(note.channelId == null && this.user!.id === note.userId) ||
 			(note.channelId == null && this.following.has(note.userId)) ||
-			(note.channelId == null && ((note.user as PackedUser).host == null && note.visibility === 'public')) ||
+			(note.channelId == null && (note.user.host == null && note.visibility === 'public')) ||
 			(note.channelId != null && this.followingChannels.has(note.channelId))
 		)) return;
 
