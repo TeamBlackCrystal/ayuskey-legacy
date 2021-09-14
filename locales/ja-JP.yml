@@ -115,6 +115,10 @@ common:
     "write:page-likes": "ページのいいねを操作する"
     "read:user-groups": "ユーザーグループを見る"
     "write:user-groups": "ユーザーグループを操作する"
+    "read:channels": "チャンネルを見る"
+    "write:channels": "チャンネルを操作する"
+    "read:registry": "**レジストリを見る**"
+    "write:registry": "**レジストリを操作する**"
 
   empty-timeline-info:
     follow-users-to-make-your-timeline: "ユーザーをフォローすると投稿がタイムラインに表示されます。"

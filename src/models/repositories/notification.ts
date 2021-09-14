@@ -9,6 +9,7 @@ import { NoteReaction } from '../entities/note-reaction';
 import { User } from '../entities/user';
 import { decodeReaction } from '../../misc/reaction-lib';
 import { Emoji } from '../entities/emoji';
+import { notificationTypes } from '@/types';
 
 export type PackedNotification = SchemaType<typeof packedNotificationSchema>;
 
@@ -29,6 +30,7 @@ export class NotificationRepository extends Repository<Notification> {
 			id: notification.id,
 			createdAt: notification.createdAt.toISOString(),
 			type: notification.type,
+			isRead: notification.isRead,
 			userId: notification.notifierId,
 			user: Users.pack(notification.notifier || notification.notifierId),
 			...(notification.type === 'mention' ? {
@@ -155,20 +157,53 @@ export const packedNotificationSchema = {
 			format: 'date-time',
 			description: 'The date that the notification was created.'
 		},
+		isRead: {
+			type: 'boolean' as const,
+			optional: false as const, nullable: false as const,
+		},
 		type: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
-			enum: ['follow', 'receiveFollowRequest', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote'],
+			enum: [...notificationTypes],
 			description: 'The type of the notification.'
+		},
+		user: {
+			type: 'object' as const,
+			ref: 'User',
+			optional: true as const, nullable: true as const,
 		},
 		userId: {
 			type: 'string' as const,
 			optional: true as const, nullable: true as const,
 			format: 'id',
 		},
-		user: {
+		note: {
 			type: 'object' as const,
-			ref: 'User',
+			ref: 'Note',
+			optional: true as const, nullable: true as const,
+		},
+		reaction: {
+			type: 'string' as const,
+			optional: true as const, nullable: true as const,
+		},
+		choice: {
+			type: 'number' as const,
+			optional: true as const, nullable: true as const,
+		},
+		invitation: {
+			type: 'object' as const,
+			optional: true as const, nullable: true as const,
+		},
+		body: {
+			type: 'string' as const,
+			optional: true as const, nullable: true as const,
+		},
+		header: {
+			type: 'string' as const,
+			optional: true as const, nullable: true as const,
+		},
+		icon: {
+			type: 'string' as const,
 			optional: true as const, nullable: true as const,
 		},
 	}
