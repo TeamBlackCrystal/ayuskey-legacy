@@ -344,10 +344,10 @@
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-"@redocly/openapi-core@1.0.0-beta.58":
-  version "1.0.0-beta.58"
-  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.0.0-beta.58.tgz#d7c9dfe580bd3f115f4e667ba49bc18be3c65ed2"
-  integrity sha512-aHohzi5PCBJd47cXXLD1sigVWEs4Xs9E5MOMq2RZ3FNmufiRxY+u1b4oPYGfcr4n3mBnG2qH1mFiTue6Levq7w==
+"@redocly/openapi-core@1.0.0-beta.59":
+  version "1.0.0-beta.59"
+  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.0.0-beta.59.tgz#b3e235443055f9d5d68491a7dbfbdb9bd002624d"
+  integrity sha512-MAQs2wZaK6GkdYuNtFo0WPvCpU3TFxJ307O+6bdavlTszAqNjWZB34Igx81EXGMPNwE/SEIFUCYICu4+eG7z8w==
   dependencies:
     "@redocly/ajv" "^8.6.2"
     "@types/node" "^14.11.8"
@@ -736,10 +736,10 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa-mount@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/koa-mount/-/koa-mount-4.0.0.tgz#aa0505763c0d20bf4a16cdec0d9ccd2f4f2d2a86"
-  integrity sha512-56iBULArwY3uKLl28eRFchZ2v0diEoJzJbDaHH/ehgruF/s2/KMHyWsKcIhvDJ3tGdKu9oZNQvxaMg++1IKFdA==
+"@types/koa-mount@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/koa-mount/-/koa-mount-4.0.1.tgz#2994be86eaa3d9dc97365e6ebfa227cee3c5f157"
+  integrity sha512-HNeg80CVS9Dfq8dGYqCZZCAUm7g6jPCNJ1ydqVLEJxLrjmeburpvq+lOZkE4rxBZ6O38dr3tj9IA3IfbdoI05w==
   dependencies:
     "@types/koa" "*"
 
@@ -988,10 +988,10 @@
     "@types/mime" "*"
     "@types/node" "*"
 
-"@types/sharp@0.29.1":
-  version "0.29.1"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.29.1.tgz#99fed5efb144b8b56188c4dfed3a114679413f40"
-  integrity sha512-UOQu+7MY/TRlVNjVuNtLpAlekKWNZNZzYtIDHRzPloKRkPW8jlPh1RsUIhyG98OibzzneqoAhb31C5j42ERFwA==
+"@types/sharp@0.29.2":
+  version "0.29.2"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.29.2.tgz#b4e932e982e258d1013236c8b4bcc14f9883c9a3"
+  integrity sha512-tIbMvtPa8kMyFMKNhpsPT1HO3CgXLuiCAA8bxHAGAZLyALpYvYc4hUu3pu0+3oExQA5LwvHrWp+OilgXCYVQgg==
   dependencies:
     "@types/node" "*"
 
@@ -1917,10 +1917,10 @@ autwh@0.1.0:
   dependencies:
     oauth "0.9.15"
 
-aws-sdk@2.987.0:
-  version "2.987.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.987.0.tgz#a6e952ae3d3adf352516402d88397fbe2b9e3480"
-  integrity sha512-XgMrHWHE3aKg11D4QSlpyLvsGw6mHHiUQuowbswd11k89Q6wEfA+jMbYMC7/jsx3LrH9EKti70qhfZyw/wQIfg==
+aws-sdk@2.989.0:
+  version "2.989.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.989.0.tgz#ed3cce6b94856b469784bc3312a0b64438b9fe67"
+  integrity sha512-sMjvqeF9mEOxXkhOAUjCrBt2iYafclkmaIbgSdjJ+te7zKXeReqrc6P3VgIGUxU8kwmdSro0n1NjrXbzKQJhcw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -7762,10 +7762,10 @@ node-addon-api@^4.1.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-4.1.0.tgz#f1722f1f60793584632ffffb79e12ca042c48bd0"
   integrity sha512-Zz1o1BDX2VtduiAt6kgiUl8jX1Vm3NMboljFYKQJ6ee8AGfiTvM2mlZFI3xPbqjs80rCQgiVJI/DjQ/1QJ0HwA==
 
-node-fetch@2.6.1, node-fetch@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+node-fetch@2.6.2, node-fetch@^2.6.1:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.2.tgz#986996818b73785e47b1965cc34eb093a1d464d0"
+  integrity sha512-aLoxToI6RfZ+0NOjmWAgn9+LEd30YCkJKFSyWacNZdEKTit/ZMcKjGkTRo8uWEsnIb/hfKecNPEbln02PdWbcA==
 
 node-fetch@3.0.0-beta.9:
   version "3.0.0-beta.9"
@@ -9933,10 +9933,10 @@ sass-loader@12.1.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@1.39.2:
-  version "1.39.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.39.2.tgz#1681964378f58d76fc64a6a502619bd5ac99f660"
-  integrity sha512-4/6Vn2RPc+qNwSclUSKvssh7dqK1Ih3FfHBW16I/GfH47b3scbYeOw65UIrYG7PkweFiKbpJjgkf5CV8EMmvzw==
+sass@1.41.0:
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.41.0.tgz#f7b41dc00336a4c03429c37b9680b86758af61d4"
+  integrity sha512-wb8nT60cjo9ZZMcHzG7TzdbFtCAmHEKWrH+zAdScPb4ZxL64WQBnGdbp5nwlenW5wJPcHva1JWmVa0h6iqA5eg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
@@ -10868,10 +10868,10 @@ syslog-pro@1.0.0:
   dependencies:
     moment "^2.22.2"
 
-systeminformation@5.8.9:
-  version "5.8.9"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.8.9.tgz#59ef32247d5ff8baf25d147285b10d026093a05f"
-  integrity sha512-dWI4eojNu3cSrMBSSfwV1Xq52mKj2zlliurvYV/y9v1xlv6W86ZKKalSkSZAurww5Xb7+ty5gCKIkQCX2SJK3g==
+systeminformation@5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.9.1.tgz#2d5d6d0fb7440438e77533001e5261eb02cf11eb"
+  integrity sha512-sjztO5XZuvklxcpB/+44zMkMz24iIghrMqkmxN4zNaxdOZdX8cddjmtptrneMLY6U/0Qlk0l/vGTEwRfAhakUg==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
