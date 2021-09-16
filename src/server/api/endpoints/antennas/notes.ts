@@ -1,6 +1,7 @@
 import $ from 'cafy';
 import { ID } from '../../../../misc/cafy-id';
 import define from '../../define';
+import readNote from '@/services/note/read';
 import { Antennas, Notes, AntennaNotes } from '../../../../models';
 import { makePaginationQuery } from '../../common/make-pagination-query';
 import { generateVisibilityQuery } from '../../common/generate-visibility-query';
@@ -71,6 +72,11 @@ export default define(meta, async (ps, user) => {
 	const notes = await query
 		.take(ps.limit!)
 		.getMany();
+
+	// https://gitlab.com/xianon/misskey/-/commit/a89742319caea378f9cdd70c8ebd83bdf2178ff6
+	if (notes.length > 0) {
+		readNote(user.id, notes);
+	}
 
 	return await Notes.packMany(notes, user);
 });
