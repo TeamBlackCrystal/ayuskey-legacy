@@ -56,7 +56,7 @@
 ## Screenshots
 
 <p align="center">
-  <a href="https://ayuskey-hub.readthedocs.io/"><img src="https://s3.akarinext.org/assets/*/ayuskey-desk-3.png" alt="Ayuskey"></a>
+  <img src="https://s3.akarinext.org/assets/*/ayuskey-desk-3.png" alt="Ayuskey">
 </p>
 
 [e2e-link]:      https://github.com/TeamBlackCrystal/misskey/actions/workflows/e2e.yml

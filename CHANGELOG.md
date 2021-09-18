@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- roomにbook3が実装されました
+  - Misskey完全攻略ガイドブックのv12版です
+
 ### Changed
 
 - 対応していないものはfalseかnullを返すように (`api:meta`)
