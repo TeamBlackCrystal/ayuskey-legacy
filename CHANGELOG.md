@@ -11,15 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - roomにbook3が実装されました
   - Misskey完全攻略ガイドブックのv12版です
+- ファイルサイズ上限が実装されました。config上の`maxFileSize`から設定できます。
+  - デフォルトは`262144000B`
+- オブジェクトストレージの`S3ForcePathStyle`を指定できるように
 
 ### Changed
 
 - 対応していないものはfalseかnullを返すように (`api:meta`)
+- オンライン状態の仕様をv12と同じものに
 
 ### Fixed
 
 - 一部の条件下(DMなど)で既読がつかない問題を修正
 - アンテナに既読がつくようになりました
+- 空のプッシュ通知が発生しないように
 
 ## [11.37.1-rei0784-5.16.0] 2021-09-12
 
