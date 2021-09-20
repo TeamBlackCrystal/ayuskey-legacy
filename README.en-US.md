@@ -1,4 +1,4 @@
-JA | [EN](README.en-US.md)
+[JA](README.md) | EN
 
 --
 
