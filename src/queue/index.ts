@@ -63,9 +63,12 @@ export function deliver(user: ILocalUser, content: any, to: string) {
 	if (config.disableFederation) return;
 
 	if (content == null) return null;
+	if (to == null) return null;
 
 	const data = {
-		user,
+		user: {
+			id: user.id
+		},
 		content,
 		to
 	};
