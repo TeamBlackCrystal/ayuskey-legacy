@@ -1,6 +1,6 @@
 JA | [EN](README.en-US.md)
 
---
+----------------------------------------------------------------
 
 # Ayuskey
 
@@ -46,7 +46,7 @@ JA | [EN](README.en-US.md)
 
 * [コントリビューションガイド](CONTRIBUTING.md)をご確認ください。
 * 翻訳を行い場合は[GitLocalize](https://gitlocalize.com/repo/6356)が利用できます。
-  * プルリクエストを直接送ることも可能です。
+  * プルリクエストを直接送ることも可能です、新規項目以外は推奨されません。
 
 ### Collaborators
 
