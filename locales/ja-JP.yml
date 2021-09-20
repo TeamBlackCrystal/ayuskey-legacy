@@ -1518,6 +1518,7 @@ admin/views/instance.vue:
   object-storage-set-public-read: "アップロード時に'public-read'を設定する"
   object-storage-s3-info: "Amazon S3をオブジェクトストレージとして使用する場合の「エンドポイント」と「リージョン」の設定については{0}をご確認ください。"
   object-storage-s3-info-here: "こちら"
+  object-storage-s3-force-path-style: "S3ForcePathStyle"
   object-storage-gcs-info: "Google Cloud Storageをオブジェクトストレージとして使用する場合、「エンドポイント」は storage.googleapis.com に設定し、「リージョン」は空欄にします。"
   cache-remote-files: "リモートのファイルをキャッシュする"
   cache-remote-files-desc: "この設定を無効にすると、リモートファイルをキャッシュせず直リンクするようになります。そのためサーバーのストレージを節約できますが、プライバシー設定で直リンクを無効にしているユーザーにはファイルが見えなくなったり、サムネイルが生成されないので通信量が増加します。通常はこの設定をオンにするか次のリモートファイルのプロキシを有効にすることをおすすめします。"
