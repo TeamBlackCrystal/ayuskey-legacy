@@ -33,7 +33,6 @@ import { addNoteToAntenna } from '../add-note-to-antenna';
 import { deliverToRelays } from '../relay';
 import { normalizeTag } from '../../misc/normalize-tag';
 import { Channel } from '../../models/entities/channel';
-import { normalizeForSearch } from '../../misc/normalize-for-search';
 import { getAntennas } from '../../misc/antenna-cache';
 
 type NotificationType = 'reply' | 'renote' | 'quote' | 'mention';
@@ -429,7 +428,7 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 			// この処理が行われるのはノート作成後なので、ノートが一つしかなかったら最初の投稿だと判断できる
 			// TODO: とはいえノートを削除して何回も投稿すればその分だけインクリメントされる雑さもあるのでどうにかしたい
 			if (count === 1) {
-				Channels.increment({ id: data.channel.id }, 'usersCount', 1);
+				Channels.increment({ id: data.channel!.id }, 'usersCount', 1);
 			}
 		});
 	}
