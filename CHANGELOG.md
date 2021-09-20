@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ファイルサイズ上限が実装されました。config上の`maxFileSize`から設定できます。
   - デフォルトは`262144000B`
 - オブジェクトストレージの`S3ForcePathStyle`を指定できるように
+- 藍ちゃんウィジェット
 
 ### Changed
 
