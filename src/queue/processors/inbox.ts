@@ -10,7 +10,7 @@ import { fetchMeta } from '../../misc/fetch-meta';
 import { toPuny, extractDbHost } from '../../misc/convert-host';
 import { getApId } from '../../remote/activitypub/type';
 import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
-import { InboxJobData } from '../type';
+import { InboxJobData } from '../types';
 import DbResolver from '../../remote/activitypub/db-resolver';
 import { resolvePerson } from '../../remote/activitypub/models/person';
 import { LdSignature } from '../../remote/activitypub/misc/ld-signature';

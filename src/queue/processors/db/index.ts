@@ -9,7 +9,7 @@ import { importFollowing } from './import-following';
 import { importBlocking } from './import-blocking';
 import { importUserLists } from './import-user-lists';
 import { deleteAccount } from './delete-account';
-import { DbJobData } from '../../type';
+import { DbJobData } from '../../types';
 
 const jobs = {
 	deleteDriveFiles,

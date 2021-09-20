@@ -1,7 +1,7 @@
 import * as Bull from 'bull';
 import { queueLogger } from '../../logger';
 import { DriveFiles, Notes, Users } from '../../../models/index';
-import { DbUserJobData } from '../../type';
+import { DbUserJobData } from '../../types';
 import { Note } from '../../../models/entities/note';
 import { DriveFile } from '../../../models/entities/drive-file';
 import { MoreThan } from 'typeorm';

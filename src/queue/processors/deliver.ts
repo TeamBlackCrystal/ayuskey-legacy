@@ -8,7 +8,7 @@ import { instanceChart } from '../../services/chart';
 import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { toPuny } from '../../misc/convert-host';
-import { DeliverJobData } from '../type';
+import { DeliverJobData } from '../types';
 
 const logger = new Logger('deliver');
 
