@@ -332,6 +332,7 @@ export class UserRepository extends Repository<User> {
 				}).then(count => count > 0),
 				noCrawle: profile!.noCrawle,
 				isExplorable: user.isExplorable,
+				isDeleted: user.isDeleted,
 				hideOnlineStatus: user.hideOnlineStatus,
 				hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
 				hasUnreadAntenna: this.getHasUnreadAntenna(user.id),

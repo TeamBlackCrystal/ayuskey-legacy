@@ -1,7 +1,7 @@
 import * as httpSignature from 'http-signature';
 
 import config from '../config';
-import { ILocalUser } from '../models/entities/user';
+import { ILocalUser, User } from '../models/entities/user';
 import { program } from '../argv';
 
 import processDeliver from './processors/deliver';
@@ -174,6 +174,15 @@ export function createImportUserListsJob(user: ILocalUser, fileId: DriveFile['id
 	return dbQueue.add('importUserLists', {
 		user: user,
 		fileId: fileId
+	}, {
+		removeOnComplete: true,
+		removeOnFail: true
+	});
+}
+
+export function createDeleteAccountJob(user: User) {
+	return dbQueue.add('deleteAccount', {
+		user: user
 	}, {
 		removeOnComplete: true,
 		removeOnFail: true
