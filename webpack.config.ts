@@ -21,7 +21,7 @@ class WebpackOnBuildPlugin {
 
 const isProduction = process.env.NODE_ENV == 'production';
 const isTesting = process.env.RK_MODE == 'testing';
-let gitHash: string;
+let gitHash;
 
 const constants = require('./src/const.json');
 

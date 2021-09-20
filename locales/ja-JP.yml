@@ -365,6 +365,10 @@ common:
         low: "低"
         cheep: "最低"
       useOrthographicCamera: "平行投影カメラを使用"
+    mascot: "マスコット"
+    _mascot:
+      widget-url: "ウィジェットのURL"
+      widget-url-desc: "信用できるサーバー以外使用しないでください。藍ウィジェットで使用するサーバーのURLを設定します。"
 
   search: "検索"
   delete: "削除"
@@ -429,6 +433,7 @@ common:
     tips: "ヒント"
     hashtags: "ハッシュタグ"
     queue: "キュー"
+    ai: "藍"
 
   dev: "アプリの作成に失敗しました。再度お試しください。"
   ai-chan-kawaii: "藍ちゃかわいい"
