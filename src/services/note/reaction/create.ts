@@ -3,7 +3,6 @@ import watch from '../watch';
 import { renderLike } from '../../../remote/activitypub/renderer/like';
 import DeliverManager from '../../../remote/activitypub/deliver-manager';
 import { renderActivity } from '../../../remote/activitypub/renderer';
-import { IdentifiableError } from '../../../misc/identifiable-error';
 import { toDbReaction, decodeReaction } from '../../../misc/reaction-lib';
 import { User, IRemoteUser } from '../../../models/entities/user';
 import { Note } from '../../../models/entities/note';
