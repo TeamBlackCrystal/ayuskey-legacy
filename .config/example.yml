@@ -137,6 +137,12 @@ autoAdmin: true
 # Media Proxy
 #mediaProxy: https://example.com/proxy
 
+# Sign to ActivityPub GET request (default: true)
+#signToActivityPubGet: true
+
+# Upload or download file size limits (bytes)
+#maxFileSize: 262144000
+
 #      ┌─────────────────────┐
 #───┘ Network configuration                    └─────────────────────────────────────
 
@@ -162,9 +168,6 @@ autoAdmin: true
 
 #      ┌─────────────────────┐
 #───┘ Other configuration                      └─────────────────────────────────────
-
-# Sign to ActivityPub GET request (default: true)
-#signToActivityPubGet: true
 
 # url-preview "Access-Control-Allow-Origin: *" (default: false) (for External FE)
 #urlPreviewCors: true
