@@ -9,6 +9,7 @@ import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
 import { Emoji } from '../entities/emoji';
 import { getAntennas } from '../../misc/antenna-cache';
+import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
 
 export type PackedUser = SchemaType<typeof packedUserSchema>;
 
@@ -147,6 +148,17 @@ export class UserRepository extends Repository<User> {
 		return count > 0;
 	}
 
+	public getOnlineStatus(user: User): string {
+		if (user.hideOnlineStatus == null) return 'unknown';
+		if (user.lastActiveDate == null) return 'unknown';
+		const elapsed = Date.now() - user.lastActiveDate.getTime();
+		return (
+			elapsed < USER_ONLINE_THRESHOLD ? 'online' :
+			elapsed < USER_ACTIVE_THRESHOLD ? 'active' :
+			'offline'
+		);
+	}
+
 	public async pack(
 		src: User['id'] | User,
 		me?: User['id'] | User | null | undefined,
@@ -254,6 +266,8 @@ export class UserRepository extends Repository<User> {
 				}).then(count => count > 0),
 			} : {}),
 
+			onlineStatus: this.getOnlineStatus(user),
+
 			...(opts.detail ? {
 				url: profile!.url,
 				createdAt: user.createdAt.toISOString(),
@@ -318,6 +332,7 @@ export class UserRepository extends Repository<User> {
 				}).then(count => count > 0),
 				noCrawle: profile!.noCrawle,
 				isExplorable: user.isExplorable,
+				hideOnlineStatus: user.hideOnlineStatus,
 				hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
 				hasUnreadAntenna: this.getHasUnreadAntenna(user.id),
 				hasUnreadChannel: this.getHasUnreadChannel(user.id),

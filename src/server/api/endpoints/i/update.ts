@@ -100,6 +100,13 @@ export const meta = {
 			}
 		},
 
+		hideOnlineStatus: {
+			validator: $.optional.bool,
+			desc: {
+				'ja-JP': 'オンライン状態を隠すか否か'
+			}
+		},
+
 		carefulBot: {
 			validator: $.optional.bool,
 			desc: {
@@ -224,8 +231,10 @@ export default define(meta, async (ps, user, app) => {
 	if (ps.avatarId !== undefined) updates.avatarId = ps.avatarId;
 	if (ps.bannerId !== undefined) updates.bannerId = ps.bannerId;
 	if (ps.mutingNotificationTypes !== undefined) profileUpdates.mutingNotificationTypes = ps.mutingNotificationTypes as typeof notificationTypes[number][];
+	//TODO: ===を使う
 	if (typeof ps.isLocked == 'boolean') updates.isLocked = ps.isLocked;
 	if (typeof ps.isExplorable == 'boolean') updates.isExplorable = ps.isExplorable;
+	if (typeof ps.hideOnlineStatus == 'boolean') updates.hideOnlineStatus = ps.hideOnlineStatus;
 	if (typeof ps.isBot == 'boolean') updates.isBot = ps.isBot;
 	if (typeof ps.carefulBot == 'boolean') profileUpdates.carefulBot = ps.carefulBot;
 	if (typeof ps.carefulMassive == 'boolean') profileUpdates.carefulMassive = ps.carefulMassive;
