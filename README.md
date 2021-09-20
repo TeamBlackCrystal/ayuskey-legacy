@@ -2,13 +2,20 @@ JA | [EN](README.en-US.md)
 
 ----------------------------------------------------------------
 
-# Ayuskey
+<h1 align="center">Ayuskey</h1>
+
+<div align="center">
 
 [![][e2e-badge]][e2e-link]
 
 [![][fork-of-badge]][fork-of-link]
 [![][summaly-badge]][summaly-link]
 [![][mfmjs-badge]][mfmjs-link]
+
+Ayuskeyはこの世界のどこかで生まれたMisskey v11のフォークです。
+Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシャルメディアプラットフォームと相互につながることができます。
+
+</div>
 
 ----------------------------------------------------------------
 
@@ -65,6 +72,10 @@ JA | [EN](README.en-US.md)
 
 <p align="center">
   <img src="https://s3.akarinext.org/assets/*/ayuskey-desk-3.png" alt="Ayuskey">
+</p>
+
+<p align="center">
+  <img src="https://kr.akirin.xyz/files/e21b4c19-61ef-4ab0-9522-a9f98ded2174/e21b4c19-61ef-4ab0-9522-a9f98ded2174.png" alt="Ayuskey Deck">
 </p>
 
 [e2e-link]:      https://github.com/TeamBlackCrystal/misskey/actions/workflows/e2e.yml
