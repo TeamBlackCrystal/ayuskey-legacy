@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 対応していないものはfalseかnullを返すように (`api:meta`)
 - オンライン状態の仕様をv12と同じものに
+- ActivityPub: deliverキューのメモリ使用量を削減
 
 ### Fixed
 
