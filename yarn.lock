@@ -43,17 +43,10 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.13.9.tgz#ca34cb95e1c2dd126863a84465ae8ef66114be99"
   integrity sha512-nEUfRiARCcaVo3ny3ZQjURjHQZUo/JkEw7rLlSZy/psWGnvwXFtPcr6jb7Yb41DVW5LTe6KRq9LGleRNsg1Frw==
 
-"@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2":
   version "7.15.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
   integrity sha512-OvwMLqNXkCXSz1kSm58sEsNuhqOx/fKpnUnKnFB5v8uDda5bLNEHNgKPvhDN6IU0LDcnHQ90LlJ0Q6jnyBSIBA==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.6.3":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
-  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -5162,22 +5155,10 @@ globby@^10.0.1:
     merge2 "^1.2.3"
     slash "^3.0.0"
 
-globby@^11.0.2:
+globby@^11.0.2, globby@^11.0.3:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/globby/-/globby-11.0.4.tgz#2cbaff77c2f2a62e71e9b2813a67b97a3a3001a5"
   integrity sha512-9O4MVG9ioZJ08ffbcyVYyLOJLk5JQ688pJ4eMGLpdWLHq/Wr1D9BlriLQyL0E+jbkuePVZXYFj47QM/v093wHg==
-  dependencies:
-    array-union "^2.1.0"
-    dir-glob "^3.0.1"
-    fast-glob "^3.1.1"
-    ignore "^5.1.4"
-    merge2 "^1.3.0"
-    slash "^3.0.0"
-
-globby@^11.0.3:
-  version "11.0.3"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-11.0.3.tgz#9b1f0cb523e171dd1ad8c7b2a9fb4b644b9593cb"
-  integrity sha512-ffdmosjA807y7+lA1NM0jELARVmYul/715xiILEjo3hBLPTcirgQNnXECn5g3mtR8TOLCVbkfua1Hpen25/Xcg==
   dependencies:
     array-union "^2.1.0"
     dir-glob "^3.0.1"
@@ -10071,10 +10052,10 @@ shelljs@0.8.4, shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shipjs-lib@0.23.3:
-  version "0.23.3"
-  resolved "https://registry.yarnpkg.com/shipjs-lib/-/shipjs-lib-0.23.3.tgz#25cc73544f99480fb66f10428d252b8292d355c7"
-  integrity sha512-ZyKAKI/d6fBw25XTK1zxRcJyPlQECvzNZar/N9iS7CZF6qs9yyUnxeHlB4FuF4rIvdPSdz0ePjQGhkvYnwFeEQ==
+shipjs-lib@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/shipjs-lib/-/shipjs-lib-0.24.0.tgz#a14ed4f23422e2ae9429ec554f65deb258a1cb46"
+  integrity sha512-2j3rziFNx/rJX7xXDpgQPPUUNXZBXx1S3nMA44ZJ41kbfHJx/XhYCt6V2hZVpNnpCWnZE67lziHBXx8aUKr6tQ==
   dependencies:
     deepmerge "^4.2.2"
     dotenv "^8.1.0"
@@ -10082,10 +10063,10 @@ shipjs-lib@0.23.3:
     semver "6.3.0"
     shelljs "0.8.4"
 
-shipjs@0.23.3:
-  version "0.23.3"
-  resolved "https://registry.yarnpkg.com/shipjs/-/shipjs-0.23.3.tgz#f302852ee8deebd21b497eb6da52fed19df12f3d"
-  integrity sha512-3DZMQ5VVVj2d3bkeF5Tk0U2j/IpZUm/Evk/coRvvRA4cu8bcm9eXh6zcSpJVwMUWloL7SmxK/Y/GbCMb60+qDw==
+shipjs@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/shipjs/-/shipjs-0.24.0.tgz#480211d2bb353356d33400b75bd8716caf7ae1e2"
+  integrity sha512-OFBQi4hnlHU2N7UU13K/nZvweJI43TLhwwC0RvQ5ZhOYtYfk5t7x7tdLrKmOzTikIuG7wrvBcQrutIXrKUdweg==
   dependencies:
     "@babel/runtime" "^7.6.3"
     "@octokit/rest" "^17.0.0"
@@ -10109,7 +10090,7 @@ shipjs@0.23.3:
     prettier "^2.0.0"
     serialize-javascript "^3.0.0"
     shell-quote "^1.7.2"
-    shipjs-lib "0.23.3"
+    shipjs-lib "0.24.0"
     temp-write "4.0.0"
     tempfile "^3.0.0"
 
