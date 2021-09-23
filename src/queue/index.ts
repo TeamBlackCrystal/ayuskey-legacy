@@ -183,7 +183,7 @@ export function createImportUserListsJob(user: ILocalUser, fileId: DriveFile['id
 	});
 }
 
-export function createDeleteAccountJob(user: User, opts: { soft?: boolean }) {
+export function createDeleteAccountJob(user: User, opts: { soft?: boolean } = {}) {
 	return dbQueue.add('deleteAccount', {
 		user: user,
 		soft: opts.soft
