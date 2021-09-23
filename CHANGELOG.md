@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - オブジェクトストレージの`S3ForcePathStyle`を指定できるように
 - 藍ちゃんウィジェット
 - アカウント削除の連合
+- API: 管理者用アカウント削除APIを実装(/admin/accounts/delete)
+  - リモートユーザーの削除も可能に
 
 ### Changed
 

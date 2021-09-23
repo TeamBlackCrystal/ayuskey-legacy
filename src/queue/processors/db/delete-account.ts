@@ -1,7 +1,7 @@
 import * as Bull from 'bull';
 import { queueLogger } from '../../logger';
 import { DriveFiles, Notes, Users } from '../../../models/index';
-import { DbUserJobData } from '../../types';
+import { DbUserDeleteJobData } from '../../types';
 import { Note } from '../../../models/entities/note';
 import { DriveFile } from '../../../models/entities/drive-file';
 import { MoreThan } from 'typeorm';
@@ -9,7 +9,7 @@ import { deleteFileSync } from '../../../services/drive/delete-file';
 
 const logger = queueLogger.createSubLogger('delete-account');
 
-export async function deleteAccount(job: Bull.Job<DbUserJobData>): Promise<string | void> {
+export async function deleteAccount(job: Bull.Job<DbUserDeleteJobData>): Promise<string | void> {
 	logger.info(`Deleting account of ${job.data.user.id} ...`);
 
 	const user = await Users.findOne(job.data.user.id);
@@ -73,7 +73,11 @@ export async function deleteAccount(job: Bull.Job<DbUserJobData>): Promise<strin
 		logger.succ(`All of files deleted`);
 	}
 
-	await Users.delete(job.data.user.id);
+	if (job.data.soft) {
+		// nop
+	} else {
+		await Users.delete(job.data.user.id);
+	}
 
 	return 'Account deleted';
 }
