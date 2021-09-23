@@ -3,15 +3,13 @@ import { Users, Notes, NoteReactions, Emojis } from '..';
 import { Notification } from '../entities/notification';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
-import { SchemaType } from '../../misc/schema';
+import { Packed } from '../../misc/schema';
 import { Note } from '../entities/note';
 import { NoteReaction } from '../entities/note-reaction';
 import { User } from '../entities/user';
 import { decodeReaction } from '../../misc/reaction-lib';
 import { Emoji } from '../entities/emoji';
 import { notificationTypes } from '@/types';
-
-export type PackedNotification = SchemaType<typeof packedNotificationSchema>;
 
 @EntityRepository(Notification)
 export class NotificationRepository extends Repository<Notification> {
@@ -23,7 +21,7 @@ export class NotificationRepository extends Repository<Notification> {
 				myReactions: Map<Note['id'], NoteReaction | null>;
 			};
 		}
-	): Promise<PackedNotification> {
+	): Promise<Packed<'Notification'>> {
 		const notification = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
 		return await awaitAll({

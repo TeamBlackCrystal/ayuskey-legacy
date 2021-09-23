@@ -4,14 +4,12 @@ import { User, ILocalUser, IRemoteUser } from '../entities/user';
 import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings  } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
-import { SchemaType } from '../../misc/schema';
+import { Packed } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
 import { Emoji } from '../entities/emoji';
 import { getAntennas } from '../../misc/antenna-cache';
 import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
-
-export type PackedUser = SchemaType<typeof packedUserSchema>;
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -171,7 +169,7 @@ export class UserRepository extends Repository<User> {
 				emojis: Emoji[] | null;
 			};
 		}
-	): Promise<PackedUser> {
+	): Promise<Packed<'User'>> {
 		const opts = Object.assign({
 			detail: false,
 			includeSecrets: false

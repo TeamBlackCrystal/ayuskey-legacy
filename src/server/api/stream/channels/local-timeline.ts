@@ -3,8 +3,7 @@ import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
 import Channel from '../channel';
 import { fetchMeta } from '../../../../misc/fetch-meta';
 import { Notes } from '../../../../models';
-import { PackedNote } from '../../../../models/repositories/note';
-import { PackedUser } from '../../../../models/repositories/user';
+import { Packed } from '@/misc/schema';
 
 export default class extends Channel {
 	public readonly chName = 'localTimeline';
@@ -23,7 +22,7 @@ export default class extends Channel {
 	}
 
 	@autobind
-	private async onNote(note: PackedNote) {
+	private async onNote(note: Packed<'Note'>) {
 		if (note.user.host !== null) return;
 		if (note.visibility !== 'public') return;
 		if (note.channelId != null && !this.followingChannels.has(note.channelId)) return;

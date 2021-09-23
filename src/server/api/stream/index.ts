@@ -12,7 +12,7 @@ import { Channel as ChannelModel } from '../../../models/entities/channel';
 import { Users, Followings, Mutings, UserProfiles, ChannelFollowings } from '../../../models';
 import { publishChannelStream } from '../../../services/stream';
 import { UserProfile } from '../../../models/entities/user-profile';
-import { PackedNote } from '../../../models/repositories/note';
+import { Packed } from '@/misc/schema';
 
 /**
  * Main stream connection
@@ -27,7 +27,7 @@ export default class Connection {
 	public subscriber: EventEmitter;
 	private channels: Channel[] = [];
 	private subscribingNotes: any = {};
-	private cachedNotes: PackedNote[] = [];
+	private cachedNotes: Packed<'Note'>[] = [];
 
 	constructor(
 		wsConnection: websocket.connection,
@@ -129,8 +129,8 @@ export default class Connection {
 	}
 
 	@autobind
-	public cacheNote(note: PackedNote) {
-		const add = (note: PackedNote) => {
+	public cacheNote(note: Packed<'Note'>) {
+		const add = (note: Packed<'Note'>) => {
 			const existIndex = this.cachedNotes.findIndex(n => n.id === note.id);
 			if (existIndex > -1) {
 				this.cachedNotes[existIndex] = note;

@@ -2,7 +2,7 @@ import autobind from 'autobind-decorator';
 import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
 import Channel from '../channel';
 import { Notes } from '../../../../models';
-import { PackedNote } from '../../../../models/repositories/note';
+import { Packed } from '@/misc/schema';
 
 export default class extends Channel {
 	public readonly chName = 'homeTimeline';
@@ -16,7 +16,7 @@ export default class extends Channel {
 	}
 
 	@autobind
-	private async onNote(note: PackedNote) {
+	private async onNote(note: Packed<'Note'>) {
 		if (note.channelId) {
 			if (!this.followingChannels.has(note.channelId)) return;
 		} else {

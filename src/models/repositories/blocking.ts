@@ -3,16 +3,14 @@ import { Users } from '..';
 import { Blocking } from '../entities/blocking';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
-import { SchemaType } from '../../misc/schema';
-
-export type PackedBlocking = SchemaType<typeof packedBlockingSchema>;
+import { Packed } from '@/misc/schema';
 
 @EntityRepository(Blocking)
 export class BlockingRepository extends Repository<Blocking> {
 	public async pack(
 		src: Blocking['id'] | Blocking,
 		me?: any
-	): Promise<PackedBlocking> {
+	): Promise<Packed<'Blocking'>> {
 		const blocking = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
 		return await awaitAll({

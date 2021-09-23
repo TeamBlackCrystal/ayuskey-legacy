@@ -5,7 +5,7 @@ import { unique, concat } from '../../prelude/array';
 import { nyaize } from '../../misc/nyaize';
 import { Emojis, Users, Apps, PollVotes, DriveFiles, NoteReactions, Followings, Polls, Channels  } from '..';
 import { ensure } from '../../prelude/ensure';
-import { SchemaType } from '../../misc/schema';
+import { Packed } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { Emoji } from '../entities/emoji';
 import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '../../misc/reaction-lib';
@@ -13,15 +13,13 @@ import parseAcct from '../../misc/acct/parse';
 import { resolveUser } from '../../remote/resolve-user';
 import { NoteReaction } from '../entities/note-reaction';
 
-export type PackedNote = SchemaType<typeof packedNoteSchema>;
-
 @EntityRepository(Note)
 export class NoteRepository extends Repository<Note> {
 	public validateCw(x: string) {
 		return x.trim().length <= 100;
 	}
 
-	private async hideNote(packedNote: PackedNote, meId: User['id'] | null) {
+	private async hideNote(packedNote: Packed<'Note'>, meId: User['id'] | null) {
 		let hide = false;
 
 		// visibility が specified かつ自分が指定されていなかったら非表示
@@ -92,7 +90,7 @@ export class NoteRepository extends Repository<Note> {
 				myReactions: Map<Note['id'], NoteReaction | null>;
 			};
 		}
-	): Promise<PackedNote> {
+	): Promise<Packed<'Note'>> {
 		const opts = Object.assign({
 			detail: true,
 			skipHide: false
