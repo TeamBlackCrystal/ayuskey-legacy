@@ -358,7 +358,7 @@ console.info(
 	`%c${locale['common']['do-not-copy-paste']}`,
 	'color: red; background: yellow; font-size: 16px; font-weight: bold;');
 console.info(
-	`%c${locale['common']['if-you-know']} https://github.com/TeamBlackCrystal/misskey`,
+	`%c${locale['common']['if-you-know']} https://go.akirin.xyz/ayuskey`,
 	'font-size: 16px;');
 // BootTimer解除
 window.clearTimeout((window as any).mkBootTimer);
