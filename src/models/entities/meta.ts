@@ -294,6 +294,12 @@ export class Meta {
 
 	@Column('varchar', {
 		length: 512,
+		nullable: true
+	})
+	public ToSTextUrl: string | null;
+
+	@Column('varchar', {
+		length: 512,
 		default: 'https://github.com/TeamOrangeServer/misskey',
 		nullable: false
 	})

@@ -354,6 +354,13 @@ export const meta = {
 			}
 		},
 
+		ToSTextUrl: {
+			validator: $.optional.nullable.str,
+			desc: {
+				'ja-JP': '利用規約(プレーンテキスト)のURL'
+			}
+		},
+
 		repositoryUrl: {
 			validator: $.optional.str,
 			desc: {
@@ -615,6 +622,10 @@ export default define(meta, async (ps, me) => {
 
 	if (ps.ToSUrl !== undefined) {
 		set.ToSUrl = ps.ToSUrl;
+	}
+
+	if (ps.ToSTextUrl !== undefined) {
+		set.ToSTextUrl = ps.ToSTextUrl;
 	}
 
 	if (ps.repositoryUrl !== undefined) {

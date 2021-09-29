@@ -123,6 +123,7 @@ export default define(meta, async (ps, me) => {
 		description: instance.description,
 		langs: instance.langs,
 		ToSUrl: instance.ToSUrl,
+		ToSTextUrl: instance.ToSTextUrl,
 		repositoryUrl: instance.repositoryUrl,
 		feedbackUrl: instance.feedbackUrl,
 
