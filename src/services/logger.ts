@@ -1,7 +1,7 @@
 import * as cluster from 'cluster';
 import * as os from 'os';
 import * as chalk from 'chalk';
-import dateformat from 'dateformat';
+import * as dateformat from 'dateformat';
 import { program } from '../argv';
 import { getRepository } from 'typeorm';
 import { Log } from '../models/entities/log';
