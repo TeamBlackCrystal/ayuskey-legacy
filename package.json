@@ -128,7 +128,7 @@
 		"broadcast-channel": "4.2.0",
 		"bull": "3.29.2",
 		"cafy": "15.2.1",
-		"cbor": "8.0.0",
+		"cbor": "8.0.2",
 		"chalk": "4.1.2",
 		"cli-highlight": "2.1.11",
 		"commander": "4.1.0",
