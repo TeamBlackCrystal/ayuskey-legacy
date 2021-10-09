@@ -31,12 +31,9 @@ import { fetchInstanceMetadata } from '../../../services/fetch-instance-metadata
 import { normalizeTag } from '../../../misc/normalize-tag';
 import { resolveUser } from '../../resolve-user';
 import { MAX_NAME_LENGTH, MAX_SUMMARY_LENGTH } from '../../../misc/hard-limits';
+import { truncate } from '@/misc/truncate';
 
 const logger = apLogger;
-
-const truncate = (value: string, maxLength: number) => {
-	return value.substr(0, maxLength);
-};
 
 /**
  * Validate and convert to actor object
@@ -68,8 +65,8 @@ function validateActor(x: IObject, uri: string): IActor {
 
 	// 入力値はHTMLなので大きめにしておく
 	//validate('summary', x.summary, $.optional.nullable.str.max(8192));
-	validate('name', x.name, $.optional.nullable.str);
-	validate('summary', x.summary, $.optional.nullable.str);
+	validate('name', truncate(x.name, MAX_NAME_LENGTH), $.optional.nullable.str);
+	validate('summary', truncate(x.summary, MAX_SUMMARY_LENGTH), $.optional.nullable.str);
 
 	const idHost = toPuny(new URL(x.id!).hostname);
 	if (idHost !== expectHost) {
