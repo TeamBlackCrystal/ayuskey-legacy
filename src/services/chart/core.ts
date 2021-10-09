@@ -68,7 +68,7 @@ export default abstract class Chart<T extends Record<string, any>> {
 	protected abstract async fetchActual(group: string | null): Promise<DeepPartial<T>>;
 
 	@autobind
-	private static convertSchemaToFlatColumnDefinitions(schema: Schema) {
+	private static convertSchemaToFlatColumnDefinitions(schema: SimpleSchema) {
 		const columns = {} as any;
 		const flatColumns = (x: Obj, path?: string) => {
 			for (const [k, v] of Object.entries(x)) {
