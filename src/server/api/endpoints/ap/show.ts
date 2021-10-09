@@ -11,6 +11,7 @@ import { Note } from '../../../../models/entities/note';
 import { User } from '../../../../models/entities/user';
 import { fetchMeta } from '../../../../misc/fetch-meta';
 import { getApId, isActor, isPost } from '../../../../remote/activitypub/type';
+import * as ms from 'ms';
 
 export const meta = {
 	tags: ['federation'],
@@ -19,7 +20,12 @@ export const meta = {
 		'ja-JP': 'URIを指定してActivityPubオブジェクトを参照します。'
 	},
 
-	requireCredential: false,
+	requireCredential: true as const,
+
+	limit: {
+		duration: ms('1hour'),
+		max: 30
+	},
 
 	params: {
 		uri: {
