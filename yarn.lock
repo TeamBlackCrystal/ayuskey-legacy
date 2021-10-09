@@ -2445,12 +2445,12 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-cbor@*, cbor@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/cbor/-/cbor-8.0.0.tgz#51657d26a99a6a1866f8c3258e948576eb17d709"
-  integrity sha512-nMmaLWbj7+bC6MsApKRIig8h+yjgNLhPLXaCelq5+C7mpWsHgIcseZSdvgexSY5uE1Q3m2uPvIDZwSdxdo7qig==
+cbor@*, cbor@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/cbor/-/cbor-8.0.2.tgz#d0f5088423437efcc160e9304bd0576f45d06abb"
+  integrity sha512-H5WTjQYgyHQI0VrCmbyQBOPy1353MjmUi/r3DbPib4U13vuyqm7es9Mfpe8G58bN/mCdRlJWkiCrPl1uM1wAlg==
   dependencies:
-    nofilter "^3.0.2"
+    nofilter "^3.0.3"
 
 center-align@^0.1.1:
   version "0.1.3"
@@ -7796,10 +7796,10 @@ nodemailer@6.6.5:
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.5.tgz#f9f6953cee5cfe82cbea152eeddacf7a0442049a"
   integrity sha512-C/v856DBijUzHcHIgGpQoTrfsH3suKIRAGliIzCstatM2cAa+MYX3LuyCrABiO/cdJTxgBBHXxV1ztiqUwst5A==
 
-nofilter@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/nofilter/-/nofilter-3.0.2.tgz#91b6cc37d79abf2eaf2144eaa3c6a0bed389be1d"
-  integrity sha512-U5SBXtBZfHswk3c1xGCn+kzOHosRIO91ndMpJu0tTcssYevTTWSvoeDAXiAS/JD/Kamo+LqvowcCWMmzlaYsRA==
+nofilter@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/nofilter/-/nofilter-3.0.3.tgz#3ff3b142efdccb403434ccae4a0c2c835cb9b522"
+  integrity sha512-TN/MCrQmXQk5DyUJ8TGUq1Il8rv4fTsjddLmMopV006QP8DMkglmGgYfQKD5620vXLRXfr8iGI6ZZ4/ZWld2cQ==
 
 nopt@^5.0.0:
   version "5.0.0"
