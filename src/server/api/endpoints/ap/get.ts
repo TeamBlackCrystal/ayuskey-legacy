@@ -7,6 +7,11 @@ import * as ms from 'ms';
 export const meta = {
 	tags: ['federation'],
 
+	desc: {
+		'ja-JP': 'URIを指定してActivityPubオブジェクトを参照します。',
+		'en-US': 'Browse to the ActivityPub object by specifying the URI.'
+	},
+
 	requireCredential: true as const,
 
 	limit: {
@@ -17,6 +22,9 @@ export const meta = {
 	params: {
 		uri: {
 			validator: $.str,
+			desc: {
+				'ja-JP': 'ActivityPubオブジェクトのURI'
+			}
 		},
 	},
 
