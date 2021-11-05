@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [ToDo]
+
+### Added
+
+- アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
+
+## [11.37.1-rei0784-5.17.0-rc.1] 2021-11-05
 
 ### Added
 
@@ -24,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 対応していないものはfalseかnullを返すように (`api:meta`)
 - オンライン状態の仕様をv12と同じものに
 - ActivityPub: deliverキューのメモリ使用量を削減
+- API: ap系のエンドポイントをログイン必須化+レートリミット追加
 
 ### Fixed
 
