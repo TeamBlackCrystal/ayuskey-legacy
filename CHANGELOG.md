@@ -70,7 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 空のプッシュ通知が発生しないように
 - アカウント削除の安定性を向上
 
-## [11.37.1-rei0784-5.16.0] 2021-09-12
+## [11.37.1-rei0784-5.16.0] 2021-09-12 [YANKED]
 
 ### Security
 
