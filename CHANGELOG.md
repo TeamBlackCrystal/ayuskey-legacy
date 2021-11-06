@@ -10,12 +10,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
+- クライアント: メンションにユーザーのアバターを表示するように
 
 ## [Unreleased]
 
 ### Added
 
 - 新しいMFM: $[sparkle キラキラ]
+
+### Changed
+
+- クライアント: 画像ビューアを強化
+
+### Fixed
+
+- クライアント: CWで画像が隠されたとき、画像の高さがおかしいことになる問題を修正
+
+### Removed
+
+- iOS 15未満のサポート
+  - 対象のバージョンをお使いの方は、iOSのバージョンアップを行ってください。
 
 ## [11.37.1-rei0784-5.17.0-rc.2]
 
