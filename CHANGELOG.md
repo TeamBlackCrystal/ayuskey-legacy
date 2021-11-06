@@ -5,13 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [ToDo]
+## ToDo
 
 ### Added
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
 
 ## [Unreleased]
+
+### Added
+
+- 新しいMFM: $[sparkle キラキラ]
 
 ## [11.37.1-rei0784-5.17.0-rc.2]
 
