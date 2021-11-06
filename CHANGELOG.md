@@ -13,9 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- ストリーミング(ws)の挙動を調整
+
 ### Fixed
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
+- WebSocketが繋がらない問題を修正
 
 ## [11.37.1-rei0784-5.17.0-rc.1] 2021-11-05
 
