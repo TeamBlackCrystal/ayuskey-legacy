@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
 
+## [Unreleased]
+
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+
 ## [11.37.1-rei0784-5.17.0-rc.1] 2021-11-05
 
 ### Added
