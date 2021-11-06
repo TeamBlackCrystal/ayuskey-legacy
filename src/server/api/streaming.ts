@@ -16,7 +16,16 @@ module.exports = (server: http.Server) => {
 
 	ws.on('request', async (request) => {
 		const q = request.resourceURL.query as ParsedUrlQuery;
+
+		// TODO: トークンが間違ってるなどしてauthenticateに失敗したら
+		// コネクション切断するなりエラーメッセージ返すなりする
+		// (現状はエラーがキャッチされておらずサーバーのログに流れて邪魔なので)
 		const [user, app] = await authenticate(q.i as string);
+
+		if (user?.isSuspended) {
+			request.reject(400);
+			return;
+		}
 
 		const connection = request.accept();
 
@@ -31,22 +40,28 @@ module.exports = (server: http.Server) => {
 
 		const main = new MainStreamConnection(connection, ev, user, app);
 
-		connection.once('close', () => {
-			ev.removeAllListeners();
-			main.dispose();
-			redisClient.off('message', onRedisMessage);
-		});
-
-		connection.on('message', async (data) => {
-			if (data.utf8Data == 'ping') {
-				connection.send('pong');
-			}
-		});
-
+		const intervalId = user ? setInterval(() => {
+			Users.update(user.id, {
+				lastActiveDate: new Date(),
+			});
+		}, 1000 * 60 * 5) : null;
 		if (user) {
 			Users.update(user.id, {
 				lastActiveDate: new Date(),
 			});
 		}
+
+		connection.once('close', () => {
+			ev.removeAllListeners();
+			main.dispose();
+			redisClient.off('message', onRedisMessage);
+			if (intervalId) clearInterval(intervalId);
+		});
+
+		connection.on('message', async (data) => {
+			if (data.utf8Data === 'ping') {
+				connection.send('pong');
+			}
+		});
 	});
 };
