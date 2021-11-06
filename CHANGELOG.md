@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-5.17.0-rc.2]
+
 ### Changed
 
 - ストリーミング(ws)の挙動を調整
@@ -176,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker環境においてfilesをマウントするように
 - 内部的な修正をたくさん
 
-[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.0-rc.1...HEAD
+[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.0-rc.2...HEAD
+[11.37.1-rei0784-5.17.0-rc.2]:   https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.0-rc.1...11.37.1-rei0784-5.17.0-rc.2
 [11.37.1-rei0784-5.17.0-rc.1]:   https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.16.0...11.37.1-rei0784-5.17.0-rc.1
 [11.37.1-rei0784-5.16.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.15.0...11.37.1-rei0784-5.16.0
 [11.37.1-rei0784-5.15.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.14.0...11.37.1-rei0784-5.15.0
