@@ -104,6 +104,7 @@
 		"@types/sharp": "0.29.3",
 		"@types/showdown": "1.9.4",
 		"@types/speakeasy": "2.0.6",
+		"@types/three": "0.134.0",
 		"@types/throttle-debounce": "2.1.0",
 		"@types/tinycolor2": "1.4.3",
 		"@types/tmp": "0.2.2",
@@ -287,6 +288,7 @@
 		"@redocly/openapi-core": "1.0.0-beta.67",
 		"conventional-changelog-cli": "2.1.1",
 		"npm-run-all": "4.1.5",
-		"shipjs": "0.24.0"
+		"shipjs": "0.24.0",
+		"webpack-dev-server": "4.5.0"
 	}
 }
