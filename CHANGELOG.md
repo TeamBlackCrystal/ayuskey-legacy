@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- ルームを開けるように
+  - *既知の問題: `THREE.Scene: .dispose() has been removed.`が出る*
+- publishedを付けないとActivityが一部実装で除外されてしまうのを修正
+- 削除したノートやユーザーがリモートから参照されると復活することがある のを修正
+
 ## [11.37.1-rei0784-5.17.1] 2021-11-13
 
 ### Fixed
