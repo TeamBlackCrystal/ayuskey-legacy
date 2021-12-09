@@ -10,9 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
-- クライアント: メンションにユーザーのアバターを表示するように
 
 ## [Unreleased]
+
+### Added
+
+- クライアント: メンションにユーザーのアバターを表示するように
 
 ## [11.37.1-rei0784-5.17.2] 2021-12-07
 
