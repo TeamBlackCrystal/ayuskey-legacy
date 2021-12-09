@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - クライアント: メンションにユーザーのアバターを表示するように
+- インスタンスプロフィールレンダリング ready
 
 ## [11.37.1-rei0784-5.17.2] 2021-12-07
 
