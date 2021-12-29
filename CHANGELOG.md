@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- バッヂにカーソルを合わせた際に説明を出すように
+- フォロー申請を有効にした状態でフォローリクエストが来ると メニューにtrueと表示される AS-15
 - デスクトップ版で通知が何もないとemptyと出る不具合 AS-10
 - YAMLファイルへのバックスペース文字混入対策
 
