@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
 
+### Changed
+
+- ウィジェットの丸みを強化
+
 ## [Unreleased]
 
 ### Added
