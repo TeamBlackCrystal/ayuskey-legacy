@@ -161,10 +161,9 @@ import i18n from '../../../i18n';
 import * as sound from '../../../common/scripts/sound';
 import getNoteSummary from '../../../../../misc/get-note-summary';
 import paging from '../../../common/scripts/paging';
-import * as config from '../../../config';
 
 export default Vue.extend({
-	i18n: i18n(),
+	i18n: i18n('desktop/views/components/notifications.vue'),
 
 	mixins: [
 		paging({

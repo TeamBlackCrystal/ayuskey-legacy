@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - クライアント: メンションにユーザーのアバターを表示するように
 - インスタンスプロフィールレンダリング ready
 
+### Fixed
+
+- デスクトップ版で通知が何もないとemptyと出る不具合 AS-10
+
+
 ## [11.37.1-rei0784-5.17.2] 2021-12-07
 
 ### Fixed
