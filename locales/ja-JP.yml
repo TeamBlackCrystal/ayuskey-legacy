@@ -1392,6 +1392,7 @@ desktop/views/components/ui.header.account.vue:
   follow-requests: "フォロー申請"
   admin: "管理"
   room: "ルーム"
+  follow-request-true: 新着
 
 desktop/views/components/ui.header.nav.vue:
   game: "ゲーム"
