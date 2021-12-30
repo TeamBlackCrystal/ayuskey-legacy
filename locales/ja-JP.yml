@@ -378,6 +378,10 @@ common:
   update-available-title: "更新があります"
   update-available: "Misskeyの新しいバージョンがあります({newer}。現在{current}を利用中)。ページを再度読み込みすると更新が適用されます。"
   my-token-regenerated: "あなたのトークンが更新されたのでサインアウトします。"
+  admin-user: "管理者"
+  lady-user: "お嬢様"
+  bot-user: "Bot"
+  cat-user: "猫(=^・・^=)"
   verified-user: "公式アカウント"
   premium-user: "プレミアムユーザー"
   hide-password: "パスワードを隠す"
@@ -1392,6 +1396,7 @@ desktop/views/components/ui.header.account.vue:
   follow-requests: "フォロー申請"
   admin: "管理"
   room: "ルーム"
+  follow-request-true: 新着
 
 desktop/views/components/ui.header.nav.vue:
   game: "ゲーム"
