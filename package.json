@@ -41,7 +41,7 @@
 		"gulp/gulp-cli/yargs/yargs-parser": "5.0.0-security.0"
 	},
 	"dependencies": {
-		"@ayuskey/summaly": "2.4.1-rei0784.3",
+		"@ayuskey/summaly": "2.5.0-rei0784.3",
 		"@elastic/elasticsearch": "7.16.0",
 		"@fortawesome/fontawesome-svg-core": "1.2.36",
 		"@fortawesome/free-brands-svg-icons": "5.15.4",
