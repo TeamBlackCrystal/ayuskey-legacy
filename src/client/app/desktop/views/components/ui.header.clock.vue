@@ -7,7 +7,7 @@
 			<span class="hhnn">{{ hh }}<span :style="{ visibility: now.getSeconds() % 2 == 0 ? 'visible' : 'hidden' }">:</span>{{ nn }}</span>
 		</time>
 	</div>
-	<div class="content">
+	<div class="content" :class="{ round: $store.state.device.roundedCorners }">  <!--TODO: オプションでoffにできるようにする-->
 		<mk-analog-clock :dark="true"/>
 	</div>
 </div>
@@ -105,5 +105,8 @@ export default Vue.extend({
 		padding 0
 		width 256px
 		background #899492
+
+		&.round
+			border-radius 16px  # TODO:2021/12/30
 
 </style>
