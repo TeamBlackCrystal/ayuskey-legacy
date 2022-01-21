@@ -107,6 +107,7 @@ export default Vue.extend({
 		background #899492
 
 		&.round
-			border-radius 16px  # TODO:2021/12/30
+			// TODO:2021/12/30
+			border-radius 16px
 
 </style>
