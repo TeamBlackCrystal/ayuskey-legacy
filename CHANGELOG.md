@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-5.18.1] 2022-01-25
+
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+
 ## [11.37.1-rei0784-5.18.0] 2022-01-25
 
 ### Added
@@ -236,7 +242,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 内部的な修正をたくさん
 
 [Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.0...HEAD
-[11.37.1-rei0784-5.18.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.12.2...11.37.1-rei0784-5.18.0
+[11.37.1-rei0784-5.18.1]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.0...11.37.1-rei0784-5.18.1
+[11.37.1-rei0784-5.18.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.2...11.37.1-rei0784-5.18.0
 [11.37.1-rei0784-5.17.2]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.1...11.37.1-rei0784-5.17.2
 [11.37.1-rei0784-5.17.1]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.0...11.37.1-rei0784-5.17.1
 [11.37.1-rei0784-5.17.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.0-rc.2...11.37.1-rei0784-5.17.0
