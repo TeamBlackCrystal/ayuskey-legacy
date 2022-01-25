@@ -10,6 +10,7 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 99
+    target-branch: "develop"
     labels:
       - "📦Dependencies"
       - "🧶JavaScript"
@@ -18,6 +19,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    target-branch: "develop"
     labels:
       - "📦Dependencies"
       - "⚓Docker"
@@ -26,6 +28,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    target-branch: "develop"
     labels:
       - "📦Dependencies"
       - "⛓Submodules"
