@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
 - Fix Twitter embed
+- toolsが動かないのを修正
 
 ## [11.37.1-rei0784-5.18.1] 2022-01-25
 
