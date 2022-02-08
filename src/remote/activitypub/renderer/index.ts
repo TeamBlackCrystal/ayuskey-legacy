@@ -34,6 +34,7 @@ export const renderActivity = (x: any): IActivity | null => {
 				value: 'schema:value',
 				// Misskey
 				misskey: `${config.url}/ns#`,
+				ayuskey: `${config.url}/ns#`,
 				'_misskey_content': 'misskey:_misskey_content',
 				'_misskey_quote': 'misskey:_misskey_quote',
 				'_misskey_reaction': 'misskey:_misskey_reaction',
@@ -41,7 +42,7 @@ export const renderActivity = (x: any): IActivity | null => {
 				'_misskey_talk': 'misskey:_misskey_talk',
 				'isCat': 'misskey:isCat',
 				// Ayuskey
-				'isLady': 'misskey:isLady',
+				'isLady': 'ayuskey:isLady',
 				// vcard
 				vcard: 'http://www.w3.org/2006/vcard/ns#',
 			}
