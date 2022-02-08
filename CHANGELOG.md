@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ネームスペース変更
   - **BREAKING CHANGE: 旧バージョンとのisLady連合ができなくなります。**
 - Unifying Misskey-specific IRIs in JSON-LD `@context`
+- ノートに添付できるファイルの数が16に増えました
 
 ### Fixed
 
