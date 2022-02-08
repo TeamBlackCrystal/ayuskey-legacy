@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- NodeInfo にユーザー数と投稿数の情報を追加する
+
 ### Changed
 
 - ネームスペース変更
