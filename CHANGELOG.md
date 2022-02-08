@@ -17,9 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - ネームスペース変更
   - **BREAKING CHANGE: 旧バージョンとのisLady連合ができなくなります。**
+- Unifying Misskey-specific IRIs in JSON-LD `@context`
 
 ### Fixed
 
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
 - Fix Twitter embed
 
 ## [11.37.1-rei0784-5.18.1] 2022-01-25
