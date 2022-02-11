@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
+- パスワードリマインダー(パスワードリセット)
+- birthdayに謎の値(02/32など)が設定できるように(なったはず)
 
 ## [Unreleased]
 
@@ -24,12 +26,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unifying Misskey-specific IRIs in JSON-LD `@context`
 - ノートに添付できるファイルの数が16に増えました
 - renoteはnoindex
+- update nodejs for docker
 
 ### Fixed
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
 - Fix Twitter embed
 - toolsが動かないのを修正
+- deliver delayed
+- ログアウトできない
 
 ## [11.37.1-rei0784-5.18.1] 2022-01-25
 
