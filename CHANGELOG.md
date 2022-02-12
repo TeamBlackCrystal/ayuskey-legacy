@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ノートに添付できるファイルの数が16に増えました
 - renoteはnoindex
 - update nodejs for docker
+- メンションのアバターを調整
 
 ### Fixed
 
