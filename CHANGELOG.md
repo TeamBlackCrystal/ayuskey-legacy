@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - toolsが動かないのを修正
 - deliver delayed
 - ログアウトできない
+- katexがおかしい
 
 ## [11.37.1-rei0784-5.18.1] 2022-01-25
 
