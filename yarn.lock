@@ -1821,10 +1821,10 @@ autwh@0.1.0:
   dependencies:
     oauth "0.9.15"
 
-aws-sdk@2.1072.0:
-  version "2.1072.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1072.0.tgz#4fa844765ebb65b78c242b8edcf98a1669d4523b"
-  integrity sha512-b0gEHuC6xTGduPTS+ZCScurw9RTyOned9gf6H0rDagW8hdSMebsFQy84ZreeiZHHChyKyWrNUbUFugOYdw+WXw==
+aws-sdk@2.1073.0:
+  version "2.1073.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1073.0.tgz#96c0c25c89f814c4aa4262e6eeef20eec9fda0da"
+  integrity sha512-TtyHDL4ZEs8Zh/DqWY/hv745DTWrIwOyBAvfjBJ45RE9h0TjpWqCIowEtb6gRPAKyPPyfGH4s+rEYu07vNK1Hg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -10504,10 +10504,10 @@ ts-node@10.5.0:
     v8-compile-cache-lib "^3.0.0"
     yn "3.1.1"
 
-tsc-alias@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.5.0.tgz#bc26f8dccf96e4ea350adc3f64ad3d2325cad967"
-  integrity sha512-Pb3y7ZjULKFHEV2US5dS58/hV76sE9Sn5iehiPjYqHcm/lx4eCGAJYoSmrVXQMPX+6baTnDFJD0MGOyqn94dIg==
+tsc-alias@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.6.0.tgz#18f9233a5fefb78a896b8282a6bfe58e0a42d3b8"
+  integrity sha512-GAYFfO3xHL2d90i4XCgDz+hn3YYy9s38qqQf1D1JEB5lW34ufgCtZDP8rcstjnh5Jkbn8UOHgSYeuvXYoV7X/Q==
   dependencies:
     chokidar "^3.5.2"
     commander "^8.3.0"
