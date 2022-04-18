@@ -38,7 +38,7 @@
 	},
 	"resolutions": {
 		"lodash": "^4.17.21",
-		"gulp/gulp-cli/yargs/yargs-parser": "5.0.0-security.0"
+		"gulp/gulp-cli/yargs/yargs-parser": "5.0.1"
 	},
 	"dependencies": {
 		"@ayuskey/summaly": "2.5.0-rei0784.3",
