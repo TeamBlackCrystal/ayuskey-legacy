@@ -15,7 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [11.37.1-rei0784-5.19.0] 2022-01-25
+## [11.37.1-rei0784-5.19.1] 2022-04-19
+
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+
+## [11.37.1-rei0784-5.19.0] 2022-04-19
 
 ### Added
 
