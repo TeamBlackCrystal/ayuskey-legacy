@@ -10,6 +10,7 @@ JA | [EN](README.en-US.md)
 
 [![][fork-of-badge]][fork-of-link]
 [![][summaly-badge]][summaly-link]
+[![][xev-badge]][xev-link]
 [![][mfmjs-badge]][mfmjs-link]
 
 Ayuskeyはこの世界のどこかで生まれたMisskey v11のフォークです。
@@ -45,6 +46,9 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
 
 * [@ayuskey/summaly](https://github.com/TeamBlackCrystal/summaly)
   * 微調整が施されたsummaly
+
+* [@ayuskey/xev](https://github.com/TeamBlackCrystal/xev)
+  * 本家がesm化されたため、cjsで保守
 
 </details>
 
@@ -83,5 +87,7 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
 [fork-of-badge]: https://img.shields.io/badge/fork%20of-misskey--dev%2Fmisskey-important.svg?style=flat-square
 [summaly-link]:  https://www.npmjs.com/package/@ayuskey/summaly
 [summaly-badge]: https://img.shields.io/badge/summaly-%40ayuskey%2Fsummaly-blue.svg?style=flat-square
+[xev-link]:  https://www.npmjs.com/package/@ayuskey/xev
+[xev-badge]: https://img.shields.io/badge/summaly-%40ayuskey%2Fxev-blue.svg?style=flat-square
 [mfmjs-link]:    https://github.com/TeamBlackCrystal/misskey/issues/222
 [mfmjs-badge]:   https://img.shields.io/badge/mfm.js-none(%23222)-blue.svg?style=flat-square
