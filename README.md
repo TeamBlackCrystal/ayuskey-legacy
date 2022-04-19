@@ -88,6 +88,6 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
 [summaly-link]:  https://www.npmjs.com/package/@ayuskey/summaly
 [summaly-badge]: https://img.shields.io/badge/summaly-%40ayuskey%2Fsummaly-blue.svg?style=flat-square
 [xev-link]:  https://www.npmjs.com/package/@ayuskey/xev
-[xev-badge]: https://img.shields.io/badge/summaly-%40ayuskey%2Fxev-blue.svg?style=flat-square
+[xev-badge]: https://img.shields.io/badge/xev-%40ayuskey%2Fxev-blue.svg?style=flat-square
 [mfmjs-link]:    https://github.com/TeamBlackCrystal/misskey/issues/222
 [mfmjs-badge]:   https://img.shields.io/badge/mfm.js-none(%23222)-blue.svg?style=flat-square
