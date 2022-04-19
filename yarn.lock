@@ -19,6 +19,11 @@
     require-all "3.0.0"
     trace-redirect "1.0.6"
 
+"@ayuskey/xev@2.0.1-rei0784.1":
+  version "2.0.1-rei0784.1"
+  resolved "https://registry.yarnpkg.com/@ayuskey/xev/-/xev-2.0.1-rei0784.1.tgz#a0dd1869c8be8910d0e0e2c8cc8efc99231debdf"
+  integrity sha512-AKan2xk1iWIDAk3H27HWEmiTfJ2bq33wrRQUvIbEqW62u9TOgaNv4xkg+q0YTUosFNurNxGtoa6qIzk+U7ZspA==
+
 "@babel/code-frame@^7.0.0":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -11379,11 +11384,6 @@ ws@8.5.0, ws@^8.2.3, ws@^8.4.2:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.5.0.tgz#bfb4be96600757fe5382de12c670dab984a1ed4f"
   integrity sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==
-
-xev@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/xev/-/xev-2.0.1.tgz#24484173a22115bc8a990ef5d4d5129695b827a7"
-  integrity sha512-icDf9M67bDge0F2qf02WKZq+s7mMO/SbPv67ZQPym6JThLEOdlWWLdB7VTVgRJp3ekgaiVItCAyH6aoKCPvfIA==
 
 xml-js@^1.6.11:
   version "1.6.11"
