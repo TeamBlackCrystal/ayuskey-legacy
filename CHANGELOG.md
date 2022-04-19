@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Changed
 
 - パフォーマンスが良くなる
+- bull@4へ移行
 
 ## [11.37.1-rei0784-5.20.0] 2022-04-19
 
