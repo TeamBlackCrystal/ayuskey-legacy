@@ -285,7 +285,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker環境においてfilesをマウントするように
 - 内部的な修正をたくさん
 
-[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.0...HEAD
+[Unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.20.0...HEAD
+[11.37.1-rei0784-5.20.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.19.1...11.37.1-rei0784-5.20.0
+[11.37.1-rei0784-5.19.1]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.19.0...11.37.1-rei0784-5.19.1
+[11.37.1-rei0784-5.19.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.1...11.37.1-rei0784-5.19.0
 [11.37.1-rei0784-5.18.1]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.0...11.37.1-rei0784-5.18.1
 [11.37.1-rei0784-5.18.0]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.2...11.37.1-rei0784-5.18.0
 [11.37.1-rei0784-5.17.2]:        https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.17.1...11.37.1-rei0784-5.17.2
