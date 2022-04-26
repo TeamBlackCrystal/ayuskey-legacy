@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       buildVersion:
-        description: 'input build version. ex: 12.109.2'
+        description: 'input build version. ex: 11.37.1-rei0784-5.99.0'
         required: true
         default: ''
       buildId:
@@ -48,5 +48,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
 #          tags: ${{ steps.meta.outputs.tags }}
-          tags: sousuke0422/misskey:latest,sousuke0422/misskey:12,sousuke0422/misskey:${{ github.event.inputs.buildVersion }}-${{ github.event.inputs.buildId }}
+          tags: sousuke0422/misskey:latest,sousuke0422/misskey:11,sousuke0422/misskey:${{ github.event.inputs.buildVersion }}-${{ github.event.inputs.buildId }}
           labels: ${{ steps.meta.outputs.labels }}
