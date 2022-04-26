@@ -607,6 +607,11 @@
   resolved "https://registry.yarnpkg.com/@types/jsonld/-/jsonld-1.5.6.tgz#4396c0b17128abf5773bb68b5453b88fc565b0d4"
   integrity sha512-OUcfMjRie5IOrJulUQwVNvV57SOdKcTfBj3pjXNxzXqeOIrY2aGDNGW/Tlp83EQPkz4tCE6YWVrGuc/ZeaAQGg==
 
+"@types/jsrsasign@10.2.1":
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/@types/jsrsasign/-/jsrsasign-10.2.1.tgz#b82882523dfb5c476673dbef344ad838f96fb43d"
+  integrity sha512-piCIOMY0+d2wwRNcRw56VBqFYCYYeZ1c/NlUKVHTV3Y9j1RE2qpgCQvClI6yhH2sk8OoXiah43i9FmnC5tL2RQ==
+
 "@types/katex@0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@types/katex/-/katex-0.14.0.tgz#b84c0afc3218069a5ad64fe2a95321881021b5fe"
