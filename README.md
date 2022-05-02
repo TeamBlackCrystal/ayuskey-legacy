@@ -36,10 +36,10 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
 
 ## ライブラリ（Ayuskey動作保証）
 
-* - [MiPA(Mi.py互換)](https://github.com/yupix/mipa)
+*   [MiPA(Mi.py互換)](https://github.com/yupix/mipa)
   * bot向けフレームワーク
   * misskey(v12)対応
-* - [MiPAC](https://github.com/yupix/mipac)
+*   [MiPAC](https://github.com/yupix/mipac)
   * [MiPA](https://github.com/yupix/mipa)の内部APIです。
   * MisskeyのAPI Wrapperであり、オブジェクト的にAPIを操作することができます
   * misskey(v12)対応
