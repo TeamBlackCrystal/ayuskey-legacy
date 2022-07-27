@@ -156,7 +156,7 @@ export default Vue.extend({
 
 <style lang="css" scoped>
 .reply-border {
-	border-left: solid 4px var(--primary)
+	border-left: solid 2px var(--primary)
 }
 
 .note-reply-frame {
