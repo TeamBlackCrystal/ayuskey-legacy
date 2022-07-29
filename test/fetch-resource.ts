@@ -63,7 +63,8 @@ describe('Fetch resource', () => {
 
 		// signup
 		alice = await signup({ username: 'alice' });
-		
+		//console.log('alice', alice);
+
 		// upload avatar
 		avatar = await uploadFile(alice);
 		//console.log('avatar', avatar);
@@ -170,18 +171,6 @@ describe('Fetch resource', () => {
 			const res = await simpleGet('/apple-touch-icon.png');
 			assert.strictEqual(res.status, 200);
 			assert.strictEqual(res.type, 'image/png');
-		}));
-
-		it('GET twemoji svg', async(async () => {
-			const res = await simpleGet('/twemoji/2764.svg');
-			assert.strictEqual(res.status, 200);
-			assert.strictEqual(res.type, 'image/svg+xml');
-		}));
-
-		it('GET twemoji svg with hyphen', async(async () => {
-			const res = await simpleGet('/twemoji/2764-fe0f-200d-1f525.svg');
-			assert.strictEqual(res.status, 200);
-			assert.strictEqual(res.type, 'image/svg+xml');
 		}));
 	});
 
