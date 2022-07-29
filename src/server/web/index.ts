@@ -81,6 +81,22 @@ router.get('/apple-touch-icon.png', async ctx => {
 	});
 });
 
+router.get('/twemoji/(.*)', async ctx => {
+	const path = ctx.path.replace('/twemoji/', '');
+
+	if (!path.match(/^[0-9a-f-]+\.svg$/)) {
+		ctx.status = 404;
+		return;
+	}
+
+	ctx.set('Content-Security-Policy', 'default-src \'none\'; style-src \'unsafe-inline\'');
+
+	await send(ctx as any, path, {
+		root: `${__dirname}/../../../node_modules/@discordapp/twemoji/dist/svg/`,
+		maxage: ms('30 days'),
+	});
+});
+
 // ServiceWorker
 router.get(/^\/sw\.(.+?)\.js$/, async ctx => {
 	await send(ctx as any, `/assets/sw.${ctx.params[0]}.js`, {
@@ -174,11 +190,13 @@ router.get('/@:user.json', async ctx => {
 // User
 router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 	const { username, host } = parseAcct(ctx.params.user);
-	const user = await Users.findOne({
+	const _user = await Users.findOne({
 		usernameLower: username.toLowerCase(),
 		host,
 		isSuspended: false
 	});
+
+	const user = await Users.pack(_user!);
 
 	if (user != null) {
 		const profile = await UserProfiles.findOne(user.id).then(ensure);
@@ -226,6 +244,64 @@ router.get('/notes/:note', async ctx => {
 		const _note = await Notes.pack(note);
 		const profile = await UserProfiles.findOne(note.userId).then(ensure);
 
+		const meta = await fetchMeta();
+
+		const video = (_note.files || [])
+			.filter((file: any) => file.type.match(/^video/) && !file.isSensitive)
+			.shift() as any;
+
+		const audio = (_note.files || [])
+			.filter((file: any) => file.type.match(/^audio/) && !file.isSensitive)
+			.shift() as any;
+
+		const image = (_note.files || [])
+			.filter((file: any) => file.type.match(/^image/) && !file.isSensitive)
+			.shift() as any;
+
+		let imageUrl = video?.thumbnailUrl || image?.thumbnailUrl;
+
+		// or avatar
+		if (imageUrl == null || imageUrl === '') {
+			imageUrl = (_note.user as any)?.avatarUrl;
+		}
+
+		const stream = video?.url || audio?.url;
+		const type = video?.type || audio?.type;
+		const player = (video || audio) ? `${config.url}/notes/${_note?.id}/embed` : null;
+		const width = 530;	// TODO: thumbnail width
+		const height = 255;
+
+		await ctx.render('note', {
+			note: _note,
+			profile,
+			summary: getNoteSummary(_note),
+			imageUrl,
+			instanceName: meta.name || 'Misskey',
+			icon: meta.iconUrl,
+			player, width, height, stream, type,
+		});
+
+		if (['public', 'home'].includes(note.visibility)) {
+			ctx.set('Cache-Control', 'public, max-age=180');
+		} else {
+			ctx.set('Cache-Control', 'private, max-age=0, must-revalidate');
+		}
+
+		return;
+	}
+
+	ctx.status = 404;
+});
+
+router.get('/notes/:note/embed', async ctx => {
+	ctx.remove('X-Frame-Options');
+
+	const note = await Notes.findOne(ctx.params.note);
+
+	if (note) {
+		const _note = await Notes.pack(note);
+		const profile = await UserProfiles.findOne(note.userId).then(ensure);
+
 		let imageUrl;
 		// use attached
 		if (_note.files) {
@@ -247,6 +323,20 @@ router.get('/notes/:note', async ctx => {
 			imageUrl,
 			instanceName: meta.name || 'Misskey',
 			icon: meta.iconUrl
+		});
+
+		const video = (_note.files || [])
+			.filter((file: any) => file.type.match(/^video/) && !file.isSensitive)
+			.shift() as any;
+		const audio = video ? undefined : (_note.files || [])
+			.filter((file: any) => file.type.match(/^audio/) && !file.isSensitive)
+			.shift() as any;
+
+		await ctx.render('note-embed', {
+			video: video?.url,
+			audio: audio?.url,
+			type: (video || audio)?.type,
+			autoplay: ctx.query.autoplay != null,
 		});
 
 		if (['public', 'home'].includes(note.visibility)) {

@@ -15,6 +15,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+  - CVE-2022-29256 (sharp)
+	- CVE-2022-33987 (got)
+
+### Added
+
+- ~~Twemojiをインスタンスで配信~~
+  - オプション化し、使用するcdnを変更
+- 引越し先をユーザーページに表示するように
+- 投稿ページのURLで埋め込みプレイヤーを提供するように
+
+## Changed
+
+- emojilistを更新
+- クエリの最適化
+- dockerでnode@18を使用します
+
 ## [11.37.1-rei0784-5.21.1] 2022-07-28
 
 ### Fixed
@@ -26,6 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
+- antenna, clip, listのパフォーマンス悪いのを修正
+  - *ayuskeyではantenna, clipのapiのみを提供しています。*
 
 ## Changed
 
