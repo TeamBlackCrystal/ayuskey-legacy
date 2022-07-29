@@ -34,7 +34,12 @@ describe('Fetch resource', () => {
 	let instance: any;
 
 	let alice: any;
+	let avatar: any;
 	let alicesPost: any;
+	let image: any;
+	let alicesPostImage: any;
+	let video: any;
+	let alicesPostVideo: any;
 
 	before(async () => {
 		p = await startServer();
@@ -58,9 +63,51 @@ describe('Fetch resource', () => {
 
 		// signup
 		alice = await signup({ username: 'alice' });
+		
+		// upload avatar
+		avatar = await uploadFile(alice);
+		//console.log('avatar', avatar);
+
+		// update profile
+		const token = alice.token;
+
+		const res = await api('i/update', {
+			name: 'Alice',
+			description: 'Alice Desc',
+			avatarId: avatar.id,
+		}, alice);
+
+		alice = res.body;
+		alice.token = token;	// tokenはsignup以外では返ってこない
+		//console.log('alice-2', alice);
+
+		// post
 		alicesPost = await post(alice, {
-			text: 'test'
+			text: 'test',
 		});
+		//console.log('alicesPost', alicesPost);
+
+		// upload image
+		image = await uploadFile(alice);
+		//console.log('image', image);
+
+		// post image
+		alicesPostImage = await post(alice, {
+			text: 'image',
+			fileIds: [ image.id ],
+		});
+		//console.log('alicesPostImage', alicesPostImage);
+
+		// upload video
+		video = await uploadFile(alice, 'anime.mp4');
+		//console.log('video', video);
+
+		// post video
+		alicesPostVideo = await post(alice, {
+			text: 'video',
+			fileIds: [ video.id ],
+		});
+		//console.log('alicesPostVideo', alicesPostVideo);
 	});
 
 	after(async () => {
