@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - emojilistを更新
 - クエリの最適化
+- dockerでnode@18を使用します
 
 ## [11.37.1-rei0784-5.21.1] 2022-07-28
 
