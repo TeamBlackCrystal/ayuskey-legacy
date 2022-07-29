@@ -15,9 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+  - CVE-2022-29256 (sharp)
+	- CVE-2022-33987 (got)
+
 ### Added
 
 - Twemojiをインスタンスで配信
+
 ## Changed
 
 - emojilistを更新
