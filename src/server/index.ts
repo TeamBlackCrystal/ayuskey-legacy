@@ -58,6 +58,7 @@ if (config.url.startsWith('https') && !config.disableHsts) {
 }
 
 // FLoC
+// FLoCやめたらしいしもう要らない？
 app.use(async (ctx, next) => {
 	ctx.set('Permissions-Policy', 'interest-cohort=()');
 	await next();
