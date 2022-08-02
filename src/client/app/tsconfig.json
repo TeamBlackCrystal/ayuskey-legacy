@@ -19,6 +19,7 @@
     "strictNullChecks": false,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
 		//"noImplicitThis":true,
     "typeRoots": [
       "node_modules/@types",
