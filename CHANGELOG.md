@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- モバイル時にRenoteするとボーダーがうまく表示されない #30
+- モバイル時にRenoteするとボーダーがうまく表示されない [#31](https://github.com/TeamBlackCrystal/ayuskey/issues/31)
 - アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない TeamBlackCrystal/misskey#477
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
   - CVE-2022-29256 (sharp)
