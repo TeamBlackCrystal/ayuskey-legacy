@@ -1,5 +1,6 @@
 <template>
 <div class="index">
+	<div class="index-body">
 	<main v-if="$store.getters.isSignedIn">
 		<p class="fetching" v-if="fetching">{{ $t('loading') }}<mk-ellipsis/></p>
 		<x-form
@@ -27,6 +28,8 @@
 		<h1>{{ $t('sign-in') }}</h1>
 		<mk-signin/>
 	</main>
+	</div>
+
 	<footer><img src="/assets/auth/icon.svg" alt="Misskey"/></footer>
 </div>
 </template>
@@ -89,65 +92,80 @@ export default Vue.extend({
 });
 </script>
 
+<style lang="css">
+body {
+	padding: 0px !important;
+}
+
+</style>
+
 <style lang="stylus" scoped>
 .index
+	background var(--bg)
+	color var(--text)
 
-	> main
-		width 100%
-		max-width 500px
-		margin 0 auto
-		text-align center
-		background #fff
-		box-shadow 0 4px 16px rgba(#000, 0.2)
+	> .index-body
+		display flex
+		justify-content center
+		align-items center
+		height 100vh
 
-		> .fetching
-			margin 0
-			padding 32px
-			color #555
+		> main
+			width 100%
+			max-width 500px
+			margin 0 auto
+			text-align center
+			background var(--face)
+			box-shadow 0 4px 16px rgba(#000, 0.2)
 
-		> div:not(.form)
-			padding 64px
-
-			> h1
-				margin 0 0 8px 0
-				padding 0
-				font-size 20px
-				font-weight normal
-
-			> p
+			> .fetching
 				margin 0
+				padding 32px
 				color #555
 
-			&.denied > h1
-				color #e65050
+			> div:not(.form)
+				padding 64px
 
-			&.accepted > h1
-				color #54af7c
-
-		&.signin
-			padding 32px 32px 16px 32px
-
-			> h1
-				margin 0 0 22px 0
-				padding 0
-				font-size 20px
-				font-weight normal
-				color #555
-
-		@media (max-width 600px)
-			max-width none
-			box-shadow none
-
-		@media (max-width 500px)
-			> div
 				> h1
-					font-size 16px
+					margin 0 0 8px 0
+					padding 0
+					font-size 20px
+					font-weight normal
+
+				> p
+					margin 0
+					color #555
+
+				&.denied > h1
+					color #e65050
+
+				&.accepted > h1
+					color #54af7c
+
+			&.signin
+				padding 32px 32px 16px 32px
+
+				> h1
+					margin 0 0 22px 0
+					padding 0
+					font-size 20px
+					font-weight normal
+					color var(--text)
+
+			@media (max-width 600px)
+				max-width none
+				box-shadow none
+
+			@media (max-width 500px)
+				> div
+					> h1
+						font-size 16px
 
 	> footer
 		> img
 			display block
 			width 32px
 			height 32px
-			margin 16px auto
+			margin auto auto
 
 </style>
