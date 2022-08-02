@@ -5,24 +5,24 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      interval: "daily"
-    open-pull-requests-limit: 99
-    target-branch: "develop"
-    labels:
-      - "📦Dependencies"
-      - "🧶JavaScript"
-
-  - package-ecosystem: "docker" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      interval: "daily"
-    target-branch: "develop"
-    labels:
-      - "📦Dependencies"
-      - "⚓Docker"
+#  - package-ecosystem: "npm" # See documentation for possible values
+#    directory: "/" # Location of package manifests
+#    schedule:
+#      interval: "daily"
+#    open-pull-requests-limit: 99
+#    target-branch: "develop"
+#    labels:
+#      - "📦Dependencies"
+#      - "🧶JavaScript"
+#
+#  - package-ecosystem: "docker" # See documentation for possible values
+#    directory: "/" # Location of package manifests
+#    schedule:
+#      interval: "daily"
+#    target-branch: "develop"
+#    labels:
+#      - "📦Dependencies"
+#      - "⚓Docker"
 
   - package-ecosystem: "gitsubmodule" # See documentation for possible values
     directory: "/" # Location of package manifests
