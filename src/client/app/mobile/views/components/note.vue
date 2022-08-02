@@ -10,7 +10,7 @@
 	<div class="reply-to" v-if="appearNote.reply && (!$store.getters.isSignedIn || $store.state.settings.showReplyTarget)">
 		<x-sub :note="appearNote.reply"/>
 	</div>
-	<mk-renote class="renote" v-if="isRenote" :note="note"/>
+	<mk-renote class="renote" v-if="isRenote" :note="note" :class="{'reply-border': appearNote.reply}" />
 	<article class="article" :class="{'reply-border': appearNote.reply}">
 		<mk-avatar class="avatar" :user="appearNote.user" v-if="$store.state.device.postStyle != 'smart'"/>
 		<div class="main">
