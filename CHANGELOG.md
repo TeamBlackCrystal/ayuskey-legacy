@@ -11,9 +11,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
 - パスワードリマインダー(パスワードリセット)
-- birthday に謎の値(02/32 など)が設定できるように(なったはず)
 
 ## [Unreleased]
+
+### Fixed
+
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+  - CVE-2022-29256 (sharp)
+	- CVE-2022-33987 (got)
+
+### Added
+
+- ~~Twemojiをインスタンスで配信~~
+  - オプション化し、使用するcdnを変更
+- 引越し先をユーザーページに表示するように
+- 投稿ページのURLで埋め込みプレイヤーを提供するように
+- Bull Dashboardを組み込み、ジョブキューの確認や操作を行えるように
+
+## Changed
+
+- emojilistを更新
+- クエリの最適化
+- dockerでnode@18を使用します
+- node 14をドロップ
+  - **BREAKING CHANGE: node 12 は利用できません。**
+	- 16 or 18に移行してください
 
 ## [11.37.1-rei0784-5.21.1] 2022-07-28
 
@@ -26,6 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
+- antenna, clip, listのパフォーマンス悪いのを修正
+  - *ayuskeyではantenna, clipのapiのみを提供しています。*
 
 ## Changed
 
@@ -66,6 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - renote は noindex
 - update nodejs for docker
 - メンションのアバターを調整
+- birthdayに謎の値(02/32など)が設定できるように(なったはず)
 
 ### Fixed
 

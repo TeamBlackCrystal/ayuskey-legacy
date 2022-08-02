@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings  } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Users, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings  } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { Packed } from '../../misc/schema';
@@ -157,9 +157,13 @@ export class UserRepository extends Repository<User> {
 		);
 	}
 
+	// 何とかしたい
 	public getAvatarUrl(user: User): string {
-		if (user.avatarUrl) {
-			return user.avatarUrl;
+		if (user.avatar) {
+			const avatarUrl = DriveFiles.getPublicUrl(user.avatar, true)
+			//起こりえないはずだけど、ts的に必要
+			if (avatarUrl == null) return `${config.url}/random-avatar/${user.id}`;
+			return avatarUrl;
 		} else {
 			return `${config.url}/random-avatar/${user.id}`;
 		}
@@ -239,9 +243,10 @@ export class UserRepository extends Repository<User> {
 			name: user.name,
 			username: user.username,
 			host: user.host,
+			//avatarUrl: user.avatar ? DriveFiles.getPublicUrl(user.avatar, true) : config.url + '/random-avatar/' + user.id,
 			avatarUrl: this.getAvatarUrl(user),
-			avatarBlurhash: user.avatarBlurhash,
-			avatarColor: null, // 後方互換性のため
+			avatarBlurhash: user.avatar?.blurhash || null,
+			avatarColor: null,
 			isAdmin: user.isAdmin || falsy,
 			isBot: user.isBot || falsy,
 			isCat: user.isCat || falsy,
@@ -275,21 +280,21 @@ export class UserRepository extends Repository<User> {
 			onlineStatus: this.getOnlineStatus(user),
 
 			...(opts.detail ? {
-				url: profile!.url,
+				url: profile?.url,
 				uri: user.uri,
 				createdAt: user.createdAt.toISOString(),
 				updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
 				bannerUrl: user.banner ? DriveFiles.getPublicUrl(user.banner, false) : null,
-				bannerBlurhash: user.bannerBlurhash,
+				bannerBlurhash: user.avatar?.blurhash || null,
 				bannerColor: null, // 後方互換性のため
 				isLocked: user.isLocked,
 				isModerator: user.isModerator || falsy,
 				isSilenced: user.isSilenced || falsy,
 				isSuspended: user.isSuspended || falsy,
-				description: profile!.description,
-				location: profile!.location,
-				birthday: profile!.birthday,
-				fields: profile!.fields,
+				description: profile?.description,
+				location: profile?.location,
+				birthday: profile?.birthday,
+				fields: profile?.fields,
 				followersCount: user.followersCount,
 				followingCount: user.followingCount,
 				notesCount: user.notesCount,
@@ -297,38 +302,40 @@ export class UserRepository extends Repository<User> {
 				pinnedNotes: Notes.packMany(pins.map(pin => pin.noteId), meId, {
 					detail: true
 				}),
-				pinnedPageId: profile!.pinnedPageId,
-				pinnedPage: profile!.pinnedPageId ? Pages.pack(profile!.pinnedPageId, meId) : null,
-				twoFactorEnabled: profile!.twoFactorEnabled,
-				usePasswordLessLogin: profile!.usePasswordLessLogin,
-				securityKeys: profile!.twoFactorEnabled
+				pinnedPageId: profile?.pinnedPageId,
+				pinnedPage: profile?.pinnedPageId ? Pages.pack(profile?.pinnedPageId, meId) : null,
+				twoFactorEnabled: profile?.twoFactorEnabled,
+				usePasswordLessLogin: profile?.usePasswordLessLogin,
+				securityKeys: profile?.twoFactorEnabled
 					? UserSecurityKeys.count({
 						userId: user.id
 					}).then(result => result >= 1)
 					: false,
-				twitter: profile!.twitter ? {
-					id: profile!.twitterUserId,
-					screenName: profile!.twitterScreenName
+				twitter: profile?.twitter ? {
+					id: profile?.twitterUserId,
+					screenName: profile?.twitterScreenName
 				} : null,
-				github: profile!.github ? {
-					id: profile!.githubId,
-					login: profile!.githubLogin
+				github: profile?.github ? {
+					id: profile?.githubId,
+					login: profile?.githubLogin
 				} : null,
-				discord: profile!.discord ? {
-					id: profile!.discordId,
-					username: profile!.discordUsername,
-					discriminator: profile!.discordDiscriminator
+				discord: profile?.discord ? {
+					id: profile?.discordId,
+					username: profile?.discordUsername,
+					discriminator: profile?.discordDiscriminator
 				} : null,
+				movedToUserId: user.movedToUserId,
+				movedToUser: user.movedToUserId ? Users.pack(user.movedToUserId) : null,
 			} : {}),
 
 			...(opts.detail && meId === user.id ? {
 				avatarId: user.avatarId,
 				bannerId: user.bannerId,
-				autoWatch: profile!.autoWatch,
-				alwaysMarkNsfw: profile!.alwaysMarkNsfw,
-				carefulBot: profile!.carefulBot,
-				carefulMassive: profile!.carefulMassive,
-				autoAcceptFollowed: profile!.autoAcceptFollowed,
+				autoWatch: profile?.autoWatch,
+				alwaysMarkNsfw: profile?.alwaysMarkNsfw,
+				carefulBot: profile?.carefulBot,
+				carefulMassive: profile?.carefulMassive,
+				autoAcceptFollowed: profile?.autoAcceptFollowed,
 				hasUnreadSpecifiedNotes: NoteUnreads.count({
 					where: { userId: user.id, isSpecified: true },
 					take: 1
@@ -337,7 +344,7 @@ export class UserRepository extends Repository<User> {
 					where: { userId: user.id, isMentioned: true },
 					take: 1
 				}).then(count => count > 0),
-				noCrawle: profile!.noCrawle,
+				noCrawle: profile?.noCrawle,
 				isExplorable: user.isExplorable,
 				isDeleted: user.isDeleted,
 				hideOnlineStatus: user.hideOnlineStatus,
@@ -351,10 +358,10 @@ export class UserRepository extends Repository<User> {
 			} : {}),
 
 			...(opts.includeSecrets ? {
-				clientData: profile!.clientData,
-				email: profile!.email,
-				emailVerified: profile!.emailVerified,
-				securityKeysList: profile!.twoFactorEnabled
+				clientData: profile?.clientData,
+				email: profile?.email,
+				emailVerified: profile?.emailVerified,
+				securityKeysList: profile?.twoFactorEnabled
 					? UserSecurityKeys.find({
 						where: {
 							userId: user.id
@@ -386,7 +393,7 @@ export class UserRepository extends Repository<User> {
 			includeSecrets?: boolean,
 			// TODO: remove
 			includeHasUnreadNotes?: boolean
-		}
+		},
 	) {
 		return Promise.all(users.map(u => this.pack(u, me, options)));
 	}

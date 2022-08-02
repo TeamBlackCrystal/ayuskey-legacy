@@ -9,6 +9,9 @@ import * as Router from '@koa/router';
 import * as send from 'koa-send';
 import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
+import { createBullBoard } from '@bull-board/api';
+import { BullAdapter  } from '@bull-board/api/bullAdapter.js';
+import { KoaAdapter } from '@bull-board/koa';
 
 import docs from './docs';
 import packFeed from './feed';
@@ -21,6 +24,7 @@ import getNoteSummary from '../../misc/get-note-summary';
 import { ensure } from '../../prelude/ensure';
 import { getConnection } from 'typeorm';
 import { redisClient } from '../../db/redis';
+import { queues } from '@/queue/queues';
 
 const env = process.env.NODE_ENV;
 
@@ -33,6 +37,37 @@ const app = new Koa();
 const setCache = (ctx: Koa.ParameterizedContext, onProduction: string) => {
 	ctx.set('Cache-Control', env === 'production' ? onProduction : 'no-store');
 };
+
+//#region Bull Dashboard
+const bullBoardPath = '/queue';
+
+// Authenticate
+app.use(async (ctx, next) => {
+	if (ctx.path === bullBoardPath || ctx.path.startsWith(bullBoardPath + '/')) {
+		const token = ctx.cookies.get('token');
+		if (token == null) {
+			ctx.status = 401;
+			return;
+		}
+		const user = await Users.findOne({ token });
+		if (user == null || !(user.isAdmin || user.isModerator)) {
+			ctx.status = 403;
+			return;
+		}
+	}
+	await next();
+});
+
+const serverAdapter = new KoaAdapter();
+
+createBullBoard({
+	queues: queues.map(q => new BullAdapter(q)),
+	serverAdapter,
+});
+
+serverAdapter.setBasePath(bullBoardPath);
+app.use(serverAdapter.registerPlugin());
+//#endregion
 
 // Init renderer
 app.use(views(__dirname + '/views', {
@@ -78,6 +113,22 @@ router.get('/assets/*', async ctx => {
 router.get('/apple-touch-icon.png', async ctx => {
 	await send(ctx as any, '/assets/apple-touch-icon.png', {
 		root: client
+	});
+});
+
+router.get('/twemoji/(.*)', async ctx => {
+	const path = ctx.path.replace('/twemoji/', '');
+
+	if (!path.match(/^[0-9a-f-]+\.svg$/)) {
+		ctx.status = 404;
+		return;
+	}
+
+	ctx.set('Content-Security-Policy', 'default-src \'none\'; style-src \'unsafe-inline\'');
+
+	await send(ctx as any, path, {
+		root: `${__dirname}/../../../node_modules/@discordapp/twemoji/dist/svg/`,
+		maxage: ms('30 days'),
 	});
 });
 
@@ -174,11 +225,13 @@ router.get('/@:user.json', async ctx => {
 // User
 router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 	const { username, host } = parseAcct(ctx.params.user);
-	const user = await Users.findOne({
+	const _user = await Users.findOne({
 		usernameLower: username.toLowerCase(),
 		host,
 		isSuspended: false
 	});
+
+	const user = await Users.pack(_user!);
 
 	if (user != null) {
 		const profile = await UserProfiles.findOne(user.id).then(ensure);
@@ -226,6 +279,64 @@ router.get('/notes/:note', async ctx => {
 		const _note = await Notes.pack(note);
 		const profile = await UserProfiles.findOne(note.userId).then(ensure);
 
+		const meta = await fetchMeta();
+
+		const video = (_note.files || [])
+			.filter((file: any) => file.type.match(/^video/) && !file.isSensitive)
+			.shift() as any;
+
+		const audio = (_note.files || [])
+			.filter((file: any) => file.type.match(/^audio/) && !file.isSensitive)
+			.shift() as any;
+
+		const image = (_note.files || [])
+			.filter((file: any) => file.type.match(/^image/) && !file.isSensitive)
+			.shift() as any;
+
+		let imageUrl = video?.thumbnailUrl || image?.thumbnailUrl;
+
+		// or avatar
+		if (imageUrl == null || imageUrl === '') {
+			imageUrl = (_note.user as any)?.avatarUrl;
+		}
+
+		const stream = video?.url || audio?.url;
+		const type = video?.type || audio?.type;
+		const player = (video || audio) ? `${config.url}/notes/${_note?.id}/embed` : null;
+		const width = 530;	// TODO: thumbnail width
+		const height = 255;
+
+		await ctx.render('note', {
+			note: _note,
+			profile,
+			summary: getNoteSummary(_note),
+			imageUrl,
+			instanceName: meta.name || 'Misskey',
+			icon: meta.iconUrl,
+			player, width, height, stream, type,
+		});
+
+		if (['public', 'home'].includes(note.visibility)) {
+			ctx.set('Cache-Control', 'public, max-age=180');
+		} else {
+			ctx.set('Cache-Control', 'private, max-age=0, must-revalidate');
+		}
+
+		return;
+	}
+
+	ctx.status = 404;
+});
+
+router.get('/notes/:note/embed', async ctx => {
+	ctx.remove('X-Frame-Options');
+
+	const note = await Notes.findOne(ctx.params.note);
+
+	if (note) {
+		const _note = await Notes.pack(note);
+		const profile = await UserProfiles.findOne(note.userId).then(ensure);
+
 		let imageUrl;
 		// use attached
 		if (_note.files) {
@@ -247,6 +358,20 @@ router.get('/notes/:note', async ctx => {
 			imageUrl,
 			instanceName: meta.name || 'Misskey',
 			icon: meta.iconUrl
+		});
+
+		const video = (_note.files || [])
+			.filter((file: any) => file.type.match(/^video/) && !file.isSensitive)
+			.shift() as any;
+		const audio = video ? undefined : (_note.files || [])
+			.filter((file: any) => file.type.match(/^audio/) && !file.isSensitive)
+			.shift() as any;
+
+		await ctx.render('note-embed', {
+			video: video?.url,
+			audio: audio?.url,
+			type: (video || audio)?.type,
+			autoplay: ctx.query.autoplay != null,
 		});
 
 		if (['public', 'home'].includes(note.visibility)) {

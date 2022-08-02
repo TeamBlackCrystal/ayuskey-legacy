@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+		"jsx": "preserve",
     "allowJs": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
@@ -18,6 +19,8 @@
     "strictNullChecks": false,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		//"noImplicitThis":true,
     "typeRoots": [
       "node_modules/@types",
       "src/@types"
@@ -25,6 +28,7 @@
   },
   "compileOnSave": false,
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
+		"./**/*.vue"
   ]
 }
