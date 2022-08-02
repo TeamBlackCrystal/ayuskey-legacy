@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 引越し先をユーザーページに表示するように
 - 投稿ページの URL で埋め込みプレイヤーを提供するように
 - Bull Dashboard を組み込み、ジョブキューの確認や操作を行えるように
-- welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように #1813
+- welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように TeamBlackCrystal/misskey#1813
 
 ## Changed
 
@@ -33,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない #477
+- モバイル時にRenoteするとボーダーがうまく表示されない #30
+- アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない TeamBlackCrystal/misskey#477
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
   - CVE-2022-29256 (sharp)
   - CVE-2022-33987 (got)
