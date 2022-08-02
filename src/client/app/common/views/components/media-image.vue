@@ -4,7 +4,7 @@
 	<div class="text">
 		<div>
 			<b><fa :icon="faExclamationTriangle"/> {{ $t('sensitive') }}</b>
-			<span>{{ $t('clickToShow') }}</span>
+			<span>{{ $t('click-to-show') }}</span>
 		</div>
 	</div>
 </div>
