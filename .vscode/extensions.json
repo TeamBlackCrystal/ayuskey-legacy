@@ -6,7 +6,7 @@
 		"hollowtree.vue-snippets",
 		"ms-vscode.typescript-javascript-grammar",
 		"ms-vscode.vscode-typescript-tslint-plugin",
-		"octref.vetur",
-		"sysoev.language-stylus"
+		"sysoev.language-stylus",
+		"Vue.volar"
 	]
 }
