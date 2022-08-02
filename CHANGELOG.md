@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
+- renoteした際のHeaderの位置を変える [#33](https://github.com/TeamBlackCrystal/ayuskey/issues/33)
 - emojilist を更新
 - クエリの最適化
 - docker で node@18 を使用します
