@@ -15,7 +15,10 @@
 						</router-link>
 					</div>
 				</header>
-				<div class="text">
+				<p v-if="note.cw != null" class="cw">
+					<mk-cw-button v-model="showContent"  :note="note"></mk-cw-button>
+				</p>
+				<div class="text" v-show="note.cw == null || showContent">
 					<mfm v-if="note.text" :text="note.cw != null ? note.cw : note.text" :author="note.user" :custom-emojis="note.emojis"/>
 					<mk-media-list v-if="note.files.length > 0" :media-list="note.files"/>
 				</div>
@@ -41,7 +44,8 @@ export default Vue.extend({
 		return {
 			fetching: true,
 			notes: [],
-			connection: null
+			connection: null,
+			showContent: false,
 		};
 	},
 
@@ -58,6 +62,10 @@ export default Vue.extend({
 	},
 
 	methods: {
+		toggleShowContent() {
+			this.showContent = !this.showContent;
+		},
+
 		fetch(cb?) {
 			this.fetching = true;
 			this.$root.api('notes', {

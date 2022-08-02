@@ -14,42 +14,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- 依存関係が更新されました。脆弱性が修正されている場合があります。
-  - CVE-2022-29256 (sharp)
-	- CVE-2022-33987 (got)
-
 ### Added
 
-- ~~Twemojiをインスタンスで配信~~
-  - オプション化し、使用するcdnを変更
+- ~~Twemoji をインスタンスで配信~~
+  - オプション化し、使用する cdn を変更
 - 引越し先をユーザーページに表示するように
-- 投稿ページのURLで埋め込みプレイヤーを提供するように
-- Bull Dashboardを組み込み、ジョブキューの確認や操作を行えるように
+- 投稿ページの URL で埋め込みプレイヤーを提供するように
+- Bull Dashboard を組み込み、ジョブキューの確認や操作を行えるように
+- welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように #1813
 
 ## Changed
 
-- emojilistを更新
+- emojilist を更新
 - クエリの最適化
-- dockerでnode@18を使用します
-- node 14をドロップ
-  - **BREAKING CHANGE: node 12 は利用できません。**
-	- 16 or 18に移行してください
+- docker で node@18 を使用します
+- node 14 をドロップ
+  - **BREAKING CHANGE: node 12 は利用できません。** - 16 or 18 に移行してください
+
+### Fixed
+
+- アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない #477
+- 依存関係が更新されました。脆弱性が修正されている場合があります。
+  - CVE-2022-29256 (sharp)
+  - CVE-2022-33987 (got)
 
 ## [11.37.1-rei0784-5.21.1] 2022-07-28
 
 ### Fixed
 
-- うまくDockerImageビルドできなかった
+- うまく DockerImage ビルドできなかった
 
 ## [11.37.1-rei0784-5.21.0] 2022-07-28
 
 ### Fixed
 
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
-- antenna, clip, listのパフォーマンス悪いのを修正
-  - *ayuskeyではantenna, clipのapiのみを提供しています。*
+- antenna, clip, list のパフォーマンス悪いのを修正
+  - _ayuskey では antenna, clip の api のみを提供しています。_
 
 ## Changed
 
@@ -90,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - renote は noindex
 - update nodejs for docker
 - メンションのアバターを調整
-- birthdayに謎の値(02/32など)が設定できるように(なったはず)
+- birthday に謎の値(02/32 など)が設定できるように(なったはず)
 
 ### Fixed
 
