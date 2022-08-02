@@ -4,9 +4,11 @@
 		"config:base"
 	],
 	"ignorePresets": [":prHourlyLimit2"],
+	"baseBranches": ["develop"],
 	"timezone": "Asia/Tokyo",
 	"dependencyDashboard": false,
 	"automerge": false,
+	"branchConcurrentLimit": 0,
 	"labels": ["📦Dependencies"],
 	"packageRules": [
 		{
