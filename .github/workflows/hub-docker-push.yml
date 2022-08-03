@@ -22,7 +22,7 @@ jobs:
   push_to_registry:
     if: github.event.inputs.confirm == 'run'
     name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Check out the repo
