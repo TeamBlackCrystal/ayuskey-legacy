@@ -504,6 +504,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.11.5":
+  version: 2.11.5
+  resolution: "@popperjs/core@npm:2.11.5"
+  checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
+  languageName: node
+  linkType: hard
+
 "@redocly/ajv@npm:^8.6.4":
   version: 8.6.4
   resolution: "@redocly/ajv@npm:8.6.4"
@@ -5059,7 +5066,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ejs@npm:^3.1.7":
+"ejs@npm:*, ejs@npm:^3.1.7":
   version: 3.1.8
   resolution: "ejs@npm:3.1.8"
   dependencies:
@@ -9647,6 +9654,7 @@ __metadata:
     "@koa/cors": 3.3.0
     "@koa/multer": 3.0.0
     "@koa/router": 8.0.8
+    "@popperjs/core": ^2.11.5
     "@redocly/openapi-core": 1.0.0-beta.105
     "@types/animejs": 3.1.5
     "@types/bcryptjs": 2.4.2
@@ -12193,7 +12201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pug@npm:3.0.2":
+"pug@npm:*, pug@npm:3.0.2":
   version: 3.0.2
   resolution: "pug@npm:3.0.2"
   dependencies:
