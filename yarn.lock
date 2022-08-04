@@ -9750,6 +9750,7 @@ __metadata:
     feed: 4.2.2
     file-type: 16.5.4
     fluent-ffmpeg: 2.1.2
+    form-data: ^4.0.0
     got: 11.8.5
     gulp: 4.0.2
     gulp-clean-css: 4.3.0
@@ -9793,6 +9794,7 @@ __metadata:
     multer: 1.4.4
     nested-property: 4.0.0
     node-fetch: 2.6.7
+    node-gyp: ^9.1.0
     nodemailer: 6.7.7
     npm-run-all: 4.1.5
     nprogress: 0.2.0
@@ -10344,7 +10346,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:latest":
+"node-gyp@npm:^9.1.0, node-gyp@npm:latest":
   version: 9.1.0
   resolution: "node-gyp@npm:9.1.0"
   dependencies:
