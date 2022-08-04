@@ -103,6 +103,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bull-board/api@npm:4.2.2":
+  version: 4.2.2
+  resolution: "@bull-board/api@npm:4.2.2"
+  dependencies:
+    redis-info: ^3.0.8
+  checksum: 547174f63d611a568303ad261d3f41a57f632ea2067e8ab900bad90dbc9790a45af8229765350ef47a2eba4300656e8cc792bdcef94003a531f4eabeb4982876
+  languageName: node
+  linkType: hard
+
 "@bull-board/koa@npm:4.1.1":
   version: 4.1.1
   resolution: "@bull-board/koa@npm:4.1.1"
@@ -125,6 +134,15 @@ __metadata:
   dependencies:
     "@bull-board/api": 4.1.1
   checksum: 57a3b1aeab580fa7c3b8dbef204cb31bcec0b8a2500ef5f607d7971d6cdb3d564d9c2037edd09dd6bfb1c8bc0fca151843af19e88b655f1941e8c1a05044adb4
+  languageName: node
+  linkType: hard
+
+"@bull-board/ui@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "@bull-board/ui@npm:4.2.2"
+  dependencies:
+    "@bull-board/api": 4.2.2
+  checksum: b7c5ecc35231fd6bd0dc38b39bc272b646b6336b99b8bfb5bfef0b9cf22bdc129eaeefb23116a17afd611d4e51a867601fd4eb5f6034530540e316e986bd5002
   languageName: node
   linkType: hard
 
@@ -9644,6 +9662,7 @@ __metadata:
     "@ayuskey/xev": 2.0.1-rei0784.2
     "@bull-board/api": 4.1.1
     "@bull-board/koa": 4.1.1
+    "@bull-board/ui": ^4.2.2
     "@discordapp/twemoji": 14.0.2
     "@elastic/elasticsearch": 7.17.0
     "@fortawesome/fontawesome-svg-core": 6.1.2
