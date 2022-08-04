@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -37,7 +37,7 @@ jobs:
         cache: 'yarn'
 
     # キャッシュの調整が必要かも
-    - run: yarn install --cached
+    - run: yarn install # --prefer-offline
     - run: yarn build
     - run: cp e2e/e2e.yml .config/default.yml
     - run: yarn migrateandstart &
