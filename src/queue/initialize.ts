@@ -1,22 +1,23 @@
 import * as Bull from 'bull';
-import * as Redis from "ioredis";
+import Redis from 'ioredis';
 import config from '../config';
 
-let redisOpts: Redis.RedisOptions
+let redisOpts: Redis.RedisOptions;
 
 if (config.redis.path == null) {
 	redisOpts = {
-		port:  config.redis.port,
+		port: config.redis.port,
 		host: config.redis.host,
+		family: config.redis.family == null ? 0 : config.redis.family,
 		password: config.redis.pass,
 		db: config.redis.db || 0,
-	}
+	};
 } else {
 	redisOpts = {
 		path: config.redis.path,
 		password: config.redis.pass,
 		db: config.redis.db || 0,
-	}
+	};
 }
 
 export function initialize<T>(name: string, limitPerSec = -1) {
