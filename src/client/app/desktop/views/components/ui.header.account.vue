@@ -5,7 +5,7 @@
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
 	<transition name="zoom-in-top">
-		<div class="menu" v-if="isOpen" :style="menublur_style">
+		<div class="menu" v-if="isOpen" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 			<ul>
 				<li>
 					<router-link :to="`/@${ $store.state.i.username }`">
@@ -121,6 +121,7 @@ export default Vue.extend({
 	data() {
 		return {
 			isOpen: false,
+			blurStrength: 0,
 			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen,
 			menublur_style: {}
 		};
@@ -175,10 +176,13 @@ export default Vue.extend({
 		},
 	},
 	mounted() {
+		if (this.$store.state.device.useBlur == false) {
+			return
+		}
 		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.$set(this.menublur_style, 'backdrop-filter', 'blur(2em)');
+			this.blurStrength = 2
 		} else {
-			this.$set(this.menublur_style, 'backdrop-filter', 'blur(0.3em)');
+			this.blurStrength = 0.3
 		}
 	}
 });
