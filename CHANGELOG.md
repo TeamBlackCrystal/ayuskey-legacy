@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 投稿ページの URL で埋め込みプレイヤーを提供するように
 - Bull Dashboard を組み込み、ジョブキューの確認や操作を行えるように
 - welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように TeamBlackCrystal/misskey#1813
+- blurをoffにする設定を追加しました
 
 ## Changed
 
