@@ -123,7 +123,6 @@ export default Vue.extend({
 			isOpen: false,
 			blurStrength: 0,
 			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen,
-			menublur_style: {}
 		};
 	},
 	computed: {

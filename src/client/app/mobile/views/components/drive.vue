@@ -1,6 +1,6 @@
 <template>
 <div class="kmmwchoexgckptowjmjgfsygeltxfeqs">
-	<nav ref="nav">
+	<nav ref="nav" :class="{'blur': $store.state.device.useBlur}">
 		<a @click.prevent="goRoot()" href="/i/drive"><fa icon="cloud"/>{{ $t('@.drive') }}</a>
 		<template v-for="folder in hierarchyFolders">
 			<span :key="folder.id + '>'"><fa icon="angle-right"/></span>
@@ -507,10 +507,12 @@ export default Vue.extend({
 		white-space nowrap
 		font-size 0.9em
 		color var(--text)
-		-webkit-backdrop-filter blur(12px)
-		backdrop-filter blur(12px)
 		background-color var(--mobileDriveNavBg)
 		border-bottom solid 1px rgba(#000, 0.13)
+
+	> .blur
+		-webkit-backdrop-filter blur(12px)
+		backdrop-filter blur(12px)
 
 		> p
 		> a

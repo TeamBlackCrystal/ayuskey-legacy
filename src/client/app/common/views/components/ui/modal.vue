@@ -1,6 +1,6 @@
 <template>
 <div class="modal">
-	<div class="bg" ref="bg" @click="onBgClick" />
+	<div class="bg" :class="{'blur': $store.state.device.useBlur}" ref="bg" @click="onBgClick" />
 	<slot class="main" />
 </div>
 </template>
@@ -72,9 +72,10 @@ export default Vue.extend({
 	left 0
 	width 100%
 	height 100%
-	backdrop-filter blur(8px)
 	background rgba(#000, 0.7)
 	opacity 0
+.blur
+	backdrop-filter blur(8px)
 
 .main
 	z-index 1

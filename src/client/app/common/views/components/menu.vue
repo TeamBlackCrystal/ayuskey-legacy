@@ -1,6 +1,6 @@
 <template>
 <div class="onchrpzrvnoruiaenfcqvccjfuupzzwv" :class="{ isMobile: $root.isMobile }">
-	<div class="backdrop" ref="backdrop" @click="close"></div>
+	<div class="backdrop" :class="{'blur': $store.state.device.useBlur}" ref="backdrop" @click="close"></div>
 	<div class="popover" :class="{ bubble }" ref="popover">
 		<template v-for="item, i in items">
 			<div v-if="item === null"></div>
@@ -135,9 +135,11 @@ export default Vue.extend({
 		z-index 10000
 		width 100%
 		height 100%
-		backdrop-filter blur(4px)
 		background var(--modalBackdrop)
 		opacity 0
+	
+	> .blur
+		backdrop-filter blur(4px)
 
 	> .popover
 		position absolute

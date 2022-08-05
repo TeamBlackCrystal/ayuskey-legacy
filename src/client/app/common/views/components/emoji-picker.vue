@@ -11,7 +11,7 @@
 		</button>
 	</header>
 	<div class="emojis">
-		<div class="search">
+		<div class="search" :class="{'blur': $store.state.device.useBlur}">
 			<ui-input v-model="q" :autofocus="false" style="margin: 0.4em;">
 				<span>{{ $t('search') }}</span>
 			</ui-input>
@@ -40,7 +40,7 @@
 			</div>
 		</template>
 
-		<header class="category"><fa :icon="categories.find(x => x.isActive).icon" fixed-width/> {{ categories.find(x => x.isActive).text }}</header>
+		<header class="category" :class="{blur: $store.state.device.useBlur}"><fa :icon="categories.find(x => x.isActive).icon" fixed-width/> {{ categories.find(x => x.isActive).text }}</header>
 		<template v-if="categories.find(x => x.isActive).name">
 			<div class="list">
 				<button v-for="emoji in emojilist.filter(e => e.category === categories.find(x => x.isActive).name)"
@@ -362,7 +362,6 @@ export default Vue.extend({
 			left 0
 			z-index 1
 			padding 8px
-			backdrop-filter blur(10px)
 			background var(--face)
 			color var(--text)
 
@@ -372,10 +371,12 @@ export default Vue.extend({
 			left 0
 			z-index 1
 			padding 8px
-			backdrop-filter blur(10px)
 			background var(--face)
 			color var(--text)
 			font-size 12px
+		
+		> .blur
+			backdrop-filter blur(10px)
 
 		>>> header.sub
 			padding 4px 8px

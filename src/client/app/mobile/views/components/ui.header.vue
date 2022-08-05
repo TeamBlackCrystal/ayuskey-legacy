@@ -1,7 +1,7 @@
 <template>
 <div class="header" ref="root" :class="{ shadow: $store.state.device.useShadow }">
 	<div class="main" ref="main">
-		<div class="backdrop"></div>
+		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="content" ref="mainContainer">
 			<button class="nav" @click="$parent.isDrawerOpening = true"><fa icon="bars"/></button>
 			<i v-if="$parent.indicate" class="circle"><fa icon="circle"/></i>
@@ -75,9 +75,11 @@ export default Vue.extend({
 			z-index 1000
 			width 100%
 			height $height
+			background-color var(--mobileHeaderBg)
+
+		> .blur
 			-webkit-backdrop-filter blur(12px)
 			backdrop-filter blur(12px)
-			background-color var(--mobileHeaderBg)
 
 		> .content
 			z-index 1001
