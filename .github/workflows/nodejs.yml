@@ -20,7 +20,7 @@ jobs:
           POSTGRES_DB: test-misskey
           POSTGRES_HOST_AUTH_METHOD: trust
       redis:
-        image: redis:4.0-alpine
+        image: redis:7.0-alpine
         ports:
           - 56311:6379
 
