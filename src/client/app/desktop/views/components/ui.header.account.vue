@@ -83,14 +83,14 @@
 			<ul>
 				<li @click="toggleDeckMode">
 					<p>
-						<template v-if="$store.state.device.inDeckMode"><span>{{ $t('@.home') }}</span><i><fa :icon="faHome"/></i></template>
-						<template v-else><span>{{ $t('@.deck') }}</span><i><fa :icon="faColumns"/></i></template>
+						<template v-if="$store.state.device.inDeckMode"><i><fa :icon="faHome"/></i><span>{{ $t('@.home') }}</span></template>
+						<template v-else><i><fa :icon="faColumns"/></i><span>{{ $t('@.deck') }}</span></template>
 					</p>
 				</li>
 				<li @click="dark">
 					<p>
-						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
 						<template><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon"/></i></template>
+						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
 					</p>
 				</li>
 			</ul>
