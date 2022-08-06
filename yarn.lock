@@ -370,17 +370,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/router@npm:8.0.8":
-  version: 8.0.8
-  resolution: "@koa/router@npm:8.0.8"
+"@koa/router@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@koa/router@npm:12.0.0"
   dependencies:
-    debug: ^4.1.1
-    http-errors: ^1.7.3
+    http-errors: ^2.0.0
     koa-compose: ^4.1.0
     methods: ^1.1.2
-    path-to-regexp: 1.x
-    urijs: ^1.19.2
-  checksum: 6ad7102cec9766d09440bd9b302d799a6e7777ef300e79e351aa647b1043fa326273ae8b6bc19d03746743306daab309ce4fa7291bbcc109e4329c848e4be874
+    path-to-regexp: ^6.2.1
+  checksum: 5529629f7517dba20319cf70b66c5a6111673019f6d196cd500a7b90e6663c99848c188f1bce17415d46c7b20b06566d432299a53affe0a15d05b9213917b9f6
   languageName: node
   linkType: hard
 
@@ -7116,7 +7114,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:2.0.0":
+"http-errors@npm:2.0.0, http-errors@npm:^2.0.0":
   version: 2.0.0
   resolution: "http-errors@npm:2.0.0"
   dependencies:
@@ -9656,7 +9654,7 @@ __metadata:
     "@fortawesome/vue-fontawesome": 2.0.8
     "@koa/cors": 3.3.0
     "@koa/multer": 3.0.0
-    "@koa/router": 8.0.8
+    "@koa/router": 12.0.0
     "@popperjs/core": 2.11.5
     "@redocly/openapi-core": 1.0.0-beta.105
     "@types/animejs": 3.1.5
@@ -11166,16 +11164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:1.x":
-  version: 1.8.0
-  resolution: "path-to-regexp@npm:1.8.0"
-  dependencies:
-    isarray: 0.0.1
-  checksum: 709f6f083c0552514ef4780cb2e7e4cf49b0cc89a97439f2b7cc69a608982b7690fb5d1720a7473a59806508fc2dae0be751ba49f495ecf89fd8fbc62abccbcd
-  languageName: node
-  linkType: hard
-
-"path-to-regexp@npm:^6.1.0":
+"path-to-regexp@npm:^6.1.0, path-to-regexp@npm:^6.2.1":
   version: 6.2.1
   resolution: "path-to-regexp@npm:6.2.1"
   checksum: f0227af8284ea13300f4293ba111e3635142f976d4197f14d5ad1f124aebd9118783dd2e5f1fe16f7273743cc3dbeddfb7493f237bb27c10fdae07020cc9b698
@@ -15206,13 +15195,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"urijs@npm:^1.19.2":
-  version: 1.19.11
-  resolution: "urijs@npm:1.19.11"
-  checksum: f9b95004560754d30fd7dbee44b47414d662dc9863f1cf5632a7c7983648df11d23c0be73b9b4f9554463b61d5b0a520b70df9e1ee963ebb4af02e6da2cc80f3
   languageName: node
   linkType: hard
 
