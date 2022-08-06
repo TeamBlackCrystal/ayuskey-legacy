@@ -513,7 +513,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.11.5":
+"@popperjs/core@npm:2.11.5":
   version: 2.11.5
   resolution: "@popperjs/core@npm:2.11.5"
   checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
@@ -2921,6 +2921,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bootstrap@npm:5.2.0":
+  version: 5.2.0
+  resolution: "bootstrap@npm:5.2.0"
+  peerDependencies:
+    "@popperjs/core": ^2.11.5
+  checksum: 9dbfb5d26bbdac3e27a6b46cb7456cd4dd75ae3b48644737809885b8ea9c265d3359c4cdbf25a55bb7e5046f51e441557033ba21eeaf24ef8316bfbb3d420084
+  languageName: node
+  linkType: hard
+
 "bootstrap@npm:^4.6.1":
   version: 4.6.2
   resolution: "bootstrap@npm:4.6.2"
@@ -2928,15 +2937,6 @@ __metadata:
     jquery: 1.9.1 - 3
     popper.js: ^1.16.1
   checksum: 3f4e7768ff7d618c49d4bf4f02aa54a9bfb679d4eecb0f3854fa4af1a17b9114b147009c435946432cdd1572efffc71d88ec385c55943a12fa66253cde0876b0
-  languageName: node
-  linkType: hard
-
-"bootstrap@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "bootstrap@npm:5.2.0"
-  peerDependencies:
-    "@popperjs/core": ^2.11.5
-  checksum: 9dbfb5d26bbdac3e27a6b46cb7456cd4dd75ae3b48644737809885b8ea9c265d3359c4cdbf25a55bb7e5046f51e441557033ba21eeaf24ef8316bfbb3d420084
   languageName: node
   linkType: hard
 
@@ -4161,7 +4161,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cropperjs@npm:^1.5.12, cropperjs@npm:^1.5.6":
+"cropperjs@npm:1.5.12, cropperjs@npm:^1.5.6":
   version: 1.5.12
   resolution: "cropperjs@npm:1.5.12"
   checksum: 8dcbceb3659ad72d421038abf7f9d08ca13a061dc6c643497efc043033e22b17411b5558db29a841cb4f0a3b7943a20e6a3d9fecf3901185b7cd027f8097442b
@@ -9657,7 +9657,7 @@ __metadata:
     "@koa/cors": 3.3.0
     "@koa/multer": 3.0.0
     "@koa/router": 8.0.8
-    "@popperjs/core": ^2.11.5
+    "@popperjs/core": 2.11.5
     "@redocly/openapi-core": 1.0.0-beta.105
     "@types/animejs": 3.1.5
     "@types/bcryptjs": 2.4.2
@@ -9732,7 +9732,7 @@ __metadata:
     aws-sdk: 2.1185.0
     bcryptjs: 2.4.3
     blurhash: 1.1.5
-    bootstrap: ^5.2.0
+    bootstrap: 5.2.0
     bootstrap-vue: 2.22.0
     broadcast-channel: 4.14.0
     bull: 4.8.5
@@ -9745,7 +9745,7 @@ __metadata:
     concurrently: 7.3.0
     content-disposition: 0.5.4
     crc-32: 1.2.2
-    cropperjs: ^1.5.12
+    cropperjs: 1.5.12
     cross-env: 7.0.3
     css-loader: 6.7.1
     cssnano: 5.1.12
