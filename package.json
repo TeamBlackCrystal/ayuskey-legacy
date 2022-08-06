@@ -70,7 +70,7 @@
 		"bootstrap-vue": "2.22.0",
 		"broadcast-channel": "4.14.0",
 		"bull": "4.8.5",
-		"cacheable-lookup": "6.0.4",
+		"cacheable-lookup": "6.1.0",
 		"cafy": "15.2.1",
 		"cbor": "8.1.0",
 		"chalk": "4.1.2",
