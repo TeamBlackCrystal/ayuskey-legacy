@@ -2,7 +2,7 @@
 <div class="header" :style="style">
 	<p class="warn" v-if="env != 'production'">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
 	<div class="main" ref="main">
-		<div class="backdrop"></div>
+		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="main">
 			<div class="container" ref="mainContainer">
 				<div class="left">
@@ -107,6 +107,8 @@ export default Vue.extend({
 			width 100%
 			height 48px
 			background var(--desktopHeaderBg)
+		
+		> .blur
 			backdrop-filter blur(1px)
 
 		> .main

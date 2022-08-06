@@ -29,6 +29,7 @@
 				<ui-radio v-model="navbar" value="right">{{ $t('@._settings.navbar-position-right') }}</ui-radio>
 			</section>
 			<section>
+				<ui-switch v-model="useBlur">{{ $t('@._settings.use-blur') }}</ui-switch>
 				<ui-switch v-model="useShadow">{{ $t('@._settings.use-shadow') }}</ui-switch>
 				<ui-switch v-model="roundedCorners">{{ $t('@._settings.rounded-corners') }}</ui-switch>
 				<ui-switch v-model="circleIcons">{{ $t('@._settings.circle-icons') }}</ui-switch>
@@ -522,6 +523,11 @@ export default Vue.extend({
 		disableViaMobile: {
 			get() { return this.$store.state.settings.disableViaMobile; },
 			set(value) { this.$store.dispatch('settings/set', { key: 'disableViaMobile', value }); }
+		},
+
+		useBlur: {
+			get() {return this.$store.state.device.useBlur},
+			set(value) {this.$store.commit('device/set', {key: 'useBlur', value})}
 		},
 
 		useShadow: {

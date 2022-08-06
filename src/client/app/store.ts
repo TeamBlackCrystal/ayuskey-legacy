@@ -52,6 +52,7 @@ const defaultDeviceSettings = {
 	deckMode: false,
 	deckColumnAlign: 'center',
 	deckColumnWidth: 'normal',
+	useBlur: true,
 	useShadow: true,
 	deckTemporaryColumnPosition: 'right',
 	deckTemporaryColumnIndex: 1,

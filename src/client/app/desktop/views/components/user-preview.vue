@@ -1,5 +1,5 @@
 <template>
-<div class="mk-user-preview">
+<div class="mk-user-preview" :class="{'blur': $store.state.device.useBlur}">
 	<template v-if="u != null">
 		<div class="banner" :style="u.bannerUrl ? `background-image: url(${u.bannerUrl})` : ''"></div>
 		<mk-avatar class="avatar" :user="u" :disable-preview="true"/>
@@ -87,8 +87,10 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-.mk-user-preview
+.blur
 	backdrop-filter blur(10px)
+
+.mk-user-preview
 	position absolute
 	z-index 2048
 	margin-top -8px
