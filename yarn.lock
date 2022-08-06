@@ -9811,7 +9811,7 @@ __metadata:
     nodemailer: 6.7.7
     npm-run-all: 4.1.5
     nprogress: 0.2.0
-    oauth: 0.9.15
+    oauth: 0.10.0
     object-assign-deep: 0.4.0
     os-utils: 0.0.14
     parse5: 6.0.1
@@ -10541,6 +10541,13 @@ __metadata:
   version: 2.2.1
   resolution: "nwsapi@npm:2.2.1"
   checksum: 6c21fcb6950538012516b39137ed9b53ed56843e521362e977282c781169f229e7bca8ec6e207165b19912550f360806b222f77b6c9202bb8d66818456875c3d
+  languageName: node
+  linkType: hard
+
+"oauth@npm:0.10.0":
+  version: 0.10.0
+  resolution: "oauth@npm:0.10.0"
+  checksum: 68fbcd9fc382985fd6a4856245bb9f78281c08ea238e814288c51e6cfb65e442c9c4eea67d54ec595384eb3f007e7b64ae3b8e67ec309228df44aba64cc9e0c7
   languageName: node
   linkType: hard
 
