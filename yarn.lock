@@ -258,7 +258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gar/promisify@npm:^1.0.1, @gar/promisify@npm:^1.1.3":
+"@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
   checksum: 4059f790e2d07bf3c3ff3e0fec0daa8144fe35c1f6e0111c9921bd32106adaa97a4ab096ad7dab1e28ee6a9060083c4d1a4ada42a7f5f3f7a96b8812e2b757c1
@@ -460,16 +460,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npmcli/fs@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "@npmcli/fs@npm:1.1.1"
-  dependencies:
-    "@gar/promisify": ^1.0.1
-    semver: ^7.3.5
-  checksum: f5ad92f157ed222e4e31c352333d0901df02c7c04311e42a81d8eb555d4ec4276ea9c635011757de20cc476755af33e91622838de573b17e52e2e7703f0a9965
-  languageName: node
-  linkType: hard
-
 "@npmcli/fs@npm:^2.1.0":
   version: 2.1.1
   resolution: "@npmcli/fs@npm:2.1.1"
@@ -477,16 +467,6 @@ __metadata:
     "@gar/promisify": ^1.1.3
     semver: ^7.3.5
   checksum: 4944a0545d38d3e6e29780eeb3cd4be6059c1e9627509d2c9ced635c53b852d28b37cdc615a2adf815b51ab8673adb6507e370401a20a7e90c8a6dc4fac02389
-  languageName: node
-  linkType: hard
-
-"@npmcli/move-file@npm:^1.0.1":
-  version: 1.1.2
-  resolution: "@npmcli/move-file@npm:1.1.2"
-  dependencies:
-    mkdirp: ^1.0.4
-    rimraf: ^3.0.2
-  checksum: c96381d4a37448ea280951e46233f7e541058cf57a57d4094dd4bdcaae43fa5872b5f2eb6bfb004591a68e29c5877abe3cdc210cb3588cbf20ab2877f31a7de7
   languageName: node
   linkType: hard
 
@@ -3143,32 +3123,6 @@ __metadata:
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
   checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
-  languageName: node
-  linkType: hard
-
-"cacache@npm:^15.0.5":
-  version: 15.3.0
-  resolution: "cacache@npm:15.3.0"
-  dependencies:
-    "@npmcli/fs": ^1.0.0
-    "@npmcli/move-file": ^1.0.1
-    chownr: ^2.0.0
-    fs-minipass: ^2.0.0
-    glob: ^7.1.4
-    infer-owner: ^1.0.4
-    lru-cache: ^6.0.0
-    minipass: ^3.1.1
-    minipass-collect: ^1.0.2
-    minipass-flush: ^1.0.5
-    minipass-pipeline: ^1.2.2
-    mkdirp: ^1.0.3
-    p-map: ^4.0.0
-    promise-inflight: ^1.0.1
-    rimraf: ^3.0.2
-    ssri: ^8.0.1
-    tar: ^6.0.2
-    unique-filename: ^1.1.1
-  checksum: a07327c27a4152c04eb0a831c63c00390d90f94d51bb80624a66f4e14a6b6360bbf02a84421267bd4d00ca73ac9773287d8d7169e8d2eafe378d2ce140579db8
   languageName: node
   linkType: hard
 
@@ -5984,17 +5938,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-cache-dir@npm:^3.3.1":
-  version: 3.3.2
-  resolution: "find-cache-dir@npm:3.3.2"
-  dependencies:
-    commondir: ^1.0.1
-    make-dir: ^3.0.2
-    pkg-dir: ^4.1.0
-  checksum: 1e61c2e64f5c0b1c535bd85939ae73b0e5773142713273818cc0b393ee3555fb0fd44e1a5b161b8b6c3e03e98c2fcc9c227d784850a13a90a8ab576869576817
-  languageName: node
-  linkType: hard
-
 "find-up@npm:5.0.0, find-up@npm:^5.0.0":
   version: 5.0.0
   resolution: "find-up@npm:5.0.0"
@@ -8109,17 +8052,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^26.5.0":
-  version: 26.6.2
-  resolution: "jest-worker@npm:26.6.2"
-  dependencies:
-    "@types/node": "*"
-    merge-stream: ^2.0.0
-    supports-color: ^7.0.0
-  checksum: f9afa3b88e3f12027901e4964ba3ff048285b5783b5225cab28fac25b4058cea8ad54001e9a1577ee2bed125fac3ccf5c80dc507b120300cc1bbcb368796533e
-  languageName: node
-  linkType: hard
-
 "jest-worker@npm:^27.4.5":
   version: 27.5.1
   resolution: "jest-worker@npm:27.5.1"
@@ -9265,15 +9197,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"make-dir@npm:^3.0.2":
-  version: 3.1.0
-  resolution: "make-dir@npm:3.1.0"
-  dependencies:
-    semver: ^6.0.0
-  checksum: 484200020ab5a1fdf12f393fe5f385fc8e4378824c940fba1729dcd198ae4ff24867bc7a5646331e50cead8abff5d9270c456314386e629acec6dff4b8016b78
-  languageName: node
-  linkType: hard
-
 "make-error@npm:^1.1.1":
   version: 1.3.6
   resolution: "make-error@npm:1.3.6"
@@ -9601,7 +9524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipass-pipeline@npm:^1.2.2, minipass-pipeline@npm:^1.2.4":
+"minipass-pipeline@npm:^1.2.4":
   version: 1.2.4
   resolution: "minipass-pipeline@npm:1.2.4"
   dependencies:
@@ -9857,7 +9780,7 @@ __metadata:
     syslog-pro: 1.0.0
     systeminformation: 5.12.3
     syuilo-password-strength: 0.0.1
-    terser-webpack-plugin: 4.2.3
+    terser-webpack-plugin: 5.3.3
     textarea-caret: 3.1.0
     three: 0.134.0
     throttle-debounce: 4.0.1
@@ -11373,7 +11296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pkg-dir@npm:^4.1.0, pkg-dir@npm:^4.2.0":
+"pkg-dir@npm:^4.2.0":
   version: 4.2.0
   resolution: "pkg-dir@npm:4.2.0"
   dependencies:
@@ -13169,7 +13092,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^6.0.0, semver@npm:^6.3.0":
+"semver@npm:^6.3.0":
   version: 6.3.0
   resolution: "semver@npm:6.3.0"
   bin:
@@ -13210,7 +13133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serialize-javascript@npm:5.0.1, serialize-javascript@npm:^5.0.1":
+"serialize-javascript@npm:5.0.1":
   version: 5.0.1
   resolution: "serialize-javascript@npm:5.0.1"
   dependencies:
@@ -13768,15 +13691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ssri@npm:^8.0.1":
-  version: 8.0.1
-  resolution: "ssri@npm:8.0.1"
-  dependencies:
-    minipass: ^3.1.1
-  checksum: bc447f5af814fa9713aa201ec2522208ae0f4d8f3bda7a1f445a797c7b929a02720436ff7c478fb5edc4045adb02b1b88d2341b436a80798734e2494f1067b36
-  languageName: node
-  linkType: hard
-
 "ssri@npm:^9.0.0":
   version: 9.0.1
   resolution: "ssri@npm:9.0.1"
@@ -14118,7 +14032,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^7.0.0, supports-color@npm:^7.1.0":
+"supports-color@npm:^7.1.0":
   version: 7.2.0
   resolution: "supports-color@npm:7.2.0"
   dependencies:
@@ -14327,7 +14241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^6.0.2, tar@npm:^6.1.11, tar@npm:^6.1.2":
+"tar@npm:^6.1.11, tar@npm:^6.1.2":
   version: 6.1.11
   resolution: "tar@npm:6.1.11"
   dependencies:
@@ -14341,26 +14255,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser-webpack-plugin@npm:4.2.3":
-  version: 4.2.3
-  resolution: "terser-webpack-plugin@npm:4.2.3"
-  dependencies:
-    cacache: ^15.0.5
-    find-cache-dir: ^3.3.1
-    jest-worker: ^26.5.0
-    p-limit: ^3.0.2
-    schema-utils: ^3.0.0
-    serialize-javascript: ^5.0.1
-    source-map: ^0.6.1
-    terser: ^5.3.4
-    webpack-sources: ^1.4.3
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: ec1b3a85e2645c57e359d5e4831f3e1d78eca2a0c94b156db70eb846ae35b5e6e98ad8784b12e153fc273e57445ce69d017075bbe9fc42868a258ef121f11537
-  languageName: node
-  linkType: hard
-
-"terser-webpack-plugin@npm:^5.1.3":
+"terser-webpack-plugin@npm:5.3.3, terser-webpack-plugin@npm:^5.1.3":
   version: 5.3.3
   resolution: "terser-webpack-plugin@npm:5.3.3"
   dependencies:
@@ -14382,7 +14277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.3.4, terser@npm:^5.7.2, terser@npm:^5.9.0":
+"terser@npm:^5.7.2, terser@npm:^5.9.0":
   version: 5.14.2
   resolution: "terser@npm:5.14.2"
   dependencies:
@@ -15882,7 +15777,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-sources@npm:^1.0.1, webpack-sources@npm:^1.4.3":
+"webpack-sources@npm:^1.0.1":
   version: 1.4.3
   resolution: "webpack-sources@npm:1.4.3"
   dependencies:
