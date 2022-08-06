@@ -9879,7 +9879,7 @@ __metadata:
     vue: 2.6.14
     vue-color: 2.8.1
     vue-content-loading: 1.6.0
-    vue-cropperjs: 4.2.0
+    vue-cropperjs: 5.0.0
     vue-i18n: 8.27.2
     vue-js-modal: 1.3.35
     vue-loader: 15.10.0
@@ -15511,12 +15511,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-cropperjs@npm:4.2.0":
-  version: 4.2.0
-  resolution: "vue-cropperjs@npm:4.2.0"
+"vue-cropperjs@npm:5.0.0":
+  version: 5.0.0
+  resolution: "vue-cropperjs@npm:5.0.0"
   dependencies:
     cropperjs: ^1.5.6
-  checksum: c64d66d16640e617980c173ccc5f23c66a7a67868f3ec03d725bd495ef9cc9bede6bac45ff1e5c51a31db573d1c403a7042ee4032a12f2da837680ff1933e675
+  peerDependencies:
+    vue: ">=3.0.0"
+  checksum: 392d2b617201dbb2765f27fbe7854dbea05b8d7e195257c67deebddc577c6e45c6e4fedb8256da30724d930b4f96a6cb0b3c328efe3e869519f513db1b57536c
   languageName: node
   linkType: hard
 
