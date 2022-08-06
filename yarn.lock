@@ -94,15 +94,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bull-board/api@npm:4.1.1":
-  version: 4.1.1
-  resolution: "@bull-board/api@npm:4.1.1"
-  dependencies:
-    redis-info: ^3.0.8
-  checksum: 20ac7732b25c746f8dc4ed819dde66eaa7f277f7e63dd90d338d877f59464ba32dbcae22af71850a5f169fc623771df9f21f93252d636a829828396a036cfa6a
-  languageName: node
-  linkType: hard
-
 "@bull-board/api@npm:4.2.2":
   version: 4.2.2
   resolution: "@bull-board/api@npm:4.2.2"
@@ -9644,7 +9635,7 @@ __metadata:
   dependencies:
     "@ayuskey/summaly": 2.5.0-rei0784.3
     "@ayuskey/xev": 2.0.1-rei0784.2
-    "@bull-board/api": 4.1.1
+    "@bull-board/api": 4.2.2
     "@bull-board/koa": 4.2.2
     "@bull-board/ui": 4.2.2
     "@discordapp/twemoji": 14.0.2
