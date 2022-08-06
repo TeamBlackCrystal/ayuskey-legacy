@@ -3,6 +3,7 @@
 	<transition name="back">
 		<div class="backdrop"
 			v-if="isOpen"
+			:class="{'blur': $store.state.device.useBlur}"
 			@click="$parent.isDrawerOpening = false"
 			@touchstart="$parent.isDrawerOpening = false"
 		></div>
@@ -179,6 +180,8 @@ export default Vue.extend({
 		z-index 1025
 		width 100%
 		height 100%
+	
+	.hover
 		backdrop-filter blur(4px)
 		background var(--mobileNavBackdrop)
 

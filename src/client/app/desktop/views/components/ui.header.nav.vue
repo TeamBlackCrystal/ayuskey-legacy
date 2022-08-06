@@ -99,6 +99,7 @@ export default Vue.extend({
 					border-bottom solid 3px var(--primary)
 
 			> a
+				transition 0.3s
 				display inline-block
 				z-index 1
 				height 100%
@@ -107,7 +108,6 @@ export default Vue.extend({
 				font-variant small-caps
 				color var(--desktopHeaderFg)
 				text-decoration none
-				transition none
 				cursor pointer
 
 				*

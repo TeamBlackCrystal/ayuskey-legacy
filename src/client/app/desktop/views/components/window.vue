@@ -1,6 +1,6 @@
 <template>
 <div class="mk-window" :data-flexible="isFlexible" @dragover="onDragover">
-	<div class="bg" ref="bg" v-show="isModal" @click="onBgClick"></div>
+	<div class="bg" :class="{'blur': $store.state.device.useBlur}" ref="bg" v-show="isModal" @click="onBgClick"></div>
 	<div class="main" ref="main" tabindex="-1" :data-is-modal="isModal" @mousedown="onBodyMousedown" @keydown="onKeydown" :style="{ width, height }">
 		<div class="body">
 			<header ref="header"
@@ -16,7 +16,7 @@
 					</button>
 				</div>
 			</header>
-			<div class="content" :style="windowblur_style">
+			<div class="content" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 				<slot></slot>
 			</div>
 		</div>
@@ -90,7 +90,7 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			windowblur_style: {}
+			blurStrength: 0,
 		}
 	},
 
@@ -118,10 +118,13 @@ export default Vue.extend({
 
 			this.open();
 		});
+		if (this.$store.state.device.useBlur == false) {
+			return
+		}
 		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.$set(this.windowblur_style, 'backdrop-filter', 'blur(0.5em)');
+			this.blurStrength = 0.5
 		} else {
-			this.$set(this.windowblur_style, 'backdrop-filter', 'blur(0.2em)');
+			this.blurStrength = 0.2
 		}
 		},
 
@@ -472,10 +475,12 @@ export default Vue.extend({
 		left 0
 		width 100%
 		height 100%
-		backdrop-filter blur(4px)
 		background rgba(#000, 0.7)
 		opacity 0
 		pointer-events none
+
+	> .blur
+		backdrop-filter blur(4px)
 
 	> .main
 		display block

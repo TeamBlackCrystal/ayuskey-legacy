@@ -22,7 +22,7 @@
 
 	<main>
 		<div class="nav" v-if="showNav">
-			<div class="bg" @click="showNav = false"></div>
+			<div class="bg" :class="{'blur': $store.state.device.useBlur}" @click="showNav = false"></div>
 			<div class="pointer"></div>
 			<div class="body">
 				<div>
@@ -187,8 +187,10 @@ main
 			left 0
 			width 100%
 			height 100%
-			backdrop-filter blur(4px)
 			background rgba(#000, 0.5)
+
+		> .blur
+			backdrop-filter blur(4px)
 
 		> .body
 			position fixed

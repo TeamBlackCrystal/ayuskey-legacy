@@ -5,7 +5,7 @@
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
 	<transition name="zoom-in-top">
-		<div class="menu" v-if="isOpen" :style="menublur_style">
+		<div class="menu" v-if="isOpen" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 			<ul>
 				<li>
 					<router-link :to="`/@${ $store.state.i.username }`">
@@ -83,14 +83,14 @@
 			<ul>
 				<li @click="toggleDeckMode">
 					<p>
-						<template v-if="$store.state.device.inDeckMode"><span>{{ $t('@.home') }}</span><i><fa :icon="faHome"/></i></template>
-						<template v-else><span>{{ $t('@.deck') }}</span><i><fa :icon="faColumns"/></i></template>
+						<template v-if="$store.state.device.inDeckMode"><i><fa :icon="faHome"/></i><span>{{ $t('@.home') }}</span></template>
+						<template v-else><i><fa :icon="faColumns"/></i><span>{{ $t('@.deck') }}</span></template>
 					</p>
 				</li>
 				<li @click="dark">
 					<p>
-						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
 						<template><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon"/></i></template>
+						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
 					</p>
 				</li>
 			</ul>
@@ -121,8 +121,8 @@ export default Vue.extend({
 	data() {
 		return {
 			isOpen: false,
+			blurStrength: 0,
 			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen,
-			menublur_style: {}
 		};
 	},
 	computed: {
@@ -175,10 +175,13 @@ export default Vue.extend({
 		},
 	},
 	mounted() {
+		if (this.$store.state.device.useBlur == false) {
+			return
+		}
 		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.$set(this.menublur_style, 'backdrop-filter', 'blur(2em)');
+			this.blurStrength = 2
 		} else {
-			this.$set(this.menublur_style, 'backdrop-filter', 'blur(0.3em)');
+			this.blurStrength = 0.3
 		}
 	}
 });

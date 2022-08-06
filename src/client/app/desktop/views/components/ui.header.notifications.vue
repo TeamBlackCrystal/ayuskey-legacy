@@ -4,7 +4,7 @@
 		<i class="bell"><fa :icon="['far', 'bell']"/></i>
 		<i class="circle" v-if="hasUnreadNotification"><fa icon="circle"/></i>
 	</button>
-	<div class="pop" v-if="isOpen">
+	<div class="pop" :class="{'blur': $store.state.device.useBlur}" v-if="isOpen">
 		<mk-notifications/>
 	</div>
 </div>
@@ -103,8 +103,10 @@ export default Vue.extend({
 		background $bgcolor
 		border-radius 16px
 		padding 16px
-		backdrop-filter blur(10px)
 		box-shadow 0 1px 4px rgba(#000, 0.25)
+	
+	> .blur
+		backdrop-filter blur(10px)
 
 		&:before
 			content ""

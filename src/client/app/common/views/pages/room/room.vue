@@ -26,7 +26,7 @@
 		</section>
 	</div>
 
-	<div class="menu" v-if="isMyRoom">
+	<div class="menu" :class="{'blur': $store.state.device.useBlur}" v-if="isMyRoom">
 		<section>
 			<ui-button @click="add()"><fa :icon="faBoxOpen"/> {{ $t('add-furniture') }}</ui-button>
 		</section>
@@ -306,6 +306,8 @@ export default Vue.extend({
 		top 16px
 		right 16px
 		width 256px
+	
+	> .blur
 		backdrop-filter blur(6px)
 	
 </style>

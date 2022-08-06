@@ -21,7 +21,7 @@ RUN apk add --no-cache \
 
 COPY . ./
 
-RUN yarn install
+RUN yarn install --immutable
 
 ENV NODE_ENV=production
 
@@ -37,6 +37,8 @@ ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
+COPY --from=builder /misskey/.yarn ./.yarn
+COPY --from=builder /misskey/.yarnrc.yml ./
 COPY . ./
 
-CMD ["npm", "run", "migrateandstart"]
+CMD ["yarn", "migrateandstart"]
