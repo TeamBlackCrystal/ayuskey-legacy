@@ -3207,10 +3207,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cacheable-lookup@npm:6.0.4":
-  version: 6.0.4
-  resolution: "cacheable-lookup@npm:6.0.4"
-  checksum: 7aea70f5ea081aed12bf54fc165b9f80b580b0d210c85d55cc8fed2beaa9027fd321c1939c65dad945fe9eb207cea45442e01a48b5aa57542e125b716f022b6d
+"cacheable-lookup@npm:6.1.0":
+  version: 6.1.0
+  resolution: "cacheable-lookup@npm:6.1.0"
+  checksum: 4e37afe897219b1035335b0765106a2c970ffa930497b43cac5000b860f3b17f48d004187279fae97e2e4cbf6a3693709b6d64af65279c7d6c8453321d36d118
   languageName: node
   linkType: hard
 
@@ -9718,7 +9718,7 @@ __metadata:
     bootstrap-vue: 2.22.0
     broadcast-channel: 4.14.0
     bull: 4.8.5
-    cacheable-lookup: 6.0.4
+    cacheable-lookup: 6.1.0
     cafy: 15.2.1
     cbor: 8.1.0
     chalk: 4.1.2
