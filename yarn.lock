@@ -9827,6 +9827,7 @@ __metadata:
     nodemailer: 6.7.7
     npm-run-all: 4.1.5
     nprogress: 0.2.0
+    oauth: 0.9.15
     object-assign-deep: 0.4.0
     os-utils: 0.0.14
     parse5: 6.0.1
