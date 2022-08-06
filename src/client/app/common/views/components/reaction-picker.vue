@@ -1,6 +1,6 @@
 <template>
 <div class="rdfaahpb" v-hotkey.global="keymap">
-	<div class="backdrop" ref="backdrop" @click="close"></div>
+	<div class="backdrop" :class="{'blur': $store.state.device.useBlur}" ref="backdrop" @click="close"></div>
 	<div class="popover" :class="{ isMobile: $root.isMobile }" ref="popover">
 		<p v-if="!$root.isMobile">{{ title }}</p>
 		<div class="buttons" ref="buttons" :class="{ showFocus }">
@@ -229,8 +229,10 @@ export default Vue.extend({
 		width 100%
 		height 100%
 		background var(--modalBackdrop)
-		backdrop-filter blur(4px)
 		opacity 0
+	
+	> .blur
+		backdrop-filter blur(4px)
 
 	> .popover
 		$bgcolor = var(--popupBg)

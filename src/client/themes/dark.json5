@@ -217,8 +217,8 @@
 		mobileSignoutBg: '#652222',
 		mobileSignoutFg: '#ff5f56',
 
-		reversiBannerGradientStart: '#45730e',
-		reversiBannerGradientEnd: '#464300',
+		reversiBannerGradientStart: '#DFEC51',
+		reversiBannerGradientEnd: '#73AA0A',
 		reversiDescBg: 'rgba(255, 255, 255, 0.1)',
 		reversiListItemShadow: 'rgba(0, 0, 0, 0.7)',
 		reversiMapSelectBorder: 'rgba(255, 255, 255, 0.1)',
