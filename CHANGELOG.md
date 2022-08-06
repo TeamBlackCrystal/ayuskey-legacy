@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ~~Twemoji をインスタンスで配信~~
   - オプション化し、使用する cdn を変更
 - 引越し先をユーザーページに表示するように
+  - マイグレーションが必要
 - 投稿ページの URL で埋め込みプレイヤーを提供するように
 - Bull Dashboard を組み込み、ジョブキューの確認や操作を行えるように
 - welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように TeamBlackCrystal/misskey#1813
@@ -30,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - クエリの最適化
 - docker で node@18 を使用します
 - node 14 をドロップ
-  - **BREAKING CHANGE: node 12 は利用できません。** - 16 or 18 に移行してください
+  - **BREAKING CHANGE: node 12 は利用できません。** 
+    - 16 or 18 に移行してください
 
 ### Fixed
 
