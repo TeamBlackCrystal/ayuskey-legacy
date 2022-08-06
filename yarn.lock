@@ -9881,7 +9881,7 @@ __metadata:
     vue-content-loading: 1.6.0
     vue-cropperjs: 4.2.0
     vue-i18n: 8.27.2
-    vue-js-modal: 1.3.35
+    vue-js-modal: 2.0.1
     vue-loader: 15.10.0
     vue-marquee-text-component: 1.2.0
     vue-router: 3.5.4
@@ -12805,6 +12805,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resize-observer-polyfill@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "resize-observer-polyfill@npm:1.5.1"
+  checksum: 57e7f79489867b00ba43c9c051524a5c8f162a61d5547e99333549afc23e15c44fd43f2f318ea0261ea98c0eb3158cca261e6f48d66e1ed1cd1f340a43977094
+  languageName: node
+  linkType: hard
+
 "resolve-alpn@npm:^1.0.0":
   version: 1.2.1
   resolution: "resolve-alpn@npm:1.2.1"
@@ -15558,12 +15565,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-js-modal@npm:1.3.35":
-  version: 1.3.35
-  resolution: "vue-js-modal@npm:1.3.35"
+"vue-js-modal@npm:2.0.1":
+  version: 2.0.1
+  resolution: "vue-js-modal@npm:2.0.1"
+  dependencies:
+    resize-observer-polyfill: ^1.5.1
   peerDependencies:
-    vue: ^2.2.6
-  checksum: 1232d499075a22587f7167c1296579f4c95f41abc3b4a70681b6898bffa55ab7362ad29140d341aa2739cbb9a98e50d0aa1e4b53679c56fda64b96a411494898
+    vue: ^2.6.11
+  checksum: 896d62fd3bbefeeeee19cfd2590c1295908de15a0ed8c8562812807de2540b9cc8a02275611932b2ce936e9754b2adf0f6aa7d4f4b575ee3ebc281f087b28a2a
   languageName: node
   linkType: hard
 
