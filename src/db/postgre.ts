@@ -60,7 +60,7 @@ import { Channel } from '../models/entities/channel';
 import { ChannelFollowing } from '../models/entities/channel-following';
 import { ChannelNotePining } from '../models/entities/channel-note-pining';
 import { RegistryItem } from '../models/entities/registry-item';
-import { ClientOpts } from 'redis';
+import { RedisOptions } from 'ioredis';
 
 const sqlLogger = dbLogger.createSubLogger('sql', 'white', false);
 
@@ -156,23 +156,24 @@ export const entities = [
 	...charts as any
 ];
 
-let redisOpts: ClientOpts
+let redisOpts: RedisOptions;
 
 if (config.redis.path == null) {
 	redisOpts = {
 		host: config.redis.host,
 		port: config.redis.port,
+		family: config.redis.family == null ? 0 : config.redis.family,
 		password: config.redis.pass,
-		prefix: `${config.redis.prefix}:query:`,
-		db: config.redis.db || 0
-	}
+		keyPrefix: `${config.redis.prefix}:query:`,
+		db: config.redis.db || 0,
+	};
 } else {
 	redisOpts = {
 		path: config.redis.path,
 		password: config.redis.pass,
-		prefix: `${config.redis.prefix}:query:`,
-		db: config.redis.db || 0
-	}
+		keyPrefix: `${config.redis.prefix}:query:`,
+		db: config.redis.db || 0,
+	};
 }
 
 export function initDb(justBorrow = false, sync = false, log = false, forceRecreate = false) {
@@ -194,8 +195,8 @@ export function initDb(justBorrow = false, sync = false, log = false, forceRecre
 		synchronize: process.env.NODE_ENV === 'test' || sync,
 		dropSchema: process.env.NODE_ENV === 'test' && !justBorrow,
 		cache: !config.db.disableCache ? {
-			type: 'redis',
-			options: redisOpts
+			type: 'ioredis',
+			options: redisOpts,
 		} : false,
 		logging: log,
 		logger: log ? new MyCustomLogger() : undefined,
