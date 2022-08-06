@@ -61,7 +61,7 @@ jobs:
     
     - name: Upload E2E ScreenShots
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ScreenShots-${{ matrix.node-version }}
         path: e2e/ScreenShots
