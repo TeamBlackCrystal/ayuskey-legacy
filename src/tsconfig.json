@@ -21,7 +21,6 @@
 		"emitDecoratorMetadata": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"esModuleInterop": true,
 		"rootDir": "./",
 		"baseUrl": "./",
 		"outDir": "../built",
