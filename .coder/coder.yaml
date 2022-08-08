@@ -12,9 +12,9 @@ workspace:
       value:
         - name: "install node.js"
           command: |
-						curl -sL https://deb.nodesource.com/setup_18.x | bash -
+            curl -sL https://deb.nodesource.com/setup_18.x | bash -
             apt update
-						apt install -y nodejs redis postgresql
+            apt install -y nodejs redis postgresql
         - name: "enable yarn"
           command: "corepack enable yarn"
         - name: "yarn install"
