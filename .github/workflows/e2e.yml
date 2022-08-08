@@ -31,7 +31,7 @@ jobs:
         submodules: true
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
@@ -43,7 +43,7 @@ jobs:
     - run: yarn migrateandstart &
 
     - name: Use Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -61,7 +61,7 @@ jobs:
     
     - name: Upload E2E ScreenShots
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ScreenShots-${{ matrix.node-version }}
         path: e2e/ScreenShots
