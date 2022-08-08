@@ -1,0 +1,23 @@
+version: 0.2
+workspace:
+  type: docker
+  specs:
+    docker:
+      image:
+        value: index.docker.io/codercom/enterprise-base:ubuntu
+      container-based-vm:
+        value: true
+  configure:
+    start:
+      value:
+        - name: "install node.js"
+          command: |
+						curl -sL https://deb.nodesource.com/setup_18.x | bash -
+            apt update
+						apt install -y nodejs redis postgresql
+        - name: "enable yarn"
+          command: "corepack enable yarn"
+        - name: "yarn install"
+          command:
+            "yarn install"
+
