@@ -9810,7 +9810,7 @@ __metadata:
     postcss: 8.4.16
     postcss-loader: 7.0.1
     prettier: 2.7.1
-    private-ip: 2.3.3
+    private-ip: 2.3.4
     probe-image-size: 7.2.3
     progress-bar-webpack-plugin: 2.1.0
     promise-limit: 2.7.0
@@ -11989,6 +11989,18 @@ __metadata:
     is-ip: ^3.1.0
     netmask: ^2.0.2
   checksum: c362d1b07ecbcc01127333b659e6240f80fca8df597b87011c5276412acfc5ff2ef0453b545bcea28bd45e3642e2bfeaf07de2c431352b366f48e221e6ec6a3a
+  languageName: node
+  linkType: hard
+
+"private-ip@npm:2.3.4":
+  version: 2.3.4
+  resolution: "private-ip@npm:2.3.4"
+  dependencies:
+    ip-regex: ^4.3.0
+    ipaddr.js: ^2.0.1
+    is-ip: ^3.1.0
+    netmask: ^2.0.2
+  checksum: e55874341c452b45d892a9e536496b11697cd71bb257247bdea5c33ea1de73f0688e18f7860a887d3ea6cb9f5cab2e24ce00cb50e3efdf003f6de86cfdd5eebc
   languageName: node
   linkType: hard
 
