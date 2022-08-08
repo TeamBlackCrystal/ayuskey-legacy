@@ -29,4 +29,5 @@ workspace:
         - name: "yarn install"
           command:
             "yarn install"
+          directory: /home/coder/work/teamblackcrystal/ayuskey
 
