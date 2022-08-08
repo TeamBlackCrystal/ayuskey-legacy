@@ -1,0 +1,38 @@
+version: 0.2
+workspace:
+  type: docker
+  specs:
+    docker:
+      image:
+        value: index.docker.io/codercom/enterprise-base:ubuntu
+      container-based-vm:
+        value: true
+  configure:
+    start:
+      value:
+        - name: "Create organization directory"
+          command: "mkdir -p /home/coder/work/teamblackcrystal"
+        - name: "Add GitHub to known hosts"
+          command:
+            "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
+        - name: "Clone Git Project"
+          command: "git clone git@github.com:TeamBlackCrystal/ayuskey.git"
+          continue-on-error: true
+          directory: /home/coder/work/teamblackcrystal
+        - name: "install node.js"
+          command: |
+            curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt update
+            sudo apt install -y nodejs redis postgresql
+        - name: "enable yarn"
+          command: "sudo corepack enable yarn"
+        - name: "yarn install"
+          command:
+            "yarn install"
+          directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "setup ayuskey"
+          command: |
+            cp .config/example.yml .config/default.yml
+            sed -i -e 's/url: https:\/\/example.tld\//url: http:\/\/localhost:3000/' .config/default.yml
+
+          directory: /home/coder/work/teamblackcrystal/ayuskey
