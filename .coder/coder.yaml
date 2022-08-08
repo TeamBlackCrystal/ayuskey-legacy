@@ -10,6 +10,15 @@ workspace:
   configure:
     start:
       value:
+        - name: "Create organization directory"
+          command: "mkdir -p /home/coder/work/teamblackcrystal"
+        - name: "Add GitHub to known hosts"
+          command:
+            "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
+        - name: "Clone Git Project"
+          command: "git clone git@github.com:TeamBlackCrystal/ayuskey.git"
+          continue-on-error: true
+          directory: /home/coder/work/teamblackcrystal
         - name: "install node.js"
           command: |
             curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
