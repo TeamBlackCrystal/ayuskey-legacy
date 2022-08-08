@@ -15,7 +15,8 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: ayuskey-lts
+  IMAGE_NAME_LTS: ayuskey-lts
+  IMAGE_NAME: ayuskey6
 
 jobs:
   # Run tests.
@@ -56,13 +57,36 @@ jobs:
           submodules: true
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME_LTS --tag $IMAGE_NAME
 
       - name: Log into registry
         #run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
+      - name: Push image (lts)
+        run: |
+          #IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME_LTS
+          IMAGE_ID=ghcr.io/teamblackcrystal/$IMAGE_NAME_LTS
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "v11-lts" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME_LTS $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
+      - name: Push image (version)
         run: |
           #IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
           IMAGE_ID=ghcr.io/teamblackcrystal/$IMAGE_NAME
