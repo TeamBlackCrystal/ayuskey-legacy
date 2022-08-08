@@ -6,7 +6,7 @@ workspace:
       image:
         value: index.docker.io/codercom/enterprise-base:ubuntu
       container-based-vm:
-        value: false
+        value: true
   configure:
     start:
       value:
@@ -30,4 +30,9 @@ workspace:
           command:
             "yarn install"
           directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "setup ayuskey"
+          command: |
+            cp .config/example.yml .config/default.yml
+            sed -i -e 's/url: https:\/\/example.tld\//url: http:\/\/localhost:3000/' .config/default.yml
 
+          directory: /home/coder/work/teamblackcrystal/ayuskey
