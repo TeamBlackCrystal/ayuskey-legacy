@@ -16,7 +16,7 @@ workspace:
           command:
             "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
         - name: "Clone Git Project"
-          command: "git clone git@github.com:TeamBlackCrystal/ayuskey.git"
+          command: "git clone --recursive git@github.com:TeamBlackCrystal/ayuskey.git"
           continue-on-error: true
           directory: /home/coder/work/teamblackcrystal
         - name: "install node.js"
