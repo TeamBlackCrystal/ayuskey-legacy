@@ -312,7 +312,6 @@ library.add(
 //#endregion
 
 Vue.use(Vuex);
-Vue.use(VueCompositionAPI);
 Vue.use(VueRouter);
 Vue.use(VAnimateCss);
 Vue.use(VModal);
