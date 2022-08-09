@@ -49,3 +49,6 @@ workspace:
           command:
             yarn build
           directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "migrate"
+          command: "yarn migrate"
+          continue-on-error: true
