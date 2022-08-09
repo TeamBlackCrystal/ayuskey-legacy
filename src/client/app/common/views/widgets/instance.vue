@@ -7,8 +7,14 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-export default define({
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+
+const widget = define({
 	name: 'instance'
 });
+
+export default defineComponent({
+	extends: widget,
+})
 </script>

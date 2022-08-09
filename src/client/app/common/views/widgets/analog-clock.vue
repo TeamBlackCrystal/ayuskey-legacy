@@ -11,6 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
+
 const widget = define({
 	name: 'analog-clock',
 	props: () => ({
