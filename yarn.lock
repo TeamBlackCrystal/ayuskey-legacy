@@ -1730,15 +1730,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/composition-api@npm:1.7.0":
-  version: 1.7.0
-  resolution: "@vue/composition-api@npm:1.7.0"
-  peerDependencies:
-    vue: ">= 2.5 < 2.7"
-  checksum: e2298b67b03c416aefeb57575c5c384855d03294c602a897f0bb5fba56b0513b8cc01222c18f0db63f6f9770677c312cbc0f29f77510dab26598b54aa98276ab
-  languageName: node
-  linkType: hard
-
 "@webassemblyjs/ast@npm:1.11.1":
   version: 1.11.1
   resolution: "@webassemblyjs/ast@npm:1.11.1"
@@ -9702,7 +9693,6 @@ __metadata:
     "@types/ws": 8.5.3
     "@typescript-eslint/eslint-plugin": 5.33.0
     "@typescript-eslint/parser": 5.33.0
-    "@vue/composition-api": 1.7.0
     abort-controller: 3.0.0
     animejs: 3.2.1
     apexcharts: 3.35.4

@@ -56,7 +56,6 @@
 		"@koa/multer": "3.0.0",
 		"@koa/router": "8.0.8",
 		"@popperjs/core": "2.11.5",
-		"@vue/composition-api": "1.7.0",
 		"abort-controller": "3.0.0",
 		"animejs": "3.2.1",
 		"apexcharts": "3.35.4",

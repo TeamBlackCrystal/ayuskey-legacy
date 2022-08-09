@@ -136,7 +136,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../../i18n';
 import number from '../../filters/v12/number';

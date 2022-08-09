@@ -1,4 +1,4 @@
-import { reactive } from '@vue/composition-api';
+import { reactive } from 'vue';
 import { apiUrl } from './config';
 //import { waiting } from './os';
 import { unisonReload } from './common/scripts/unison-reload';
