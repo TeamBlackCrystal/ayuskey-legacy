@@ -13,7 +13,7 @@ import { defineComponent, markRaw } from 'vue';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 import { ColdDeviceStorage } from '../../../store';
-import define from '../../define-widget';
+import define from '../../define-widget-define-component';
 
 const mascotUrl = ColdDeviceStorage.get('mascot_widget_url');
 
@@ -26,6 +26,7 @@ const widget = define({
 		},
 	})
 });
+
 export default defineComponent({
 	extends: widget,
 	data() {

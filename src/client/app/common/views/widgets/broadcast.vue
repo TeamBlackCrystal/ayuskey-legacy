@@ -37,16 +37,20 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 
-export default define({
+const widget = define({
 	name: 'broadcast',
 	props: () => ({
 		design: 0
 	})
-}).extend({
+})
+
+export default defineComponent({
+	extends: widget,
 	i18n: i18n('common/views/widgets/broadcast.vue'),
 	data() {
 		return {

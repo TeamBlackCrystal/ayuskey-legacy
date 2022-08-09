@@ -55,7 +55,7 @@
 import { defineComponent } from 'vue';
 import { faExclamationTriangle, faTasks } from '@fortawesome/free-solid-svg-icons';
 import * as sound from '../../scripts/sound';
-import define from '../../define-widget';
+import define from '../../define-widget-define-component';
 import number from '../filters/v12/number';
 
 const widget = define({
