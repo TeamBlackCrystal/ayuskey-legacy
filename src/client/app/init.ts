@@ -3,7 +3,6 @@
  */
 
 import Vue from 'vue';
-import VueCompositionAPI from '@vue/composition-api';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
@@ -313,7 +312,6 @@ library.add(
 //#endregion
 
 Vue.use(Vuex);
-Vue.use(VueCompositionAPI);
 Vue.use(VueRouter);
 Vue.use(VAnimateCss);
 Vue.use(VModal);

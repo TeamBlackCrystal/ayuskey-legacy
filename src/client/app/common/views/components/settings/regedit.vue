@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import * as JSON5 from 'json5';
 //import * as os from '@/os';

@@ -11,7 +11,7 @@ import MkGoogle from './google.vue';
 import MkSparkle from './sparkle.vue';
 import { host } from '../../../config';
 import { preorderF, countNodesF } from '../../../../../prelude/tree';
-import { h } from '@vue/composition-api';
+import { h } from 'vue';
 
 function sumTextsLength(ts: MfmForest): number {
 	const textNodes = preorderF(ts).filter(n => n.type === 'text');

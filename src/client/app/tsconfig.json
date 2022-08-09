@@ -30,5 +30,8 @@
   "include": [
     "./**/*.ts",
 		"./**/*.vue"
-  ]
+  ],
+	"vueCompilerOptions": {
+    "target": 2.7
+  }
 }

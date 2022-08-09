@@ -1,5 +1,6 @@
 <template>
 <div class="ecsvsegy" v-if="!fetching">
+	<div v-if="!notes.length" class="no-highlight">{{$t('@.featured-none')}}</div>
 	<sequential-entrance animation="entranceFromTop" delay="25">
 		<template v-for="note in notes">
 			<mk-note-detail class="post" :note="note" :key="note.id"/>
@@ -53,4 +54,11 @@ export default Vue.extend({
 		margin 32px 16px 16px 16px
 		text-align center
 
+	> .no-highlight
+		background var(--face)
+		color var(--text)
+		font-size 14px
+		text-align center
+		padding 32px
+		border-radius 6px
 </style>

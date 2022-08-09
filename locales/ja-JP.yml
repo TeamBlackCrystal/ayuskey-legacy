@@ -28,6 +28,7 @@ common:
   2fa: "二段階認証"
   customize-home: "ホームをカスタマイズ"
   featured-notes: "ハイライト"
+  featured-none: "ハイライトが無いようです"
   dark-mode: "ダークモード"
   signin: "ログイン"
   signup: "新規登録"

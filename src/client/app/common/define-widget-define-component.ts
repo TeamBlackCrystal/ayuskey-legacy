@@ -1,13 +1,10 @@
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-/**
- * @deprecated
- */
 export default function <T extends object>(data: {
 	name: string;
 	props?: () => T;
 }) {
-	return Vue.extend({
+	return defineComponent({
 		props: {
 			widget: {
 				type: Object
@@ -56,7 +53,8 @@ export default function <T extends object>(data: {
 					const defaultProps = data.props();
 					for (const prop of Object.keys(defaultProps)) {
 						if (this.props.hasOwnProperty(prop)) continue;
-						Vue.set(this.props, prop, defaultProps[prop]);
+						this.props[prop] = defaultProps[prop];
+						//Vue.set(this.props, prop, defaultProps[prop]);
 					}
 				}
 			},

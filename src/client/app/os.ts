@@ -1,4 +1,4 @@
-import { markRaw, reactive, Ref, ref } from '@vue/composition-api';
+import { markRaw, reactive, Ref, ref } from 'vue';
 import { Component } from 'vue';
 import { apiUrl, version, locale, env, debug } from './config';
 import { query } from '../../prelude/url';
