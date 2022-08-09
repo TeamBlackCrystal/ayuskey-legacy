@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import { faExclamationTriangle, faTasks } from '@fortawesome/free-solid-svg-icons';
 import * as sound from '../../scripts/sound';
 import define from '../../define-widget';

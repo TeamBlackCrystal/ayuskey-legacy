@@ -1,4 +1,4 @@
-import { onUnmounted, Ref, ref, watch } from '@vue/composition-api';
+import { onUnmounted, Ref, ref, watch } from 'vue';
 import { $i } from './account';
 import { api } from './os';
 

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, markRaw } from '@vue/composition-api';
+import { defineComponent, markRaw } from 'vue';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 import { ColdDeviceStorage } from '../../../store';
