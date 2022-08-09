@@ -94,7 +94,7 @@ export default Vue.extend({
 		padding 4px
 		text-align center
 		font-size 12px
-		background #f00
+		background #d50000
 		color #fff
 
 	> .main

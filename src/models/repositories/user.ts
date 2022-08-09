@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Users, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings  } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Users, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { Packed } from '../../misc/schema';
@@ -160,7 +160,7 @@ export class UserRepository extends Repository<User> {
 	// 何とかしたい
 	public getAvatarUrl(user: User): string {
 		if (user.avatar) {
-			const avatarUrl = DriveFiles.getPublicUrl(user.avatar, true)
+			const avatarUrl = DriveFiles.getPublicUrl(user.avatar, true);
 			//起こりえないはずだけど、ts的に必要
 			if (avatarUrl == null) return `${config.url}/random-avatar/${user.id}`;
 			return avatarUrl;
