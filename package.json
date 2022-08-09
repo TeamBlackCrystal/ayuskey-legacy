@@ -66,7 +66,7 @@
 		"aws-sdk": "2.1185.0",
 		"bcryptjs": "2.4.3",
 		"blurhash": "1.1.5",
-		"bootstrap": "4.6.2",
+		"bootstrap": "5.2.0",
 		"bootstrap-vue": "2.22.0",
 		"broadcast-channel": "4.14.0",
 		"bull": "4.8.5",
