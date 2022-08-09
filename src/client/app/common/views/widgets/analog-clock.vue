@@ -9,13 +9,17 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-export default define({
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+const widget = define({
 	name: 'analog-clock',
 	props: () => ({
 		style: 0
 	})
-}).extend({
+})
+
+export default defineComponent({
+	extends: widget,
 	methods: {
 		func() {
 			this.props.style = (this.props.style + 1) % 4;

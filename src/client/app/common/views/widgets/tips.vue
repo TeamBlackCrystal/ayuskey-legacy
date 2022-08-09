@@ -6,12 +6,16 @@
 
 <script lang="ts">
 import anime from 'animejs';
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
-export default define({
+const widget = define({
 	name: 'tips'
-}).extend({
+})
+
+export default defineComponent({
+	extends: widget,
 	i18n: i18n('common/views/widgets/tips.vue'),
 
 	data() {
