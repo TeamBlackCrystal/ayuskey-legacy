@@ -27,6 +27,7 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .nvemkhtwcnnpkdrwfcbzuwhfulejhmzg
 	display inline-block
+    cursor pointer
 
 	& + .nvemkhtwcnnpkdrwfcbzuwhfulejhmzg
 		margin-left 12px

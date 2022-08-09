@@ -4,7 +4,7 @@ workspace:
   specs:
     docker:
       image:
-        value: index.docker.io/codercom/enterprise-base:ubuntu
+        value: index.docker.io/codercom/enterprise-webstorm:ubuntu
       container-based-vm:
         value: false
   configure:
@@ -16,23 +16,39 @@ workspace:
           command:
             "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
         - name: "Clone Git Project"
-          command: "git clone git@github.com:TeamBlackCrystal/ayuskey.git"
+          command: |
+            git clone git@github.com:TeamBlackCrystal/ayuskey.git
+            git checkout develop
           continue-on-error: true
           directory: /home/coder/work/teamblackcrystal
-        - name: "install node.js"
+        - name: "Environment Initialize"
           command: |
             curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt update
             sudo apt install -y nodejs redis postgresql
+            sudo /etc/init.d/postgresql start
+            sudo /etc/init.d/redis-server start
         - name: "enable yarn"
           command: "sudo corepack enable yarn"
-        - name: "yarn install"
-          command:
-            "yarn install"
-          directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "setup postgres"
+          command: |
+            sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'example-misskey-pass'"
+            sudo -u postgres psql -c "CREATE DATABASE misskey"
         - name: "setup ayuskey"
           command: |
             cp .config/example.yml .config/default.yml
             sed -i -e 's/url: https:\/\/example.tld\//url: http:\/\/localhost:3000/' .config/default.yml
-
+            sed -i -e 's/user: example-misskey-user/user: postgres/' .config/default.yml
+            sudo sed -i -e 's/local   all             postgres                                peer/local   all             postgres                                password/' /etc/postgresql/12/main/pg_hba.conf
           directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "Install dependencies"
+          command:
+            yarn install
+          directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "build"
+          command:
+            yarn build
+          directory: /home/coder/work/teamblackcrystal/ayuskey
+        - name: "migrate"
+          command: "yarn migrate"
+          continue-on-error: true
