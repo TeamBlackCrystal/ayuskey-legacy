@@ -4,7 +4,7 @@ workspace:
   specs:
     docker:
       image:
-        value: index.docker.io/codercom/enterprise-base:ubuntu
+        value: index.docker.io/codercom/enterprise-webstorm:ubuntu
       container-based-vm:
         value: false
   configure:
