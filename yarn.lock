@@ -2903,16 +2903,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:5.2.0":
-  version: 5.2.0
-  resolution: "bootstrap@npm:5.2.0"
-  peerDependencies:
-    "@popperjs/core": ^2.11.5
-  checksum: 9dbfb5d26bbdac3e27a6b46cb7456cd4dd75ae3b48644737809885b8ea9c265d3359c4cdbf25a55bb7e5046f51e441557033ba21eeaf24ef8316bfbb3d420084
-  languageName: node
-  linkType: hard
-
-"bootstrap@npm:^4.6.1":
+"bootstrap@npm:4.6.2, bootstrap@npm:^4.6.1":
   version: 4.6.2
   resolution: "bootstrap@npm:4.6.2"
   peerDependencies:
@@ -9721,7 +9712,7 @@ __metadata:
     aws-sdk: 2.1185.0
     bcryptjs: 2.4.3
     blurhash: 1.1.5
-    bootstrap: 5.2.0
+    bootstrap: 4.6.2
     bootstrap-vue: 2.22.0
     broadcast-channel: 4.14.0
     bull: 4.8.5
