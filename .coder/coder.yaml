@@ -6,7 +6,7 @@ workspace:
       image:
         value: index.docker.io/codercom/enterprise-webstorm:ubuntu
       container-based-vm:
-        value: true
+        value: false
   configure:
     start:
       value:
