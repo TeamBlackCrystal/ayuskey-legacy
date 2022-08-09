@@ -5365,7 +5365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.6":
+"eslint-import-resolver-node@npm:0.3.6, eslint-import-resolver-node@npm:^0.3.6":
   version: 0.3.6
   resolution: "eslint-import-resolver-node@npm:0.3.6"
   dependencies:
@@ -9744,6 +9744,7 @@ __metadata:
     escape-regexp: 0.0.1
     eslint: 8.21.0
     eslint-config-prettier: 8.5.0
+    eslint-import-resolver-node: 0.3.6
     eslint-plugin-import: 2.26.0
     eslint-plugin-vue: 9.3.0
     eventemitter3: 4.0.7

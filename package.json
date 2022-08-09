@@ -288,6 +288,7 @@
 		"escape-regexp": "0.0.1",
 		"eslint": "8.21.0",
 		"eslint-config-prettier": "8.5.0",
+		"eslint-import-resolver-node": "0.3.6",
 		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-vue": "9.3.0",
 		"form-data": "4.0.0",
