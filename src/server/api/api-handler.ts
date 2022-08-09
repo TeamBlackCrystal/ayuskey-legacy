@@ -32,7 +32,7 @@ export default (endpoint: IEndpoint, ctx: Koa.Context) => new Promise<void>((res
 	authenticate(body['i']).then(([user, app]) => {
 		// API invoking
 		call(endpoint.name, user, app, body, (ctx as any).file).then((res: any) => {
-			if (ctx.method === 'GET' && endpoint.meta.cacheSec && !body['i'] && !user) {
+			if (ctx.method === 'GET' && endpoint.meta.cacheSec && !body['i'] && !user && !app) {
 				ctx.set('Cache-Control', `public, max-age=${endpoint.meta.cacheSec}`);
 			}
 			reply(res);
