@@ -16,7 +16,9 @@ workspace:
           command:
             "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
         - name: "Clone Git Project"
-          command: "git clone --recursive git@github.com:TeamBlackCrystal/ayuskey.git"
+          command: |
+            git clone git@github.com:TeamBlackCrystal/ayuskey.git
+            git checkout develop
           continue-on-error: true
           directory: /home/coder/work/teamblackcrystal
         - name: "Environment Initialize"
@@ -31,10 +33,12 @@ workspace:
         - name: "setup postgres"
           command: |
             sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'example-misskey-pass'"
+            sudo -u postgres psql -c "CREATE DATABASE misskey"
         - name: "setup ayuskey"
           command: |
             cp .config/example.yml .config/default.yml
             sed -i -e 's/url: https:\/\/example.tld\//url: http:\/\/localhost:3000/' .config/default.yml
+            sed -i -e 's/user: example-misskey-user/user: postgres/' .config/default.yml
             sudo sed -i -e 's/local   all             postgres                                peer/local   all             postgres                                password/' /etc/postgresql/12/main/pg_hba.conf
           directory: /home/coder/work/teamblackcrystal/ayuskey
         - name: "Install dependencies"
