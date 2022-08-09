@@ -30,7 +30,7 @@ export const mfmLanguage = P.createLanguage({
 		r.mathBlock,
 		r.center,
 		r.right,
-		r.marquee
+		r.marquee,
 	),
 	startOfLine: () => P((input, i) => {
 		if (i == 0 || input[i] == '\n' || input[i - 1] == '\n') {
@@ -58,6 +58,7 @@ export const mfmLanguage = P.createLanguage({
 	})),
 	search: r => r.startOfLine.then(P((input, i) => {
 		const text = input.substr(i);
+		// eslint-disable-next-line no-irregular-whitespace
 		const match = text.match(/^(.+?)( |　)(検索|\[検索\]|Search|\[Search\])(\n|$)/i);
 		if (!match) return P.makeFailure(i, 'not a search');
 		return P.makeSuccess(i + match[0].length, createLeaf('search', { query: match[1], content: match[0].trim() }));
@@ -74,7 +75,7 @@ export const mfmLanguage = P.createLanguage({
 			const match = text.match(/^<marquee(\s[a-z-]+?)?>(.+?)<\/marquee>/i);
 			if (!match) return P.makeFailure(i, 'not a marquee');
 			return P.makeSuccess(i + match[0].length, {
-				content: match[2], attr: match[1] ? match[1].trim() : null
+				content: match[2], attr: match[1] ? match[1].trim() : null,
 			});
 		}).map(x => createTree('marquee', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
@@ -107,7 +108,7 @@ export const mfmLanguage = P.createLanguage({
 		r.emoji,
 		r.fn,
 		r.fn2,
-		r.text
+		r.text,
 	),
 	bigger: r => P.regexp(/^\*\*\*\*([\s\S]+?)\*\*\*\*/, 1).map(x => createTree('bigger', r.inline.atLeast(1).tryParse(x), {})),
 	big: r => P.regexp(/^\*\*\*([\s\S]+?)\*\*\*/, 1).map(x => createTree('big', r.inline.atLeast(1).tryParse(x), {})),
@@ -151,7 +152,7 @@ export const mfmLanguage = P.createLanguage({
 			const match = text.match(/^<spin(\s[a-z]+?)?>(.+?)<\/spin>/i);
 			if (!match) return P.makeFailure(i, 'not a spin');
 			return P.makeSuccess(i + match[0].length, {
-				content: match[2], attr: match[1] ? match[1].trim() : null
+				content: match[2], attr: match[1] ? match[1].trim() : null,
 			});
 		}).map(x => createTree('spin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
@@ -161,7 +162,7 @@ export const mfmLanguage = P.createLanguage({
 			const match = text.match(/^<xspin(\s[a-z]+?)?>(.+?)<\/xspin>/i);
 			if (!match) return P.makeFailure(i, 'not a xspin');
 			return P.makeSuccess(i + match[0].length, {
-				content: match[2], attr: match[1] ? match[1].trim() : null
+				content: match[2], attr: match[1] ? match[1].trim() : null,
 			});
 		}).map(x => createTree('xspin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
@@ -171,7 +172,7 @@ export const mfmLanguage = P.createLanguage({
 			const match = text.match(/^<yspin(\s[a-z]+?)?>(.+?)<\/yspin>/i);
 			if (!match) return P.makeFailure(i, 'not a yspin');
 			return P.makeSuccess(i + match[0].length, {
-				content: match[2], attr: match[1] ? match[1].trim() : null
+				content: match[2], attr: match[1] ? match[1].trim() : null,
 			});
 		}).map(x => createTree('yspin', r.inline.atLeast(1).tryParse(x.content), { attr: x.attr }));
 	},
@@ -185,7 +186,7 @@ export const mfmLanguage = P.createLanguage({
 
 			if (match) {
 				return P.makeSuccess(i + match[0].length, {
-					content: match[2], attr: match[1]
+					content: match[2], attr: match[1],
 				});
 			} else {
 				return P.makeFailure(i, 'not a rotate');
@@ -256,7 +257,7 @@ export const mfmLanguage = P.createLanguage({
 		).map((x: any) => {
 			return createTree('link', r.inline.atLeast(1).tryParse(x.text), {
 				silent: x.silent,
-				url: x.url.node.props.url
+				url: x.url.node.props.url,
 			});
 		});
 	},
@@ -287,7 +288,7 @@ export const mfmLanguage = P.createLanguage({
 			}
 			return createTree('fn', r.inline.atLeast(1).tryParse(x.text), {
 				name,
-				args
+				args,
 			});
 		});
 	},
@@ -313,9 +314,9 @@ export const mfmLanguage = P.createLanguage({
 			}
 			return createTree('fn', r.inline.atLeast(1).tryParse(x.text), {
 				name,
-				args
+				args,
 			});
 		});
 	},
-	text: () => P.any.map(x => createLeaf('text', { text: x }))
+	text: () => P.any.map(x => createLeaf('text', { text: x })),
 });
