@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - node 14 をドロップ
   - **BREAKING CHANGE: node 12 は利用できません。** 
     - 16 or 18 に移行してください
+- 既存のファイルにsensitiveフラグが飛んできたときの挙動
 
 ### Fixed
 
