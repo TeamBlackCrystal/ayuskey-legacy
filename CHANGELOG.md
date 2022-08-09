@@ -24,10 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bull Dashboard を組み込み、ジョブキューの確認や操作を行えるように
 - welcome ページでcwが設定されている場合は 「もっと見る」ボタンを出すように TeamBlackCrystal/misskey#1813
 - blurをoffにする設定を追加しました
+- toolsにアプリケーションを作るためのサンプルを追加 [#30](https://github.com/TeamBlackCrystal/ayuskey/issues/30)
+- ハイライトがない際は無いと表示する [#120](https://github.com/TeamBlackCrystal/ayuskey/issues/120)
 
 ## Changed
 
 - **yarn@3に変更**
+- リバーシのグラデーションを変更 [#71](https://github.com/TeamBlackCrystal/ayuskey/issues/71)
+- メニューのアイコンの位置を統一 [#68](https://github.com/TeamBlackCrystal/ayuskey/issues/68)
 - renoteした際のHeaderの位置を変える [#33](https://github.com/TeamBlackCrystal/ayuskey/issues/33)
 - emojilist を更新
 - クエリの最適化
