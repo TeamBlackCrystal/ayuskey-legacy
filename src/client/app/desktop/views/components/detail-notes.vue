@@ -59,5 +59,6 @@ export default Vue.extend({
 		color var(--text)
 		font-size 14px
 		text-align center
-		padding 16px
+		padding 32px
+		border-radius 6px
 </style>
