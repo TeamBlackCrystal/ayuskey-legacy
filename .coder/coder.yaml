@@ -6,7 +6,7 @@ workspace:
       image:
         value: index.docker.io/codercom/enterprise-base:ubuntu
       container-based-vm:
-        value: false
+        value: true
   configure:
     start:
       value:
