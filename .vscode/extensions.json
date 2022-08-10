@@ -8,5 +8,8 @@
 		"ms-vscode.vscode-typescript-tslint-plugin",
 		"sysoev.language-stylus",
 		"Vue.volar"
+	],
+	"unwantedRecommendations": [
+		"octref.vetur"
 	]
 }
