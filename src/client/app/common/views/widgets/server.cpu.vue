@@ -9,32 +9,28 @@
 </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue';
+import Stream from '../../scripts/stream';
 import XPie from './server.pie.vue';
 
-export default Vue.extend({
-	components: {
-		XPie
-	},
-	props: ['connection', 'meta'],
-	data() {
-		return {
-			usage: 0
-		};
-	},
-	mounted() {
-		this.connection.on('stats', this.onStats);
-	},
-	beforeDestroy() {
-		this.connection.off('stats', this.onStats);
-	},
-	methods: {
-		onStats(stats) {
-			this.usage = stats.cpu_usage;
-		}
-	}
-});
+const props = defineProps({
+    connection: { type: Stream},
+    meta: {type: Object}
+})
+
+let usage = ref(0)
+
+const onStats = (stats) => {
+	usage.value = stats.cpu_usage;
+}
+
+onMounted(() => {
+    props.connection.on('stats', onStats);
+}),
+onUnmounted(() => {
+    props.connection.off('stats', onStats);
+})
 </script>
 
 <style lang="stylus" scoped>
