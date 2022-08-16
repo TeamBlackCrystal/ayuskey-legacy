@@ -1,16 +1,16 @@
 <template>
 <div class="mk-notifications">
 	<div class="placeholder" v-if="fetching">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10" :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notifications" class="transition notifications" tag="div">
-		<template v-for="(notification, i) in _notifications">
-			<mk-notification :notification="notification" :key="notification.id" :class="{ wide: wide }"/>
-			<p class="date" :key="notification.id + '_date'" v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date">
+		<template v-for="(notification, i) in _notifications" :key="notification.id">
+			<mk-notification :notification="notification" :class="{ wide: wide }"/>
+			<p class="date" v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date">
 				<span><fa icon="angle-up"/>{{ notification._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notifications[i + 1]._datetext }}</span>
 			</p>

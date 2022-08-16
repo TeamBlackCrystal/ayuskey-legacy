@@ -3,8 +3,8 @@
 	<div class="qlvquzbjribqcaozciifydkngcwtyzje" ref="body" :style="style" :class="`${$store.state.device.deckColumnAlign} ${$store.state.device.deckColumnWidth}`" v-hotkey.global="keymap">
 		<template v-for="(ids, layoutIndex) in layoutL">
 			<div v-if="ids.length > 1" class="folder">
-				<template v-for="(id, stackIndex) in ids">
-					<x-column-core :ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
+				<template v-for="(id, stackIndex) in ids" :key="id">
+					<x-column-core :ref="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
 						:pos="{
 							first: layoutIndex === 0,
 							last: layoutIndex === layoutL.length - 1 && layoutR.length === 0,
@@ -25,8 +25,8 @@
 		<router-view></router-view>
 		<template v-for="(ids, layoutIndex) in layoutR">
 			<div v-if="ids.length > 1" class="folder">
-				<template v-for="(id, stackIndex) in ids">
-					<x-column-core :ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
+				<template v-for="(id, stackIndex) in ids" :key="id">
+					<x-column-core :ref="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
 						:pos="{
 							first: layoutIndex === 0 && layoutL.length === 0,
 							last: layoutIndex === layoutR.length - 1,

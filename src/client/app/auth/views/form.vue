@@ -13,8 +13,8 @@
 		<section>
 			<h2>{{ $t('permission-ask') }}</h2>
 			<ul>
-				<template v-for="p in app.permission">
-					<li :key="p">{{ $t(`@.permissions.${p}`) }}</li>
+				<template v-for="p in app.permission" :key="p">
+					<li>{{ $t(`@.permissions.${p}`) }}</li>
 				</template>
 			</ul>
 		</section>

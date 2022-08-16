@@ -504,10 +504,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:2.11.5":
-  version: 2.11.5
-  resolution: "@popperjs/core@npm:2.11.5"
-  checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
+"@popperjs/core@npm:2.11.6":
+  version: 2.11.6
+  resolution: "@popperjs/core@npm:2.11.6"
+  checksum: 47fb328cec1924559d759b48235c78574f2d71a8a6c4c03edb6de5d7074078371633b91e39bbf3f901b32aa8af9b9d8f82834856d2f5737a23475036b16817f0
   languageName: node
   linkType: hard
 
@@ -1769,6 +1769,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vue/devtools-api@npm:^6.0.0-beta.11":
+  version: 6.2.1
+  resolution: "@vue/devtools-api@npm:6.2.1"
+  checksum: 34765af0be9b0cc7e3def73b2792b1514e3c348852c5a7503fe07d013f0e907af6c27c0a32c0637dd748caf37c075af8e53ca3220433e0bd34b6f3405f358272
+  languageName: node
+  linkType: hard
+
 "@vue/reactivity-transform@npm:3.2.37":
   version: 3.2.37
   resolution: "@vue/reactivity-transform@npm:3.2.37"
@@ -2982,6 +2989,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bootstrap-vue-3@npm:0.2.8":
+  version: 0.2.8
+  resolution: "bootstrap-vue-3@npm:0.2.8"
+  peerDependencies:
+    "@popperjs/core": ^2.x.x
+    bootstrap: 5.x.x
+    vue: 3.x.x
+  checksum: ef07947fb026d36374293d68d9c9f5147d307f644b3cdbc01c7fda67cb275b09c31c28618f81f99a99a6189e985478d39df59a3d8f51d6af9d1f75cb9baa8c1e
+  languageName: node
+  linkType: hard
+
 "bootstrap-vue@npm:2.22.0":
   version: 2.22.0
   resolution: "bootstrap-vue@npm:2.22.0"
@@ -2995,7 +3013,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:4.6.2, bootstrap@npm:^4.6.1":
+"bootstrap@npm:5.2.0":
+  version: 5.2.0
+  resolution: "bootstrap@npm:5.2.0"
+  peerDependencies:
+    "@popperjs/core": ^2.11.5
+  checksum: 9dbfb5d26bbdac3e27a6b46cb7456cd4dd75ae3b48644737809885b8ea9c265d3359c4cdbf25a55bb7e5046f51e441557033ba21eeaf24ef8316bfbb3d420084
+  languageName: node
+  linkType: hard
+
+"bootstrap@npm:^4.6.1":
   version: 4.6.2
   resolution: "bootstrap@npm:4.6.2"
   peerDependencies:
@@ -9734,7 +9761,7 @@ __metadata:
     "@koa/cors": 3.3.0
     "@koa/multer": 3.0.0
     "@koa/router": 8.0.8
-    "@popperjs/core": 2.11.5
+    "@popperjs/core": 2.11.6
     "@redocly/openapi-core": 1.0.0-beta.105
     "@types/animejs": 3.1.5
     "@types/bcryptjs": 2.4.2
@@ -9811,8 +9838,9 @@ __metadata:
     aws-sdk: 2.1185.0
     bcryptjs: 2.4.3
     blurhash: 1.1.5
-    bootstrap: 4.6.2
+    bootstrap: 5.2.0
     bootstrap-vue: 2.22.0
+    bootstrap-vue-3: 0.2.8
     broadcast-channel: 4.14.0
     bull: 4.8.5
     cacheable-lookup: 6.1.0
@@ -9968,7 +9996,7 @@ __metadata:
     vue-svg-inline-loader: 2.1.5
     vuedraggable: 2.24.3
     vuewordcloud: 18.7.12
-    vuex: 3.6.2
+    vuex: ^4.0.2
     vuex-persistedstate: 4.1.0
     web-push: 3.5.0
     webpack: 5.74.0
@@ -15756,12 +15784,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuex@npm:3.6.2":
-  version: 3.6.2
-  resolution: "vuex@npm:3.6.2"
+"vuex@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "vuex@npm:4.0.2"
+  dependencies:
+    "@vue/devtools-api": ^6.0.0-beta.11
   peerDependencies:
-    vue: ^2.0.0
-  checksum: 37915741ba9557024ea42579e2c8d81847ec699d07d8ea3aa673929f26fceba8c59e7e1e6a875fd3962e50018bc30f782f5ace34d83307ef228ad46a4df343da
+    vue: ^3.0.2
+  checksum: d7c03f0afcbad045ef58921a4baa9ec23bc12c71dbaf1317f1df94e7d8740ce839b9fac48ec775955ce7a8893dceb7217bc05e45421fc6bacc559ed3541e6052
   languageName: node
   linkType: hard
 

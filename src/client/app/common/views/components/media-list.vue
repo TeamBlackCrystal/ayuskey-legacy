@@ -1,13 +1,13 @@
 <template>
 <div class="hoawjimk">
-	<template v-for="media in mediaList.filter(media => !previewable(media))">
-		<x-banner :media="media" :key="media.id"/>
+	<template v-for="media in mediaList.filter(media => !previewable(media))" :key="media.id">
+		<x-banner :media="media"/>
 	</template>
 	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="gird-container">
 		<div :data-count="mediaList.filter(media => previewable(media)).length" ref="gallery">
-			<template v-for="media in mediaList">
-				<mk-media-video :video="media" :key="media.id" v-if="media.type.startsWith('video')"/>
-				<x-image class="image" :data-id="media.id" :image="media" :key="media.id" v-else-if="media.type.startsWith('image')" :raw="raw"/>
+			<template v-for="media in mediaList" :key="media.id">
+				<mk-media-video :video="media" v-if="media.type.startsWith('video')"/>
+				<x-image class="image" :data-id="media.id" :image="media" v-else-if="media.type.startsWith('image')" :raw="raw"/>
 			</template>
 		</div>
 	</div>

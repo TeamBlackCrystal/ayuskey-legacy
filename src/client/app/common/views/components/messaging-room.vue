@@ -10,8 +10,8 @@
 		<button class="more" :class="{ fetching: fetchingMoreMessages }" v-if="existMoreMessages" @click="fetchMoreMessages" :disabled="fetchingMoreMessages">
 			<template v-if="fetchingMoreMessages"><fa icon="spinner" pulse fixed-width/></template>{{ fetchingMoreMessages ? $t('@.loading') : $t('@.load-more') }}
 		</button>
-		<template v-for="(message, i) in _messages">
-			<x-message :message="message" :key="message.id" :is-group="group != null"/>
+		<template v-for="(message, i) in _messages" :key="message.id">
+			<x-message :message="message" :is-group="group != null"/>
 			<p class="date" v-if="i != messages.length - 1 && message._date != _messages[i + 1]._date">
 				<span>{{ _messages[i + 1]._datetext }}</span>
 			</p>

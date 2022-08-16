@@ -2,9 +2,9 @@
 <div class="kmmwchoexgckptowjmjgfsygeltxfeqs">
 	<nav ref="nav" :class="{'blur': $store.state.device.useBlur}">
 		<a @click.prevent="goRoot()" href="/i/drive"><fa icon="cloud"/>{{ $t('@.drive') }}</a>
-		<template v-for="folder in hierarchyFolders">
-			<span :key="folder.id + '>'"><fa icon="angle-right"/></span>
-			<a :key="folder.id" @click.prevent="cd(folder)" :href="`/i/drive/folder/${folder.id}`">{{ folder.name }}</a>
+		<template v-for="folder in hierarchyFolders" :key="folder.id">
+			<span><fa icon="angle-right"/></span>
+			<a @click.prevent="cd(folder)" :href="`/i/drive/folder/${folder.id}`">{{ folder.name }}</a>
 		</template>
 		<template v-if="folder != null">
 			<span><fa icon="angle-right"/></span>
