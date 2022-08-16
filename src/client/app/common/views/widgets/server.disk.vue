@@ -1,47 +1,44 @@
 <template>
-<div class="disk">
-	<x-pie class="pie" :value="usage"/>
-	<div>
-		<p><fa :icon="['far', 'hdd']"/>Storage</p>
-		<p>Total: {{ total | bytes(1) }}</p>
-		<p>Free: {{ available | bytes(1) }}</p>
-		<p>Used: {{ used | bytes(1) }}</p>
+	<div class="disk">
+		<x-pie class="pie" :value="usage" />
+		<div>
+			<p><fa :icon="['far', 'hdd']" />Storage</p>
+			<p>Total: {{ total | bytes(1) }}</p>
+			<p>Free: {{ available | bytes(1) }}</p>
+			<p>Used: {{ used | bytes(1) }}</p>
+		</div>
 	</div>
-</div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import XPie from './server.pie.vue';
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
+import Stream from "../../scripts/stream";
+import XPie from "./server.pie.vue";
 
-export default Vue.extend({
-	components: {
-		XPie
+const props = defineProps({
+	connection: {
+		type: Stream,
 	},
-	props: ['connection'],
-	data() {
-		return {
-			usage: 0,
-			total: 0,
-			used: 0,
-			available: 0
-		};
-	},
-	mounted() {
-		this.connection.on('stats', this.onStats);
-	},
-	beforeDestroy() {
-		this.connection.off('stats', this.onStats);
-	},
-	methods: {
-		onStats(stats) {
-			stats.disk.used = stats.disk.total - stats.disk.free;
-			this.usage = stats.disk.used / stats.disk.total;
-			this.total = stats.disk.total;
-			this.used = stats.disk.used;
-			this.available = stats.disk.available;
-		}
-	}
+});
+
+let usage = ref(0);
+let total = ref(0);
+let used = ref(0);
+let available = ref(0);
+
+const onStats = (stats) => {
+	stats.disk.used = stats.disk.total - stats.disk.free;
+	usage.value = stats.disk.used / stats.disk.total;
+	total.value = stats.disk.total;
+	used.value = stats.disk.used;
+	available.value = stats.disk.available;
+};
+
+onMounted(() => {
+	props.connection.on("stats", onStats);
+});
+onUnmounted(() => {
+	props.connection.off("stats", onStats);
 });
 </script>
 
@@ -72,5 +69,4 @@ export default Vue.extend({
 		content ""
 		display block
 		clear both
-
 </style>
