@@ -67,7 +67,10 @@ module.exports = {
 					sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
 					cssSourceMap: false,
 					compilerOptions: {
-						preserveWhitespace: false
+						preserveWhitespace: false,
+						compatConfig: {
+              MODE: 2
+            }
 					}
 				}
 			}, {
@@ -215,7 +218,8 @@ module.exports = {
 		alias: {
 			'@client': __dirname + '/src/client/app',
 			'@': __dirname + '/src',
-			'const.styl': __dirname + '/src/client/const.styl'
+			'const.styl': __dirname + '/src/client/const.styl',
+			vue: '@vue/compat'
 		}
 	},
 	resolveLoader: {
