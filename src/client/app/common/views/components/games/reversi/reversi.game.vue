@@ -216,7 +216,7 @@ export default Vue.extend({
 		this.connection.on('ended', this.onEnded);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('set', this.onSet);
 		this.connection.off('rescue', this.onRescue);
 		this.connection.off('ended', this.onEnded);

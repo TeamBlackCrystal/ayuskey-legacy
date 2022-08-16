@@ -38,7 +38,7 @@ export default prop => ({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.decapture(true);
 
 		if (this.$store.getters.isSignedIn) {

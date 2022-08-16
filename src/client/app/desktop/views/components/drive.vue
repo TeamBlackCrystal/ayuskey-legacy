@@ -133,7 +133,7 @@ export default Vue.extend({
 			this.fetch();
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

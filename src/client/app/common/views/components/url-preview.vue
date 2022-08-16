@@ -154,7 +154,7 @@ export default Vue.extend({
  		},
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		(window as any).removeEventListener('message', this.adjustTweetHeight);
 	},
 });

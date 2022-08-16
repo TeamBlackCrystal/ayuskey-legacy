@@ -196,7 +196,7 @@ export default Vue.extend({
 		this.connection = this.$root.stream.useSharedConnection('main');
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

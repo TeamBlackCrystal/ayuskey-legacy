@@ -97,7 +97,7 @@ export default Vue.extend({
 		this.column.$on('bottom', this.onBottom);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 
 		this.column.$off('top', this.onTop);

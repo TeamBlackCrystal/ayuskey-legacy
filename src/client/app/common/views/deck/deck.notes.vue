@@ -95,7 +95,7 @@ export default Vue.extend({
 		this.init();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.column.$off('top', this.onTop);
 		this.column.$off('bottom', this.onBottom);
 	},

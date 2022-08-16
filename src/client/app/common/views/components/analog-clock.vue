@@ -122,7 +122,7 @@ export default Vue.extend({
 		update();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.enabled = false;
 	},
 

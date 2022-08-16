@@ -123,7 +123,7 @@ export default Vue.extend({
 			(this.$refs.nav as any).style.top = `${this.top}px`;
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

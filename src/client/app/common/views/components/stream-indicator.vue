@@ -61,7 +61,7 @@ export default Vue.extend({
 			}
 		});
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.$root.stream.off('_connected_', this.onConnected);
 		this.$root.stream.off('_disconnected_', this.onDisconnected);
 	},

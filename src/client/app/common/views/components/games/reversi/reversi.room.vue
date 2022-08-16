@@ -163,7 +163,7 @@ export default Vue.extend({
 		if (this.game.user2Id != this.$store.state.i.id && this.game.form2) this.form = this.game.form2;
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('changeAccepts', this.onChangeAccepts);
 		this.connection.off('updateSettings', this.onUpdateSettings);
 		this.connection.off('initForm', this.onInitForm);

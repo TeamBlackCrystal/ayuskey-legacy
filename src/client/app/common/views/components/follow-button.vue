@@ -75,7 +75,7 @@ export default Vue.extend({
 		this.connection.on('unfollow', this.onFollowChange);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

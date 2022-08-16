@@ -82,7 +82,7 @@ export default Vue.extend({
 			//window.addEventListener('resize', this.onScroll);
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.user.bannerUrl) {
 			//window.removeEventListener('load', this.onScroll);
 			//window.removeEventListener('scroll', this.onScroll);

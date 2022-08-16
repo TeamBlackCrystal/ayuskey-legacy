@@ -215,7 +215,7 @@ export default Vue.extend({
 		this.connection.on('notification', this.onNotification);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

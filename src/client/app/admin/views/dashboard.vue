@@ -141,7 +141,7 @@ export default Vue.extend({
 		});
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

@@ -131,7 +131,7 @@ export default Vue.extend({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.$refs.body.removeEventListener('scroll', this.onScroll);
 
 		if (!this.isTemporaryColumn) {

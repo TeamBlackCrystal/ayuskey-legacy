@@ -167,7 +167,7 @@ export default Vue.extend({
 		document.documentElement.style.overflow = 'hidden';
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		document.documentElement.style.overflow = 'auto';
 	},
 

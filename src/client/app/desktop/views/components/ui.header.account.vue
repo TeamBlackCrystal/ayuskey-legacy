@@ -132,7 +132,7 @@ export default Vue.extend({
 			};
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.close();
 	},
 	methods: {

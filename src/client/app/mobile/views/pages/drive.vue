@@ -53,7 +53,7 @@ export default Vue.extend({
 	mounted() {
 		document.title = `${this.$root.instanceName} Drive`;
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		window.removeEventListener('popstate', this.onPopState);
 	},
 	methods: {

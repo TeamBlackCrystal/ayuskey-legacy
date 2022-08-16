@@ -40,7 +40,7 @@ export default Vue.extend({
 		});
 		this.connection.on('started', this.onStarted);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

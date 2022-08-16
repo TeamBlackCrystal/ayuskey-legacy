@@ -146,7 +146,7 @@ export default Vue.extend({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		room.destroy();
 		window.removeEventListener('beforeunload', this.beforeunload);
 	},
