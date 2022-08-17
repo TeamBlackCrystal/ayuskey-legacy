@@ -2,7 +2,7 @@
  * App initializer
  */
 
-import Vue from 'vue';
+import Vue, { App, createApp } from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
@@ -14,12 +14,14 @@ import 'highlight.js/styles/monokai.css';
 
 import VueHotkey from './common/hotkey';
 import VueSize from './common/size';
-import App from './app.vue';
+import MkApp from './app.vue';
 import checkForUpdate from './common/scripts/check-for-update';
 import MiOS from './mios';
 import { version, codename, lang, locale } from './config';
 import { builtinThemes, applyTheme, darkTheme } from './theme';
 import Dialog from './common/views/components/dialog.vue';
+
+import store from './store2'
 
 if (localStorage.getItem('theme') == null) {
 	applyTheme(darkTheme);
@@ -311,7 +313,7 @@ library.add(
 );
 //#endregion
 
-Vue.use(Vuex);
+//Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VAnimateCss);
 Vue.use(VModal);
@@ -460,7 +462,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 				}
 			}, { passive: true });
 
-			const app = new Vue({
+			const app = createApp({
 				i18n: i18n(),
 				store: os.store,
 				data() {
@@ -510,13 +512,15 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 					}
 				},
 				router,
-				render: createEl => createEl(App)
+				render: createEl => createEl(MkApp)
 			});
 
 			os.app = app;
 
+			app.use(store)
+
 			// マウント
-			app.$mount('#app');
+			app.mount('#app');
 
 			//#region 更新チェック
 			setTimeout(() => {
@@ -524,7 +528,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 			}, 3000);
 			//#endregion
 
-			return [app, os] as [Vue, MiOS];
+			return [app, os] as [App, MiOS];
 		};
 
 		// Deck mode

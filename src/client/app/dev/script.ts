@@ -5,9 +5,9 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import BootstrapVue from 'bootstrap-vue';
+import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
 
 // Style
 import './style.styl';
@@ -21,7 +21,7 @@ import App from './views/app.vue';
 import ui from './views/ui.vue';
 import NotFound from '../common/views/pages/not-found.vue';
 
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue3);
 
 Vue.component('mk-ui', ui);
 
