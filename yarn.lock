@@ -9996,7 +9996,7 @@ __metadata:
     vue-svg-inline-loader: 2.1.5
     vuedraggable: 2.24.3
     vuewordcloud: 18.7.12
-    vuex: ^4.0.2
+    vuex: 4.0.2
     vuex-persistedstate: 4.1.0
     web-push: 3.5.0
     webpack: 5.74.0
@@ -15784,7 +15784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuex@npm:^4.0.2":
+"vuex@npm:4.0.2":
   version: 4.0.2
   resolution: "vuex@npm:4.0.2"
   dependencies:
