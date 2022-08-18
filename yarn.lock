@@ -9824,7 +9824,7 @@ __metadata:
     stylus: 0.58.1
     stylus-loader: 7.0.0
     syslog-pro: 1.0.0
-    systeminformation: 5.12.4
+    systeminformation: 5.12.6
     syuilo-password-strength: 0.0.1
     terser-webpack-plugin: 4.2.3
     textarea-caret: 3.1.0
@@ -14258,12 +14258,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"systeminformation@npm:5.12.4":
-  version: 5.12.4
-  resolution: "systeminformation@npm:5.12.4"
+"systeminformation@npm:5.12.6":
+  version: 5.12.6
+  resolution: "systeminformation@npm:5.12.6"
   bin:
     systeminformation: lib/cli.js
-  checksum: 799490ff04abbf0f4c03a7915a0eff673c6860732e45841a7b24d9da81ae164aa000badca00bc826b37c0d6aa03e68dc8734df6df141ba0aa89df707bccd15cf
+  checksum: ae112148530bc31c4c43c4966b8f56822c874caa93daa1f146ea2372ec32738b315f10c58fb968611d082d9614bac054a9a3740b7e7df1201a2a581c73f3306c
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
