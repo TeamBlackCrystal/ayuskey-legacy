@@ -1248,12 +1248,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qrcode@npm:1.4.2":
-  version: 1.4.2
-  resolution: "@types/qrcode@npm:1.4.2"
+"@types/qrcode@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@types/qrcode@npm:1.5.0"
   dependencies:
     "@types/node": "*"
-  checksum: 7ac58687aacc688b83dde43dc349dc42106c6c382b62eb1256e35c6cb7de45e79ef8e917e05b02a81272cd0c1ff21147307244fd57401ba19314851f30636283
+  checksum: b0ece3834ca5ba6171132928fd1ef764772dc619b45cb4123461ee05e377ad15553a330d234c69db0d0028c6639a99429e88d99192fbba9c5ee97c23f278c48b
   languageName: node
   linkType: hard
 
@@ -9671,7 +9671,7 @@ __metadata:
     "@types/parsimmon": 1.10.6
     "@types/portscanner": 2.1.1
     "@types/pug": 2.0.6
-    "@types/qrcode": 1.4.2
+    "@types/qrcode": 1.5.0
     "@types/random-seed": 0.3.3
     "@types/ratelimiter": 3.4.3
     "@types/rename": 1.0.4
