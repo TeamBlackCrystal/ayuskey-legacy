@@ -162,7 +162,7 @@ router.get('/api-doc', async ctx => {
 if (config.urlPreviewCors) {
 	router.use('/url', async (ctx, next) => {
 		ctx.set({
-			'Access-Control-Allow-Methods': 'GET',
+			'Access-Control-Allow-Methods': 'GET, OPTIONS',
 			'Access-Control-Allow-Origin': '*',
 		});
 		await next();
