@@ -5,22 +5,22 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@ayuskey/summaly@npm:2.5.0-rei0784.3":
-  version: 2.5.0-rei0784.3
-  resolution: "@ayuskey/summaly@npm:2.5.0-rei0784.3"
+"@ayuskey/summaly@npm:2.5.0-rei0784.4":
+  version: 2.5.0-rei0784.4
+  resolution: "@ayuskey/summaly@npm:2.5.0-rei0784.4"
   dependencies:
     cheerio: 0.22.0
-    debug: 4.3.3
+    debug: 4.3.4
     escape-regexp: 0.0.1
-    got: 11.5.1
-    html-entities: 2.3.2
+    got: 11.8.5
+    html-entities: 2.3.3
     iconv-lite: 0.6.3
     jschardet: 3.0.0
     koa: 2.13.4
-    private-ip: 2.3.3
+    private-ip: 2.3.4
     require-all: 3.0.0
     trace-redirect: 1.0.6
-  checksum: 5f6659044f54951af5c28890014c664b71176498a840d70e47a2a605569d787fe1c19eeccb44e598d96b39a82ce63899f271d77dab65e0763cea646d55c01447
+  checksum: 13f3f3cb10b8dfecd1e67ef159b05e9c780f0bd8ef6031aef9106338a276c0443f454390045612c2d0e2c02c0ea0aadd67fed5f68103ab4cf19c89d1feedf619
   languageName: node
   linkType: hard
 
@@ -538,13 +538,6 @@ __metadata:
     pluralize: ^8.0.0
     yaml-ast-parser: 0.0.43
   checksum: 5b4038eca81a71adee2d548b7c5a42c3c6faeef9770ce3040caf97ed733f73dcd1cbb7420a2c0714582ba1db7766cba80ba137bbf2bf8bf8a3561145c1925243
-  languageName: node
-  linkType: hard
-
-"@sindresorhus/is@npm:^3.0.0":
-  version: 3.1.2
-  resolution: "@sindresorhus/is@npm:3.1.2"
-  checksum: 6b68b2c0bc36beda9442c64e40e2e971999b0814af610a52d5c0bda2213061ff63d158912bd494dc8b8fa5c027ed13ec5947e4902dd9a315b2f2337221dbcb7f
   languageName: node
   linkType: hard
 
@@ -3203,7 +3196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cacheable-request@npm:^7.0.1, cacheable-request@npm:^7.0.2":
+"cacheable-request@npm:^7.0.2":
   version: 7.0.2
   resolution: "cacheable-request@npm:7.0.2"
   dependencies:
@@ -4516,18 +4509,6 @@ __metadata:
     supports-color:
       optional: true
   checksum: 2c3352e37d5c46b0d203317cd45ea0e26b2c99f2d9dfec8b128e6ceba90dfb65425f5331bf3020fe9929d7da8c16758e737f4f3bfc0fce6b8b3d503bae03298b
-  languageName: node
-  linkType: hard
-
-"debug@npm:4.3.3":
-  version: 4.3.3
-  resolution: "debug@npm:4.3.3"
-  dependencies:
-    ms: 2.1.2
-  peerDependenciesMeta:
-    supports-color:
-      optional: true
-  checksum: 14472d56fe4a94dbcfaa6dbed2dd3849f1d72ba78104a1a328047bb564643ca49df0224c3a17fa63533fd11dd3d4c8636cd861191232a2c6735af00cc2d4de16
   languageName: node
   linkType: hard
 
@@ -6595,25 +6576,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"got@npm:11.5.1":
-  version: 11.5.1
-  resolution: "got@npm:11.5.1"
-  dependencies:
-    "@sindresorhus/is": ^3.0.0
-    "@szmarczak/http-timer": ^4.0.5
-    "@types/cacheable-request": ^6.0.1
-    "@types/responselike": ^1.0.0
-    cacheable-lookup: ^5.0.3
-    cacheable-request: ^7.0.1
-    decompress-response: ^6.0.0
-    http2-wrapper: ^1.0.0-beta.5.0
-    lowercase-keys: ^2.0.0
-    p-cancelable: ^2.0.0
-    responselike: ^2.0.0
-  checksum: 3be52e602feb62a810de1337f92a054f49f5e74f8ee27ad4140331b63a99aeaddaeb8ec49b2dae493622f11ad55c7ee4bde5a7808147cc354f93b8c389957828
-  languageName: node
-  linkType: hard
-
 "got@npm:11.8.5":
   version: 11.8.5
   resolution: "got@npm:11.8.5"
@@ -7011,14 +6973,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:2.3.2":
-  version: 2.3.2
-  resolution: "html-entities@npm:2.3.2"
-  checksum: 522d8d202df301ff51b517a379e642023ed5c81ea9fb5674ffad88cff386165733d00b6089d5c2fcc644e44777d6072017b6216d8fa40f271d3610420d00a886
-  languageName: node
-  linkType: hard
-
-"html-entities@npm:^2.3.2":
+"html-entities@npm:2.3.3, html-entities@npm:^2.3.2":
   version: 2.3.3
   resolution: "html-entities@npm:2.3.3"
   checksum: 92521501da8aa5f66fee27f0f022d6e9ceae62667dae93aa6a2f636afa71ad530b7fb24a18d4d6c124c9885970cac5f8a52dbf1731741161002816ae43f98196
@@ -7185,7 +7140,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http2-wrapper@npm:^1.0.0-beta.5.0, http2-wrapper@npm:^1.0.0-beta.5.2":
+"http2-wrapper@npm:^1.0.0-beta.5.2":
   version: 1.0.3
   resolution: "http2-wrapper@npm:1.0.3"
   dependencies:
@@ -9613,7 +9568,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "misskey@workspace:."
   dependencies:
-    "@ayuskey/summaly": 2.5.0-rei0784.3
+    "@ayuskey/summaly": 2.5.0-rei0784.4
     "@ayuskey/xev": 2.0.1-rei0784.2
     "@bull-board/api": 4.2.2
     "@bull-board/koa": 4.2.2
@@ -11959,18 +11914,6 @@ __metadata:
     extend-shallow: ^2.0.1
     js-beautify: ^1.6.12
   checksum: 9c41ae0559195af2fb2496d84c6f442843e045d269d4008a6dd336f8372d7481395ed5ab23e5711b6172682c27cb0542e1ab3ca11b38da48f1109c0b701d0ef9
-  languageName: node
-  linkType: hard
-
-"private-ip@npm:2.3.3":
-  version: 2.3.3
-  resolution: "private-ip@npm:2.3.3"
-  dependencies:
-    ip-regex: ^4.3.0
-    ipaddr.js: ^2.0.1
-    is-ip: ^3.1.0
-    netmask: ^2.0.2
-  checksum: c362d1b07ecbcc01127333b659e6240f80fca8df597b87011c5276412acfc5ff2ef0453b545bcea28bd45e3642e2bfeaf07de2c431352b366f48e221e6ec6a3a
   languageName: node
   linkType: hard
 

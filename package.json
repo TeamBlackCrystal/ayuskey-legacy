@@ -40,7 +40,7 @@
 		"lodash": "^4.17.21"
 	},
 	"dependencies": {
-		"@ayuskey/summaly": "2.5.0-rei0784.3",
+		"@ayuskey/summaly": "2.5.0-rei0784.4",
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "4.2.2",
 		"@bull-board/koa": "4.2.2",
