@@ -4,3 +4,6 @@
 [submodule "misskey-assets"]
 	path = misskey-assets
 	url = https://github.com/misskey-dev/assets.git
+[submodule "packages/ayuskey-fluorite"]
+	path = packages/ayuskey-fluorite
+	url = https://github.com/TeamBlackCrystal/ayuskey-fluorite.git
