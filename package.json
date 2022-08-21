@@ -14,6 +14,7 @@
 	"main": "./index.js",
 	"private": true,
 	"scripts": {
+		"postinstall": "rm -f ./packages/ayuskey-fluorite/yarn.lock",
 		"start": "node ./index.js",
 		"init": "yarn migrate",
 		"ormconfig": "node ./built/ormconfig.js",
@@ -24,6 +25,7 @@
 		"build-webpack": "webpack",
 		"build-ts": "tsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
 		"build-gulp": "gulp build",
+		"build-fluorite": "yarn workspace ayuskey_front run build",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
 		"gulpstart": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-s gulp start",
@@ -36,6 +38,9 @@
 		"format": "gulp format",
 		"release": "shipjs prepare"
 	},
+	"workspaces": [
+		"packages/ayuskey-fluorite"
+	],
 	"resolutions": {
 		"lodash": "^4.17.21"
 	},
