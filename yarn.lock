@@ -2274,9 +2274,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apexcharts@npm:3.35.4":
-  version: 3.35.4
-  resolution: "apexcharts@npm:3.35.4"
+"apexcharts@npm:3.35.5":
+  version: 3.35.5
+  resolution: "apexcharts@npm:3.35.5"
   dependencies:
     svg.draggable.js: ^2.2.2
     svg.easing.js: ^2.0.0
@@ -2284,7 +2284,7 @@ __metadata:
     svg.pathmorphing.js: ^0.1.3
     svg.resize.js: ^1.4.3
     svg.select.js: ^3.0.1
-  checksum: 07a42ad0f4bbf41630a44b27ffb01d4d468e535ea2b407d735706354cebb467ff71075500c0f1b2622fa76c9b2a7721fabddad31e1fc0a05e9437daaa4fdc976
+  checksum: 33df510b9dff3a645538b560108d316206a49a87042585086af63373bd68eebadb2a2e3d108801a81a857e9c585458a3ec123971a74afd3f204fb4dfbab569fa
   languageName: node
   linkType: hard
 
@@ -9695,7 +9695,7 @@ __metadata:
     "@typescript-eslint/parser": 5.33.0
     abort-controller: 3.0.0
     animejs: 3.2.1
-    apexcharts: 3.35.4
+    apexcharts: 3.35.5
     autobind-decorator: 2.4.0
     autosize: 5.0.1
     autwh: 0.1.0
