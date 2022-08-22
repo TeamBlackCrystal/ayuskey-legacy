@@ -5,7 +5,8 @@
 import { URL } from 'url';
 import * as fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';import * as yaml from 'js-yaml';
+import { dirname } from 'path';
+import * as yaml from 'js-yaml';
 import { Source, Mixin } from './types';
 
 //const _filename = fileURLToPath(import.meta.url);
@@ -26,6 +27,7 @@ const path = process.env.NODE_ENV == 'test'
 
 export default function load() {
 	const meta = JSON.parse(fs.readFileSync(`${_dirname}/../meta.json`, 'utf-8'));
+	const fluoriteManifest = JSON.parse(fs.readFileSync(`${_dirname}/../../packages/ayuskey-fluorite/dist/manifest.json`, 'utf-8'));
 	const config = yaml.load(fs.readFileSync(path, 'utf-8')) as Source;
 
 	const mixin = {} as Mixin;
@@ -46,6 +48,7 @@ export default function load() {
 	mixin.authUrl = `${mixin.scheme}://${mixin.host}/auth`;
 	mixin.driveUrl = `${mixin.scheme}://${mixin.host}/files`;
 	mixin.userAgent = `Misskey/${meta.version} (${config.url})`;
+	mixin.fluoriteEntry = fluoriteManifest['src/main.tsx'];
 
 	if (config.autoAdmin == null) config.autoAdmin = false;
 	if (config.signToActivityPubGet == null) config.signToActivityPubGet = true;

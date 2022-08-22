@@ -1,0 +1,34 @@
+doctype html
+
+block loadClientEntry
+	- const fluoriteEntry = getFluoriteEntry();
+
+html
+
+	head
+		meta(name='robots' content='noindex')
+		meta(charset='UTF-8')
+		link(rel='icon' type='image/svg+xml' href='/vite.svg')
+		meta(name='viewport' content='width=device-width, initial-scale=1.0')
+		title fluorite
+		// script(type='module' crossorigin='' src='./../../../../packages/ayuskey-fluorite/dist/assets/index.98540dd7.js')
+		// script(type='module' crossorigin='' src='./../../../../built/client/assets/index.98540dd7.js')
+		//include ./../../../../built/client/assets/index.98540dd7.js
+		//script(type='module')
+		//	include ./../../../../packages/ayuskey-fluorite/dist/assets/index.0ac547fd.js
+
+		script.
+			var FLUORITE_ENTRY = "#{fluoriteEntry.file}";
+
+		script 
+			include ../fluoriteBoot.js
+
+		script
+			include ./../../../../built/client/assets/safe.js
+
+	body
+		noscript: p
+			| JavaScriptを有効にしてください
+			br
+			| Please turn on your JavaScript
+		div#root

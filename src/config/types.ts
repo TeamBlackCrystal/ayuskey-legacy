@@ -96,6 +96,7 @@ export type Mixin = {
 	authUrl: string;
 	driveUrl: string;
 	userAgent: string;
+	fluoriteEntry: string;
 };
 
 export type Config = Source & Mixin;

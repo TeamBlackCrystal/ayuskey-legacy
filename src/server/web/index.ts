@@ -25,11 +25,13 @@ import { ensure } from '../../prelude/ensure';
 import { getConnection } from 'typeorm';
 import { redisClient } from '../../db/redis';
 import { queues } from '@/queue/queues';
+import { readFileSync } from 'node:fs';
 
 const env = process.env.NODE_ENV;
 
 const staticAssets = `${__dirname}/../../../assets/client/`;
 const client = `${__dirname}/../../client/`;
+const fluoriteAssets = `${__dirname}/../../../packages/ayuskey-fluorite/dist/assets`
 
 // Init app
 const app = new Koa();
@@ -73,6 +75,9 @@ app.use(serverAdapter.registerPlugin());
 app.use(views(__dirname + '/views', {
 	extension: 'pug',
 	options: {
+		getFluoriteEntry: () => process.env.NODE_ENV === 'production' ?
+			config.fluoriteEntry :
+			JSON.parse(readFileSync(`${__dirname}/../../../packages/ayuskey-fluorite/dist/manifest.json`, 'utf-8'))['src/main.tsx'],
 		config
 	}
 }));
@@ -475,6 +480,21 @@ router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'gam
 
 router.get('/flush', async ctx => {
 	await ctx.render('flush');
+});
+
+router.get('/fluorite/assets/*', async ctx => {
+	if (env !== 'production') {
+		ctx.set('Cache-Control', 'no-store');
+	}
+	await send(ctx as any, ctx.path.replace('/fluorite/assets/', ''), {
+		root: fluoriteAssets,
+		maxage: ms('7 days'),
+	});
+});
+
+router.get(['/fluorite', '/fluorite/*'], async ctx => {
+	await ctx.render('fluorite');
+	setCache(ctx, 'public, max-age=300');
 });
 
 // streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる

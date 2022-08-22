@@ -14,7 +14,8 @@
 	"main": "./index.js",
 	"private": true,
 	"scripts": {
-		"postinstall": "rm -f ./packages/ayuskey-fluorite/yarn.lock",
+		"postinstall": "yarn setup:fluorite",
+		"setup:fluorite": "cd ./packages/ayuskey-fluorite && pnpm install",
 		"start": "node ./index.js",
 		"init": "yarn migrate",
 		"ormconfig": "node ./built/ormconfig.js",
@@ -25,7 +26,7 @@
 		"build-webpack": "webpack",
 		"build-ts": "tsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
 		"build-gulp": "gulp build",
-		"build-fluorite": "yarn workspace ayuskey_front run build",
+		"build-fluorite": "cd ./packages/ayuskey-fluorite && pnpm build",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
 		"gulpstart": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-s gulp start",
@@ -38,9 +39,6 @@
 		"format": "gulp format",
 		"release": "shipjs prepare"
 	},
-	"workspaces": [
-		"packages/ayuskey-fluorite"
-	],
 	"resolutions": {
 		"lodash": "^4.17.21"
 	},
@@ -298,6 +296,7 @@
 		"form-data": "4.0.0",
 		"node-gyp": "9.1.0",
 		"npm-run-all": "4.1.5",
+		"pnpm": "7.9.3",
 		"prettier": "2.7.1",
 		"tslint": "5.20.1",
 		"tslint-sonarts": "1.9.0",
