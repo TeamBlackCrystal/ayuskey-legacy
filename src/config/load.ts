@@ -48,7 +48,7 @@ export default function load() {
 	mixin.authUrl = `${mixin.scheme}://${mixin.host}/auth`;
 	mixin.driveUrl = `${mixin.scheme}://${mixin.host}/files`;
 	mixin.userAgent = `Misskey/${meta.version} (${config.url})`;
-	mixin.fluoriteEntry = fluoriteManifest['src/main.tsx'];
+	mixin.fluoriteEntry = fluoriteManifest['index.html'];
 
 	if (config.autoAdmin == null) config.autoAdmin = false;
 	if (config.signToActivityPubGet == null) config.signToActivityPubGet = true;

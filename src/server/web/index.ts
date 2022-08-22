@@ -77,7 +77,7 @@ app.use(views(__dirname + '/views', {
 	options: {
 		getFluoriteEntry: () => process.env.NODE_ENV === 'production' ?
 			config.fluoriteEntry :
-			JSON.parse(readFileSync(`${__dirname}/../../../packages/ayuskey-fluorite/dist/manifest.json`, 'utf-8'))['src/main.tsx'],
+			JSON.parse(readFileSync(`${__dirname}/../../../packages/ayuskey-fluorite/dist/manifest.json`, 'utf-8'))['index.html'],
 		config
 	}
 }));
