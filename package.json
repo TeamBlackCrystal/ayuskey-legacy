@@ -14,8 +14,9 @@
 	"main": "./index.js",
 	"private": true,
 	"scripts": {
-		"postinstall": "yarn setup:fluorite",
-		"setup:fluorite": "cd ./packages/ayuskey-fluorite && pnpm install",
+		"postinstall": "yarn build-helper && yarn submodule-update",
+		"submodule-update": "yarn workspace fluorite-helper node ./built/submoduleUpdate.js",
+		"setup:fluorite": "cd ./packages/ayuskey-fluorite || pnpm install",
 		"start": "node ./index.js",
 		"init": "yarn migrate",
 		"ormconfig": "node ./built/ormconfig.js",
@@ -26,7 +27,8 @@
 		"build-webpack": "webpack",
 		"build-ts": "tsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
 		"build-gulp": "gulp build",
-		"build-fluorite": "cd ./packages/ayuskey-fluorite && pnpm build",
+		"build-fluorite": "cd ./packages/ayuskey-fluorite || pnpm build",
+		"build-helper": "yarn workspace fluorite-helper build",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
 		"gulpstart": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-s gulp start",
@@ -39,6 +41,9 @@
 		"format": "gulp format",
 		"release": "shipjs prepare"
 	},
+	"workspaces": [
+		"packages/fluorite-helper"
+	],
 	"resolutions": {
 		"lodash": "^4.17.21"
 	},
