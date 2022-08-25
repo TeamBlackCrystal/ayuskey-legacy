@@ -9865,7 +9865,7 @@ __metadata:
     vue-js-modal: 1.3.35
     vue-loader: 15.10.0
     vue-marquee-text-component: 1.2.0
-    vue-router: 3.5.4
+    vue-router: 3.6.4
     vue-sequential-entrance: 1.1.3
     vue-style-loader: 4.1.3
     vue-svg-inline-loader: 2.1.5
@@ -15597,10 +15597,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-router@npm:3.5.4":
-  version: 3.5.4
-  resolution: "vue-router@npm:3.5.4"
-  checksum: 0975860dc849e99935c2bf8dae8e1e2db036736c4d45d6aef2e6c8a111122f0ecbc0aa9a3d434982530d831eadde1c06cf27ca6e2b6a6c21b82f5fd2f25e028c
+"vue-router@npm:3.6.4":
+  version: 3.6.4
+  resolution: "vue-router@npm:3.6.4"
+  checksum: 4c86ad39283b90086bd58fd9bfb71b5def4fbf227211e6dceaa1c6957af3d6422d5391b7b9e3f257df3b59907473e5b48434fdede9a8f0a30ba02df9f637d233
   languageName: node
   linkType: hard
 
