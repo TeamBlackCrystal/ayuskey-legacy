@@ -511,23 +511,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redocly/ajv@npm:^8.6.4":
-  version: 8.6.4
-  resolution: "@redocly/ajv@npm:8.6.4"
+"@redocly/ajv@npm:^8.6.5":
+  version: 8.6.5
+  resolution: "@redocly/ajv@npm:8.6.5"
   dependencies:
     fast-deep-equal: ^3.1.1
     json-schema-traverse: ^1.0.0
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
-  checksum: fcf2529289e9e210a8c11246b62c9b0415b7966532e326f89d8d788279872a154e173182e3c0c773faa7036c6085c4f97b23b58d1314091322c5d1a561cce8db
+  checksum: 332af8581d3455bc45acf0806a1d90812946fa213888b7a1da1a573d903f361b69da71a128a936ed4911fe00e0eb41e57e633cfed4cbaf55a93eef86da4bb866
   languageName: node
   linkType: hard
 
-"@redocly/openapi-core@npm:1.0.0-beta.106":
-  version: 1.0.0-beta.106
-  resolution: "@redocly/openapi-core@npm:1.0.0-beta.106"
+"@redocly/openapi-core@npm:1.0.0-beta.108":
+  version: 1.0.0-beta.108
+  resolution: "@redocly/openapi-core@npm:1.0.0-beta.108"
   dependencies:
-    "@redocly/ajv": ^8.6.4
+    "@redocly/ajv": ^8.6.5
     "@types/node": ^14.11.8
     colorette: ^1.2.0
     js-levenshtein: ^1.1.6
@@ -537,7 +537,7 @@ __metadata:
     node-fetch: ^2.6.1
     pluralize: ^8.0.0
     yaml-ast-parser: 0.0.43
-  checksum: 5b4038eca81a71adee2d548b7c5a42c3c6faeef9770ce3040caf97ed733f73dcd1cbb7420a2c0714582ba1db7766cba80ba137bbf2bf8bf8a3561145c1925243
+  checksum: 1a8c39f768b7a6f0572eef3fbc509fdf15934662808175af48f94b8f777f396f8743e1596b3467059ff1e09b7c4fb07a6ec0eb2c0ba70438c6664662c63b7a4b
   languageName: node
   linkType: hard
 
@@ -9640,7 +9640,7 @@ __metadata:
     "@koa/multer": 3.0.0
     "@koa/router": 8.0.8
     "@popperjs/core": 2.11.6
-    "@redocly/openapi-core": 1.0.0-beta.106
+    "@redocly/openapi-core": 1.0.0-beta.108
     "@types/animejs": 3.1.5
     "@types/bcryptjs": 2.4.2
     "@types/bull": 3.15.9
