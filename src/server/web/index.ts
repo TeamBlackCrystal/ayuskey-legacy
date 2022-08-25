@@ -112,6 +112,13 @@ router.get('/assets/*', async ctx => {
 		root: client,
 		maxage: ms('7 days'),
 	});
+
+	if(ctx.status === 404) {
+		await send(ctx as any, ctx.path, {
+			root: fluoriteAssets,
+			maxage: ms('7 days'),
+		});
+	}
 });
 
 // Apple touch icon
