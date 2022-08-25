@@ -1699,6 +1699,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vue/compiler-sfc@npm:2.7.10":
+  version: 2.7.10
+  resolution: "@vue/compiler-sfc@npm:2.7.10"
+  dependencies:
+    "@babel/parser": ^7.18.4
+    postcss: ^8.4.14
+    source-map: ^0.6.1
+  checksum: f20d79183ed2b9242d2c1ff196ddc9c3c384f541b85ca59543842af098653c3c0732a9b2f28dd031383bb9e02a40a5a001b4c6bbcb12fbd389372225b12b9020
+  languageName: node
+  linkType: hard
+
 "@vue/compiler-sfc@npm:2.7.8":
   version: 2.7.8
   resolution: "@vue/compiler-sfc@npm:2.7.8"
@@ -9693,6 +9704,7 @@ __metadata:
     "@types/ws": 8.5.3
     "@typescript-eslint/eslint-plugin": 5.33.0
     "@typescript-eslint/parser": 5.33.0
+    "@vue/compiler-sfc": 2.7.10
     abort-controller: 3.0.0
     animejs: 3.2.1
     apexcharts: 3.35.4
@@ -9845,7 +9857,7 @@ __metadata:
     uuid: 8.3.2
     v-animate-css: 0.0.5
     v-debounce: 0.1.2
-    vue: 2.7.8
+    vue: 2.7.10
     vue-color: 2.8.1
     vue-content-loading: 1.6.0
     vue-cropperjs: 4.2.0
@@ -9857,7 +9869,7 @@ __metadata:
     vue-sequential-entrance: 1.1.3
     vue-style-loader: 4.1.3
     vue-svg-inline-loader: 2.1.5
-    vue-template-compiler: 2.7.8
+    vue-template-compiler: 2.7.10
     vuedraggable: 2.24.3
     vuewordcloud: 18.7.12
     vuex: 3.6.2
@@ -15620,13 +15632,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-template-compiler@npm:2.7.8":
-  version: 2.7.8
-  resolution: "vue-template-compiler@npm:2.7.8"
+"vue-template-compiler@npm:2.7.10":
+  version: 2.7.10
+  resolution: "vue-template-compiler@npm:2.7.10"
   dependencies:
     de-indent: ^1.0.2
     he: ^1.2.0
-  checksum: e0886488f46055c6e8f59c57fdcc624d1b241aaa0995977482381124a4bf602142743bb6127cf13fa8b04e4c1070253c7aa9b77abc158cf7ab988b223cddbf24
+  checksum: 52e4324d93ea5ecf6875c94eae99d3d4197cfb13538b6c2f5020df1776fb277e329325091c41da596b3cf1c7dabd56f50e2a538e2fc3d5ae23438d08471fdc8d
   languageName: node
   linkType: hard
 
@@ -15637,7 +15649,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:2.7.8, vue@npm:^2.5.13, vue@npm:^2.5.17":
+"vue@npm:2.7.10":
+  version: 2.7.10
+  resolution: "vue@npm:2.7.10"
+  dependencies:
+    "@vue/compiler-sfc": 2.7.10
+    csstype: ^3.1.0
+  checksum: 97887eea9ae0c7ec7309dcaed1ac9bb65803af235f63f629fe21df959be3c1b801f8aa7d1e85428624e149e5f47706950d0efe09f19b6a6e3b4d38a6352d5c71
+  languageName: node
+  linkType: hard
+
+"vue@npm:^2.5.13, vue@npm:^2.5.17":
   version: 2.7.8
   resolution: "vue@npm:2.7.8"
   dependencies:
