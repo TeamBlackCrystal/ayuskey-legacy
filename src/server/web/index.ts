@@ -87,9 +87,27 @@ app.use(favicon(`${client}/assets/favicon.png`));
 
 // Common request handler
 app.use(async (ctx, next) => {
-	// IFrameの中に入れられないようにする
-	ctx.set('X-Frame-Options', 'DENY');
-	await next();
+	try {
+		// IFrameの中に入れられないようにする
+		ctx.set('X-Frame-Options', 'DENY');
+		await next();
+
+		if(ctx.status === 404 && ctx.path.includes('/assets/')) {
+			if (env !== 'production') {
+				ctx.set('Cache-Control', 'no-store');
+			}
+
+			await send(ctx as any, ctx.path, {
+				root: fluoriteAssets,
+				maxage: ms('7 days'),
+			});
+		}
+	} catch(err) {
+		console.log(err)
+		ctx.status = (err as any).status || 500;
+    ctx.body = (err as any).message;
+    ctx.app.emit("error", ctx, err);
+	}
 });
 
 // Init router
@@ -104,7 +122,7 @@ router.get('/static-assets/*', async ctx => {
 	});
 });
 
-router.get(['/assets/:path', '/assets/*'], async ctx => {
+router.get('/assets/*', async ctx => {
 	if (env !== 'production') {
 		ctx.set('Cache-Control', 'no-store');
 	}
@@ -112,10 +130,6 @@ router.get(['/assets/:path', '/assets/*'], async ctx => {
 		root: client,
 		maxage: ms('7 days'),
 	});
-
-	if(ctx.status === 404) {
-		ctx.redirect(`/fluorite/assets/${ctx.params.path}`)
-	}
 });
 
 // Apple touch icon
