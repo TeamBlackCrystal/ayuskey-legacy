@@ -197,7 +197,7 @@ export default Vue.extend({
 		color var(--adminDashboardHeaderFg)
 		font-size 13px
 
-		>>> .instance
+		:deep(.instance)
 			margin 0 10px
 
 			> b

@@ -378,12 +378,12 @@ export default Vue.extend({
 		> .blur
 			backdrop-filter blur(10px)
 
-		>>> header.sub
+		:deep(header.sub)
 			padding 4px 8px
 			color var(--text)
 			font-size 12px
 
-		>>> div.list
+		:deep(div.list)
 			display grid
 			grid-template-columns 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
 			gap 4px

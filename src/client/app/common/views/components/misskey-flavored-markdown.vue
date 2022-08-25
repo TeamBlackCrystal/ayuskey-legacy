@@ -21,7 +21,7 @@ export default Vue.extend({
 		white-space pre
 		word-wrap normal // https://codeday.me/jp/qa/20190424/690106.html
 
-	>>> .title
+	:deep(.title)
 		display block
 		margin-bottom 4px
 		padding 4px
@@ -30,14 +30,17 @@ export default Vue.extend({
 		background var(--mfmTitleBg)
 		border-radius 4px
 
-	>>> .quote
+	:deep(.quote)
 		display block
 		margin 8px
 		padding 6px 0 6px 12px
 		color var(--mfmQuote)
 		border-left solid 3px var(--mfmQuoteLine)
 
-	>>> pre code
+	:deep(pre)
+		font-size 80%
+
+	:deep(code)
 		font-size 80%
 
 </style>
