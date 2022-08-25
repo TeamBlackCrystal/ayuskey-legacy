@@ -4,10 +4,15 @@
 
 <script lang="ts">
 import { version, codename } from '../../../config';
-import define from '../../../common/define-widget';
-export default define({
+import define from '../../../common/define-widget-define-component';
+import { defineComponent } from 'vue';
+
+const widget = define({
 	name: 'version'
-}).extend({
+})
+
+export default defineComponent({
+	extends: widget,
 	data() {
 		return {
 			version,

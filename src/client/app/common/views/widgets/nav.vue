@@ -9,10 +9,16 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-export default define({
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+
+const widget = define({
 	name: 'nav'
 });
+
+export default defineComponent({
+	extends: widget,
+})
 </script>
 
 <style lang="stylus" scoped>

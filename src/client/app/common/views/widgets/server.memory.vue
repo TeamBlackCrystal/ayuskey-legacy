@@ -1,47 +1,39 @@
 <template>
-<div class="memory">
-	<x-pie class="pie" :value="usage"/>
-	<div>
-		<p><fa icon="memory"/>Memory</p>
-		<p>Total: {{ total | bytes(1) }}</p>
-		<p>Used: {{ used | bytes(1) }}</p>
-		<p>Free: {{ free | bytes(1) }}</p>
+	<div class="memory">
+		<x-pie class="pie" :value="usage" />
+		<div>
+			<p><fa icon="memory" />Memory</p>
+			<p>Total: {{ total | bytes(1) }}</p>
+			<p>Used: {{ used | bytes(1) }}</p>
+			<p>Free: {{ free | bytes(1) }}</p>
+		</div>
 	</div>
-</div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import XPie from './server.pie.vue';
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
+import Stream from "../../scripts/stream";
+import XPie from "./server.pie.vue";
 
-export default Vue.extend({
-	components: {
-		XPie
-	},
-	props: ['connection'],
-	data() {
-		return {
-			usage: 0,
-			total: 0,
-			used: 0,
-			free: 0
-		};
-	},
-	mounted() {
-		this.connection.on('stats', this.onStats);
-	},
-	beforeDestroy() {
-		this.connection.off('stats', this.onStats);
-	},
-	methods: {
-		onStats(stats) {
-			stats.mem.free = stats.mem.total - stats.mem.used;
-			this.usage = stats.mem.used / stats.mem.total;
-			this.total = stats.mem.total;
-			this.used = stats.mem.used;
-			this.free = stats.mem.free;
-		}
-	}
+const { connection } = defineProps({ connection: { type: Stream } });
+let usage = ref(0);
+let total = ref(0);
+let used = ref(0);
+let free = ref(0);
+
+const onStats = (stats) => {
+	stats.mem.free = stats.mem.total - stats.mem.used;
+	usage.value = stats.mem.used / stats.mem.total;
+	total.value = stats.mem.total;
+	used.value = stats.mem.used;
+	free.value = stats.mem.free;
+};
+
+onMounted(() => {
+	connection.on("stats", onStats);
+});
+onUnmounted(() => {
+	connection.off("stats", onStats);
 });
 </script>
 
@@ -72,5 +64,4 @@ export default Vue.extend({
 		content ""
 		display block
 		clear both
-
 </style>

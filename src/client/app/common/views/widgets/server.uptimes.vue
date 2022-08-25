@@ -1,35 +1,32 @@
 <template>
-<div class="uptimes">
-	<p>Uptimes</p>
-	<p>Process: {{ process }}</p>
-	<p>OS: {{ os }}</p>
-</div>
+	<div class="uptimes">
+		<p>Uptimes</p>
+		<p>Process: {{ process }}</p>
+		<p>OS: {{ os }}</p>
+	</div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import formatUptime from '../../scripts/format-uptime';
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
+import formatUptime from "../../scripts/format-uptime";
+import Stream from "../../scripts/stream";
 
-export default Vue.extend({
-	props: ['connection'],
-	data() {
-		return {
-			process: 0,
-			os: 0
-		};
-	},
-	mounted() {
-		this.connection.on('stats', this.onStats);
-	},
-	beforeDestroy() {
-		this.connection.off('stats', this.onStats);
-	},
-	methods: {
-		onStats(stats) {
-			this.process = formatUptime(stats.process_uptime);
-			this.os = formatUptime(stats.os_uptime);
-		}
-	}
+const { connection } = defineProps({ connection: { type: Stream } });
+
+let process = ref(0);
+let os = ref(0);
+
+const onStats = (stats) => {
+	process.value = formatUptime(stats.process_uptime);
+	os.value = formatUptime(stats.os_uptime);
+};
+
+onMounted(() => {
+	connection.on("stats", onStats);
+});
+
+onUnmounted(() => {
+	connection.off("stats", onStats);
 });
 </script>
 

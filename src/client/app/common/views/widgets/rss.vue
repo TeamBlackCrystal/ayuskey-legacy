@@ -15,16 +15,20 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
-export default define({
+const widget = define({
 	name: 'rss',
 	props: () => ({
 		compact: false,
 		url: 'https://www.gizmodo.jp/index.xml'
 	})
-}).extend({
+})
+
+export default defineComponent({
+	extends: widget,
 	i18n: i18n(),
 	data() {
 		return {

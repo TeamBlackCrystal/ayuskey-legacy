@@ -1,25 +1,21 @@
 <template>
-<code class="inline" v-if="inline">{{ code }}</code>
-<highlightjs v-else :language="lang" :code="code"/>
+	<code class="inline" v-if="inline">{{ code }}</code>
+	<highlightjs v-else :language="lang" :code="code" />
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
-	props: {
-		code: {
-			type: String,
-			required: true
-		},
-		lang: {
-			type: String,
-			required: false
-		},
-		inline: {
-			type: Boolean,
-			required: false
-		}
+<script setup lang="ts">
+const { code, lang, inline } = defineProps({
+	code: {
+		type: String,
+		required: true,
+	},
+	lang: {
+		type: String,
+		required: false,
+	},
+	inline: {
+		type: Boolean,
+		required: false,
 	},
 });
 </script>
