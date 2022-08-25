@@ -14,8 +14,8 @@
 	"main": "./index.js",
 	"private": true,
 	"scripts": {
-		"postinstall": "yarn build-helper && yarn submodule-update",
 		"submodule-update": "yarn workspace fluorite-helper node ./built/submoduleUpdate.js",
+		"setup": "yarn build-helper && yarn submodule-update",
 		"setup:fluorite": "cd ./packages/ayuskey-fluorite || pnpm install",
 		"start": "node ./index.js",
 		"init": "yarn migrate",
