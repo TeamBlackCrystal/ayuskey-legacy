@@ -202,7 +202,7 @@ export default Vue.extend({
 		height 100%
 		overflow hidden
 
-		>>> div
+		:deep(div)
 			position absolute
 			width 2px
 			height 2px
@@ -215,7 +215,7 @@ export default Vue.extend({
 	&.round > .ripples
 		border-radius 6px
 
-	&.primary > .ripples >>> div
+	&.primary > .ripples :deep(div)
 		background rgba(0, 0, 0, 0.15)
 
 	> .content

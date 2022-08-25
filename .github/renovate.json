@@ -13,11 +13,11 @@
 	"packageRules": [
 		{
 			"matchManagers": ["npm"],
-			"addLabels": ["🧶JavaScript"]
+			"addLabels": ["topic/JavaScript🧶"]
 		},
 		{
 			"matchManagers": ["docker-compose", "dockerfile"],
-			"addLabels": ["⚓Docker "]
+			"addLabels": ["topic/Docker⚓"]
 		}
 	]
 }
