@@ -104,7 +104,7 @@ router.get('/static-assets/*', async ctx => {
 	});
 });
 
-router.get('/assets/*', async ctx => {
+router.get(['/assets/:path', '/assets/*'], async ctx => {
 	if (env !== 'production') {
 		ctx.set('Cache-Control', 'no-store');
 	}
@@ -114,10 +114,7 @@ router.get('/assets/*', async ctx => {
 	});
 
 	if(ctx.status === 404) {
-		await send(ctx as any, ctx.path, {
-			root: fluoriteAssets,
-			maxage: ms('7 days'),
-		});
+		ctx.redirect(`/fluorite/assets/${ctx.params.path}`)
 	}
 });
 
