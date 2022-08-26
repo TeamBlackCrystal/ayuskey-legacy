@@ -8345,10 +8345,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsrsasign@npm:10.5.26":
-  version: 10.5.26
-  resolution: "jsrsasign@npm:10.5.26"
-  checksum: 1d717c7a0d2e4e745f4c819b0291a2f7a3c200001fce00c112fb9566d8f7bce108a86721a6eba804ca56f67885cfbf23167e592df1e568ca6f9855ca1f050682
+"jsrsasign@npm:10.5.27":
+  version: 10.5.27
+  resolution: "jsrsasign@npm:10.5.27"
+  checksum: 77ebac65d39399e7702002ed75a39f6af9bfe0f839f19c65a878e6f2d5a96fb19433628509c344e25531794d84c913dbd7b1c522188883c5258fd531fb992e17
   languageName: node
   linkType: hard
 
@@ -9724,7 +9724,7 @@ __metadata:
     json5: 2.2.1
     json5-loader: 4.0.1
     jsonld: 6.0.0
-    jsrsasign: 10.5.26
+    jsrsasign: 10.5.27
     katex: 0.16.0
     koa: 2.13.4
     koa-bodyparser: 4.3.0
