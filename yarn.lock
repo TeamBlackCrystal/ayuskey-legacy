@@ -9779,7 +9779,7 @@ __metadata:
     require-all: 3.0.0
     rimraf: 3.0.2
     rndstr: 1.0.0
-    sass: 1.54.3
+    sass: 1.54.5
     sass-loader: 13.0.2
     seedrandom: 3.0.5
     sharp: 0.30.7
@@ -12990,16 +12990,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.54.3":
-  version: 1.54.3
-  resolution: "sass@npm:1.54.3"
+"sass@npm:1.54.5":
+  version: 1.54.5
+  resolution: "sass@npm:1.54.5"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 9b405f602c0dcdad85e7f216cfa5ca9dfe3f7ded7b3928817cfe8dbfde0cd27b70f4cff724e229b233b3f51a06e71d3fcbbd7d3a0ff92b3e40ac57bc05b90b48
+  checksum: ba7a65aa7508419468547c8de4d59e537bec874f52823f501663dc98d80dfd2d374e8ea73a31200db7f510b8816c925edf89728c9b36889f4e6673d3e94ec100
   languageName: node
   linkType: hard
 
