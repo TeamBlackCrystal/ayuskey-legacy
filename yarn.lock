@@ -5,6 +5,13 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@adobe/css-tools@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@adobe/css-tools@npm:4.0.1"
+  checksum: 80226e2229024c21da9ffa6b5cd4a34b931f071e06f45aba4777ade071d7a6c94605cf73b13718b0c4b34e8b124c65c607b82eaa53a326d3eb73d9682a04a593
+  languageName: node
+  linkType: hard
+
 "@ayuskey/summaly@npm:2.5.0-rei0784.4":
   version: 2.5.0-rei0784.4
   resolution: "@ayuskey/summaly@npm:2.5.0-rei0784.4"
@@ -4302,17 +4309,6 @@ __metadata:
     source-map-resolve: ^0.5.2
     urix: ^0.1.0
   checksum: a35d483c5ccc04bcde3b1e7393d58ad3eee1dd6956df0f152de38e46a17c0ee193c30eec6b1e59831ad0e74599385732000e95987fcc9cb2b16c6d951bae49e1
-  languageName: node
-  linkType: hard
-
-"css@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "css@npm:3.0.0"
-  dependencies:
-    inherits: ^2.0.4
-    source-map: ^0.6.1
-    source-map-resolve: ^0.6.0
-  checksum: 4273ac816ddf99b99acb9c1d1a27d86d266a533cc01118369d941d8e8a78277a83cad3315e267a398c509d930fbb86504e193ea1ebc620a4a4212e06fe76e8be
   languageName: node
   linkType: hard
 
@@ -9788,7 +9784,7 @@ __metadata:
     sonic-channel: 1.2.14
     speakeasy: 2.0.0
     stringz: 2.1.0
-    stylus: 0.58.1
+    stylus: 0.59.0
     stylus-loader: 7.0.0
     syslog-pro: 1.0.0
     systeminformation: 5.12.4
@@ -13527,16 +13523,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-resolve@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "source-map-resolve@npm:0.6.0"
-  dependencies:
-    atob: ^2.1.2
-    decode-uri-component: ^0.2.0
-  checksum: fe503b9e5dac1c54be835282fcfec10879434e7b3ee08a9774f230299c724a8d403484d9531276d1670c87390e0e4d1d3f92b14cca6e4a2445ea3016b786ecd4
-  languageName: node
-  linkType: hard
-
 "source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
@@ -14009,18 +13995,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylus@npm:0.58.1":
-  version: 0.58.1
-  resolution: "stylus@npm:0.58.1"
+"stylus@npm:0.59.0":
+  version: 0.59.0
+  resolution: "stylus@npm:0.59.0"
   dependencies:
-    css: ^3.0.0
+    "@adobe/css-tools": ^4.0.1
     debug: ^4.3.2
     glob: ^7.1.6
     sax: ~1.2.4
     source-map: ^0.7.3
   bin:
     stylus: bin/stylus
-  checksum: 58057736deca6cb4c8b1c8811def119ed093436e6b48448b14a246b28070cbeb996fa944444ff02fd84f89d6b566251d04c56e8dc193a53a9053783da850baa2
+  checksum: 2faf4a5618747c17b7d10854e40efdd43b438a6cf99d197b0231578f5091bfe9313663d846b5666bb37140140420c51606bb127fd877bbf2db46730c01403b01
   languageName: node
   linkType: hard
 
