@@ -7227,6 +7227,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"http-errors@npm:~1.4.0":
+  version: 1.4.0
+  resolution: "http-errors@npm:1.4.0"
+  dependencies:
+    inherits: 2.0.1
+    statuses: ">= 1.2.1 < 2"
+  checksum: e25e56567f696f38009bdeeebf6ad0b5706113f21ae2241d4f1438ce303182b649187c5a3b68c4c3a07cd4df7192d58d22186a0b491c638bf3a7ea2626448681
+  languageName: node
+  linkType: hard
+
 "http-errors@npm:~1.6.2":
   version: 1.6.3
   resolution: "http-errors@npm:1.6.3"
@@ -7491,6 +7501,13 @@ __metadata:
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4a48a733847879d6cf6691860a6b1e3f0f4754176e4d71494c41f3475553768b10f84b5ce1d40fbd0e34e6bfbb864ee35858ad4dd2cf31e02fc4a154b724d7f1
+  languageName: node
+  linkType: hard
+
+"inherits@npm:2.0.1":
+  version: 2.0.1
+  resolution: "inherits@npm:2.0.1"
+  checksum: 6536b9377296d4ce8ee89c5c543cb75030934e61af42dba98a428e7d026938c5985ea4d1e3b87743a5b834f40ed1187f89c2d7479e9d59e41d2d1051aefba07b
   languageName: node
   linkType: hard
 
@@ -8701,6 +8718,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"koa-proxies@npm:^0.12.2":
+  version: 0.12.2
+  resolution: "koa-proxies@npm:0.12.2"
+  dependencies:
+    http-proxy: ^1.18.1
+    path-match: ^1.2.4
+    uuid: ^8.3.2
+  peerDependencies:
+    koa: ">=2"
+  checksum: e84f6e09791ef9cdf53afc4edb2715c6c2b3795ec46dc9912b8ed4627da1217dc4e3fd51e3cdfac5217f937194bc021ed8ce1abbcd484edea73fcad0fc7951b7
+  languageName: node
+  linkType: hard
+
 "koa-router@npm:^10.0.0":
   version: 10.1.1
   resolution: "koa-router@npm:10.1.1"
@@ -9907,6 +9937,7 @@ __metadata:
     koa-json-body: 5.3.0
     koa-logger: 3.2.1
     koa-mount: 4.0.0
+    koa-proxies: ^0.12.2
     koa-send: 5.0.1
     koa-slow: 2.1.0
     koa-views: 8.0.0
@@ -11268,6 +11299,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path-match@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "path-match@npm:1.2.4"
+  dependencies:
+    http-errors: ~1.4.0
+    path-to-regexp: ^1.0.0
+  checksum: 60946ed9fdd922da2d9688abc0dc05cd537a2ff06d192518dcbe654302ad70499050a9297ea23a26c3e1af32d5a867d5f6e0eb892f38fa032afd70df85be05f0
+  languageName: node
+  linkType: hard
+
 "path-parse@npm:^1.0.7":
   version: 1.0.7
   resolution: "path-parse@npm:1.0.7"
@@ -11298,7 +11339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:1.x":
+"path-to-regexp@npm:1.x, path-to-regexp@npm:^1.0.0":
   version: 1.8.0
   resolution: "path-to-regexp@npm:1.8.0"
   dependencies:
@@ -14013,7 +14054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"statuses@npm:>= 1.4.0 < 2, statuses@npm:>= 1.5.0 < 2, statuses@npm:^1.5.0":
+"statuses@npm:>= 1.2.1 < 2, statuses@npm:>= 1.4.0 < 2, statuses@npm:>= 1.5.0 < 2, statuses@npm:^1.5.0":
   version: 1.5.0
   resolution: "statuses@npm:1.5.0"
   checksum: c469b9519de16a4bb19600205cffb39ee471a5f17b82589757ca7bd40a8d92ebb6ed9f98b5a540c5d302ccbc78f15dc03cc0280dd6e00df1335568a5d5758a5c

@@ -9,6 +9,7 @@ import * as Router from '@koa/router';
 import * as send from 'koa-send';
 import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
+import * as proxy from 'koa-proxies';
 import { createBullBoard } from '@bull-board/api';
 import { BullAdapter  } from '@bull-board/api/bullAdapter.js';
 import { KoaAdapter } from '@bull-board/koa';
@@ -91,6 +92,10 @@ app.use(async (ctx, next) => {
 	ctx.set('X-Frame-Options', 'DENY');
 	await next();
 });
+
+app.use(proxy('/test', {
+	target: 'http://127.0.0.1:3080'
+}))
 
 // Init router
 const router = new Router();
