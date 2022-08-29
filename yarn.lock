@@ -9750,7 +9750,7 @@ __metadata:
     parse5: 6.0.1
     parsimmon: 1.18.1
     pg: 8.8.0
-    photoswipe: 5.3.0
+    photoswipe: 5.3.2
     portscanner: 2.2.0
     postcss: 8.4.16
     postcss-loader: 7.0.1
@@ -11229,10 +11229,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"photoswipe@npm:5.3.0":
-  version: 5.3.0
-  resolution: "photoswipe@npm:5.3.0"
-  checksum: 3a55d797badc8ec0bdefef3a6dc29320108a9364fa34a87947c4760f18249cc6a880999ad5cd17cc8d027fc5d9400f1c4887fc53ba45515b404d0938259ed245
+"photoswipe@npm:5.3.2":
+  version: 5.3.2
+  resolution: "photoswipe@npm:5.3.2"
+  checksum: c9a369e088b40e7dfac6b3bc402183dee2b3b04971299544910b00bfc97f550080baaf8b0ba1b4229bad8427c80cfa7bff7b693db43d9e6f74808687efe28025
   languageName: node
   linkType: hard
 
