@@ -79,9 +79,12 @@ router.use(wellKnown.routes());
 router.get('/avatar/@:acct', async ctx => {
 	const { username, host } = parseAcct(ctx.params.acct);
 	const user = await Users.findOne({
-		usernameLower: username.toLowerCase(),
-		host: host === config.host ? null : host,
-		isSuspended: false
+        where: {
+            usernameLower: username.toLowerCase(),
+            host: host === config.host ? null : host,
+            isSuspended: false
+        },
+        relations: ['avatar']
 	});
 
 	if (user) {
