@@ -94,7 +94,7 @@ describe('Get file info', () => {
 			},
 			width: 256,
 			height: 256,
-			blurhash: 'y74r*daKpdp{kWZ#Z#k=fkf5f5f6fkfPHXa0krkrkCZ~aJf+aekCkDfRe.e.L#kWZ~Z#e.krkraJe.kCkDfke.f6UukrZ#VDadk?kr'
+			blurhash: 'y84iJ*aJpdp{kWZ#Z#krfkf6f6f6fQfPL#a0krkqf+Z~aKfle.kCkCfke.f6Q8kXZ~Z#e.krkraJf5f+kCfkf5f6U]kqZ#VDadk?kr'
 		});
 	}));
 
