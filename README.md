@@ -36,6 +36,8 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
 
 ## ライブラリ（Ayuskey動作保証）
 
+* [ayuskey.js](https://github.com/TeamBlackCrystal/ayuskey.js)
+  * Misskey.jsをforkした公式SDK
 * [MiPA(Mi.py互換)](https://github.com/yupix/mipa)
   * bot向けフレームワーク
   * misskey(v12)対応
@@ -43,11 +45,17 @@ Fediverseの世界に漂うため、Misskeyをはじめとした他のソーシ�
   * [MiPA](https://github.com/yupix/mipa)の内部APIです。
   * MisskeyのAPI Wrapperであり、オブジェクト的にAPIを操作することができます
   * misskey(v12)対応
+
+<details>
+<summary>非推奨</summary>
+
 * ~~[Mi.py](https://github.com/yupix/Mi.py)~~
   * **開発終了の為非推奨**
   * bot向けフレームワーク
   * misskey(v12)対応
   * 今後新たにBOTを作成する場合は [MiPA](https://github.com/yupix/mipa) をご利用ください
+
+</details>
 
 ## ライブラリ（Ayuskey動作未保障）
 
