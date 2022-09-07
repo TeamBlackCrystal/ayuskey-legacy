@@ -2689,9 +2689,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:2.1210.0":
-  version: 2.1210.0
-  resolution: "aws-sdk@npm:2.1210.0"
+"aws-sdk@npm:2.1211.0":
+  version: 2.1211.0
+  resolution: "aws-sdk@npm:2.1211.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -2703,7 +2703,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 3f90e2035930b39c07c5634d693dac8777c196ed015954401c982399fd299525274e4db06e26a814955b4b14f1fc9caee41a8d71c3820aa2953e7797ab07f78c
+  checksum: 65230be0473f1191b0e6937b9c0aa1ec0d346b348e2e918620d40818ef2b441e7d75581649f87481dd568389b4145e2dbe70b3e71501aca7d12798df2346cc3c
   languageName: node
   linkType: hard
 
@@ -9674,7 +9674,7 @@ __metadata:
     autobind-decorator: 2.4.0
     autosize: 5.0.1
     autwh: 0.1.0
-    aws-sdk: 2.1210.0
+    aws-sdk: 2.1211.0
     bcryptjs: 2.4.3
     blurhash: 1.1.5
     bootstrap: 4.6.2
