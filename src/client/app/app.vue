@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { url, lang } from './config';
 
-export default Vue.extend({
+export default defineComponent({
 	computed: {
 		keymap(): any {
 			return {
