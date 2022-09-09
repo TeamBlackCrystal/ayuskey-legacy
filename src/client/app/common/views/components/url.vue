@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { toUnicode as decodePunycode } from 'punycode';
 import { url as local } from '../../../config';
 
-export default Vue.extend({
+export default defineComponent({
 	props: ['url', 'rel'],
 	data() {
 		const isSelf = this.url.startsWith(local);

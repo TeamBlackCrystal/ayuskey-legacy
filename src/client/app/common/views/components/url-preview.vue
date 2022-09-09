@@ -31,12 +31,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { url as misskeyUrl, lang } from '../../../config';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/url-preview.vue'),
 	props: {
 		url: {

@@ -34,7 +34,7 @@ export default Vue.extend({
 		_time(): Date {
 			return typeof this.time == 'string' ? new Date(this.time) : this.time;
 		},
-		useAbsoluteTime(): bool {
+		useAbsoluteTime(): boolean {
 			return this.$store.state.device.useAbsoluteTime;
 		},
 		default_mode(): string {
