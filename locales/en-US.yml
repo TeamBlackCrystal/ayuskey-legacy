@@ -1012,6 +1012,9 @@ common/views/pages/follow-requests.vue:
   received-follow-requests: Follow requests
   accept: Accept
   reject: Reject
+common/views/pages/reset-password.vue:
+  password: "New password"
+  save: "Save"
 desktop:
   banner-crop-title: Crop the part that appears as a banner
   banner: Banner
