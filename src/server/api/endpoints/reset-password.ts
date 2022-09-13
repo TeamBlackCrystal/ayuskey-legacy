@@ -4,6 +4,12 @@ import define from '../define';
 import { Users, UserProfiles, PasswordResetRequests } from '../../../models';
 
 export const meta = {
+	desc: {
+		'ja-JP': 'パスワードのリセットを行います。',
+	},
+
+	tags: ['reset password'],
+
 	requireCredential: false as const,
 
 	params: {

@@ -10,6 +10,12 @@ import { genId } from '../../../misc/gen-id';
 import { IsNull } from 'typeorm';
 
 export const meta = {
+	desc: {
+		'ja-JP': 'パスワードのリセットをリクエストします。',
+	},
+
+	tags: ['reset password'],
+
 	requireCredential: false as const,
 
 	limit: {

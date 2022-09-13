@@ -4,6 +4,12 @@ import define from '../../define';
 import { Users, UserProfiles } from '../../../../models';
 
 export const meta = {
+	desc: {
+		'ja-JP': '指定した部屋の情報を更新します。',
+	},
+
+	tags: ['room'],
+
 	requireCredential: true,
 
 	params: {
