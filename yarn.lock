@@ -537,9 +537,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redocly/openapi-core@npm:1.0.0-beta.108":
-  version: 1.0.0-beta.108
-  resolution: "@redocly/openapi-core@npm:1.0.0-beta.108"
+"@redocly/openapi-core@npm:1.0.0-beta.109":
+  version: 1.0.0-beta.109
+  resolution: "@redocly/openapi-core@npm:1.0.0-beta.109"
   dependencies:
     "@redocly/ajv": ^8.6.5
     "@types/node": ^14.11.8
@@ -551,7 +551,7 @@ __metadata:
     node-fetch: ^2.6.1
     pluralize: ^8.0.0
     yaml-ast-parser: 0.0.43
-  checksum: 1a8c39f768b7a6f0572eef3fbc509fdf15934662808175af48f94b8f777f396f8743e1596b3467059ff1e09b7c4fb07a6ec0eb2c0ba70438c6664662c63b7a4b
+  checksum: 4b8fae69b79a8d200c4fef5847753f1eb8d6b651f6ed179a7494117e910864ef6029281e1aecc52ee78ffc3fec2ffabe7293e3d31a0efac7d97ef263926d029c
   languageName: node
   linkType: hard
 
@@ -9611,7 +9611,7 @@ __metadata:
     "@koa/multer": 3.0.0
     "@koa/router": 8.0.8
     "@popperjs/core": 2.11.6
-    "@redocly/openapi-core": 1.0.0-beta.108
+    "@redocly/openapi-core": 1.0.0-beta.109
     "@types/animejs": 3.1.5
     "@types/bcryptjs": 2.4.2
     "@types/bull": 3.15.9
