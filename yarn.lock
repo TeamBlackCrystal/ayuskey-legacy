@@ -1188,12 +1188,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/nodemailer@npm:6.4.5":
-  version: 6.4.5
-  resolution: "@types/nodemailer@npm:6.4.5"
+"@types/nodemailer@npm:6.4.6":
+  version: 6.4.6
+  resolution: "@types/nodemailer@npm:6.4.6"
   dependencies:
     "@types/node": "*"
-  checksum: ecbe34a6eb5559bdca58115b5c03ff048896e14dc7ea6426b3fdfc03484764eb9e4100fcff37b96d012543ca47238c973d0f5bbfb1ab5a2d1f1f25d494714c59
+  checksum: c5ba1b83a28eb13778c54333ebe5fdd40555ce6df9dea672acb5682f872e83cae2e538ceeb64c7b064a2c7e7dc836d5a250ec7174795c5a61cb3a3fb90f3dceb
   languageName: node
   linkType: hard
 
@@ -9646,7 +9646,7 @@ __metadata:
     "@types/mocha": 9.1.1
     "@types/node": 18.6.3
     "@types/node-fetch": 2.6.2
-    "@types/nodemailer": 6.4.5
+    "@types/nodemailer": 6.4.6
     "@types/nprogress": 0.2.0
     "@types/oauth": 0.9.1
     "@types/parse5": 6.0.3
