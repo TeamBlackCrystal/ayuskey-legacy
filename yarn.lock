@@ -144,6 +144,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bull-board/ui@npm:4.3.1":
+  version: 4.3.1
+  resolution: "@bull-board/ui@npm:4.3.1"
+  dependencies:
+    "@bull-board/api": 4.3.1
+  checksum: 7bc4787ba8f9e3dda5cb580b4374872bc7b0870a08a504cfc2f380a39dda164ae71518e7b1921e53ff8abc4224c0861504b26b63510b6c9c9d23d647bdab54b2
+  languageName: node
+  linkType: hard
+
 "@cspotcode/source-map-support@npm:^0.8.0":
   version: 0.8.1
   resolution: "@cspotcode/source-map-support@npm:0.8.1"
@@ -9608,7 +9617,7 @@ __metadata:
     "@ayuskey/xev": 2.0.1-rei0784.2
     "@bull-board/api": 4.3.1
     "@bull-board/koa": 4.2.2
-    "@bull-board/ui": 4.2.2
+    "@bull-board/ui": 4.3.1
     "@discordapp/twemoji": 14.0.2
     "@elastic/elasticsearch": 7.17.0
     "@fortawesome/fontawesome-svg-core": 6.2.0
