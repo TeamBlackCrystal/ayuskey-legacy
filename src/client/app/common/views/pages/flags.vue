@@ -41,10 +41,6 @@ export default Vue.extend({
 			get() { return this.$store.state.device.instanceTicker; },
 			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); }
 		},
-		disableBlur: {
-			get() { return this.$store.state.device.disableBlur; },
-			set(value) { this.$store.commit('device/set', { key: 'disableBlur', value }); }
-		},
 	}
 });
 </script>
