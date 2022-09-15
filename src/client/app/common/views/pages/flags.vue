@@ -22,9 +22,6 @@
 			<ui-radio v-model="instanceTicker" value="remote">{{ $t('@._settings.instance-ticker-remote') }}</ui-radio>
 			<ui-radio v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
 		</section>
-		<section>
-			<ui-switch v-model="disableBlur">ダークテーマのぼかしを抑える</ui-switch>
-		</section>
 	</ui-card>
 </div>
 </template>
