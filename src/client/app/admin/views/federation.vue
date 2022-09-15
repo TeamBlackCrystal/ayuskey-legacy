@@ -96,7 +96,7 @@
 						<template #prefix><fa :icon="faEnvelope"/></template>
 					</ui-input>
 				</ui-horizon-group>
-				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
+				<ui-switch v-model="instance.isSuspended" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
 				<details :open="true">
 					<summary>{{ $t('charts') }}</summary>
 					<ui-horizon-group inputs>
@@ -184,8 +184,8 @@
 					<span>{{ $t('status') }}</span>
 				</header>
 				<div v-for="instance in instances" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
-					<!--<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none', display: 'inline-flex', overflow: 'hidden', 'word-break': 'break-all' }">-->
-					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none' }">
+					<!--<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isSuspended ? 'line-through' : 'none', display: 'inline-flex', overflow: 'hidden', 'word-break': 'break-all' }">-->
+					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isSuspended ? 'line-through' : 'none' }">
 						<img v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`" :style="{ width: '1em', height: '1em' }"/>
 						<!--{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}-->
 						{{ instance.host }}
@@ -387,7 +387,7 @@ export default Vue.extend({
 		updateInstance() {
 			this.$root.api('admin/federation/update-instance', {
 				host: this.instance.host,
-				isSuspended: this.instance.isMarkedAsClosed || false
+				isSuspended: this.instance.isSuspended || false
 			});
 		},
 

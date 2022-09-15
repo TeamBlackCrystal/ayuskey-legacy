@@ -53,7 +53,7 @@
 					<span>{{ $t('latest-request-received-at') }}</span>
 					<template #prefix><fa :icon="faInbox"/></template>
 				</ui-input>
-				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
+				<ui-switch v-model="instance.isSuspended" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
 				<details>
 					<summary>{{ $t('charts') }}</summary>
 					<ui-horizon-group inputs>
@@ -133,7 +133,7 @@
 					<span>{{ $t('status') }}</span>
 				</header>
 				<div v-for="instance in instances" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
-					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isMarkedAsClosed ? 'line-through' : 'none' }">
+					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isSuspended ? 'line-through' : 'none' }">
 						<img v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`" :style="{ width: '1em', height: '1em' }"/>
 						{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}
 					</a>
@@ -331,7 +331,7 @@ export default Vue.extend({
 		updateInstance() {
 			this.$root.api('admin/federation/update-instance', {
 				host: this.instance.host,
-				isSuspended: this.instance.isMarkedAsClosed || false
+				isSuspended: this.instance.isSuspended || false
 			});
 		},
 
