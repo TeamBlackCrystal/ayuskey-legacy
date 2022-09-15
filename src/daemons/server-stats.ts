@@ -28,7 +28,7 @@ export default function() {
 		const netStats = await net();
 		const fsStats = await fs();
 		const totalmem = await totalMem();
-		const disk = await diskusage.check(os.platform() == 'win32' ? 'c:' : '/');
+		const disk = await diskusage.check(os.platform() === 'win32' ? 'c:' : '/');
 
 		const stats = {
 			cpu_usage: cpu,
@@ -45,8 +45,8 @@ export default function() {
 				tx: round(Math.max(0, netStats.tx_sec)),
 			},
 			fs: {
-				r: os.platform() != 'win32' ? round(Math.max(0, fsStats.rIO_sec)) : round(0),
-				w: os.platform() != 'win32' ? round(Math.max(0, fsStats.wIO_sec)) : round(0),
+				r: os.platform() !== 'win32' ? round(Math.max(0, fsStats.rIO_sec!)) : round(0),
+				w: os.platform() !== 'win32' ? round(Math.max(0, fsStats.wIO_sec!)) : round(0),
 			}
 		};
 		ev.emit('serverStats', stats);
