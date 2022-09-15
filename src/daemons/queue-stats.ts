@@ -48,25 +48,25 @@ export default function() {
 				activeSincePrevTick: activeDeliverJobs,
 				active: deliverJobCounts.active,
 				waiting: deliverJobCounts.waiting,
-				delayed: deliverJobCounts.delayed
+				delayed: deliverJobCounts.delayed,
 			},
 			inbox: {
 				activeSincePrevTick: activeInboxJobs,
 				active: inboxJobCounts.active,
 				waiting: inboxJobCounts.waiting,
-				delayed: inboxJobCounts.delayed
+				delayed: inboxJobCounts.delayed,
 			},
 			db: {
 				activeSincePrevTick: activeDbJobs,
 				active: dbJobCounts.active,
 				waiting: dbJobCounts.waiting,
-				delayed: dbJobCounts.delayed
+				delayed: dbJobCounts.delayed,
 			},
 			objectStorage: {
 				activeSincePrevTick: activeObjectStorageJobs,
 				active: objectStorageJobCounts.active,
 				waiting: objectStorageJobCounts.waiting,
-				delayed: objectStorageJobCounts.delayed
+				delayed: objectStorageJobCounts.delayed,
 			},
 		};
 

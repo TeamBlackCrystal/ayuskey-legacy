@@ -15,9 +15,9 @@ export async function getJson(url: string, accept = 'application/json, */*', tim
 		method: 'GET',
 		headers: objectAssignWithLcKey({
 			'User-Agent': config.userAgent,
-			Accept: accept
+			Accept: accept,
 		}, headers || {}),
-		timeout
+		timeout,
 	});
 
 	return await res.json();
@@ -29,9 +29,9 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 		method: 'GET',
 		headers: objectAssignWithLcKey({
 			'User-Agent': config.userAgent,
-			Accept: accept
+			Accept: accept,
 		}, headers || {}),
-		timeout
+		timeout,
 	});
 
 	return await res.text();
@@ -40,7 +40,7 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 export async function getResponse(args: { url: string, method: string, body?: string, headers: Record<string, string>, timeout?: number, size?: number }) {
 	logger.debug(`${args.method.toUpperCase()} ${args.url}\nHeaders: ${JSON.stringify(args.headers, null, 2)}${args.body ? `\n${args.body}` : ''}`);
 
-	const timeout = args?.timeout || 10 * 1000;
+	const timeout = args.timeout || 10 * 1000;
 
 	const controller = new AbortController();
 	setTimeout(() => {
@@ -52,7 +52,7 @@ export async function getResponse(args: { url: string, method: string, body?: st
 		headers: args.headers,
 		body: args.body,
 		timeout,
-		size: args?.size || 10 * 1024 * 1024,
+		size: args.size || 10 * 1024 * 1024,
 		agent: getAgentByUrl,
 		signal: controller.signal,
 	});
@@ -109,7 +109,7 @@ export const httpAgent = config.proxy
 		maxSockets,
 		maxFreeSockets: 256,
 		scheduling: 'lifo',
-		proxy: config.proxy
+		proxy: config.proxy,
 	})
 	: _http;
 
@@ -123,7 +123,7 @@ export const httpsAgent = config.proxy
 		maxSockets,
 		maxFreeSockets: 256,
 		scheduling: 'lifo',
-		proxy: config.proxy
+		proxy: config.proxy,
 	})
 	: _https;
 

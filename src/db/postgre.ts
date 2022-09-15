@@ -153,7 +153,7 @@ export const entities = [
 	ChannelFollowing,
 	ChannelNotePining,
 	RegistryItem,
-	...charts as any
+	...charts as any,
 ];
 
 let redisOpts: RedisOptions;
@@ -200,6 +200,6 @@ export function initDb(justBorrow = false, sync = false, log = false, forceRecre
 		} : false,
 		logging: log,
 		logger: log ? new MyCustomLogger() : undefined,
-		entities: entities
+		entities: entities,
 	});
 }

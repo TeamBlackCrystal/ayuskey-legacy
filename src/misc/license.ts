@@ -9,5 +9,5 @@ const licenseHtml = license
 
 export {
 	license,
-	licenseHtml
+	licenseHtml,
 };

@@ -42,14 +42,14 @@ export class ASTypeChecker {
 					return {
 						arg: i,
 						expect: generic[arg],
-						actual: type
+						actual: type,
 					};
 				}
 			} else if (type !== arg) {
 				return {
 					arg: i,
 					expect: arg,
-					actual: type
+					actual: type,
 				};
 			}
 		}

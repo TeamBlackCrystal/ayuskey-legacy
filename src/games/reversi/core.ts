@@ -82,8 +82,7 @@ export default class Reversi {
 		//#endregion
 
 		// ゲームが始まった時点で片方の色の石しかないか、始まった時点で勝敗が決定するようなマップの場合がある
-		if (!this.canPutSomewhere(BLACK))
-			this.turn = this.canPutSomewhere(WHITE) ? WHITE : null;
+		if (!this.canPutSomewhere(BLACK)) this.turn = this.canPutSomewhere(WHITE) ? WHITE : null;
 	}
 
 	/**
@@ -135,7 +134,7 @@ export default class Reversi {
 			color,
 			pos,
 			effects,
-			turn
+			turn,
 		});
 
 		this.calcTurn();
@@ -205,14 +204,14 @@ export default class Reversi {
 		const enemyColor = !color;
 
 		const diffVectors: [number, number][] = [
-			[  0,  -1], // 上
-			[ +1,  -1], // 右上
-			[ +1,   0], // 右
-			[ +1,  +1], // 右下
-			[  0,  +1], // 下
-			[ -1,  +1], // 左下
-			[ -1,   0], // 左
-			[ -1,  -1]  // 左上
+			[ 0, -1], // 上
+			[ +1, -1], // 右上
+			[ +1, 0], // 右
+			[ +1, +1], // 右下
+			[ 0, +1], // 下
+			[ -1, +1], // 左下
+			[ -1, 0], // 左
+			[ -1, -1], // 左上
 		];
 
 		const effectsInLine = ([dx, dy]: [number, number]): number[] => {
@@ -227,10 +226,9 @@ export default class Reversi {
 				if (this.opts.loopedBoard && this.transformXyToPos(
 					(x = ((x % this.mapWidth) + this.mapWidth) % this.mapWidth),
 					(y = ((y % this.mapHeight) + this.mapHeight) % this.mapHeight)) == initPos)
-						// 盤面の境界でループし、自分が石を置く位置に戻ってきたとき、挟めるようにしている (ref: Test4のマップ)
+				// 盤面の境界でループし、自分が石を置く位置に戻ってきたとき、挟めるようにしている (ref: Test4のマップ)
 					return found;
-				else if (x == -1 || y == -1 || x == this.mapWidth || y == this.mapHeight)
-					return []; // 挟めないことが確定 (盤面外に到達)
+				else if (x == -1 || y == -1 || x == this.mapWidth || y == this.mapHeight) return []; // 挟めないことが確定 (盤面外に到達)
 
 				const pos = this.transformXyToPos(x, y);
 				if (this.mapDataGet(pos) === 'null') return []; // 挟めないことが確定 (配置不可能なマスに到達)
