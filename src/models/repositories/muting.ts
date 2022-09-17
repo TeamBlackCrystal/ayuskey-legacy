@@ -9,7 +9,7 @@ import { Packed } from '../../misc/schema';
 export class MutingRepository extends Repository<Muting> {
 	public async pack(
 		src: Muting['id'] | Muting,
-		me?: any
+		me?: any,
 	): Promise<Packed<'Muting'>> {
 		const muting = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -18,14 +18,14 @@ export class MutingRepository extends Repository<Muting> {
 			createdAt: muting.createdAt.toISOString(),
 			muteeId: muting.muteeId,
 			mutee: Users.pack(muting.muteeId, me, {
-				detail: true
-			})
+				detail: true,
+			}),
 		});
 	}
 
 	public packMany(
 		mutings: any[],
-		me: any
+		me: any,
 	) {
 		return Promise.all(mutings.map(x => this.pack(x, me)));
 	}
@@ -46,7 +46,7 @@ export const packedMutingSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the muting was created.'
+			description: 'The date that the muting was created.',
 		},
 		muteeId: {
 			type: 'string' as const,
@@ -57,7 +57,7 @@ export const packedMutingSchema = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'User' as const,
-			description: 'The mutee.'
+			description: 'The mutee.',
 		},
-	}
+	},
 };

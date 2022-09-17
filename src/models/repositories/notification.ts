@@ -20,7 +20,7 @@ export class NotificationRepository extends Repository<Notification> {
 				emojis: Emoji[] | null;
 				myReactions: Map<Note['id'], NoteReaction | null>;
 			};
-		}
+		},
 	): Promise<Packed<'Notification'>> {
 		const notification = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -34,47 +34,47 @@ export class NotificationRepository extends Repository<Notification> {
 			...(notification.type === 'mention' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
 			} : {}),
 			...(notification.type === 'reply' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
 			} : {}),
 			...(notification.type === 'renote' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
 			} : {}),
 			...(notification.type === 'quote' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
 			} : {}),
 			...(notification.type === 'reaction' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
-				reaction: notification.reaction
+				reaction: notification.reaction,
 			} : {}),
 			...(notification.type === 'pollVote' ? {
 				note: Notes.pack(notification.note || notification.noteId!, notification.notifieeId, {
 					detail: true,
-					_hint_: options._hintForEachNotes_
+					_hint_: options._hintForEachNotes_,
 				}),
-				choice: notification.choice
-			} : {})
+				choice: notification.choice,
+			} : {}),
 		});
 	}
 
 	public async packMany(
 		notifications: Notification[],
-		meId: User['id']
+		meId: User['id'],
 	) {
 		if (notifications.length === 0) return [];
 
@@ -98,42 +98,42 @@ export class NotificationRepository extends Repository<Notification> {
 			if (typeof note !== 'object') continue;
 			emojisWhere.push({
 				name: In(note.emojis),
-				host: note.userHost
+				host: note.userHost,
 			});
 			if (note.renote) {
 				emojisWhere.push({
 					name: In(note.renote.emojis),
-					host: note.renote.userHost
+					host: note.renote.userHost,
 				});
 				if (note.renote.user) {
 					emojisWhere.push({
 						name: In(note.renote.user.emojis),
-						host: note.renote.userHost
+						host: note.renote.userHost,
 					});
 				}
 			}
 			const customReactions = Object.keys(note.reactions).map(x => decodeReaction(x)).filter(x => x.name);
 			emojisWhere = emojisWhere.concat(customReactions.map(x => ({
 				name: x.name,
-				host: x.host
+				host: x.host,
 			})));
 			if (note.user) {
 				emojisWhere.push({
 					name: In(note.user.emojis),
-					host: note.userHost
+					host: note.userHost,
 				});
 			}
 		}
 		const emojis = emojisWhere.length > 0 ? await Emojis.find({
 			where: emojisWhere,
-			select: ['name', 'host', 'url']
+			select: ['name', 'host', 'url'],
 		}) : null;
 
 		return await Promise.all(notifications.map(x => this.pack(x, {
 			_hintForEachNotes_: {
 				myReactions: myReactionsMap,
 				emojis: emojis,
-			}
+			},
 		})));
 	}
 }
@@ -153,7 +153,7 @@ export const packedNotificationSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the notification was created.'
+			description: 'The date that the notification was created.',
 		},
 		isRead: {
 			type: 'boolean' as const,
@@ -163,7 +163,7 @@ export const packedNotificationSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			enum: [...notificationTypes],
-			description: 'The type of the notification.'
+			description: 'The type of the notification.',
 		},
 		user: {
 			type: 'object' as const,
@@ -204,5 +204,5 @@ export const packedNotificationSchema = {
 			type: 'string' as const,
 			optional: true as const, nullable: true as const,
 		},
-	}
+	},
 };

@@ -33,7 +33,7 @@ export class DriveFileRepository extends Repository<DriveFile> {
 		if (file.uri != null && file.userHost != null && config.mediaProxy != null) {
 			return appendQuery(config.mediaProxy, query({
 				url: file.uri,
-				thumbnail: thumbnail ? '1' : undefined
+				thumbnail: thumbnail ? '1' : undefined,
 			}));
 		}
 
@@ -101,11 +101,11 @@ export class DriveFileRepository extends Repository<DriveFile> {
 	public async pack(src: DriveFile, options?: PackOptions): Promise<Packed<'DriveFile'>>;
 	public async pack(
 		src: DriveFile['id'] | DriveFile,
-		options?: PackOptions
+		options?: PackOptions,
 	): Promise<Packed<'DriveFile'> | null> {
 		const opts = Object.assign({
 			detail: false,
-			self: false
+			self: false,
 		}, options);
 
 		const file = typeof src === 'object' ? src : await this.findOne(src);
@@ -128,16 +128,16 @@ export class DriveFileRepository extends Repository<DriveFile> {
 			comment: file.comment,
 			folderId: file.folderId,
 			folder: opts.detail && file.folderId ? DriveFolders.pack(file.folderId, {
-				detail: true
+				detail: true,
 			}) : null,
 			userId: opts.withUser ? file.userId : null,
-			user: (opts.withUser && file.userId) ? Users.pack(file.userId) : null
+			user: (opts.withUser && file.userId) ? Users.pack(file.userId) : null,
 		});
 	}
 
 	public async packMany(
 		files: (DriveFile['id'] | DriveFile)[],
-		options?: PackOptions
+		options?: PackOptions,
 	) {
 		const items = await Promise.all(files.map(f => this.pack(f, options)));
 		return items.filter(x => x != null);
@@ -159,32 +159,32 @@ export const packedDriveFileSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the Drive file was created on Misskey.'
+			description: 'The date that the Drive file was created on Misskey.',
 		},
 		name: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			description: 'The file name with extension.',
-			example: 'lenna.jpg'
+			example: 'lenna.jpg',
 		},
 		type: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			description: 'The MIME type of this Drive file.',
-			example: 'image/jpeg'
+			example: 'image/jpeg',
 		},
 		md5: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'md5',
 			description: 'The MD5 hash of this Drive file.',
-			example: '15eca7fba0480996e2245f5185bf39f2'
+			example: '15eca7fba0480996e2245f5185bf39f2',
 		},
 		size: {
 			type: 'number' as const,
 			optional: false as const, nullable: false as const,
 			description: 'The size of this Drive file. (bytes)',
-			example: 51469
+			example: 51469,
 		},
 		isSensitive: {
 			type: 'boolean' as const,
@@ -204,19 +204,19 @@ export const packedDriveFileSchema = {
 				width: {
 					type: 'number' as const,
 					optional: true as const, nullable: false as const,
-					example: 1280
+					example: 1280,
 				},
 				height: {
 					type: 'number' as const,
 					optional: true as const, nullable: false as const,
-					example: 720
+					example: 720,
 				},
 				avgColor: {
 					type: 'string' as const,
 					optional: true as const, nullable: false as const,
-					example: 'rgb(40,65,87)'
-				}
-			}
+					example: 'rgb(40,65,87)',
+				},
+			},
 		},
 		url: {
 			type: 'string' as const,
@@ -231,7 +231,7 @@ export const packedDriveFileSchema = {
 		},
 		comment: {
 			type: 'string' as const,
-			optional: false as const, nullable: true as const
+			optional: false as const, nullable: true as const,
 		},
 		folderId: {
 			type: 'string' as const,
@@ -250,6 +250,6 @@ export const packedDriveFileSchema = {
 			type: 'object' as const,
 			optional: true as const, nullable: true as const,
 			ref: 'User' as const,
-		}
+		},
 	},
 };

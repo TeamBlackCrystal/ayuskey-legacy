@@ -7,7 +7,7 @@ import { ensure } from '../../prelude/ensure';
 export class NoteFavoriteRepository extends Repository<NoteFavorite> {
 	public async pack(
 		src: NoteFavorite['id'] | NoteFavorite,
-		me?: any
+		me?: any,
 	) {
 		const favorite = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -21,7 +21,7 @@ export class NoteFavoriteRepository extends Repository<NoteFavorite> {
 
 	public packMany(
 		favorites: any[],
-		me: any
+		me: any,
 	) {
 		return Promise.all(favorites.map(x => this.pack(x, me)));
 	}
@@ -42,7 +42,7 @@ export const packedNoteFavoriteSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the favorite was created.'
+			description: 'The date that the favorite was created.',
 		},
 		note: {
 			type: 'object' as const,

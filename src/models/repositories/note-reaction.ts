@@ -9,7 +9,7 @@ import { convertLegacyReaction } from '../../misc/reaction-lib';
 export class NoteReactionRepository extends Repository<NoteReaction> {
 	public async pack(
 		src: NoteReaction['id'] | NoteReaction,
-		me?: any
+		me?: any,
 	): Promise<Packed<'NoteReaction'>> {
 		const reaction = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -37,18 +37,18 @@ export const packedNoteReactionSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the reaction was created.'
+			description: 'The date that the reaction was created.',
 		},
 		user: {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'User' as const,
-			description: 'User who performed this reaction.'
+			description: 'User who performed this reaction.',
 		},
 		type: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
-			description: 'The reaction type.'
+			description: 'The reaction type.',
 		},
 	},
 };

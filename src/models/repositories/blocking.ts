@@ -9,7 +9,7 @@ import { Packed } from '@/misc/schema';
 export class BlockingRepository extends Repository<Blocking> {
 	public async pack(
 		src: Blocking['id'] | Blocking,
-		me?: any
+		me?: any,
 	): Promise<Packed<'Blocking'>> {
 		const blocking = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -18,14 +18,14 @@ export class BlockingRepository extends Repository<Blocking> {
 			createdAt: blocking.createdAt.toISOString(),
 			blockeeId: blocking.blockeeId,
 			blockee: Users.pack(blocking.blockeeId, me, {
-				detail: true
-			})
+				detail: true,
+			}),
 		});
 	}
 
 	public packMany(
 		blockings: any[],
-		me: any
+		me: any,
 	) {
 		return Promise.all(blockings.map(x => this.pack(x, me)));
 	}
@@ -46,7 +46,7 @@ export const packedBlockingSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the blocking was created.'
+			description: 'The date that the blocking was created.',
 		},
 		blockeeId: {
 			type: 'string' as const,
@@ -57,7 +57,7 @@ export const packedBlockingSchema = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'User' as const,
-			description: 'The blockee.'
+			description: 'The blockee.',
 		},
-	}
+	},
 };

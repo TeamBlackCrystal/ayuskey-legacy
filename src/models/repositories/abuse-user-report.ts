@@ -18,10 +18,10 @@ export class AbuseUserReportRepository extends Repository<AbuseUserReport> {
 			reporterId: report.reporterId,
 			userId: report.userId,
 			reporter: Users.pack(report.reporter || report.reporterId, null, {
-				detail: true
+				detail: true,
 			}),
 			user: Users.pack(report.user || report.userId, null, {
-				detail: true
+				detail: true,
 			}),
 		});
 	}

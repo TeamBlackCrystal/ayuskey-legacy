@@ -13,12 +13,12 @@ export class AppRepository extends Repository<App> {
 			detail?: boolean,
 			includeSecret?: boolean,
 			includeProfileImageIds?: boolean
-		}
+		},
 	): Promise<Packed<'App'>> {
 		const opts = Object.assign({
 			detail: false,
 			includeSecret: false,
-			includeProfileImageIds: false
+			includeProfileImageIds: false,
 		}, options);
 
 		const app = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
@@ -33,8 +33,8 @@ export class AppRepository extends Repository<App> {
 				isAuthorized: await AccessTokens.count({
 					appId: app.id,
 					userId: me,
-				}).then(count => count > 0)
-			} : {})
+				}).then(count => count > 0),
+			} : {}),
 		};
 	}
 }
@@ -53,12 +53,12 @@ export const packedAppSchema = {
 		name: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
-			description: 'アプリケーションの名前'
+			description: 'アプリケーションの名前',
 		},
 		callbackUrl: {
 			type: 'string' as const,
 			optional: false as const, nullable: true as const,
-			description: 'コールバックするURL'
+			description: 'コールバックするURL',
 		},
 		permission: {
 			type: 'array' as const,
@@ -66,16 +66,16 @@ export const packedAppSchema = {
 			items: {
 				type: 'string' as const,
 				optional: false as const, nullable: false as const,
-			}
+			},
 		},
 		secret: {
 			type: 'string' as const,
 			optional: true as const, nullable: false as const,
-			description: 'アプリケーションのシークレットキー'
+			description: 'アプリケーションのシークレットキー',
 		},
 		isAuthorized: {
 			type: 'boolean' as const,
-			optional: true as const, nullable: false as const
-		}
+			optional: true as const, nullable: false as const,
+		},
 	},
 };
