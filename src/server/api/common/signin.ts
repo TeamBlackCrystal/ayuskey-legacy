@@ -17,7 +17,7 @@ export default function(ctx: Koa.Context, user: ILocalUser, redirect = false) {
 			secure: config.url.startsWith('https'),
 			httpOnly: false,
 			expires: new Date(Date.now() + expires),
-			maxAge: expires
+			maxAge: expires,
 		});
 		//#endregion
 
@@ -35,7 +35,7 @@ export default function(ctx: Koa.Context, user: ILocalUser, redirect = false) {
 			userId: user.id,
 			ip: ctx.ip,
 			headers: ctx.headers,
-			success: true
+			success: true,
 		});
 
 		// Publish signin event

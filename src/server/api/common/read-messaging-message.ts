@@ -1,6 +1,4 @@
-import { publishMainStream, publishGroupMessagingStream } from '../../../services/stream';
-import { publishMessagingStream } from '../../../services/stream';
-import { publishMessagingIndexStream } from '../../../services/stream';
+import { publishMainStream, publishGroupMessagingStream , publishMessagingStream , publishMessagingIndexStream } from '../../../services/stream';
 import { User, ILocalUser, IRemoteUser } from '../../../models/entities/user';
 import { MessagingMessage } from '../../../models/entities/messaging-message';
 import { MessagingMessages, UserGroupJoinings, Users } from '../../../models';
@@ -19,12 +17,12 @@ import orderedCollection from '../../../remote/activitypub/renderer/ordered-coll
 export async function readUserMessagingMessage(
 	userId: User['id'],
 	otherpartyId: User['id'],
-	messageIds: MessagingMessage['id'][]
+	messageIds: MessagingMessage['id'][],
 ) {
 	if (messageIds.length === 0) return;
 
 	const messages = await MessagingMessages.find({
-		id: In(messageIds)
+		id: In(messageIds),
 	});
 
 	for (const message of messages) {
@@ -38,9 +36,9 @@ export async function readUserMessagingMessage(
 		id: In(messageIds),
 		userId: otherpartyId,
 		recipientId: userId,
-		isRead: false
+		isRead: false,
 	}, {
-		isRead: true
+		isRead: true,
 	});
 
 	// Publish event
@@ -59,14 +57,14 @@ export async function readUserMessagingMessage(
 export async function readGroupMessagingMessage(
 	userId: User['id'],
 	groupId: UserGroup['id'],
-	messageIds: MessagingMessage['id'][]
+	messageIds: MessagingMessage['id'][],
 ) {
 	if (messageIds.length === 0) return;
 
 	// check joined
 	const joining = await UserGroupJoinings.findOne({
 		userId: userId,
-		userGroupId: groupId
+		userGroupId: groupId,
 	});
 
 	if (joining == null) {
@@ -74,7 +72,7 @@ export async function readGroupMessagingMessage(
 	}
 
 	const messages = await MessagingMessages.find({
-		id: In(messageIds)
+		id: In(messageIds),
 	});
 
 	const reads = [];
@@ -86,7 +84,7 @@ export async function readGroupMessagingMessage(
 		// Update document
 		await MessagingMessages.createQueryBuilder().update()
 			.set({
-				reads: (() => `array_append("reads", '${joining.userId}')`) as any
+				reads: (() => `array_append("reads", '${joining.userId}')`) as any,
 			})
 			.where('id = :id', { id: message.id })
 			.execute();
@@ -97,7 +95,7 @@ export async function readGroupMessagingMessage(
 	// Publish event
 	publishGroupMessagingStream(groupId, 'read', {
 		ids: reads,
-		userId: userId
+		userId: userId,
 	});
 	publishMessagingIndexStream(userId, 'read', reads);
 
