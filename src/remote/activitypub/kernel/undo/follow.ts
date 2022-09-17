@@ -10,32 +10,32 @@ export default async (actor: IRemoteUser, activity: IFollow): Promise<string> =>
 
 	const followee = await dbResolver.getUserFromApId(activity.object);
 	if (followee == null) {
-		return `skip: followee not found`;
+		return 'skip: followee not found';
 	}
 
 	if (followee.host != null) {
-		return `skip: フォロー解除しようとしているユーザーはローカルユーザーではありません`;
+		return 'skip: フォロー解除しようとしているユーザーはローカルユーザーではありません';
 	}
 
 	const req = await FollowRequests.findOne({
 		followerId: actor.id,
-		followeeId: followee.id
+		followeeId: followee.id,
 	});
 
 	const following = await Followings.findOne({
 		followerId: actor.id,
-		followeeId: followee.id
+		followeeId: followee.id,
 	});
 
 	if (req) {
 		await cancelRequest(followee, actor);
-		return `ok: follow request canceled`;
+		return 'ok: follow request canceled';
 	}
 
 	if (following) {
 		await unfollow(actor, followee);
-		return `ok: unfollowed`;
+		return 'ok: unfollowed';
 	}
 
-	return `skip: リクエストもフォローもされていない`;
+	return 'skip: リクエストもフォローもされていない';
 };

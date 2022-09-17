@@ -12,17 +12,17 @@ export default async (actor: IRemoteUser, activity: IFlag): Promise<string> => {
 
 	const userIds = uris.filter(uri => uri.startsWith(config.url + '/users/')).map(uri => uri.split('/').pop());
 	const users = await Users.find({
-		id: In(userIds)
+		id: In(userIds),
 	});
-	if (users.length < 1) return `skip`;
+	if (users.length < 1) return 'skip';
 
 	await AbuseUserReports.insert({
 		id: genId(),
 		createdAt: new Date(),
 		userId: users[0].id,
 		reporterId: actor.id,
-		comment: `${activity.content}\n${JSON.stringify(uris, null, 2)}`
+		comment: `${activity.content}\n${JSON.stringify(uris, null, 2)}`,
 	});
 
-	return `ok`;
+	return 'ok';
 };
