@@ -32,7 +32,7 @@ export default async (ctx: Router.RouterContext) => {
 	// Verify user
 	const user = await Users.findOne({
 		id: userId,
-		host: null
+		host: null,
 	});
 
 	if (user == null) {
@@ -45,7 +45,7 @@ export default async (ctx: Router.RouterContext) => {
 
 	if (page) {
 		const query = {
-			followeeId: user.id
+			followeeId: user.id,
 		} as any;
 
 		// カーソルが指定されている場合
@@ -57,7 +57,7 @@ export default async (ctx: Router.RouterContext) => {
 		const followings = await Followings.find({
 			where: query,
 			take: limit + 1,
-			order: { id: -1 }
+			order: { id: -1 },
 		});
 
 		// 「次のページ」があるかどうか
@@ -68,14 +68,14 @@ export default async (ctx: Router.RouterContext) => {
 		const rendered = renderOrderedCollectionPage(
 			`${partOf}?${url.query({
 				page: 'true',
-				cursor
+				cursor,
 			})}`,
 			user.followersCount, renderedFollowers, partOf,
 			undefined,
 			inStock ? `${partOf}?${url.query({
 				page: 'true',
-				cursor: followings[followings.length - 1].id
-			})}` : undefined
+				cursor: followings[followings.length - 1].id,
+			})}` : undefined,
 		);
 
 		ctx.body = renderActivity(rendered);

@@ -41,7 +41,7 @@ export default async (ctx: Router.RouterContext) => {
 	// Verify user
 	const user = await Users.findOne({
 		id: userId,
-		host: null
+		host: null,
 	});
 
 	if (user == null) {
@@ -56,8 +56,8 @@ export default async (ctx: Router.RouterContext) => {
 		const query = makePaginationQuery(Notes.createQueryBuilder('note'), sinceId, untilId)
 			.andWhere('note.userId = :userId', { userId: user.id })
 			.andWhere(new Brackets(qb => { qb
-				.where(`note.visibility = 'public'`)
-				.orWhere(`note.visibility = 'home'`);
+				.where('note.visibility = \'public\'')
+				.orWhere('note.visibility = \'home\'');
 			}))
 			.andWhere('note.localOnly = FALSE');
 
@@ -70,17 +70,17 @@ export default async (ctx: Router.RouterContext) => {
 			`${partOf}?${url.query({
 				page: 'true',
 				since_id: sinceId,
-				until_id: untilId
+				until_id: untilId,
 			})}`,
 			user.notesCount, activities, partOf,
 			notes.length ? `${partOf}?${url.query({
 				page: 'true',
-				since_id: notes[0].id
+				since_id: notes[0].id,
 			})}` : undefined,
 			notes.length ? `${partOf}?${url.query({
 				page: 'true',
-				until_id: notes[notes.length - 1].id
-			})}` : undefined
+				until_id: notes[notes.length - 1].id,
+			})}` : undefined,
 		);
 
 		ctx.body = renderActivity(rendered);
@@ -89,7 +89,7 @@ export default async (ctx: Router.RouterContext) => {
 		// index page
 		const rendered = renderOrderedCollection(partOf, user.notesCount,
 			`${partOf}?page=true`,
-			`${partOf}?page=true&since_id=000000000000000000000000`
+			`${partOf}?page=true&since_id=000000000000000000000000`,
 		);
 		ctx.body = renderActivity(rendered);
 		ctx.set('Cache-Control', 'public, max-age=180');
