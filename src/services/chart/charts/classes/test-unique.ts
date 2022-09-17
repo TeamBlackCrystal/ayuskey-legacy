@@ -23,7 +23,7 @@ export default class TestUniqueChart extends Chart<TestUniqueLog> {
 	@autobind
 	public async uniqueIncrement(key: string) {
 		await this.incIfUnique({
-			foo: 1
+			foo: 1,
 		}, 'foos', key);
 	}
 }

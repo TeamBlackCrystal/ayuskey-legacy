@@ -9,23 +9,23 @@ export const schema = {
 				total: {
 					type: 'number' as const,
 					optional: false as const, nullable: false as const,
-					description: ''
+					description: '',
 				},
 
 				inc: {
 					type: 'number' as const,
 					optional: false as const, nullable: false as const,
-					description: ''
+					description: '',
 				},
 
 				dec: {
 					type: 'number' as const,
 					optional: false as const, nullable: false as const,
-					description: ''
+					description: '',
 				},
-			}
-		}
-	}
+			},
+		},
+	},
 };
 
 export const name = 'test';

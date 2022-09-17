@@ -16,20 +16,20 @@ export default class FederationChart extends Chart<FederationLog> {
 		return {
 			instance: {
 				total: latest.instance.total,
-			}
+			},
 		};
 	}
 
 	@autobind
 	protected async fetchActual(): Promise<DeepPartial<FederationLog>> {
 		const [total] = await Promise.all([
-			Instances.count({})
+			Instances.count({}),
 		]);
 
 		return {
 			instance: {
 				total: total,
-			}
+			},
 		};
 	}
 
@@ -45,7 +45,7 @@ export default class FederationChart extends Chart<FederationLog> {
 		}
 
 		await this.inc({
-			instance: update
+			instance: update,
 		});
 	}
 }

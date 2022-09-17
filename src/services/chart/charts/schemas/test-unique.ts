@@ -5,9 +5,9 @@ export const schema = {
 		foo: {
 			type: 'number' as const,
 			optional: false as const, nullable: false as const,
-			description: ''
+			description: '',
 		},
-	}
+	},
 };
 
 export const name = 'testUnique';

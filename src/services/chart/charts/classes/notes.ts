@@ -21,7 +21,7 @@ export default class NotesChart extends Chart<NotesLog> {
 			},
 			remote: {
 				total: latest.remote.total,
-			}
+			},
 		};
 	}
 
@@ -29,7 +29,7 @@ export default class NotesChart extends Chart<NotesLog> {
 	protected async fetchActual(): Promise<DeepPartial<NotesLog>> {
 		const [localCount, remoteCount] = await Promise.all([
 			Notes.count({ userHost: null }),
-			Notes.count({ userHost: Not(IsNull()) })
+			Notes.count({ userHost: Not(IsNull()) }),
 		]);
 
 		return {
@@ -38,14 +38,14 @@ export default class NotesChart extends Chart<NotesLog> {
 			},
 			remote: {
 				total: remoteCount,
-			}
+			},
 		};
 	}
 
 	@autobind
 	public async update(note: Note, isAdditional: boolean) {
 		const update: Obj = {
-			diffs: {}
+			diffs: {},
 		};
 
 		update.total = isAdditional ? 1 : -1;
@@ -65,7 +65,7 @@ export default class NotesChart extends Chart<NotesLog> {
 		}
 
 		await this.inc({
-			[note.userHost === null ? 'local' : 'remote']: update
+			[note.userHost === null ? 'local' : 'remote']: update,
 		});
 	}
 }
