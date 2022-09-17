@@ -57,7 +57,7 @@ export function getApId(value: string | IObject): string {
 export function getApType(value: IObject): string {
 	if (typeof value.type === 'string') return value.type;
 	if (Array.isArray(value.type) && typeof value.type[0] === 'string') return value.type[0];
-	throw new Error(`cannot detect type`);
+	throw new Error('cannot detect type');
 }
 
 export function getOneApHrefNullable(value: ApObject | undefined): string | undefined {

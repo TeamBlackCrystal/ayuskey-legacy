@@ -23,7 +23,7 @@ export async function resolveAnotherUser(selfUri: string, target: string | IObje
 			throw new Error(`failed to resolvePerson ${selfUri} => ${targetUri}, ${e}`);
 		});
 
-	if (selfUri === user?.uri) {
+	if (selfUri === user.uri) {
 		throw new Error(`result is self ${selfUri}`);
 	}
 
