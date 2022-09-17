@@ -10,19 +10,19 @@ export class UserGroupInvite {
 	public id: string;
 
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the UserGroupInvite.'
+		comment: 'The created date of the UserGroupInvite.',
 	})
 	public createdAt: Date;
 
 	@Index()
 	@Column({
 		...id(),
-		comment: 'The user ID.'
+		comment: 'The user ID.',
 	})
 	public userId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public user: User | null;
@@ -30,12 +30,12 @@ export class UserGroupInvite {
 	@Index()
 	@Column({
 		...id(),
-		comment: 'The group ID.'
+		comment: 'The group ID.',
 	})
 	public userGroupId: UserGroup['id'];
 
 	@ManyToOne(type => UserGroup, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public userGroup: UserGroup | null;

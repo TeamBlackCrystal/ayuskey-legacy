@@ -11,7 +11,7 @@ export class NoteReaction {
 
 	@Index()
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the NoteReaction.'
+		comment: 'The created date of the NoteReaction.',
 	})
 	public createdAt: Date;
 
@@ -20,7 +20,7 @@ export class NoteReaction {
 	public userId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public user: User | null;
@@ -30,18 +30,18 @@ export class NoteReaction {
 	public noteId: Note['id'];
 
 	@ManyToOne(type => Note, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public note: Note | null;
 
 	@Column('varchar', {
-		length: 260
+		length: 260,
 	})
 	public reaction: string;
 
 	@Column('boolean', {
-		nullable: true
+		nullable: true,
 	})
 	public dislike: boolean | null;
 }

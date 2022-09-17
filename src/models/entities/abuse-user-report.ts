@@ -10,7 +10,7 @@ export class AbuseUserReport {
 
 	@Index()
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the AbuseUserReport.'
+		comment: 'The created date of the AbuseUserReport.',
 	})
 	public createdAt: Date;
 
@@ -19,7 +19,7 @@ export class AbuseUserReport {
 	public userId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public user: User | null;
@@ -29,7 +29,7 @@ export class AbuseUserReport {
 	public reporterId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public reporter: User | null;

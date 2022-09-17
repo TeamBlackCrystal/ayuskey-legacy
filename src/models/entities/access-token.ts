@@ -9,19 +9,19 @@ export class AccessToken {
 	public id: string;
 
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the AccessToken.'
+		comment: 'The created date of the AccessToken.',
 	})
 	public createdAt: Date;
 
 	@Index()
 	@Column('varchar', {
-		length: 128
+		length: 128,
 	})
 	public token: string;
 
 	@Index()
 	@Column('varchar', {
-		length: 128
+		length: 128,
 	})
 	public hash: string;
 
@@ -30,7 +30,7 @@ export class AccessToken {
 	public userId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public user: User | null;
@@ -39,7 +39,7 @@ export class AccessToken {
 	public appId: App['id'];
 
 	@ManyToOne(type => App, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public app: App | null;

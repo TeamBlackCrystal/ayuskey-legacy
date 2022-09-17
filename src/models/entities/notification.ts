@@ -10,7 +10,7 @@ export class Notification {
 
 	@Index()
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the Notification.'
+		comment: 'The created date of the Notification.',
 	})
 	public createdAt: Date;
 
@@ -20,12 +20,12 @@ export class Notification {
 	@Index()
 	@Column({
 		...id(),
-		comment: 'The ID of recipient user of the Notification.'
+		comment: 'The ID of recipient user of the Notification.',
 	})
 	public notifieeId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public notifiee: User | null;
@@ -35,12 +35,12 @@ export class Notification {
 	 */
 	@Column({
 		...id(),
-		comment: 'The ID of sender user of the Notification.'
+		comment: 'The ID of sender user of the Notification.',
 	})
 	public notifierId: User['id'];
 
 	@ManyToOne(type => User, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public notifier: User | null;
@@ -57,7 +57,7 @@ export class Notification {
 	 */
 	@Column('varchar', {
 		length: 32,
-		comment: 'The type of the Notification.'
+		comment: 'The type of the Notification.',
 	})
 	public type: string;
 
@@ -66,29 +66,29 @@ export class Notification {
 	 */
 	@Column('boolean', {
 		default: false,
-		comment: 'Whether the Notification is read.'
+		comment: 'Whether the Notification is read.',
 	})
 	public isRead: boolean;
 
 	@Column({
 		...id(),
-		nullable: true
+		nullable: true,
 	})
 	public noteId: Note['id'] | null;
 
 	@ManyToOne(type => Note, {
-		onDelete: 'CASCADE'
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	public note: Note | null;
 
 	@Column('varchar', {
-		length: 128, nullable: true
+		length: 128, nullable: true,
 	})
 	public reaction: string;
 
 	@Column('integer', {
-		nullable: true
+		nullable: true,
 	})
 	public choice: number;
 }
