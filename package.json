@@ -296,6 +296,7 @@
 		"prettier": "2.7.1",
 		"tslint": "5.20.1",
 		"tslint-sonarts": "1.9.0",
+		"vue-eslint-parser": "9.1.0",
 		"webpack-dev-server": "4.8.1"
 	}
 }
