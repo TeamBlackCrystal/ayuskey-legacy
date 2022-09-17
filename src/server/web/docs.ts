@@ -38,7 +38,7 @@ async function genVars(lang: string): Promise<{ [key: string]: any }> {
 		if (vars['docs'][name] == null) {
 			vars['docs'][name] = {
 				name,
-				title: {}
+				title: {},
 			};
 		}
 		vars['docs'][name]['title'][lang] = fs.readFileSync(cwd + x, 'utf-8').match(/^# (.+?)\r?\n/)![1];
@@ -62,7 +62,7 @@ const router = new Router();
 router.get('/assets/*', async ctx => {
 	await send(ctx as any, ctx.params[0], {
 		root: `${__dirname}/../../docs/assets/`,
-		maxage: ms('1 days')
+		maxage: ms('1 days'),
 	});
 });
 
@@ -73,24 +73,24 @@ router.get('/*/*', async ctx => {
 	showdown.extension('urlExtension', () => ({
 		type: 'output',
 		regex: /%URL%/g,
-		replace: config.url
+		replace: config.url,
 	}));
 
 	showdown.extension('wsUrlExtension', () => ({
 		type: 'output',
 		regex: /%WS_URL%/g,
-		replace: config.wsUrl
+		replace: config.wsUrl,
 	}));
 
 	showdown.extension('apiUrlExtension', () => ({
 		type: 'output',
 		regex: /%API_URL%/g,
-		replace: config.apiUrl
+		replace: config.apiUrl,
 	}));
 
 	const conv = new showdown.Converter({
 		tables: true,
-		extensions: ['urlExtension', 'apiUrlExtension', 'highlightjs']
+		extensions: ['urlExtension', 'apiUrlExtension', 'highlightjs'],
 	});
 	const md = fs.readFileSync(`${__dirname}/../../docs/${lang}/${doc}.md`, 'utf8');
 
@@ -98,7 +98,7 @@ router.get('/*/*', async ctx => {
 		id: doc,
 		html: conv.makeHtml(md),
 		title: md.match(/^# (.+?)\r?\n/)![1],
-		src: `https://github.com/TeamOrangeServer/misskey/tree/v11-lts/src/docs/${lang}/${doc}.md`
+		src: `https://github.com/TeamOrangeServer/misskey/tree/v11-lts/src/docs/${lang}/${doc}.md`,
 	}, await genVars(lang)));
 
 	ctx.set('Cache-Control', 'public, max-age=300');

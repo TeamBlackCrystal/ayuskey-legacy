@@ -10,7 +10,7 @@ import * as send from 'koa-send';
 import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
 import { createBullBoard } from '@bull-board/api';
-import { BullAdapter  } from '@bull-board/api/bullAdapter.js';
+import { BullAdapter } from '@bull-board/api/bullAdapter.js';
 import { KoaAdapter } from '@bull-board/koa';
 
 import docs from './docs';
@@ -73,8 +73,8 @@ app.use(serverAdapter.registerPlugin());
 app.use(views(__dirname + '/views', {
 	extension: 'pug',
 	options: {
-		config
-	}
+		config,
+	},
 }));
 
 // Serve favicon
@@ -112,7 +112,7 @@ router.get('/assets/*', async ctx => {
 // Apple touch icon
 router.get('/apple-touch-icon.png', async ctx => {
 	await send(ctx as any, '/assets/apple-touch-icon.png', {
-		root: client
+		root: client,
 	});
 });
 
@@ -135,7 +135,7 @@ router.get('/twemoji/(.*)', async ctx => {
 // ServiceWorker
 router.get(/^\/sw\.(.+?)\.js$/, async ctx => {
 	await send(ctx as any, `/assets/sw.${ctx.params[0]}.js`, {
-		root: client
+		root: client,
 	});
 });
 
@@ -144,7 +144,7 @@ router.get('/manifest.json', require('./manifest'));
 
 router.get('/robots.txt', async ctx => {
 	await send(ctx as any, '/assets/robots.txt', {
-		root: client
+		root: client,
 	});
 });
 
@@ -154,7 +154,7 @@ router.get('/robots.txt', async ctx => {
 router.use('/docs', docs.routes());
 router.get('/api-doc', async ctx => {
 	await send(ctx as any, '/assets/redoc.html', {
-		root: client
+		root: client,
 	});
 });
 
@@ -179,7 +179,7 @@ const getFeed = async (acct: string) => {
 	const user = await Users.findOne({
 		usernameLower: username.toLowerCase(),
 		host,
-		isSuspended: false
+		isSuspended: false,
 	});
 
 	return user && await packFeed(user);
@@ -228,7 +228,7 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 	const _user = await Users.findOne({
 		usernameLower: username.toLowerCase(),
 		host,
-		isSuspended: false
+		isSuspended: false,
 	});
 
 	const user = await Users.pack(_user!);
@@ -246,7 +246,7 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			user, profile, me,
 			sub: ctx.params.sub,
 			instanceName: meta.name || 'Misskey',
-			icon: meta.iconUrl
+			icon: meta.iconUrl,
 		});
 		setCache(ctx, 'public, max-age=30');
 	} else {
@@ -260,7 +260,7 @@ router.get('/users/:user', async ctx => {
 	const user = await Users.findOne({
 		id: ctx.params.user,
 		host: null,
-		isSuspended: false
+		isSuspended: false,
 	});
 
 	if (user == null) {
@@ -302,7 +302,7 @@ router.get('/notes/:note', async ctx => {
 
 		const stream = video?.url || audio?.url;
 		const type = video?.type || audio?.type;
-		const player = (video || audio) ? `${config.url}/notes/${_note?.id}/embed` : null;
+		const player = (video || audio) ? `${config.url}/notes/${_note.id}/embed` : null;
 		const width = 530;	// TODO: thumbnail width
 		const height = 255;
 
@@ -357,7 +357,7 @@ router.get('/notes/:note/embed', async ctx => {
 			summary: getNoteSummary(_note),
 			imageUrl,
 			instanceName: meta.name || 'Misskey',
-			icon: meta.iconUrl
+			icon: meta.iconUrl,
 		});
 
 		const video = (_note.files || [])
@@ -391,14 +391,14 @@ router.get('/@:user/pages/:page', async ctx => {
 	const { username, host } = parseAcct(ctx.params.user);
 	const user = await Users.findOne({
 		usernameLower: username.toLowerCase(),
-		host
+		host,
 	});
 
 	if (user == null) return;
 
 	const page = await Pages.findOne({
 		name: ctx.params.page,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (page) {
@@ -408,7 +408,7 @@ router.get('/@:user/pages/:page', async ctx => {
 		await ctx.render('page', {
 			page: _page,
 			profile,
-			instanceName: meta.name || 'Misskey'
+			instanceName: meta.name || 'Misskey',
 		});
 
 		if (['public'].includes(page.visibility)) {
@@ -427,7 +427,7 @@ router.get('/@:user/pages/:page', async ctx => {
 router.get('/info', async ctx => {
 	const meta = await fetchMeta(true);
 	const emojis = await Emojis.find({
-		where: { host: null }
+		where: { host: null },
 	});
 
 	//const proxyAccount = meta.proxyAccountId ? await Users.pack(meta.proxyAccountId).catch(() => null) : null;
@@ -451,7 +451,7 @@ router.get('/info', async ctx => {
 		meta: meta,
 		//proxyAccountName: proxyAccount ? proxyAccount.username : null,
 		originalUsersCount: await Users.count({ host: null }),
-		originalNotesCount: await Notes.count({ userHost: null })
+		originalNotesCount: await Notes.count({ userHost: null }),
 	});
 });
 
@@ -463,11 +463,11 @@ router.get('/_info_card_', async ctx => {
 		host: config.host,
 		meta: meta,
 		originalUsersCount: await Users.count({ host: null }),
-		originalNotesCount: await Notes.count({ userHost: null })
+		originalNotesCount: await Notes.count({ userHost: null }),
 	});
 });
 
-const override = (source: string, target: string, depth: number = 0) =>
+const override = (source: string, target: string, depth = 0) =>
 	[, ...target.split('/').filter(x => x), ...source.split('/').filter(x => x).splice(depth)].join('/');
 
 router.get('/othello', async ctx => ctx.redirect(override(ctx.URL.pathname, 'games/reversi', 1)));
@@ -492,7 +492,7 @@ router.get('*', async ctx => {
 		title: meta.name || 'Misskey',
 		instanceName: meta.name || 'Misskey',
 		desc: meta.description,
-		icon: meta.iconUrl
+		icon: meta.iconUrl,
 	});
 	setCache(ctx, 'public, max-age=300');
 });
