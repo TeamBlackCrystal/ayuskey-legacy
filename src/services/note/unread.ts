@@ -12,7 +12,7 @@ export default async function(userId: User['id'], note: Note, params: {
 	//#region ミュートしているなら無視
 	// TODO: 現在の仕様ではChannelにミュートは適用されないのでよしなにケアする
 	const mute = await Mutings.find({
-		muterId: userId
+		muterId: userId,
 	});
 	if (mute.map(m => m.muteeId).includes(note.userId)) return;
 	//#endregion
@@ -24,7 +24,7 @@ export default async function(userId: User['id'], note: Note, params: {
 		isSpecified: params.isSpecified,
 		isMentioned: params.isMentioned,
 		noteChannelId: note.channelId,
-		noteUserId: note.userId
+		noteUserId: note.userId,
 	});
 
 	// 2秒経っても既読にならなかったら「未読の投稿がありますよ」イベントを発行する

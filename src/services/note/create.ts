@@ -65,7 +65,7 @@ class NotificationManager {
 		} else {
 			this.queue.push({
 				reason: reason,
-				target: notifiee
+				target: notifiee,
 			});
 		}
 	}
@@ -74,7 +74,7 @@ class NotificationManager {
 		for (const x of this.queue) {
 			// ミュート情報を取得
 			const mentioneeMutes = await Mutings.find({
-				muterId: x.target
+				muterId: x.target,
 			});
 
 			const mentioneesMutedUserIds = mentioneeMutes.map(m => m.muteeId);
@@ -82,7 +82,7 @@ class NotificationManager {
 			// 通知される側のユーザーが通知する側のユーザーをミュートしていない限りは通知する
 			if (!mentioneesMutedUserIds.includes(this.notifier.id)) {
 				createNotification(x.target, this.notifier.id, x.reason, {
-					noteId: this.note.id
+					noteId: this.note.id,
 				});
 			}
 		}
@@ -259,7 +259,7 @@ export default async (user: User, data: Option, silent = false) => new Promise<N
 
 	// Antenna
 	Followings.createQueryBuilder('following')
-		.andWhere(`following.followeeId = :userId`, { userId: note.userId })
+		.andWhere('following.followeeId = :userId', { userId: note.userId })
 		.getMany()
 		.then(async followings => {
 			const followers = followings.map(f => f.followerId);
@@ -451,7 +451,7 @@ function incRenoteCount(renote: Note) {
 	Notes.createQueryBuilder().update()
 		.set({
 			renoteCount: () => '"renoteCount" + 1',
-			score: () => '"score" + 1'
+			score: () => '"score" + 1',
 		})
 		.where('id = :id', { id: renote.id })
 		.execute();
@@ -507,7 +507,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 				uri: u.uri,
 				url: url == null ? undefined : url,
 				username: u.username,
-				host: u.host
+				host: u.host,
 			} as IMentionedRemoteUsers[0];
 		}));
 	}
@@ -520,7 +520,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 			reactions: {},
 			score: 0,
 			mentions: [],
-			mentionedRemoteUsers: []
+			mentionedRemoteUsers: [],
 		}, insert) as Note;
 	}
 
@@ -539,7 +539,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 					votes: new Array(data.poll!.choices.length).fill(0),
 					noteVisibility: insert.visibility,
 					userId: user.id,
-					userHost: user.host
+					userHost: user.host,
 				});
 
 				await transactionalEntityManager.insert(Poll, poll);
@@ -572,7 +572,7 @@ function index(note: Note) {
 async function notifyToWatchersOfRenotee(renote: Note, user: User, nm: NotificationManager, type: NotificationType) {
 	const watchers = await NoteWatchings.find({
 		noteId: renote.id,
-		userId: Not(user.id)
+		userId: Not(user.id),
 	});
 
 	for (const watcher of watchers) {
@@ -583,7 +583,7 @@ async function notifyToWatchersOfRenotee(renote: Note, user: User, nm: Notificat
 async function notifyToWatchersOfReplyee(reply: Note, user: User, nm: NotificationManager) {
 	const watchers = await NoteWatchings.find({
 		noteId: reply.id,
-		userId: Not(user.id)
+		userId: Not(user.id),
 	});
 
 	for (const watcher of watchers) {
@@ -594,7 +594,7 @@ async function notifyToWatchersOfReplyee(reply: Note, user: User, nm: Notificati
 async function createMentionedEvents(mentionedUsers: User[], note: Note, nm: NotificationManager) {
 	for (const u of mentionedUsers.filter(u => Users.isLocalUser(u))) {
 		const detailPackedNote = await Notes.pack(note, u, {
-			detail: true
+			detail: true,
 		});
 
 		publishMainStream(u.id, 'mention', detailPackedNote);
@@ -612,7 +612,7 @@ function incNotesCountOfUser(user: User) {
 	Users.createQueryBuilder().update()
 		.set({
 			updatedAt: new Date(),
-			notesCount: () => '"notesCount" + 1'
+			notesCount: () => '"notesCount" + 1',
 		})
 		.where('id = :id', { id: user.id })
 		.execute();
@@ -624,12 +624,12 @@ async function extractMentionedUsers(user: User, tokens: ReturnType<typeof parse
 	const mentions = extractMentions(tokens);
 
 	let mentionedUsers = (await Promise.all(mentions.map(m =>
-		resolveUser(m.username, m.host || user.host).catch(() => null)
+		resolveUser(m.username, m.host || user.host).catch(() => null),
 	))).filter(x => x != null) as User[];
 
 	// Drop duplicate users
 	mentionedUsers = mentionedUsers.filter((u, i, self) =>
-		i === self.findIndex(u2 => u.id === u2.id)
+		i === self.findIndex(u2 => u.id === u2.id),
 	);
 
 	return mentionedUsers;

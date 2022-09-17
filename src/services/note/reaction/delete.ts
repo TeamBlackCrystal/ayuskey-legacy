@@ -38,7 +38,7 @@ export default async (user: User, note: Note) => {
 
 	publishNoteStream(note.id, 'unreacted', {
 		reaction: decodeReaction(exist.reaction).reaction,
-		userId: user.id
+		userId: user.id,
 	});
 
 	//#region 配信
