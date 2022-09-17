@@ -16,9 +16,9 @@ import { dbQueue, deliverQueue, inboxQueue, objectStorageQueue } from './queues'
 
 function renderError(e: Error): any {
 	return {
-		stack: e?.stack,
-		message: e?.message,
-		name: e?.name
+		stack: e.stack,
+		message: e.message,
+		name: e.name,
 	};
 }
 
@@ -67,145 +67,145 @@ export function deliver(user: ILocalUser, content: any, to: string) {
 
 	const data = {
 		user: {
-			id: user.id
+			id: user.id,
 		},
 		content,
-		to
+		to,
 	};
 
 	return deliverQueue.add(data, {
 		attempts: config.deliverJobMaxAttempts || 12,
 		backoff: {
-			type: 'apBackoff'
+			type: 'apBackoff',
 		},
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function inbox(activity: IActivity, signature: httpSignature.IParsedSignature) {
 	const data = {
 		activity,
-		signature
+		signature,
 	};
 
 	return inboxQueue.add(data, {
 		attempts: config.inboxJobMaxAttempts || 8,
 		backoff: {
-			type: 'apBackoff'
+			type: 'apBackoff',
 		},
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createDeleteDriveFilesJob(user: ILocalUser) {
 	return dbQueue.add('deleteDriveFiles', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createExportNotesJob(user: ILocalUser) {
 	return dbQueue.add('exportNotes', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createExportFollowingJob(user: ILocalUser) {
 	return dbQueue.add('exportFollowing', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createExportMuteJob(user: ILocalUser) {
 	return dbQueue.add('exportMute', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createExportBlockingJob(user: ILocalUser) {
 	return dbQueue.add('exportBlocking', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createExportUserListsJob(user: ILocalUser) {
 	return dbQueue.add('exportUserLists', {
-		user: user
+		user: user,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createImportFollowingJob(user: ILocalUser, fileId: DriveFile['id']) {
 	return dbQueue.add('importFollowing', {
 		user: user,
-		fileId: fileId
+		fileId: fileId,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createImportBlockingJob(user: ILocalUser, fileId: DriveFile['id']) {
 	return dbQueue.add('importBlocking', {
 		user: user,
-		fileId: fileId
+		fileId: fileId,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createImportUserListsJob(user: ILocalUser, fileId: DriveFile['id']) {
 	return dbQueue.add('importUserLists', {
 		user: user,
-		fileId: fileId
+		fileId: fileId,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createDeleteAccountJob(user: User, opts: { soft?: boolean } = {}) {
 	return dbQueue.add('deleteAccount', {
 		user: user,
-		soft: opts.soft
+		soft: opts.soft,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createDeleteObjectStorageFileJob(key: string) {
 	return objectStorageQueue.add('deleteFile', {
-		key: key
+		key: key,
 	}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
 export function createCleanRemoteFilesJob() {
 	return objectStorageQueue.add('cleanRemoteFiles', {}, {
 		removeOnComplete: true,
-		removeOnFail: true
+		removeOnFail: true,
 	});
 }
 
