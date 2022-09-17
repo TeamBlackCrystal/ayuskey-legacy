@@ -1371,12 +1371,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sharp@npm:0.30.5":
-  version: 0.30.5
-  resolution: "@types/sharp@npm:0.30.5"
+"@types/sharp@npm:0.31.0":
+  version: 0.31.0
+  resolution: "@types/sharp@npm:0.31.0"
   dependencies:
     "@types/node": "*"
-  checksum: 8aa458d4c4187ae9a69894904832ecfe7533e0c405d1a7971a9984b0996eb6eb2ced103854b71199cf8df1350540bb4d3625c671a1946bd417b2bf4405c7292a
+  checksum: c7698de18183a0574bf2f703226a5a7dc32b8a7340b52790eff0f6775b8ad708b6782f48fcaaf4d1be15fd76215c81c3ea55595d55484bf7ce870923c8174294
   languageName: node
   linkType: hard
 
@@ -2689,9 +2689,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:2.1216.0":
-  version: 2.1216.0
-  resolution: "aws-sdk@npm:2.1216.0"
+"aws-sdk@npm:2.1218.0":
+  version: 2.1218.0
+  resolution: "aws-sdk@npm:2.1218.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -2703,7 +2703,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 91c1e5d6be0e34ec5d5e9312213cf155d051f611545a06b31edc5142d0d0a80aa0b8c71509979db2ca66c8cb293d20b9f480e5f1c3c5296a067e1c1e880066ba
+  checksum: e1bb41bf8b647e5f6e64f5955beb3972473916af31187d87d20f0a3ed6dab23dff47d490c0d351bb500f331823ec72956c8b510cf232be4bf25386b98652be41
   languageName: node
   linkType: hard
 
@@ -5380,9 +5380,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:9.4.0":
-  version: 9.4.0
-  resolution: "eslint-plugin-vue@npm:9.4.0"
+"eslint-plugin-vue@npm:9.5.1":
+  version: 9.5.1
+  resolution: "eslint-plugin-vue@npm:9.5.1"
   dependencies:
     eslint-utils: ^3.0.0
     natural-compare: ^1.4.0
@@ -5393,7 +5393,7 @@ __metadata:
     xml-name-validator: ^4.0.0
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-  checksum: 1eb085e7d52285eff05e4a3f0f4d65619e943eb7e976b0ef59c3adc75bf4a089df8e8cdba223cf27e2623c0fc6b306e3b1ca460d0ce27cc421ca91b7880eb0d8
+  checksum: 36433328710c241bf363291859b6caf1c74dd18d75b1b1fe5bac9706e4d612e3dea79eef5acccf06b2df9d9b3faf9343c1b3e1d9edbf6465fd9752f3c0a87ee4
   languageName: node
   linkType: hard
 
@@ -9660,7 +9660,7 @@ __metadata:
     "@types/request-stats": 3.0.0
     "@types/rimraf": 3.0.2
     "@types/seedrandom": 3.0.2
-    "@types/sharp": 0.30.5
+    "@types/sharp": 0.31.0
     "@types/showdown": 2.0.0
     "@types/speakeasy": 2.0.7
     "@types/three": 0.134.0
@@ -9682,7 +9682,7 @@ __metadata:
     autobind-decorator: 2.4.0
     autosize: 5.0.1
     autwh: 0.1.0
-    aws-sdk: 2.1216.0
+    aws-sdk: 2.1218.0
     bcryptjs: 2.4.3
     blurhash: 1.1.5
     bootstrap: 4.6.2
@@ -9710,7 +9710,7 @@ __metadata:
     eslint-config-prettier: 8.5.0
     eslint-import-resolver-node: 0.3.6
     eslint-plugin-import: 2.26.0
-    eslint-plugin-vue: 9.4.0
+    eslint-plugin-vue: 9.5.1
     eventemitter3: 4.0.7
     feed: 4.2.2
     file-type: 16.5.4
