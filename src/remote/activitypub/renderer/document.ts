@@ -5,5 +5,5 @@ export default (file: DriveFile) => ({
 	type: 'Document',
 	mediaType: file.type,
 	url: DriveFiles.getPublicUrl(file),
-	name: file.comment
+	name: file.comment,
 });

@@ -19,7 +19,7 @@ export async function renderPerson(user: ILocalUser) {
 	const [avatar, banner, profile] = await Promise.all([
 		(user.avatar === undefined && user.avatarId) ? DriveFiles.findOne(user.avatarId) : user.avatar,
 		(user.banner === undefined && user.bannerId) ? DriveFiles.findOne(user.bannerId) : user.banner,
-		UserProfiles.findOne(user.id).then(ensure)
+		UserProfiles.findOne(user.id).then(ensure),
 	]);
 
 	const attachment: {
@@ -36,7 +36,7 @@ export async function renderPerson(user: ILocalUser) {
 				name: field.name,
 				value: (field.value != null && field.value.match(/^https?:/))
 					? `<a href="${new URL(field.value).href}" rel="me nofollow noopener" target="_blank">${new URL(field.value).href}</a>`
-					: field.value
+					: field.value,
 			});
 		}
 	}
@@ -75,14 +75,14 @@ export async function renderPerson(user: ILocalUser) {
 		publicKey: renderKey(user, keypair, '#main-key'),
 		isCat: user.isCat,
 		isLady: user.isLady,
-		attachment: attachment.length ? attachment : undefined
+		attachment: attachment.length ? attachment : undefined,
 	} as any;
 
-	if (profile?.birthday) {
+	if (profile.birthday) {
 		person['vcard:bday'] = profile.birthday;
 	}
 
-	if (profile?.location) {
+	if (profile.location) {
 		person['vcard:Address'] = profile.location;
 	}
 

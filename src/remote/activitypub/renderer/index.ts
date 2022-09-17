@@ -45,8 +45,8 @@ export const renderActivity = (x: any): IActivity | null => {
 				'isLady': 'ayuskey:isLady',
 				// vcard
 				vcard: 'http://www.w3.org/2006/vcard/ns#',
-			}
-		]
+			},
+		],
 	}, x);
 };
 
@@ -54,7 +54,7 @@ export const attachLdSignature = async (activity: any, user: ILocalUser): Promis
 	if (activity == null) return null;
 
 	const keypair = await UserKeypairs.findOne({
-		userId: user.id
+		userId: user.id,
 	}).then(ensure);
 
 	const ldSignature = new LdSignature();
