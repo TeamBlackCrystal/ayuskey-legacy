@@ -43,7 +43,7 @@ if (!['production', 'test'].includes(process.env.NODE_ENV || '')) {
 	// Delay
 	if (program.slow) {
 		app.use(slow({
-			delay: 3000
+			delay: 3000,
 		}));
 	}
 }
@@ -79,12 +79,12 @@ router.use(wellKnown.routes());
 router.get('/avatar/@:acct', async ctx => {
 	const { username, host } = parseAcct(ctx.params.acct);
 	const user = await Users.findOne({
-        where: {
-            usernameLower: username.toLowerCase(),
-            host: host === config.host ? null : host,
-            isSuspended: false
-        },
-        relations: ['avatar']
+		where: {
+			usernameLower: username.toLowerCase(),
+			host: host === config.host ? null : host,
+			isSuspended: false,
+		},
+		relations: ['avatar'],
 	});
 
 	if (user) {
@@ -105,7 +105,7 @@ router.get('/random-avatar/:x', async ctx => {
 
 router.get('/verify-email/:code', async ctx => {
 	const profile = await UserProfiles.findOne({
-		emailVerifyCode: ctx.params.code
+		emailVerifyCode: ctx.params.code,
 	});
 
 	if (profile != null) {
@@ -114,7 +114,7 @@ router.get('/verify-email/:code', async ctx => {
 
 		UserProfiles.update({ userId: profile.userId }, {
 			emailVerified: true,
-			emailVerifyCode: null
+			emailVerifyCode: null,
 		});
 	} else {
 		ctx.status = 404;

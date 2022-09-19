@@ -13,9 +13,9 @@ export const links = [/* (awaiting release) {
 	rel: 'http://nodeinfo.diaspora.software/ns/schema/2.1',
 	href: config.url + nodeinfo2_1path
 }, */{
-	rel: 'http://nodeinfo.diaspora.software/ns/schema/2.0',
-	href: config.url + nodeinfo2_0path
-}];
+		rel: 'http://nodeinfo.diaspora.software/ns/schema/2.0',
+		href: config.url + nodeinfo2_0path,
+	}];
 
 const nodeinfo2 = async () => {
 	const now = Date.now();
@@ -42,7 +42,7 @@ const nodeinfo2 = async () => {
 		protocols: ['activitypub'],
 		services: {
 			inbound: [] as string[],
-			outbound: ['atom1.0', 'rss2.0']
+			outbound: ['atom1.0', 'rss2.0'],
 		},
 		openRegistrations: !meta.disableRegistration,
 		usage: {
@@ -55,7 +55,7 @@ const nodeinfo2 = async () => {
 			nodeDescription: meta.description,
 			maintainer: {
 				name: meta.maintainerName,
-				email: meta.maintainerEmail
+				email: meta.maintainerEmail,
 			},
 			langs: meta.langs,
 			ToSUrl: meta.ToSUrl,
@@ -71,8 +71,8 @@ const nodeinfo2 = async () => {
 			enableGithubIntegration: meta.enableGithubIntegration,
 			enableDiscordIntegration: meta.enableDiscordIntegration,
 			enableEmail: meta.enableEmail,
-			enableServiceWorker: meta.enableServiceWorker
-		}
+			enableServiceWorker: meta.enableServiceWorker,
+		},
 	};
 };
 
