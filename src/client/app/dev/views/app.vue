@@ -17,11 +17,11 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			app: null
+			app: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	mounted() {
 		this.fetch();
@@ -30,12 +30,12 @@ export default Vue.extend({
 		fetch() {
 			this.fetching = true;
 			this.$root.api('app/show', {
-				appId: this.$route.params.id
+				appId: this.$route.params.id,
 			}).then(app => {
 				this.app = app;
 				this.fetching = false;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
