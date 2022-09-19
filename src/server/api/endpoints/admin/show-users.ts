@@ -11,12 +11,12 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		offset: {
 			validator: $.optional.num.min(0),
-			default: 0
+			default: 0,
 		},
 
 		sort: {
@@ -40,7 +40,7 @@ export const meta = {
 				'silenced',
 				'suspended',
 			]),
-			default: 'all'
+			default: 'all',
 		},
 
 		origin: {
@@ -49,19 +49,19 @@ export const meta = {
 				'local',
 				'remote',
 			]),
-			default: 'local'
+			default: 'local',
 		},
 
 		username: {
 			validator: $.optional.str,
-			default: null
+			default: null,
 		},
 
 		hostname: {
 			validator: $.optional.str,
-			default: null
-		}
-	}
+			default: null,
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {

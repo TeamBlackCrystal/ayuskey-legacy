@@ -5,7 +5,7 @@ import { genId } from '../../../../misc/gen-id';
 
 export const meta = {
 	desc: {
-		'ja-JP': '招待コードを発行します。'
+		'ja-JP': '招待コードを発行します。',
 	},
 
 	tags: ['admin'],
@@ -13,7 +13,7 @@ export const meta = {
 	requireCredential: true,
 	requireModerator: true,
 
-	params: {}
+	params: {},
 };
 
 export default define(meta, async () => {

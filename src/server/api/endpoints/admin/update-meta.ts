@@ -7,7 +7,7 @@ import { DB_MAX_NOTE_TEXT_LENGTH } from '../../../../misc/hard-limits';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'インスタンスの設定を更新します。'
+		'ja-JP': 'インスタンスの設定を更新します。',
 	},
 
 	tags: ['admin'],
@@ -19,414 +19,414 @@ export const meta = {
 		announcements: {
 			validator: $.optional.nullable.arr($.obj()),
 			desc: {
-				'ja-JP': 'お知らせ'
-			}
+				'ja-JP': 'お知らせ',
+			},
 		},
 
 		disableRegistration: {
 			validator: $.optional.nullable.bool,
 			desc: {
-				'ja-JP': '招待制か否か'
-			}
+				'ja-JP': '招待制か否か',
+			},
 		},
 
 		disableLocalTimeline: {
 			validator: $.optional.nullable.bool,
 			desc: {
-				'ja-JP': 'ローカルタイムライン(とソーシャルタイムライン)を無効にするか否か'
-			}
+				'ja-JP': 'ローカルタイムライン(とソーシャルタイムライン)を無効にするか否か',
+			},
 		},
 
 		disableGlobalTimeline: {
 			validator: $.optional.nullable.bool,
 			desc: {
-				'ja-JP': 'グローバルタイムラインを無効にするか否か'
-			}
+				'ja-JP': 'グローバルタイムラインを無効にするか否か',
+			},
 		},
 
 		enableEmojiReaction: {
 			validator: $.optional.nullable.bool,
 			desc: {
-				'ja-JP': '絵文字リアクションを有効にするか否か'
-			}
+				'ja-JP': '絵文字リアクションを有効にするか否か',
+			},
 		},
 
 		useStarForReactionFallback: {
 			validator: $.optional.nullable.bool,
 			desc: {
-				'ja-JP': '不明なリアクションのフォールバックに star リアクションを使うか'
-			}
+				'ja-JP': '不明なリアクションのフォールバックに star リアクションを使うか',
+			},
 		},
 
 		pinnedUsers: {
 			validator: $.optional.nullable.arr($.str),
 			desc: {
-				'ja-JP': 'ピン留めユーザー'
-			}
+				'ja-JP': 'ピン留めユーザー',
+			},
 		},
 
 		hiddenTags: {
 			validator: $.optional.nullable.arr($.str),
 			desc: {
-				'ja-JP': '統計などで無視するハッシュタグ'
-			}
+				'ja-JP': '統計などで無視するハッシュタグ',
+			},
 		},
 
 		blockedHosts: {
 			validator: $.optional.nullable.arr($.str),
 			desc: {
-				'ja-JP': 'ブロックするホスト'
-			}
+				'ja-JP': 'ブロックするホスト',
+			},
 		},
 
 		mascotImageUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスキャラクター画像のURL'
-			}
+				'ja-JP': 'インスタンスキャラクター画像のURL',
+			},
 		},
 
 		bannerUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスのバナー画像URL'
-			}
+				'ja-JP': 'インスタンスのバナー画像URL',
+			},
 		},
 
 		errorImageUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスのエラー画像URL'
-			}
+				'ja-JP': 'インスタンスのエラー画像URL',
+			},
 		},
 
 		iconUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスのアイコンURL'
-			}
+				'ja-JP': 'インスタンスのアイコンURL',
+			},
 		},
 
 		name: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンス名'
-			}
+				'ja-JP': 'インスタンス名',
+			},
 		},
 
 		description: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスの紹介文'
-			}
+				'ja-JP': 'インスタンスの紹介文',
+			},
 		},
 
 		maxNoteTextLength: {
 			validator: $.optional.num.min(0).max(DB_MAX_NOTE_TEXT_LENGTH),
 			desc: {
-				'ja-JP': '投稿の最大文字数'
-			}
+				'ja-JP': '投稿の最大文字数',
+			},
 		},
 
 		localDriveCapacityMb: {
 			validator: $.optional.num.min(0),
 			desc: {
 				'ja-JP': 'ローカルユーザーひとりあたりのドライブ容量 (メガバイト単位)',
-				'en-US': 'Drive capacity of a local user (MB)'
-			}
+				'en-US': 'Drive capacity of a local user (MB)',
+			},
 		},
 
 		remoteDriveCapacityMb: {
 			validator: $.optional.num.min(0),
 			desc: {
 				'ja-JP': 'リモートユーザーひとりあたりのドライブ容量 (メガバイト単位)',
-				'en-US': 'Drive capacity of a remote user (MB)'
-			}
+				'en-US': 'Drive capacity of a remote user (MB)',
+			},
 		},
 
 		cacheRemoteFiles: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'リモートのファイルをキャッシュするか否か'
-			}
+				'ja-JP': 'リモートのファイルをキャッシュするか否か',
+			},
 		},
 
 		proxyRemoteFiles: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'ローカルにないリモートのファイルをプロキシするか否か'
-			}
+				'ja-JP': 'ローカルにないリモートのファイルをプロキシするか否か',
+			},
 		},
 
 		enableRecaptcha: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'reCAPTCHAを使用するか否か'
-			}
+				'ja-JP': 'reCAPTCHAを使用するか否か',
+			},
 		},
 
 		recaptchaSiteKey: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'reCAPTCHA site key'
-			}
+				'ja-JP': 'reCAPTCHA site key',
+			},
 		},
 
 		recaptchaSecretKey: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'reCAPTCHA secret key'
-			}
+				'ja-JP': 'reCAPTCHA secret key',
+			},
 		},
 
 		proxyAccount: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'プロキシアカウントのユーザー名'
-			}
+				'ja-JP': 'プロキシアカウントのユーザー名',
+			},
 		},
 
 		maintainerName: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンスの管理者名'
-			}
+				'ja-JP': 'インスタンスの管理者名',
+			},
 		},
 
 		maintainerEmail: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'インスタンス管理者の連絡先メールアドレス'
-			}
+				'ja-JP': 'インスタンス管理者の連絡先メールアドレス',
+			},
 		},
 
 		langs: {
 			validator: $.optional.arr($.str),
 			desc: {
-				'ja-JP': 'インスタンスの対象言語'
-			}
+				'ja-JP': 'インスタンスの対象言語',
+			},
 		},
 
 		summalyProxy: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'summalyプロキシURL'
-			}
+				'ja-JP': 'summalyプロキシURL',
+			},
 		},
 
 		enableTwitterIntegration: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'Twitter連携機能を有効にするか否か'
-			}
+				'ja-JP': 'Twitter連携機能を有効にするか否か',
+			},
 		},
 
 		twitterConsumerKey: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'TwitterアプリのConsumer key'
-			}
+				'ja-JP': 'TwitterアプリのConsumer key',
+			},
 		},
 
 		twitterConsumerSecret: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'TwitterアプリのConsumer secret'
-			}
+				'ja-JP': 'TwitterアプリのConsumer secret',
+			},
 		},
 
 		enableGithubIntegration: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'GitHub連携機能を有効にするか否か'
-			}
+				'ja-JP': 'GitHub連携機能を有効にするか否か',
+			},
 		},
 
 		githubClientId: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'GitHubアプリのClient ID'
-			}
+				'ja-JP': 'GitHubアプリのClient ID',
+			},
 		},
 
 		githubClientSecret: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'GitHubアプリのClient Secret'
-			}
+				'ja-JP': 'GitHubアプリのClient Secret',
+			},
 		},
 
 		enableDiscordIntegration: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'Discord連携機能を有効にするか否か'
-			}
+				'ja-JP': 'Discord連携機能を有効にするか否か',
+			},
 		},
 
 		discordClientId: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'DiscordアプリのClient ID'
-			}
+				'ja-JP': 'DiscordアプリのClient ID',
+			},
 		},
 
 		discordClientSecret: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'DiscordアプリのClient Secret'
-			}
+				'ja-JP': 'DiscordアプリのClient Secret',
+			},
 		},
 
 		enableEmail: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'メール配信を有効にするか否か'
-			}
+				'ja-JP': 'メール配信を有効にするか否か',
+			},
 		},
 
 		email: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'メール配信する際に利用するメールアドレス'
-			}
+				'ja-JP': 'メール配信する際に利用するメールアドレス',
+			},
 		},
 
 		smtpSecure: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'SMTPサーバがSSLを使用しているか否か'
-			}
+				'ja-JP': 'SMTPサーバがSSLを使用しているか否か',
+			},
 		},
 
 		smtpHost: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'SMTPサーバのホスト'
-			}
+				'ja-JP': 'SMTPサーバのホスト',
+			},
 		},
 
 		smtpPort: {
 			validator: $.optional.nullable.num,
 			desc: {
-				'ja-JP': 'SMTPサーバのポート'
-			}
+				'ja-JP': 'SMTPサーバのポート',
+			},
 		},
 
 		smtpUser: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'SMTPサーバのユーザー名'
-			}
+				'ja-JP': 'SMTPサーバのユーザー名',
+			},
 		},
 
 		smtpPass: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'SMTPサーバのパスワード'
-			}
+				'ja-JP': 'SMTPサーバのパスワード',
+			},
 		},
 
 		enableServiceWorker: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'ServiceWorkerを有効にするか否か'
-			}
+				'ja-JP': 'ServiceWorkerを有効にするか否か',
+			},
 		},
 
 		swPublicKey: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'ServiceWorkerのVAPIDキーペアの公開鍵'
-			}
+				'ja-JP': 'ServiceWorkerのVAPIDキーペアの公開鍵',
+			},
 		},
 
 		swPrivateKey: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': 'ServiceWorkerのVAPIDキーペアの秘密鍵'
-			}
+				'ja-JP': 'ServiceWorkerのVAPIDキーペアの秘密鍵',
+			},
 		},
 
 		ToSUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': '利用規約のURL'
-			}
+				'ja-JP': '利用規約のURL',
+			},
 		},
 
 		ToSTextUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
-				'ja-JP': '利用規約(プレーンテキスト)のURL'
-			}
+				'ja-JP': '利用規約(プレーンテキスト)のURL',
+			},
 		},
 
 		repositoryUrl: {
 			validator: $.optional.str,
 			desc: {
-				'ja-JP': 'リポジトリのURL'
-			}
+				'ja-JP': 'リポジトリのURL',
+			},
 		},
 
 		feedbackUrl: {
 			validator: $.optional.str,
 			desc: {
-				'ja-JP': 'フィードバックのURL'
-			}
+				'ja-JP': 'フィードバックのURL',
+			},
 		},
 
 		useObjectStorage: {
-			validator: $.optional.bool
+			validator: $.optional.bool,
 		},
 
 		objectStorageBaseUrl: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStorageBucket: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStoragePrefix: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStorageEndpoint: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStorageRegion: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStoragePort: {
-			validator: $.optional.nullable.num
+			validator: $.optional.nullable.num,
 		},
 
 		objectStorageAccessKey: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStorageSecretKey: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 
 		objectStorageUseSSL: {
-			validator: $.optional.bool
+			validator: $.optional.bool,
 		},
 
 		objectStorageUseProxy: {
-			validator: $.optional.bool
+			validator: $.optional.bool,
 		},
 
 		objectStorageSetPublicRead: {
-			validator: $.optional.bool
+			validator: $.optional.bool,
 		},
 
 		objectStorageS3ForcePathStyle: {
-			validator: $.optional.bool
+			validator: $.optional.bool,
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -691,8 +691,8 @@ export default define(meta, async (ps, me) => {
 	await getConnection().transaction(async transactionalEntityManager => {
 		const meta = await transactionalEntityManager.findOne(Meta, {
 			order: {
-				id: 'DESC'
-			}
+				id: 'DESC',
+			},
 		});
 
 		if (meta) {

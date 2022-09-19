@@ -15,15 +15,15 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to suspend'
-			}
+				'en-US': 'The user ID which you want to suspend',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, me) => {
 	const files = await DriveFiles.find({
-		userId: ps.userId
+		userId: ps.userId,
 	});
 
 	for (const file of files) {

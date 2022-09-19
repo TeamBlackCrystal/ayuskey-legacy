@@ -7,7 +7,7 @@ import { updatePerson } from '../../../../remote/activitypub/models/person';
 export const meta = {
 	desc: {
 		'ja-JP': '指定されたリモートユーザーの情報を更新します。',
-		'en-US': 'Update specified remote user information.'
+		'en-US': 'Update specified remote user information.',
 	},
 
 	tags: ['admin'],
@@ -20,10 +20,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to update'
-			}
+				'en-US': 'The user ID which you want to update',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {

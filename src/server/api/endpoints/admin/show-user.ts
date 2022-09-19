@@ -18,10 +18,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to suspend'
-			}
+				'en-US': 'The user ID which you want to suspend',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, me) => {

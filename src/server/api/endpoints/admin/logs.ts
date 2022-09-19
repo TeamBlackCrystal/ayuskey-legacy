@@ -12,19 +12,19 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 30
+			default: 30,
 		},
 
 		level: {
 			validator: $.optional.nullable.str,
-			default: null as any
+			default: null as any,
 		},
 
 		domain: {
 			validator: $.optional.nullable.str,
-			default: null as any
-		}
-	}
+			default: null as any,
+		},
+	},
 };
 
 export default define(meta, async (ps) => {
