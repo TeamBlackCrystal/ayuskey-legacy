@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-//import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import * as os from 'os';
-import cluster from 'node:cluster';
+import * as cluster from 'cluster';
 import * as chalk from 'chalk';
 import * as portscanner from 'portscanner';
 
@@ -140,7 +140,7 @@ async function isPortAvailable(port: number): Promise<boolean> {
 function showEnvironment(): void {
 	const env = process.env.NODE_ENV;
 	const logger = bootLogger.createSubLogger('env');
-	logger.info(typeof env === 'undefined' ? 'NODE_ENV is not set' : `NODE_ENV: ${env}`);
+	logger.info(typeof env == 'undefined' ? 'NODE_ENV is not set' : `NODE_ENV: ${env}`);
 
 	if (env !== 'production') {
 		logger.warn('The environment is not in production mode.');
@@ -177,7 +177,7 @@ async function init(): Promise<Config> {
 			configLogger.error(exception);
 			process.exit(1);
 		}
-		if ((exception as any).code === 'ENOENT') {
+		if (exception.code === 'ENOENT') {
 			configLogger.error('Configuration file not found', null, true);
 			process.exit(1);
 		}
@@ -192,14 +192,14 @@ async function init(): Promise<Config> {
 		await initDb();
 	} catch (e) {
 		bootLogger.error('Cannot connect to database', null, true);
-		bootLogger.error(e as Error);
+		bootLogger.error(e);
 		process.exit(1);
 	}
 
 	return config;
 }
 
-async function spawnWorkers(limit = 1) {
+async function spawnWorkers(limit: number = 1) {
 	const workers = Math.min(limit, os.cpus().length);
 	bootLogger.info(`Starting ${workers} worker${workers === 1 ? '' : 's'}...`);
 	await Promise.all([...Array(workers)].map(spawnWorker));

@@ -1,4 +1,4 @@
-import cluster from 'node:cluster';
+import * as cluster from 'cluster';
 import * as os from 'os';
 import * as chalk from 'chalk';
 import * as dateformat from 'dateformat';
@@ -61,7 +61,7 @@ export default class Logger {
 		}
 
 		const time = dateformat(new Date(), 'HH:MM:ss');
-		const worker = cluster.isPrimary ? '*' : cluster.worker?.id;
+		const worker = cluster.isMaster ? '*' : cluster.worker.id;
 		const l =
 			level === 'error' ? important ? chalk.bgRed.white('ERR ') : chalk.red('ERR ') :
 			level === 'warning' ? chalk.yellow('WARN') :
@@ -100,7 +100,7 @@ export default class Logger {
 					id: genId(),
 					createdAt: new Date(),
 					machine: os.hostname(),
-					worker: worker?.toString(),
+					worker: worker.toString(),
 					domain: [this.domain].concat(subDomains).map(d => d.name),
 					level: level,
 					message: message.substr(0, 1000), // 1024を超えるとログが挿入できずエラーになり無限ループする

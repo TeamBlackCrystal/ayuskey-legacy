@@ -1,4 +1,4 @@
-import cluster from 'node:cluster';
+import * as cluster from 'cluster';
 import { initDb } from '../db/postgre';
 
 /**

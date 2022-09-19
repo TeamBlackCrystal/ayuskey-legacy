@@ -1,4 +1,4 @@
-import cluster from 'node:cluster';
+import * as cluster from 'cluster';
 import * as chalk from 'chalk';
 import Xev from '@ayuskey/xev';
 
@@ -18,12 +18,12 @@ const ev = new Xev();
  * Init process
  */
 export default async function() {
-	process.title = `Misskey (${cluster.isPrimary ? 'master' : 'worker'})`;
+	process.title = `Misskey (${cluster.isMaster ? 'master' : 'worker'})`;
 
-	if (cluster.isPrimary || program.disableClustering) {
+	if (cluster.isMaster || program.disableClustering) {
 		await masterMain();
 
-		if (cluster.isPrimary) {
+		if (cluster.isMaster) {
 			ev.mount();
 		}
 	}

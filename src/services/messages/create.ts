@@ -100,7 +100,7 @@ export async function createMessage(user: User, recipientUser: User | undefined,
 
 		const activity = renderActivity(renderCreate(await renderNote(note, false, true), note));
 
-		deliver(user, activity, recipientUser.inbox!);
+		deliver(user, activity, recipientUser.inbox);
 	}
 	return messageObj;
 }

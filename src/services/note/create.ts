@@ -17,7 +17,7 @@ import extractMentions from '../../misc/extract-mentions';
 import extractEmojis from '../../misc/extract-emojis';
 import extractHashtags from '../../misc/extract-hashtags';
 import { Note, IMentionedRemoteUsers } from '../../models/entities/note';
-import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Followings, Channels, ChannelFollowings } from '../../models';
+import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Antennas, Followings, Channels, ChannelFollowings } from '../../models';
 import { DriveFile } from '../../models/entities/drive-file';
 import { App } from '../../models/entities/app';
 import { Not, getConnection, In } from 'typeorm';
@@ -551,7 +551,7 @@ async function insertNote(user: User, data: Option, tags: string[], emojis: stri
 		return insert;
 	} catch (e) {
 		// duplicate key error
-		if (isDuplicateKeyValueError(e as Error)) {
+		if (isDuplicateKeyValueError(e)) {
 			const err = new Error('Duplicated note');
 			err.name = 'duplicated';
 			throw err;

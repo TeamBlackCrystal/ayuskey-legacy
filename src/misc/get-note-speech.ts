@@ -4,7 +4,7 @@ export const getSpeechName = (note: any): string => {
 	return '';
 };
 
-export const getSpeechText = (note: any): string | null => {
+export const getSpeechText = (note: any): string => {
 	if (note.deletedAt) {
 		return null;
 	}
@@ -20,7 +20,7 @@ export const getSpeechText = (note: any): string | null => {
 	let summary = text;
 
 	// ファイルが添付されているとき
-	if ((note.files || []).length !== 0) {
+	if ((note.files || []).length != 0) {
 		summary += ` ${note.files.length}つのファイル`;
 	}
 
