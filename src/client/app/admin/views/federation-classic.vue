@@ -3,13 +3,13 @@
 	<ui-card>
 		<template #title><fa :icon="faTerminal"/> {{ $t('instance') }}</template>
 		<section class="fit-top">
-			<ui-input class="target" v-model="target" type="text" @enter="showInstance()">
+			<ui-input v-model="target" class="target" type="text" @enter="showInstance()">
 				<span>{{ $t('host') }}</span>
 				<template #prefix><fa :icon="faServer"/></template>
 			</ui-input>
 			<ui-button @click="showInstance()"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
 
-			<div class="instance" v-if="instance">
+			<div v-if="instance" class="instance">
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.host" type="text" readonly>
 						<span>{{ $t('host') }}</span>
@@ -79,11 +79,11 @@
 				</details>
 				<details>
 					<summary>{{ $t('delete-all-files') }}</summary>
-					<ui-button @click="deleteAllFiles()" style="margin-top: 16px;"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
+					<ui-button style="margin-top: 16px;" @click="deleteAllFiles()"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
 				</details>
 				<details>
 					<summary>{{ $t('remove-all-following') }}</summary>
-					<ui-button @click="removeAllFollowing()" style="margin-top: 16px;"><fa :icon="faMinusCircle"/> {{ $t('remove-all-following') }}</ui-button>
+					<ui-button style="margin-top: 16px;" @click="removeAllFollowing()"><fa :icon="faMinusCircle"/> {{ $t('remove-all-following') }}</ui-button>
 					<ui-info warn>{{ $t('remove-all-following-info', { host: instance.host }) }}</ui-info>
 				</details>
 			</div>
@@ -133,7 +133,7 @@
 					<span>{{ $t('status') }}</span>
 				</header>
 				<div v-for="instance in instances" :style="{ opacity: instance.isNotResponding ? 0.5 : 1 }">
-					<a @click.prevent="showInstance(instance.host)" rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isSuspended ? 'line-through' : 'none' }">
+					<a rel="nofollow noopener" target="_blank" :href="`https://${instance.host}`" :style="{ textDecoration: instance.isSuspended ? 'line-through' : 'none' }" @click.prevent="showInstance(instance.host)">
 						<img v-if="instance.iconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.iconUrl })}`" :style="{ width: '1em', height: '1em' }"/>
 						{{ `${instance.host} ${instance.name ? ` (${instance.name})` : ''}` }}
 					</a>
@@ -179,7 +179,7 @@ export default Vue.extend({
 	i18n: i18n('admin/views/federation.vue'),
 
 	filters: {
-		date: v => v ? new Date(v).toLocaleString() : 'N/A'
+		date: v => v ? new Date(v).toLocaleString() : 'N/A',
 	},
 
 	data() {
@@ -196,7 +196,7 @@ export default Vue.extend({
 			chartInstance: null,
 			blockedHosts: '',
 			urlQuery,
-			faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
+			faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox,
 		};
 	},
 
@@ -225,7 +225,7 @@ export default Vue.extend({
 				null;
 
 			return stats;
-		}
+		},
 	},
 
 	watch: {
@@ -247,7 +247,7 @@ export default Vue.extend({
 
 			const chart = {
 				perHour: perHour,
-				perDay: perDay
+				perDay: perDay,
 			};
 
 			this.chart = chart;
@@ -261,7 +261,7 @@ export default Vue.extend({
 
 		chartSpan() {
 			this.renderChart();
-		}
+		},
 	},
 
 	mounted() {
@@ -279,12 +279,12 @@ export default Vue.extend({
 	methods: {
 		showInstance(target?: string) {
 			this.$root.api('federation/show-instance', {
-				host: target || this.target
+				host: target || this.target,
 			}).then(instance => {
 				if (instance == null) {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('instance-not-registered')
+						text: this.$t('instance-not-registered'),
 					});
 				} else {
 					this.instance = instance;
@@ -300,7 +300,7 @@ export default Vue.extend({
 				notResponding: this.state === 'notResponding' ? true : null,
 				suspended: this.state === 'markedAsClosed' ? true : null,
 				sort: this.sort,
-				limit: this.limit
+				limit: this.limit,
 			}).then(instances => {
 				this.instances = instances;
 			});
@@ -308,22 +308,22 @@ export default Vue.extend({
 
 		removeAllFollowing() {
 			this.$root.api('admin/federation/remove-all-following', {
-				host: this.instance.host
+				host: this.instance.host,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
 		},
 
 		deleteAllFiles() {
 			this.$root.api('admin/federation/delete-all-files', {
-				host: this.instance.host
+				host: this.instance.host,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
 		},
@@ -331,7 +331,7 @@ export default Vue.extend({
 		updateInstance() {
 			this.$root.api('admin/federation/update-instance', {
 				host: this.instance.host,
-				isSuspended: this.instance.isSuspended || false
+				isSuspended: this.instance.isSuspended || false,
 			});
 		},
 
@@ -350,26 +350,26 @@ export default Vue.extend({
 					height: 300,
 					animations: {
 						dynamicAnimation: {
-							enabled: false
-						}
+							enabled: false,
+						},
 					},
 					toolbar: {
-						show: false
+						show: false,
 					},
 					zoom: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				dataLabels: {
-					enabled: false
+					enabled: false,
 				},
 				grid: {
 					clipMarkers: false,
-					borderColor: 'rgba(0, 0, 0, 0.1)'
+					borderColor: 'rgba(0, 0, 0, 0.1)',
 				},
 				stroke: {
 					curve: 'straight',
-					width: 2
+					width: 2,
 				},
 				tooltip: {
 					theme: this.$store.state.device.darkmode ? 'dark' : 'light',
@@ -380,32 +380,32 @@ export default Vue.extend({
 				},
 				legend: {
 					labels: {
-						colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
+						colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
 					},
 				},
 				xaxis: {
 					type: 'datetime',
 					labels: {
 						style: {
-							colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-						}
+							colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+						},
 					},
 					axisBorder: {
-						color: 'rgba(0, 0, 0, 0.1)'
+						color: 'rgba(0, 0, 0, 0.1)',
 					},
 					axisTicks: {
-						color: 'rgba(0, 0, 0, 0.1)'
+						color: 'rgba(0, 0, 0, 0.1)',
 					},
 				},
 				yaxis: {
 					labels: {
 						formatter: this.data.bytes ? v => Vue.filter('bytes')(v, 0) : v => Vue.filter('number')(v),
 						style: {
-							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-						}
-					}
+							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+						},
+					},
 				},
-				series: this.data.series
+				series: this.data.series,
 			});
 
 			this.chartInstance.render();
@@ -432,14 +432,14 @@ export default Vue.extend({
 			return {
 				series: [{
 					name: 'Incoming',
-					data: this.format(this.stats.requests.received)
+					data: this.format(this.stats.requests.received),
 				}, {
 					name: 'Outgoing (succeeded)',
-					data: this.format(this.stats.requests.succeeded)
+					data: this.format(this.stats.requests.succeeded),
 				}, {
 					name: 'Outgoing (failed)',
-					data: this.format(this.stats.requests.failed)
-				}]
+					data: this.format(this.stats.requests.failed),
+				}],
 			};
 		},
 
@@ -450,9 +450,9 @@ export default Vue.extend({
 					type: 'area',
 					data: this.format(total
 						? this.stats.users.total
-						: sum(this.stats.users.inc, negate(this.stats.users.dec))
-					)
-				}]
+						: sum(this.stats.users.inc, negate(this.stats.users.dec)),
+					),
+				}],
 			};
 		},
 
@@ -463,9 +463,9 @@ export default Vue.extend({
 					type: 'area',
 					data: this.format(total
 						? this.stats.notes.total
-						: sum(this.stats.notes.inc, negate(this.stats.notes.dec))
-					)
-				}]
+						: sum(this.stats.notes.inc, negate(this.stats.notes.dec)),
+					),
+				}],
 			};
 		},
 
@@ -476,16 +476,16 @@ export default Vue.extend({
 					type: 'area',
 					data: this.format(total
 						? this.stats.following.total
-						: sum(this.stats.following.inc, negate(this.stats.following.dec))
-					)
+						: sum(this.stats.following.inc, negate(this.stats.following.dec)),
+					),
 				}, {
 					name: 'Followers',
 					type: 'area',
 					data: this.format(total
 						? this.stats.followers.total
-						: sum(this.stats.followers.inc, negate(this.stats.followers.dec))
-					)
-				}]
+						: sum(this.stats.followers.inc, negate(this.stats.followers.dec)),
+					),
+				}],
 			};
 		},
 
@@ -497,9 +497,9 @@ export default Vue.extend({
 					type: 'area',
 					data: this.format(total
 						? this.stats.drive.totalUsage
-						: sum(this.stats.drive.incUsage, negate(this.stats.drive.decUsage))
-					)
-				}]
+						: sum(this.stats.drive.incUsage, negate(this.stats.drive.decUsage)),
+					),
+				}],
 			};
 		},
 
@@ -510,28 +510,28 @@ export default Vue.extend({
 					type: 'area',
 					data: this.format(total
 						? this.stats.drive.totalFiles
-						: sum(this.stats.drive.incFiles, negate(this.stats.drive.decFiles))
-					)
-				}]
+						: sum(this.stats.drive.incFiles, negate(this.stats.drive.decFiles)),
+					),
+				}],
 			};
 		},
 
 		saveBlockedHosts() {
 			this.$root.api('admin/update-meta', {
-				blockedHosts: this.blockedHosts ? this.blockedHosts.split('\n') : []
+				blockedHosts: this.blockedHosts ? this.blockedHosts.split('\n') : [],
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('saved')
+					text: this.$t('saved'),
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

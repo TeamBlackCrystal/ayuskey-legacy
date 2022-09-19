@@ -1,33 +1,33 @@
 <template>
 <div class="index">
 	<div class="index-body">
-	<main v-if="$store.getters.isSignedIn">
-		<p class="fetching" v-if="fetching">{{ $t('loading') }}<mk-ellipsis/></p>
-		<x-form
-			class="form"
-			ref="form"
-			v-if="state == 'waiting'"
-			:session="session"
-			@denied="state = 'denied'"
-			@accepted="accepted"
-		/>
-		<div class="denied" v-if="state == 'denied'">
-			<h1>{{ $t('denied') }}</h1>
-			<p>{{ $t('denied-paragraph') }}</p>
-		</div>
-		<div class="accepted" v-if="state == 'accepted'">
-			<h1>{{ session.app.isAuthorized ? this.$t('already-authorized') : this.$t('allowed') }}</h1>
-			<p v-if="session.app.callbackUrl">{{ $t('callback-url') }}<mk-ellipsis/></p>
-			<p v-if="!session.app.callbackUrl">{{ $t('please-go-back') }}</p>
-		</div>
-		<div class="error" v-if="state == 'fetch-session-error'">
-			<p>{{ $t('error') }}</p>
-		</div>
-	</main>
-	<main class="signin" v-if="!$store.getters.isSignedIn">
-		<h1>{{ $t('sign-in') }}</h1>
-		<mk-signin/>
-	</main>
+		<main v-if="$store.getters.isSignedIn">
+			<p v-if="fetching" class="fetching">{{ $t('loading') }}<mk-ellipsis/></p>
+			<x-form
+				v-if="state == 'waiting'"
+				ref="form"
+				class="form"
+				:session="session"
+				@denied="state = 'denied'"
+				@accepted="accepted"
+			/>
+			<div v-if="state == 'denied'" class="denied">
+				<h1>{{ $t('denied') }}</h1>
+				<p>{{ $t('denied-paragraph') }}</p>
+			</div>
+			<div v-if="state == 'accepted'" class="accepted">
+				<h1>{{ session.app.isAuthorized ? $t('already-authorized') : $t('allowed') }}</h1>
+				<p v-if="session.app.callbackUrl">{{ $t('callback-url') }}<mk-ellipsis/></p>
+				<p v-if="!session.app.callbackUrl">{{ $t('please-go-back') }}</p>
+			</div>
+			<div v-if="state == 'fetch-session-error'" class="error">
+				<p>{{ $t('error') }}</p>
+			</div>
+		</main>
+		<main v-if="!$store.getters.isSignedIn" class="signin">
+			<h1>{{ $t('sign-in') }}</h1>
+			<mk-signin/>
+		</main>
 	</div>
 
 	<footer><img src="/assets/auth/icon.svg" alt="Misskey"/></footer>
@@ -42,26 +42,26 @@ import XForm from './form.vue';
 export default Vue.extend({
 	i18n: i18n('auth/views/index.vue'),
 	components: {
-		XForm
+		XForm,
 	},
 	data() {
 		return {
 			state: null,
 			session: null,
-			fetching: true
+			fetching: true,
 		};
 	},
 	computed: {
 		token(): string {
 			return this.$route.params.token;
-		}
+		},
 	},
 	mounted() {
 		if (!this.$store.getters.isSignedIn) return;
 
 		// Fetch session
 		this.$root.api('auth/session/show', {
-			token: this.token
+			token: this.token,
 		}).then(session => {
 			this.session = session;
 			this.fetching = false;
@@ -69,7 +69,7 @@ export default Vue.extend({
 			// 既に連携していた場合
 			if (this.session.app.isAuthorized) {
 				this.$root.api('auth/accept', {
-					token: this.session.token
+					token: this.session.token,
 				}).then(() => {
 					this.accepted();
 				});
@@ -87,8 +87,8 @@ export default Vue.extend({
 			if (this.session.app.callbackUrl) {
 				location.href = `${this.session.app.callbackUrl}?token=${this.session.token}`;
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

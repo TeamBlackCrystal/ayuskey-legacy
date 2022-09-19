@@ -1,7 +1,7 @@
 <template>
 <div>
-	<ui-info warn v-if="latestStats && latestStats.waiting > 0">The queue is jammed.</ui-info>
-	<ui-horizon-group inputs v-if="latestStats" class="fit-bottom">
+	<ui-info v-if="latestStats && latestStats.waiting > 0" warn>The queue is jammed.</ui-info>
+	<ui-horizon-group v-if="latestStats" inputs class="fit-bottom">
 		<ui-input :value="latestStats.activeSincePrevTick | number" type="text" readonly>
 			<span>Process</span>
 			<template #prefix><fa :icon="fasPlayCircle"/></template>
@@ -41,29 +41,29 @@ export default Vue.extend({
 	props: {
 		type: {
 			type: String,
-			required: true
+			required: true,
 		},
 		connection: {
-			required: true
+			required: true,
 		},
 		limit: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			stats: [],
 			chart: null,
-			faStopwatch, faStopCircle, farPlayCircle, fasPlayCircle
+			faStopwatch, faStopCircle, farPlayCircle, fasPlayCircle,
 		};
 	},
 
 	computed: {
 		latestStats(): any {
 			return this.stats.length > 0 ? this.stats[this.stats.length - 1][this.type] : null;
-		}
+		},
 	},
 
 	watch: {
@@ -71,19 +71,19 @@ export default Vue.extend({
 			this.chart.updateSeries([{
 				name: 'Process',
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x[this.type].activeSincePrevTick }))
+				data: stats.map((x, i) => ({ x: i, y: x[this.type].activeSincePrevTick })),
 			}, {
 				name: 'Active',
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x[this.type].active }))
+				data: stats.map((x, i) => ({ x: i, y: x[this.type].active })),
 			}, {
 				name: 'Waiting',
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x[this.type].waiting }))
+				data: stats.map((x, i) => ({ x: i, y: x[this.type].waiting })),
 			}, {
 				name: 'Delayed',
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x[this.type].delayed }))
+				data: stats.map((x, i) => ({ x: i, y: x[this.type].delayed })),
 			}]);
 		},
 	},
@@ -97,18 +97,18 @@ export default Vue.extend({
 				height: 200,
 				animations: {
 					dynamicAnimation: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				toolbar: {
-					show: false
+					show: false,
 				},
 				zoom: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			dataLabels: {
-				enabled: false
+				enabled: false,
 			},
 			grid: {
 				clipMarkers: false,
@@ -116,19 +116,19 @@ export default Vue.extend({
 				xaxis: {
 					lines: {
 						show: true,
-					}
+					},
 				},
 			},
 			stroke: {
 				curve: 'straight',
-				width: 2
+				width: 2,
 			},
 			tooltip: {
-				enabled: false
+				enabled: false,
 			},
 			legend: {
 				labels: {
-					colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
+					colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
 				},
 			},
 			series: [] as any,
@@ -136,16 +136,16 @@ export default Vue.extend({
 			xaxis: {
 				type: 'numeric',
 				labels: {
-					show: false
+					show: false,
 				},
 				tooltip: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			yaxis: {
 				show: false,
 				min: 0,
-			}
+			},
 		});
 
 		this.chart.render();
@@ -169,7 +169,7 @@ export default Vue.extend({
 				this.onStats(stats);
 			}
 		},
-	}
+	},
 });
 </script>
 

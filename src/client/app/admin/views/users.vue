@@ -3,12 +3,12 @@
 	<ui-card>
 		<template #title><fa :icon="faTerminal"/> {{ $t('operation') }}</template>
 		<section class="fit-top">
-			<ui-input class="target" v-model="target" type="text" @enter="showUser">
+			<ui-input v-model="target" class="target" type="text" @enter="showUser">
 				<span>{{ $t('username-or-userid') }}</span>
 			</ui-input>
 			<ui-button @click="showUser"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
 
-			<div ref="user" class="user" v-if="user" :key="user.id">
+			<div v-if="user" ref="user" :key="user.id" class="user">
 				<x-user :user="user"/>
 				<div class="actions">
 					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa :icon="faSync"/> {{ $t('update-remote-user') }}</ui-button>
@@ -18,20 +18,20 @@
 						<ui-button :disabled="changing" @click="unmarkAsAdmin">{{ $t('unmark-admin') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="setPremium" :disabled="changing"><fa :icon="crown"/> {{ $t('premium') }}</ui-button>
-						<ui-button @click="unsetPremium" :disabled="changing">{{ $t('unpremium') }}</ui-button>
+						<ui-button :disabled="changing" @click="setPremium"><fa :icon="crown"/> {{ $t('premium') }}</ui-button>
+						<ui-button :disabled="changing" @click="unsetPremium">{{ $t('unpremium') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="verifyUser" :disabled="verifying"><fa :icon="faCertificate"/> {{ $t('verify') }}</ui-button>
-						<ui-button @click="unverifyUser" :disabled="unverifying">{{ $t('unverify') }}</ui-button>
+						<ui-button :disabled="verifying" @click="verifyUser"><fa :icon="faCertificate"/> {{ $t('verify') }}</ui-button>
+						<ui-button :disabled="unverifying" @click="unverifyUser">{{ $t('unverify') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
 						<ui-button @click="silenceUser"><fa :icon="faMicrophoneSlash"/> {{ $t('make-silence') }}</ui-button>
 						<ui-button @click="unsilenceUser">{{ $t('unmake-silence') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="suspendUser" :disabled="suspending"><fa :icon="faSnowflake"/> {{ $t('suspend') }}</ui-button>
-						<ui-button @click="unsuspendUser" :disabled="unsuspending">{{ $t('unsuspend') }}</ui-button>
+						<ui-button :disabled="suspending" @click="suspendUser"><fa :icon="faSnowflake"/> {{ $t('suspend') }}</ui-button>
+						<ui-button :disabled="unsuspending" @click="unsuspendUser">{{ $t('unsuspend') }}</ui-button>
 					</ui-horizon-group>
 					<ui-button @click="deleteAllFiles"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
 					<ui-textarea v-if="user" :value="user | json5" readonly tall style="margin-top:16px;"></ui-textarea>
@@ -72,7 +72,7 @@
 				<ui-input v-model="searchUsername" type="text" spellcheck="false" @input="fetchUsers(true)">
 					<span>{{ $t('username') }}</span>
 				</ui-input>
-				<ui-input v-model="searchHost" type="text" spellcheck="false" @input="fetchUsers(true)" :disabled="origin === 'local'">
+				<ui-input v-model="searchHost" type="text" spellcheck="false" :disabled="origin === 'local'" @input="fetchUsers(true)">
 					<span>{{ $t('host') }}</span>
 				</ui-input>
 			</ui-horizon-group>
@@ -88,7 +88,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import parseAcct from "../../../../misc/acct/parse";
+import parseAcct from '../../../../misc/acct/parse';
 import { faCertificate, faUsers, faTerminal, faSearch, faKey, faSync, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSnowflake, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import XUser from './users.user.vue';
@@ -96,7 +96,7 @@ import XUser from './users.user.vue';
 export default Vue.extend({
 	i18n: i18n('admin/views/users.vue'),
 	components: {
-		XUser
+		XUser,
 	},
 	data() {
 		return {
@@ -116,7 +116,7 @@ export default Vue.extend({
 			users: [],
 			existMore: false,
 			changing: false,
-			faTerminal, faCertificate, faUsers, faSnowflake, faSearch, faKey, faSync, faMicrophoneSlash, faTrashAlt
+			faTerminal, faCertificate, faUsers, faSnowflake, faSearch, faKey, faSync, faMicrophoneSlash, faTrashAlt,
 		};
 	},
 
@@ -138,7 +138,7 @@ export default Vue.extend({
 			this.users = [];
 			this.offset = 0;
 			this.fetchUsers();
-		}
+		},
 	},
 
 	mounted() {
@@ -157,7 +157,7 @@ export default Vue.extend({
 					if (_notFound) {
 						this.$root.dialog({
 							type: 'error',
-							text: this.$t('user-not-found')
+							text: this.$t('user-not-found'),
 						});
 					} else {
 						_notFound = true;
@@ -207,7 +207,7 @@ export default Vue.extend({
 			this.$root.api('admin/reset-password', { userId: this.user.id }).then(res => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('password-updated', { password: res.password })
+					text: this.$t('password-updated', { password: res.password }),
 				});
 			});
 		},
@@ -217,13 +217,13 @@ export default Vue.extend({
 				await this.$root.api('admin/admins/add', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('marked-admin')
+					text: this.$t('marked-admin'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.changing = false;
@@ -234,13 +234,13 @@ export default Vue.extend({
 				await this.$root.api('admin/admins/remove', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unmarked-admin')
+					text: this.$t('unmarked-admin'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.changing = false;
@@ -252,13 +252,13 @@ export default Vue.extend({
 				await this.$root.api('admin/verify-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('verified')
+					text: this.$t('verified'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.verifying = false;
@@ -271,13 +271,13 @@ export default Vue.extend({
 				await this.$root.api('admin/unverify-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unverified')
+					text: this.$t('unverified'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.unverifying = false;
@@ -290,13 +290,13 @@ export default Vue.extend({
 				await this.$root.api('admin/set-premium', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('premiumed')
+					text: this.$t('premiumed'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.changing = false;
@@ -309,13 +309,13 @@ export default Vue.extend({
 				await this.$root.api('admin/unset-premium', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unpremiumed')
+					text: this.$t('unpremiumed'),
 				});
 			};
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 			this.changing = false;
@@ -327,14 +327,14 @@ export default Vue.extend({
 				await this.$root.api('admin/silence-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -348,14 +348,14 @@ export default Vue.extend({
 				await this.$root.api('admin/unsilence-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -371,14 +371,14 @@ export default Vue.extend({
 				await this.$root.api('admin/suspend-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('suspended')
+					text: this.$t('suspended'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -396,14 +396,14 @@ export default Vue.extend({
 				await this.$root.api('admin/unsuspend-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('unsuspended')
+					text: this.$t('unsuspended'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -416,7 +416,7 @@ export default Vue.extend({
 			this.$root.api('admin/update-remote-user', { userId: this.user.id }).then(res => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('remote-user-updated')
+					text: this.$t('remote-user-updated'),
 				});
 			});
 
@@ -430,19 +430,19 @@ export default Vue.extend({
 				await this.$root.api('admin/delete-all-files-of-a-user', { userId: this.user.id });
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 		},
 
-		async getConfirmed(text: string): Promise<Boolean> {
+		async getConfirmed(text: string): Promise<boolean> {
 			const confirm = await this.$root.dialog({
 				type: 'warning',
 				showCancelButton: true,
@@ -462,7 +462,7 @@ export default Vue.extend({
 				offset: this.offset,
 				limit: this.limit + 1,
 				username: this.searchUsername,
-				hostname: this.searchHost
+				hostname: this.searchHost,
 			}).then(users => {
 				if (users.length == this.limit + 1) {
 					users.pop();
@@ -473,8 +473,8 @@ export default Vue.extend({
 				this.users = truncate ? users : this.users.concat(users);
 				this.offset += this.limit;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

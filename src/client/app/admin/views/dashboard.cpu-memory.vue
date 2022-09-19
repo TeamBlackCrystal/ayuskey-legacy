@@ -31,19 +31,19 @@ export default Vue.extend({
 			memChart: null,
 			cpuP: '',
 			memP: '',
-			meta: null
+			meta: null,
 		};
 	},
 
 	watch: {
 		stats(stats) {
 			this.cpuChart.updateSeries([{
-				data: stats.map((x, i) => ({ x: i, y: x.cpu_usage }))
+				data: stats.map((x, i) => ({ x: i, y: x.cpu_usage })),
 			}]);
 			this.memChart.updateSeries([{
-				data: stats.map((x, i) => ({ x: i, y: (x.mem.used / x.mem.total) }))
+				data: stats.map((x, i) => ({ x: i, y: (x.mem.used / x.mem.total) })),
 			}]);
-		}
+		},
 	},
 
 	mounted() {
@@ -55,7 +55,7 @@ export default Vue.extend({
 		this.connection.on('statsLog', this.onStatsLog);
 		this.connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: 200
+			length: 200,
 		});
 
 		const chartOpts = {
@@ -64,47 +64,47 @@ export default Vue.extend({
 				height: 200,
 				animations: {
 					dynamicAnimation: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				toolbar: {
-					show: false
+					show: false,
 				},
 				zoom: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			dataLabels: {
-				enabled: false
+				enabled: false,
 			},
 			grid: {
 				clipMarkers: false,
-				borderColor: 'rgba(0, 0, 0, 0.1)'
+				borderColor: 'rgba(0, 0, 0, 0.1)',
 			},
 			stroke: {
 				curve: 'straight',
-				width: 2
+				width: 2,
 			},
 			tooltip: {
-				enabled: false
+				enabled: false,
 			},
 			series: [{
-				data: []
+				data: [],
 			}],
 			xaxis: {
 				type: 'numeric',
 				labels: {
-					show: false
+					show: false,
 				},
 				tooltip: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			yaxis: {
 				show: false,
 				min: 0,
-				max: 1
-			}
+				max: 1,
+			},
 		};
 
 		this.cpuChart = new ApexCharts(this.$refs.cpu, chartOpts);
@@ -135,8 +135,8 @@ export default Vue.extend({
 			for (const stats of statsLog.reverse()) {
 				this.onStats(stats);
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -30,7 +30,7 @@ export default Vue.extend({
 		return {
 			logs: [],
 			connection: null,
-			faBolt, faExchangeAlt
+			faBolt, faExchangeAlt,
 		};
 	},
 
@@ -40,7 +40,7 @@ export default Vue.extend({
 		this.connection.on('logs', this.onLogs);
 		this.connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: 50
+			length: 50,
 		});
 	},
 
@@ -57,10 +57,10 @@ export default Vue.extend({
 
 		onLogs(logs) {
 			for (const log of logs.reverse()) {
-				this.onLog(log)
+				this.onLog(log);
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

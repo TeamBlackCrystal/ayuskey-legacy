@@ -72,18 +72,18 @@ export default Vue.extend({
 			url: '',
 			aliases: '',
 			emojis: [],
-			faGrin
+			faGrin,
 		};
-	},
-
-	mounted() {
-		this.fetchEmojis();
 	},
 
 	computed: {
 		categoryList() {
 			return unique(this.emojis.map((x: any) => x.category || '').filter((x: string) => x !== ''));
-		}
+		},
+	},
+
+	mounted() {
+		this.fetchEmojis();
 	},
 
 	methods: {
@@ -92,17 +92,17 @@ export default Vue.extend({
 				name: this.name,
 				category: this.category,
 				url: this.url,
-				aliases: this.aliases.split(' ').filter(x => x.length > 0)
+				aliases: this.aliases.split(' ').filter(x => x.length > 0),
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('add-emoji.added')
+					text: this.$t('add-emoji.added'),
 				});
 				this.fetchEmojis();
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -122,16 +122,16 @@ export default Vue.extend({
 				name: emoji.name,
 				category: emoji.category || undefined,
 				url: emoji.url,
-				aliases: emoji.aliases.split(' ').filter(x => x.length > 0)
+				aliases: emoji.aliases.split(' ').filter(x => x.length > 0),
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('updated')
+					text: this.$t('updated'),
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -140,27 +140,27 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('remove-emoji.are-you-sure').replace('$1', emoji.name),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 
 				this.$root.api('admin/emoji/remove', {
-					id: emoji.id
+					id: emoji.id,
 				}).then(() => {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('remove-emoji.removed')
+						text: this.$t('remove-emoji.removed'),
 					});
 					this.fetchEmojis();
 				}).catch(e => {
 					this.$root.dialog({
 						type: 'error',
-						text: e
+						text: e,
 					});
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

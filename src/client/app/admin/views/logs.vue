@@ -46,7 +46,7 @@ export default Vue.extend({
 			logs: [],
 			level: 'all',
 			domain: '',
-			faStream
+			faStream,
 		};
 	},
 
@@ -59,7 +59,7 @@ export default Vue.extend({
 		domain() {
 			this.logs = [];
 			this.fetch();
-		}
+		},
 	},
 
 	mounted() {
@@ -71,7 +71,7 @@ export default Vue.extend({
 			this.$root.api('admin/logs', {
 				level: this.level === 'all' ? null : this.level,
 				domain: this.domain === '' ? null : this.domain,
-				limit: 100
+				limit: 100,
 			}).then(logs => {
 				this.logs = logs.reverse();
 			});
@@ -81,11 +81,11 @@ export default Vue.extend({
 			this.$root.api('admin/delete-logs').then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 
