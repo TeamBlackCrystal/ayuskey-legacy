@@ -15,22 +15,22 @@ import Stream from '../../scripts/stream';
 import XPie from './server.pie.vue';
 
 const props = defineProps({
-    connection: { type: Stream},
-    meta: {type: Object}
-})
+	connection: { type: Stream },
+	meta: { type: Object },
+});
 
-let usage = ref(0)
+let usage = ref(0);
 
 const onStats = (stats) => {
 	usage.value = stats.cpu_usage;
-}
+};
 
 onMounted(() => {
-    props.connection.on('stats', onStats);
+	props.connection.on('stats', onStats);
 }),
 onUnmounted(() => {
-    props.connection.off('stats', onStats);
-})
+	props.connection.off('stats', onStats);
+});
 </script>
 
 <style lang="stylus" scoped>

@@ -1,24 +1,24 @@
 <template>
 <header class="bvonvjxbwzaiskogyhbwgyxvcgserpmu">
-	<mk-avatar class="avatar" :user="note.user" v-if="$store.state.device.postStyle == 'smart'"/>
-	<router-link class="name" :to="note.user | userPage" v-user-preview="note.user.id">
+	<mk-avatar v-if="$store.state.device.postStyle == 'smart'" class="avatar" :user="note.user"/>
+	<router-link v-user-preview="note.user.id" class="name" :to="note.user | userPage">
 		<mk-user-name :user="note.user"/>
 	</router-link>
-	<span class="is-premium" v-if="note.user.isPremium"><fa icon="crown"/></span>
-	<span class="is-admin" v-if="note.user.isAdmin" :title="$t('@.admin-user')">admin</span>
-	<span class="is-bot" v-if="note.user.isBot" :title="$t('@.bot-user')">bot</span>
-	<span class="is-cat" v-if="note.user.isCat" :title="$t('@.cat-user')">cat</span>
-	<span class="is-lady" v-if="note.user.isLady" :title="$t('@.lady-user')">lady</span>
+	<span v-if="note.user.isPremium" class="is-premium"><fa icon="crown"/></span>
+	<span v-if="note.user.isAdmin" class="is-admin" :title="$t('@.admin-user')">admin</span>
+	<span v-if="note.user.isBot" class="is-bot" :title="$t('@.bot-user')">bot</span>
+	<span v-if="note.user.isCat" class="is-cat" :title="$t('@.cat-user')">cat</span>
+	<span v-if="note.user.isLady" class="is-lady" :title="$t('@.lady-user')">lady</span>
 	<span class="username"><mk-acct :user="note.user"/></span>
-	<span class="is-verified" v-if="note.user.isVerified" :title="$t('@.verified-user')"><fa icon="star"/></span>
+	<span v-if="note.user.isVerified" class="is-verified" :title="$t('@.verified-user')"><fa icon="star"/></span>
 	<div class="info">
-		<span class="app" v-if="note.app && !mini && $store.state.settings.showVia">via <b>{{ note.app.name }}</b></span>
-		<span class="mobile" v-if="note.viaMobile"><fa icon="mobile-alt"/></span>
+		<span v-if="note.app && !mini && $store.state.settings.showVia" class="app">via <b>{{ note.app.name }}</b></span>
+		<span v-if="note.viaMobile" class="mobile"><fa icon="mobile-alt"/></span>
 		<router-link class="created-at" :to="note | notePage">
 			<mk-time :time="note.createdAt"/>
 		</router-link>
-		<x-visibility-icon class="visibility" :v="note.visibility" :localOnly="note.localOnly" :copyOnce="note.copyOnce"/>
-		<span class="remote" title="Remote post" v-if="note.user.host != null"><fa :icon="faGlobeAmericas"/></span>
+		<x-visibility-icon class="visibility" :v="note.visibility" :local-only="note.localOnly" :copy-once="note.copyOnce"/>
+		<span v-if="note.user.host != null" class="remote" title="Remote post"><fa :icon="faGlobeAmericas"/></span>
 	</div>
 </header>
 </template>
@@ -34,22 +34,22 @@ export default Vue.extend({
 	components: {
 		XVisibilityIcon,
 	},
-	data() {
-		return {
-			faGlobeAmericas
-		}
-	},
 	props: {
 		note: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		mini: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
+	data() {
+		return {
+			faGlobeAmericas,
+		};
+	},
 });
 </script>
 

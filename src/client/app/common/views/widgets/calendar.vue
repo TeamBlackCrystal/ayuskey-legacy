@@ -4,10 +4,10 @@
 		<div class="mkw-calendar--body">
 			<div class="calendar" :data-is-holiday="isHoliday">
 				<p class="month-and-year">
-					<span class="year">{{ this.$t('year').split('{}')[0] }}{{ year }}{{ this.$t('year').split('{}')[1] }}</span>
-					<span class="month">{{ this.$t('month').split('{}')[0] }}{{ month }}{{ this.$t('month').split('{}')[1] }}</span>
+					<span class="year">{{ $t('year').split('{}')[0] }}{{ year }}{{ $t('year').split('{}')[1] }}</span>
+					<span class="month">{{ $t('month').split('{}')[0] }}{{ month }}{{ $t('month').split('{}')[1] }}</span>
 				</p>
-				<p class="day">{{ this.$t('day').split('{}')[0] }}{{ day }}{{ this.$t('day').split('{}')[1] }}</p>
+				<p class="day">{{ $t('day').split('{}')[0] }}{{ day }}{{ $t('day').split('{}')[1] }}</p>
 				<p class="week-day">{{ weekDay }}</p>
 			</div>
 			<div class="info">
@@ -42,8 +42,8 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'calendar',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/calendar.vue'),
 	data() {
@@ -58,7 +58,7 @@ export default define({
 			monthP: null,
 			isHoliday: null,
 			special: null,
-			clock: null
+			clock: null,
 		};
 	},
 	created() {
@@ -94,27 +94,27 @@ export default define({
 				this.$t('@.weekday.wednesday'),
 				this.$t('@.weekday.thursday'),
 				this.$t('@.weekday.friday'),
-				this.$t('@.weekday.saturday')
+				this.$t('@.weekday.saturday'),
 			][now.getDay()];
 
-			const dayNumer   = now.getTime() - new Date(ny, nm, nd).getTime();
-			const dayDenom   = 1000/*ms*/ * 60/*s*/ * 60/*m*/ * 24/*h*/;
+			const dayNumer = now.getTime() - new Date(ny, nm, nd).getTime();
+			const dayDenom = 1000/*ms*/ * 60/*s*/ * 60/*m*/ * 24/*h*/;
 			const monthNumer = now.getTime() - new Date(ny, nm, 1).getTime();
 			const monthDenom = new Date(ny, nm + 1, 1).getTime() - new Date(ny, nm, 1).getTime();
-			const yearNumer  = now.getTime() - new Date(ny, 0, 1).getTime();
-			const yearDenom  = new Date(ny + 1, 0, 1).getTime() - new Date(ny, 0, 1).getTime();
+			const yearNumer = now.getTime() - new Date(ny, 0, 1).getTime();
+			const yearDenom = new Date(ny + 1, 0, 1).getTime() - new Date(ny, 0, 1).getTime();
 
-			this.dayP   = dayNumer   / dayDenom   * 100;
+			this.dayP = dayNumer / dayDenom * 100;
 			this.monthP = monthNumer / monthDenom * 100;
-			this.yearP  = yearNumer  / yearDenom  * 100;
+			this.yearP = yearNumer / yearDenom * 100;
 
 			this.isHoliday = now.getDay() == 0 || now.getDay() == 6;
 
 			this.special =
 				nm == 0 && nd == 1 ? 'on-new-years-day' :
 				false;
-		}
-	}
+		},
+	},
 });
 </script>
 

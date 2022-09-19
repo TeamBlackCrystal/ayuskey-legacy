@@ -11,20 +11,20 @@ export default Vue.extend({
 	props: {
 		formula: {
 			type: String,
-			required: true
+			required: true,
 		},
 		block: {
 			type: Boolean,
-			required: true
-		}
+			required: true,
+		},
 	},
 	computed: {
 		compiledFormula(): any {
 			return katex.renderToString(this.formula, {
-				throwOnError: false
+				throwOnError: false,
 			} as any);
-		}
-	}
+		},
+	},
 });
 </script>
 

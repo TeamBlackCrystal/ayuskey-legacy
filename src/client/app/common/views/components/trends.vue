@@ -1,7 +1,7 @@
 <template>
 <div class="csqvmxybqbycalfhkxvyfrgbrdalkaoc">
-	<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-	<p class="empty" v-else-if="stats.length == 0"><fa icon="exclamation-circle"/>{{ $t('empty') }}</p>
+	<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+	<p v-else-if="stats.length == 0" class="empty"><fa icon="exclamation-circle"/>{{ $t('empty') }}</p>
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<transition-group v-else tag="div" name="chart">
 		<div v-for="stat in stats" :key="stat.tag">
@@ -23,13 +23,13 @@ import XChart from './trends.chart.vue';
 export default Vue.extend({
 	i18n: i18n('common/views/components/trends.vue'),
 	components: {
-		XChart
+		XChart,
 	},
 	data() {
 		return {
 			stats: [],
 			fetching: true,
-			clock: null
+			clock: null,
 		};
 	},
 	mounted() {
@@ -45,8 +45,8 @@ export default Vue.extend({
 				this.stats = stats;
 				this.fetching = false;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

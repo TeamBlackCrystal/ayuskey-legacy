@@ -1,14 +1,14 @@
 <template>
-<div class="rdfaahpb" v-hotkey.global="keymap">
-	<div class="backdrop" :class="{'blur': $store.state.device.useBlur}" ref="backdrop" @click="close"></div>
-	<div class="popover" :class="{ isMobile: $root.isMobile }" ref="popover">
+<div v-hotkey.global="keymap" class="rdfaahpb">
+	<div ref="backdrop" class="backdrop" :class="{'blur': $store.state.device.useBlur}" @click="close"></div>
+	<div ref="popover" class="popover" :class="{ isMobile: $root.isMobile }">
 		<p v-if="!$root.isMobile">{{ title }}</p>
-		<div class="buttons" ref="buttons" :class="{ showFocus }">
-			<button v-for="(reaction, i) in rs" :key="reaction" @click="react(reaction)" @mouseover="onMouseover" @mouseout="onMouseout" :tabindex="i + 1" :title="/^[a-z]+$/.test(reaction) ? $t('@.reactions.' + reaction) : reaction" v-particle><mk-reaction-icon :reaction="reaction"/></button>
+		<div ref="buttons" class="buttons" :class="{ showFocus }">
+			<button v-for="(reaction, i) in rs" :key="reaction" v-particle :tabindex="i + 1" :title="/^[a-z]+$/.test(reaction) ? $t('@.reactions.' + reaction) : reaction" @click="react(reaction)" @mouseover="onMouseover" @mouseout="onMouseout"><mk-reaction-icon :reaction="reaction"/></button>
 		</div>
 		<div v-if="enableEmojiReaction" class="text">
-			<input v-model="text" :placeholder="$t('input-reaction-placeholder')" @keyup.enter="reactText" @input="tryReactText" v-autocomplete="{ model: 'text' }">
-			<button title="Pick" class="emoji" @click="emoji" ref="emoji" :style="emoji_style"><fa :icon="['far', 'laugh']"/></button>
+			<input v-model="text" v-autocomplete="{ model: 'text' }" :placeholder="$t('input-reaction-placeholder')" @keyup.enter="reactText" @input="tryReactText">
+			<button ref="emoji" title="Pick" class="emoji" :style="emoji_style" @click="emoji"><fa :icon="['far', 'laugh']"/></button>
 		</div>
 	</div>
 </div>
@@ -24,24 +24,24 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/reaction-picker.vue'),
 	props: {
 		source: {
-			required: true
+			required: true,
 		},
 
 		reactions: {
-			required: false
+			required: false,
 		},
 
 		showFocus: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 
 		animation: {
 			type: Boolean,
 			required: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	data() {
@@ -51,7 +51,7 @@ export default Vue.extend({
 			text: null,
 			enableEmojiReaction: false,
 			focus: null,
-			emoji_style: {}
+			emoji_style: {},
 		};
 	},
 
@@ -75,7 +75,7 @@ export default Vue.extend({
 				'9': () => this.react('rip'),
 				'0': () => this.react('pudding'),
 			};
-		}
+		},
 	},
 
 	watch: {
@@ -85,7 +85,7 @@ export default Vue.extend({
 			if (this.showFocus) {
 				this.title = this.$refs.buttons.children[i].title;
 			}
-		}
+		},
 	},
 
 	mounted() {
@@ -118,14 +118,14 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 1,
 				duration: this.animation ? 100 : 0,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			anime({
 				targets: this.$refs.popover,
 				opacity: 1,
 				scale: [0.5, 1],
-				duration: this.animation ? 500 : 0
+				duration: this.animation ? 500 : 0,
 			});
 		});
 	},
@@ -153,7 +153,7 @@ export default Vue.extend({
 			const vm = this.$root.new(Picker, {
 				reaction: true,
 				x: button.offsetWidth + rect.left + window.pageXOffset,
-				y: rect.top + window.pageYOffset
+				y: rect.top + window.pageYOffset,
 			});
 			vm.$once('chosen', emoji => {
 				this.react(emoji);
@@ -177,7 +177,7 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 0,
 				duration: this.animation ? 200 : 0,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			(this.$refs.popover as any).style.pointerEvents = 'none';
@@ -190,7 +190,7 @@ export default Vue.extend({
 				complete: () => {
 					this.$emit('closed');
 					this.destroyDom();
-				}
+				},
 			});
 		},
 
@@ -212,8 +212,8 @@ export default Vue.extend({
 
 		choose() {
 			this.$refs.buttons.childNodes[this.focus].click();
-		}
-	}
+		},
+	},
 });
 </script>
 

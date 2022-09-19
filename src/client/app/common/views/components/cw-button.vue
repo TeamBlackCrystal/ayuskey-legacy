@@ -1,7 +1,7 @@
 <template>
 <button class="nrvgflfuaxwgkxoynpnumyookecqrrvh" @click="toggle">
-	<b>{{ value ? this.$t('hide') : this.$t('show') }}</b>
-	<span v-if="!value">{{ this.label }}</span>
+	<b>{{ value ? $t('hide') : $t('show') }}</b>
+	<span v-if="!value">{{ label }}</span>
 </button>
 </template>
 
@@ -17,12 +17,12 @@ export default Vue.extend({
 	props: {
 		value: {
 			type: Boolean,
-			required: true
+			required: true,
 		},
 		note: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	computed: {
@@ -30,9 +30,9 @@ export default Vue.extend({
 			return concat([
 				this.note.text ? [this.$t('chars', { count: length(this.note.text) })] : [],
 				this.note.files && this.note.files.length !== 0 ? [this.$t('files', { count: this.note.files.length }) ] : [],
-				this.note.poll != null ? [this.$t('poll')] : []
+				this.note.poll != null ? [this.$t('poll')] : [],
 			] as string[][]).join(' / ');
-		}
+		},
 	},
 
 	methods: {
@@ -40,8 +40,8 @@ export default Vue.extend({
 
 		toggle() {
 			this.$emit('input', !this.value);
-		}
-	}
+		},
+	},
 });
 </script>
 

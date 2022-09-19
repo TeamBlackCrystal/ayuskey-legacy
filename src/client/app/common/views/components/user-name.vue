@@ -9,12 +9,12 @@ export default defineComponent({
 	props: {
 		user: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		nowrap: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
-	}
+	},
 });
 </script>

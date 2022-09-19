@@ -1,15 +1,15 @@
 <template>
-	<div class="uptimes">
-		<p>Uptimes</p>
-		<p>Process: {{ process }}</p>
-		<p>OS: {{ os }}</p>
-	</div>
+<div class="uptimes">
+	<p>Uptimes</p>
+	<p>Process: {{ process }}</p>
+	<p>OS: {{ os }}</p>
+</div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import formatUptime from "../../scripts/format-uptime";
-import Stream from "../../scripts/stream";
+import { onMounted, onUnmounted, ref } from 'vue';
+import formatUptime from '../../scripts/format-uptime';
+import Stream from '../../scripts/stream';
 
 const { connection } = defineProps({ connection: { type: Stream } });
 
@@ -22,11 +22,11 @@ const onStats = (stats) => {
 };
 
 onMounted(() => {
-	connection.on("stats", onStats);
+	connection.on('stats', onStats);
 });
 
 onUnmounted(() => {
-	connection.off("stats", onStats);
+	connection.off('stats', onStats);
 });
 </script>
 

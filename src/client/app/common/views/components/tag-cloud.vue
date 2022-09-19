@@ -1,12 +1,12 @@
 <template>
 <div class="jtivnzhfwquxpsfidertopbmwmchmnmo">
-	<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-	<p class="empty" v-else-if="tags.length == 0"><fa icon="exclamation-circle"/>{{ $t('empty') }}</p>
+	<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+	<p v-else-if="tags.length == 0" class="empty"><fa icon="exclamation-circle"/>{{ $t('empty') }}</p>
 	<div v-else>
 		<vue-word-cloud
-				:words="tags.slice(0, 20).map(x => [x.tag, x.count])"
-				:color="color"
-				:spacing="1">
+			:words="tags.slice(0, 20).map(x => [x.tag, x.count])"
+			:color="color"
+			:spacing="1">
 			<template slot-scope="{word, text, weight}">
 				<div style="cursor: pointer;" :title="weight">
 					{{ text }}
@@ -25,13 +25,13 @@ import * as VueWordCloud from 'vuewordcloud';
 export default Vue.extend({
 	i18n: i18n('common/views/components/tag-cloud.vue'),
 	components: {
-		[VueWordCloud.name]: VueWordCloud
+		[VueWordCloud.name]: VueWordCloud,
 	},
 	data() {
 		return {
 			tags: [],
 			fetching: true,
-			clock: null
+			clock: null,
 		};
 	},
 	mounted() {
@@ -59,8 +59,8 @@ export default Vue.extend({
 			} else {
 				return this.$store.state.device.darkmode ? '#fff' : '#555';
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

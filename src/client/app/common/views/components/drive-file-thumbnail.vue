@@ -1,16 +1,16 @@
 <template>
-<div class="zdjebgpv" ref="thumbnail">
+<div ref="thumbnail" class="zdjebgpv">
 	<img-with-blurhash v-if="isThumbnailAvailable" :hash="file.blurhash" :src="file.thumbnailUrl" :alt="file.name" :title="file.name" :style="`object-fit: ${ fit }`"/>
-	<fa :icon="faFileImage" class="icon" v-else-if="is === 'image'"/>
-	<fa :icon="faFileVideo" class="icon" v-else-if="is === 'video'"/>
-	<fa :icon="faMusic" class="icon" v-else-if="is === 'audio' || is === 'midi'"/>
-	<fa :icon="faFileCsv" class="icon" v-else-if="is === 'csv'"/>
-	<fa :icon="faFilePdf" class="icon" v-else-if="is === 'pdf'"/>
-	<fa :icon="faFileAlt" class="icon" v-else-if="is === 'textfile'"/>
-	<fa :icon="faFileArchive" class="icon" v-else-if="is === 'archive'"/>
-	<fa :icon="faFile" class="icon" v-else/>
+	<fa v-else-if="is === 'image'" :icon="faFileImage" class="icon"/>
+	<fa v-else-if="is === 'video'" :icon="faFileVideo" class="icon"/>
+	<fa v-else-if="is === 'audio' || is === 'midi'" :icon="faMusic" class="icon"/>
+	<fa v-else-if="is === 'csv'" :icon="faFileCsv" class="icon"/>
+	<fa v-else-if="is === 'pdf'" :icon="faFilePdf" class="icon"/>
+	<fa v-else-if="is === 'textfile'" :icon="faFileAlt" class="icon"/>
+	<fa v-else-if="is === 'archive'" :icon="faFileArchive" class="icon"/>
+	<fa v-else :icon="faFile" class="icon"/>
 
-	<fa :icon="faFilm" class="icon-sub" v-if="isThumbnailAvailable && is === 'video'"/>
+	<fa v-if="isThumbnailAvailable && is === 'video'" :icon="faFilm" class="icon-sub"/>
 </div>
 </template>
 
@@ -26,24 +26,24 @@ import {
 	faFileCsv,
 	faFilePdf,
 	faFileArchive,
-	faFilm
-	} from '@fortawesome/free-solid-svg-icons';
+	faFilm,
+} from '@fortawesome/free-solid-svg-icons';
 import ImgWithBlurhash from './img-with-blurhash.vue';
 
 export default Vue.extend({
 	components: {
-		ImgWithBlurhash
+		ImgWithBlurhash,
 	},
 	props: {
 		file: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		fit: {
 			type: String,
 			required: false,
-			default: 'cover'
-		}
+			default: 'cover',
+		},
 	},
 	data() {
 		return {
@@ -58,7 +58,7 @@ export default Vue.extend({
 			faFileCsv,
 			faFilePdf,
 			faFileArchive,
-			faFilm
+			faFilm,
 		};
 	},
 	computed: {
@@ -71,23 +71,23 @@ export default Vue.extend({
 			if (this.file.type.endsWith('/pdf')) return 'pdf';
 			if (this.file.type.startsWith('text/')) return 'textfile';
 			if ([
-					"application/zip",
-					"application/x-cpio",
-					"application/x-bzip",
-					"application/x-bzip2",
-					"application/java-archive",
-					"application/x-rar-compressed",
-					"application/x-tar",
-					"application/gzip",
-					"application/x-7z-compressed"
-				].some(e => e === this.file.type)) return 'archive';
+				'application/zip',
+				'application/x-cpio',
+				'application/x-bzip',
+				'application/x-bzip2',
+				'application/java-archive',
+				'application/x-rar-compressed',
+				'application/x-tar',
+				'application/gzip',
+				'application/x-7z-compressed',
+			].some(e => e === this.file.type)) return 'archive';
 			return 'unknown';
 		},
 		isThumbnailAvailable(): boolean {
 			return this.file.thumbnailUrl
 				? (this.is === 'image' || this.is === 'video')
 				: false;
-		}
+		},
 	},
 	mounted() {
 		const audioTag = this.$refs.volumectrl as HTMLAudioElement;
@@ -97,8 +97,8 @@ export default Vue.extend({
 		volumechange() {
 			const audioTag = this.$refs.volumectrl as HTMLAudioElement;
 			this.$store.commit('device/set', { key: 'mediaVolume', value: audioTag.volume });
-		}
-	}
+		},
+	},
 });
 </script>
 

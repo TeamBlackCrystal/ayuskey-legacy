@@ -1,16 +1,16 @@
 <template>
 <span
+	v-if="count > 0"
+	ref="reaction"
 	class="reaction"
 	:class="{ reacted: note.myReaction == reaction, canToggle }"
 	@click="toggleReaction(reaction)"
-	v-if="count > 0"
 	@touchstart="onMouseover"
 	@mouseover="onMouseover"
 	@mouseleave="onMouseleave"
 	@touchend="onMouseleave"
-	ref="reaction"
 >
-	<mk-reaction-icon :reaction="reaction" :customEmojis="note.emojis" ref="icon"/>
+	<mk-reaction-icon ref="icon" :reaction="reaction" :custom-emojis="note.emojis"/>
 	<span>{{ count }}</span>
 </span>
 </template>
@@ -44,7 +44,7 @@ export default Vue.extend({
 		return {
 			details: null,
 			detailsTimeoutId: null,
-			isHovering: false
+			isHovering: false,
 		};
 	},
 	computed: {
@@ -52,14 +52,14 @@ export default Vue.extend({
 			return !this.reaction.match(/@\w/);
 		},
 	},
-	mounted() {
-		if (!this.isInitial) this.anime();
-	},
 	watch: {
 		count(newCount, oldCount) {
 			if (oldCount < newCount) this.anime();
 			if (this.details != null) this.openDetails();
 		},
+	},
+	mounted() {
+		if (!this.isInitial) this.anime();
 	},
 	methods: {
 		toggleReaction() {
@@ -68,19 +68,19 @@ export default Vue.extend({
 			const oldReaction = this.note.myReaction;
 			if (oldReaction) {
 				this.$root.api('notes/reactions/delete', {
-					noteId: this.note.id
+					noteId: this.note.id,
 				}).then(() => {
 					if (oldReaction !== this.reaction) {
 						this.$root.api('notes/reactions/create', {
 							noteId: this.note.id,
-							reaction: this.reaction
+							reaction: this.reaction,
 						});
 					}
 				});
 			} else {
 				this.$root.api('notes/reactions/create', {
 					noteId: this.note.id,
-					reaction: this.reaction
+					reaction: this.reaction,
 				});
 			}
 		},
@@ -97,7 +97,7 @@ export default Vue.extend({
 			this.$root.api('notes/reactions', {
 				noteId: this.note.id,
 				type: this.reaction,
-				limit: 11
+				limit: 11,
 			}).then((reactions: any[]) => {
 				const users = reactions
 					.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
@@ -110,7 +110,7 @@ export default Vue.extend({
 					customEmojis: this.note.emojis,
 					users,
 					count: this.count,
-					source: this.$refs.reaction
+					source: this.$refs.reaction,
 				});
 			});
 		},
@@ -136,8 +136,8 @@ export default Vue.extend({
 					parent: this,
 					propsData: {
 						reaction: this.reaction,
-						customEmojis: this.note.emojis
-					}
+						customEmojis: this.note.emojis,
+					},
 				}).$mount();
 
 				icon.$el.style.position = 'absolute';
@@ -156,11 +156,11 @@ export default Vue.extend({
 					easing: 'linear',
 					complete: () => {
 						icon.destroyDom();
-					}
+					},
 				});
 			});
 		},
-	}
+	},
 });
 </script>
 

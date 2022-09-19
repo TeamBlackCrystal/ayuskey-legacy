@@ -1,10 +1,10 @@
 <template>
 <div class="onchrpzrvnoruiaenfcqvccjfuupzzwv" :class="{ isMobile: $root.isMobile }">
-	<div class="backdrop" :class="{'blur': $store.state.device.useBlur}" ref="backdrop" @click="close"></div>
-	<div class="popover" :class="{ bubble }" ref="popover">
+	<div ref="backdrop" class="backdrop" :class="{'blur': $store.state.device.useBlur}" @click="close"></div>
+	<div ref="popover" class="popover" :class="{ bubble }">
 		<template v-for="item, i in items">
 			<div v-if="item === null"></div>
-			<button v-if="item" @click="clicked(item.action)" :tabindex="i">
+			<button v-if="item" :tabindex="i" @click="clicked(item.action)">
 				<fa v-if="item.icon" :icon="item.icon"/>{{ item.text }}
 			</button>
 		</template>
@@ -19,16 +19,16 @@ import anime from 'animejs';
 export default Vue.extend({
 	props: {
 		source: {
-			required: true
+			required: true,
 		},
 		items: {
 			type: Array,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
-			bubble: !this.$root.isMobile
+			bubble: !this.$root.isMobile,
 		};
 	},
 	mounted() {
@@ -75,14 +75,14 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 1,
 				duration: 100,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			anime({
 				targets: this.$refs.popover,
 				opacity: 1,
 				scale: [0.5, 1],
-				duration: 500
+				duration: 500,
 			});
 		});
 	},
@@ -97,7 +97,7 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 0,
 				duration: 200,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			(this.$refs.popover as any).style.pointerEvents = 'none';
@@ -110,10 +110,10 @@ export default Vue.extend({
 				complete: () => {
 					this.$emit('closed');
 					this.destroyDom();
-				}
+				},
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

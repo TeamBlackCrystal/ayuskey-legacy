@@ -13,7 +13,7 @@ import Vue from 'vue';
 import * as os from '@client/os';
 
 const sprite = new Image();
-sprite.src = "/static-assets/sparkle-spritesheet.png";
+sprite.src = '/static-assets/sparkle-spritesheet.png';
 
 export default Vue.extend({
 	props: {
@@ -34,28 +34,40 @@ export default Vue.extend({
 			ctx: null,
 		};
 	},
+	mounted() {
+		this.ctx = this.$refs.canvas.getContext('2d');
+
+		new ResizeObserver(this.resize).observe(this.$refs.content);
+
+		this.resize();
+		this.tick();
+	},
+	updated() {
+		this.resize();
+	},
+	destroyed() {
+		window.cancelAnimationFrame(this.anim);
+	},
 	methods: {
 		createSparkles(w, h, count) {
-			var holder = [];
+			let holder = [];
 
-			for (var i = 0; i < count; i++) {
-
+			for (let i = 0; i < count; i++) {
 				const color = '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
 
 				holder[i] = {
 					position: {
 						x: Math.floor(Math.random() * w),
-						y: Math.floor(Math.random() * h)
+						y: Math.floor(Math.random() * h),
 					},
 					style: this.sprites[ Math.floor(Math.random() * 4) ],
 					delta: {
 						x: Math.floor(Math.random() * 1000) - 500,
-						y: Math.floor(Math.random() * 1000) - 500
+						y: Math.floor(Math.random() * 1000) - 500,
 					},
 					color: color,
 					opacity: Math.random(),
 				};
-
 			}
 
 			return holder;
@@ -66,17 +78,17 @@ export default Vue.extend({
 
 			const particleSize = Math.floor(this.fontSize / 2);
 			this.particles.forEach((particle) => {
-				var modulus = Math.floor(Math.random()*7);
+				let modulus = Math.floor(Math.random() * 7);
 
 				if (Math.floor(time) % modulus === 0) {
-					particle.style = this.sprites[ Math.floor(Math.random()*4) ];
+					particle.style = this.sprites[ Math.floor(Math.random() * 4) ];
 				}
 
 				this.ctx.save();
 				this.ctx.globalAlpha = particle.opacity;
 				this.ctx.drawImage(sprite, particle.style, 0, 7, 7, particle.position.x, particle.position.y, particleSize, particleSize);
 
-				this.ctx.globalCompositeOperation = "source-atop";
+				this.ctx.globalCompositeOperation = 'source-atop';
 				this.ctx.globalAlpha = 0.5;
 				this.ctx.fillStyle = particle.color;
 				this.ctx.fillRect(particle.position.x, particle.position.y, particleSize, particleSize);
@@ -94,8 +106,8 @@ export default Vue.extend({
 					if (!particle) {
 						return;
 					}
-					var randX = Math.random() > Math.random() * 2;
-					var randY = Math.random() > Math.random() * 3;
+					let randX = Math.random() > Math.random() * 2;
+					let randY = Math.random() > Math.random() * 3;
 
 					if (randX) {
 						particle.position.x += (particle.delta.x * this.speed) / 1500;
@@ -105,7 +117,7 @@ export default Vue.extend({
 						particle.position.y -= (particle.delta.y * this.speed) / 800;
 					}
 
-					if( particle.position.x > this.$refs.canvas.width ) {
+					if ( particle.position.x > this.$refs.canvas.width ) {
 						particle.position.x = -7;
 					} else if (particle.position.x < -7) {
 						particle.position.x = this.$refs.canvas.width;
@@ -143,20 +155,6 @@ export default Vue.extend({
 				this.particles = this.createSparkles(this.$refs.canvas.width, this.$refs.canvas.height, this.count);
 			}
 		},
-	},
-	mounted() {
-		this.ctx = this.$refs.canvas.getContext('2d');
-
-		new ResizeObserver(this.resize).observe(this.$refs.content);
-
-		this.resize();
-		this.tick();
-	},
-	updated() {
-		this.resize();
-	},
-	destroyed() {
-		window.cancelAnimationFrame(this.anim);
 	},
 });
 </script>

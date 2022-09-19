@@ -7,22 +7,22 @@ import Vue from 'vue';
 
 export default Vue.extend({
 	components: {
-		XCode: () => import('./code-core.vue').then(m => m.default)
+		XCode: () => import('./code-core.vue').then(m => m.default),
 	},
 
 	props: {
 		code: {
 			type: String,
-			required: true
+			required: true,
 		},
 		lang: {
 			type: String,
-			required: false
+			required: false,
 		},
 		inline: {
 			type: Boolean,
-			required: false
-		}
-	}
+			required: false,
+		},
+	},
 });
 </script>

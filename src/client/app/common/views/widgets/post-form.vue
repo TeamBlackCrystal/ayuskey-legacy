@@ -3,21 +3,22 @@
 	<ui-container :show-header="props.design == 0">
 		<template #header><fa icon="pencil-alt"/>{{ $t('title') }}</template>
 
-		<div class="lhcuptdmcdkfwmipgazeawoiuxpzaclc-body"
+		<div
+			class="lhcuptdmcdkfwmipgazeawoiuxpzaclc-body"
 			@dragover.stop="onDragover"
 			@drop.stop="onDrop"
 		>
 			<div class="textarea">
 				<textarea
-					:disabled="posting"
+					ref="text"
 					v-model="text"
+					v-autocomplete="{ model: 'text' }"
+					:disabled="posting"
+					:placeholder="placeholder"
 					@keydown="onKeydown"
 					@paste="onPaste"
-					:placeholder="placeholder"
-					ref="text"
-					v-autocomplete="{ model: 'text' }"
 				></textarea>
-				<button class="emoji" @click="emoji" ref="emoji" v-if="!$root.isMobile">
+				<button v-if="!$root.isMobile" ref="emoji" class="emoji" @click="emoji">
 					<fa :icon="['far', 'laugh']"/>
 				</button>
 			</div>
@@ -27,7 +28,7 @@
 			<footer>
 				<button @click="chooseFile"><fa icon="upload"/></button>
 				<button @click="chooseFileFromDrive"><fa icon="cloud"/></button>
-				<button @click="post" :disabled="posting" class="post">{{ $t('note') }}</button>
+				<button :disabled="posting" class="post" @click="post">{{ $t('note') }}</button>
 			</footer>
 		</div>
 	</ui-container>
@@ -43,13 +44,13 @@ import { formatTimeString } from '../../../../../misc/format-time-string';
 export default define({
 	name: 'post-form',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	i18n: i18n('desktop/views/widgets/post-form.vue'),
 
 	components: {
-		XPostFormAttaches: () => import('../components/post-form-attaches.vue').then(m => m.default)
+		XPostFormAttaches: () => import('../components/post-form-attaches.vue').then(m => m.default),
 	},
 
 	data() {
@@ -68,10 +69,10 @@ export default define({
 				this.$t('@.note-placeholders.c'),
 				this.$t('@.note-placeholders.d'),
 				this.$t('@.note-placeholders.e'),
-				this.$t('@.note-placeholders.f')
+				this.$t('@.note-placeholders.f'),
 			];
 			return xs[Math.floor(Math.random() * xs.length)];
-		}
+		},
 	},
 
 	methods: {
@@ -90,7 +91,7 @@ export default define({
 
 		chooseFileFromDrive() {
 			this.$chooseDriveFile({
-				multiple: true
+				multiple: true,
 			}).then(files => {
 				for (const x of files) this.attachMedia(x);
 			});
@@ -111,7 +112,7 @@ export default define({
 		},
 
 		async onPaste(e: ClipboardEvent) {
-			for (const { item, i } of Array.from(e.clipboardData.items).map((item, i) => ({item, i}))) {
+			for (const { item, i } of Array.from(e.clipboardData.items).map((item, i) => ({ item, i }))) {
 				if (item.kind == 'file') {
 					const file = item.getAsFile();
 					const lio = file.name.lastIndexOf('.');
@@ -119,12 +120,12 @@ export default define({
 					const formatted = `${formatTimeString(new Date(file.lastModified), this.$store.state.settings.pastedFileName).replace(/{{number}}/g, `${i + 1}`)}${ext}`;
 					const name = this.$store.state.settings.pasteDialog
 						? await this.$root.dialog({
-								title: this.$t('@.post-form.enter-file-name'),
-								input: {
-									default: formatted
-								},
-								allowEmpty: false
-							}).then(({ canceled, result }) => canceled ? false : result)
+							title: this.$t('@.post-form.enter-file-name'),
+							input: {
+								default: formatted,
+							},
+							allowEmpty: false,
+						}).then(({ canceled, result }) => canceled ? false : result)
 						: formatted;
 					if (name) this.upload(file, name);
 				}
@@ -172,7 +173,7 @@ export default define({
 			const rect = button.getBoundingClientRect();
 			const vm = this.$root.new(Picker, {
 				x: button.offsetWidth + rect.left + window.pageXOffset,
-				y: rect.top + window.pageYOffset
+				y: rect.top + window.pageYOffset,
 			});
 			vm.$once('chosen', emoji => {
 				insertTextAtCursor(this.$refs.text, emoji);
@@ -203,7 +204,7 @@ export default define({
 			}).catch(err => {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('something-happened')
+					text: this.$t('something-happened'),
 				});
 			}).then(() => {
 				this.posting = false;
@@ -216,8 +217,8 @@ export default define({
 		clear() {
 			this.text = '';
 			this.files = [];
-		}
-	}
+		},
+	},
 });
 </script>
 

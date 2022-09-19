@@ -12,9 +12,9 @@ import XIntegration from './integrations.integration.vue';
 
 export default Vue.extend({
 	components: {
-		XIntegration
+		XIntegration,
 	},
-	props: ['user']
+	props: ['user'],
 });
 </script>
 

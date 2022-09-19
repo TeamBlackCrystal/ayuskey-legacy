@@ -25,12 +25,12 @@ export default Vue.extend({
 	props: {
 		value: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
-			r: 0.4
+			r: 0.4,
 		};
 	},
 	computed: {
@@ -39,8 +39,8 @@ export default Vue.extend({
 		},
 		strokeDashoffset(): number {
 			return (1 - this.value) * (Math.PI * (this.r * 2));
-		}
-	}
+		},
+	},
 });
 </script>
 

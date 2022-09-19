@@ -3,16 +3,17 @@
 	<ui-container :show-header="props.design == 0" :naked="props.design == 2">
 		<template #header><fa icon="camera"/>{{ $t('title') }}</template>
 
-		<p :class="$style.fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-		<div :class="$style.stream" v-if="!fetching && images.length > 0">
-			<div v-for="(image, i) in images" :key="i"
+		<p v-if="fetching" :class="$style.fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+		<div v-if="!fetching && images.length > 0" :class="$style.stream">
+			<div
+				v-for="(image, i) in images" :key="i"
 				:class="$style.img"
 				:style="`background-image: url(${thumbnail(image)})`"
 				draggable="true"
 				@dragstart="onDragstart(image, $event)"
 			></div>
 		</div>
-		<p :class="$style.empty" v-if="!fetching && images.length == 0">{{ $t('no-photos') }}</p>
+		<p v-if="!fetching && images.length == 0" :class="$style.empty">{{ $t('no-photos') }}</p>
 	</ui-container>
 </div>
 </template>
@@ -25,8 +26,8 @@ import { getStaticImageUrl } from '../../scripts/get-static-image-url';
 export default define({
 	name: 'photo-stream',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/photo-stream.vue'),
 
@@ -34,7 +35,7 @@ export default define({
 		return {
 			images: [],
 			fetching: true,
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -45,7 +46,7 @@ export default define({
 
 		this.$root.api('drive/stream', {
 			type: 'image/*',
-			limit: 9
+			limit: 9,
 		}).then(images => {
 			this.images = images;
 			this.fetching = false;
@@ -84,7 +85,7 @@ export default define({
 				? getStaticImageUrl(image.thumbnailUrl)
 				: image.thumbnailUrl;
 		},
-	}
+	},
 });
 </script>
 

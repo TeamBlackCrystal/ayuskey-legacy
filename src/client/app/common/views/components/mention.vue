@@ -1,13 +1,13 @@
 <template>
-<router-link class="ldlomzub" :to="url" v-user-preview="canonical" v-if="url.startsWith('/')">
-	<span class="me" v-if="isMe">{{ $t('@.you') }}</span>
-	<img class="avator" v-if="!isMe && avator != null" :src="avator"/>
+<router-link v-if="url.startsWith('/')" v-user-preview="canonical" class="ldlomzub" :to="url">
+	<span v-if="isMe" class="me">{{ $t('@.you') }}</span>
+	<img v-if="!isMe && avator != null" class="avator" :src="avator"/>
 	<span class="main">
 		<span class="username">@{{ username }}</span>
-		<span class="host" :class="{ fade: $store.state.settings.contrastedAcct }" v-if="(host != localHost) || $store.state.settings.showFullAcct">@{{ toUnicode(host) }}</span>
+		<span v-if="(host != localHost) || $store.state.settings.showFullAcct" class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
 	</span>
 </router-link>
-<a class="ldlomzub" :href="url" target="_blank" rel="noopener" v-else>
+<a v-else class="ldlomzub" :href="url" target="_blank" rel="noopener">
 	<span class="main">
 		<span class="username">@{{ username }}</span>
 		<span class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
@@ -27,20 +27,20 @@ export default Vue.extend({
 	props: {
 		username: {
 			type: String,
-			required: true
+			required: true,
 		},
 		host: {
 			type: String,
-			required: true
+			required: true,
 		},
 		customEmojis: {
 			required: false,
-			default: () => []
-		}
+			default: () => [],
+		},
 	},
 	data() {
 		return {
-			localHost
+			localHost,
 		};
 	},
 	computed: {
@@ -62,12 +62,12 @@ export default Vue.extend({
 		},
 		avator(): string {
 			const ascii = `@${this.username}` + (this.host != localHost ? `@${this.host}` : '');
-			return `/avatar/${ascii}`
-		}
+			return `/avatar/${ascii}`;
+		},
 	},
 	methods: {
-		toUnicode
-	}
+		toUnicode,
+	},
 });
 </script>
 

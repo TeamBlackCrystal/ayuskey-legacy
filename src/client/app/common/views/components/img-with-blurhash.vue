@@ -1,6 +1,6 @@
 <template>
 <div class="xubzgfgb" :class="{ cover }" :title="title">
-	<canvas ref="canvas" :width="size" :height="size" :title="title" v-if="!loaded"/>
+	<canvas v-if="!loaded" ref="canvas" :width="size" :height="size" :title="title"/>
 	<img v-if="src" :src="src" :title="title" :alt="alt" @load="onLoad"/>
 </div>
 </template>
@@ -14,11 +14,11 @@ export default defineComponent({
 		src: {
 			type: String,
 			required: false,
-			default: null
+			default: null,
 		},
 		hash: {
 			type: String,
-			required: true
+			required: true,
 		},
 		alt: {
 			type: String,
@@ -33,13 +33,13 @@ export default defineComponent({
 		size: {
 			type: Number,
 			required: false,
-			default: 64
+			default: 64,
 		},
 		cover: {
 			type: Boolean,
 			required: false,
 			default: true,
-		}
+		},
 	},
 
 	data() {
@@ -64,8 +64,8 @@ export default defineComponent({
 
 		onLoad() {
 			this.loaded = true;
-		}
-	}
+		},
+	},
 });
 </script>
 

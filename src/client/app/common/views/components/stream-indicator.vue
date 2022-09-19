@@ -1,8 +1,9 @@
 <template>
 <div>
 	<!-- (今は繋がってるけど) 切断履歴があったときに出るやつ -->
-	<div class="disconnect-notify" v-if="stream.state == 'connected' && hasDisconnected
-		&& ($store.state.device.hasDisconnectedAction !== 'nothing' || newVersion != null)" @click="resetDisconnected">
+	<div
+		v-if="stream.state == 'connected' && hasDisconnected
+			&& ($store.state.device.hasDisconnectedAction !== 'nothing' || newVersion != null)" class="disconnect-notify" @click="resetDisconnected">
 		<div><fa icon="exclamation-triangle"/> {{ $t('has-disconnected') }}</div>
 		<div v-if="newVersion != null">
 			{{ $t('update-available') }} ({{ newVersion }})<br />
@@ -13,7 +14,7 @@
 		</div>
 	</div>
 	<!-- 接続中, 再接続中, 接続完了 -->
-	<div class="mk-stream-indicator" ref="indicator">
+	<div ref="indicator" class="mk-stream-indicator">
 		<p v-if="stream.state == 'initializing'">
 			<fa icon="spinner" pulse/>
 			<span>{{ $t('connecting') }}<mk-ellipsis/></span>
@@ -44,7 +45,7 @@ export default Vue.extend({
 			hasDisconnected: false,
 			newVersion: null,
 			reloadTimer: null,
-		}
+		};
 	},
 	computed: {
 		stream() {
@@ -82,7 +83,7 @@ export default Vue.extend({
 					targets: this.$refs.indicator,
 					opacity: 0,
 					easing: 'linear',
-					duration: 200
+					duration: 200,
 				});
 			}, 1000);
 		},
@@ -92,7 +93,7 @@ export default Vue.extend({
 				targets: this.$refs.indicator,
 				opacity: 1,
 				easing: 'linear',
-				duration: 100
+				duration: 100,
 			});
 		},
 		resetDisconnected() {
@@ -101,7 +102,7 @@ export default Vue.extend({
 		reload() {
 			location.reload();
 		},
-	}
+	},
 });
 </script>
 

@@ -11,10 +11,10 @@ import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
 
 const widget = define({
-	name: 'instance'
+	name: 'instance',
 });
 
 export default defineComponent({
 	extends: widget,
-})
+});
 </script>

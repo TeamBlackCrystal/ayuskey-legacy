@@ -5,7 +5,7 @@
 			<mk-avatar class="avatar" :user="note.user" target="_blank"/>
 			<div class="body">
 				<header>
-					<router-link class="name" :to="note.user | userPage" v-user-preview="note.user.id">
+					<router-link v-user-preview="note.user.id" class="name" :to="note.user | userPage">
 						<mk-user-name :user="note.user"/>
 					</router-link>
 					<span class="username">@{{ note.user | acct }}</span>
@@ -18,7 +18,7 @@
 				<p v-if="note.cw != null" class="cw">
 					<mk-cw-button v-model="showContent"  :note="note"></mk-cw-button>
 				</p>
-				<div class="text" v-show="note.cw == null || showContent">
+				<div v-show="note.cw == null || showContent" class="text">
 					<mfm v-if="note.text" :text="note.cw != null ? note.cw : note.text" :author="note.user" :custom-emojis="note.emojis"/>
 					<mk-media-list v-if="note.files.length > 0" :media-list="note.files"/>
 				</div>
@@ -36,8 +36,8 @@ export default Vue.extend({
 		max: {
 			type: Number,
 			required: false,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 
 	data() {
@@ -74,7 +74,7 @@ export default Vue.extend({
 				reply: false,
 				renote: false,
 				file: false,
-				poll: false
+				poll: false,
 			}).then(notes => {
 				this.notes = notes;
 				this.fetching = false;
@@ -89,7 +89,7 @@ export default Vue.extend({
 
 			this.notes.unshift(note);
 		},
-	}
+	},
 });
 </script>
 

@@ -14,13 +14,13 @@ export default Vue.extend({
 			return {
 				'esc': this.close,
 			};
-		}
+		},
 	},
 	methods: {
 		close() {
 			(this.$refs.modal as any).close();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-<div class="qjewsnkg" v-if="hide" @click="hide = false">
+<div v-if="hide" class="qjewsnkg" @click="hide = false">
 	<img-with-blurhash class="bg" :hash="image.blurhash" :title="image.name"/>
 	<div class="text">
 		<div>
@@ -8,13 +8,13 @@
 		</div>
 	</div>
 </div>
-<div class="gqnyydlz" :style="{ background: color }" v-else>
+<div v-else class="gqnyydlz" :style="{ background: color }">
 	<a
 		:href="image.url"
 		:title="image.name"
 	>
 		<img-with-blurhash :hash="image.blurhash" :src="url" :alt="image.name" :title="image.name" :cover="false"/>
-		<div class="gif" v-if="image.type === 'image/gif'">GIF</div>
+		<div v-if="image.type === 'image/gif'" class="gif">GIF</div>
 	</a>
 	<i><fa :icon="faEyeSlash" @click="hide = true"/></i>
 </div>
@@ -32,16 +32,16 @@ import ImgWithBlurhash from './img-with-blurhash.vue';
 export default Vue.extend({
 	i18n: i18n('common/views/components/media-image.vue'),
 	components: {
-		ImgWithBlurhash
+		ImgWithBlurhash,
 	},
 	props: {
 		image: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		raw: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -61,7 +61,7 @@ export default Vue.extend({
 			}
 
 			return url;
-		}
+		},
 	},
 	created() {
 		// Plugin:register_note_view_interruptor を使って書き換えられる可能性があるためwatchする

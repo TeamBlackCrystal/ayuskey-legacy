@@ -1,12 +1,13 @@
 <template>
 <div class="anltbovirfeutcigvwgmgxipejaeozxi">
 	<ui-container :show-header="false" :naked="props.design === 1">
-		<div class="anltbovirfeutcigvwgmgxipejaeozxi-body"
+		<div
+			class="anltbovirfeutcigvwgmgxipejaeozxi-body"
 			:data-found="announcements && announcements.length !== 0"
 			:data-melt="props.design == 1"
 			:data-mobile="platform == 'mobile'"
 		>
-			<div class="broadcast-left" v-show="announcements && announcements.length !== 0">
+			<div v-show="announcements && announcements.length !== 0" class="broadcast-left">
 				<div class="icon">
 					<svg height="32" version="1.1" viewBox="0 0 32 32" width="32">
 						<path class="tower" d="M16.04,11.24c1.79,0,3.239-1.45,3.239-3.24S17.83,4.76,16.04,4.76c-1.79,0-3.24,1.45-3.24,3.24 C12.78,9.78,14.24,11.24,16.04,11.24z M16.04,13.84c-0.82,0-1.66-0.2-2.4-0.6L7.34,29.98h2.98l1.72-2h8l1.681,2H24.7L18.42,13.24 C17.66,13.64,16.859,13.84,16.04,13.84z M16.02,14.8l2.02,7.2h-4L16.02,14.8z M12.04,25.98l2-2h4l2,2H12.04z"></path>
@@ -16,17 +17,17 @@
 						<path class="wave d" d="M29.18,1.06c-0.479-0.502-1.273-0.522-1.775-0.044c-0.016,0.015-0.029,0.029-0.045,0.044c-0.5,0.52-0.5,1.36,0,1.88 c1.361,1.4,2.041,3.24,2.041,5.08s-0.68,3.66-2.041,5.08c-0.5,0.52-0.5,1.36,0,1.88c0.509,0.508,1.332,0.508,1.841,0 c1.86-1.92,2.8-4.44,2.8-6.96C31.99,5.424,30.98,2.931,29.18,1.06z"></path>
 					</svg>
 				</div>
-				<div class="broadcast-nav" v-show="announcements && announcements.length > 1">
+				<div v-show="announcements && announcements.length > 1" class="broadcast-nav">
 					<mk-frac class="broadcast-page" :value="i + 1" :total="announcements.length"/>
-					<ui-button class="broadcast-prev" @click="prev" :title="$t('next')"><fa :icon="faAngleLeft"/></ui-button>
-					<ui-button class="broadcast-next" @click="next" :title="$t('prev')"><fa :icon="faAngleRight"/></ui-button>
+					<ui-button class="broadcast-prev" :title="$t('next')" @click="prev"><fa :icon="faAngleLeft"/></ui-button>
+					<ui-button class="broadcast-next" :title="$t('prev')" @click="next"><fa :icon="faAngleRight"/></ui-button>
 				</div>
 			</div>
 			<div class="broadcast-right">
-				<p class="fetching" v-if="fetching">{{ $t('fetching') }}<mk-ellipsis/></p>
+				<p v-if="fetching" class="fetching">{{ $t('fetching') }}<mk-ellipsis/></p>
 				<h1 v-if="!fetching">{{ announcements.length == 0 ? $t('no-broadcasts') : announcements[i].title }}</h1>
 				<p v-if="!fetching">
-					<mfm v-if="announcements.length != 0" :text="announcements[i].text" :key="i"/>
+					<mfm v-if="announcements.length != 0" :key="i" :text="announcements[i].text"/>
 					<img v-if="announcements.length != 0 && announcements[i].image" :src="announcements[i].image" alt="" style="display: block; max-height: 130px; max-width: 100%;"/>
 					<template v-if="announcements.length == 0">{{ $t('have-a-nice-day') }}</template>
 				</p>
@@ -45,9 +46,9 @@ import i18n from '../../../i18n';
 const widget = define({
 	name: 'broadcast',
 	props: () => ({
-		design: 0
-	})
-})
+		design: 0,
+	}),
+});
 
 export default defineComponent({
 	extends: widget,
@@ -57,7 +58,7 @@ export default defineComponent({
 			i: 0,
 			fetching: true,
 			announcements: [],
-			faAngleLeft, faAngleRight
+			faAngleLeft, faAngleRight,
 		};
 	},
 	mounted() {
@@ -88,8 +89,8 @@ export default defineComponent({
 				this.props.design++;
 			}
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>
 
