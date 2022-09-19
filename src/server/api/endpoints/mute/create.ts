@@ -11,7 +11,7 @@ import { publishUserEvent } from '../../../../services/stream';
 export const meta = {
 	desc: {
 		'ja-JP': 'ユーザーをミュートします。',
-		'en-US': 'Mute a user'
+		'en-US': 'Mute a user',
 	},
 
 	tags: ['mute', 'users'],
@@ -25,8 +25,8 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
+				'en-US': 'Target user ID',
+			},
 		},
 	},
 
@@ -34,21 +34,21 @@ export const meta = {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '6fef56f3-e765-4957-88e5-c6f65329b8a5'
+			id: '6fef56f3-e765-4957-88e5-c6f65329b8a5',
 		},
 
 		muteeIsYourself: {
 			message: 'Mutee is yourself.',
 			code: 'MUTEE_IS_YOURSELF',
-			id: 'a4619cb2-5f23-484b-9301-94c903074e10'
+			id: 'a4619cb2-5f23-484b-9301-94c903074e10',
 		},
 
 		alreadyMuting: {
 			message: 'You are already muting that user.',
 			code: 'ALREADY_MUTING',
-			id: '7e7359cb-160c-4956-b08f-4d1c653cd007'
+			id: '7e7359cb-160c-4956-b08f-4d1c653cd007',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -68,7 +68,7 @@ export default define(meta, async (ps, user) => {
 	// Check if already muting
 	const exist = await Mutings.findOne({
 		muterId: muter.id,
-		muteeId: mutee.id
+		muteeId: mutee.id,
 	});
 
 	if (exist != null) {
@@ -87,6 +87,6 @@ export default define(meta, async (ps, user) => {
 
 	NoteWatchings.delete({
 		userId: muter.id,
-		noteUserId: mutee.id
+		noteUserId: mutee.id,
 	});
 });

@@ -12,7 +12,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': 'アプリを作成します。',
-		'en-US': 'Create a application.'
+		'en-US': 'Create a application.',
 	},
 
 	params: {
@@ -20,24 +20,24 @@ export const meta = {
 			validator: $.str,
 			desc: {
 				'ja-JP': 'アプリの名前',
-				'en-US': 'Name of application'
-			}
+				'en-US': 'Name of application',
+			},
 		},
 
 		description: {
 			validator: $.str,
 			desc: {
 				'ja-JP': 'アプリの説明',
-				'en-US': 'Description of application'
-			}
+				'en-US': 'Description of application',
+			},
 		},
 
 		permission: {
 			validator: $.arr($.str).unique(),
 			desc: {
 				'ja-JP': 'このアプリに割り当てる権限（権限については"Permissions"を参照）',
-				'en-US': 'Permissions assigned to this app (see "Permissions" for the permissions)'
-			}
+				'en-US': 'Permissions assigned to this app (see "Permissions" for the permissions)',
+			},
 		},
 
 		// TODO: Check it is valid url
@@ -46,8 +46,8 @@ export const meta = {
 			default: null as any,
 			desc: {
 				'ja-JP': 'アプリ認証時にコールバックするURL',
-				'en-US': 'URL to call back at app authentication'
-			}
+				'en-US': 'URL to call back at app authentication',
+			},
 		},
 	},
 
@@ -74,11 +74,11 @@ export default define(meta, async (ps, user) => {
 		description: ps.description,
 		permission,
 		callbackUrl: ps.callbackUrl,
-		secret: secret
+		secret: secret,
 	});
 
 	return await Apps.pack(app, null, {
 		detail: true,
-		includeSecret: true
+		includeSecret: true,
 	});
 });

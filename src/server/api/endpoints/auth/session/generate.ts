@@ -13,7 +13,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': 'アプリを認証するためのトークンを作成します。',
-		'en-US': 'Generate a token for authorize application.'
+		'en-US': 'Generate a token for authorize application.',
 	},
 
 	params: {
@@ -21,9 +21,9 @@ export const meta = {
 			validator: $.str,
 			desc: {
 				'ja-JP': 'アプリケーションのシークレットキー',
-				'en-US': 'The secret key of your application.'
-			}
-		}
+				'en-US': 'The secret key of your application.',
+			},
+		},
 	},
 
 	res: {
@@ -33,30 +33,30 @@ export const meta = {
 			token: {
 				type: 'string' as const,
 				optional: false as const, nullable: false as const,
-				description: 'セッションのトークン'
+				description: 'セッションのトークン',
 			},
 			url: {
 				type: 'string' as const,
 				optional: false as const, nullable: false as const,
 				format: 'url',
-				description: 'セッションのURL'
+				description: 'セッションのURL',
 			},
-		}
+		},
 	},
 
 	errors: {
 		noSuchApp: {
 			message: 'No such app.',
 			code: 'NO_SUCH_APP',
-			id: '92f93e63-428e-4f2f-a5a4-39e1407fe998'
-		}
-	}
+			id: '92f93e63-428e-4f2f-a5a4-39e1407fe998',
+		},
+	},
 };
 
 export default define(meta, async (ps) => {
 	// Lookup app
 	const app = await Apps.findOne({
-		secret: ps.appSecret
+		secret: ps.appSecret,
 	});
 
 	if (app == null) {
@@ -71,11 +71,11 @@ export default define(meta, async (ps) => {
 		id: genId(),
 		createdAt: new Date(),
 		appId: app.id,
-		token: token
+		token: token,
 	});
 
 	return {
 		token: doc.token,
-		url: `${config.authUrl}/${doc.token}`
+		url: `${config.authUrl}/${doc.token}`,
 	};
 });

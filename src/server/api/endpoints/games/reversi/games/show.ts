@@ -18,9 +18,9 @@ export const meta = {
 		noSuchGame: {
 			message: 'No such game.',
 			code: 'NO_SUCH_GAME',
-			id: 'f13a03db-fae1-46c9-87f3-43c8165419e1'
+			id: 'f13a03db-fae1-46c9-87f3-43c8165419e1',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -33,7 +33,7 @@ export default define(meta, async (ps, user) => {
 	const o = new Reversi(game.map, {
 		isLlotheo: game.isLlotheo,
 		canPutEverywhere: game.canPutEverywhere,
-		loopedBoard: game.loopedBoard
+		loopedBoard: game.loopedBoard,
 	});
 
 	for (const log of game.logs) {
@@ -44,6 +44,6 @@ export default define(meta, async (ps, user) => {
 
 	return Object.assign({
 		board: o.board,
-		turn: o.turn
+		turn: o.turn,
 	}, packed);
 });

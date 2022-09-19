@@ -11,7 +11,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': '指定したトークメッセージを削除します。',
-		'en-US': 'Delete a message.'
+		'en-US': 'Delete a message.',
 	},
 
 	tags: ['messaging'],
@@ -23,7 +23,7 @@ export const meta = {
 	limit: {
 		duration: ms('1hour'),
 		max: 300,
-		minInterval: ms('1sec')
+		minInterval: ms('1sec'),
 	},
 
 	params: {
@@ -31,24 +31,24 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のメッセージのID',
-				'en-US': 'Target message ID.'
-			}
-		}
+				'en-US': 'Target message ID.',
+			},
+		},
 	},
 
 	errors: {
 		noSuchMessage: {
 			message: 'No such message.',
 			code: 'NO_SUCH_MESSAGE',
-			id: '54b5b326-7925-42cf-8019-130fda8b56af'
+			id: '54b5b326-7925-42cf-8019-130fda8b56af',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
 	const message = await MessagingMessages.findOne({
 		id: ps.messageId,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (message == null) {
