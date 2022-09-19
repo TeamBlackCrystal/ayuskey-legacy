@@ -27,8 +27,8 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faInfoCircle
+			faInfoCircle,
 		};
-	}
+	},
 });
 </script>

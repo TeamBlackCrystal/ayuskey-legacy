@@ -1,9 +1,9 @@
 <template>
-<div class="nhasjydimbopojusarffqjyktglcuxjy" v-if="meta">
+<div v-if="meta" class="nhasjydimbopojusarffqjyktglcuxjy">
 	<div class="banner" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }"></div>
 
 	<h1>{{ meta.name || 'Misskey' }}</h1>
-	<p v-html="meta.description || this.$t('@.about')"></p>
+	<p v-html="meta.description || $t('@.about')"></p>
 	<router-link to="/">{{ $t('start') }}</router-link>
 </div>
 </template>
@@ -16,14 +16,14 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/instance.vue'),
 	data() {
 		return {
-			meta: null
-		}
+			meta: null,
+		};
 	},
 	created() {
 		this.$root.getMeta().then(meta => {
 			this.meta = meta;
 		});
-	}
+	},
 });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
-<component :is="customize ? 'mk-dummy' : 'mk-ui'" v-hotkey.global="keymap" v-if="$store.getters.isSignedIn || $route.name != 'index'">
+<component :is="customize ? 'mk-dummy' : 'mk-ui'" v-if="$store.getters.isSignedIn || $route.name != 'index'" v-hotkey.global="keymap">
 	<div class="wqsofvpm" :data-customize="customize">
-		<div class="customize" v-if="customize">
+		<div v-if="customize" class="customize">
 			<a @click="done()"><fa icon="check"/>{{ $t('done') }}</a>
 			<div>
 				<div class="adder">
@@ -43,17 +43,18 @@
 		</div>
 		<div class="main" :class="{ side: widgets.left.length == 0 || widgets.right.length == 0 }">
 			<template v-if="customize">
-				<x-draggable v-for="place in ['left', 'right']"
+				<x-draggable
+					v-for="place in ['left', 'right']"
+					:key="place"
 					:list="widgets[place]"
 					:class="place"
 					:data-place="place"
 					group="x"
 					animation="150"
 					@sort="onWidgetSort"
-					:key="place"
 				>
-					<div v-for="widget in widgets[place]" class="customize-container" :key="widget.id" @contextmenu.stop.prevent="onWidgetContextmenu(widget.id)">
-						<component :is="`mkw-${widget.name}`" :widget="widget" :ref="widget.id" :is-customize-mode="true" platform="desktop"/>
+					<div v-for="widget in widgets[place]" :key="widget.id" class="customize-container" @contextmenu.stop.prevent="onWidgetContextmenu(widget.id)">
+						<component :is="`mkw-${widget.name}`" :ref="widget.id" :widget="widget" :is-customize-mode="true" platform="desktop"/>
 					</div>
 				</x-draggable>
 				<div class="main">
@@ -64,8 +65,8 @@
 				</div>
 			</template>
 			<template v-else>
-				<div v-for="place in ['left', 'right']" :class="place" :key="place">
-					<component v-for="widget in widgets[place]" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
+				<div v-for="place in ['left', 'right']" :key="place" :class="place">
+					<component :is="`mkw-${widget.name}`" v-for="widget in widgets[place]" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
 				</div>
 				<div class="main">
 					<router-view ref="content"></router-view>
@@ -89,7 +90,7 @@ export default Vue.extend({
 
 	components: {
 		XDraggable,
-		XWelcome
+		XWelcome,
 	},
 
 	data() {
@@ -98,7 +99,7 @@ export default Vue.extend({
 			connection: null,
 			widgetAdderSelected: null,
 			trash: [],
-			view: null
+			view: null,
 		};
 	},
 
@@ -109,15 +110,15 @@ export default Vue.extend({
 			} else {
 				return [{
 					name: 'instance',
-					place: 'right'
+					place: 'right',
 				}, {
 					name: 'broadcast',
 					place: 'right',
-					data: {}
+					data: {},
 				}, {
 					name: 'hashtags',
 					place: 'right',
-					data: {}
+					data: {},
 				}];
 			}
 		},
@@ -130,14 +131,14 @@ export default Vue.extend({
 		widgets(): any {
 			return {
 				left: this.left,
-				right: this.right
+				right: this.right,
 			};
 		},
 		keymap(): any {
 			return {
-				't': this.focus
+				't': this.focus,
 			};
-		}
+		},
 	},
 
 	created() {
@@ -152,7 +153,7 @@ export default Vue.extend({
 					'rss',
 					'hashtags',
 					'photo-stream',
-					'version'
+					'version',
 				],
 				right: [
 					'customize',
@@ -162,8 +163,8 @@ export default Vue.extend({
 					'polls',
 					'server',
 					'nav',
-					'tips'
-				]
+					'tips',
+				],
 			};
 
 			//#region Construct home data
@@ -174,7 +175,7 @@ export default Vue.extend({
 					name: widget,
 					id: uuid(),
 					place: 'left',
-					data: {}
+					data: {},
 				});
 			}
 
@@ -183,7 +184,7 @@ export default Vue.extend({
 					name: widget,
 					id: uuid(),
 					place: 'right',
-					data: {}
+					data: {},
 				});
 			}
 			//#endregion
@@ -204,7 +205,7 @@ export default Vue.extend({
 		hint() {
 			this.$root.dialog({
 				title: this.$t('@.customization-tips.title'),
-				text: this.$t('@.customization-tips.paragraph')
+				text: this.$t('@.customization-tips.paragraph'),
 			});
 		},
 
@@ -226,13 +227,13 @@ export default Vue.extend({
 		},
 
 		addWidget() {
-			if(this.widgetAdderSelected == null) return;
+			if (this.widgetAdderSelected == null) return;
 
 			this.$store.commit('addHomeWidget', {
 				name: this.widgetAdderSelected,
 				id: uuid(),
 				place: 'left',
-				data: {}
+				data: {},
 			});
 		},
 
@@ -251,7 +252,7 @@ export default Vue.extend({
 		focus() {
 			(this.$refs.content as any).focus();
 		},
-	}
+	},
 });
 </script>
 

@@ -21,8 +21,8 @@ export default define({
 	name: 'slideshow',
 	props: () => ({
 		folder: undefined,
-		size: 0
-	})
+		size: 0,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/slideshow.vue'),
 
@@ -30,7 +30,7 @@ export default define({
 		return {
 			images: [],
 			fetching: true,
-			clock: null
+			clock: null,
 		};
 	},
 	mounted() {
@@ -93,9 +93,9 @@ export default define({
 					anime({
 						targets: this.$refs.slideB,
 						opacity: 0,
-						duration: 0
+						duration: 0,
 					});
-				}
+				},
 			});
 		},
 		fetch() {
@@ -104,7 +104,7 @@ export default define({
 			this.$root.api('drive/files', {
 				folderId: this.props.folder,
 				type: 'image/*',
-				limit: 100
+				limit: 100,
 			}).then(images => {
 				this.images = images;
 				this.fetching = false;
@@ -119,8 +119,8 @@ export default define({
 				this.save();
 				this.fetch();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

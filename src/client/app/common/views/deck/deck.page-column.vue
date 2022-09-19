@@ -5,7 +5,7 @@
 	</template>
 
 	<div v-if="page">
-		<x-page :page="page" :key="page.id"/>
+		<x-page :key="page.id" :page="page"/>
 	</div>
 </x-column>
 </template>
@@ -22,29 +22,29 @@ export default Vue.extend({
 
 	components: {
 		XColumn,
-		XPage
+		XPage,
 	},
 
 	props: {
 		pageName: {
 			type: String,
-			required: true
+			required: true,
 		},
 		username: {
 			type: String,
-			required: true
+			required: true,
 		},
 	},
 
 	data() {
 		return {
 			page: null,
-			faStickyNote
+			faStickyNote,
 		};
 	},
 
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 
 	created() {
@@ -60,10 +60,10 @@ export default Vue.extend({
 				this.page = page;
 				this.$emit('init', {
 					title: this.page.title,
-					icon: faStickyNote
+					icon: faStickyNote,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>

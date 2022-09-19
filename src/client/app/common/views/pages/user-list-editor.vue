@@ -19,7 +19,7 @@
 				<ui-button @click="add"><fa :icon="faPlus"/> {{ $t('add-user') }}</ui-button>
 			</ui-margin>
 			<sequential-entrance animation="entranceFromTop" delay="25">
-				<div class="phcqulfl" v-for="user in users">
+				<div v-for="user in users" class="phcqulfl">
 					<div>
 						<a :href="user | userPage">
 							<mk-avatar class="avatar" :user="user" :disable-link="true"/>
@@ -52,27 +52,27 @@ export default Vue.extend({
 
 	props: {
 		listId: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			list: null,
 			users: [],
-			faListUl, faICursor, faTrashAlt, faUsers, faPlus
+			faListUl, faICursor, faTrashAlt, faUsers, faPlus,
 		};
 	},
 
 	created() {
 		this.$root.api('users/lists/show', {
-			listId: this.listId
+			listId: this.listId,
 		}).then(list => {
 			this.list = list;
 			this.fetchUsers();
 			this.$emit('init', {
 				title: this.list.name,
-				icon: faListUl
+				icon: faListUl,
 			});
 		});
 	},
@@ -80,7 +80,7 @@ export default Vue.extend({
 	methods: {
 		fetchUsers() {
 			this.$root.api('users/show', {
-				userIds: this.list.userIds
+				userIds: this.list.userIds,
 			}).then(users => {
 				this.users = users;
 			});
@@ -90,13 +90,13 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('rename'),
 				input: {
-					default: this.list.name
-				}
+					default: this.list.name,
+				},
 			}).then(({ canceled, result: name }) => {
 				if (canceled) return;
 				this.$root.api('users/lists/update', {
 					listId: this.list.id,
-					name: name
+					name: name,
 				});
 			});
 		},
@@ -105,21 +105,21 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('delete-are-you-sure').replace('$1', this.list.name),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 
 				this.$root.api('users/lists/delete', {
-					listId: this.list.id
+					listId: this.list.id,
 				}).then(() => {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('deleted')
+						text: this.$t('deleted'),
 					});
 				}).catch(e => {
 					this.$root.dialog({
 						type: 'error',
-						text: e
+						text: e,
 					});
 				});
 			});
@@ -128,7 +128,7 @@ export default Vue.extend({
 		remove(user: any) {
 			this.$root.api('users/lists/pull', {
 				listId: this.list.id,
-				userId: user.id
+				userId: user.id,
 			}).then(() => {
 				this.fetchUsers();
 			});
@@ -137,18 +137,18 @@ export default Vue.extend({
 		async add() {
 			const { result: user } = await this.$root.dialog({
 				user: {
-					local: true
-				}
+					local: true,
+				},
 			});
 			if (user == null) return;
 			this.$root.api('users/lists/push', {
 				listId: this.list.id,
-				userId: user.id
+				userId: user.id,
 			}).then(() => {
 				this.fetchUsers();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

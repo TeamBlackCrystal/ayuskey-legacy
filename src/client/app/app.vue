@@ -11,9 +11,9 @@ export default defineComponent({
 		keymap(): any {
 			return {
 				'h|slash': this.help,
-				'd': this.dark
+				'd': this.dark,
 			};
-		}
+		},
 	},
 
 	methods: {
@@ -24,9 +24,9 @@ export default defineComponent({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
-		}
-	}
+		},
+	},
 });
 </script>

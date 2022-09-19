@@ -1,10 +1,11 @@
 <template>
 <div class="lnctpgve">
-	<x-page v-if="user.pinnedPage" :page="user.pinnedPage" :key="user.pinnedPage.id" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
+	<x-page v-if="user.pinnedPage" :key="user.pinnedPage.id" :page="user.pinnedPage" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
 	<mk-note-detail v-for="n in user.pinnedNotes" :key="n.id" :note="n" :compact="true"/>
 	<!--<mk-calendar @chosen="warp" :start="new Date(user.createdAt)"/>-->
 	<div class="activity">
-		<ui-container :body-togglable="true"
+		<ui-container
+			:body-togglable="true"
 			:expanded="$store.state.device.expandUsersActivity"
 			@toggle="expanded => $store.commit('device/set', { key: 'expandUsersActivity', value: expanded })">
 			<template #header><fa icon="chart-bar"/>{{ $t('activity') }}</template>
@@ -35,14 +36,14 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 	methods: {
 		warp(date) {
 			(this.$refs.tl as any).warp(date);
-		}
-	}
+		},
+	},
 });
 </script>
 

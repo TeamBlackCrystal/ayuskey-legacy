@@ -13,14 +13,14 @@ export default Vue.extend({
 		round: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		primary: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 });
 </script>
 

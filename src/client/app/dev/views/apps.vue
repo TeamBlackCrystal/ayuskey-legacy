@@ -26,7 +26,7 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			apps: []
+			apps: [],
 		};
 	},
 	mounted() {
@@ -34,6 +34,6 @@ export default Vue.extend({
 			this.apps = apps;
 			this.fetching = false;
 		});
-	}
+	},
 });
 </script>

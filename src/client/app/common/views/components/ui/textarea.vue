@@ -1,8 +1,9 @@
 <template>
 <div class="ui-textarea" :class="{ focused, filled, tall, pre }">
 	<div class="input">
-		<span class="label" ref="label"><slot></slot></span>
-		<textarea ref="input"
+		<span ref="label" class="label"><slot></slot></span>
+		<textarea
+			ref="input"
 			:value="value"
 			:required="required"
 			:readonly="readonly"
@@ -23,51 +24,51 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
-			required: false
+			required: false,
 		},
 		required: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		readonly: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		pattern: {
 			type: String,
-			required: false
+			required: false,
 		},
 		autocomplete: {
 			type: String,
-			required: false
+			required: false,
 		},
 		tall: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		pre: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 	},
 	data() {
 		return {
 			focused: false,
-			passwordStrength: ''
-		}
+			passwordStrength: '',
+		};
 	},
 	computed: {
 		filled(): boolean {
 			return this.value != '' && this.value != null;
-		}
+		},
 	},
 	methods: {
 		focus() {
 			this.$refs.input.focus();
-		}
-	}
+		},
+	},
 });
 </script>
 

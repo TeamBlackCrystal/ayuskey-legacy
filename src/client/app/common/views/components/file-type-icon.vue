@@ -11,7 +11,7 @@ export default Vue.extend({
 	computed: {
 		kind(): string {
 			return this.type.split('/')[0];
-		}
-	}
+		},
+	},
 });
 </script>

@@ -9,17 +9,17 @@ export default Vue.extend({
 	props: {
 		x: {
 			type: Number,
-			required: true
+			required: true,
 		},
 		y: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
-			active: false
-		}
+			active: false,
+		};
 	},
 	mounted() {
 		setTimeout(() => {
@@ -29,7 +29,7 @@ export default Vue.extend({
 		setTimeout(() => {
 			this.destroyDom();
 		}, 1000);
-	}
+	},
 });
 </script>
 

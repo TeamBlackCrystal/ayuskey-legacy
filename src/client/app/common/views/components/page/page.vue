@@ -5,7 +5,7 @@
 	</header>
 
 	<div v-if="script">
-		<x-block v-for="child in page.content" :value="child" @input="v => updateBlock(v)" :page="page" :script="script" :key="child.id" :h="2"/>
+		<x-block v-for="child in page.content" :key="child.id" :value="child" :page="page" :script="script" :h="2" @input="v => updateBlock(v)"/>
 	</div>
 
 	<footer v-if="showFooter">
@@ -17,9 +17,9 @@
 		</template>
 		<router-link :to="`./${page.name}/view-source`">{{ $t('view-source') }}</router-link>
 		<div class="like">
-			<button @click="unlike()" v-if="page.isLiked" :title="$t('unlike')"><fa :icon="faHeartS"/></button>
-			<button @click="like()" v-else :title="$t('like')"><fa :icon="faHeart"/></button>
-			<span class="count" v-if="page.likedCount > 0">{{ page.likedCount }}</span>
+			<button v-if="page.isLiked" :title="$t('unlike')" @click="unlike()"><fa :icon="faHeartS"/></button>
+			<button v-else :title="$t('like')" @click="like()"><fa :icon="faHeart"/></button>
+			<span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span>
 		</div>
 	</footer>
 </div>
@@ -69,30 +69,30 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XBlock
+		XBlock,
 	},
 
 	props: {
 		page: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		showTitle: {
 			type: Boolean,
 			required: false,
-			default: true
+			default: true,
 		},
 		showFooter: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 	},
 
 	data() {
 		return {
 			script: null,
-			faHeartS, faHeart
+			faHeartS, faHeart,
 		};
 	},
 
@@ -103,7 +103,7 @@ export default Vue.extend({
 			user: this.page.user,
 			visitor: this.$store.state.i,
 			page: this.page,
-			url: url
+			url: url,
 		}), e => {
 			console.dir(e);
 		});
@@ -138,11 +138,11 @@ export default Vue.extend({
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

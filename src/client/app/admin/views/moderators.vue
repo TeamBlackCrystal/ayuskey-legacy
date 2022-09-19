@@ -7,8 +7,8 @@
 				<template #prefix>@</template>
 			</ui-input>
 			<ui-horizon-group>
-				<ui-button @click="add" :disabled="changing">{{ $t('add-moderator.add') }}</ui-button>
-				<ui-button @click="remove" :disabled="changing">{{ $t('add-moderator.remove') }}</ui-button>
+				<ui-button :disabled="changing" @click="add">{{ $t('add-moderator.add') }}</ui-button>
+				<ui-button :disabled="changing" @click="remove">{{ $t('add-moderator.remove') }}</ui-button>
 			</ui-horizon-group>
 		</section>
 	</ui-card>
@@ -43,7 +43,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import parseAcct from "../../../../misc/acct/parse";
+import parseAcct from '../../../../misc/acct/parse';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/moderators.vue'),
@@ -54,7 +54,7 @@ export default Vue.extend({
 			changing: false,
 			logs: [],
 			untilLogId: null,
-			existMoreLogs: false
+			existMoreLogs: false,
 		};
 	},
 
@@ -71,14 +71,14 @@ export default Vue.extend({
 				await this.$root.api('admin/moderators/add', { userId: user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('add-moderator.added')
+					text: this.$t('add-moderator.added'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -93,14 +93,14 @@ export default Vue.extend({
 				await this.$root.api('admin/moderators/remove', { userId: user.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('add-moderator.removed')
+					text: this.$t('add-moderator.removed'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 
@@ -110,7 +110,7 @@ export default Vue.extend({
 		fetchLogs() {
 			this.$root.api('admin/show-moderation-logs', {
 				untilId: this.untilId,
-				limit: 10 + 1
+				limit: 10 + 1,
 			}).then(logs => {
 				if (logs.length == 10 + 1) {
 					logs.pop();
@@ -122,6 +122,6 @@ export default Vue.extend({
 				this.untilLogId = this.logs[this.logs.length - 1].id;
 			});
 		},
-	}
+	},
 });
 </script>

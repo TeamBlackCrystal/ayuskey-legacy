@@ -1,12 +1,12 @@
 <template>
-<form class="mk-signup" @submit.prevent="onSubmit" :autocomplete="Math.random()">
+<form class="mk-signup" :autocomplete="Math.random()" @submit.prevent="onSubmit">
 	<template v-if="meta">
 		<ui-input v-if="meta.disableRegistration" v-model="invitationCode" type="text" :autocomplete="Math.random()" spellcheck="false" required styl="fill">
 			<span>{{ $t('invitation-code') }}</span>
 			<template #prefix><fa icon="id-card-alt"/></template>
-			<template #desc v-html="this.$t('invitation-info').replace('{}', 'mailto:' + meta.maintainerEmail)"></template>
+			<template #desc v-html="$t('invitation-info').replace('{}', 'mailto:' + meta.maintainerEmail)"></template>
 		</ui-input>
-		<ui-input v-model="username" type="text" pattern="^[a-zA-Z0-9_]{1,20}$" :autocomplete="Math.random()" spellcheck="false" required @input="onChangeUsername" styl="fill">
+		<ui-input v-model="username" type="text" pattern="^[a-zA-Z0-9_]{1,20}$" :autocomplete="Math.random()" spellcheck="false" required styl="fill" @input="onChangeUsername">
 			<span>{{ $t('username') }}</span>
 			<template #prefix>@</template>
 			<template #suffix>@{{ host }}</template>
@@ -20,7 +20,7 @@
 				<span v-if="usernameState == 'max-range'" style="color:#FF1161"><fa icon="exclamation-triangle" fixed-width/> {{ $t('too-long') }}</span>
 			</template>
 		</ui-input>
-		<ui-input v-model="password" type="password" :autocomplete="Math.random()" required @input="onChangePassword" :with-password-meter="true" styl="fill">
+		<ui-input v-model="password" type="password" :autocomplete="Math.random()" required :with-password-meter="true" styl="fill" @input="onChangePassword">
 			<span>{{ $t('password') }}</span>
 			<template #prefix><fa icon="lock"/></template>
 			<template #desc>
@@ -29,7 +29,7 @@
 				<p v-if="passwordStrength == 'high'" style="color:#3CB7B5"><fa icon="check" fixed-width/> {{ $t('strong-password') }}</p>
 			</template>
 		</ui-input>
-		<ui-input v-model="retypedPassword" type="password" :autocomplete="Math.random()" required @input="onChangePasswordRetype" styl="fill">
+		<ui-input v-model="retypedPassword" type="password" :autocomplete="Math.random()" required styl="fill" @input="onChangePasswordRetype">
 			<span>{{ $t('password') }} ({{ $t('retype') }})</span>
 			<template #prefix><fa icon="lock"/></template>
 			<template #desc>
@@ -37,7 +37,7 @@
 				<p v-if="passwordRetypeState == 'not-match'" style="color:#FF1161"><fa icon="exclamation-triangle" fixed-width/> {{ $t('password-not-matched') }}</p>
 			</template>
 		</ui-input>
-		<ui-switch v-model="ToSAgreement" v-if="meta.ToSUrl">
+		<ui-switch v-if="meta.ToSUrl" v-model="ToSAgreement">
 			<i18n path="agree-to">
 				<a :href="meta.ToSUrl" target="_blank">{{ $t('tos') }}</a>
 			</i18n>
@@ -72,8 +72,8 @@ export default Vue.extend({
 			passwordRetypeState: null,
 			meta: {},
 			submitting: false,
-			ToSAgreement: false
-		}
+			ToSAgreement: false,
+		};
 	},
 
 	computed: {
@@ -82,7 +82,7 @@ export default Vue.extend({
 				this.usernameState != 'invalid-format' &&
 				this.usernameState != 'min-range' &&
 				this.usernameState != 'max-range');
-		}
+		},
 	},
 
 	created() {
@@ -119,7 +119,7 @@ export default Vue.extend({
 			this.usernameState = 'wait';
 
 			this.$root.api('username/available', {
-				username: this.username
+				username: this.username,
 			}).then(result => {
 				this.usernameState = result.available ? 'ok' : 'unavailable';
 			}).catch(err => {
@@ -154,11 +154,11 @@ export default Vue.extend({
 				username: this.username,
 				password: this.password,
 				invitationCode: this.invitationCode,
-				'g-recaptcha-response': this.meta.enableRecaptcha ? (window as any).grecaptcha.getResponse() : null
+				'g-recaptcha-response': this.meta.enableRecaptcha ? (window as any).grecaptcha.getResponse() : null,
 			}).then(() => {
 				this.$root.api('signin', {
 					username: this.username,
-					password: this.password
+					password: this.password,
 				}).then(res => {
 					localStorage.setItem('i', res.i);
 					document.cookie = `token=${res.i}; path=/; max-age=31536000`; // bull dashboardの認証とかで使う
@@ -169,15 +169,15 @@ export default Vue.extend({
 
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('some-error')
+					text: this.$t('some-error'),
 				});
 
 				if (this.meta.enableRecaptcha) {
 					(window as any).grecaptcha.reset();
 				}
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

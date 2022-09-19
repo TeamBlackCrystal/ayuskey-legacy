@@ -29,13 +29,13 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			requests: []
+			requests: [],
 		};
 	},
 	created() {
 		this.$emit('init', {
 			title: this.$t('received-follow-requests'),
-			icon: faUserClock
+			icon: faUserClock,
 		});
 	},
 	mounted() {
@@ -56,8 +56,8 @@ export default Vue.extend({
 			this.$root.api('following/requests/reject', { userId: user.id }).then(() => {
 				this.requests = this.requests.filter(r => r.follower.id != user.id);
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

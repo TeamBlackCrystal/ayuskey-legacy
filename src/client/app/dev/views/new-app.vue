@@ -2,7 +2,7 @@
 <mk-ui>
 	<b-card :header="$t('new-app')">
 		<b-alert show variant="info"><fa icon="info-circle"/> {{ $t('new-app-info') }}</b-alert>
-		<b-form @submit.prevent="onSubmit" autocomplete="off">
+		<b-form autocomplete="off" @submit.prevent="onSubmit">
 			<b-form-group :label="$t('app-name')" :description="$t('app-name-desc')">
 				<b-form-input v-model="name" type="text" :placeholder="$t('app-name-placeholder')" autocomplete="off" required/>
 			</b-form-group>
@@ -16,7 +16,7 @@
 				<b-form-group :description="$t('authority-desc')">
 					<b-alert show variant="warning"><fa icon="exclamation-triangle"/> {{ $t('authority-warning') }}</b-alert>
 					<b-form-checkbox-group v-model="permission" stacked>
-						<b-form-checkbox v-for="v in permissionsList" :value="v" :key="v">{{ $t(`@.permissions.${v}`) }} ({{ v }})</b-form-checkbox>
+						<b-form-checkbox v-for="v in permissionsList" :key="v" :value="v">{{ $t(`@.permissions.${v}`) }} ({{ v }})</b-form-checkbox>
 					</b-form-checkbox-group>
 				</b-form-group>
 			</b-card>
@@ -41,7 +41,7 @@ export default Vue.extend({
 			cb: '',
 			nidState: null,
 			permission: [],
-			permissionsList: kinds
+			permissionsList: kinds,
 		};
 	},
 	methods: {
@@ -50,13 +50,13 @@ export default Vue.extend({
 				name: this.name,
 				description: this.description,
 				callbackUrl: this.cb,
-				permission: this.permission
+				permission: this.permission,
 			}).then(() => {
 				location.href = '/dev/apps';
 			}).catch(() => {
 				alert(this.$t('@.dev.failed-to-create'));
 			});
-		}
-	}
+		},
+	},
 });
 </script>

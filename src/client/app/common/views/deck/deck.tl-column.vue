@@ -10,24 +10,27 @@
 		<span>{{ name }}</span>
 	</template>
 
-	<div class="editor" style="padding:12px" v-if="edit">
+	<div v-if="edit" class="editor" style="padding:12px">
 		<ui-switch v-model="column.isMediaOnly" @change="onChangeSettings">{{ $t('is-media-only') }}</ui-switch>
 	</div>
 
-	<x-list-tl v-if="column.type == 'list'"
+	<x-list-tl
+		v-if="column.type == 'list'"
+		ref="tl"
 		:list="column.list"
 		:media-only="column.isMediaOnly"
-		ref="tl"
 	/>
-	<x-hashtag-tl v-else-if="column.type == 'hashtag'"
+	<x-hashtag-tl
+		v-else-if="column.type == 'hashtag'"
+		ref="tl"
 		:tag-tl="$store.state.settings.tagTimelines.find(x => x.id == column.tagTlId)"
 		:media-only="column.isMediaOnly"
-		ref="tl"
 	/>
-	<x-tl v-else
+	<x-tl
+		v-else
+		ref="tl"
 		:src="column.type"
 		:media-only="column.isMediaOnly"
-		ref="tl"
 	/>
 </x-column>
 </template>
@@ -46,22 +49,22 @@ export default Vue.extend({
 		XColumn,
 		XTl,
 		XListTl,
-		XHashtagTl
+		XHashtagTl,
 	},
 
 	props: {
 		column: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		isStacked: {
 			type: Boolean,
-			required: true
+			required: true,
 		},
 		pos: {
 			type: Object,
 			required: false,
-			default: () => {}
+			default: () => {},
 		},
 	},
 
@@ -73,9 +76,9 @@ export default Vue.extend({
 				text: this.$t('edit'),
 				action: () => {
 					this.edit = !this.edit;
-				}
-			}]
-		}
+				},
+			}],
+		};
 	},
 
 	computed: {
@@ -90,7 +93,7 @@ export default Vue.extend({
 				case 'list': return this.column.list.name;
 				case 'hashtag': return this.$store.state.settings.tagTimelines.find(x => x.id == this.column.tagTlId).title;
 			}
-		}
+		},
 	},
 
 	methods: {
@@ -100,7 +103,7 @@ export default Vue.extend({
 
 		focus() {
 			this.$refs.tl.focus();
-		}
-	}
+		},
+	},
 });
 </script>

@@ -4,7 +4,7 @@
 	<ui-margin>
 		<ui-button @click="add"><fa :icon="faPlus"/> {{ $t('create-list') }}</ui-button>
 	</ui-margin>
-	<div class="cpqqyrst" v-for="list in lists" :key="list.id">
+	<div v-for="list in lists" :key="list.id" class="cpqqyrst">
 		<ui-hr/>
 		<ui-margin>
 			<router-link :to="`/i/lists/${list.id}`">{{ list.name }}</router-link>
@@ -23,13 +23,13 @@ import XAvatars from '../../views/components/avatars.vue';
 export default Vue.extend({
 	i18n: i18n('common/views/components/user-lists.vue'),
 	components: {
-		XAvatars
+		XAvatars,
 	},
 	data() {
 		return {
 			fetching: true,
 			lists: [],
-			faListUl, faPlus
+			faListUl, faPlus,
 		};
 	},
 	mounted() {
@@ -42,24 +42,24 @@ export default Vue.extend({
 
 		this.$emit('init', {
 			title: this.$t('user-lists'),
-			icon: faListUl
+			icon: faListUl,
 		});
 	},
 	methods: {
 		add() {
 			this.$root.dialog({
 				title: this.$t('list-name'),
-				input: true
+				input: true,
 			}).then(async ({ canceled, result: name }) => {
 				if (canceled) return;
 				const list = await this.$root.api('users/lists/create', {
-					name
+					name,
 				});
 
-				this.lists.push(list)
+				this.lists.push(list);
 			});
 		},
-	}
+	},
 });
 </script>
 

@@ -72,9 +72,9 @@ export default Vue.extend({
 	props: ['notification'],
 	data() {
 		return {
-			getNoteSummary
+			getNoteSummary,
 		};
-	}
+	},
 });
 </script>
 

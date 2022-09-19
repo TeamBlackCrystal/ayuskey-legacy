@@ -5,7 +5,7 @@
 
 		<div class="mkw-jobQueue _monospace">
 			<div class="inbox">
-				<div class="label">Inbox queue<fa :icon="faExclamationTriangle" v-if="inbox.waiting > 0" class="icon"/></div>
+				<div class="label">Inbox queue<fa v-if="inbox.waiting > 0" :icon="faExclamationTriangle" class="icon"/></div>
 				<div class="values">
 					<div>
 						<div>Process</div>
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="deliver">
-				<div class="label">Deliver queue<fa :icon="faExclamationTriangle" v-if="deliver.waiting > 0" class="icon"/></div>
+				<div class="label">Deliver queue<fa v-if="deliver.waiting > 0" :icon="faExclamationTriangle" class="icon"/></div>
 				<div class="values">
 					<div>
 						<div>Process</div>
@@ -63,14 +63,14 @@ const widget = define({
 	props: () => ({
 		compact: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
 
 		sound: {
 			type: 'boolean',
 			default: false,
 		},
-	})
+	}),
 });
 
 export default defineComponent({
@@ -105,7 +105,7 @@ export default defineComponent({
 		this.connection.on('statsLog', this.onStatsLog);
 		this.connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: 1
+			length: 1,
 		});
 	},
 	beforeUnmount() {
@@ -133,8 +133,8 @@ export default defineComponent({
 				this.onStats(stats);
 			}
 		},
-		number
-	}
+		number,
+	},
 });
 </script>
 

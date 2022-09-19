@@ -4,14 +4,14 @@
 		<header>
 			<div class="title"><fa :icon="faStickyNote"/> {{ readonly ? $t('read-page') : pageId ? $t('edit-page') : $t('new-page') }}</div>
 			<div class="buttons">
-				<button @click="del()" v-if="!readonly"><fa :icon="faTrashAlt"/></button>
+				<button v-if="!readonly" @click="del()"><fa :icon="faTrashAlt"/></button>
 				<button @click="() => showOptions = !showOptions"><fa :icon="faCog"/></button>
-				<button @click="save()" v-if="!readonly"><fa :icon="faSave"/></button>
+				<button v-if="!readonly" @click="save()"><fa :icon="faSave"/></button>
 			</div>
 		</header>
 
 		<section>
-			<router-link class="view" v-if="pageId" :to="`/@${ author.username }/pages/${ currentName }`"><fa :icon="faExternalLinkSquareAlt"/> {{ $t('view-page') }}</router-link>
+			<router-link v-if="pageId" class="view" :to="`/@${ author.username }/pages/${ currentName }`"><fa :icon="faExternalLinkSquareAlt"/> {{ $t('view-page') }}</router-link>
 
 			<ui-input v-model="title">
 				<span>{{ $t('title') }}</span>
@@ -41,37 +41,38 @@
 					<ui-button v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage()"><fa :icon="faPlus"/> {{ $t('set-eye-catching-image') }}</ui-button>
 					<div v-else-if="eyeCatchingImage">
 						<img :src="eyeCatchingImage.url" :alt="eyeCatchingImage.name"/>
-						<ui-button @click="removeEyeCatchingImage()" v-if="!readonly"><fa :icon="faTrashAlt"/> {{ $t('remove-eye-catching-image') }}</ui-button>
+						<ui-button v-if="!readonly" @click="removeEyeCatchingImage()"><fa :icon="faTrashAlt"/> {{ $t('remove-eye-catching-image') }}</ui-button>
 					</div>
 				</div>
 			</template>
 
-			<x-blocks class="content" v-model="content" :ai-script="aiScript"/>
+			<x-blocks v-model="content" class="content" :ai-script="aiScript"/>
 
-			<ui-button @click="add()" v-if="!readonly"><fa :icon="faPlus"/></ui-button>
+			<ui-button v-if="!readonly" @click="add()"><fa :icon="faPlus"/></ui-button>
 		</section>
 	</div>
 
 	<ui-container :body-togglable="true">
 		<template #header><fa :icon="faMagic"/> {{ $t('variables') }}</template>
 		<div class="qmuvgica">
-			<x-draggable tag="div" class="variables" v-show="variables.length > 0" :list="variables" handle=".drag-handle" :group="{ name: 'variables' }" animation="150" swap-threshold="0.5">
-				<x-variable v-for="variable in variables"
+			<x-draggable v-show="variables.length > 0" tag="div" class="variables" :list="variables" handle=".drag-handle" :group="{ name: 'variables' }" animation="150" swap-threshold="0.5">
+				<x-variable
+					v-for="variable in variables"
+					:key="variable.name"
 					:value="variable"
 					:removable="true"
-					@input="v => updateVariable(v)"
-					@remove="() => removeVariable(variable)"
-					:key="variable.name"
 					:ai-script="aiScript"
 					:name="variable.name"
 					:title="variable.name"
 					:draggable="true"
+					@input="v => updateVariable(v)"
+					@remove="() => removeVariable(variable)"
 				/>
 			</x-draggable>
 
-			<ui-button @click="addVariable()" class="add" v-if="!readonly"><fa :icon="faPlus"/></ui-button>
+			<ui-button v-if="!readonly" class="add" @click="addVariable()"><fa :icon="faPlus"/></ui-button>
 
-			<ui-info><span v-html="$t('variables-info')"></span><a @click="() => moreDetails = true" style="display:block;">{{ $t('more-details') }}</a></ui-info>
+			<ui-info><span v-html="$t('variables-info')"></span><a style="display:block;" @click="() => moreDetails = true">{{ $t('more-details') }}</a></ui-info>
 
 			<template v-if="moreDetails">
 				<ui-info><span v-html="$t('variables-info2')"></span></ui-info>
@@ -109,21 +110,29 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XDraggable, XVariable, XBlocks
+		XDraggable, XVariable, XBlocks,
+	},
+
+	provide() {
+		return {
+			readonly: this.readonly,
+			getScriptBlockList: this.getScriptBlockList,
+			getPageBlockList: this.getPageBlockList,
+		};
 	},
 
 	props: {
 		initPageId: {
 			type: String,
-			required: false
+			required: false,
 		},
 		initPageName: {
 			type: String,
-			required: false
+			required: false,
 		},
 		initUser: {
 			type: String,
-			required: false
+			required: false,
 		},
 	},
 
@@ -148,7 +157,7 @@ export default Vue.extend({
 			showOptions: false,
 			moreDetails: false,
 			url,
-			faPlus, faICursor, faSave, faStickyNote, faMagic, faCog, faTrashAlt, faExternalLinkSquareAlt, faCode
+			faPlus, faICursor, faSave, faStickyNote, faMagic, faCog, faTrashAlt, faExternalLinkSquareAlt, faCode,
 		};
 	},
 
@@ -205,16 +214,8 @@ export default Vue.extend({
 			this.content = [{
 				id,
 				type: 'text',
-				text: 'Hello World!'
+				text: 'Hello World!',
 			}];
-		}
-	},
-
-	provide() {
-		return {
-			readonly: this.readonly,
-			getScriptBlockList: this.getScriptBlockList,
-			getPageBlockList: this.getPageBlockList
 		}
 	},
 
@@ -238,13 +239,13 @@ export default Vue.extend({
 						this.$root.dialog({
 							type: 'error',
 							title: this.$t('title-invalid-name'),
-							text: this.$t('text-invalid-name')
+							text: this.$t('text-invalid-name'),
 						});
 					}
 				} else if (err.code == 'NAME_ALREADY_EXISTS') {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('name-already-exists')
+						text: this.$t('name-already-exists'),
 					});
 				}
 			};
@@ -256,7 +257,7 @@ export default Vue.extend({
 					this.currentName = this.name.trim();
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('page-updated')
+						text: this.$t('page-updated'),
 					});
 				}).catch(onError);
 			} else {
@@ -266,7 +267,7 @@ export default Vue.extend({
 					this.currentName = this.name.trim();
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('page-created')
+						text: this.$t('page-created'),
 					});
 					this.$router.push(`/i/pages/edit/${this.pageId}`);
 				}).catch(onError);
@@ -277,7 +278,7 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('are-you-sure-delete'),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 				this.$root.api('pages/delete', {
@@ -285,9 +286,9 @@ export default Vue.extend({
 				}).then(() => {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('page-deleted')
+						text: this.$t('page-deleted'),
 					});
-					this.$router.push(`/i/pages`);
+					this.$router.push('/i/pages');
 				});
 			});
 		},
@@ -297,9 +298,9 @@ export default Vue.extend({
 				type: null,
 				title: this.$t('choose-block'),
 				select: {
-					groupedItems: this.getPageBlockList()
+					groupedItems: this.getPageBlockList(),
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 
@@ -313,7 +314,7 @@ export default Vue.extend({
 				input: {
 					type: 'text',
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 
@@ -322,7 +323,7 @@ export default Vue.extend({
 			if (this.aiScript.isUsedName(name)) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('the-variable-name-is-already-used')
+					text: this.$t('the-variable-name-is-already-used'),
 				});
 				return;
 			}
@@ -335,7 +336,7 @@ export default Vue.extend({
 			const i = this.variables.findIndex(x => x.name === v.name);
 			const newValue = [
 				...this.variables.slice(0, i),
-				...this.variables.slice(i + 1)
+				...this.variables.slice(i + 1),
 			];
 			this.variables = newValue;
 		},
@@ -348,7 +349,7 @@ export default Vue.extend({
 					{ value: 'text', text: this.$t('blocks.text') },
 					{ value: 'image', text: this.$t('blocks.image') },
 					{ value: 'textarea', text: this.$t('blocks.textarea') },
-				]
+				],
 			}, {
 				label: this.$t('input-blocks'),
 				items: [
@@ -358,14 +359,14 @@ export default Vue.extend({
 					{ value: 'textareaInput', text: this.$t('blocks.textareaInput') },
 					{ value: 'numberInput', text: this.$t('blocks.numberInput') },
 					{ value: 'switch', text: this.$t('blocks.switch') },
-					{ value: 'counter', text: this.$t('blocks.counter') }
-				]
+					{ value: 'counter', text: this.$t('blocks.counter') },
+				],
 			}, {
 				label: this.$t('special-blocks'),
 				items: [
 					{ value: 'if', text: this.$t('blocks.if') },
-					{ value: 'post', text: this.$t('blocks.post') }
-				]
+					{ value: 'post', text: this.$t('blocks.post') },
+				],
 			}];
 		},
 
@@ -379,7 +380,7 @@ export default Vue.extend({
 				if (category) {
 					category.items.push({
 						value: block.type,
-						text: this.$t(`script.blocks.${block.type}`)
+						text: this.$t(`script.blocks.${block.type}`),
 					});
 				} else {
 					list.push({
@@ -387,8 +388,8 @@ export default Vue.extend({
 						label: this.$t(`script.categories.${block.category}`),
 						items: [{
 							value: block.type,
-							text: this.$t(`script.blocks.${block.type}`)
-						}]
+							text: this.$t(`script.blocks.${block.type}`),
+						}],
 					});
 				}
 			}
@@ -396,11 +397,11 @@ export default Vue.extend({
 			const userFns = this.variables.filter(x => x.type === 'fn');
 			if (userFns.length > 0) {
 				list.unshift({
-					label: this.$t(`script.categories.fn`),
+					label: this.$t('script.categories.fn'),
 					items: userFns.map(v => ({
 						value: 'fn:' + v.name,
-						text: v.name
-					}))
+						text: v.name,
+					})),
 				});
 			}
 
@@ -409,7 +410,7 @@ export default Vue.extend({
 
 		setEyeCatchingImage() {
 			this.$chooseDriveFile({
-				multiple: false
+				multiple: false,
 			}).then(file => {
 				this.eyeCatchingImageId = file.id;
 			});
@@ -417,8 +418,8 @@ export default Vue.extend({
 
 		removeEyeCatchingImage() {
 			this.eyeCatchingImageId = null;
-		}
-	}
+		},
+	},
 });
 </script>
 

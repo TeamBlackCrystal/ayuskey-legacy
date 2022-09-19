@@ -4,24 +4,24 @@
 
 	<mk-error v-if="error" @retry="init()"/>
 
-	<div class="efvhhmdq" :class="{ iconOnly }" v-size="[{ lt: 500, class: 'narrow' }]">
-		<div class="no-users" v-if="empty">
+	<div v-size="[{ lt: 500, class: 'narrow' }]" class="efvhhmdq" :class="{ iconOnly }">
+		<div v-if="empty" class="no-users">
 			<p>{{ $t('no-users') }}</p>
 		</div>
-		<div class="user" v-for="user in users" :key="user.id">
+		<div v-for="user in users" :key="user.id" class="user">
 			<mk-avatar class="avatar" :user="user"/>
-			<div class="body" v-if="!iconOnly">
+			<div v-if="!iconOnly" class="body">
 				<div class="name">
-					<router-link class="name" :to="user | userPage" v-user-preview="user.id"><mk-user-name :user="user"/></router-link>
+					<router-link v-user-preview="user.id" class="name" :to="user | userPage"><mk-user-name :user="user"/></router-link>
 					<p class="username">@{{ user | acct }}</p>
 				</div>
-				<div class="description" v-if="user.description" :title="user.description">
+				<div v-if="user.description" class="description" :title="user.description">
 					<mfm :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis" :plain="true" :nowrap="true"/>
 				</div>
-				<mk-follow-button class="koudoku-button" v-if="$store.getters.isSignedIn && user.id != $store.state.i.id" :user="user" mini/>
+				<mk-follow-button v-if="$store.getters.isSignedIn && user.id != $store.state.i.id" class="koudoku-button" :user="user" mini/>
 			</div>
 		</div>
-		<button class="more" :class="{ fetching: moreFetching }" v-if="more" @click="fetchMore()" :disabled="moreFetching">
+		<button v-if="more" class="more" :class="{ fetching: moreFetching }" :disabled="moreFetching" @click="fetchMore()">
 			<template v-if="moreFetching"><fa icon="spinner" pulse fixed-width/></template>{{ moreFetching ? $t('@.loading') : $t('@.load-more') }}
 		</button>
 	</div>
@@ -42,26 +42,26 @@ export default defineComponent({
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 		extract: {
-			required: false
+			required: false,
 		},
 		iconOnly: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		expanded: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 	},
 
 	computed: {
 		users() {
 			return this.extract ? this.extract(this.items) : this.items;
-		}
-	}
+		},
+	},
 });
 </script>
 

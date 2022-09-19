@@ -4,7 +4,7 @@
 		<template #header><fa icon="chart-bar"/>{{ $t('title') }}</template>
 		<template #func><button :title="$t('toggle')" @click="toggle"><fa icon="sort"/></button></template>
 
-		<p :class="$style.fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+		<p v-if="fetching" :class="$style.fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
 		<template v-else>
 			<x-calendar v-show="view == 0" :data="[].concat(activity)"/>
 			<x-chart v-show="view == 1" :data="[].concat(activity)"/>
@@ -23,38 +23,38 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/activity.vue'),
 	components: {
 		XCalendar,
-		XChart
+		XChart,
 	},
 	props: {
 		design: {
-			default: 0
+			default: 0,
 		},
 		initView: {
-			default: 0
+			default: 0,
 		},
 		user: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
 			fetching: true,
 			activity: null,
-			view: this.initView
+			view: this.initView,
 		};
 	},
 	mounted() {
 		this.$root.api('charts/user/notes', {
 			userId: this.user.id,
 			span: 'day',
-			limit: 7 * 21
+			limit: 7 * 21,
 		}).then(activity => {
 			this.activity = activity.diffs.normal.map((_, i) => ({
 				total: activity.diffs.normal[i] + activity.diffs.reply[i] + activity.diffs.renote[i],
 				notes: activity.diffs.normal[i],
 				replies: activity.diffs.reply[i],
-				renotes: activity.diffs.renote[i]
+				renotes: activity.diffs.renote[i],
 			}));
 			this.fetching = false;
 		});
@@ -68,8 +68,8 @@ export default Vue.extend({
 				this.view++;
 				this.$emit('viewChanged', this.view);
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

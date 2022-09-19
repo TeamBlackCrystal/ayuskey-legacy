@@ -17,22 +17,22 @@ export default Vue.extend({
 
 	components: {
 		XColumn,
-		XNotes
+		XNotes,
 	},
 
 	props: {
 		column: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		isStacked: {
 			type: Boolean,
-			required: true
+			required: true,
 		},
 		pos: {
 			type: Object,
 			required: false,
-			default: () => {}
+			default: () => {},
 		},
 	},
 
@@ -46,9 +46,9 @@ export default Vue.extend({
 					untilDate: init ? undefined : (this.date ? this.date.getTime() : undefined),
 					includeMyRenotes: this.$store.state.settings.showMyRenotes,
 					includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-					includeLocalRenotes: this.$store.state.settings.showLocalRenotes
-				})
-			}
+					includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
+				}),
+			},
 		};
 	},
 
@@ -56,7 +56,7 @@ export default Vue.extend({
 		name(): string {
 			if (this.column.name) return this.column.name;
 			return this.$t('@deck.mentions');
-		}
+		},
 	},
 
 	mounted() {
@@ -75,7 +75,7 @@ export default Vue.extend({
 
 		focus() {
 			this.$refs.timeline.focus();
-		}
-	}
+		},
+	},
 });
 </script>

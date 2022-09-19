@@ -11,8 +11,8 @@
 			:multiple="false"
 		/>
 		<div class="footer">
-			<ui-button inline @click="cancel" style="margin-right:16px;">{{ $t('cancel') }}</ui-button>
-			<ui-button inline @click="ok" primary>{{ $t('ok') }}</ui-button>
+			<ui-button inline style="margin-right:16px;" @click="cancel">{{ $t('cancel') }}</ui-button>
+			<ui-button inline primary @click="ok">{{ $t('ok') }}</ui-button>
 		</div>
 	</div>
 </mk-window>
@@ -33,8 +33,8 @@ export default Vue.extend({
 		},
 		cancel() {
 			(this.$refs.window as any).close();
-		}
-	}
+		},
+	},
 });
 </script>
 

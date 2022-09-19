@@ -1,6 +1,6 @@
 <template>
 <router-link :to="`/@${page.user.username}/pages/${page.name}`" class="vhpxefrj" tabindex="-1">
-	<div class="thumbnail" v-if="page.eyeCatchingImage" :style="`background-image: url('${page.eyeCatchingImage.thumbnailUrl}')`"></div>
+	<div v-if="page.eyeCatchingImage" class="thumbnail" :style="`background-image: url('${page.eyeCatchingImage.thumbnailUrl}')`"></div>
 	<article>
 		<header>
 			<h1 :title="page.title">{{ page.title }}</h1>
@@ -21,7 +21,7 @@ export default Vue.extend({
 	props: {
 		page: {
 			type: Object,
-			required: true
+			required: true,
 		},
 	},
 });

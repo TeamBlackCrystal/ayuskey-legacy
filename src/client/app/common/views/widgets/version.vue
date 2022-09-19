@@ -8,17 +8,17 @@ import define from '../../../common/define-widget-define-component';
 import { defineComponent } from 'vue';
 
 const widget = define({
-	name: 'version'
-})
+	name: 'version',
+});
 
 export default defineComponent({
 	extends: widget,
 	data() {
 		return {
 			version,
-			codename
+			codename,
 		};
-	}
+	},
 });
 </script>
 

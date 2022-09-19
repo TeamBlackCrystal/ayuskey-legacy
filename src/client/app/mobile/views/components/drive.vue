@@ -1,10 +1,10 @@
 <template>
 <div class="kmmwchoexgckptowjmjgfsygeltxfeqs">
 	<nav ref="nav" :class="{'blur': $store.state.device.useBlur}">
-		<a @click.prevent="goRoot()" href="/i/drive"><fa icon="cloud"/>{{ $t('@.drive') }}</a>
+		<a href="/i/drive" @click.prevent="goRoot()"><fa icon="cloud"/>{{ $t('@.drive') }}</a>
 		<template v-for="folder in hierarchyFolders">
 			<span :key="folder.id + '>'"><fa icon="angle-right"/></span>
-			<a :key="folder.id" @click.prevent="cd(folder)" :href="`/i/drive/folder/${folder.id}`">{{ folder.name }}</a>
+			<a :key="folder.id" :href="`/i/drive/folder/${folder.id}`" @click.prevent="cd(folder)">{{ folder.name }}</a>
 		</template>
 		<template v-if="folder != null">
 			<span><fa icon="angle-right"/></span>
@@ -16,8 +16,8 @@
 		</template>
 	</nav>
 	<mk-uploader ref="uploader"/>
-	<div class="browser" :class="{ fetching }" v-if="file == null">
-		<div class="info" v-if="info">
+	<div v-if="file == null" class="browser" :class="{ fetching }">
+		<div v-if="info" class="info">
 			<p v-if="folder == null">{{ (info.usage / info.capacity * 100).toFixed(1) }}% {{ $t('used') }}</p>
 			<p v-if="folder != null && (folder.foldersCount > 0 || folder.filesCount > 0)">
 				<template v-if="folder.foldersCount > 0">{{ folder.foldersCount }} {{ $t('folder-count') }}</template>
@@ -25,22 +25,22 @@
 				<template v-if="folder.filesCount > 0">{{ folder.filesCount }} {{ $t('file-count') }}</template>
 			</p>
 		</div>
-		<div class="folders" v-if="folders.length > 0 || moreFolders">
-			<x-folder class="folder" v-for="folder in folders" :key="folder.id" :folder="folder"/>
+		<div v-if="folders.length > 0 || moreFolders" class="folders">
+			<x-folder v-for="folder in folders" :key="folder.id" class="folder" :folder="folder"/>
 			<p v-if="moreFolders">{{ $t('@.load-more') }}</p>
 		</div>
-		<div class="files" v-if="files.length > 0 || moreFiles">
-			<x-file class="file" v-for="file in files" :key="file.id" :file="file"/>
-			<button class="more" v-if="moreFiles" @click="fetchMoreFiles">
-				{{ fetchingMoreFiles ? this.$t('@.loading') : this.$t('@.load-more') }}
+		<div v-if="files.length > 0 || moreFiles" class="files">
+			<x-file v-for="file in files" :key="file.id" class="file" :file="file"/>
+			<button v-if="moreFiles" class="more" @click="fetchMoreFiles">
+				{{ fetchingMoreFiles ? $t('@.loading') : $t('@.load-more') }}
 			</button>
 		</div>
-		<div class="empty" v-if="files.length == 0 && !moreFiles && folders.length == 0 && !moreFolders && !fetching">
+		<div v-if="files.length == 0 && !moreFiles && folders.length == 0 && !moreFolders && !fetching" class="empty">
 			<p v-if="folder == null">{{ $t('nothing-in-drive') }}</p>
 			<p v-if="folder != null">{{ $t('folder-is-empty') }}</p>
 		</div>
 	</div>
-	<div class="fetching" v-if="fetching && file == null && files.length == 0 && folders.length == 0">
+	<div v-if="fetching && file == null && files.length == 0 && folders.length == 0" class="fetching">
 		<div class="spinner">
 			<div class="dot1"></div>
 			<div class="dot2"></div>
@@ -63,7 +63,7 @@ export default Vue.extend({
 	components: {
 		XFolder,
 		XFile,
-		XFileDetail
+		XFileDetail,
 	},
 	props: ['initFolder', 'initFile', 'selectFile', 'multiple', 'isNaked', 'top'],
 	data() {
@@ -87,20 +87,20 @@ export default Vue.extend({
 
 			fetching: true,
 			fetchingMoreFiles: false,
-			fetchingMoreFolders: false
+			fetchingMoreFolders: false,
 		};
 	},
 	computed: {
 		isFileSelectMode(): boolean {
 			return this.selectFile;
-		}
+		},
 	},
 	watch: {
 		top() {
 			if (this.isNaked) {
 				(this.$refs.nav as any).style.top = `${this.top}px`;
 			}
-		}
+		},
 	},
 	mounted() {
 		this.connection = this.$root.stream.useSharedConnection('drive');
@@ -166,7 +166,7 @@ export default Vue.extend({
 			if (target == null) {
 				this.goRoot(silent);
 				return;
-			} else if (typeof target == 'object') {
+			} else if (typeof target === 'object') {
 				target = target.id;
 			}
 
@@ -174,7 +174,7 @@ export default Vue.extend({
 			this.fetching = true;
 
 			this.$root.api('drive/folders/show', {
-				folderId: target
+				folderId: target,
 			}).then(folder => {
 				this.folder = folder;
 				this.hierarchyFolders = [];
@@ -220,12 +220,12 @@ export default Vue.extend({
 		},
 
 		removeFolder(folder) {
-			if (typeof folder == 'object') folder = folder.id;
+			if (typeof folder === 'object') folder = folder.id;
 			this.folders = this.folders.filter(f => f.id != folder);
 		},
 
 		removeFile(file) {
-			if (typeof file == 'object') file = file.id;
+			if (typeof file === 'object') file = file.id;
 			this.files = this.files.filter(f => f.id != file);
 		},
 
@@ -271,7 +271,7 @@ export default Vue.extend({
 			// フォルダ一覧取得
 			this.$root.api('drive/folders', {
 				folderId: this.folder ? this.folder.id : null,
-				limit: foldersMax + 1
+				limit: foldersMax + 1,
 			}).then(folders => {
 				if (folders.length == foldersMax + 1) {
 					this.moreFolders = true;
@@ -284,7 +284,7 @@ export default Vue.extend({
 			// ファイル一覧取得
 			this.$root.api('drive/files', {
 				folderId: this.folder ? this.folder.id : null,
-				limit: filesMax + 1
+				limit: filesMax + 1,
 			}).then(files => {
 				if (files.length == filesMax + 1) {
 					this.moreFiles = true;
@@ -328,7 +328,7 @@ export default Vue.extend({
 			this.$root.api('drive/files', {
 				folderId: this.folder ? this.folder.id : null,
 				limit: max + 1,
-				untilId: this.files[this.files.length - 1].id
+				untilId: this.files[this.files.length - 1].id,
 			}).then(files => {
 				if (files.length == max + 1) {
 					this.moreFiles = true;
@@ -360,12 +360,12 @@ export default Vue.extend({
 		},
 
 		cf(file, silent = false) {
-			if (typeof file == 'object') file = file.id;
+			if (typeof file === 'object') file = file.id;
 
 			this.fetching = true;
 
 			this.$root.api('drive/files/show', {
-				fileId: file
+				fileId: file,
 			}).then(file => {
 				this.file = file;
 				this.folder = null;
@@ -387,19 +387,19 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('folder-name'),
 				input: {
-					default: ''
-				}
+					default: '',
+				},
 			}).then(({ result: name }) => {
 				if (!name) {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('folder-name-cannot-empty')
+						text: this.$t('folder-name-cannot-empty'),
 					});
 					return;
 				}
 				this.$root.api('drive/folders/create', {
 					name: name,
-					parentId: this.folder ? this.folder.id : undefined
+					parentId: this.folder ? this.folder.id : undefined,
 				}).then(folder => {
 					this.addFolder(folder, true);
 				});
@@ -410,26 +410,26 @@ export default Vue.extend({
 			if (this.folder == null) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('here-is-root')
+					text: this.$t('here-is-root'),
 				});
 				return;
 			}
 			this.$root.dialog({
 				title: this.$t('folder-name'),
 				input: {
-					default: this.folder.name
-				}
+					default: this.folder.name,
+				},
 			}).then(({ result: name }) => {
 				if (!name) {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('cannot-empty')
+						text: this.$t('cannot-empty'),
 					});
 					return;
 				}
 				this.$root.api('drive/folders/update', {
 					name: name,
-					folderId: this.folder.id
+					folderId: this.folder.id,
 				}).then(folder => {
 					this.cd(folder);
 				});
@@ -440,14 +440,14 @@ export default Vue.extend({
 			if (this.folder == null) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('here-is-root')
+					text: this.$t('here-is-root'),
 				});
 				return;
 			}
 			this.$chooseDriveFolder().then(folder => {
 				this.$root.api('drive/folders/update', {
 					parentId: folder ? folder.id : null,
-					folderId: this.folder.id
+					folderId: this.folder.id,
 				}).then(folder => {
 					this.cd(folder);
 				});
@@ -459,11 +459,11 @@ export default Vue.extend({
 			if (url == null || url == '') return;
 			this.$root.api('drive/files/upload_from_url', {
 				url: url,
-				folderId: this.folder ? this.folder.id : undefined
+				folderId: this.folder ? this.folder.id : undefined,
 			});
 			this.$root.dialog({
 				type: 'info',
-				text: this.$t('uploading')
+				text: this.$t('uploading'),
 			});
 		},
 
@@ -477,17 +477,17 @@ export default Vue.extend({
 			if (this.folder == null) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('here-is-root')
+					text: this.$t('here-is-root'),
 				});
 				return;
 			}
 			this.$root.api('drive/folders/delete', {
-				folderId: this.folder.id
+				folderId: this.folder.id,
 			}).then(folder => {
 				this.cd(this.folder.parentId);
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

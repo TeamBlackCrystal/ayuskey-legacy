@@ -1,5 +1,5 @@
 <template>
-<x-container @remove="() => $emit('remove')" :draggable="true">
+<x-container :draggable="true" @remove="() => $emit('remove')">
 	<template #header><fa :icon="faStickyNote"/> {{ value.title }}</template>
 	<template #func>
 		<button @click="rename()">
@@ -11,7 +11,7 @@
 	</template>
 
 	<section class="ilrvjyvi">
-		<x-blocks class="children" v-model="value.children" :ai-script="aiScript"/>
+		<x-blocks v-model="value.children" class="children" :ai-script="aiScript"/>
 	</section>
 </x-container>
 </template>
@@ -28,14 +28,14 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer
+		XContainer,
 	},
 
 	inject: ['getPageBlockList'],
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		aiScript: {
 			required: true,
@@ -44,12 +44,12 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faStickyNote, faPlus, faPencilAlt
+			faStickyNote, faPlus, faPencilAlt,
 		};
 	},
 
 	beforeCreate() {
-		this.$options.components.XBlocks = require('../page-editor.blocks.vue').default
+		this.$options.components.XBlocks = require('../page-editor.blocks.vue').default;
 	},
 
 	created() {
@@ -69,9 +69,9 @@ export default Vue.extend({
 				title: 'Enter title',
 				input: {
 					type: 'text',
-					default: this.value.title
+					default: this.value.title,
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 			this.value.title = title;
@@ -82,16 +82,16 @@ export default Vue.extend({
 				type: null,
 				title: this.$t('choose-block'),
 				select: {
-					groupedItems: this.getPageBlockList()
+					groupedItems: this.getPageBlockList(),
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 
 			const id = uuid();
 			this.value.children.push({ id, type });
 		},
-	}
+	},
 });
 </script>
 

@@ -1,20 +1,22 @@
 <template>
-<ui-container :body-togglable="true"
+<ui-container
+	:body-togglable="true"
 	:expanded="$store.state.device.expandUsersPhotos"
 	@toggle="expanded => $store.commit('device/set', { key: 'expandUsersPhotos', value: expanded })">
 	<template #header><fa icon="camera"/> {{ $t('title') }}</template>
 
 	<div class="dzsuvbsrrrwobdxifudxuefculdfiaxd">
-		<p class="initializing" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('loading') }}<mk-ellipsis/></p>
-		<div class="stream" v-if="!fetching && images.length > 0">
-			<router-link v-for="image in images" class="img"
+		<p v-if="fetching" class="initializing"><fa icon="spinner" pulse fixed-width/>{{ $t('loading') }}<mk-ellipsis/></p>
+		<div v-if="!fetching && images.length > 0" class="stream">
+			<router-link
+				v-for="image in images" :key="`${image.id}:${image._note.id}`"
+				class="img"
 				:style="`background-image: url(${image.thumbnailUrl})`"
-				:key="`${image.id}:${image._note.id}`"
 				:to="image._note | notePage"
 				:title="`${image.name}\n${(new Date(image.createdAt)).toLocaleString()}`"
 			></router-link>
 		</div>
-		<p class="empty" v-if="!fetching && images.length == 0">{{ $t('no-photos') }}</p>
+		<p v-if="!fetching && images.length == 0" class="empty">{{ $t('no-photos') }}</p>
 	</div>
 </ui-container>
 </template>
@@ -31,7 +33,7 @@ export default Vue.extend({
 	data() {
 		return {
 			images: [],
-			fetching: true
+			fetching: true,
 		};
 	},
 	mounted() {

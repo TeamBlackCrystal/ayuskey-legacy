@@ -1,5 +1,5 @@
 <template>
-<x-container @remove="() => $emit('remove')" :draggable="true">
+<x-container :draggable="true" @remove="() => $emit('remove')">
 	<template #header><fa :icon="faBolt"/> {{ $t('blocks.radioButton') }}</template>
 
 	<section style="padding: 0 16px 16px 16px;">
@@ -21,26 +21,26 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer
+		XContainer,
 	},
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 	},
 
 	data() {
 		return {
 			values: '',
-			faBolt, faMagic
+			faBolt, faMagic,
 		};
 	},
 
 	watch: {
 		values() {
 			Vue.set(this.value, 'values', this.values.split('\n'));
-		}
+		},
 	},
 
 	created() {

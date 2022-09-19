@@ -1,6 +1,6 @@
 <template>
 <div class="vfcitkilproprqtbnpoertpsziierwzi">
-	<div v-for="timeline in timelines" class="timeline" :key="timeline.id">
+	<div v-for="timeline in timelines" :key="timeline.id" class="timeline">
 		<ui-input v-model="timeline.title" @change="save">
 			<span>{{ $t('title') }}</span>
 		</ui-input>
@@ -22,7 +22,7 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/settings.tags.vue'),
 	data() {
 		return {
-			timelines: this.$store.state.settings.tagTimelines
+			timelines: this.$store.state.settings.tagTimelines,
 		};
 	},
 
@@ -31,7 +31,7 @@ export default Vue.extend({
 			this.timelines.push({
 				id: uuid(),
 				title: '',
-				query: ''
+				query: '',
 			});
 		},
 
@@ -50,8 +50,8 @@ export default Vue.extend({
 
 		onQueryChange(timeline, value) {
 			timeline.query = value.split('\n').map(tags => tags.split(' '));
-		}
-	}
+		},
+	},
 });
 </script>
 

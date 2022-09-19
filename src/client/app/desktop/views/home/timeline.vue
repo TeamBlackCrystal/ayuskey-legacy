@@ -1,20 +1,20 @@
 <template>
 <div class="pwbzawku">
-	<x-post-form class="form" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }" v-if="$store.state.settings.showPostFormOnTopOfTl"/>
+	<x-post-form v-if="$store.state.settings.showPostFormOnTopOfTl" class="form" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }"/>
 	<div class="main">
 		<component :is="src == 'list' ? 'mk-user-list-timeline' : 'x-core'" ref="tl" v-bind="options">
 			<header class="zahtxcqi">
 				<div :data-active="src == 'home'" @click="src = 'home'"><fa icon="home"/> {{ $t('home') }}</div>
-				<div :data-active="src == 'local'" @click="src = 'local'" v-if="enableLocalTimeline"><fa :icon="['far', 'comments']"/> {{ $t('local') }}</div>
-				<div :data-active="src == 'hybrid'" @click="src = 'hybrid'" v-if="enableLocalTimeline"><fa icon="share-alt"/> {{ $t('hybrid') }}</div>
-				<div :data-active="src == 'global'" @click="src = 'global'" v-if="enableGlobalTimeline"><fa icon="globe"/> {{ $t('global') }}</div>
-				<div :data-active="src == 'tag'" @click="src = 'tag'" v-if="tagTl"><fa icon="hashtag"/> {{ tagTl.title }}</div>
-				<div :data-active="src == 'list'" @click="src = 'list'" v-if="list"><fa icon="list"/> {{ list.name }}</div>
+				<div v-if="enableLocalTimeline" :data-active="src == 'local'" @click="src = 'local'"><fa :icon="['far', 'comments']"/> {{ $t('local') }}</div>
+				<div v-if="enableLocalTimeline" :data-active="src == 'hybrid'" @click="src = 'hybrid'"><fa icon="share-alt"/> {{ $t('hybrid') }}</div>
+				<div v-if="enableGlobalTimeline" :data-active="src == 'global'" @click="src = 'global'"><fa icon="globe"/> {{ $t('global') }}</div>
+				<div v-if="tagTl" :data-active="src == 'tag'" @click="src = 'tag'"><fa icon="hashtag"/> {{ tagTl.title }}</div>
+				<div v-if="list" :data-active="src == 'list'" @click="src = 'list'"><fa icon="list"/> {{ list.name }}</div>
 				<div class="buttons">
-					<button :data-active="src == 'mentions'" @click="src = 'mentions'" :title="$t('mentions')"><fa icon="at"/><i class="indicator" v-if="$store.state.i.hasUnreadMentions"><fa icon="circle"/></i></button>
-					<button :data-active="src == 'messages'" @click="src = 'messages'" :title="$t('messages')"><fa :icon="['far', 'envelope']"/><i class="indicator" v-if="$store.state.i.hasUnreadSpecifiedNotes"><fa icon="circle"/></i></button>
-					<button @click="chooseTag" :title="$t('hashtag')" ref="tagButton"><fa icon="hashtag"/></button>
-					<button @click="chooseList" :title="$t('list')" ref="listButton"><fa icon="list"/></button>
+					<button :data-active="src == 'mentions'" :title="$t('mentions')" @click="src = 'mentions'"><fa icon="at"/><i v-if="$store.state.i.hasUnreadMentions" class="indicator"><fa icon="circle"/></i></button>
+					<button :data-active="src == 'messages'" :title="$t('messages')" @click="src = 'messages'"><fa :icon="['far', 'envelope']"/><i v-if="$store.state.i.hasUnreadSpecifiedNotes" class="indicator"><fa icon="circle"/></i></button>
+					<button ref="tagButton" :title="$t('hashtag')" @click="chooseTag"><fa icon="hashtag"/></button>
+					<button ref="listButton" :title="$t('list')" @click="chooseList"><fa icon="list"/></button>
 				</div>
 			</header>
 		</component>
@@ -33,7 +33,7 @@ export default Vue.extend({
 
 	components: {
 		XCore,
-		XPostForm: () => import('../components/post-form.vue').then(m => m.default)
+		XPostForm: () => import('../components/post-form.vue').then(m => m.default),
 	},
 
 	data() {
@@ -51,9 +51,9 @@ export default Vue.extend({
 			return {
 				...(this.src == 'list' ? { list: this.list } : { src: this.src }),
 				...(this.src == 'tag' ? { tagTl: this.tagTl } : {}),
-				key: this.src == 'list' ? this.list.id : this.src
-			}
-		}
+				key: this.src == 'list' ? this.list.id : this.src,
+			};
+		},
 	},
 
 	watch: {
@@ -69,7 +69,7 @@ export default Vue.extend({
 		tagTl(x) {
 			this.saveSrc();
 			if (x != null) this.list = null;
-		}
+		},
 	},
 
 	created() {
@@ -104,7 +104,7 @@ export default Vue.extend({
 		saveSrc() {
 			this.$store.commit('device/setTl', {
 				src: this.src,
-				arg: this.src == 'list' ? this.list : this.tagTl
+				arg: this.src == 'list' ? this.list : this.tagTl,
 			});
 		},
 
@@ -125,17 +125,17 @@ export default Vue.extend({
 				action: () => {
 					this.$root.dialog({
 						title: this.$t('list-name'),
-						input: true
+						input: true,
 					}).then(async ({ canceled, result: name }) => {
 						if (canceled) return;
 						const list = await this.$root.api('users/lists/create', {
-							name
+							name,
 						});
 
 						this.list = list;
 						this.src = 'list';
 					});
-				}
+				},
 			}];
 
 			if (lists.length > 0) {
@@ -148,12 +148,12 @@ export default Vue.extend({
 				action: () => {
 					this.list = list;
 					this.src = 'list';
-				}
+				},
 			})));
 
 			this.$root.new(Menu, {
 				source: this.$refs.listButton,
-				items: menu
+				items: menu,
 			});
 		},
 
@@ -162,8 +162,8 @@ export default Vue.extend({
 				icon: 'plus',
 				text: this.$t('add-tag-timeline'),
 				action: () => {
-					this.$router.push(`/i/settings/hashtags`);
-				}
+					this.$router.push('/i/settings/hashtags');
+				},
 			}];
 
 			if (this.$store.state.settings.tagTimelines.length > 0) {
@@ -176,15 +176,15 @@ export default Vue.extend({
 				action: () => {
 					this.tagTl = t;
 					this.src = 'tag';
-				}
+				},
 			})));
 
 			this.$root.new(Menu, {
 				source: this.$refs.tagButton,
-				items: menu
+				items: menu,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -12,26 +12,26 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		limit: {
 			type: Number,
 			required: false,
-			default: 21
-		}
+			default: 21,
+		},
 	},
 	data() {
 		return {
 			fetching: true,
 			data: [],
-			peak: null
+			peak: null,
 		};
 	},
 	mounted() {
 		this.$root.api('charts/user/notes', {
 			userId: this.user.id,
 			span: 'day',
-			limit: this.limit
+			limit: this.limit,
 		}).then(stats => {
 			const normal = [];
 			const reply = [];
@@ -46,15 +46,15 @@ export default Vue.extend({
 				const x = new Date(y, m, d - i);
 				normal.push([
 					x,
-					stats.diffs.normal[i]
+					stats.diffs.normal[i],
 				]);
 				reply.push([
 					x,
-					stats.diffs.reply[i]
+					stats.diffs.reply[i],
 				]);
 				renote.push([
 					x,
-					stats.diffs.renote[i]
+					stats.diffs.renote[i],
 				]);
 			}
 
@@ -64,16 +64,16 @@ export default Vue.extend({
 					stacked: true,
 					height: 100,
 					sparkline: {
-						enabled: true
+						enabled: true,
 					},
 				},
 				plotOptions: {
 					bar: {
-						columnWidth: '80%'
-					}
+						columnWidth: '80%',
+					},
 				},
 				dataLabels: {
-					enabled: false
+					enabled: false,
 				},
 				grid: {
 					clipMarkers: false,
@@ -81,34 +81,34 @@ export default Vue.extend({
 						top: 0,
 						right: 8,
 						bottom: 0,
-						left: 8
-					}
+						left: 8,
+					},
 				},
 				tooltip: {
 					shared: true,
-					intersect: false
+					intersect: false,
 				},
 				series: [{
 					name: 'Normal',
-					data: normal
+					data: normal,
 				}, {
 					name: 'Reply',
-					data: reply
+					data: reply,
 				}, {
 					name: 'Renote',
-					data: renote
+					data: renote,
 				}],
 				xaxis: {
 					type: 'datetime',
 					crosshairs: {
 						width: 1,
-						opacity: 1
-					}
-				}
+						opacity: 1,
+					},
+				},
 			});
 
 			chart.render();
 		});
-	}
+	},
 });
 </script>

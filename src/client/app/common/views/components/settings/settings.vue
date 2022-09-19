@@ -42,7 +42,7 @@
 			</section>
 			<section>
 				<ui-switch v-model="suggestRecentHashtags">{{ $t('@._settings.suggest-recent-hashtags') }}</ui-switch>
-				<ui-switch v-model="showClockOnHeader" v-if="!$root.isMobile">{{ $t('@._settings.show-clock-on-header') }}</ui-switch>
+				<ui-switch v-if="!$root.isMobile" v-model="showClockOnHeader">{{ $t('@._settings.show-clock-on-header') }}</ui-switch>
 				<ui-switch v-model="alwaysShowNsfw">{{ $t('@._settings.always-show-nsfw') }}</ui-switch>
 				<ui-switch v-model="showReplyTarget">{{ $t('@._settings.show-reply-target') }}</ui-switch>
 				<ui-switch v-model="disableAnimatedMfm">{{ $t('@._settings.disable-animated-mfm') }}</ui-switch>
@@ -137,8 +137,8 @@
 					{{ $t('@._settings.reactions') }}<template #desc>{{ $t('@._settings.reactions-description') }}</template>
 				</ui-textarea>
 				<ui-horizon-group>
-					<ui-button @click="save('reactions', reactions.trim().split('\n'))" primary><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
-					<ui-button @click="previewReaction()" ref="reactionsPreviewButton"><fa :icon="faEye"/> {{ $t('@._settings.preview') }}</ui-button>
+					<ui-button primary @click="save('reactions', reactions.trim().split('\n'))"><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
+					<ui-button ref="reactionsPreviewButton" @click="previewReaction()"><fa :icon="faEye"/> {{ $t('@._settings.preview') }}</ui-button>
 				</ui-horizon-group>
 			</section>
 
@@ -184,7 +184,7 @@
 			<section v-if="!$root.isMobile">
 				<header>{{ $t('@._settings.paste') }}</header>
 				<ui-input v-model="pastedFileName">{{ $t('@._settings.pasted-file-name') }}
-					<template v-if="pastedFileName === this.$store.state.settings.pastedFileName" #desc>{{ $t('@._settings.pasted-file-name-desc') }}</template>
+					<template v-if="pastedFileName === $store.state.settings.pastedFileName" #desc>{{ $t('@._settings.pasted-file-name-desc') }}</template>
 					<template v-else #desc>{{ pastedFileNamePreview() }}</template>
 				</ui-input>
 				<ui-button @click="save('pastedFileName', pastedFileName)"><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
@@ -235,13 +235,14 @@
 				<ui-switch v-model="enableSounds">{{ $t('@._settings.enable-sounds') }}
 					<template #desc>{{ $t('@._settings.enable-sounds-desc') }}</template>
 				</ui-switch>
-				<ui-switch :disabled="!enableSounds" v-model="enableSoundsInTimeline">{{ $t('@._settings.enable-sounds-timeline') }}
+				<ui-switch v-model="enableSoundsInTimeline" :disabled="!enableSounds">{{ $t('@._settings.enable-sounds-timeline') }}
 				</ui-switch>
-				<ui-switch :disabled="!enableSounds" v-model="enableSoundsInNotifications">{{ $t('@._settings.enable-sounds-notifications') }}
+				<ui-switch v-model="enableSoundsInNotifications" :disabled="!enableSounds">{{ $t('@._settings.enable-sounds-notifications') }}
 				</ui-switch>
 				<label>{{ $t('@._settings.volume') }}</label>
-				<input type="range"
+				<input
 					v-model="soundVolume"
+					type="range"
 					:disabled="!enableSounds"
 					max="1"
 					step="0.1"
@@ -331,7 +332,7 @@
 						<span>{{ $t('@._settings.latest-version') }} <i>{{ latestVersion ? latestVersion : version }}</i></span>
 					</template>
 				</p>
-				<ui-button @click="checkForUpdate" :disabled="checkingForUpdate">
+				<ui-button :disabled="checkingForUpdate" @click="checkForUpdate">
 					<template v-if="checkingForUpdate">{{ $t('@._settings.update-checking') }}<mk-ellipsis/></template>
 					<template v-else>{{ $t('@._settings.do-update') }}</template>
 				</ui-button>
@@ -346,7 +347,7 @@
 				<ui-switch v-model="showAdvancedSettings">
 					{{ $t('@._settings.ShowAdvancedSettings') }}
 				</ui-switch>
-				<ui-switch v-model="debug" v-if="isAdvanced">
+				<ui-switch v-if="isAdvanced" v-model="debug">
 					{{ $t('@._settings.debug-mode') }}<template #desc>{{ $t('@._settings.debug-mode-desc') }}</template>
 				</ui-switch>
 				<section v-if="isAdvanced">
@@ -410,8 +411,8 @@ export default Vue.extend({
 		page: {
 			type: String,
 			required: false,
-			default: null
-		}
+			default: null,
+		},
 	},
 	data() {
 		return {
@@ -419,10 +420,10 @@ export default Vue.extend({
 			version,
 			reactions: this.$store.state.settings.reactions.join('\n'),
 			webSearchEngine: this.$store.state.settings.webSearchEngine,
-			pastedFileName : this.$store.state.settings.pastedFileName,
+			pastedFileName: this.$store.state.settings.pastedFileName,
 			latestVersion: undefined,
 			checkingForUpdate: false,
-			faSave, faEye
+			faSave, faEye,
 		};
 	},
 	computed: {
@@ -432,182 +433,182 @@ export default Vue.extend({
 
 		useOsDefaultEmojis: {
 			get() { return this.$store.state.device.useOsDefaultEmojis; },
-			set(value) { this.$store.commit('device/set', { key: 'useOsDefaultEmojis', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'useOsDefaultEmojis', value }); },
 		},
 
 		reduceMotion: {
 			get() { return this.$store.state.device.reduceMotion; },
-			set(value) { this.$store.commit('device/set', { key: 'reduceMotion', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'reduceMotion', value }); },
 		},
 
 		keepCw: {
 			get() { return this.$store.state.settings.keepCw; },
-			set(value) { this.$store.commit('settings/set', { key: 'keepCw', value }); }
+			set(value) { this.$store.commit('settings/set', { key: 'keepCw', value }); },
 		},
 
 		navbar: {
 			get() { return this.$store.state.device.navbar; },
-			set(value) { this.$store.commit('device/set', { key: 'navbar', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'navbar', value }); },
 		},
 
 		deckColumnAlign: {
 			get() { return this.$store.state.device.deckColumnAlign; },
-			set(value) { this.$store.commit('device/set', { key: 'deckColumnAlign', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'deckColumnAlign', value }); },
 		},
 
 		deckColumnWidth: {
 			get() { return this.$store.state.device.deckColumnWidth; },
-			set(value) { this.$store.commit('device/set', { key: 'deckColumnWidth', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'deckColumnWidth', value }); },
 		},
 
 		deckTemporaryColumnPosition: {
 			get() { return this.$store.state.device.deckTemporaryColumnPosition || 'right'; },
-			set(value) { this.$store.commit('device/set', { key: 'deckTemporaryColumnPosition', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'deckTemporaryColumnPosition', value }); },
 		},
 
 		deckTemporaryColumnIndex: {
 			get() { return this.$store.state.device.deckTemporaryColumnIndex || 1; },
-			set(value) { this.$store.commit('device/set', { key: 'deckTemporaryColumnIndex', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'deckTemporaryColumnIndex', value }); },
 		},
 
 		enableSounds: {
 			get() { return this.$store.state.device.enableSounds; },
-			set(value) { this.$store.commit('device/set', { key: 'enableSounds', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableSounds', value }); },
 		},
 
 		enableSoundsInTimeline: {
 			get() { return this.$store.state.device.enableSoundsInTimeline; },
-			set(value) { this.$store.commit('device/set', { key: 'enableSoundsInTimeline', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableSoundsInTimeline', value }); },
 		},
 
 		enableSoundsInNotifications: {
 			get() { return this.$store.state.device.enableSoundsInNotifications; },
-			set(value) { this.$store.commit('device/set', { key: 'enableSoundsInNotifications', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableSoundsInNotifications', value }); },
 		},
 
 		enableQueueJammed: {
 			get() { return this.$store.state.device.enableQueueJammed; },
-			set(value) { this.$store.commit('device/set', { key: 'enableQueueJammed', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableQueueJammed', value }); },
 		},
 
 		enableSpeech: {
 			get() { return this.$store.state.device.enableSpeech; },
-			set(value) { this.$store.commit('device/set', { key: 'enableSpeech', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableSpeech', value }); },
 		},
 
 		soundVolume: {
 			get() { return ColdDeviceStorage.get('sound_masterVolume'); },
-			set(value) { ColdDeviceStorage.set('sound_masterVolume', value); }
+			set(value) { ColdDeviceStorage.set('sound_masterVolume', value); },
 		},
 
 		debug: {
 			get() { return this.$store.state.device.debug; },
-			set(value) { this.$store.commit('device/set', { key: 'debug', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'debug', value }); },
 		},
 
 		showAdvancedSettings: {
 			get() { return this.$store.state.device.showAdvancedSettings; },
-			set(value) { this.$store.commit('device/set', { key: 'showAdvancedSettings', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'showAdvancedSettings', value }); },
 		},
 
 		alwaysShowNsfw: {
 			get() { return this.$store.state.device.alwaysShowNsfw; },
-			set(value) { this.$store.commit('device/set', { key: 'alwaysShowNsfw', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'alwaysShowNsfw', value }); },
 		},
 
 		postStyle: {
 			get() { return this.$store.state.device.postStyle; },
-			set(value) { this.$store.commit('device/set', { key: 'postStyle', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'postStyle', value }); },
 		},
 
 		disableViaMobile: {
 			get() { return this.$store.state.settings.disableViaMobile; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'disableViaMobile', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'disableViaMobile', value }); },
 		},
 
 		useBlur: {
-			get() {return this.$store.state.device.useBlur},
-			set(value) {this.$store.commit('device/set', {key: 'useBlur', value})}
+			get() {return this.$store.state.device.useBlur;},
+			set(value) {this.$store.commit('device/set', { key: 'useBlur', value });},
 		},
 
 		useShadow: {
 			get() { return this.$store.state.device.useShadow; },
-			set(value) { this.$store.commit('device/set', { key: 'useShadow', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'useShadow', value }); },
 		},
 
 		roundedCorners: {
 			get() { return this.$store.state.device.roundedCorners; },
-			set(value) { this.$store.commit('device/set', { key: 'roundedCorners', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'roundedCorners', value }); },
 		},
 
 		instanceTicker: {
 			get() { return this.$store.state.device.instanceTicker; },
-			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); },
 		},
 
 		lineWidth: {
 			get() { return this.$store.state.device.lineWidth; },
-			set(value) { this.$store.commit('device/set', { key: 'lineWidth', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'lineWidth', value }); },
 		},
 
 		fontSize: {
 			get() { return this.$store.state.device.fontSize; },
-			set(value) { this.$store.commit('device/set', { key: 'fontSize', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'fontSize', value }); },
 		},
 
 		fetchOnScroll: {
 			get() { return this.$store.state.settings.fetchOnScroll; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'fetchOnScroll', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'fetchOnScroll', value }); },
 		},
 
 		rememberNoteVisibility: {
 			get() { return this.$store.state.settings.rememberNoteVisibility; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'rememberNoteVisibility', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'rememberNoteVisibility', value }); },
 		},
 
 		defaultNoteVisibility: {
 			get() { return this.$store.state.settings.defaultNoteVisibility; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'defaultNoteVisibility', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'defaultNoteVisibility', value }); },
 		},
 
 		pasteDialog: {
 			get() { return this.$store.state.settings.pasteDialog; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'pasteDialog', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'pasteDialog', value }); },
 		},
 
 		showReplyTarget: {
 			get() { return this.$store.state.settings.showReplyTarget; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showReplyTarget', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showReplyTarget', value }); },
 		},
 
 		showMyRenotes: {
 			get() { return this.$store.state.settings.showMyRenotes; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showMyRenotes', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showMyRenotes', value }); },
 		},
 
 		showRenotedMyNotes: {
 			get() { return this.$store.state.settings.showRenotedMyNotes; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showRenotedMyNotes', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showRenotedMyNotes', value }); },
 		},
 
 		showLocalRenotes: {
 			get() { return this.$store.state.settings.showLocalRenotes; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showLocalRenotes', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showLocalRenotes', value }); },
 		},
 
 		showPostFormOnTopOfTl: {
 			get() { return this.$store.state.settings.showPostFormOnTopOfTl; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showPostFormOnTopOfTl', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showPostFormOnTopOfTl', value }); },
 		},
 
 		suggestRecentHashtags: {
 			get() { return this.$store.state.settings.suggestRecentHashtags; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'suggestRecentHashtags', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'suggestRecentHashtags', value }); },
 		},
 
 		showClockOnHeader: {
 			get() { return this.$store.state.settings.showClockOnHeader; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showClockOnHeader', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showClockOnHeader', value }); },
 		},
 
 		circleIcons: {
@@ -615,7 +616,7 @@ export default Vue.extend({
 			set(value) {
 				this.$store.dispatch('settings/set', { key: 'circleIcons', value });
 				this.reload();
-			}
+			},
 		},
 
 		contrastedAcct: {
@@ -623,7 +624,7 @@ export default Vue.extend({
 			set(value) {
 				this.$store.dispatch('settings/set', { key: 'contrastedAcct', value });
 				this.reload();
-			}
+			},
 		},
 
 		showFullAcct: {
@@ -631,92 +632,92 @@ export default Vue.extend({
 			set(value) {
 				this.$store.dispatch('settings/set', { key: 'showFullAcct', value });
 				this.reload();
-			}
+			},
 		},
 
 		showVia: {
 			get() { return this.$store.state.settings.showVia; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showVia', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'showVia', value }); },
 		},
 
 		iLikeSushi: {
 			get() { return this.$store.state.settings.iLikeSushi; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'iLikeSushi', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'iLikeSushi', value }); },
 		},
 
 		hasDisconnectedAction: {
 			get() { return this.$store.state.device.hasDisconnectedAction; },
-			set(value) { this.$store.commit('device/set', { key: 'hasDisconnectedAction', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'hasDisconnectedAction', value }); },
 		},
 
 		roomUseOrthographicCamera: {
 			get() { return this.$store.state.device.roomUseOrthographicCamera; },
-			set(value) { this.$store.commit('device/set', { key: 'roomUseOrthographicCamera', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'roomUseOrthographicCamera', value }); },
 		},
 
 		roomGraphicsQuality: {
 			get() { return this.$store.state.device.roomGraphicsQuality; },
-			set(value) { this.$store.commit('device/set', { key: 'roomGraphicsQuality', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'roomGraphicsQuality', value }); },
 		},
 
 		mascotWidgetUrl: {
 			get() { return ColdDeviceStorage.get('mascot_widget_url'); },
-			set(value) { ColdDeviceStorage.set('mascot_widget_url', value); }
+			set(value) { ColdDeviceStorage.set('mascot_widget_url', value); },
 		},
 
 		games_reversi_showBoardLabels: {
 			get() { return this.$store.state.settings.gamesReversiShowBoardLabels; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiShowBoardLabels', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiShowBoardLabels', value }); },
 		},
 
 		games_reversi_useAvatarStones: {
 			get() { return this.$store.state.settings.gamesReversiUseAvatarStones; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiUseAvatarStones', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiUseAvatarStones', value }); },
 		},
 
 		disableAnimatedMfm: {
 			get() { return this.$store.state.settings.disableAnimatedMfm; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'disableAnimatedMfm', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'disableAnimatedMfm', value }); },
 		},
 
 		disableShowingAnimatedImages: {
 			get() { return this.$store.state.device.disableShowingAnimatedImages; },
-			set(value) { this.$store.commit('device/set', { key: 'disableShowingAnimatedImages', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'disableShowingAnimatedImages', value }); },
 		},
 
 		remainDeletedNote: {
 			get() { return this.$store.state.settings.remainDeletedNote; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'remainDeletedNote', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'remainDeletedNote', value }); },
 		},
 
 		useAbsoluteTime: {
 			get() { return !!this.$store.state.device.useAbsoluteTime; },
-			set(value) { this.$store.commit('device/set', { key: 'useAbsoluteTime', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'useAbsoluteTime', value }); },
 		},
 
 		mobileNotificationPosition: {
 			get() { return this.$store.state.device.mobileNotificationPosition; },
-			set(value) { this.$store.commit('device/set', { key: 'mobileNotificationPosition', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'mobileNotificationPosition', value }); },
 		},
 
 		enableMobileQuickNotificationView: {
 			get() { return this.$store.state.device.enableMobileQuickNotificationView; },
-			set(value) { this.$store.commit('device/set', { key: 'enableMobileQuickNotificationView', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'enableMobileQuickNotificationView', value }); },
 		},
 
 		homeProfile: {
 			get() { return this.$store.state.device.homeProfile; },
-			set(value) { this.$store.commit('device/set', { key: 'homeProfile', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'homeProfile', value }); },
 		},
 
 		mobileHomeProfile: {
 			get() { return this.$store.state.device.mobileHomeProfile; },
-			set(value) { this.$store.commit('device/set', { key: 'mobileHomeProfile', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'mobileHomeProfile', value }); },
 		},
 
 		deckProfile: {
 			get() { return this.$store.state.device.deckProfile; },
-			set(value) { this.$store.commit('device/set', { key: 'deckProfile', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'deckProfile', value }); },
 		},
 	},
 	created() {
@@ -729,7 +730,7 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('@.reload-to-apply-the-setting'),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (!canceled) {
 					location.reload();
@@ -739,12 +740,12 @@ export default Vue.extend({
 		save(key, value) {
 			this.$store.dispatch('settings/set', {
 				key,
-				value
+				value,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('@._settings.saved')
-				})
+					text: this.$t('@._settings.saved'),
+				});
 			});
 		},
 		customizeHome() {
@@ -752,7 +753,7 @@ export default Vue.extend({
 		},
 		updateWallpaper() {
 			this.$chooseDriveFile({
-				multiple: false
+				multiple: false,
 			}).then(file => {
 				this.$store.dispatch('settings/set', { key: 'wallpaper', value: file.url });
 			});
@@ -768,12 +769,12 @@ export default Vue.extend({
 				if (newer == null) {
 					this.$root.dialog({
 						title: this.$t('@._settings.no-updates'),
-						text: this.$t('@._settings.no-updates-desc')
+						text: this.$t('@._settings.no-updates-desc'),
 					});
 				} else {
 					this.$root.dialog({
 						title: this.$t('@._settings.update-available'),
-						text: this.$t('@._settings.update-available-desc')
+						text: this.$t('@._settings.update-available-desc'),
 					});
 				}
 			});
@@ -782,7 +783,7 @@ export default Vue.extend({
 			sound.play('chatBg');
 		},
 		pastedFileNamePreview() {
-			return `${formatTimeString(new Date(), this.pastedFileName).replace(/{{number}}/g, `1`)}.png`
+			return `${formatTimeString(new Date(), this.pastedFileName).replace(/{{number}}/g, '1')}.png`;
 		},
 		previewReaction() {
 			const picker = this.$root.new(MkReactionPicker, {
@@ -793,7 +794,7 @@ export default Vue.extend({
 			picker.$once('chosen', ({ reaction } : { reaction: string }) => {
 				picker.close();
 			});
-		}
-	}
+		},
+	},
 });
 </script>

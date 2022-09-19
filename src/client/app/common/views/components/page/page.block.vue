@@ -1,5 +1,5 @@
 <template>
-<component :is="'x-' + value.type" :value="value" :page="page" :script="script" :key="value.id" :h="h"/>
+<component :is="'x-' + value.type" :key="value.id" :value="value" :page="page" :script="script" :h="h"/>
 </template>
 
 <script lang="ts">
@@ -20,22 +20,22 @@ import XRadioButton from './page.radio-button.vue';
 
 export default Vue.extend({
 	components: {
-		XText, XSection, XImage, XButton, XNumberInput, XTextInput, XTextareaInput, XTextarea, XPost, XSwitch, XIf, XCounter, XRadioButton
+		XText, XSection, XImage, XButton, XNumberInput, XTextInput, XTextareaInput, XTextarea, XPost, XSwitch, XIf, XCounter, XRadioButton,
 	},
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
+			required: true,
 		},
 		page: {
-			required: true
+			required: true,
 		},
 		h: {
-			required: true
-		}
+			required: true,
+		},
 	},
 });
 </script>

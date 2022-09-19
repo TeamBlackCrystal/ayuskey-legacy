@@ -30,8 +30,8 @@ export default Vue.extend({
 			aboutUrl: `/docs/${lang}/about`,
 			repositoryUrl: 'https://github.com/TeamOrangeServer/misskey',
 			feedbackUrl: 'https://github.com/TeamOrangeServer/misskey/issues/new',
-			ToSUrl: null
-		}
+			ToSUrl: null,
+		};
 	},
 
 	mounted() {
@@ -39,8 +39,8 @@ export default Vue.extend({
 			this.repositoryUrl = meta.repositoryUrl;
 			this.feedbackUrl = meta.feedbackUrl;
 			this.ToSUrl = meta.ToSUrl;
-		})
-	}
+		});
+	},
 });
 </script>
 

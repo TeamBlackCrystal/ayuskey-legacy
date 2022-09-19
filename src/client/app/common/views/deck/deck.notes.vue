@@ -1,24 +1,24 @@
 <template>
 <div class="eamppglmnmimdhrlzhplwpvyeaqmmhxu">
-	<div class="empty" v-if="empty">{{ $t('@.no-notes') }}</div>
+	<div v-if="empty" class="empty">{{ $t('@.no-notes') }}</div>
 
 	<mk-error v-if="error" @retry="init()"/>
 
-	<div class="placeholder" v-if="fetching">
+	<div v-if="fetching" class="placeholder">
 		<template v-for="i in 10">
 			<mk-note-skeleton :key="i"/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
-	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notes" class="transition notes" ref="notes" tag="div">
+	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" ref="notes" name="mk-notes" class="transition notes" tag="div">
 		<template v-for="(note, i) in _notes">
 			<mk-note
-				:note="note"
 				:key="note.id"
+				:note="note"
 				:compact="true"
 			/>
-			<p class="date" :key="note.id + '_date'" v-if="i != notes.length - 1 && note._date != _notes[i + 1]._date">
+			<p v-if="i != notes.length - 1 && note._date != _notes[i + 1]._date" :key="note.id + '_date'" class="date">
 				<span><fa icon="angle-up"/>{{ note._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notes[i + 1]._datetext }}</span>
 			</p>
@@ -26,7 +26,7 @@
 	</component>
 
 	<footer v-if="more">
-		<button @click="fetchMore()" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }">
+		<button :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" @click="fetchMore()">
 			<template v-if="!moreFetching">{{ $t('@.load-more') }}</template>
 			<template v-if="moreFetching"><fa icon="spinner" pulse fixed-width/></template>
 		</button>
@@ -61,17 +61,17 @@ export default Vue.extend({
 				if (document.hidden || !self.isScrollTop()) {
 					self.$store.commit('pushBehindNote', note);
 				}
-			}
+			},
 		}),
 	],
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 		extract: {
-			required: false
-		}
+			required: false,
+		},
 	},
 
 	computed: {
@@ -87,7 +87,7 @@ export default Vue.extend({
 				note._datetext = this.$t('@.month-and-day').replace('{month}', month.toString()).replace('{day}', date.toString());
 				return note;
 			});
-		}
+		},
 	},
 
 	created() {
@@ -105,7 +105,7 @@ export default Vue.extend({
 		focus() {
 			(this.$refs.notes as any).children[0].focus ? (this.$refs.notes as any).children[0].focus() : (this.$refs.notes as any).$el.children[0].focus();
 		},
-	}
+	},
 });
 </script>
 

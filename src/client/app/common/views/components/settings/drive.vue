@@ -33,7 +33,7 @@ export default Vue.extend({
 			fetching: true,
 			usage: null,
 			capacity: null,
-			uploadFolderName: null
+			uploadFolderName: null,
 		};
 	},
 
@@ -44,14 +44,14 @@ export default Vue.extend({
 				background: tinycolor({
 					h: 180 - (this.usage / this.capacity * 180),
 					s: 0.7,
-					l: 0.5
-				})
+					l: 0.5,
+				}),
 			};
 		},
 
 		uploadFolder: {
 			get() { return this.$store.state.settings.uploadFolder; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'uploadFolder', value }); }
+			set(value) { this.$store.dispatch('settings/set', { key: 'uploadFolder', value }); },
 		},
 	},
 
@@ -60,7 +60,7 @@ export default Vue.extend({
 			this.uploadFolderName = this.$t('@._settings.root');
 		} else {
 			this.$root.api('drive/folders/show', {
-				folderId: this.uploadFolder
+				folderId: this.uploadFolder,
 			}).then(folder => {
 				this.uploadFolderName = folder.name;
 			});
@@ -82,7 +82,7 @@ export default Vue.extend({
 			this.$root.api('charts/user/drive', {
 				userId: this.$store.state.i.id,
 				span: 'day',
-				limit: 21
+				limit: 21,
 			}).then(stats => {
 				const addition = [];
 				const deletion = [];
@@ -96,11 +96,11 @@ export default Vue.extend({
 					const x = new Date(y, m, d - i);
 					addition.push([
 						x,
-						stats.incSize[i]
+						stats.incSize[i],
 					]);
 					deletion.push([
 						x,
-						-stats.decSize[i]
+						-stats.decSize[i],
 					]);
 				}
 
@@ -110,16 +110,16 @@ export default Vue.extend({
 						stacked: true,
 						height: 150,
 						zoom: {
-							enabled: false
+							enabled: false,
 						},
 						toolbar: {
-							show: false
-						}
+							show: false,
+						},
 					},
 					plotOptions: {
 						bar: {
-							columnWidth: '80%'
-						}
+							columnWidth: '80%',
+						},
 					},
 					grid: {
 						clipMarkers: false,
@@ -127,52 +127,52 @@ export default Vue.extend({
 						xaxis: {
 							lines: {
 								show: true,
-							}
+							},
 						},
 					},
 					tooltip: {
 						shared: true,
-						intersect: false
+						intersect: false,
 					},
 					dataLabels: {
-						enabled: false
+						enabled: false,
 					},
 					legend: {
-						show: false
+						show: false,
 					},
 					series: [{
 						name: 'Additions',
-						data: addition
+						data: addition,
 					}, {
 						name: 'Deletions',
-						data: deletion
+						data: deletion,
 					}],
 					xaxis: {
 						type: 'datetime',
 						labels: {
 							style: {
-								colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-							}
+								colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+							},
 						},
 						axisBorder: {
-							color: 'rgba(0, 0, 0, 0.1)'
+							color: 'rgba(0, 0, 0, 0.1)',
 						},
 						axisTicks: {
-							color: 'rgba(0, 0, 0, 0.1)'
+							color: 'rgba(0, 0, 0, 0.1)',
 						},
 						crosshairs: {
 							width: 1,
-							opacity: 1
-						}
+							opacity: 1,
+						},
 					},
 					yaxis: {
 						labels: {
 							formatter: v => Vue.filter('bytes')(v, 0),
 							style: {
-								color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-							}
-						}
-					}
+								color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+							},
+						},
+					},
 				});
 
 				chart.render();
@@ -183,9 +183,9 @@ export default Vue.extend({
 			this.$chooseDriveFolder().then(folder => {
 				this.uploadFolder = folder ? folder.id : null;
 				this.uploadFolderName = folder ? folder.name : this.$t('@._settings.root');
-			})
-		}
-	}
+			});
+		},
+	},
 });
 </script>
 

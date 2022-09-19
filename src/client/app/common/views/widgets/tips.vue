@@ -11,8 +11,8 @@ import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
 const widget = define({
-	name: 'tips'
-})
+	name: 'tips',
+});
 
 export default defineComponent({
 	extends: widget,
@@ -22,11 +22,11 @@ export default defineComponent({
 		return {
 			tips: [],
 			tip: null,
-			clock: null
+			clock: null,
 		};
 	},
 	created() {
-		this.tips =  [
+		this.tips = [
 			this.$t('tips-line1'),
 			this.$t('tips-line2'),
 			this.$t('tips-line3'),
@@ -46,7 +46,7 @@ export default defineComponent({
 			this.$t('tips-line21'),
 			this.$t('tips-line23'),
 			this.$t('tips-line24'),
-			this.$t('tips-line25')
+			this.$t('tips-line25'),
 		];
 	},
 	mounted() {
@@ -69,7 +69,7 @@ export default defineComponent({
 				opacity: 0,
 				duration: 500,
 				easing: 'linear',
-				complete: this.set
+				complete: this.set,
 			});
 
 			setTimeout(() => {
@@ -77,11 +77,11 @@ export default defineComponent({
 					targets: this.$refs.tip,
 					opacity: 1,
 					duration: 500,
-					easing: 'linear'
+					easing: 'linear',
 				});
 			}, 500);
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -10,18 +10,18 @@ import contains from '../../../common/scripts/contains';
 
 export default Vue.extend({
 	components: {
-		XPicker: () => import('../../../common/views/components/emoji-picker.vue').then(m => m.default)
+		XPicker: () => import('../../../common/views/components/emoji-picker.vue').then(m => m.default),
 	},
 
 	props: {
 		x: {
 			type: Number,
-			required: true
+			required: true,
 		},
 		y: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	mounted() {
@@ -45,8 +45,6 @@ export default Vue.extend({
 				this.$el.style.left = x + 'px';
 				this.$el.style.top = y + 'px';
 			}
-
-
 
 			for (const el of Array.from(document.querySelectorAll('body *'))) {
 				el.addEventListener('mousedown', this.onMousedown);
@@ -77,8 +75,8 @@ export default Vue.extend({
 
 			this.$emit('closed');
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

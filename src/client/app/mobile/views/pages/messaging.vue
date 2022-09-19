@@ -1,7 +1,7 @@
 <template>
-<mk-ui :displayPostButton="false">
+<mk-ui :display-post-button="false">
 	<template #header><span style="margin-right:4px;"><fa :icon="['far', 'comments']"/></span>{{ $t('@.messaging') }}</template>
-	<x-messaging @navigate="navigate" @navigateGroup="navigateGroup" :header-top="48"/>
+	<x-messaging :header-top="48" @navigate="navigate" @navigateGroup="navigateGroup"/>
 </mk-ui>
 </template>
 
@@ -13,7 +13,7 @@ import getAcct from '../../../../../misc/acct/render';
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		XMessaging: () => import('../../../common/views/components/messaging.vue').then(m => m.default)
+		XMessaging: () => import('../../../common/views/components/messaging.vue').then(m => m.default),
 	},
 	mounted() {
 		document.title = `${this.$root.instanceName} ${this.$t('@.messaging')}`;
@@ -24,7 +24,7 @@ export default Vue.extend({
 		},
 		navigateGroup(group) {
 			(this as any).$router.push(`/i/messaging/group/${group.id}`);
-		}
-	}
+		},
+	},
 });
 </script>

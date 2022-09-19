@@ -1,6 +1,6 @@
 <template>
 <div class="zlrxdaqttccpwhpaagdmkawtzklsccam" :class="{ smart: $store.state.device.postStyle == 'smart', mini: narrow }" style="border-left: solid 2px var(--primary)">
-	<mk-avatar class="avatar" :user="note.user" v-if="$store.state.device.postStyle != 'smart'"/>
+	<mk-avatar v-if="$store.state.device.postStyle != 'smart'" class="avatar" :user="note.user"/>
 	<div class="main">
 		<mk-note-header class="header" :note="note" :mini="true"/>
 		<div class="body">
@@ -8,7 +8,7 @@
 				<mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$store.state.i" :custom-emojis="note.emojis" />
 				<mk-cw-button v-model="showContent" :note="note"/>
 			</p>
-			<div class="content" v-show="note.cw == null || showContent">
+			<div v-show="note.cw == null || showContent" class="content">
 				<mk-sub-note-content class="text" :note="note"/>
 			</div>
 		</div>
@@ -20,29 +20,29 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+
+	inject: {
+		narrow: {
+			default: false,
+		},
+	},
 	props: {
 		note: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		// TODO
 		truncate: {
 			type: Boolean,
-			default: true
-		}
-	},
-
-	inject: {
-		narrow: {
-			default: false
-		}
+			default: true,
+		},
 	},
 
 	data() {
 		return {
-			showContent: false
+			showContent: false,
 		};
-	}
+	},
 });
 </script>
 

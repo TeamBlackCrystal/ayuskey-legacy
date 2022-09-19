@@ -34,7 +34,7 @@ export default Vue.extend({
 	data() {
 		return {
 			announcements: [],
-			faBroadcastTower, faPlus
+			faBroadcastTower, faPlus,
 		};
 	},
 
@@ -49,7 +49,7 @@ export default Vue.extend({
 			this.announcements.unshift({
 				title: '',
 				text: '',
-				image: null
+				image: null,
 			});
 		},
 
@@ -57,35 +57,35 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('_remove.are-you-sure').replace('$1', this.announcements.find((_, j) => j == i).title),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 				this.announcements = this.announcements.filter((_, j) => j !== i);
 				this.save(true);
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('_remove.removed')
+					text: this.$t('_remove.removed'),
 				});
 			});
 		},
 
 		save(silent) {
 			this.$root.api('admin/update-meta', {
-				announcements: this.announcements
+				announcements: this.announcements,
 			}).then(() => {
 				if (!silent) {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('saved')
+						text: this.$t('saved'),
 					});
 				}
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>

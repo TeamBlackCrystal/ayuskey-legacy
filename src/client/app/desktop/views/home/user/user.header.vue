@@ -1,7 +1,7 @@
 <template>
 <div class="header" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 	<div class="banner-container" :style="style">
-		<div class="banner" ref="banner" :style="style"></div>
+		<div ref="banner" class="banner" :style="style"></div>
 		<div class="fade"></div>
 		<div class="title">
 			<p class="name">
@@ -13,9 +13,9 @@
 				<span v-if="user.movedToUser != null">moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
 			</div>
 		</div>
-		<span class="followed" v-if="$store.getters.isSignedIn && $store.state.i.id != user.id && user.isFollowed">{{ $t('follows-you') }}</span>
-		<div class="actions" v-if="$store.getters.isSignedIn">
-			<button @click="menu" class="menu" ref="menu"><fa icon="ellipsis-h"/></button>
+		<span v-if="$store.getters.isSignedIn && $store.state.i.id != user.id && user.isFollowed" class="followed">{{ $t('follows-you') }}</span>
+		<div v-if="$store.getters.isSignedIn" class="actions">
+			<button ref="menu" class="menu" @click="menu"><fa icon="ellipsis-h"/></button>
 			<mk-follow-button v-if="$store.state.i.id != user.id" :user="user" :inline="true" :transparent="false" class="follow"/>
 		</div>
 	</div>
@@ -26,8 +26,8 @@
 			<p v-else class="empty">{{ $t('no-description') }}</p>
 			<x-integrations :user="user" style="margin-top:16px;"/>
 		</div>
-		<div class="fields" v-if="user.fields" :key="user.id">
-			<dl class="field" v-for="(field, i) in user.fields" :key="i">
+		<div v-if="user.fields" :key="user.id" class="fields">
+			<dl v-for="(field, i) in user.fields" :key="i" class="field">
 				<dt class="name">
 					<mfm :text="field.name" :plain="true" :custom-emojis="user.emojis"/>
 				</dt>
@@ -37,8 +37,8 @@
 			</dl>
 		</div>
 		<div class="info">
-			<span class="location" v-if="user.host === null && user.location"><fa icon="map-marker"/> {{ user.location }}</span>
-			<span class="birthday" v-if="user.host === null && user.birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
+			<span v-if="user.host === null && user.location" class="location"><fa icon="map-marker"/> {{ user.location }}</span>
+			<span v-if="user.host === null && user.birthday" class="birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
 		</div>
 		<div class="status">
 			<router-link :to="user | userPage()" class="notes-count"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</router-link>
@@ -59,7 +59,7 @@ import XIntegrations from '../../../../common/views/components/integrations.vue'
 export default Vue.extend({
 	i18n: i18n('desktop/views/pages/user/user.header.vue'),
 	components: {
-		XIntegrations
+		XIntegrations,
 	},
 	props: ['user'],
 	computed: {
@@ -67,13 +67,13 @@ export default Vue.extend({
 			if (this.user.bannerUrl == null) return {};
 			return {
 				backgroundColor: this.user.bannerColor,
-				backgroundImage: `url(${ this.user.bannerUrl })`
+				backgroundImage: `url(${ this.user.bannerUrl })`,
 			};
 		},
 
 		age(): number {
 			return calcAge(this.user.birthday);
-		}
+		},
 	},
 	mounted() {
 		if (this.user.bannerUrl) {
@@ -102,20 +102,20 @@ export default Vue.extend({
 			const pos = -(top / z);
 			banner.style.backgroundPosition = `center calc(50% - ${pos}px)`;
 
-			const blur = top / 32
+			const blur = top / 32;
 			if (blur <= 10) banner.style.filter = `blur(${blur}px)`;
 		},
 
 		menu() {
 			const w = this.$root.new(XUserMenu, {
 				source: this.$refs.menu,
-				user: this.user
+				user: this.user,
 			});
 			this.$once('hook:beforeDestroy', () => {
 				w.destroyDom();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

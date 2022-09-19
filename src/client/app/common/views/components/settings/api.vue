@@ -21,7 +21,7 @@
 			<span>{{ $t('console.parameter') }} (JSON or JSON5)</span>
 			<template #desc>{{ $t('console.credential-info') }}</template>
 		</ui-textarea>
-		<ui-button @click="send" :disabled="sending">
+		<ui-button :disabled="sending" @click="send">
 			<template v-if="sending">{{ $t('console.sending') }}</template>
 			<template v-else><fa icon="paper-plane"/> {{ $t('console.send') }}</template>
 		</ui-button>
@@ -46,7 +46,7 @@ export default Vue.extend({
 			body: '{}',
 			res: null,
 			sending: false,
-			endpoints: []
+			endpoints: [],
 		};
 	},
 
@@ -61,12 +61,12 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				this.$root.api('i/regenerate_token', {
-					password: password
+					password: password,
 				});
 			});
 		},
@@ -96,7 +96,7 @@ export default Vue.extend({
 				}
 				this.body = JSON5.stringify(body, null, 2);
 			});
-		}
-	}
+		},
+	},
 });
 </script>

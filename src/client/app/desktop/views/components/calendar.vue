@@ -1,27 +1,29 @@
 <template>
 <div class="mk-calendar" :data-melt="design == 4 || design == 5" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 	<template v-if="design == 0 || design == 1">
-		<button @click="prev" :title="$t('prev')"><fa icon="chevron-circle-left"/></button>
+		<button :title="$t('prev')" @click="prev"><fa icon="chevron-circle-left"/></button>
 		<p class="title">{{ $t('title', { year, month }) }}</p>
-		<button @click="next" :title="$t('next')"><fa icon="chevron-circle-right"/></button>
+		<button :title="$t('next')" @click="next"><fa icon="chevron-circle-right"/></button>
 	</template>
 
 	<div class="calendar">
 		<template v-if="design == 0 || design == 2 || design == 4">
-		<div class="weekday"
-			v-for="(day, i) in Array(7).fill(0)"
-			:data-today="year == today.getFullYear() && month == today.getMonth() + 1 && today.getDay() == i"
-			:data-is-weekend="i == 0 || i == 6"
-		>{{ weekdayText[i] }}</div>
+			<div
+				v-for="(day, i) in Array(7).fill(0)"
+				class="weekday"
+				:data-today="year == today.getFullYear() && month == today.getMonth() + 1 && today.getDay() == i"
+				:data-is-weekend="i == 0 || i == 6"
+			>{{ weekdayText[i] }}</div>
 		</template>
 		<div v-for="n in paddingDays"></div>
-		<div class="day" v-for="(day, i) in days"
+		<div
+			v-for="(day, i) in days" class="day"
 			:data-today="isToday(i + 1)"
 			:data-selected="isSelected(i + 1)"
 			:data-is-out-of-range="isOutOfRange(i + 1)"
 			:data-is-weekend="isWeekend(i + 1)"
-			@click="go(i + 1)"
 			:title="isOutOfRange(i + 1) ? null : $t('go')"
+			@click="go(i + 1)"
 		>
 			<div>{{ i + 1 }}</div>
 		</div>
@@ -43,12 +45,12 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/calendar.vue'),
 	props: {
 		design: {
-			default: 0
+			default: 0,
 		},
 		start: {
 			type: Date,
-			required: false
-		}
+			required: false,
+		},
 	},
 	data() {
 		return {
@@ -63,8 +65,8 @@ export default Vue.extend({
 				this.$t('@.weekday-short.wednesday'),
 				this.$t('@.weekday-short.thursday'),
 				this.$t('@.weekday-short.friday'),
-				this.$t('@.weekday-short.saturday')
-			]
+				this.$t('@.weekday-short.saturday'),
+			],
 		};
 	},
 	computed: {
@@ -79,7 +81,7 @@ export default Vue.extend({
 			if (this.month == 2 && isLeapYear(this.year)) days++;
 
 			return days;
-		}
+		},
 	},
 	methods: {
 		isToday(day) {
@@ -124,8 +126,8 @@ export default Vue.extend({
 			const date = new Date(this.year, this.month - 1, day, 23, 59, 59, 999);
 			this.selected = date;
 			this.$emit('chosen', this.selected);
-		}
-	}
+		},
+	},
 });
 </script>
 

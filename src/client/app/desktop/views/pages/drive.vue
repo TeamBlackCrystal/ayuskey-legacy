@@ -15,7 +15,7 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			folder: null
+			folder: null,
 		};
 	},
 	created() {
@@ -40,8 +40,8 @@ export default Vue.extend({
 			history.pushState(null, title, `/i/drive/folder/${folder.id}`);
 
 			document.title = title;
-		}
-	}
+		},
+	},
 });
 </script>
 

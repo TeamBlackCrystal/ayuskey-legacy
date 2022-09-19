@@ -1,11 +1,12 @@
 <template>
 <div class="prlncendiewqqkrevzeruhndoakghvtx">
 	<header>
-		<button v-for="category in categories"
-			:title="category.text"
-			@click="go(category)"
-			:class="{ active: category.isActive }"
+		<button
+			v-for="category in categories"
 			:key="category.text"
+			:title="category.text"
+			:class="{ active: category.isActive }"
+			@click="go(category)"
 		>
 			<fa :icon="category.icon" fixed-width/>
 		</button>
@@ -15,11 +16,12 @@
 			<ui-input v-model="q" :autofocus="false" style="margin: 0.4em;">
 				<span>{{ $t('search') }}</span>
 			</ui-input>
-			<div class="list" v-if="searchResults.length > 0">
-			<button v-for="emoji in (searchResults || [])"
+			<div v-if="searchResults.length > 0" class="list">
+				<button
+					v-for="emoji in (searchResults || [])"
+					:key="emoji.char || emoji.name"
 					:title="emoji.sources ? emoji.sources.map(x => `${x.name}@${x.host}`).join(',\n') : emoji.name"
 					@click="chosen(emoji)"
-					:key="emoji.char || emoji.name"
 				>
 					<mk-emoji v-if="emoji.char != null" :emoji="emoji.char" :local="emoji.local"/>
 					<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" loading="lazy"/>
@@ -29,10 +31,11 @@
 		<template v-if="categories[0].isActive">
 			<header class="category"><fa :icon="faHistory" fixed-width/> {{ $t('recent-emoji') }}</header>
 			<div class="list">
-				<button v-for="emoji in ($store.state.device.recentEmojis || [])"
+				<button
+					v-for="emoji in ($store.state.device.recentEmojis || [])"
+					:key="emoji.char || emoji.name"
 					:title="emoji.name"
 					@click="chosen(emoji)"
-					:key="emoji.char || emoji.name"
 				>
 					<mk-emoji v-if="emoji.char != null" :emoji="emoji.char"/>
 					<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" loading="lazy"/>
@@ -43,10 +46,11 @@
 		<header class="category" :class="{blur: $store.state.device.useBlur}"><fa :icon="categories.find(x => x.isActive).icon" fixed-width/> {{ categories.find(x => x.isActive).text }}</header>
 		<template v-if="categories.find(x => x.isActive).name">
 			<div class="list">
-				<button v-for="emoji in emojilist.filter(e => e.category === categories.find(x => x.isActive).name)"
+				<button
+					v-for="emoji in emojilist.filter(e => e.category === categories.find(x => x.isActive).name)"
+					:key="emoji.name"
 					:title="emoji.name"
 					@click="chosen(emoji)"
-					:key="emoji.name"
 				>
 					<mk-emoji :emoji="emoji.char"/>
 				</button>
@@ -56,10 +60,11 @@
 			<div v-for="(key, i) in Object.keys(customEmojis)" :key="i">
 				<header class="sub">{{ key || $t('no-category') }}</header>
 				<div class="list">
-					<button v-for="emoji in customEmojis[key]"
+					<button
+						v-for="emoji in customEmojis[key]"
+						:key="emoji.name"
 						:title="emoji.name"
 						@click="chosen(emoji)"
-						:key="emoji.name"
 					>
 						<img :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" loading="lazy"/>
 					</button>
@@ -94,54 +99,54 @@ export default Vue.extend({
 			categories: [{
 				text: this.$t('custom-emoji'),
 				icon: faAsterisk,
-				isActive: true
+				isActive: true,
 			}, {
 				name: 'face',
 				text: this.$t('face'),
 				icon: faLaugh,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'people',
 				text: this.$t('people'),
 				icon: faUser,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'animals_and_nature',
 				text: this.$t('animals-and-nature'),
 				icon: faLeaf,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'food_and_drink',
 				text: this.$t('food-and-drink'),
 				icon: faUtensils,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'activity',
 				text: this.$t('activity'),
 				icon: faFutbol,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'travel_and_places',
 				text: this.$t('travel-and-places'),
 				icon: faCity,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'objects',
 				text: this.$t('objects'),
 				icon: faDice,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'symbols',
 				text: this.$t('symbols'),
 				icon: faHeart,
-				isActive: false
+				isActive: false,
 			}, {
 				name: 'flags',
 				text: this.$t('flags'),
 				icon: faFlag,
-				isActive: false
-			}]
-		}
+				isActive: false,
+			}],
+		};
 	},
 
 	watch: {
@@ -282,7 +287,7 @@ export default Vue.extend({
 			const searchResultCustom = Array.from(searchCustom());
 			const searchResultUnicode = Array.from(searchUnicode());
 			this.searchResults = searchResultCustom.concat(searchResultUnicode);
-		}
+		},
 	},
 
 	created() {
@@ -319,12 +324,12 @@ export default Vue.extend({
 
 			let recents = this.$store.state.device.recentEmojis || [];
 			recents = recents.filter((e: any) => getKey(e) !== getKey(emoji));
-			recents.unshift(emoji)
+			recents.unshift(emoji);
 			this.$store.commit('device/set', { key: 'recentEmojis', value: recents.splice(0, 16) });
 
 			this.$emit('chosen', getKey(emoji));
-		}
-	}
+		},
+	},
 });
 </script>
 

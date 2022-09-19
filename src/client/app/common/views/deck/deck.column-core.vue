@@ -25,30 +25,30 @@ export default Vue.extend({
 		XNotificationsColumn,
 		XWidgetsColumn,
 		XMentionsColumn,
-		XDirectColumn
+		XDirectColumn,
 	},
 
 	props: {
 		column: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		isStacked: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		pos: {
 			type: Object,
 			required: false,
-			default: () => {}
+			default: () => {},
 		},
 	},
 
 	methods: {
 		focus() {
 			this.$children[0].focus();
-		}
-	}
+		},
+	},
 });
 </script>

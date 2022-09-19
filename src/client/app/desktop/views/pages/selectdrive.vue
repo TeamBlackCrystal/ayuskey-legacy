@@ -1,6 +1,7 @@
 <template>
 <div class="mkp-selectdrive">
-	<x-drive ref="browser"
+	<x-drive
+		ref="browser"
 		:multiple="multiple"
 		@selected="onSelected"
 		@change-selection="onChangeSelection"
@@ -24,14 +25,14 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			files: []
+			files: [],
 		};
 	},
 	computed: {
 		multiple(): boolean {
 			const q = (new URL(location.toString())).searchParams;
 			return q.get('multiple') == 'true';
-		}
+		},
 	},
 	mounted() {
 		document.title = this.$t('title');
@@ -53,13 +54,12 @@ export default Vue.extend({
 		ok() {
 			window.opener.cb(this.multiple ? this.files : this.files[0]);
 			this.close();
-		}
-	}
+		},
+	},
 });
 </script>
 
 <style lang="stylus" scoped>
-
 
 .mkp-selectdrive
 	display block

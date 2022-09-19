@@ -1,7 +1,7 @@
 <template>
 <div class="mk-selectdrive">
 	<header>
-		<h1>{{ $t('select-file') }}<span class="count" v-if="files.length > 0">({{ files.length }})</span></h1>
+		<h1>{{ $t('select-file') }}<span v-if="files.length > 0" class="count">({{ files.length }})</span></h1>
 		<button class="upload" @click="upload"><fa icon="upload"/></button>
 		<button v-if="multiple" class="ok" @click="ok"><fa icon="check"/></button>
 	</header>
@@ -20,14 +20,14 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			files: []
+			files: [],
 		};
 	},
 	computed: {
 		multiple(): boolean {
 			const q = (new URL(location.toString())).searchParams;
 			return q.get('multiple') == 'true';
-		}
+		},
 	},
 	mounted() {
 		document.title = this.$t('title');
@@ -49,8 +49,8 @@ export default Vue.extend({
 		ok() {
 			window.opener.cb(this.multiple ? this.files : this.files[0]);
 			this.close();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -3,7 +3,7 @@
 	<ui-container :show-header="!props.compact">
 		<template #header><fa :icon="faGlobeyarn "/>AI</template>
 
-		<iframe class="dedjhjmo" ref="live2d" @click="touched" :src="mascotUrl"></iframe>
+		<iframe ref="live2d" class="dedjhjmo" :src="mascotUrl" @click="touched"></iframe>
 	</ui-container>
 </div>
 </template>
@@ -22,9 +22,9 @@ const widget = define({
 	props: () => ({
 		compact: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
-	})
+	}),
 });
 
 export default defineComponent({
@@ -43,15 +43,15 @@ export default defineComponent({
 				body: {
 					x: ev.clientX - iframeRect.left,
 					y: ev.clientY - iframeRect.top,
-				}
+				},
 			}, '*');
 		}, { passive: true });
 	},
 	methods: {
 		touched() {
 			//if (this.live2d) this.live2d.changeExpression('gurugurume');
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -9,23 +9,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 import i18n from '../../../i18n';
 
 export default Vue.extend({
 	i18n: i18n('common/views/pages/not-found.vue'),
 	data() {
 		return {
-			src: ''
-		}
+			src: '',
+		};
 	},
 	created() {
 		this.$root.getMeta().then(meta => {
-			if (meta.errorImageUrl)
-				this.src = meta.errorImageUrl;
+			if (meta.errorImageUrl) this.src = meta.errorImageUrl;
 		});
-	}
-})
+	},
+});
 </script>
 
 <style lang="stylus" scoped>

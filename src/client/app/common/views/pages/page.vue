@@ -1,5 +1,5 @@
 <template>
-<x-page v-if="page" :page="page" :key="page.id" :show-footer="true"/>
+<x-page v-if="page" :key="page.id" :page="page" :show-footer="true"/>
 </template>
 
 <script lang="ts">
@@ -9,17 +9,17 @@ import XPage from '../components/page/page.vue';
 
 export default Vue.extend({
 	components: {
-		XPage
+		XPage,
 	},
 
 	props: {
 		pageName: {
 			type: String,
-			required: true
+			required: true,
 		},
 		username: {
 			type: String,
-			required: true
+			required: true,
 		},
 	},
 
@@ -32,13 +32,13 @@ export default Vue.extend({
 	computed: {
 		path(): string {
 			return this.username + '/' + this.pageName;
-		}
+		},
 	},
 
 	watch: {
 		path() {
 			this.fetch();
-		}
+		},
 	},
 
 	created() {
@@ -54,10 +54,10 @@ export default Vue.extend({
 				this.page = page;
 				this.$emit('init', {
 					title: this.page.title,
-					icon: faStickyNote
+					icon: faStickyNote,
 				});
 			});
 		},
-	}
+	},
 });
 </script>

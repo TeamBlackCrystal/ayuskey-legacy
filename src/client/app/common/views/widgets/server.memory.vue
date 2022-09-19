@@ -1,19 +1,19 @@
 <template>
-	<div class="memory">
-		<x-pie class="pie" :value="usage" />
-		<div>
-			<p><fa icon="memory" />Memory</p>
-			<p>Total: {{ total | bytes(1) }}</p>
-			<p>Used: {{ used | bytes(1) }}</p>
-			<p>Free: {{ free | bytes(1) }}</p>
-		</div>
+<div class="memory">
+	<x-pie class="pie" :value="usage" />
+	<div>
+		<p><fa icon="memory" />Memory</p>
+		<p>Total: {{ total | bytes(1) }}</p>
+		<p>Used: {{ used | bytes(1) }}</p>
+		<p>Free: {{ free | bytes(1) }}</p>
 	</div>
+</div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import Stream from "../../scripts/stream";
-import XPie from "./server.pie.vue";
+import { onMounted, onUnmounted, ref } from 'vue';
+import Stream from '../../scripts/stream';
+import XPie from './server.pie.vue';
 
 const { connection } = defineProps({ connection: { type: Stream } });
 let usage = ref(0);
@@ -30,10 +30,10 @@ const onStats = (stats) => {
 };
 
 onMounted(() => {
-	connection.on("stats", onStats);
+	connection.on('stats', onStats);
 });
 onUnmounted(() => {
-	connection.off("stats", onStats);
+	connection.off('stats', onStats);
 });
 </script>
 

@@ -3,8 +3,8 @@
 	<div v-if="game">
 		<x-gameroom :game="game" :self-nav="selfNav" @go-index="goIndex"/>
 	</div>
-	<div class="matching" v-else-if="matching">
-		<h1>{{ this.$t('matching.waiting-for').split('{}')[0] }}<b><mk-user-name :user="matching"/></b>{{ this.$t('matching.waiting-for').split('{}')[1] }}<mk-ellipsis/></h1>
+	<div v-else-if="matching" class="matching">
+		<h1>{{ $t('matching.waiting-for').split('{}')[0] }}<b><mk-user-name :user="matching"/></b>{{ $t('matching.waiting-for').split('{}')[1] }}<mk-ellipsis/></h1>
 		<div class="cancel">
 			<form-button round @click="cancel">{{ $t('matching.cancel') }}</form-button>
 		</div>
@@ -12,7 +12,7 @@
 	<div v-else-if="gameId">
 		...
 	</div>
-	<div class="index" v-else>
+	<div v-else class="index">
 		<x-index @go="nav" @matching="onMatching"/>
 	</div>
 </div>
@@ -29,19 +29,19 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/games/reversi/reversi.vue'),
 	components: {
 		XGameroom,
-		XIndex
+		XIndex,
 	},
 
 	props: {
 		gameId: {
 			type: String,
-			required: false
+			required: false,
 		},
 		selfNav: {
 			type: Boolean,
 			require: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	data() {
@@ -49,7 +49,7 @@ export default Vue.extend({
 			game: null,
 			matching: null,
 			connection: null,
-			pingClock: null
+			pingClock: null,
 		};
 	},
 
@@ -60,7 +60,7 @@ export default Vue.extend({
 
 		gameId() {
 			this.fetch();
-		}
+		},
 	},
 
 	mounted() {
@@ -74,7 +74,7 @@ export default Vue.extend({
 			this.pingClock = setInterval(() => {
 				if (this.matching) {
 					this.connection.send('ping', {
-						id: this.matching.id
+						id: this.matching.id,
 					});
 				}
 			}, 3000);
@@ -95,7 +95,7 @@ export default Vue.extend({
 			} else {
 				Progress.start();
 				this.$root.api('games/reversi/games/show', {
-					gameId: this.gameId
+					gameId: this.gameId,
 				}).then(game => {
 					this.game = game;
 					Progress.done();
@@ -108,7 +108,7 @@ export default Vue.extend({
 				// 受け取ったゲーム情報が省略されたものなら完全な情報を取得する
 				if (game != null && game.map == null) {
 					game = await this.$root.api('games/reversi/games/show', {
-						gameId: game.id
+						gameId: game.id,
 					});
 				}
 
@@ -129,7 +129,7 @@ export default Vue.extend({
 
 		accept(invitation) {
 			this.$root.api('games/reversi/match', {
-				userId: invitation.parent.id
+				userId: invitation.parent.id,
 			}).then(game => {
 				if (game) {
 					this.matching = null;
@@ -147,8 +147,8 @@ export default Vue.extend({
 
 		goIndex() {
 			this.nav(null);
-		}
-	}
+		},
+	},
 });
 </script>
 

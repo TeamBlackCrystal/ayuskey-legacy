@@ -5,8 +5,8 @@
 		<template #func><button title="設定" @click="setting"><fa icon="cog"/></button></template>
 
 		<div class="mkw-rss--body" :data-mobile="platform == 'mobile'">
-			<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-			<div class="feed" v-else>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<div v-else class="feed">
 				<a v-for="item in items" :href="item.link" rel="nofollow noopener" target="_blank" :title="item.title">{{ item.title }}</a>
 			</div>
 		</div>
@@ -23,9 +23,9 @@ const widget = define({
 	name: 'rss',
 	props: () => ({
 		compact: false,
-		url: 'https://www.gizmodo.jp/index.xml'
-	})
-})
+		url: 'https://www.gizmodo.jp/index.xml',
+	}),
+});
 
 export default defineComponent({
 	extends: widget,
@@ -34,7 +34,7 @@ export default defineComponent({
 		return {
 			items: [],
 			fetching: true,
-			clock: null
+			clock: null,
 		};
 	},
 	mounted() {
@@ -63,16 +63,16 @@ export default defineComponent({
 				title: 'URL',
 				input: {
 					type: 'url',
-					default: this.props.url
-				}
+					default: this.props.url,
+				},
 			}).then(({ canceled, result: url }) => {
 				if (canceled) return;
 				this.props.url = url;
 				this.save();
 				this.fetch();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

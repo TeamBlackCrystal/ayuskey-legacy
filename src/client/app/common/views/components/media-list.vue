@@ -1,13 +1,13 @@
 <template>
 <div class="hoawjimk">
 	<template v-for="media in mediaList.filter(media => !previewable(media))">
-		<x-banner :media="media" :key="media.id"/>
+		<x-banner :key="media.id" :media="media"/>
 	</template>
 	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="gird-container">
-		<div :data-count="mediaList.filter(media => previewable(media)).length" ref="gallery">
+		<div ref="gallery" :data-count="mediaList.filter(media => previewable(media)).length">
 			<template v-for="media in mediaList">
-				<mk-media-video :video="media" :key="media.id" v-if="media.type.startsWith('video')"/>
-				<x-image class="image" :data-id="media.id" :image="media" :key="media.id" v-else-if="media.type.startsWith('image')" :raw="raw"/>
+				<mk-media-video v-if="media.type.startsWith('video')" :key="media.id" :video="media"/>
+				<x-image v-else-if="media.type.startsWith('image')" :key="media.id" class="image" :data-id="media.id" :image="media" :raw="raw"/>
 			</template>
 		</div>
 	</div>
@@ -25,15 +25,15 @@ import XImage from './media-image.vue';
 export default defineComponent({
 	components: {
 		XBanner,
-		XImage
+		XImage,
 	},
 	props: {
 		mediaList: {
-			required: true
+			required: true,
 		},
 		raw: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	setup(props) {
 		const gallery = ref(null);
@@ -48,7 +48,7 @@ export default defineComponent({
 				gallery: gallery.value,
 				children: '.image',
 				thumbSelector: '.image',
-				pswpModule: PhotoSwipe
+				pswpModule: PhotoSwipe,
 			});
 			lightbox.on('itemData', (e) => {
 				const { itemData } = e;

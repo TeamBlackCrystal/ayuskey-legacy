@@ -1,26 +1,26 @@
 <template>
 <div class="mk-autocomplete" @contextmenu.prevent="() => {}">
-	<ol class="users" ref="suggests" v-if="users.length > 0">
-		<li v-for="user in users" @click="complete(type, user)" @keydown="onKeydown" tabindex="-1">
+	<ol v-if="users.length > 0" ref="suggests" class="users">
+		<li v-for="user in users" tabindex="-1" @click="complete(type, user)" @keydown="onKeydown">
 			<img class="avatar" :src="user.avatarUrl" alt=""/>
 			<span class="name">
-				<mk-user-name :user="user" :key="user.id"/>
+				<mk-user-name :key="user.id" :user="user"/>
 			</span>
 			<span class="username">@{{ user | acct }}</span>
 		</li>
 	</ol>
-	<ol class="hashtags" ref="suggests" v-if="hashtags.length > 0">
-		<li v-for="hashtag in hashtags" @click="complete(type, hashtag)" @keydown="onKeydown" tabindex="-1">
+	<ol v-if="hashtags.length > 0" ref="suggests" class="hashtags">
+		<li v-for="hashtag in hashtags" tabindex="-1" @click="complete(type, hashtag)" @keydown="onKeydown">
 			<span class="name">{{ hashtag }}</span>
 		</li>
 	</ol>
-	<ol class="emojis" ref="suggests" v-if="emojis.length > 0">
-		<li v-for="emoji in emojis" @click="complete(type, emoji.emoji)" @keydown="onKeydown" tabindex="-1">
-			<span class="emoji" v-if="emoji.isCustomEmoji"><img :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" :alt="emoji.emoji"/></span>
-			<span class="emoji" v-else-if="!useOsDefaultEmojis"><img :src="emoji.url" :alt="emoji.emoji"/></span>
-			<span class="emoji" v-else>{{ emoji.emoji }}</span>
+	<ol v-if="emojis.length > 0" ref="suggests" class="emojis">
+		<li v-for="emoji in emojis" tabindex="-1" @click="complete(type, emoji.emoji)" @keydown="onKeydown">
+			<span v-if="emoji.isCustomEmoji" class="emoji"><img :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" :alt="emoji.emoji"/></span>
+			<span v-else-if="!useOsDefaultEmojis" class="emoji"><img :src="emoji.url" :alt="emoji.emoji"/></span>
+			<span v-else class="emoji">{{ emoji.emoji }}</span>
 			<span class="name" v-html="emoji.name.replace(q, `<b>${q}</b>`)"></span>
-			<span class="alias" v-if="emoji.aliasOf">({{ emoji.aliasOf }})</span>
+			<span v-if="emoji.aliasOf" class="alias">({{ emoji.aliasOf }})</span>
 		</li>
 	</ol>
 </div>
@@ -54,7 +54,7 @@ const emjdb: EmojiDef[] = lib.map(x => ({
 	emoji: x.char,
 	name: x.name,
 	aliasOf: null,
-	url: `${twemojiSvgBase}/${char2file(x.char)}.svg`
+	url: `${twemojiSvgBase}/${char2file(x.char)}.svg`,
 }));
 
 for (const x of lib) {
@@ -64,7 +64,7 @@ for (const x of lib) {
 				emoji: x.char,
 				name: k,
 				aliasOf: x.name,
-				url: `${twemojiSvgBase}/${char2file(x.char)}.svg`
+				url: `${twemojiSvgBase}/${char2file(x.char)}.svg`,
 			});
 		}
 	}
@@ -120,14 +120,14 @@ export default Vue.extend({
 			items: [],
 			select: -1,
 			emojilist,
-			emojiDb: [] as EmojiDef[]
-		}
+			emojiDb: [] as EmojiDef[],
+		};
 	},
 
 	computed: {
 		useOsDefaultEmojis(): boolean {
 			return this.$store.state.device.useOsDefaultEmojis;
-		}
+		},
 	},
 
 	updated() {
@@ -146,7 +146,7 @@ export default Vue.extend({
 			this.$el.style.marginTop = 'calc(1em + 8px)';
 		}
 		//#endregion
-		this.items = (this.$refs.suggests as Element | undefined)?.children || [];
+		this.items = (this.$refs.suggests as Element | undefined).children || [];
 	},
 
 	mounted() {
@@ -159,7 +159,7 @@ export default Vue.extend({
 				name: x.name,
 				emoji: `:${x.name}:`,
 				url: x.url,
-				isCustomEmoji: true
+				isCustomEmoji: true,
 			});
 
 			if (x.aliases) {
@@ -169,7 +169,7 @@ export default Vue.extend({
 						aliasOf: x.name,
 						emoji: `:${x.name}:`,
 						url: x.url,
-						isCustomEmoji: true
+						isCustomEmoji: true,
 					});
 				}
 			}
@@ -225,7 +225,7 @@ export default Vue.extend({
 					this.$root.api('users/search-by-username-and-host', {
 						username: this.q,
 						limit: 10,
-						detail: false
+						detail: false,
 					}).then(users => {
 						this.users = users;
 						this.fetching = false;
@@ -248,7 +248,7 @@ export default Vue.extend({
 					} else {
 						this.$root.api('hashtags/search', {
 							query: this.q,
-							limit: 30
+							limit: 30,
 						}).then(hashtags => {
 							this.hashtags = hashtags;
 							this.fetching = false;
@@ -261,8 +261,8 @@ export default Vue.extend({
 			} else if (this.type == 'emoji') {
 				if (this.q == null || this.q == '') {
 					this.emojis = this.emojiDb.filter(x => x.isCustomEmoji && !x.aliasOf).sort((a, b) => {
-						var textA = a.name.toUpperCase();
-						var textB = b.name.toUpperCase();
+						let textA = a.name.toUpperCase();
+						let textB = b.name.toUpperCase();
 						return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 					});
 					return;
@@ -385,8 +385,8 @@ export default Vue.extend({
 				this.items[this.select].setAttribute('data-selected', 'true');
 				(this.items[this.select] as any).focus();
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-<div class="mk-ui" v-hotkey.global="keymap">
-	<div class="bg" v-if="$store.getters.isSignedIn && $store.state.settings.wallpaper" :style="style"></div>
-	<x-header class="header" v-if="navbar == 'top'" v-show="!zenMode" ref="header"/>
-	<x-sidebar class="sidebar" v-if="navbar != 'top'" v-show="!zenMode" ref="sidebar"/>
+<div v-hotkey.global="keymap" class="mk-ui">
+	<div v-if="$store.getters.isSignedIn && $store.state.settings.wallpaper" class="bg" :style="style"></div>
+	<x-header v-if="navbar == 'top'" v-show="!zenMode" ref="header" class="header"/>
+	<x-sidebar v-if="navbar != 'top'" v-show="!zenMode" ref="sidebar" class="sidebar"/>
 	<div class="content" :class="[{ sidebar: navbar != 'top', zen: zenMode }, navbar]">
 		<slot></slot>
 	</div>
@@ -18,12 +18,12 @@ import XSidebar from './ui.sidebar.vue';
 export default Vue.extend({
 	components: {
 		XHeader,
-		XSidebar
+		XSidebar,
 	},
 
 	data() {
 		return {
-			zenMode: false
+			zenMode: false,
 		};
 	},
 
@@ -35,7 +35,7 @@ export default Vue.extend({
 		style(): any {
 			if (!this.$store.getters.isSignedIn || this.$store.state.settings.wallpaper == null) return {};
 			return {
-				backgroundImage: `url(${ this.$store.state.settings.wallpaper })`
+				backgroundImage: `url(${ this.$store.state.settings.wallpaper })`,
 			};
 		},
 
@@ -43,9 +43,9 @@ export default Vue.extend({
 			return {
 				'p': this.post,
 				'n': this.post,
-				'z': this.toggleZenMode
+				'z': this.toggleZenMode,
 			};
-		}
+		},
 	},
 
 	watch: {
@@ -57,7 +57,7 @@ export default Vue.extend({
 			if (this.navbar != 'top') {
 				this.$store.commit('setUiHeaderHeight', 0);
 			}
-		}
+		},
 	},
 
 	mounted() {
@@ -76,8 +76,8 @@ export default Vue.extend({
 					this.$store.commit('setUiHeaderHeight', this.$refs.header.$el.offsetHeight);
 				}
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

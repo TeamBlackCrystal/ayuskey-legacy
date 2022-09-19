@@ -13,7 +13,7 @@ export default Vue.extend({
 		warn: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 	},
 });

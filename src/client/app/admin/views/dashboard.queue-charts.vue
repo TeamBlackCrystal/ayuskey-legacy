@@ -31,37 +31,37 @@ export default Vue.extend({
 			stats: [],
 			inChart: null,
 			outChart: null,
-			faInbox, faPaperPlane
+			faInbox, faPaperPlane,
 		};
 	},
 
 	computed: {
 		latestStats(): any {
 			return this.stats[this.stats.length - 1];
-		}
+		},
 	},
 
 	watch: {
 		stats(stats) {
 			this.inChart.updateSeries([{
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.activeSincePrevTick }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.activeSincePrevTick })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.active }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.active })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.waiting }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.waiting })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.delayed }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.delayed })),
 			}]);
 			this.outChart.updateSeries([{
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.activeSincePrevTick }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.activeSincePrevTick })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.active }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.active })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.waiting }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.waiting })),
 			}, {
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.delayed }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.delayed })),
 			}]);
-		}
+		},
 	},
 
 	mounted() {
@@ -71,48 +71,48 @@ export default Vue.extend({
 				height: 200,
 				animations: {
 					dynamicAnimation: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				toolbar: {
-					show: false
+					show: false,
 				},
 				zoom: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			dataLabels: {
-				enabled: false
+				enabled: false,
 			},
 			grid: {
 				clipMarkers: false,
-				borderColor: 'rgba(0, 0, 0, 0.1)'
+				borderColor: 'rgba(0, 0, 0, 0.1)',
 			},
 			stroke: {
 				curve: 'straight',
-				width: 2
+				width: 2,
 			},
 			tooltip: {
-				enabled: false
+				enabled: false,
 			},
 			legend: {
-				show: false
+				show: false,
 			},
 			colors: ['#00E396', '#00BCD4', '#FFB300', '#e53935'],
 			series: [{ data: [] }, { data: [] }, { data: [] }, { data: [] }] as any,
 			xaxis: {
 				type: 'numeric',
 				labels: {
-					show: false
+					show: false,
 				},
 				tooltip: {
-					enabled: false
-				}
+					enabled: false,
+				},
 			},
 			yaxis: {
 				show: false,
 				min: 0,
-			}
+			},
 		};
 
 		this.inChart = new ApexCharts(this.$refs.in, chartOpts);
@@ -126,7 +126,7 @@ export default Vue.extend({
 		connection.on('statsLog', this.onStatsLog);
 		connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: limit
+			length: limit,
 		});
 
 		this.$once('hook:beforeDestroy', () => {
@@ -146,8 +146,8 @@ export default Vue.extend({
 			for (const stats of statsLog.reverse()) {
 				this.onStats(stats);
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -13,9 +13,9 @@ import Vue from 'vue';
 export default Vue.extend({
 	provide() {
 		return {
-			isCardChild: true
+			isCardChild: true,
 		};
-	}
+	},
 });
 </script>
 

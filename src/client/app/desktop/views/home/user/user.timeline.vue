@@ -37,15 +37,15 @@ export default Vue.extend({
 					includeReplies: this.mode == 'with-replies',
 					includeMyRenotes: this.mode != 'my-posts',
 					withFiles: this.mode == 'with-media',
-				})
-			}
+				}),
+			},
 		};
 	},
 
 	watch: {
 		mode() {
 			(this.$refs.timeline as any).reload();
-		}
+		},
 	},
 
 	mounted() {
@@ -69,8 +69,8 @@ export default Vue.extend({
 		warp(date) {
 			this.date = date;
 			(this.$refs.timeline as any).reload();
-		}
-	}
+		},
+	},
 });
 </script>
 

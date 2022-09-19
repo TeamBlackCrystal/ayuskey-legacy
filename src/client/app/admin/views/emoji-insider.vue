@@ -58,21 +58,21 @@ export default Vue.extend({
 			searchRemote: '',
 			searchHost: '',
 			origin: 'all',
-			faGrin
+			faGrin,
 		};
-	},
-	watch: {
-		origin() {
-			this.fetchEmojis('remote', true);
-		}
-	},
-	mounted() {
-		this.fetchEmojis();
 	},
 	computed: {
 		categoryList() {
 			return unique(this.emojis.map((x: any) => x.category || '').filter((x: string) => x !== ''));
-		}
+		},
+	},
+	watch: {
+		origin() {
+			this.fetchEmojis('remote', true);
+		},
+	},
+	mounted() {
+		this.fetchEmojis();
 	},
 	methods: {
 		copy(id: any) {
@@ -83,12 +83,12 @@ export default Vue.extend({
 				this.fetchEmojis('remote', true);
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('copied')
+					text: this.$t('copied'),
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -112,8 +112,8 @@ export default Vue.extend({
 					this.remoteOffset += emojis.length;
 				});
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

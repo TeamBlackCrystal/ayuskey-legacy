@@ -1,17 +1,17 @@
 <template>
 <x-column>
 	<template #header>
-		<fa :icon="['far', 'comment-alt']"/><mk-user-name :user="note.user" v-if="note"/>
+		<fa :icon="['far', 'comment-alt']"/><mk-user-name v-if="note" :user="note.user"/>
 	</template>
 
-	<div class="rvtscbadixhhbsczoorqoaygovdeecsx" v-if="note">
-		<div class="is-remote" v-if="note.user.host != null">
+	<div v-if="note" class="rvtscbadixhhbsczoorqoaygovdeecsx">
+		<div v-if="note.user.host != null" class="is-remote">
 			<details>
 				<summary><fa icon="exclamation-triangle"/> {{ $t('@.is-remote-post') }}</summary>
 				<a :href="note.url || note.uri" rel="nofollow noopener" target="_blank">{{ $t('@.view-on-remote') }}</a>
 			</details>
 		</div>
-		<mk-note :note="note" :detail="true" :key="note.id"/>
+		<mk-note :key="note.id" :note="note" :detail="true"/>
 	</div>
 </x-column>
 </template>
@@ -30,12 +30,12 @@ export default Vue.extend({
 	data() {
 		return {
 			note: null,
-			fetching: true
+			fetching: true,
 		};
 	},
 
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 
 	created() {
@@ -47,13 +47,13 @@ export default Vue.extend({
 			this.fetching = true;
 
 			this.$root.api('notes/show', {
-				noteId: this.$route.params.note
+				noteId: this.$route.params.note,
 			}).then(note => {
 				this.note = note;
 				this.fetching = false;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -9,8 +9,8 @@ import define from '../../../common/define-widget';
 export default define({
 	name: 'timemachine',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	methods: {
 		chosen(date) {
@@ -23,7 +23,7 @@ export default define({
 				this.props.design++;
 			}
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>

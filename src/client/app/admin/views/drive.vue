@@ -39,7 +39,7 @@
 				</ui-select>
 			</ui-horizon-group>
 			<sequential-entrance animation="entranceFromTop" delay="25">
-				<div class="kidvdlkg" v-for="file in files">
+				<div v-for="file in files" class="kidvdlkg">
 					<div @click="file._open = !file._open">
 						<div>
 							<x-file-thumbnail class="thumbnail" :file="file" fit="contain" @click="showFileMenu(file)"/>
@@ -62,8 +62,8 @@
 					<div v-show="file._open">
 						<ui-input readonly :value="file.url"></ui-input>
 						<ui-horizon-group>
-							<ui-button @click="toggleSensitive(file)" v-if="file.isSensitive"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
-							<ui-button @click="toggleSensitive(file)" v-else><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
+							<ui-button v-if="file.isSensitive" @click="toggleSensitive(file)"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
+							<ui-button v-else @click="toggleSensitive(file)"><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
 							<ui-button @click="del(file)"><fa :icon="faTrashAlt"/> {{ $t('delete') }}</ui-button>
 						</ui-horizon-group>
 					</div>
@@ -86,7 +86,7 @@ export default Vue.extend({
 	i18n: i18n('admin/views/drive.vue'),
 
 	components: {
-		XFileThumbnail
+		XFileThumbnail,
 	},
 
 	data() {
@@ -99,7 +99,7 @@ export default Vue.extend({
 			offset: 0,
 			files: [],
 			existMore: false,
-			faCloud, faTrashAlt, faEye, faEyeSlash, faTerminal, faSearch
+			faCloud, faTrashAlt, faEye, faEyeSlash, faTerminal, faSearch,
 		};
 	},
 
@@ -114,7 +114,7 @@ export default Vue.extend({
 			this.files = [];
 			this.offset = 0;
 			this.fetch();
-		}
+		},
 	},
 
 	mounted() {
@@ -129,12 +129,12 @@ export default Vue.extend({
 				if (e == 'file-not-found') {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('file-not-found')
+						text: this.$t('file-not-found'),
 					});
 				} else {
 					this.$root.dialog({
 						type: 'error',
-						text: e.toString()
+						text: e.toString(),
 					});
 				}
 			}
@@ -145,7 +145,7 @@ export default Vue.extend({
 				origin: this.origin,
 				sort: this.sort,
 				offset: this.offset,
-				limit: this.limit + 1
+				limit: this.limit + 1,
 			}).then(files => {
 				if (files.length == this.limit + 1) {
 					files.pop();
@@ -166,14 +166,14 @@ export default Vue.extend({
 				await this.$root.api('drive/files/delete', { fileId: file.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('deleted')
+					text: this.$t('deleted'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 		},
@@ -181,7 +181,7 @@ export default Vue.extend({
 		toggleSensitive(file: any) {
 			this.$root.api('drive/files/update', {
 				fileId: file.id,
-				isSensitive: !file.isSensitive
+				isSensitive: !file.isSensitive,
 			}).then(() => {
 				file.isSensitive = !file.isSensitive;
 			});
@@ -199,18 +199,18 @@ export default Vue.extend({
 				const file = await this.fetchFile();
 				await this.$root.api('drive/files/update', {
 					fileId: file.id,
-					isSensitive: sensitive
+					isSensitive: sensitive,
 				});
 				this.$root.dialog({
 					type: 'success',
-					text: sensitive ? this.$t('marked-as-sensitive') : this.$t('unmarked-as-sensitive')
+					text: sensitive ? this.$t('marked-as-sensitive') : this.$t('unmarked-as-sensitive'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 		},
@@ -221,14 +221,14 @@ export default Vue.extend({
 				await this.$root.api('drive/files/delete', { fileId: file.id });
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('deleted')
+					text: this.$t('deleted'),
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 		},
@@ -237,13 +237,13 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('clean-remote-files-are-you-sure'),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 				this.$root.api('admin/drive/clean-remote-files');
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
 		},
@@ -252,10 +252,10 @@ export default Vue.extend({
 			this.$root.api('admin/drive/cleanup');
 			this.$root.dialog({
 				type: 'success',
-				splash: true
+				splash: true,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

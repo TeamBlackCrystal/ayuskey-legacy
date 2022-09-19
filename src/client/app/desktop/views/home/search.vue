@@ -20,18 +20,18 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/pages/search.vue'),
 	data() {
 		return {
-			pagination: null
+			pagination: null,
 		};
 	},
 	computed: {
 		q(): string {
 			return this.$route.query.q;
-		}
+		},
 	},
 	watch: {
 		$route() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 	mounted() {
 		document.addEventListener('keydown', this.onDocumentKeydown);
@@ -40,8 +40,8 @@ export default Vue.extend({
 		this.pagination = {
 			endpoint: 'notes/search',
 			limit: 20,
-			params: () => genSearchQuery(this, this.q)
-		}
+			params: () => genSearchQuery(this, this.q),
+		};
 		Progress.done();
 	},
 	beforeDestroy() {
@@ -59,7 +59,7 @@ export default Vue.extend({
 		inited() {
 			Progress.done();
 		},
-	}
+	},
 });
 </script>
 

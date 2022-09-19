@@ -10,22 +10,17 @@ export default Vue.extend({
 	props: {
 		reaction: {
 			type: String,
-			required: true
+			required: true,
 		},
 		customEmojis: {
 			required: false,
-			default: () => undefined as any[]
+			default: () => undefined as any[],
 		},
 	},
 	data() {
 		return {
-			customEmojis: []
+			customEmojis: [],
 		};
-	},
-	created() {
-		this.$root.getMeta().then(meta => {
-			if (meta && meta.emojis) this.customEmojis = meta.emojis;
-		});
 	},
 	computed: {
 		str(): any {
@@ -44,6 +39,11 @@ export default Vue.extend({
 				default: return this.reaction;
 			}
 		},
+	},
+	created() {
+		this.$root.getMeta().then(meta => {
+			if (meta && meta.emojis) this.customEmojis = meta.emojis;
+		});
 	},
 });
 </script>

@@ -2,10 +2,10 @@
 <div class="mkw-posts-monitor">
 	<ui-container :show-header="props.design == 0" :naked="props.design == 2">
 		<template #header><fa icon="chart-line"/>{{ $t('title') }}</template>
-		<template #func><button @click="toggle" :title="$t('toggle')"><fa icon="sort"/></button></template>
+		<template #func><button :title="$t('toggle')" @click="toggle"><fa icon="sort"/></button></template>
 
 		<div class="qpdmibaztplkylerhdbllwcokyrfxeyj" :class="{ dual: props.view == 0 }">
-			<svg :viewBox="`0 0 ${ viewBoxX } ${ viewBoxY }`" v-show="props.view != 2">
+			<svg v-show="props.view != 2" :viewBox="`0 0 ${ viewBoxX } ${ viewBoxY }`">
 				<defs>
 					<linearGradient :id="localGradientId" x1="0" x2="0" y1="1" y2="0">
 						<stop offset="0%" stop-color="hsl(200, 80%, 70%)"></stop>
@@ -34,7 +34,7 @@
 					:style="`stroke: none; fill: url(#${ localGradientId }); mask: url(#${ localMaskId })`"/>
 				<text x="1" y="5">Local</text>
 			</svg>
-			<svg :viewBox="`0 0 ${ viewBoxX } ${ viewBoxY }`" v-show="props.view != 1">
+			<svg v-show="props.view != 1" :viewBox="`0 0 ${ viewBoxX } ${ viewBoxY }`">
 				<defs>
 					<linearGradient :id="fediGradientId" x1="0" x2="0" y1="1" y2="0">
 						<stop offset="0%" stop-color="hsl(200, 80%, 70%)"></stop>
@@ -77,8 +77,8 @@ export default define({
 	name: 'posts-monitor',
 	props: () => ({
 		design: 0,
-		view: 0
-	})
+		view: 0,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/posts-monitor.vue'),
 
@@ -98,18 +98,18 @@ export default define({
 			fediHeadX: null,
 			fediHeadY: null,
 			localHeadX: null,
-			localHeadY: null
+			localHeadY: null,
 		};
 	},
 	computed: {
 		viewBoxX(): number {
 			return this.props.view == 0 ? 50 : 100;
-		}
+		},
 	},
 	watch: {
 		viewBoxX() {
 			this.draw();
-		}
+		},
 	},
 	mounted() {
 		this.connection = this.$root.stream.useSharedConnection('notesStats');
@@ -117,7 +117,7 @@ export default define({
 		this.connection.on('stats', this.onStats);
 		this.connection.on('statsLog', this.onStatsLog);
 		this.connection.send('requestLog',{
-			id: Math.random().toString().substr(2, 8)
+			id: Math.random().toString().substr(2, 8),
 		});
 	},
 	beforeDestroy() {
@@ -165,8 +165,8 @@ export default define({
 		},
 		onStatsLog(statsLog) {
 			for (const stats of statsLog) this.onStats(stats);
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -15,28 +15,28 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/games/reversi/reversi.gameroom.vue'),
 	components: {
 		XGame,
-		XRoom
+		XRoom,
 	},
 	props: {
 		game: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		selfNav: {
 			type: Boolean,
-			require: true
-		}
+			require: true,
+		},
 	},
 	data() {
 		return {
 			connection: null,
-			g: null
+			g: null,
 		};
 	},
 	created() {
 		this.g = this.game;
 		this.connection = this.$root.stream.connectToChannel('gamesReversiGame', {
-			gameId: this.game.id
+			gameId: this.game.id,
 		});
 		this.connection.on('started', this.onStarted);
 	},
@@ -50,7 +50,7 @@ export default Vue.extend({
 		},
 		goIndex() {
 			this.$emit('go-index');
-		}
-	}
+		},
+	},
 });
 </script>

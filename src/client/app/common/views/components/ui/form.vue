@@ -12,14 +12,13 @@ export default Vue.extend({
 	props: {
 		disabled: {
 			type: Boolean,
-			required: false
-		}
-	}
+			required: false,
+		},
+	},
 });
 </script>
 
 <style lang="stylus" scoped>
-
 
 .ui-form
 	> fieldset

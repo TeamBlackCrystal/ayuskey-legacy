@@ -21,8 +21,8 @@ export default Vue.extend({
 					userId: this.user.id,
 					withFiles: this.withMedia,
 					untilDate: init ? undefined : (this.date ? this.date.getTime() : undefined),
-				})
-			}
+				}),
+			},
 		};
 	},
 
@@ -37,7 +37,7 @@ export default Vue.extend({
 		warp(date) {
 			this.date = date;
 			(this.$refs.timeline as any).reload();
-		}
-	}
+		},
+	},
 });
 </script>

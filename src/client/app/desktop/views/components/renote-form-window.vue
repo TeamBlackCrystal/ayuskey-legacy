@@ -1,7 +1,7 @@
 <template>
-<mk-window ref="window" is-modal @closed="onWindowClosed" :animation="animation">
+<mk-window ref="window" is-modal :animation="animation" @closed="onWindowClosed">
 	<template #header :class="$style.header"><fa icon="retweet"/>{{ $t('title') }}</template>
-	<mk-renote-form ref="form" :note="note" @posted="onPosted" @canceled="onCanceled" v-hotkey.global="keymap"/>
+	<mk-renote-form ref="form" v-hotkey.global="keymap" :note="note" @posted="onPosted" @canceled="onCanceled"/>
 </mk-window>
 </template>
 
@@ -14,14 +14,14 @@ export default Vue.extend({
 	props: {
 		note: {
 			type: Object,
-			required: true
+			required: true,
 		},
 
 		animation: {
 			type: Boolean,
 			required: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	computed: {
@@ -31,7 +31,7 @@ export default Vue.extend({
 				'enter': this.post,
 				'q': this.quote,
 			};
-		}
+		},
 	},
 
 	methods: {
@@ -53,8 +53,8 @@ export default Vue.extend({
 		onWindowClosed() {
 			this.$emit('closed');
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

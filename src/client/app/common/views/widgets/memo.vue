@@ -5,7 +5,7 @@
 
 		<div class="mkw-memo--body">
 			<textarea v-model="text" :placeholder="$t('placeholder')" @input="onChange"></textarea>
-			<button @click="saveMemo" :disabled="!changed">{{ $t('save') }}</button>
+			<button :disabled="!changed" @click="saveMemo">{{ $t('save') }}</button>
 		</div>
 	</ui-container>
 </div>
@@ -18,15 +18,15 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'memo',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/memo.vue'),
 	data() {
 		return {
 			text: null,
 			changed: false,
-			timeoutId: null
+			timeoutId: null,
 		};
 	},
 
@@ -53,11 +53,11 @@ export default define({
 		saveMemo() {
 			this.$store.dispatch('settings/set', {
 				key: 'memo',
-				value: this.text
+				value: this.text,
 			});
 			this.changed = false;
-		}
-	}
+		},
+	},
 });
 </script>
 

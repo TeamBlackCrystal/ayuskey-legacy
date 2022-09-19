@@ -33,18 +33,18 @@
 				animation="150"
 				@sort="onWidgetSort"
 			>
-				<div v-for="widget in widgets" class="customize-container" :key="widget.id">
+				<div v-for="widget in widgets" :key="widget.id" class="customize-container">
 					<header>
 						<span class="handle"><fa icon="bars"/></span>{{ widget.name }}<button class="remove" @click="removeWidget(widget)"><fa icon="times"/></button>
 					</header>
 					<div @click="widgetFunc(widget.id)">
-						<component :is="`mkw-${widget.name}`" :widget="widget" :ref="widget.id" :is-customize-mode="true" platform="mobile"/>
+						<component :is="`mkw-${widget.name}`" :ref="widget.id" :widget="widget" :is-customize-mode="true" platform="mobile"/>
 					</div>
 				</div>
 			</x-draggable>
 		</template>
 		<template v-else>
-			<component class="widget" v-for="widget in widgets" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="mobile"/>
+			<component :is="`mkw-${widget.name}`" v-for="widget in widgets" :key="widget.id" :ref="widget.id" class="widget" :widget="widget" platform="mobile"/>
 		</template>
 	</main>
 </mk-ui>
@@ -59,43 +59,43 @@ import { v4 as uuid } from 'uuid';
 export default Vue.extend({
 	i18n: i18n('mobile/views/pages/widgets.vue'),
 	components: {
-		XDraggable
+		XDraggable,
 	},
 
 	data() {
 		return {
 			showNav: false,
 			customizing: false,
-			widgetAdderSelected: null
+			widgetAdderSelected: null,
 		};
 	},
 
 	computed: {
 		widgets(): any[] {
 			return this.$store.getters.mobileHome || [];
-		}
+		},
 	},
 
 	created() {
 		if (this.widgets.length == 0) {
 			this.$store.commit('setMobileHome', [{
 				name: 'calendar',
-				id: 'a', data: {}
+				id: 'a', data: {},
 			}, {
 				name: 'activity',
-				id: 'b', data: {}
+				id: 'b', data: {},
 			}, {
 				name: 'rss',
-				id: 'c', data: {}
+				id: 'c', data: {},
 			}, {
 				name: 'photo-stream',
-				id: 'd', data: {}
+				id: 'd', data: {},
 			}, {
 				name: 'nav',
-				id: 'f', data: {}
+				id: 'f', data: {},
 			}, {
 				name: 'version',
-				id: 'g', data: {}
+				id: 'g', data: {},
 			}]);
 		}
 	},
@@ -108,7 +108,7 @@ export default Vue.extend({
 		hint() {
 			this.$root.dialog({
 				type: 'info',
-				text: this.$t('widgets-hints')
+				text: this.$t('widgets-hints'),
 			});
 		},
 
@@ -122,12 +122,12 @@ export default Vue.extend({
 		},
 
 		addWidget() {
-			if(this.widgetAdderSelected == null) return;
+			if (this.widgetAdderSelected == null) return;
 
 			this.$store.commit('addMobileHomeWidget', {
 				name: this.widgetAdderSelected,
 				id: uuid(),
-				data: {}
+				data: {},
 			});
 		},
 
@@ -137,8 +137,8 @@ export default Vue.extend({
 
 		saveHome() {
 			this.$store.commit('setMobileHome', this.widgets);
-		}
-	}
+		},
+	},
 });
 </script>
 

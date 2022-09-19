@@ -14,24 +14,24 @@ export default Vue.extend({
 	props: {
 		name: {
 			type: String,
-			required: false
+			required: false,
 		},
 		emoji: {
 			type: String,
-			required: false
+			required: false,
 		},
 		normal: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		customEmojis: {
 			required: false,
-			default: () => []
+			default: () => [],
 		},
 		isReaction: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 	},
 
@@ -39,8 +39,8 @@ export default Vue.extend({
 		return {
 			url: null,
 			char: null,
-			customEmoji: null
-		}
+			customEmoji: null,
+		};
 	},
 
 	computed: {
@@ -50,7 +50,7 @@ export default Vue.extend({
 
 		useOsDefaultEmojis(): boolean {
 			return this.$store.state.device.useOsDefaultEmojis && !this.isReaction;
-		}
+		},
 	},
 
 	watch: {

@@ -36,19 +36,19 @@
 			<ui-select v-model="lang">
 				<template #label>{{ $t('language') }}</template>
 				<template #icon><fa icon="language"/></template>
-				<option v-for="lang in unique(Object.values(langmap).map(x => x.nativeName)).map(name => Object.keys(langmap).find(k => langmap[k].nativeName == name))" :value="lang" :key="lang">{{ langmap[lang].nativeName }}</option>
+				<option v-for="lang in unique(Object.values(langmap).map(x => x.nativeName)).map(name => Object.keys(langmap).find(k => langmap[k].nativeName == name))" :key="lang" :value="lang">{{ langmap[lang].nativeName }}</option>
 			</ui-select>
 
 			<ui-input type="file" @change="onAvatarChange">
 				<span>{{ $t('avatar') }}</span>
 				<template #icon><fa icon="image"/></template>
-				<template #desc v-if="avatarUploading">{{ $t('uploading') }}<mk-ellipsis/></template>
+				<template v-if="avatarUploading" #desc>{{ $t('uploading') }}<mk-ellipsis/></template>
 			</ui-input>
 
 			<ui-input type="file" @change="onBannerChange">
 				<span>{{ $t('banner') }}</span>
 				<template #icon><fa icon="image"/></template>
-				<template #desc v-if="bannerUploading">{{ $t('uploading') }}<mk-ellipsis/></template>
+				<template v-if="bannerUploading" #desc>{{ $t('uploading') }}<mk-ellipsis/></template>
 			</ui-input>
 
 			<div class="fields">
@@ -109,7 +109,7 @@
 				<ui-info v-else warn>{{ $t('email-not-verified') }}</ui-info>
 			</template>
 			<ui-input v-model="email" type="email"><span>{{ $t('email-address') }}</span></ui-input>
-			<ui-button @click="updateEmail()" :disabled="email === $store.state.i.email"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button :disabled="email === $store.state.i.email" @click="updateEmail()"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
 		</div>
 	</section>
 
@@ -126,7 +126,7 @@
 			</ui-select>
 			<ui-horizon-group class="fit-bottom">
 				<ui-button @click="doExport()"><fa :icon="faDownload"/> {{ $t('export') }}</ui-button>
-				<ui-button @click="doImport()" :disabled="!['following', 'blocking', 'user-lists'].includes(exportTarget)"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
+				<ui-button :disabled="!['following', 'blocking', 'user-lists'].includes(exportTarget)" @click="doImport()"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
 			</ui-horizon-group>
 		</div>
 	</section>
@@ -190,21 +190,21 @@ export default Vue.extend({
 			avatarUploading: false,
 			bannerUploading: false,
 			exportTarget: 'notes',
-			faDownload, faUpload, faSave, faEnvelope, faUnlockAlt, faBoxes, faCogs
+			faDownload, faUpload, faSave, faEnvelope, faUnlockAlt, faBoxes, faCogs,
 		};
 	},
 
 	computed: {
 		alwaysMarkNsfw: {
 			get() { return this.$store.state.i.alwaysMarkNsfw; },
-			set(value) { this.$root.api('i/update', { alwaysMarkNsfw: value }); }
+			set(value) { this.$root.api('i/update', { alwaysMarkNsfw: value }); },
 		},
 
 		bannerStyle(): any {
 			if (this.$store.state.i.bannerUrl == null) return {};
 			return {
 				backgroundColor: this.$store.state.i.bannerColor,
-				backgroundImage: `url(${ this.$store.state.i.bannerUrl })`
+				backgroundImage: `url(${ this.$store.state.i.bannerUrl })`,
 			};
 		},
 	},
@@ -253,7 +253,7 @@ export default Vue.extend({
 
 			fetch(apiUrl + '/drive/files/create', {
 				method: 'POST',
-				body: data
+				body: data,
 			})
 				.then(response => response.json())
 				.then(f => {
@@ -275,7 +275,7 @@ export default Vue.extend({
 
 			fetch(apiUrl + '/drive/files/create', {
 				method: 'POST',
-				body: data
+				body: data,
 			})
 				.then(response => response.json())
 				.then(f => {
@@ -327,30 +327,30 @@ export default Vue.extend({
 				if (notify) {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('saved')
+						text: this.$t('saved'),
 					});
 				}
 			}).catch(err => {
 				this.saving = false;
-				switch(err.id) {
+				switch (err.id) {
 					case 'f419f9f8-2f4d-46b1-9fb4-49d3a2fd7191':
 						this.$root.dialog({
 							type: 'error',
 							title: this.$t('unable-to-process'),
-							text: this.$t('avatar-not-an-image')
+							text: this.$t('avatar-not-an-image'),
 						});
 						break;
 					case '75aedb19-2afd-4e6d-87fc-67941256fa60':
 						this.$root.dialog({
 							type: 'error',
 							title: this.$t('unable-to-process'),
-							text: this.$t('banner-not-an-image')
+							text: this.$t('banner-not-an-image'),
 						});
 						break;
 					default:
 						this.$root.dialog({
 							type: 'error',
-							text: this.$t('unable-to-process')
+							text: this.$t('unable-to-process'),
 						});
 				}
 			});
@@ -360,13 +360,13 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('@.enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				this.$root.api('i/update_email', {
 					password: password,
-					email: this.email == '' ? null : this.email
+					email: this.email == '' ? null : this.email,
 				});
 			});
 		},
@@ -379,16 +379,16 @@ export default Vue.extend({
 				this.exportTarget == 'blocking' ? 'i/export-blocking' :
 				this.exportTarget == 'user-lists' ? 'i/export-user-lists' :
 				null, {}).then(() => {
-					this.$root.dialog({
-						type: 'info',
-						text: this.$t('export-requested')
-					});
-				}).catch((e: any) => {
-					this.$root.dialog({
-						type: 'error',
-						text: e.message
-					});
+				this.$root.dialog({
+					type: 'info',
+					text: this.$t('export-requested'),
 				});
+			}).catch((e: any) => {
+				this.$root.dialog({
+					type: 'error',
+					text: e.message,
+				});
+			});
 		},
 
 		doImport() {
@@ -408,23 +408,23 @@ export default Vue.extend({
 					this.exportTarget == 'blocking' ? 'i/import-blocking' :
 					this.exportTarget == 'user-lists' ? 'i/import-user-lists' :
 					null, {
-						fileId: file.id
-				}).then(() => {
+						fileId: file.id,
+					}).then(() => {
 					this.$root.dialog({
 						type: 'info',
-						text: this.$t('import-requested')
+						text: this.$t('import-requested'),
 					});
 				}).catch((e: any) => {
 					this.$root.dialog({
 						type: 'error',
-						text: e.message
+						text: e.message,
 					});
 				});
 			}).catch((e: any) => {
-					this.$root.dialog({
-						type: 'error',
-						text: e.message
-					});
+				this.$root.dialog({
+					type: 'error',
+					text: e.message,
+				});
 			});
 		},
 
@@ -432,21 +432,21 @@ export default Vue.extend({
 			const { canceled: canceled, result: password } = await this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			});
 			if (canceled) return;
 
 			this.$root.api('i/delete-account', {
-				password
+				password,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('account-deleted')
+					text: this.$t('account-deleted'),
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

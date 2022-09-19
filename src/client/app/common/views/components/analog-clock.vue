@@ -1,6 +1,7 @@
 <template>
 <svg class="mk-analog-clock" viewBox="0 0 10 10" preserveAspectRatio="none">
-	<circle v-for="angle, i in graduations"
+	<circle
+		v-for="angle, i in graduations"
 		:cx="5 + (Math.sin(angle) * (5 - graduationsPadding))"
 		:cy="5 - (Math.cos(angle) * (5 - graduationsPadding))"
 		:r="i % 5 == 0 ? 0.125 : 0.05"
@@ -38,12 +39,12 @@ export default Vue.extend({
 	props: {
 		dark: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		smooth: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -56,7 +57,7 @@ export default Vue.extend({
 			handsTailLength: 0.7,
 			hHandLengthRatio: 0.75,
 			mHandLengthRatio: 1,
-			sHandLengthRatio: 1
+			sHandLengthRatio: 1,
 		};
 	},
 
@@ -109,7 +110,7 @@ export default Vue.extend({
 			}
 
 			return angles;
-		}
+		},
 	},
 
 	mounted() {
@@ -129,8 +130,8 @@ export default Vue.extend({
 	methods: {
 		tick() {
 			this.now = new Date();
-		}
-	}
+		},
+	},
 });
 </script>
 

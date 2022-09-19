@@ -1,8 +1,8 @@
 <template>
 <div class="mrdgzndn">
-	<mfm :text="text" :i="$store.state.i" :key="text"/>
+	<mfm :key="text" :text="text" :i="$store.state.i"/>
 
-	<mk-url-preview v-for="url in urls" :url="url" :key="url" class="url"/>
+	<mk-url-preview v-for="url in urls" :key="url" :url="url" class="url"/>
 </div>
 </template>
 
@@ -14,11 +14,11 @@ import { unique } from '../../../../../../prelude/array';
 export default Vue.extend({
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -38,14 +38,14 @@ export default Vue.extend({
 			} else {
 				return [];
 			}
-		}
+		},
 	},
 
 	created() {
 		this.$watch('script.vars', () => {
 			this.text = this.script.interpolate(this.value.text);
 		}, { deep: true });
-	}
+	},
 });
 </script>
 

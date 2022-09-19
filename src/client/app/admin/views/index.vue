@@ -4,8 +4,9 @@
 		<button class="nav" @click="navOpend = true"><fa icon="bars"/></button>
 		<span>MisskeyMyAdmin</span>
 	</header>
-	<div class="nav-backdrop"
+	<div
 		v-if="navOpend && isMobile"
+		class="nav-backdrop"
 		@click="navOpend = false"
 		@touchstart="navOpend = false"
 	></div>
@@ -83,7 +84,7 @@ import XDrive from './drive.vue';
 import XAbuse from './abuse.vue';
 import XFederation from './federation.vue';
 import XFederationClassic from './federation-classic.vue';
-import XRelays from "./relays.vue";
+import XRelays from './relays.vue';
 
 import { faHeadset, faArrowLeft, faGlobe, faProjectDiagram, faExclamationCircle, faTasks, faStream, faDatabase, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
@@ -112,7 +113,7 @@ export default Vue.extend({
 		XRelays,
 	},
 	provide: {
-		isMobile
+		isMobile,
 	},
 	data() {
 		return {
@@ -134,8 +135,8 @@ export default Vue.extend({
 	computed: {
 		page() {
 			return this.$route.params.page;
-		}
-	}
+		},
+	},
 });
 </script>
 

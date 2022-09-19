@@ -3,15 +3,15 @@
 	<template v-if="!self">
 		<span class="schema">{{ schema }}//</span>
 		<span class="hostname">{{ hostname }}</span>
-		<span class="port" v-if="port != ''">:{{ port }}</span>
+		<span v-if="port != ''" class="port">:{{ port }}</span>
 	</template>
 	<template v-if="pathname === '/' && self">
 		<span class="self">{{ hostname }}</span>
 	</template>
-	<span class="pathname" v-if="pathname != ''">{{ self ? pathname.substr(1) : pathname }}</span>
+	<span v-if="pathname != ''" class="pathname">{{ self ? pathname.substr(1) : pathname }}</span>
 	<span class="query">{{ query }}</span>
 	<span class="hash">{{ hash }}</span>
-	<fa icon="external-link-square-alt" v-if="target === '_blank'"/>
+	<fa v-if="target === '_blank'" icon="external-link-square-alt"/>
 </component>
 </template>
 
@@ -41,7 +41,7 @@ export default defineComponent({
 			self: isSelf,
 			hasRoute: hasRoute,
 			attr: hasRoute ? 'to' : 'href',
-			target: hasRoute ? null : '_blank'
+			target: hasRoute ? null : '_blank',
 		};
 	},
 	created() {
@@ -52,7 +52,7 @@ export default defineComponent({
 		this.pathname = decodeURIComponent(url.pathname);
 		this.query = decodeURIComponent(url.search);
 		this.hash = decodeURIComponent(url.hash);
-	}
+	},
 });
 </script>
 

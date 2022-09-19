@@ -15,7 +15,7 @@ export default define({
 	methods: {
 		customize(date) {
 			location.href = '/?customize';
-		}
-	}
+		},
+	},
 });
 </script>

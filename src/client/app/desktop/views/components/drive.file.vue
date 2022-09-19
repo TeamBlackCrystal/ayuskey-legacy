@@ -1,23 +1,24 @@
 <template>
-<div class="gvfdktuvdgwhmztnuekzkswkjygptfcv"
+<div
+	class="gvfdktuvdgwhmztnuekzkswkjygptfcv"
 	:data-is-selected="isSelected"
 	:data-is-contextmenu-showing="isContextmenuShowing"
-	@click="onClick"
 	draggable="true"
+	:title="title"
+	@click="onClick"
 	@dragstart="onDragstart"
 	@dragend="onDragend"
 	@contextmenu.prevent.stop="onContextmenu"
-	:title="title"
 >
-	<div class="label" v-if="$store.state.i.avatarId == file.id">
+	<div v-if="$store.state.i.avatarId == file.id" class="label">
 		<img src="/assets/label.svg"/>
 		<p>{{ $t('avatar') }}</p>
 	</div>
-	<div class="label" v-if="$store.state.i.bannerId == file.id">
+	<div v-if="$store.state.i.bannerId == file.id" class="label">
 		<img src="/assets/label.svg"/>
 		<p>{{ $t('banner') }}</p>
 	</div>
-	<div class="label red" v-if="file.isSensitive">
+	<div v-if="file.isSensitive" class="label red">
 		<img src="/assets/label-red.svg"/>
 		<p>{{ $t('nsfw') }}</p>
 	</div>
@@ -26,7 +27,7 @@
 
 	<p class="name">
 		<span>{{ file.name.lastIndexOf('.') != -1 ? file.name.substr(0, file.name.lastIndexOf('.')) : file.name }}</span>
-		<span class="ext" v-if="file.name.lastIndexOf('.') != -1">{{ file.name.substr(file.name.lastIndexOf('.')) }}</span>
+		<span v-if="file.name.lastIndexOf('.') != -1" class="ext">{{ file.name.substr(file.name.lastIndexOf('.')) }}</span>
 	</p>
 </div>
 </template>
@@ -41,14 +42,14 @@ import XFileThumbnail from '../../../common/views/components/drive-file-thumbnai
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/drive.file.vue'),
-	props: ['file'],
 	components: {
-		XFileThumbnail
+		XFileThumbnail,
 	},
+	props: ['file'],
 	data() {
 		return {
 			isContextmenuShowing: false,
-			isDragging: false
+			isDragging: false,
 		};
 	},
 	computed: {
@@ -60,7 +61,7 @@ export default Vue.extend({
 		},
 		title(): string {
 			return `${this.file.name}\n${this.file.type} ${Vue.filter('bytes')(this.file.size)}`;
-		}
+		},
 	},
 	methods: {
 		onClick() {
@@ -73,41 +74,41 @@ export default Vue.extend({
 				type: 'item',
 				text: this.$t('contextmenu.rename'),
 				icon: 'i-cursor',
-				action: this.rename
+				action: this.rename,
 			}, {
 				type: 'item',
 				text: this.file.isSensitive ? this.$t('contextmenu.unmark-as-sensitive') : this.$t('contextmenu.mark-as-sensitive'),
 				icon: this.file.isSensitive ? ['far', 'eye'] : ['far', 'eye-slash'],
-				action: this.toggleSensitive
+				action: this.toggleSensitive,
 			}, null, {
 				type: 'item',
 				text: this.$t('contextmenu.copy-url'),
 				icon: 'link',
-				action: this.copyUrl
+				action: this.copyUrl,
 			}, {
 				type: 'link',
 				href: this.file.url,
 				target: '_blank',
 				text: this.$t('contextmenu.download'),
 				icon: 'download',
-				download: this.file.name
+				download: this.file.name,
 			}, null, {
 				type: 'item',
 				text: this.$t('@.delete'),
 				icon: ['far', 'trash-alt'],
-				action: this.deleteFile
+				action: this.deleteFile,
 			}, null, {
 				type: 'nest',
 				text: this.$t('contextmenu.else-files'),
 				menu: [{
 					type: 'item',
 					text: this.$t('contextmenu.set-as-avatar'),
-					action: this.setAsAvatar
+					action: this.setAsAvatar,
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.set-as-banner'),
-					action: this.setAsBanner
-				}]
+					action: this.setAsBanner,
+				}],
 			}, /*{
 				type: 'nest',
 				text: this.$t('contextmenu.open-in-app'),
@@ -119,7 +120,7 @@ export default Vue.extend({
 			}*/], {
 				closed: () => {
 					this.isContextmenuShowing = false;
-				}
+				},
 			});
 		},
 
@@ -144,13 +145,13 @@ export default Vue.extend({
 				input: {
 					placeholder: this.$t('contextmenu.input-new-file-name'),
 					default: this.file.name,
-					allowEmpty: false
-				}
+					allowEmpty: false,
+				},
 			}).then(({ canceled, result: name }) => {
 				if (canceled) return;
 				this.$root.api('drive/files/update', {
 					fileId: this.file.id,
-					name: name
+					name: name,
 				});
 			});
 		},
@@ -158,7 +159,7 @@ export default Vue.extend({
 		toggleSensitive() {
 			this.$root.api('drive/files/update', {
 				fileId: this.file.id,
-				isSensitive: !this.file.isSensitive
+				isSensitive: !this.file.isSensitive,
 			});
 		},
 
@@ -166,7 +167,7 @@ export default Vue.extend({
 			copyToClipboard(this.file.url);
 			this.$root.dialog({
 				title: this.$t('contextmenu.copied'),
-				text: this.$t('contextmenu.copied-url-to-clipboard')
+				text: this.$t('contextmenu.copied-url-to-clipboard'),
 			});
 		},
 
@@ -184,10 +185,10 @@ export default Vue.extend({
 
 		deleteFile() {
 			this.$root.api('drive/files/delete', {
-				fileId: this.file.id
+				fileId: this.file.id,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -8,19 +8,19 @@ import XNotes from './deck.notes.vue';
 
 export default Vue.extend({
 	components: {
-		XNotes
+		XNotes,
 	},
 
 	props: {
 		tagTl: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		mediaOnly: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -35,22 +35,22 @@ export default Vue.extend({
 					includeMyRenotes: this.$store.state.settings.showMyRenotes,
 					includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
 					includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
-					query: this.tagTl.query
-				})
-			}
+					query: this.tagTl.query,
+				}),
+			},
 		};
 	},
 
 	watch: {
 		mediaOnly() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 
 	mounted() {
 		if (this.connection) this.connection.close();
 		this.connection = this.$root.stream.connectToChannel('hashtag', {
-			q: this.tagTl.query
+			q: this.tagTl.query,
 		});
 		this.connection.on('note', this.onNote);
 	},
@@ -67,7 +67,7 @@ export default Vue.extend({
 
 		focus() {
 			this.$refs.timeline.focus();
-		}
-	}
+		},
+	},
 });
 </script>

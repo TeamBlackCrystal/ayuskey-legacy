@@ -1,7 +1,7 @@
 <template>
 <div class="wojmldye">
-	<x-page class="page" v-if="user.pinnedPage" :page="user.pinnedPage" :key="user.pinnedPage.id" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
-	<mk-note-detail class="note" v-for="n in user.pinnedNotes" :key="n.id" :note="n" :compact="true"/>
+	<x-page v-if="user.pinnedPage" :key="user.pinnedPage.id" class="page" :page="user.pinnedPage" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
+	<mk-note-detail v-for="n in user.pinnedNotes" :key="n.id" class="note" :note="n" :compact="true"/>
 	<ui-container :body-togglable="true">
 		<template #header><fa :icon="['far', 'comments']"/>{{ $t('recent-notes') }}</template>
 		<div>
@@ -35,21 +35,21 @@ export default Vue.extend({
 		XNotes,
 		XPhotos,
 		XPage: () => import('../../../../common/views/components/page/page.vue').then(m => m.default),
-		XActivity: () => import('../../../../common/views/components/activity.vue').then(m => m.default)
+		XActivity: () => import('../../../../common/views/components/activity.vue').then(m => m.default),
 	},
 	props: ['user'],
 	data() {
 		return {
 			makeFrequentlyRepliedUsersPromise: () => this.$root.api('users/get_frequently_replied_users', {
-				userId: this.user.id
+				userId: this.user.id,
 			}).then(res => res.map(x => x.user)),
 			makeFollowersYouKnowPromise: () => this.$root.api('users/followers', {
 				userId: this.user.id,
 				iknow: true,
-				limit: 30
+				limit: 30,
 			}).then(res => res.users),
 		};
-	}
+	},
 });
 </script>
 

@@ -34,41 +34,41 @@ export default Vue.extend({
 		return {
 			relays: [],
 			inbox: '',
-			faProjectDiagram
+			faProjectDiagram,
 		};
+	},
+
+	computed: {
 	},
 
 	created() {
 		this.reload();
 	},
 
-	computed: {
-	},
-
 	methods: {
 		add(inbox: string) {
 			this.$root.api('admin/relays/add', {
-				inbox
+				inbox,
 			}).then((relay: any) => {
 				this.inbox = '';
 				this.reload();
 			}).catch((e: any) => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message || e
+					text: e.message || e,
 				});
 			});
 		},
 
 		remove(inbox: string) {
 			this.$root.api('admin/relays/remove', {
-				inbox
+				inbox,
 			}).then(() => {
 				this.reload();
 			}).catch((e: any) => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message || e
+					text: e.message || e,
 				});
 			});
 		},
@@ -77,8 +77,8 @@ export default Vue.extend({
 			this.$root.api('admin/relays/list').then((relays: any) => {
 				this.relays = relays;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

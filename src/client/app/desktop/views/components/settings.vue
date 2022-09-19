@@ -37,8 +37,8 @@ export default Vue.extend({
 		inWindow: {
 			type: Boolean,
 			required: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 });
 </script>

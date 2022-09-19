@@ -9,8 +9,8 @@
 		<slot></slot>
 	</div>
 	<mk-stream-indicator v-if="$store.getters.isSignedIn"/>
-	<button class="nav button" v-if="$store.state.device.inDeckMode" @click="isDrawerOpening = !isDrawerOpening"><fa icon="bars"/><i v-if="indicate"><fa icon="circle"/></i></button>
-	<button class="post button" v-if="$store.state.device.inDeckMode || displayPostButton" @click="$post()"><fa icon="pencil-alt"/></button>
+	<button v-if="$store.state.device.inDeckMode" class="nav button" @click="isDrawerOpening = !isDrawerOpening"><fa icon="bars"/><i v-if="indicate"><fa icon="circle"/></i></button>
+	<button v-if="$store.state.device.inDeckMode || displayPostButton" class="post button" @click="$post()"><fa icon="pencil-alt"/></button>
 </div>
 </template>
 
@@ -23,7 +23,7 @@ import XNav from './ui.nav.vue';
 export default Vue.extend({
 	components: {
 		XHeader,
-		XNav
+		XNav,
 	},
 
 	props: {
@@ -34,14 +34,14 @@ export default Vue.extend({
 			type: Boolean,
 			default: true,
 			required: false,
-		}
+		},
 	},
 
 	data() {
 		return {
 			hasGameInvitation: false,
 			isDrawerOpening: false,
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -56,13 +56,13 @@ export default Vue.extend({
 
 		indicate(): boolean {
 			return this.hasUnreadNotification || this.hasUnreadMessagingMessage || this.hasGameInvitation;
-		}
+		},
 	},
 
 	watch: {
 		'$store.state.uiHeaderHeight'() {
 			this.$el.style.paddingTop = this.$store.state.uiHeaderHeight + 'px';
-		}
+		},
 	},
 
 	mounted() {
@@ -87,11 +87,11 @@ export default Vue.extend({
 		onNotification(notification) {
 			// TODO: ユーザーが画面を見てないと思われるとき(ブラウザやタブがアクティブじゃないなど)は送信しない
 			this.$root.stream.send('readNotification', {
-				id: notification.id
+				id: notification.id,
 			});
 
 			this.$root.new(MkNotify, {
-				notification
+				notification,
 			});
 		},
 
@@ -101,8 +101,8 @@ export default Vue.extend({
 
 		onReversiNoInvites() {
 			this.hasGameInvitation = false;
-		}
-	}
+		},
+	},
 });
 </script>
 

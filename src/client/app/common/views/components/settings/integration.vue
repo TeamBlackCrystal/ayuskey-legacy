@@ -66,7 +66,7 @@ export default Vue.extend({
 				if (this.githubForm) this.githubForm.close();
 			}
 		}, {
-			deep: true
+			deep: true,
 		});
 	},
 
@@ -106,7 +106,7 @@ export default Vue.extend({
 				'github_disconnect_window',
 				'height=570, width=520');
 		},
-	}
+	},
 });
 </script>
 

@@ -2,23 +2,23 @@
 <div class="mk-notes" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 	<slot name="header"></slot>
 
-	<div class="newer-indicator" :style="{ top: $store.state.uiHeaderHeight + 'px' }" v-show="queue.length > 0"></div>
+	<div v-show="queue.length > 0" class="newer-indicator" :style="{ top: $store.state.uiHeaderHeight + 'px' }"></div>
 
-	<div class="empty" v-if="empty">{{ $t('@.no-notes') }}</div>
+	<div v-if="empty" class="empty">{{ $t('@.no-notes') }}</div>
 
 	<mk-error v-if="error" @retry="init()"/>
 
-	<div class="placeholder" v-if="fetching">
+	<div v-if="fetching" class="placeholder">
 		<template v-for="i in 10">
 			<mk-note-skeleton :key="i"/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
-	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notes" class="notes transition" tag="div" ref="notes">
+	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" ref="notes" name="mk-notes" class="notes transition" tag="div">
 		<template v-for="(note, i) in _notes">
-			<mk-note :note="note" :key="note.id" :compact="true" ref="note"/>
-			<p class="date" :key="note.id + '_date'" v-if="i != items.length - 1 && note._date != _notes[i + 1]._date">
+			<mk-note :key="note.id" ref="note" :note="note" :compact="true"/>
+			<p v-if="i != items.length - 1 && note._date != _notes[i + 1]._date" :key="note.id + '_date'" class="date">
 				<span><fa icon="angle-up"/>{{ note._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notes[i + 1]._datetext }}</span>
 			</p>
@@ -26,7 +26,7 @@
 	</component>
 
 	<footer v-if="more">
-		<button @click="fetchMore()" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }">
+		<button :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" @click="fetchMore()">
 			<template v-if="!moreFetching">{{ $t('@.load-more') }}</template>
 			<template v-if="moreFetching"><fa icon="spinner" pulse fixed-width/></template>
 		</button>
@@ -94,13 +94,13 @@ export default Vue.extend({
 
 			onInited: (self) => {
 				self.$emit('loaded');
-			}
+			},
 		}),
 	],
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 	},
 
@@ -113,14 +113,14 @@ export default Vue.extend({
 				item._datetext = this.$t('@.month-and-day').replace('{month}', month.toString()).replace('{day}', date.toString());
 				return item;
 			});
-		}
+		},
 	},
 
 	methods: {
 		focus() {
 			(this.$refs.notes as any).children[0].focus ? (this.$refs.notes as any).children[0].focus() : (this.$refs.notes as any).$el.children[0].focus();
 		},
-	}
+	},
 });
 </script>
 

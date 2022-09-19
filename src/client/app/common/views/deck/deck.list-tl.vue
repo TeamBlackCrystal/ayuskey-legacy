@@ -8,19 +8,19 @@ import XNotes from './deck.notes.vue';
 
 export default Vue.extend({
 	components: {
-		XNotes
+		XNotes,
 	},
 
 	props: {
 		list: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		mediaOnly: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -35,22 +35,22 @@ export default Vue.extend({
 					withFiles: this.mediaOnly,
 					includeMyRenotes: this.$store.state.settings.showMyRenotes,
 					includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-					includeLocalRenotes: this.$store.state.settings.showLocalRenotes
-				})
-			}
+					includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
+				}),
+			},
 		};
 	},
 
 	watch: {
 		mediaOnly() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 
 	mounted() {
 		if (this.connection) this.connection.dispose();
 		this.connection = this.$root.stream.connectToChannel('userList', {
-			listId: this.list.id
+			listId: this.list.id,
 		});
 		this.connection.on('note', this.onNote);
 		this.connection.on('userAdded', this.onUserAdded);
@@ -77,7 +77,7 @@ export default Vue.extend({
 
 		focus() {
 			this.$refs.timeline.focus();
-		}
-	}
+		},
+	},
 });
 </script>
