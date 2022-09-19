@@ -1,6 +1,7 @@
 <template>
 <div class="gafaadew">
-	<div class="form"
+	<div
+		class="form"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
 		@dragleave="onDragleave"
@@ -10,14 +11,14 @@
 			<button class="cancel" @click="cancel"><fa icon="times"/></button>
 			<div>
 				<span class="text-count" :class="{ over: trimmedLength(text) > maxNoteTextLength }">{{ maxNoteTextLength - trimmedLength(text) }}</span>
-				<span class="geo" v-if="geo"><fa icon="map-marker-alt"/></span>
+				<span v-if="geo" class="geo"><fa icon="map-marker-alt"/></span>
 				<button class="submit" :disabled="!canPost" @click="post">{{ submitText }}</button>
 			</div>
 		</header>
 		<div class="form">
-			<mk-note-preview class="preview" v-if="reply" :note="reply"/>
-			<mk-note-preview class="preview" v-if="renote" :note="renote"/>
-			<div class="with-quote" v-if="quoteId"><fa icon="quote-left"/> {{ $t('@.post-form.quote-attached') }}<button @click="quoteId = null"><fa icon="times"/></button></div>
+			<mk-note-preview v-if="reply" class="preview" :note="reply"/>
+			<mk-note-preview v-if="renote" class="preview" :note="renote"/>
+			<div v-if="quoteId" class="with-quote"><fa icon="quote-left"/> {{ $t('@.post-form.quote-attached') }}<button @click="quoteId = null"><fa icon="times"/></button></div>
 			<div v-if="visibility === 'specified'" class="to-specified">
 				<fa icon="envelope"/> {{ $t('@.post-form.specified-recipient') }}
 				<div class="visibleUsers">
@@ -28,14 +29,14 @@
 					<button @click="addVisibleUser">{{ $t('@.post-form.add-visible-user') }}</button>
 				</div>
 			</div>
-			<div class="hashtags" v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags">
+			<div v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags" class="hashtags">
 				<a v-for="tag in recentHashtags.slice(0, 5)" :key="tag" @click="addTag(tag)">#{{ tag }}</a>
 			</div>
-			<div class="local-only" v-if="localOnly === true"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
-			<input v-show="useCw" ref="cw" v-model="cw" :placeholder="$t('@.post-form.cw-placeholder')" v-autocomplete="{ model: 'cw' }">
+			<div v-if="localOnly === true" class="local-only"><fa icon="heart"/> {{ $t('@.post-form.local-only-message') }}</div>
+			<input v-show="useCw" ref="cw" v-model="cw" v-autocomplete="{ model: 'cw' }" :placeholder="$t('@.post-form.cw-placeholder')">
 			<div class="textarea">
-				<textarea v-model="text" ref="text" :disabled="posting" :placeholder="placeholder" v-autocomplete="{ model: 'text' }"></textarea>
-				<button class="emoji" @click="emoji" ref="emoji">
+				<textarea ref="text" v-model="text" v-autocomplete="{ model: 'text' }" :disabled="posting" :placeholder="placeholder"></textarea>
+				<button ref="emoji" class="emoji" @click="emoji">
 					<fa :icon="['far', 'laugh']"/>
 				</button>
 			</div>
@@ -49,7 +50,7 @@
 				<button class="poll" @click="poll = true"><fa icon="chart-pie"/></button>
 				<button class="poll" @click="useCw = !useCw"><fa :icon="['far', 'eye-slash']"/></button>
 				<button class="geo" @click="geo ? removeGeo() : setGeo()"><fa icon="map-marker-alt"/></button>
-				<button class="visibility" @click="setVisibility" ref="visibilityButton">
+				<button ref="visibilityButton" class="visibility" @click="setVisibility">
 					<span v-if="visibility === 'public'"><fa icon="globe"/></span>
 					<span v-if="visibility === 'home'"><fa icon="home"/></span>
 					<span v-if="visibility === 'followers'"><fa icon="unlock"/></span>
@@ -58,9 +59,9 @@
 			</footer>
 			<input ref="file" class="file" type="file" multiple="multiple" @change="onChangeFile"/>
 		</div>
-		<details v-if="preview" class="preview" ref="preview" :open="$store.state.device.showPostPreview" @toggle="togglePreview">
+		<details v-if="preview" ref="preview" class="preview" :open="$store.state.device.showPostPreview" @toggle="togglePreview">
 			<summary>{{ $t('@.post-form.preview') }}</summary>
-			<mk-note class="note" :note="preview" :key="preview.id" :compact="true" :preview="true" />
+			<mk-note :key="preview.id" class="note" :note="preview" :compact="true" :preview="true" />
 		</details>
 	</div>
 </div>
@@ -76,7 +77,7 @@ export default Vue.extend({
 
 	mixins: [
 		form({
-			mobile: true
+			mobile: true,
 		}),
 	],
 
@@ -99,7 +100,7 @@ export default Vue.extend({
 		cancel() {
 			this.$emit('cancel');
 		},
-	}
+	},
 });
 </script>
 

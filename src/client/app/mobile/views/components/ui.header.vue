@@ -1,8 +1,8 @@
 <template>
-<div class="header" ref="root" :class="{ shadow: $store.state.device.useShadow }">
-	<div class="main" ref="main">
+<div ref="root" class="header" :class="{ shadow: $store.state.device.useShadow }">
+	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
-		<div class="content" ref="mainContainer">
+		<div ref="mainContainer" class="content">
 			<button class="nav" @click="$parent.isDrawerOpening = true"><fa icon="bars"/></button>
 			<i v-if="$parent.indicate" class="circle"><fa icon="circle"/></i>
 			<h1>
@@ -11,7 +11,7 @@
 			<slot name="func"></slot>
 		</div>
 	</div>
-	<div class="indicator" v-show="$store.state.indicate"></div>
+	<div v-show="$store.state.indicate" class="indicator"></div>
 </div>
 </template>
 
@@ -26,7 +26,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			env: env
+			env: env,
 		};
 	},
 

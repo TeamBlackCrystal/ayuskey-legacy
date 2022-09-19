@@ -21,20 +21,20 @@ export default Vue.extend({
 				endpoint: 'notes/search-by-tag',
 				limit: 20,
 				params: {
-					tag: this.$route.params.tag
-				}
-			}
+					tag: this.$route.params.tag,
+				},
+			},
 		};
 	},
 	watch: {
 		$route() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 	methods: {
 		inited() {
 			Progress.done();
 		},
-	}
+	},
 });
 </script>

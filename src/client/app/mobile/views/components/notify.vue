@@ -15,7 +15,7 @@ export default Vue.extend({
 	computed: {
 		pos() {
 			return this.$store.state.device.mobileNotificationPosition;
-		}
+		},
 	},
 	mounted() {
 		this.$nextTick(() => {
@@ -23,7 +23,7 @@ export default Vue.extend({
 				targets: this.$el,
 				[this.pos]: '0px',
 				duration: 500,
-				easing: 'easeOutQuad'
+				easing: 'easeOutQuad',
 			});
 
 			setTimeout(() => {
@@ -32,11 +32,11 @@ export default Vue.extend({
 					[this.pos]: `-${this.$el.offsetHeight}px`,
 					duration: 500,
 					easing: 'easeOutQuad',
-					complete: () => this.destroyDom()
+					complete: () => this.destroyDom(),
 				});
 			}, 6000);
 		});
-	}
+	},
 });
 </script>
 

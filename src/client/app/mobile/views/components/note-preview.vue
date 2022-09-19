@@ -1,14 +1,14 @@
 <template>
 <div class="yohlumlkhizgfkvvscwfcrcggkotpvry" :class="{ smart: $store.state.device.postStyle == 'smart', mini: narrow }">
-	<mk-avatar class="avatar" :user="note.user" v-if="$store.state.device.postStyle != 'smart' && !narrow"/>
+	<mk-avatar v-if="$store.state.device.postStyle != 'smart' && !narrow" class="avatar" :user="note.user"/>
 	<div class="main">
 		<mk-note-header class="header" :note="note" :mini="true"/>
 		<div class="body">
 			<p v-if="note.cw != null" class="cw">
-				<span class="text" v-if="note.cw != ''">{{ note.cw }}</span>
+				<span v-if="note.cw != ''" class="text">{{ note.cw }}</span>
 				<mk-cw-button v-model="showContent" :note="note"/>
 			</p>
-			<div class="content" v-show="note.cw == null || showContent">
+			<div v-show="note.cw == null || showContent" class="content">
 				<mk-sub-note-content class="text" :note="note"/>
 			</div>
 		</div>
@@ -20,24 +20,24 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-	props: {
-		note: {
-			type: Object,
-			required: true
-		}
-	},
 
 	inject: {
 		narrow: {
-			default: false
-		}
+			default: false,
+		},
+	},
+	props: {
+		note: {
+			type: Object,
+			required: true,
+		},
 	},
 
 	data() {
 		return {
-			showContent: false
+			showContent: false,
 		};
-	}
+	},
 });
 </script>
 

@@ -3,9 +3,9 @@
 	<div class="body">
 		<span v-if="note.isHidden" style="opacity: 0.5">({{ $t('private') }})</span>
 		<span v-if="note.deletedAt" style="opacity: 0.5">({{ $t('deleted') }})</span>
-		<a class="reply" v-if="note.replyId"><fa icon="reply"/></a>
+		<a v-if="note.replyId" class="reply"><fa icon="reply"/></a>
 		<mfm v-if="note.text" :text="note.text" :author="note.user" :i="$store.state.i" :custom-emojis="note.emojis"/>
-		<router-link class="rp" v-if="note.renoteId" :to="`/notes/${note.renoteId}`">RN: ...</router-link>
+		<router-link v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">RN: ...</router-link>
 	</div>
 	<details v-if="note.files.length > 0">
 		<summary>({{ $t('media-count').replace('{}', note.files.length) }})</summary>
@@ -23,7 +23,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/sub-note-content.vue'),
-	props: ['note']
+	props: ['note'],
 });
 </script>
 

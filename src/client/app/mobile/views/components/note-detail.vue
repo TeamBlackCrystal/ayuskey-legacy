@@ -1,10 +1,10 @@
 <template>
 <div class="mk-note-detail" tabindex="-1" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 	<button
-		class="more"
 		v-if="appearNote.reply && appearNote.reply.replyId && conversation.length == 0"
-		@click="fetchConversation"
+		class="more"
 		:disabled="conversationFetching"
+		@click="fetchConversation"
 	>
 		<template v-if="!conversationFetching"><fa icon="ellipsis-v"/></template>
 		<template v-if="conversationFetching"><fa icon="spinner" pulse/></template>
@@ -12,10 +12,10 @@
 	<div class="conversation">
 		<x-sub v-for="note in conversation" :key="note.id" :note="note"/>
 	</div>
-	<div class="reply-to" v-if="appearNote.reply">
+	<div v-if="appearNote.reply" class="reply-to">
 		<x-sub :note="appearNote.reply"/>
 	</div>
-	<mk-renote class="renote" v-if="isRenote" :note="note" mini/>
+	<mk-renote v-if="isRenote" class="renote" :note="note" mini/>
 	<article>
 		<header>
 			<mk-avatar class="avatar" :user="appearNote.user"/>
@@ -30,20 +30,20 @@
 				<mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis" />
 				<mk-cw-button v-model="showContent" :note="appearNote"/>
 			</p>
-			<div class="content" v-show="appearNote.cw == null || showContent">
+			<div v-show="appearNote.cw == null || showContent" class="content">
 				<div class="text">
 					<span v-if="appearNote.isHidden" style="opacity: 0.5">({{ $t('private') }})</span>
 					<span v-if="appearNote.deletedAt" style="opacity: 0.5">({{ $t('deleted') }})</span>
 					<mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis"/>
 				</div>
-				<div class="files" v-if="appearNote.files.length > 0">
+				<div v-if="appearNote.files.length > 0" class="files">
 					<mk-media-list :media-list="appearNote.files" :raw="true"/>
 				</div>
 				<mk-poll v-if="appearNote.poll" :note="appearNote"/>
-				<mk-url-preview v-for="url in urls" :url="url" :key="url" :detail="true"/>
-				<a class="location" v-if="appearNote.geo" :href="`https://maps.google.com/maps?q=${appearNote.geo.coordinates[1]},${appearNote.geo.coordinates[0]}`" rel="noopener" target="_blank"><fa icon="map-marker-alt"/> {{ $t('location') }}</a>
-				<div class="map" v-if="appearNote.geo" ref="map"></div>
-				<div class="renote" v-if="appearNote.renote">
+				<mk-url-preview v-for="url in urls" :key="url" :url="url" :detail="true"/>
+				<a v-if="appearNote.geo" class="location" :href="`https://maps.google.com/maps?q=${appearNote.geo.coordinates[1]},${appearNote.geo.coordinates[0]}`" rel="noopener" target="_blank"><fa icon="map-marker-alt"/> {{ $t('location') }}</a>
+				<div v-if="appearNote.geo" ref="map" class="map"></div>
+				<div v-if="appearNote.renote" class="renote">
 					<mk-note-preview :note="appearNote.renote"/>
 				</div>
 			</div>
@@ -52,39 +52,39 @@
 			<mk-time :time="appearNote.createdAt" mode="detail"/>
 		</router-link>
 		<div class="visibility-info">
-			<span class="visibility" v-if="appearNote.visibility != 'public'">
-				<fa class="home" v-if="appearNote.visibility == 'home'" :title="$t('@.note-visibility.home')" icon="home"/>
-				<fa class="followers" v-if="appearNote.visibility == 'followers'" :title="$t('@.note-visibility.followers')" icon="lock"/>
-				<fa class="specified" v-if="appearNote.visibility == 'specified'" :title="$t('@.note-visibility.specified')" icon="envelope"/>
+			<span v-if="appearNote.visibility != 'public'" class="visibility">
+				<fa v-if="appearNote.visibility == 'home'" class="home" :title="$t('@.note-visibility.home')" icon="home"/>
+				<fa v-if="appearNote.visibility == 'followers'" class="followers" :title="$t('@.note-visibility.followers')" icon="lock"/>
+				<fa v-if="appearNote.visibility == 'specified'" class="specified" :title="$t('@.note-visibility.specified')" icon="envelope"/>
 			</span>
-			<span class="localOnly" v-if="appearNote.localOnly == true" :title="$t('@.note-visibility.local-only')"><fa icon="heart"/></span>
-			<span class="remote" title="Remote post" v-if="appearNote.user.host != null"><fa :icon="faGlobeAmericas"/></span>
+			<span v-if="appearNote.localOnly == true" class="localOnly" :title="$t('@.note-visibility.local-only')"><fa icon="heart"/></span>
+			<span v-if="appearNote.user.host != null" class="remote" title="Remote post"><fa :icon="faGlobeAmericas"/></span>
 		</div>
 		<footer>
 			<mk-reactions-viewer :note="appearNote"/>
-			<button @click="reply()" :title="$t('title')">
+			<button :title="$t('title')" @click="reply()">
 				<template v-if="appearNote.reply"><fa icon="reply-all"/></template>
 				<template v-else><fa icon="reply"/></template>
-				<p class="count" v-if="appearNote.repliesCount > 0">{{ appearNote.repliesCount }}</p>
+				<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 			</button>
-			<button v-if="['public', 'home'].includes(appearNote.visibility)" @click="renote()" title="Renote">
-				<fa icon="retweet"/><p class="count" v-if="appearNote.renoteCount > 0">{{ appearNote.renoteCount }}</p>
+			<button v-if="['public', 'home'].includes(appearNote.visibility)" title="Renote" @click="renote()">
+				<fa icon="retweet"/><p v-if="appearNote.renoteCount > 0" class="count">{{ appearNote.renoteCount }}</p>
 			</button>
 			<button v-else>
 				<fa icon="ban"/>
 			</button>
-			<button v-if="appearNote.myReaction == null" class="reactionButton" @click="react()" ref="reactButton">
+			<button v-if="appearNote.myReaction == null" ref="reactButton" class="reactionButton" @click="react()">
 				<fa icon="plus"/>
 			</button>
-			<button v-if="appearNote.myReaction != null" class="reactionButton reacted" @click="undoReact(appearNote)" ref="reactButton">
+			<button v-if="appearNote.myReaction != null" ref="reactButton" class="reactionButton reacted" @click="undoReact(appearNote)">
 				<fa icon="minus"/>
 			</button>
-			<button @click="menu()" ref="menuButton">
+			<button ref="menuButton" @click="menu()">
 				<fa icon="ellipsis-h"/>
 			</button>
 		</footer>
 	</article>
-	<div class="replies" v-if="!compact">
+	<div v-if="!compact" class="replies">
 		<x-sub v-for="note in replies" :key="note.id" :note="note"/>
 	</div>
 </div>
@@ -104,7 +104,7 @@ export default Vue.extend({
 
 	components: {
 		XSub,
-		XInstanceTicker
+		XInstanceTicker,
 	},
 
 	mixins: [noteMixin(), noteSubscriber('note')],
@@ -112,11 +112,11 @@ export default Vue.extend({
 	props: {
 		note: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		compact: {
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -124,14 +124,14 @@ export default Vue.extend({
 			faGlobeAmericas,
 			conversation: [],
 			conversationFetching: false,
-			replies: []
+			replies: [],
 		};
 	},
 
 	watch: {
 		note() {
 			this.fetchReplies();
-		}
+		},
 	},
 
 	mounted() {
@@ -143,7 +143,7 @@ export default Vue.extend({
 			if (this.compact) return;
 			this.$root.api('notes/children', {
 				noteId: this.appearNote.id,
-				limit: 30
+				limit: 30,
 			}).then(replies => {
 				this.replies = replies;
 			});
@@ -154,7 +154,7 @@ export default Vue.extend({
 
 			// Fetch conversation
 			this.$root.api('notes/conversation', {
-				noteId: this.appearNote.replyId
+				noteId: this.appearNote.replyId,
 			}).then(conversation => {
 				this.conversationFetching = false;
 				this.conversation = conversation.reverse();
@@ -165,8 +165,8 @@ export default Vue.extend({
 			if (this.$store.state.device.instanceTicker === 'always') return true;
 			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
 			return false;
-		}
-	}
+		},
+	},
 });
 </script>
 

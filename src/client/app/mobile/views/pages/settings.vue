@@ -43,7 +43,7 @@ export default Vue.extend({
 		signout() {
 			this.$root.signout();
 		},
-	}
+	},
 });
 </script>
 

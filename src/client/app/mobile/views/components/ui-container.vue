@@ -17,40 +17,40 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
+	inject: {
+		inNakedDeckColumn: {
+			default: false,
+		},
+	},
 	props: {
 		showHeader: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		naked: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		bodyTogglable: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		expanded: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
-	},
-	inject: {
-		inNakedDeckColumn: {
-			default: false
-		}
 	},
 	data() {
 		return {
-			showBody: this.expanded
+			showBody: this.expanded,
 		};
 	},
 	methods: {
 		toggleContent(show: boolean) {
 			if (!this.bodyTogglable) return;
 			this.showBody = show;
-		}
-	}
+		},
+	},
 });
 </script>
 

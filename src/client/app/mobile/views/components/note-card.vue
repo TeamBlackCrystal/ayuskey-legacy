@@ -29,7 +29,7 @@ export default Vue.extend({
 				? getStaticImageUrl(this.note.user.avatarUrl)
 				: this.note.user.avatarUrl;
 		},
-	}
+	},
 });
 </script>
 

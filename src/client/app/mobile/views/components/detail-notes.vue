@@ -1,9 +1,9 @@
 <template>
 <div class="fdcvngpy">
-    <div v-if="!notes.length" class="no-highlight">{{$t('@.featured-none')}}</div>
+	<div v-if="!notes.length" class="no-highlight">{{$t('@.featured-none')}}</div>
 	<sequential-entrance animation="entranceFromTop" delay="25">
 		<template v-for="note in notes">
-			<mk-note-detail class="post" :note="note" :key="note.id"/>
+			<mk-note-detail :key="note.id" class="post" :note="note"/>
 		</template>
 	</sequential-entrance>
 	<ui-button v-if="more" @click="fetchMore()">{{ $t('@.load-more') }}</ui-button>
@@ -26,18 +26,18 @@ export default Vue.extend({
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 		extract: {
-			required: false
-		}
+			required: false,
+		},
 	},
 
 	computed: {
 		notes() {
 			return this.extract ? this.extract(this.items) : this.items;
-		}
-	}
+		},
+	},
 });
 </script>
 

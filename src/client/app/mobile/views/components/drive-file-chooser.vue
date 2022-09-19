@@ -2,11 +2,12 @@
 <div class="cdxzvcfawjxdyxsekbxbfgtplebnoneb">
 	<div class="body">
 		<header>
-			<h1>{{ $t('select-file') }}<span class="count" v-if="files.length > 0">({{ files.length }})</span></h1>
+			<h1>{{ $t('select-file') }}<span v-if="files.length > 0" class="count">({{ files.length }})</span></h1>
 			<button class="close" @click="cancel"><fa icon="times"/></button>
 			<button v-if="multiple" class="ok" @click="ok"><fa icon="check"/></button>
 		</header>
-		<x-drive class="drive" ref="browser"
+		<x-drive
+			ref="browser" class="drive"
 			:select-file="true"
 			:type="type"
 			:multiple="multiple"
@@ -29,7 +30,7 @@ export default Vue.extend({
 	props: ['type', 'multiple'],
 	data() {
 		return {
-			files: []
+			files: [],
 		};
 	},
 	methods: {
@@ -47,8 +48,8 @@ export default Vue.extend({
 		ok() {
 			this.$emit('selected', this.files);
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

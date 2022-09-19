@@ -10,7 +10,7 @@ import Welcome from './welcome.vue';
 export default Vue.extend({
 	components: {
 		Home,
-		Welcome
-	}
+		Welcome,
+	},
 });
 </script>

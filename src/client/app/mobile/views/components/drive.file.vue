@@ -1,11 +1,11 @@
 <template>
-<a class="vupkuhvjnjyqaqhsiogfbywvjxynrgsm" @click.prevent="onClick" :href="`/i/drive/file/${ file.id }`" :data-is-selected="isSelected">
+<a class="vupkuhvjnjyqaqhsiogfbywvjxynrgsm" :href="`/i/drive/file/${ file.id }`" :data-is-selected="isSelected" @click.prevent="onClick">
 	<div class="container">
 		<x-file-thumbnail class="thumbnail" :file="file" fit="cover"/>
 		<div class="body">
 			<p class="name">
 				<span>{{ file.name.lastIndexOf('.') != -1 ? file.name.substr(0, file.name.lastIndexOf('.')) : file.name }}</span>
-				<span class="ext" v-if="file.name.lastIndexOf('.') != -1">{{ file.name.substr(file.name.lastIndexOf('.')) }}</span>
+				<span v-if="file.name.lastIndexOf('.') != -1" class="ext">{{ file.name.substr(file.name.lastIndexOf('.')) }}</span>
 			</p>
 			<footer>
 				<span class="type"><mk-file-type-icon :type="file.type"/>{{ file.type }}</span>
@@ -30,22 +30,22 @@ import XFileThumbnail from '../../../common/views/components/drive-file-thumbnai
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/drive.file.vue'),
-	props: ['file'],
 	components: {
-		XFileThumbnail
+		XFileThumbnail,
 	},
+	props: ['file'],
 	data() {
 		return {
-			isSelected: false
+			isSelected: false,
 		};
 	},
 	computed: {
 		browser(): any {
 			return this.$parent;
-		}
+		},
 	},
 	created() {
-		this.isSelected = this.browser.selectedFiles.some(f => f.id == this.file.id)
+		this.isSelected = this.browser.selectedFiles.some(f => f.id == this.file.id);
 
 		this.browser.$on('change-selection', this.onBrowserChangeSelection);
 	},
@@ -58,8 +58,8 @@ export default Vue.extend({
 		},
 		onClick() {
 			this.browser.chooseFile(this.file);
-		}
-	}
+		},
+	},
 });
 </script>
 
