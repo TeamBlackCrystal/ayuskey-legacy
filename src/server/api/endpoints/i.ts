@@ -5,7 +5,7 @@ export const meta = {
 	stability: 'stable',
 
 	desc: {
-		'ja-JP': '自分のアカウント情報を取得します。'
+		'ja-JP': '自分のアカウント情報を取得します。',
 	},
 
 	tags: ['account'],
@@ -28,6 +28,6 @@ export default define(meta, async (ps, user, app) => {
 		detail: true,
 		// TODO: remove
 		includeHasUnreadNotes: true,
-		includeSecrets: isSecure
+		includeSecrets: isSecure,
 	});
 });

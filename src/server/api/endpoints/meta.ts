@@ -13,7 +13,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': 'インスタンス情報を取得します。',
-		'en-US': 'Get the information of this instance.'
+		'en-US': 'Get the information of this instance.',
 	},
 
 	tags: ['meta'],
@@ -26,8 +26,8 @@ export const meta = {
 	params: {
 		detail: {
 			validator: $.optional.bool,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	res: {
@@ -38,7 +38,7 @@ export const meta = {
 				type: 'string' as const,
 				optional: false as const, nullable: false as const,
 				description: 'The version of Misskey of this instance.',
-				example: config.version
+				example: config.version,
 			},
 			name: {
 				type: 'string' as const,
@@ -67,7 +67,7 @@ export const meta = {
 							optional: false as const, nullable: false as const,
 							description: 'The text of the announcement. (can be HTML)',
 						},
-					}
+					},
 				},
 				description: 'The announcements of this instance.',
 			},
@@ -91,8 +91,8 @@ export const meta = {
 				optional: false as const, nullable: false as const,
 				description: 'Whether enabled emoji reaction.',
 			},
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -100,16 +100,16 @@ export default define(meta, async (ps, me) => {
 
 	const emojis = await Emojis.find({
 		where: {
-			host: null
+			host: null,
 		},
 		order: {
 			category: 'ASC',
-			name: 'ASC'
+			name: 'ASC',
 		},
 		cache: {
 			id: 'meta_emojis',
-			milliseconds: 3600000	// 1 hour
-		}
+			milliseconds: 3600000,	// 1 hour
+		},
 	});
 
 	const redisServerInfo = await redisClient.info('Server');
@@ -140,7 +140,7 @@ export default define(meta, async (ps, me) => {
 
 		cpu: {
 			model: os.cpus()[0].model,
-			cores: os.cpus().length
+			cores: os.cpus().length,
 		},
 
 		announcements: instance.announcements || [],
