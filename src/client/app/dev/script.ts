@@ -23,7 +23,7 @@ import NotFound from '../common/views/pages/not-found.vue';
 
 Vue.use(BootstrapVue);
 
-Vue.component('mk-ui', ui);
+Vue.component('MkUi', ui);
 
 /**
  * init
@@ -38,8 +38,8 @@ init(launch => {
 			{ path: '/apps', component: Apps },
 			{ path: '/app/new', component: AppNew },
 			{ path: '/app/:id', component: App },
-			{ path: '*', component: NotFound }
-		]
+			{ path: '*', component: NotFound },
+		],
 	});
 
 	// Launch the app

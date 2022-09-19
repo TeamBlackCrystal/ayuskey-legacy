@@ -25,12 +25,12 @@ const vuex = localStorage.getItem('vuex');
 if (vuex) {
 	tmp = JSON.parse(vuex);
 }
-export const $i = tmp.i
+export const $i = tmp.i;
 //#endregion
 
 export function signout() {
 	localStorage.removeItem('account');
-	document.cookie = `igi=; path=/`;
+	document.cookie = 'igi=; path=/';
 	location.href = '/';
 }
 
@@ -53,8 +53,8 @@ function fetchAccount(token): Promise<Account> {
 		fetch(`${apiUrl}/i`, {
 			method: 'POST',
 			body: JSON.stringify({
-				i: token
-			})
+				i: token,
+			}),
 		})
 		.then(res => {
 			// When failed to authenticate user

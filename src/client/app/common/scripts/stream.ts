@@ -81,10 +81,8 @@ export default class Stream extends EventEmitter {
 
 		// チャンネル再接続
 		if (isReconnect) {
-			for (const p of this.sharedConnectionPools)
-				p.connect();
-			for (const c of this.nonSharedConnections)
-				c.connect();
+			for (const p of this.sharedConnectionPools) p.connect();
+			for (const c of this.nonSharedConnections) c.connect();
 		}
 	}
 
@@ -132,7 +130,7 @@ export default class Stream extends EventEmitter {
 	public send(typeOrPayload, payload?) {
 		const data = payload === undefined ? typeOrPayload : {
 			type: typeOrPayload,
-			body: payload
+			body: payload,
 		};
 
 		this.stream.send(JSON.stringify(data));
@@ -205,7 +203,7 @@ class Pool {
 		this.isConnected = true;
 		this.stream.send('connect', {
 			channel: this.channel,
-			id: this.id
+			id: this.id,
 		});
 	}
 
@@ -237,7 +235,7 @@ abstract class Connection extends EventEmitter {
 		this.stream.send('ch', {
 			id: id,
 			type: type,
-			body: body
+			body: body,
 		});
 	}
 
@@ -289,7 +287,7 @@ class NonSharedConnection extends Connection {
 		this.stream.send('connect', {
 			channel: this.channel,
 			id: this.id,
-			params: this.params
+			params: this.params,
 		});
 	}
 

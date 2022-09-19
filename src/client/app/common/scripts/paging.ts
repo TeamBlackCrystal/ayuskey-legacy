@@ -9,7 +9,7 @@ export default (opts) => ({
 			fetching: true,
 			moreFetching: false,
 			inited: false,
-			more: false
+			more: false,
 		};
 	},
 
@@ -20,7 +20,7 @@ export default (opts) => ({
 
 		error(): boolean {
 			return !this.fetching && !this.inited;
-		}
+		},
 	},
 
 	watch: {
@@ -30,7 +30,7 @@ export default (opts) => ({
 
 		pagination() {
 			this.init();
-		}
+		},
 	},
 
 	created() {
@@ -80,7 +80,7 @@ export default (opts) => ({
 			if (params && params.then) params = await params;
 			await this.$root.api(this.pagination.endpoint, {
 				limit: (this.pagination.limit || 10) + 1,
-				...params
+				...params,
 			}).then(x => {
 				if (this.pagination.forceDisableReadmore) {
 					this.more = false;
@@ -115,7 +115,7 @@ export default (opts) => ({
 				} : {
 					untilId: this.items[this.items.length - 1].id,
 				}),
-				...params
+				...params,
 			}).then(x => {
 				if (x.length == (this.pagination.limit || 10) + 1) {
 					x.pop();
@@ -187,6 +187,6 @@ export default (opts) => ({
 
 		onBottom() {
 			this.fetchMore();
-		}
-	}
+		},
+	},
 });

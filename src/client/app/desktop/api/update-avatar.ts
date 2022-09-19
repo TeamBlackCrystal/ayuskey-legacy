@@ -2,13 +2,12 @@ import { apiUrl, locale } from '../../config';
 import ProgressDialog from '../views/components/progress-dialog.vue';
 
 export default ($root: any) => {
-
 	const cropImage = file => new Promise(async (resolve, reject) => {
 		const CropWindow = await import('../views/components/crop-window.vue').then(x => x.default);
 		const w = $root.new(CropWindow, {
 			image: file,
 			title: locale['desktop']['avatar-crop-title'],
-			aspectRatio: 1 / 1
+			aspectRatio: 1 / 1,
 		});
 
 		w.$once('cropped', blob => {
@@ -17,11 +16,11 @@ export default ($root: any) => {
 			data.append('file', blob, file.name + '.cropped.png');
 
 			$root.api('drive/folders/find', {
-				name: locale['desktop']['avatar']
+				name: locale['desktop']['avatar'],
 			}).then(avatarFolder => {
 				if (avatarFolder.length === 0) {
 					$root.api('drive/folders/create', {
-						name: locale['desktop']['avatar']
+						name: locale['desktop']['avatar'],
 					}).then(iconFolder => {
 						resolve(upload(data, iconFolder));
 					});
@@ -42,7 +41,7 @@ export default ($root: any) => {
 
 	const upload = (data, folder) => new Promise((resolve, reject) => {
 		const dialog = $root.new(ProgressDialog, {
-			title: locale['desktop']['uploading-avatar']
+			title: locale['desktop']['uploading-avatar'],
 		});
 		document.body.appendChild(dialog.$el);
 
@@ -66,20 +65,20 @@ export default ($root: any) => {
 
 	const setAvatar = file => {
 		return $root.api('i/update', {
-			avatarId: file.id
+			avatarId: file.id,
 		}).then(i => {
 			$root.$store.commit('updateIKeyValue', {
 				key: 'avatarId',
-				value: i.avatarId
+				value: i.avatarId,
 			});
 			$root.$store.commit('updateIKeyValue', {
 				key: 'avatarUrl',
-				value: i.avatarUrl
+				value: i.avatarUrl,
 			});
 
 			$root.dialog({
 				title: locale['desktop']['avatar-updated'],
-				text: null
+				text: null,
 			});
 
 			return i;
@@ -89,13 +88,13 @@ export default ($root: any) => {
 					$root.dialog({
 						type: 'error',
 						title: locale['desktop']['unable-to-process'],
-						text: locale['desktop']['invalid-filetype']
+						text: locale['desktop']['invalid-filetype'],
 					});
 					break;
 				default:
 					$root.dialog({
 						type: 'error',
-						text: locale['desktop']['unable-to-process']
+						text: locale['desktop']['unable-to-process'],
 					});
 			}
 		});
@@ -107,7 +106,7 @@ export default ($root: any) => {
 			: $root.$chooseDriveFile({
 				multiple: false,
 				type: 'image/*',
-				title: locale['desktop']['choose-avatar']
+				title: locale['desktop']['choose-avatar'],
 			});
 
 		return selectedFile

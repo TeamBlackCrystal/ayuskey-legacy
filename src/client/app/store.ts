@@ -1,5 +1,4 @@
-import { ref } from 'vue';
-import Vue from 'vue';
+import Vue, { ref } from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
@@ -42,7 +41,7 @@ const defaultSettings = {
 	uploadFolder: null,
 	pastedFileName: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
 	pasteDialog: false,
-	reactions: ['like', 'love', 'laugh', 'hmm', 'surprise', 'congrats', 'angry', 'confused', 'rip', 'pudding']
+	reactions: ['like', 'love', 'laugh', 'hmm', 'surprise', 'congrats', 'angry', 'confused', 'rip', 'pudding'],
 };
 
 const defaultDeviceSettings = {
@@ -98,14 +97,14 @@ const defaultDeviceSettings = {
 
 export default (os: MiOS) => new Vuex.Store({
 	plugins: [createPersistedState({
-		paths: ['i', 'device', 'settings']
+		paths: ['i', 'device', 'settings'],
 	})],
 
 	state: {
 		i: null,
 		indicate: false,
 		uiHeaderHeight: 0,
-		behindNotes: []
+		behindNotes: [],
 	},
 
 	getters: {
@@ -401,7 +400,7 @@ export default (os: MiOS) => new Vuex.Store({
 			if (column == null) return;
 			column = x;
 			os.store.dispatch('settings/updateDeckProfile');
-		}
+		},
 	},
 
 	actions: {
@@ -452,14 +451,14 @@ export default (os: MiOS) => new Vuex.Store({
 				setTl(state, x) {
 					state.tl = {
 						src: x.src,
-						arg: x.arg
+						arg: x.arg,
 					};
 				},
 
 				setVisibility(state, visibility) {
 					state.visibility = visibility;
 				},
-			}
+			},
 		},
 
 		settings: {
@@ -487,7 +486,7 @@ export default (os: MiOS) => new Vuex.Store({
 					if (ctx.rootGetters.isSignedIn) {
 						os.api('i/update-client-setting', {
 							name: x.key,
-							value: x.value
+							value: x.value,
 						});
 					}
 				},
@@ -496,11 +495,11 @@ export default (os: MiOS) => new Vuex.Store({
 					const profiles = ctx.state.homeProfiles;
 					ctx.commit('set', {
 						key: 'homeProfiles',
-						value: profiles
+						value: profiles,
 					});
 					os.api('i/update-client-setting', {
 						name: 'homeProfiles',
-						value: profiles
+						value: profiles,
 					});
 				},
 
@@ -508,11 +507,11 @@ export default (os: MiOS) => new Vuex.Store({
 					const profiles = ctx.state.mobileHomeProfiles;
 					ctx.commit('set', {
 						key: 'mobileHomeProfiles',
-						value: profiles
+						value: profiles,
 					});
 					os.api('i/update-client-setting', {
 						name: 'mobileHomeProfiles',
-						value: profiles
+						value: profiles,
 					});
 				},
 
@@ -520,16 +519,16 @@ export default (os: MiOS) => new Vuex.Store({
 					const profiles = ctx.state.deckProfiles;
 					ctx.commit('set', {
 						key: 'deckProfiles',
-						value: profiles
+						value: profiles,
 					});
 					os.api('i/update-client-setting', {
 						name: 'deckProfiles',
-						value: profiles
+						value: profiles,
 					});
 				},
-			}
-		}
-	}
+			},
+		},
+	},
 });
 
 // TODO: 他のタブと永続化されたstateを同期
@@ -539,7 +538,7 @@ const PREFIX = 'miux:';
 /**
  * 常にメモリにロードしておく必要がないような設定情報を保管するストレージ(非リアクティブ)
  */
- export class ColdDeviceStorage {
+export class ColdDeviceStorage {
 	public static default = {
 		sound_masterVolume: 0.3,
 		sound_note: { type: 'syuilo/down', volume: 1 },
@@ -605,7 +604,7 @@ const PREFIX = 'miux:';
 			set: (value: unknown) => {
 				const val = value;
 				ColdDeviceStorage.set(key, val);
-			}
+			},
 		};
 	}
 }

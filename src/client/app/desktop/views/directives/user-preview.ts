@@ -26,8 +26,8 @@ export default {
 			self.tag = new MkUserPreview({
 				parent: vn.context,
 				propsData: {
-					user: self.user
-				}
+					user: self.user,
+				},
 			}).$mount();
 
 			const preview = self.tag.$el;
@@ -68,5 +68,5 @@ export default {
 		clearTimeout(self.showTimer);
 		clearTimeout(self.hideTimer);
 		self.close();
-	}
+	},
 };

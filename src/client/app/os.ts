@@ -1,5 +1,4 @@
-import { markRaw, reactive, Ref, ref } from 'vue';
-import { Component } from 'vue';
+import { markRaw, reactive, Ref, ref , Component } from 'vue';
 import { apiUrl, version, locale, env, debug } from './config';
 import { query } from '../../prelude/url';
 import { $i } from './account';
@@ -41,13 +40,13 @@ export function api(endpoint: string, data: Record<string, any> = {}, token?: st
 		}
 
 		const fetchPromise = anonGet ? fetch(url, {
-				method: 'GET',
-				credentials: 'omit'
-			}) : fetch(url, {
+			method: 'GET',
+			credentials: 'omit',
+		}) : fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(data),
 			credentials: 'omit',
-			cache: 'no-cache'
+			cache: 'no-cache',
 		});
 
 		// Send request

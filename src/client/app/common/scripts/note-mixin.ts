@@ -28,7 +28,7 @@ export default (opts: Opts = {}) => ({
 		return {
 			showContent: false,
 			hideThisNote: false,
-			openingMenu: false
+			openingMenu: false,
 		};
 	},
 
@@ -104,7 +104,7 @@ export default (opts: Opts = {}) => ({
 			} else {
 				return null;
 			}
-		}
+		},
 	},
 
 	created() {
@@ -119,7 +119,7 @@ export default (opts: Opts = {}) => ({
 				animation: !viaKeyboard,
 				cb: () => {
 					this.focus();
-				}
+				},
 			});
 		},
 
@@ -130,13 +130,13 @@ export default (opts: Opts = {}) => ({
 				animation: !viaKeyboard,
 				cb: () => {
 					this.focus();
-				}
+				},
 			});
 		},
 
 		renoteDirectly() {
 			(this as any).api('notes/create', {
-				renoteId: this.appearNote.id
+				renoteId: this.appearNote.id,
 			});
 		},
 
@@ -146,12 +146,12 @@ export default (opts: Opts = {}) => ({
 			const w = this.$root.new(MkReactionPicker, {
 				source: this.$refs.reactButton,
 				showFocus: viaKeyboard,
-				animation: !viaKeyboard
+				animation: !viaKeyboard,
 			});
 			w.$once('chosen', reaction => {
 				this.$root.api('notes/reactions/create', {
 					noteId: this.appearNote.id,
-					reaction: reaction
+					reaction: reaction,
 				}).then(() => {
 					w.close();
 				});
@@ -162,7 +162,7 @@ export default (opts: Opts = {}) => ({
 		reactDirectly(reaction) {
 			this.$root.api('notes/reactions/create', {
 				noteId: this.appearNote.id,
-				reaction: reaction
+				reaction: reaction,
 			});
 		},
 
@@ -170,18 +170,18 @@ export default (opts: Opts = {}) => ({
 			const oldReaction = note.myReaction;
 			if (!oldReaction) return;
 			this.$root.api('notes/reactions/delete', {
-				noteId: note.id
+				noteId: note.id,
 			});
 		},
 
 		favorite() {
 			pleaseLogin(this.$root);
 			this.$root.api('notes/favorites/create', {
-				noteId: this.appearNote.id
+				noteId: this.appearNote.id,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
 		},
@@ -190,12 +190,12 @@ export default (opts: Opts = {}) => ({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('@.delete-confirm'),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 
 				this.$root.api('notes/delete', {
-					noteId: this.appearNote.id
+					noteId: this.appearNote.id,
 				});
 			});
 		},
@@ -206,7 +206,7 @@ export default (opts: Opts = {}) => ({
 			const w = this.$root.new(MkNoteMenu, {
 				source: this.$refs.menuButton,
 				note: this.appearNote,
-				animation: !viaKeyboard
+				animation: !viaKeyboard,
 			}).$once('closed', () => {
 				this.openingMenu = false;
 				this.focus();
@@ -234,6 +234,6 @@ export default (opts: Opts = {}) => ({
 
 		focusAfter() {
 			focus(this.$el, e => e.nextElementSibling);
-		}
-	}
+		},
+	},
 });

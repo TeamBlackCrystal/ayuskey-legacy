@@ -1,7 +1,7 @@
 import * as NProgress from 'nprogress';
 NProgress.configure({
 	trickleSpeed: 500,
-	showSpinner: false
+	showSpinner: false,
 });
 
 const root = document.getElementsByTagName('html')[0];
@@ -17,5 +17,5 @@ export default {
 	},
 	set: val => {
 		NProgress.set(val);
-	}
+	},
 };

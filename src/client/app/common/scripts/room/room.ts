@@ -96,7 +96,7 @@ export class Room {
 				this.graphicsQuality === 'high' ? 'high-performance' :
 				this.graphicsQuality === 'medium' ? 'default' :
 				this.graphicsQuality === 'low' ? 'low-power' :
-				'low-power' // cheep
+				'low-power', // cheep
 		});
 
 		this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -236,7 +236,7 @@ export class Room {
 		const avatarMaterial = new THREE.MeshBasicMaterial({
 			map: iconTexture,
 			side: THREE.DoubleSide,
-			alphaTest: 0.5
+			alphaTest: 0.5,
 		});
 
 		const iconGeometry = new THREE.PlaneGeometry(1, 1);
@@ -260,11 +260,11 @@ export class Room {
 				font: font,
 				bevelThickness: 0,
 				bevelSize: 0,
-				bevelEnabled: false
+				bevelEnabled: false,
 			});
 
 			const nameMaterial = new THREE.MeshLambertMaterial({
-				color: 0xffffff
+				color: 0xffffff,
 			});
 
 			const nameObject = new THREE.Mesh(nameGeometry, nameMaterial);

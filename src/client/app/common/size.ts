@@ -12,7 +12,7 @@ export default {
 						el.classList.add(q.class);
 					}
 				}
-			}
+			},
 		});
-	}
+	},
 };

@@ -21,8 +21,8 @@ init(launch => {
 		base: '/auth/',
 		routes: [
 			{ path: '/:token', component: Index },
-			{ path: '*', component: NotFound }
-		]
+			{ path: '*', component: NotFound },
+		],
 	});
 
 	// Launch the app

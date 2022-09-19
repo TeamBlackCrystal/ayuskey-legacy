@@ -21,8 +21,8 @@ init(launch => {
 		routes: [
 			{ path: '/:page', component: Index },
 			{ path: '/', redirect: '/dashboard' },
-			{ path: '*', component: NotFound }
-		]
+			{ path: '*', component: NotFound },
+		],
 	});
 
 	// Launch the app

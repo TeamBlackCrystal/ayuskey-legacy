@@ -11,7 +11,7 @@ export default {
 	unbind(el, binding, vn) {
 		const self = el._autoCompleteDirective_;
 		self.x.detach();
-	}
+	},
 };
 
 /**
@@ -162,8 +162,8 @@ class Autocomplete {
 					type: type,
 					q: q,
 					x,
-					y
-				}
+					y,
+				},
 			}).$mount();
 
 			// 要素追加
