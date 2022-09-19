@@ -22,8 +22,8 @@ export async function sendEmail(to: string, subject: string, html: string, text:
 		proxy: config.proxySmtp,
 		auth: enableAuth ? {
 			user: meta.smtpUser,
-			pass: meta.smtpPass
-		} : undefined
+			pass: meta.smtpPass,
+		} : undefined,
 	} as any);
 
 	try {
@@ -59,7 +59,7 @@ export async function sendEmail(to: string, subject: string, html: string, text:
 					</nav>
 				</body>
 			</html>
-			`
+			`,
 		});
 
 		logger.info('Message sent: %s', info.messageId);

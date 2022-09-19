@@ -7,7 +7,7 @@ const ACTOR_USERNAME = 'instance.actor' as const;
 export async function getInstanceActor(): Promise<ILocalUser> {
 	const user = await Users.findOne({
 		host: null,
-		username: ACTOR_USERNAME
+		username: ACTOR_USERNAME,
 	});
 
 	if (user) return user as ILocalUser;
