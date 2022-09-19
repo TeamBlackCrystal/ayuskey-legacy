@@ -19,7 +19,7 @@ import { genSearchQuery } from '../../../common/scripts/gen-search-query';
 export default Vue.extend({
 	components: {
 		XColumn,
-		XNotes
+		XNotes,
 	},
 
 	data() {
@@ -27,21 +27,21 @@ export default Vue.extend({
 			pagination: {
 				endpoint: 'notes/search',
 				limit: 20,
-				params: () => genSearchQuery(this, this.q)
-			}
+				params: () => genSearchQuery(this, this.q),
+			},
 		};
 	},
 
 	computed: {
 		q(): string {
 			return this.$route.query.q;
-		}
+		},
 	},
 
 	watch: {
 		$route() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 });
 </script>

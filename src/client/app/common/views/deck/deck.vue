@@ -1,51 +1,55 @@
 <template>
 <mk-ui :class="$style.root">
-	<div class="qlvquzbjribqcaozciifydkngcwtyzje" ref="body" :style="style" :class="`${$store.state.device.deckColumnAlign} ${$store.state.device.deckColumnWidth}`" v-hotkey.global="keymap">
+	<div ref="body" v-hotkey.global="keymap" class="qlvquzbjribqcaozciifydkngcwtyzje" :style="style" :class="`${$store.state.device.deckColumnAlign} ${$store.state.device.deckColumnWidth}`">
 		<template v-for="(ids, layoutIndex) in layoutL">
 			<div v-if="ids.length > 1" class="folder">
 				<template v-for="(id, stackIndex) in ids">
-					<x-column-core :ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
-						:pos="{
+					<x-column-core
+						:ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
 							first: layoutIndex === 0,
 							last: layoutIndex === layoutL.length - 1 && layoutR.length === 0,
 							top: stackIndex === 0,
 							bottom: stackIndex === ids.length - 1
 						}"
+						@parentFocus="moveFocus(id, $event)"
 					/>
 				</template>
 			</div>
-			<x-column-core v-else :ref="ids[0]" :key="ids[0]" :column="columns.find(c => c.id == ids[0])" @parentFocus="moveFocus(ids[0], $event)"
-				:pos="{
+			<x-column-core
+				v-else :ref="ids[0]" :key="ids[0]" :column="columns.find(c => c.id == ids[0])" :pos="{
 					alone: layout.length === 1,
 					first: layoutIndex === 0,
 					last: layoutIndex === layoutL.length - 1 && layoutR.length === 0,
 					top: true, bottom: true }"
+				@parentFocus="moveFocus(ids[0], $event)"
 			/>
 		</template>
 		<router-view></router-view>
 		<template v-for="(ids, layoutIndex) in layoutR">
 			<div v-if="ids.length > 1" class="folder">
 				<template v-for="(id, stackIndex) in ids">
-					<x-column-core :ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" @parentFocus="moveFocus(id, $event)"
-						:pos="{
+					<x-column-core
+						:ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
 							first: layoutIndex === 0 && layoutL.length === 0,
 							last: layoutIndex === layoutR.length - 1,
 							top: stackIndex === 0,
 							bottom: stackIndex === ids.length - 1
 						}"
+						@parentFocus="moveFocus(id, $event)"
 					/>
 				</template>
 			</div>
-			<x-column-core v-else :ref="ids[0]" :key="ids[0]" :column="columns.find(c => c.id == ids[0])" @parentFocus="moveFocus(ids[0], $event)"
-				:pos="{
+			<x-column-core
+				v-else :ref="ids[0]" :key="ids[0]" :column="columns.find(c => c.id == ids[0])" :pos="{
 					alone: layout.length === 1,
 					first: layoutIndex === 0 && layoutL.length === 0,
 					last: layoutIndex === layoutR.length - 1,
 					top: true,
 					bottom: true }"
+				@parentFocus="moveFocus(ids[0], $event)"
 			/>
 		</template>
-		<button ref="add" @click="add" :title="$t('@deck.add-column')" style="font-size: 1.5em"><fa icon="plus"/></button>
+		<button ref="add" :title="$t('@deck.add-column')" style="font-size: 1.5em" @click="add"><fa icon="plus"/></button>
 	</div>
 </mk-ui>
 </template>
@@ -62,7 +66,15 @@ export default Vue.extend({
 	i18n: i18n('deck'),
 
 	components: {
-		XColumnCore
+		XColumnCore,
+	},
+
+	provide() {
+		return {
+			inDeck: true,
+			getColumnVm: this.getColumnVm,
+			narrow: true,
+		};
 	},
 
 	computed: {
@@ -99,15 +111,15 @@ export default Vue.extend({
 
 		style(): any {
 			return {
-				height: `calc(100vh - ${this.$store.state.uiHeaderHeight}px)`
+				height: `calc(100vh - ${this.$store.state.uiHeaderHeight}px)`,
 			};
 		},
 
 		keymap(): any {
 			return {
-				't': this.focus
+				't': this.focus,
 			};
-		}
+		},
 	},
 
 	watch: {
@@ -117,18 +129,10 @@ export default Vue.extend({
 			this.$nextTick(() => {
 				this.$refs.body.scrollTo({
 					left: this.$refs.body.scrollWidth - this.$refs.body.clientWidth,
-					behavior: 'smooth'
+					behavior: 'smooth',
 				});
 			});
-		}
-	},
-
-	provide() {
-		return {
-			inDeck: true,
-			getColumnVm: this.getColumnVm,
-			narrow: true
-		};
+		},
 	},
 
 	created() {
@@ -138,22 +142,22 @@ export default Vue.extend({
 					type: 'widgets',
 					widgets: []
 				}, */{
-					id: uuid(),
-					type: 'home',
-					name: null,
-				}, {
-					id: uuid(),
-					type: 'notifications',
-					name: null,
-				}, {
-					id: uuid(),
-					type: 'local',
-					name: null,
-				}, {
-					id: uuid(),
-					type: 'global',
-					name: null,
-				}]
+						id: uuid(),
+						type: 'home',
+						name: null,
+					}, {
+						id: uuid(),
+						type: 'notifications',
+						name: null,
+					}, {
+						id: uuid(),
+						type: 'local',
+						name: null,
+					}, {
+						id: uuid(),
+						type: 'global',
+						name: null,
+					}],
 			};
 
 			deck.layout = deck.columns.map(c => [c.id]);
@@ -185,54 +189,54 @@ export default Vue.extend({
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'home'
+							type: 'home',
 						});
-					}
+					},
 				}, {
 					icon: ['far', 'comments'],
 					text: this.$t('@deck.local'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'local'
+							type: 'local',
 						});
-					}
+					},
 				}, {
 					icon: 'share-alt',
 					text: this.$t('@deck.hybrid'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'hybrid'
+							type: 'hybrid',
 						});
-					}
+					},
 				}, {
 					icon: 'globe',
 					text: this.$t('@deck.global'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'global'
+							type: 'global',
 						});
-					}
+					},
 				}, {
 					icon: 'at',
 					text: this.$t('@deck.mentions'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'mentions'
+							type: 'mentions',
 						});
-					}
+					},
 				}, {
 					icon: ['far', 'envelope'],
 					text: this.$t('@deck.direct'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'direct'
+							type: 'direct',
 						});
-					}
+					},
 				}, {
 					icon: 'list',
 					text: this.$t('@deck.list'),
@@ -243,43 +247,43 @@ export default Vue.extend({
 							title: this.$t('@deck.select-list'),
 							select: {
 								items: lists.map(list => ({
-									value: list.id, text: list.name
-								}))
+									value: list.id, text: list.name,
+								})),
 							},
-							showCancelButton: true
+							showCancelButton: true,
 						});
 						if (canceled) return;
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
 							type: 'list',
-							list: lists.find(l => l.id === listId)
+							list: lists.find(l => l.id === listId),
 						});
-					}
+					},
 				}, {
 					icon: 'hashtag',
 					text: this.$t('@deck.hashtag'),
 					action: () => {
 						this.$root.dialog({
 							title: this.$t('enter-hashtag-tl-title'),
-							input: true
+							input: true,
 						}).then(({ canceled, result: title }) => {
 							if (canceled) return;
 							this.$store.commit('addDeckColumn', {
 								id: uuid(),
 								type: 'hashtag',
-								tagTlId: this.$store.state.settings.tagTimelines.find(x => x.title == title).id
+								tagTlId: this.$store.state.settings.tagTimelines.find(x => x.title == title).id,
 							});
 						});
-					}
+					},
 				}, {
 					icon: ['far', 'bell'],
 					text: this.$t('@deck.notifications'),
 					action: () => {
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
-							type: 'notifications'
+							type: 'notifications',
 						});
-					}
+					},
 				}, {
 					icon: 'calculator',
 					text: this.$t('@deck.widgets'),
@@ -287,10 +291,10 @@ export default Vue.extend({
 						this.$store.commit('addDeckColumn', {
 							id: uuid(),
 							type: 'widgets',
-							widgets: []
+							widgets: [],
 						});
-					}
-				}]
+					},
+				}],
 			});
 		},
 
@@ -357,8 +361,8 @@ export default Vue.extend({
 		isTlColumn(id) {
 			const column = this.columns.find(c => c.id === id);
 			return ['home', 'local', 'hybrid', 'global', 'list', 'hashtag', 'mentions', 'direct'].includes(column.type);
-		}
-	}
+		},
+	},
 });
 </script>
 

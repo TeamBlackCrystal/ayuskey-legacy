@@ -1,11 +1,11 @@
 <template>
 <x-column>
 	<template #header>
-		<fa icon="user"/><mk-user-name :user="user" v-if="user" :key="user.id"/>
+		<fa icon="user"/><mk-user-name v-if="user" :key="user.id" :user="user"/>
 	</template>
 
-	<div class="zubukjlciycdsyynicqrnlsmdwmymzqu" v-if="user">
-		<div class="is-remote" v-if="user.host != null">
+	<div v-if="user" class="zubukjlciycdsyynicqrnlsmdwmymzqu">
+		<div v-if="user.host != null" class="is-remote">
 			<details>
 				<summary><fa icon="exclamation-triangle"/> {{ $t('@.is-remote-user') }}</summary>
 				<a :href="user.url" rel="nofollow noopener" target="_blank">{{ $t('@.view-on-remote') }}</a>
@@ -13,23 +13,23 @@
 		</div>
 		<header :style="bannerStyle">
 			<div>
-				<button class="menu" @click="menu" ref="menu"><fa icon="ellipsis-h"/></button>
+				<button ref="menu" class="menu" @click="menu"><fa icon="ellipsis-h"/></button>
 				<mk-follow-button v-if="$store.getters.isSignedIn && user.id != $store.state.i.id" :user="user" class="follow" mini/>
-				<mk-avatar class="avatar" :user="user" :disable-preview="true" :key="user.id"/>
+				<mk-avatar :key="user.id" class="avatar" :user="user" :disable-preview="true"/>
 				<router-link class="name" :to="user | userPage()">
-					<mk-user-name :user="user" :key="user.id" :nowrap="false"/>
+					<mk-user-name :key="user.id" :user="user" :nowrap="false"/>
 				</router-link>
 				<span class="acct">@{{ user | acct }} <fa v-if="user.isLocked == true" class="locked" icon="lock" fixed-width/></span>
-				<span class="moved" v-if="user.movedToUser != null">Moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
-				<span class="followed" v-if="user.isFollowed">{{ $t('follows-you') }}</span>
+				<span v-if="user.movedToUser != null" class="moved">Moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
+				<span v-if="user.isFollowed" class="followed">{{ $t('follows-you') }}</span>
 			</div>
 		</header>
 		<div class="info">
 			<div class="description">
-				<mfm v-if="user.description" :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis" :key="user.id"/>
+				<mfm v-if="user.description" :key="user.id" :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis"/>
 			</div>
-			<div class="fields" v-if="user.fields" :key="user.id">
-				<dl class="field" v-for="(field, i) in user.fields" :key="i">
+			<div v-if="user.fields" :key="user.id" class="fields">
+				<dl v-for="(field, i) in user.fields" :key="i" class="field">
 					<dt class="name">
 						<mfm :text="field.name" :plain="true" :custom-emojis="user.emojis"/>
 					</dt>
@@ -90,13 +90,13 @@ export default Vue.extend({
 			if (this.user.bannerUrl == null) return {};
 			return {
 				backgroundColor: this.user.bannerColor,
-				backgroundImage: `url(${ this.user.bannerUrl })`
+				backgroundImage: `url(${ this.user.bannerUrl })`,
 			};
 		},
 	},
 
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 
 	created() {
@@ -115,13 +115,13 @@ export default Vue.extend({
 		menu() {
 			const w = this.$root.new(XUserMenu, {
 				source: this.$refs.menu,
-				user: this.user
+				user: this.user,
 			});
 			this.$once('hook:beforeDestroy', () => {
 				w.destroyDom();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

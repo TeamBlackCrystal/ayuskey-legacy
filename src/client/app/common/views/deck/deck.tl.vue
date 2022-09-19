@@ -1,5 +1,5 @@
 <template>
-<div class="iwaalbte" v-if="disabled">
+<div v-if="disabled" class="iwaalbte">
 	<p>
 		<fa :icon="faMinusCircle"/>
 		{{ $t('disabled-timeline.title') }}
@@ -19,20 +19,20 @@ export default Vue.extend({
 	i18n: i18n('deck'),
 
 	components: {
-		XNotes
+		XNotes,
 	},
 
 	props: {
 		src: {
 			type: String,
 			required: false,
-			default: 'home'
+			default: 'home',
 		},
 		mediaOnly: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -40,7 +40,7 @@ export default Vue.extend({
 			connection: null,
 			disabled: false,
 			faMinusCircle,
-			pagination: null
+			pagination: null,
 		};
 	},
 
@@ -67,7 +67,7 @@ export default Vue.extend({
 	watch: {
 		mediaOnly() {
 			(this.$refs.timeline as any).reload();
-		}
+		},
 	},
 
 	created() {
@@ -79,8 +79,8 @@ export default Vue.extend({
 				withFiles: this.mediaOnly,
 				includeMyRenotes: this.$store.state.settings.showMyRenotes,
 				includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-				includeLocalRenotes: this.$store.state.settings.showLocalRenotes
-			})
+				includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
+			}),
 		};
 	},
 
@@ -116,8 +116,8 @@ export default Vue.extend({
 
 		focus() {
 			(this.$refs.timeline as any).focus();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -5,7 +5,7 @@
 	</template>
 
 	<div>
-		<component :is="component" @init="init" v-bind="$attrs"/>
+		<component :is="component" v-bind="$attrs" @init="init"/>
 	</div>
 </x-column>
 </template>
@@ -21,8 +21,8 @@ export default Vue.extend({
 
 	props: {
 		component: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -39,7 +39,7 @@ export default Vue.extend({
 		init(v) {
 			this.title = v.title;
 			this.icon = v.icon;
-		}
-	}
+		},
+	},
 });
 </script>
