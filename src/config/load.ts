@@ -2,7 +2,7 @@
  * Config loader
  */
 
-import { URL , fileURLToPath } from 'url';
+import { URL } from 'node:url';
 import * as fs from 'fs';
 import { dirname } from 'path'; import * as yaml from 'js-yaml';
 import { Source, Mixin } from './types';
@@ -19,7 +19,7 @@ const dir = `${_dirname}/../../.config`;
 /**
  * Path of configuration file
  */
-const path = process.env.NODE_ENV == 'test'
+const path = process.env.NODE_ENV === 'test'
 	? `${dir}/test.yml`
 	: `${dir}/default.yml`;
 

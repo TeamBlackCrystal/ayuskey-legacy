@@ -1,4 +1,4 @@
-import * as childProcess from 'child_process';
+import * as childProcess from 'node:child_process';
 import * as Deque from 'double-ended-queue';
 import Xev from '@ayuskey/xev';
 
@@ -20,6 +20,6 @@ export default function() {
 	});
 
 	process.on('exit', code => {
-		process.kill(p.pid);
+		process.kill(p.pid!);
 	});
 }

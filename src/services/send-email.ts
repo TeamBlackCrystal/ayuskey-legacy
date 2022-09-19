@@ -62,9 +62,9 @@ export async function sendEmail(to: string, subject: string, html: string, text:
 			`,
 		});
 
-		logger.info('Message sent: %s', info.messageId);
+		logger.info(`Message sent: ${info.messageId}`);
 	} catch (e) {
-		logger.error(e);
+		logger.error(e as Error);
 		throw e;
 	}
 }
