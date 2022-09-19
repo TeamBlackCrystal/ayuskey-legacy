@@ -20,9 +20,9 @@ export const meta = {
 		noSuchFile: {
 			message: 'No such file.',
 			code: 'NO_SUCH_FILE',
-			id: 'caf3ca38-c6e5-472e-a30c-b05377dcc240'
-		}
-	}
+			id: 'caf3ca38-c6e5-472e-a30c-b05377dcc240',
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {

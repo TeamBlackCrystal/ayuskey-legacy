@@ -7,7 +7,7 @@ import { ID } from '../../../../../misc/cafy-id';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'カスタム絵文字を取得します。'
+		'ja-JP': 'カスタム絵文字を取得します。',
 	},
 
 	tags: ['admin'],
@@ -18,17 +18,17 @@ export const meta = {
 	params: {
 		query: {
 			validator: $.optional.nullable.str,
-			default: null as any
+			default: null as any,
 		},
 
 		host: {
 			validator: $.optional.nullable.str,
-			default: null as any
+			default: null as any,
 		},
 
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		sinceId: {
@@ -37,17 +37,17 @@ export const meta = {
 
 		untilId: {
 			validator: $.optional.type(ID),
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async (ps) => {
 	const q = makePaginationQuery(Emojis.createQueryBuilder('emoji'), ps.sinceId, ps.untilId);
 
 	if (ps.host == null) {
-		q.andWhere(`emoji.host IS NOT NULL`);
+		q.andWhere('emoji.host IS NOT NULL');
 	} else {
-		q.andWhere(`emoji.host = :host`, { host: toPuny(ps.host) });
+		q.andWhere('emoji.host = :host', { host: toPuny(ps.host) });
 	}
 
 	if (ps.query) {

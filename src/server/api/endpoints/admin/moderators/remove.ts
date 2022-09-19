@@ -6,7 +6,7 @@ import { Users } from '../../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': '指定したユーザーをモデレーター解除します。',
-		'en-US': 'Unmark a user as moderator.'
+		'en-US': 'Unmark a user as moderator.',
 	},
 
 	tags: ['admin'],
@@ -19,10 +19,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID'
-			}
+				'en-US': 'The user ID',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {
@@ -33,6 +33,6 @@ export default define(meta, async (ps) => {
 	}
 
 	await Users.update(user.id, {
-		isModerator: false
+		isModerator: false,
 	});
 });

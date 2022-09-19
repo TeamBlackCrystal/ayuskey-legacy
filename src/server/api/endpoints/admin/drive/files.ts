@@ -12,12 +12,12 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		offset: {
 			validator: $.optional.num.min(0),
-			default: 0
+			default: 0,
 		},
 
 		sort: {
@@ -35,9 +35,9 @@ export const meta = {
 				'local',
 				'remote',
 			]),
-			default: 'local'
-		}
-	}
+			default: 'local',
+		},
+	},
 };
 
 const sort: any = { // < https://github.com/Microsoft/TypeScript/issues/1863
@@ -45,7 +45,7 @@ const sort: any = { // < https://github.com/Microsoft/TypeScript/issues/1863
 	'-createdAt': { createdAt: 1 },
 	'+size': { size: -1 },
 	'-size': { size: 1 },
-	[fallback]: { id: -1 }
+	[fallback]: { id: -1 },
 };
 
 export default define(meta, async (ps, me) => {
@@ -58,7 +58,7 @@ export default define(meta, async (ps, me) => {
 		where: q,
 		take: ps.limit!,
 		order: sort[ps.sort!] || sort[fallback],
-		skip: ps.offset
+		skip: ps.offset,
 	});
 
 	return await DriveFiles.packMany(files, { detail: true, withUser: true, self: true });

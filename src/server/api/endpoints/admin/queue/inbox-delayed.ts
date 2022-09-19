@@ -9,7 +9,7 @@ export const meta = {
 	requireModerator: true,
 
 	params: {
-	}
+	},
 };
 
 export default define(meta, async (ps) => {

@@ -5,7 +5,7 @@ import { toPunyNullable } from '../../../../../misc/convert-host';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'カスタム絵文字を取得します。'
+		'ja-JP': 'カスタム絵文字を取得します。',
 	},
 
 	tags: ['admin'],
@@ -16,20 +16,20 @@ export const meta = {
 	params: {
 		host: {
 			validator: $.optional.nullable.str,
-			default: null as any
-		}
-	}
+			default: null as any,
+		},
+	},
 };
 
 export default define(meta, async (ps) => {
 	const emojis = await Emojis.find({
 		where: {
-			host: toPunyNullable(ps.host)
+			host: toPunyNullable(ps.host),
 		},
 		order: {
 			category: 'ASC',
-			name: 'ASC'
-		}
+			name: 'ASC',
+		},
 	});
 
 	return emojis.map(e => ({
@@ -38,6 +38,6 @@ export default define(meta, async (ps) => {
 		category: e.category,
 		aliases: e.aliases,
 		host: e.host,
-		url: e.url
+		url: e.url,
 	}));
 });
