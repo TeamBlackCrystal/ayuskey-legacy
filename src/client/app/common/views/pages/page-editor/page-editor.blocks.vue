@@ -1,6 +1,6 @@
 <template>
 <x-draggable tag="div" :list="blocks" handle=".drag-handle" :group="{ name: 'blocks' }" animation="150" swap-threshold="0.5">
-	<component v-for="block in blocks" :is="'x-' + block.type" :value="block" @input="updateItem" @remove="() => removeItem(block)" :key="block.id" :ai-script="aiScript"/>
+	<component :is="'x-' + block.type" v-for="block in blocks" :key="block.id" :value="block" :ai-script="aiScript" @input="updateItem" @remove="() => removeItem(block)"/>
 </x-draggable>
 </template>
 
@@ -23,13 +23,13 @@ import XRadioButton from './els/page-editor.el.radio-button.vue';
 
 export default Vue.extend({
 	components: {
-		XDraggable, XSection, XText, XImage, XButton, XTextarea, XTextInput, XTextareaInput, XNumberInput, XSwitch, XIf, XPost, XCounter, XRadioButton
+		XDraggable, XSection, XText, XImage, XButton, XTextarea, XTextInput, XTextareaInput, XNumberInput, XSwitch, XIf, XPost, XCounter, XRadioButton,
 	},
 
 	props: {
 		value: {
 			type: Array,
-			required: true
+			required: true,
 		},
 		aiScript: {
 			required: true,
@@ -39,7 +39,7 @@ export default Vue.extend({
 	computed: {
 		blocks() {
 			return this.value;
-		}
+		},
 	},
 
 	methods: {
@@ -48,7 +48,7 @@ export default Vue.extend({
 			const newValue = [
 				...this.blocks.slice(0, i),
 				v,
-				...this.blocks.slice(i + 1)
+				...this.blocks.slice(i + 1),
 			];
 			this.$emit('input', newValue);
 		},
@@ -57,10 +57,10 @@ export default Vue.extend({
 			const i = this.blocks.findIndex(x => x.id === el.id);
 			const newValue = [
 				...this.blocks.slice(0, i),
-				...this.blocks.slice(i + 1)
+				...this.blocks.slice(i + 1),
 			];
 			this.$emit('input', newValue);
 		},
-	}
+	},
 });
 </script>

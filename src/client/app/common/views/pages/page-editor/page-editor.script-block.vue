@@ -1,6 +1,6 @@
 <template>
-<x-container :removable="removable" @remove="() => $emit('remove')" :error="error" :warn="warn" :draggable="draggable">
-	<template #header><fa v-if="icon" :icon="icon"/> <template v-if="title">{{ title }} <span class="turmquns" v-if="typeText">({{ typeText }})</span></template><template v-else-if="typeText">{{ typeText }}</template></template>
+<x-container :removable="removable" :error="error" :warn="warn" :draggable="draggable" @remove="() => $emit('remove')">
+	<template #header><fa v-if="icon" :icon="icon"/> <template v-if="title">{{ title }} <span v-if="typeText" class="turmquns">({{ typeText }})</span></template><template v-else-if="typeText">{{ typeText }}</template></template>
 	<template #func>
 		<button @click="changeType()">
 			<fa :icon="faPencilAlt"/>
@@ -44,10 +44,10 @@
 		<x-v v-if="value.value.expression" v-model="value.value.expression" :title="$t(`script.blocks._fn.arg1`)" :get-expected-type="() => null" :ai-script="aiScript" :fn-slots="value.value.slots" :name="name"/>
 	</section>
 	<section v-else-if="value.type.startsWith('fn:')" class="" style="padding:16px;">
-		<x-v v-for="(x, i) in value.args" v-model="value.args[i]" :title="aiScript.getVarByName(value.type.split(':')[1]).value.slots[i].name" :get-expected-type="() => null" :ai-script="aiScript" :name="name" :key="i"/>
+		<x-v v-for="(x, i) in value.args" :key="i" v-model="value.args[i]" :title="aiScript.getVarByName(value.type.split(':')[1]).value.slots[i].name" :get-expected-type="() => null" :ai-script="aiScript" :name="name"/>
 	</section>
 	<section v-else class="" style="padding:16px;">
-		<x-v v-for="(x, i) in value.args" v-model="value.args[i]" :title="$t(`script.blocks._${value.type}.arg${i + 1}`)" :get-expected-type="() => _getExpectedType(i)" :ai-script="aiScript" :name="name" :fn-slots="fnSlots" :key="i"/>
+		<x-v v-for="(x, i) in value.args" :key="i" v-model="value.args[i]" :title="$t(`script.blocks._${value.type}.arg${i + 1}`)" :get-expected-type="() => _getExpectedType(i)" :ai-script="aiScript" :name="name" :fn-slots="fnSlots"/>
 	</section>
 </x-container>
 </template>
@@ -64,7 +64,7 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer
+		XContainer,
 	},
 
 	inject: ['getScriptBlockList'],
@@ -72,17 +72,17 @@ export default Vue.extend({
 	props: {
 		getExpectedType: {
 			required: false,
-			default: null
+			default: null,
 		},
 		value: {
-			required: true
+			required: true,
 		},
 		title: {
-			required: false
+			required: false,
 		},
 		removable: {
 			required: false,
-			default: false
+			default: false,
 		},
 		aiScript: {
 			required: true,
@@ -95,8 +95,8 @@ export default Vue.extend({
 		},
 		draggable: {
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -104,7 +104,7 @@ export default Vue.extend({
 			error: null,
 			warn: null,
 			slots: '',
-			faPencilAlt
+			faPencilAlt,
 		};
 	},
 
@@ -125,9 +125,9 @@ export default Vue.extend({
 		slots() {
 			this.value.value.slots = this.slots.split('\n').map(x => ({
 				name: x,
-				type: null
+				type: null,
 			}));
-		}
+		},
 	},
 
 	beforeCreate() {
@@ -189,13 +189,13 @@ export default Vue.extend({
 			const emptySlotIndex = args.findIndex(x => x.type === null);
 			if (emptySlotIndex !== -1 && emptySlotIndex < args.length) {
 				this.warn = {
-					slot: emptySlotIndex
+					slot: emptySlotIndex,
 				};
 			} else {
 				this.warn = null;
 			}
 		}, {
-			deep: true
+			deep: true,
 		});
 
 		this.$watch('aiScript.variables', () => {
@@ -203,7 +203,7 @@ export default Vue.extend({
 				this.error = this.aiScript.typeCheck(this.value);
 			}
 		}, {
-			deep: true
+			deep: true,
 		});
 	},
 
@@ -213,9 +213,9 @@ export default Vue.extend({
 				type: null,
 				title: this.$t('select-type'),
 				select: {
-					groupedItems: this.getScriptBlockList(this.getExpectedType ? this.getExpectedType() : null)
+					groupedItems: this.getScriptBlockList(this.getExpectedType ? this.getExpectedType() : null),
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 			this.value.type = type;
@@ -223,8 +223,8 @@ export default Vue.extend({
 
 		_getExpectedType(slot: number) {
 			return this.aiScript.getExpectedType(this.value, slot);
-		}
-	}
+		},
+	},
 });
 </script>
 

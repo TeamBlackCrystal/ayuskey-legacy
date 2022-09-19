@@ -8,7 +8,7 @@
 		<div class="card map">
 			<header>
 				<select v-model="mapName" :placeholder="$t('choose-map')" @change="onMapChange">
-					<option label="-Custom-" :value="mapName" v-if="mapName == '-Custom-'"/>
+					<option v-if="mapName == '-Custom-'" label="-Custom-" :value="mapName"/>
 					<option :label="$t('random')" :value="null"/>
 					<optgroup v-for="c in mapCategories" :key="c" :label="c">
 						<option v-for="m in maps" v-if="m.category == c" :key="m.name" :label="m.name" :value="m.name">{{ m.name }}</option>
@@ -17,11 +17,12 @@
 			</header>
 
 			<div>
-				<div class="random" v-if="game.map == null"><fa icon="dice"/></div>
-				<div class="board" v-else :style="{ 'grid-template-rows': `repeat(${ game.map.length }, 1fr)`, 'grid-template-columns': `repeat(${ game.map[0].length }, 1fr)` }">
-					<div v-for="(x, i) in game.map.join('')"
-							:data-none="x == ' '"
-							@click="onPixelClick(i, x)">
+				<div v-if="game.map == null" class="random"><fa icon="dice"/></div>
+				<div v-else class="board" :style="{ 'grid-template-rows': `repeat(${ game.map.length }, 1fr)`, 'grid-template-columns': `repeat(${ game.map[0].length }, 1fr)` }">
+					<div
+						v-for="(x, i) in game.map.join('')"
+						:data-none="x == ' '"
+						@click="onPixelClick(i, x)">
 						<fa v-if="x == 'b'" :icon="fasCircle"/>
 						<fa v-if="x == 'w'" :icon="farCircle"/>
 					</div>
@@ -36,8 +37,8 @@
 
 			<div>
 				<form-radio v-model="game.bw" value="random" @change="updateSettings('bw')">{{ $t('random') }}</form-radio>
-				<form-radio v-model="game.bw" :value="1" @change="updateSettings('bw')">{{ this.$t('black-is').split('{}')[0] }}<b><mk-user-name :user="game.user1"/></b>{{ this.$t('black-is').split('{}')[1] }}</form-radio>
-				<form-radio v-model="game.bw" :value="2" @change="updateSettings('bw')">{{ this.$t('black-is').split('{}')[0] }}<b><mk-user-name :user="game.user2"/></b>{{ this.$t('black-is').split('{}')[1] }}</form-radio>
+				<form-radio v-model="game.bw" :value="1" @change="updateSettings('bw')">{{ $t('black-is').split('{}')[0] }}<b><mk-user-name :user="game.user1"/></b>{{ $t('black-is').split('{}')[1] }}</form-radio>
+				<form-radio v-model="game.bw" :value="2" @change="updateSettings('bw')">{{ $t('black-is').split('{}')[0] }}<b><mk-user-name :user="game.user2"/></b>{{ $t('black-is').split('{}')[1] }}</form-radio>
 			</div>
 		</div>
 
@@ -53,16 +54,16 @@
 			</div>
 		</div>
 
-		<div class="card form" v-if="form">
+		<div v-if="form" class="card form">
 			<header>
 				<span>{{ $t('settings-of-the-bot') }}</span>
 			</header>
 
 			<div>
 				<template v-for="item in form">
-					<ui-switch v-if="item.type == 'switch'" v-model="item.value" :key="item.id" @change="onChangeForm(item)">{{ item.label || item.desc || '' }}</ui-switch>
+					<ui-switch v-if="item.type == 'switch'" :key="item.id" v-model="item.value" @change="onChangeForm(item)">{{ item.label || item.desc || '' }}</ui-switch>
 
-					<div class="card" v-if="item.type == 'radio'" :key="item.id">
+					<div v-if="item.type == 'radio'" :key="item.id" class="card">
 						<header>
 							<span>{{ item.label }}</span>
 						</header>
@@ -72,17 +73,17 @@
 						</div>
 					</div>
 
-					<div class="card" v-if="item.type == 'slider'" :key="item.id">
+					<div v-if="item.type == 'slider'" :key="item.id" class="card">
 						<header>
 							<span>{{ item.label }}</span>
 						</header>
 
 						<div>
-							<input type="range" :min="item.min" :max="item.max" :step="item.step || 1" v-model="item.value" @change="onChangeForm(item)"/>
+							<input v-model="item.value" type="range" :min="item.min" :max="item.max" :step="item.step || 1" @change="onChangeForm(item)"/>
 						</div>
 					</div>
 
-					<div class="card" v-if="item.type == 'textbox'" :key="item.id">
+					<div v-if="item.type == 'textbox'" :key="item.id" class="card">
 						<header>
 							<span>{{ item.label }}</span>
 						</header>
@@ -106,8 +107,8 @@
 
 		<div class="actions">
 			<form-button @click="exit">{{ $t('cancel') }}</form-button>
-			<form-button primary @click="accept" v-if="!isAccepted">{{ $t('ready') }}</form-button>
-			<form-button primary @click="cancel" v-if="isAccepted">{{ $t('cancel-ready') }}</form-button>
+			<form-button v-if="!isAccepted" primary @click="accept">{{ $t('ready') }}</form-button>
+			<form-button v-if="isAccepted" primary @click="cancel">{{ $t('cancel-ready') }}</form-button>
 		</div>
 	</footer>
 </div>
@@ -132,7 +133,7 @@ export default Vue.extend({
 			maps: maps,
 			form: null,
 			messages: [],
-			fasCircle, farCircle
+			fasCircle, farCircle,
 		};
 	},
 
@@ -150,7 +151,7 @@ export default Vue.extend({
 			if (this.game.user1Id != this.$store.state.i.id && this.game.user1Accepted) return true;
 			if (this.game.user2Id != this.$store.state.i.id && this.game.user2Accepted) return true;
 			return false;
-		}
+		},
 	},
 
 	created() {
@@ -192,7 +193,7 @@ export default Vue.extend({
 		updateSettings(key: string) {
 			this.connection.send('updateSettings', {
 				key: key,
-				value: this.game[key]
+				value: this.game[key],
 			});
 		},
 
@@ -219,7 +220,7 @@ export default Vue.extend({
 		onChangeForm(item) {
 			this.connection.send('updateForm', {
 				id: item.id,
-				value: item.value
+				value: item.value,
 			});
 		},
 
@@ -246,8 +247,8 @@ export default Vue.extend({
 			this.$set(this.game.map, y, line.join(''));
 			this.$forceUpdate();
 			this.updateSettings('map');
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
 <div class="ngbfujlo">
 	<ui-textarea class="textarea" :value="text" readonly></ui-textarea>
-	<ui-button primary @click="post()" :disabled="posting || posted">{{ posted ? $t('posted-from-post-form') : $t('post-from-post-form') }}</ui-button>
+	<ui-button primary :disabled="posting || posted" @click="post()">{{ posted ? $t('posted-from-post-form') : $t('post-from-post-form') }}</ui-button>
 </div>
 </template>
 
@@ -14,11 +14,11 @@ export default Vue.extend({
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -44,11 +44,11 @@ export default Vue.extend({
 				this.posted = true;
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

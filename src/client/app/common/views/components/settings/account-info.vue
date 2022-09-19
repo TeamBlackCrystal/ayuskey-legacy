@@ -1,6 +1,6 @@
 <template>
 <ui-card>
-    <template #title>Account Info</template>
+	<template #title>Account Info</template>
 
 	<section>
 		<div>
@@ -151,24 +151,24 @@ export default defineComponent({
 		return {
 			INFO: {
 				title: this.$t('accountInfo'),
-				icon: faInfoCircle
+				icon: faInfoCircle,
 			},
-			stats: null
-		}
-    },
+			stats: null,
+		};
+	},
 
 	mounted() {
 		this.$emit('info', this.INFO);
 		this.$root.api('users/stats', {
-			userId: this.$store.state.i.id
+			userId: this.$store.state.i.id,
 		}).then(stats => {
 			this.stats = stats;
 		});
-    },
+	},
     
-    methods: {
+	methods: {
 		number,
 		bytes,
-	}
+	},
 });
 </script>

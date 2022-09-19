@@ -24,7 +24,7 @@ export default Vue.extend({
 	methods: {
 		onChangeAutoWatch(v) {
 			this.$root.api('i/update', {
-				autoWatch: v
+				autoWatch: v,
 			});
 		},
 
@@ -38,7 +38,7 @@ export default Vue.extend({
 
 		readAllNotifications() {
 			this.$root.api('notifications/mark_all_as_read');
-		}
-	}
+		},
+	},
 });
 </script>

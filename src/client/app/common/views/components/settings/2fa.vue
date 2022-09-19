@@ -14,7 +14,7 @@
 			<h2 class="heading">{{ $t('security-key-header') }}</h2>
 			<p>{{ $t('security-key') }}</p>
 			<div class="key-list">
-				<div class="key" v-for="key in $store.state.i.securityKeysList">
+				<div v-for="key in $store.state.i.securityKeysList" class="key">
 					<h3>
 						{{ key.name }}
 					</h3>
@@ -28,27 +28,27 @@
 				</div>
 			</div>
 
-			<ui-switch v-model="usePasswordLessLogin" @change="updatePasswordLessLogin" v-if="$store.state.i.securityKeysList.length > 0">
+			<ui-switch v-if="$store.state.i.securityKeysList.length > 0" v-model="usePasswordLessLogin" @change="updatePasswordLessLogin">
 				{{ $t('use-password-less-login') }}
 			</ui-switch>
 
-			<ui-info warn v-if="registration && registration.error">{{ $t('something-went-wrong') }} {{ registration.error }}</ui-info>
+			<ui-info v-if="registration && registration.error" warn>{{ $t('something-went-wrong') }} {{ registration.error }}</ui-info>
 			<ui-button v-if="!registration || registration.error" @click="addSecurityKey">{{ $t('register') }}</ui-button>
 
 			<ol v-if="registration && !registration.error">
 				<li v-if="registration.stage >= 0">
 					{{ $t('activate-key') }}
-					<fa icon="spinner" pulse fixed-width v-if="registration.saving && registration.stage == 0" />
+					<fa v-if="registration.saving && registration.stage == 0" icon="spinner" pulse fixed-width />
 				</li>
 				<li v-if="registration.stage >= 1">
 					<ui-form :disabled="registration.stage != 1 || registration.saving">
 						<ui-input v-model="keyName" :max="30">
 							<span>{{ $t('security-key-name') }}</span>
 						</ui-input>
-						<ui-button @click="registerKey" :disabled="this.keyName.length == 0">
+						<ui-button :disabled="keyName.length == 0" @click="registerKey">
 							{{ $t('register-security-key') }}
 						</ui-button>
-						<fa icon="spinner" pulse fixed-width v-if="registration.saving && registration.stage == 1" />
+						<fa v-if="registration.saving && registration.stage == 1" icon="spinner" pulse fixed-width />
 					</ui-form>
 				</li>
 			</ol>
@@ -87,7 +87,7 @@ export default Vue.extend({
 			usePasswordLessLogin: this.$store.state.i.usePasswordLessLogin,
 			registration: null,
 			keyName: '',
-			token: null
+			token: null,
 		};
 	},
 	methods: {
@@ -95,12 +95,12 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				this.$root.api('i/2fa/register', {
-					password: password
+					password: password,
 				}).then(data => {
 					this.data = data;
 				});
@@ -111,12 +111,12 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				this.$root.api('i/2fa/unregister', {
-					password: password
+					password: password,
 				}).then(() => {
 					this.usePasswordLessLogin = false;
 					this.updatePasswordLessLogin();
@@ -129,7 +129,7 @@ export default Vue.extend({
 
 		submit() {
 			this.$root.api('i/2fa/done', {
-				token: this.token
+				token: this.token,
 			}).then(() => {
 				this.$notify(this.$t('success'));
 				this.$store.state.i.twoFactorEnabled = true;
@@ -146,25 +146,25 @@ export default Vue.extend({
 				challengeId: this.registration.challengeId,
 				// we convert each 16 bits to a string to serialise
 				clientDataJSON: stringifyAB(this.registration.credential.response.clientDataJSON),
-				attestationObject: hexifyAB(this.registration.credential.response.attestationObject)
+				attestationObject: hexifyAB(this.registration.credential.response.attestationObject),
 			}).then(key => {
 				this.registration = null;
 				key.lastUsed = new Date();
 				this.$notify(this.$t('success'));
-			})
+			});
 		},
 
 		unregisterKey(key) {
 			this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				return this.$root.api('i/2fa/remove-key', {
 					password,
-					credentialId: key.id
+					credentialId: key.id,
 				}).then(() => {
 					this.usePasswordLessLogin = false;
 					this.updatePasswordLessLogin();
@@ -178,12 +178,12 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
-					type: 'password'
-				}
+					type: 'password',
+				},
 			}).then(({ canceled, result: password }) => {
 				if (canceled) return;
 				this.$root.api('i/2fa/register-key', {
-					password
+					password,
 				}).then(registration => {
 					this.registration = {
 						password,
@@ -193,21 +193,21 @@ export default Vue.extend({
 							challenge: byteify(registration.challenge, 'base64'),
 							rp: {
 								id: hostname,
-								name: 'Misskey'
+								name: 'Misskey',
 							},
 							user: {
 								id: Uint8Array.from(this.$store.state.i.id, c => c.charCodeAt(0)),
 								name: this.$store.state.i.username,
 								displayName: this.$store.state.i.name,
 							},
-							pubKeyCredParams: [{alg: -7, type: 'public-key'}],
+							pubKeyCredParams: [{ alg: -7, type: 'public-key' }],
 							timeout: 60000,
-							attestation: 'direct'
+							attestation: 'direct',
 						},
-						saving: true
+						saving: true,
 					};
 					return navigator.credentials.create({
-						publicKey: this.registration.publicKeyOptions
+						publicKey: this.registration.publicKeyOptions,
 					});
 				}).then(credential => {
 					this.registration.credential = credential;
@@ -222,10 +222,10 @@ export default Vue.extend({
 		},
 		updatePasswordLessLogin() {
 			this.$root.api('i/2fa/password-less', {
-				value: !!this.usePasswordLessLogin
+				value: !!this.usePasswordLessLogin,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-<x-container @remove="() => $emit('remove')" :draggable="true">
+<x-container :draggable="true" @remove="() => $emit('remove')">
 	<template #header><fa :icon="faBolt"/> {{ $t('blocks.switch') }}</template>
 
 	<section class="kjuadyyj">
@@ -20,18 +20,18 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer
+		XContainer,
 	},
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 	},
 
 	data() {
 		return {
-			faBolt, faMagic
+			faBolt, faMagic,
 		};
 	},
 

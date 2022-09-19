@@ -1,5 +1,5 @@
 <template>
-<x-container @remove="() => $emit('remove')" :draggable="true">
+<x-container :draggable="true" @remove="() => $emit('remove')">
 	<template #header><fa :icon="faBolt"/> {{ $t('blocks.button') }}</template>
 
 	<section class="xfhsjczc">
@@ -43,12 +43,12 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer
+		XContainer,
 	},
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		aiScript: {
 			required: true,
@@ -57,7 +57,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faBolt
+			faBolt,
 		};
 	},
 

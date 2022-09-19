@@ -1,7 +1,7 @@
 <template>
 <div class="root">
 	<ui-info v-if="!fetching && apps.length == 0">{{ $t('no-apps') }}</ui-info>
-	<div class="apps" v-if="apps.length != 0">
+	<div v-if="apps.length != 0" class="apps">
 		<div v-for="app in apps" :key="app.id">
 			<p><b>{{ app.name }}</b></p>
 			<p>{{ app.description }}</p>
@@ -22,7 +22,7 @@ export default Vue.extend({
 		return {
 			fetching: true,
 			apps: [],
-			faTrashAlt
+			faTrashAlt,
 		};
 	},
 	mounted() {
@@ -43,7 +43,7 @@ export default Vue.extend({
 			});
 		},
 
-		async getConfirmed(text: string): Promise<Boolean> {
+		async getConfirmed(text: string): Promise<boolean> {
 			const confirm = await this.$root.dialog({
 				type: 'warning',
 				showCancelButton: true,
@@ -52,7 +52,7 @@ export default Vue.extend({
 			});
 			return !confirm.canceled;
 		},
-	}
+	},
 });
 </script>
 

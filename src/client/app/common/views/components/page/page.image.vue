@@ -10,10 +10,10 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		page: {
-			required: true
+			required: true,
 		},
 	},
 
@@ -25,7 +25,7 @@ export default Vue.extend({
 
 	created() {
 		this.image = this.page.attachedFiles.find(x => x.id === this.value.fileId);
-	}
+	},
 });
 </script>
 

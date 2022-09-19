@@ -1,10 +1,11 @@
 <template>
 <div class="ui-select" :class="[{ focused, disabled, filled, inline }, styl]">
-	<div class="icon" ref="icon"><slot name="icon"></slot></div>
+	<div ref="icon" class="icon"><slot name="icon"></slot></div>
 	<div class="input" @click="focus">
-		<span class="label" ref="label"><slot name="label"></slot></span>
-		<div class="prefix" ref="prefix"><slot name="prefix"></slot></div>
-		<select ref="input"
+		<span ref="label" class="label"><slot name="label"></slot></span>
+		<div ref="prefix" class="prefix"><slot name="prefix"></slot></div>
+		<select
+			ref="input"
 			v-model="v"
 			:required="required"
 			:disabled="disabled"
@@ -25,37 +26,37 @@ import Vue from 'vue';
 export default Vue.extend({
 	inject: {
 		horizonGrouped: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	props: {
 		value: {
-			required: false
+			required: false,
 		},
 		required: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		disabled: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		styl: {
 			type: String,
 			required: false,
-			default: 'line'
+			default: 'line',
 		},
 		inline: {
 			type: Boolean,
 			required: false,
 			default(): boolean {
 				return this.horizonGrouped;
-			}
+			},
 		},
 	},
 	data() {
 		return {
-			focused: false
+			focused: false,
 		};
 	},
 	computed: {
@@ -65,11 +66,11 @@ export default Vue.extend({
 			},
 			set(v) {
 				this.$emit('input', v);
-			}
+			},
 		},
 		filled(): boolean {
 			return this.v != '' && this.v != null;
-		}
+		},
 	},
 	mounted() {
 		if (this.$refs.prefix) {
@@ -79,8 +80,8 @@ export default Vue.extend({
 	methods: {
 		focus() {
 			this.$refs.input.focus();
-		}
-	}
+		},
+	},
 });
 </script>
 

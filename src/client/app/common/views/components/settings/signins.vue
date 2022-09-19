@@ -1,18 +1,18 @@
 <template>
 <div class="root">
-<div class="signins" v-if="signins.length != 0">
-	<div v-for="signin in signins">
-		<header @click="signin._show = !signin._show">
-			<template v-if="signin.success"><fa icon="check"/></template>
-			<template v-else><fa icon="times"/></template>
-			<span class="ip _monospace">{{ signin.ip }}</span>
-			<mk-time :time="signin.createdAt"/>
-		</header>
-		<div class="headers" v-show="signin._show">
+	<div v-if="signins.length != 0" class="signins">
+		<div v-for="signin in signins">
+			<header @click="signin._show = !signin._show">
+				<template v-if="signin.success"><fa icon="check"/></template>
+				<template v-else><fa icon="times"/></template>
+				<span class="ip _monospace">{{ signin.ip }}</span>
+				<mk-time :time="signin.createdAt"/>
+			</header>
+			<div v-show="signin._show" class="headers">
 			<!-- TODO -->
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 </template>
 
@@ -23,7 +23,7 @@ export default Vue.extend({
 		return {
 			fetching: true,
 			signins: [],
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -45,8 +45,8 @@ export default Vue.extend({
 	methods: {
 		onSignin(signin) {
 			this.signins.unshift(signin);
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -10,11 +10,11 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -27,8 +27,8 @@ export default Vue.extend({
 		v() {
 			this.script.aiScript.updatePageVar(this.value.name, this.v);
 			this.script.eval();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
 <div>
-	<ui-button class="kudkigyw" @click="click()" :primary="value.primary">{{ script.interpolate(value.text) }}</ui-button>
+	<ui-button class="kudkigyw" :primary="value.primary" @click="click()">{{ script.interpolate(value.text) }}</ui-button>
 </div>
 </template>
 
@@ -10,11 +10,11 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	methods: {
@@ -22,7 +22,7 @@ export default Vue.extend({
 			if (this.value.action === 'dialog') {
 				this.script.eval();
 				this.$root.dialog({
-					text: this.script.interpolate(this.value.content)
+					text: this.script.interpolate(this.value.content),
 				});
 			} else if (this.value.action === 'resetRandom') {
 				this.script.aiScript.updateRandomSeed(Math.random());
@@ -32,17 +32,17 @@ export default Vue.extend({
 					pageId: this.script.page.id,
 					event: this.value.event,
 					...(this.value.var ? {
-						var: this.script.vars[this.value.var]
-					} : {})
+						var: this.script.vars[this.value.var],
+					} : {}),
 				});
 
 				this.$root.dialog({
 					type: 'success',
-					text: this.script.interpolate(this.value.message)
+					text: this.script.interpolate(this.value.message),
 				});
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 
