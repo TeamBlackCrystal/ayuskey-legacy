@@ -43,7 +43,7 @@ export default Vue.extend({
 		absolute(): string {
 			return this._time.toLocaleString();
 		},
-		absolute_smart(): string{
+		absolute_smart(): string {
 			const time = this._time;
 
 			const time_zero = new Date(this._time.toDateString()).getTime();
