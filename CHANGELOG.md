@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - 16 or 18 に移行してください
 - 既存のファイルにsensitiveフラグが飛んできたときの挙動
 - CORSを調整
+- ビルド時の出力を調整
 
 ### Fixed
 
