@@ -57,7 +57,7 @@ async function save(file: DriveFile, path: string, name: string, type: string, h
 		//#region Uploads
 		logger.info(`uploading original: ${key}`);
 		const uploads = [
-			upload(key, fs.createReadStream(path), type, name)
+			upload(key, fs.createReadStream(path), type, name),
 		];
 
 		if (alts.webpublic) {
@@ -142,7 +142,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	let webpublic: IImage | null = null;
 
 	if (generateWeb) {
-		logger.info(`creating web image`);
+		logger.info('creating web image');
 
 		try {
 			if (['image/jpeg'].includes(type)) {
@@ -152,13 +152,13 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 			} else if (['image/png'].includes(type)) {
 				webpublic = await convertToPng(path, 2048, 2048);
 			} else {
-				logger.debug(`web image not created (not an required image)`);
+				logger.debug('web image not created (not an required image)');
 			}
 		} catch (e) {
-			logger.warn(`web image not created (an error occured)`, e);
+			logger.warn('web image not created (an error occured)', e);
 		}
 	} else {
-		logger.info(`web image not created (from remote)`);
+		logger.info('web image not created (from remote)');
 	}
 	// #endregion webpublic
 
@@ -177,10 +177,10 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 				logger.warn(`GenerateVideoThumbnail failed: ${e}`);
 			}
 		} else {
-			logger.debug(`thumbnail not created (not an required file)`);
+			logger.debug('thumbnail not created (not an required file)');
 		}
 	} catch (e) {
-		logger.warn(`thumbnail not created (an error occured)`, e);
+		logger.warn('thumbnail not created (an error occured)', e);
 	}
 	// #endregion thumbnail
 
@@ -212,7 +212,7 @@ async function upload(key: string, stream: fs.ReadStream | Buffer, type: string,
 	const s3 = getS3(meta);
 
 	const upload = s3.upload(params, {
-		partSize: s3.endpoint?.hostname === 'storage.googleapis.com' ? 500 * 1024 * 1024 : 8 * 1024 * 1024
+		partSize: s3.endpoint.hostname === 'storage.googleapis.com' ? 500 * 1024 * 1024 : 8 * 1024 * 1024,
 	});
 
 	const result = await upload.promise();
@@ -281,11 +281,11 @@ export default async function(
 	name: string | null = null,
 	comment: string | null = null,
 	folderId: any = null,
-	force: boolean = false,
-	isLink: boolean = false,
+	force = false,
+	isLink = false,
 	url: string | null = null,
 	uri: string | null = null,
-	sensitive: boolean | null = null
+	sensitive: boolean | null = null,
 ): Promise<DriveFile> {
 	const info = await getFileInfo(path);
 	logger.info(`${JSON.stringify(info)}`);
@@ -306,9 +306,9 @@ export default async function(
 			// ファイルに後からsensitiveが付けられたらフラグを上書き
 			if (sensitive && !much.isSensitive) {
 				await DriveFiles.update({
-					id: much.id
+					id: much.id,
 				}, {
-					isSensitive: sensitive
+					isSensitive: sensitive,
 				});
 
 				return await DriveFiles.findOneOrFail({ id: much.id });
@@ -346,7 +346,7 @@ export default async function(
 
 		const driveFolder = await DriveFolders.findOne({
 			id: folderId,
-			userId: user ? user.id : null
+			userId: user ? user.id : null,
 		});
 
 		if (driveFolder == null) throw new Error('folder-not-found');
@@ -381,9 +381,9 @@ export default async function(
 	file.isLink = isLink;
 	file.isSensitive = user
 		? Users.isLocalUser(user) && profile!.alwaysMarkNsfw ? true :
-			(sensitive !== null && sensitive !== undefined)
-				? sensitive
-				: false
+		(sensitive !== null && sensitive !== undefined)
+			? sensitive
+			: false
 		: false;
 
 	if (url !== null) {
@@ -418,7 +418,7 @@ export default async function(
 
 				file = await DriveFiles.findOne({
 					uri: file.uri,
-					userId: user ? user.id : null
+					userId: user ? user.id : null,
 				}) as DriveFile;
 			} else {
 				logger.error(e);
