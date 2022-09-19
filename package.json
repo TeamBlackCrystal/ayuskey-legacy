@@ -22,7 +22,7 @@
 		"build": "yarn build-webpack && yarn build-ts && yarn build-gulp",
 		"build:product": "cross-env NODE_ENV=production yarn build",
 		"build-webpack": "webpack",
-		"build-ts": "tsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
+		"build-ts": "ttsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
 		"build-gulp": "gulp build",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
@@ -148,7 +148,6 @@
 		"postcss-loader": "7.0.1",
 		"private-ip": "2.3.4",
 		"probe-image-size": "7.2.3",
-		"progress-bar-webpack-plugin": "2.1.0",
 		"promise-limit": "2.7.0",
 		"promise-sequential": "1.1.1",
 		"pug": "3.0.2",
@@ -294,9 +293,12 @@
 		"node-gyp": "9.1.0",
 		"npm-run-all": "4.1.5",
 		"prettier": "2.7.1",
+		"tsc-progress": "1.0.4",
 		"tslint": "5.20.1",
 		"tslint-sonarts": "1.9.0",
+		"ttypescript": "1.5.13",
 		"vue-eslint-parser": "9.1.0",
-		"webpack-dev-server": "4.8.1"
+		"webpack-dev-server": "4.8.1",
+		"webpackbar": "5.0.2"
 	}
 }
