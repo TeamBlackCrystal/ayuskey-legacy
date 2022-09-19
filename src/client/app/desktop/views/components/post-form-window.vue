@@ -1,20 +1,21 @@
 <template>
-<mk-window class="mk-post-form-window" ref="window" is-modal @closed="onWindowClosed" :animation="animation">
+<mk-window ref="window" class="mk-post-form-window" is-modal :animation="animation" @closed="onWindowClosed">
 	<template #header>
 		<span class="mk-post-form-window--header">
-			<span class="icon" v-if="geo"><fa icon="map-marker-alt"/></span>
+			<span v-if="geo" class="icon"><fa icon="map-marker-alt"/></span>
 			<span v-if="!reply">{{ $t('note') }}</span>
 			<span v-if="reply">{{ $t('reply') }}</span>
-			<span class="count" v-if="files.length != 0">{{ $t('attaches').replace('{}', files.length) }}</span>
-			<span class="count" v-if="uploadings.length != 0">{{ $t('uploading-media').replace('{}', uploadings.length) }}<mk-ellipsis/></span>
+			<span v-if="files.length != 0" class="count">{{ $t('attaches').replace('{}', files.length) }}</span>
+			<span v-if="uploadings.length != 0" class="count">{{ $t('uploading-media').replace('{}', uploadings.length) }}<mk-ellipsis/></span>
 		</span>
 	</template>
 
 	<div class="mk-post-form-window--body" :style="{ maxHeight: `${maxHeight}px` }">
 		<mk-note-preview v-if="reply" class="notePreview" :note="reply"/>
-		<x-post-form ref="form"
+		<x-post-form
+			ref="form"
 			:reply="reply"
-			:airReply="airReply"
+			:air-reply="airReply"
 			:mention="mention"
 			:initial-text="initialText"
 			:initial-note="initialNote"
@@ -38,43 +39,43 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/post-form-window.vue'),
 
 	components: {
-		XPostForm
+		XPostForm,
 	},
 
 	props: {
 		reply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		airReply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		mention: {
 			type: Object,
-			required: false
+			required: false,
 		},
 
 		animation: {
 			type: Boolean,
 			required: false,
-			default: true
+			default: true,
 		},
 
 		initialText: {
 			type: String,
-			required: false
+			required: false,
 		},
 
 		initialNote: {
 			type: Object,
-			required: false
+			required: false,
 		},
 
 		instant: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 	},
 
@@ -82,7 +83,7 @@ export default Vue.extend({
 		return {
 			uploadings: [],
 			files: [],
-			geo: null
+			geo: null,
 		};
 	},
 
@@ -117,8 +118,8 @@ export default Vue.extend({
 		onWindowClosed() {
 			this.$emit('closed');
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

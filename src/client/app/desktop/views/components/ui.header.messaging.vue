@@ -1,8 +1,8 @@
 <template>
 <div class="toltmoik">
-	<button @click="open()" :title="$t('@.messaging')">
+	<button :title="$t('@.messaging')" @click="open()">
 		<i class="bell"><fa :icon="faComments"/></i>
-		<i class="circle" v-if="hasUnreadMessagingMessage"><fa icon="circle"/></i>
+		<i v-if="hasUnreadMessagingMessage" class="circle"><fa icon="circle"/></i>
 	</button>
 </div>
 </template>
@@ -18,21 +18,21 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faComments
+			faComments,
 		};
 	},
 
 	computed: {
 		hasUnreadMessagingMessage(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		}
+		},
 	},
 
 	methods: {
 		open() {
 			this.$root.new(MkMessagingWindow);
 		},
-	}
+	},
 });
 </script>
 

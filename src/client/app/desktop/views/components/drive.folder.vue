@@ -1,7 +1,10 @@
 <template>
-<div class="ynntpczxvnusfwdyxsfuhvcmuypqopdd"
+<div
+	class="ynntpczxvnusfwdyxsfuhvcmuypqopdd"
 	:data-is-contextmenu-showing="isContextmenuShowing"
 	:data-draghover="draghover"
+	draggable="true"
+	:title="title"
 	@click="onClick"
 	@mouseover="onMouseover"
 	@mouseout="onMouseout"
@@ -9,18 +12,16 @@
 	@dragenter.prevent="onDragenter"
 	@dragleave="onDragleave"
 	@drop.prevent.stop="onDrop"
-	draggable="true"
 	@dragstart="onDragstart"
 	@dragend="onDragend"
 	@contextmenu.prevent.stop="onContextmenu"
-	:title="title"
 >
 	<p class="name">
 		<template v-if="hover"><fa :icon="['far', 'folder-open']" fixed-width/></template>
 		<template v-if="!hover"><fa :icon="['far', 'folder']" fixed-width/></template>
 		{{ folder.name }}
 	</p>
-	<p class="upload" v-if="$store.state.settings.uploadFolder == folder.id">
+	<p v-if="$store.state.settings.uploadFolder == folder.id" class="upload">
 		{{ $t('upload-folder') }}
 	</p>
 </div>
@@ -38,7 +39,7 @@ export default Vue.extend({
 			hover: false,
 			draghover: false,
 			isDragging: false,
-			isContextmenuShowing: false
+			isContextmenuShowing: false,
 		};
 	},
 	computed: {
@@ -47,7 +48,7 @@ export default Vue.extend({
 		},
 		title(): string {
 			return this.folder.name;
-		}
+		},
 	},
 	methods: {
 		onClick() {
@@ -60,34 +61,34 @@ export default Vue.extend({
 				type: 'item',
 				text: this.$t('contextmenu.move-to-this-folder'),
 				icon: 'arrow-right',
-				action: this.go
+				action: this.go,
 			}, {
 				type: 'item',
 				text: this.$t('contextmenu.show-in-new-window'),
 				icon: ['far', 'window-restore'],
-				action: this.newWindow
+				action: this.newWindow,
 			}, null, {
 				type: 'item',
 				text: this.$t('contextmenu.rename'),
 				icon: 'i-cursor',
-				action: this.rename
+				action: this.rename,
 			}, null, {
 				type: 'item',
 				text: this.$t('@.delete'),
 				icon: ['far', 'trash-alt'],
-				action: this.deleteFolder
+				action: this.deleteFolder,
 			}, null, {
 				type: 'nest',
 				text: this.$t('contextmenu.else-folders'),
 				menu: [{
 					type: 'item',
 					text: this.$t('contextmenu.set-as-upload-folder'),
-					action: this.setAsUploadFolder
-				}]
+					action: this.setAsUploadFolder,
+				}],
 			}], {
 				closed: () => {
 					this.isContextmenuShowing = false;
-				}
+				},
 			});
 		},
 
@@ -96,7 +97,7 @@ export default Vue.extend({
 		},
 
 		onMouseout() {
-			this.hover = false
+			this.hover = false;
 		},
 
 		onDragover(e) {
@@ -144,7 +145,7 @@ export default Vue.extend({
 				this.browser.removeFile(file.id);
 				this.$root.api('drive/files/update', {
 					fileId: file.id,
-					folderId: this.folder.id
+					folderId: this.folder.id,
 				});
 			}
 			//#endregion
@@ -160,7 +161,7 @@ export default Vue.extend({
 				this.browser.removeFolder(folder.id);
 				this.$root.api('drive/folders/update', {
 					folderId: folder.id,
-					parentId: this.folder.id
+					parentId: this.folder.id,
 				}).then(() => {
 					// noop
 				}).catch(err => {
@@ -168,13 +169,13 @@ export default Vue.extend({
 						case 'detected-circular-definition':
 							this.$root.dialog({
 								title: this.$t('unable-to-process'),
-								text: this.$t('circular-reference-detected')
+								text: this.$t('circular-reference-detected'),
 							});
 							break;
 						default:
 							this.$root.dialog({
 								type: 'error',
-								text: this.$t('unhandled-error')
+								text: this.$t('unhandled-error'),
 							});
 					}
 				});
@@ -210,40 +211,40 @@ export default Vue.extend({
 				title: this.$t('contextmenu.rename-folder'),
 				input: {
 					placeholder: this.$t('contextmenu.input-new-folder-name'),
-					default: this.folder.name
-				}
+					default: this.folder.name,
+				},
 			}).then(({ canceled, result: name }) => {
 				if (canceled) return;
 				this.$root.api('drive/folders/update', {
 					folderId: this.folder.id,
-					name: name
+					name: name,
 				});
 			});
 		},
 
 		deleteFolder() {
 			this.$root.api('drive/folders/delete', {
-				folderId: this.folder.id
+				folderId: this.folder.id,
 			}).then(() => {
 				if (this.$store.state.settings.uploadFolder === this.folder.id) {
 					this.$store.dispatch('settings/set', {
 						key: 'uploadFolder',
-						value: null
+						value: null,
 					});
 				}
 			}).catch(err => {
-				switch(err.id) {
+				switch (err.id) {
 					case 'b0fc8a17-963c-405d-bfbc-859a487295e1':
 						this.$root.dialog({
 							type: 'error',
 							title: this.$t('unable-to-delete'),
-							text: this.$t('has-child-files-or-folders')
+							text: this.$t('has-child-files-or-folders'),
 						});
 						break;
 					default:
 						this.$root.dialog({
 							type: 'error',
-							text: this.$t('unable-to-delete')
+							text: this.$t('unable-to-delete'),
 						});
 				}
 			});
@@ -252,10 +253,10 @@ export default Vue.extend({
 		setAsUploadFolder() {
 			this.$store.dispatch('settings/set', {
 				key: 'uploadFolder',
-				value: this.folder.id
+				value: this.folder.id,
 			});
 		},
-	}
+	},
 });
 </script>
 

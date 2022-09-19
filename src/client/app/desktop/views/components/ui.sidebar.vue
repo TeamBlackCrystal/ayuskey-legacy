@@ -2,10 +2,10 @@
 <div class="header" :class="navbar" :data-shadow="$store.state.device.useShadow">
 	<div class="body">
 		<div class="post">
-			<button @click="post" :title="$t('title')"><fa icon="pencil-alt"/></button>
+			<button :title="$t('title')" @click="post"><fa icon="pencil-alt"/></button>
 		</div>
 
-		<div class="nav" v-if="$store.getters.isSignedIn">
+		<div v-if="$store.getters.isSignedIn" class="nav">
 			<div class="home" :class="{ active: $route.name == 'index' }" @click="goToTop">
 				<router-link to="/"><fa icon="home"/></router-link>
 			</div>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 
-		<div class="nav bottom" v-if="$store.getters.isSignedIn">
+		<div v-if="$store.getters.isSignedIn" class="nav bottom">
 			<div :title="$t('@.search')">
 				<a @click="search"><fa icon="search"/></a>
 			</div>
@@ -65,7 +65,7 @@
 	</div>
 
 	<transition :name="`slide-${navbar}`">
-		<div class="notifications" v-if="showNotifications" ref="notifications" :class="navbar" :data-shadow="$store.state.device.useShadow">
+		<div v-if="showNotifications" ref="notifications" class="notifications" :class="navbar" :data-shadow="$store.state.device.useShadow">
 			<mk-notifications/>
 		</div>
 	</transition>
@@ -89,7 +89,7 @@ export default Vue.extend({
 			connection: null,
 			showNotifications: false,
 			searching: false,
-			faNewspaper, faHashtag
+			faNewspaper, faHashtag,
 		};
 	},
 
@@ -149,7 +149,7 @@ export default Vue.extend({
 
 			this.$root.dialog({
 				title: this.$t('@.search'),
-				input: true
+				input: true,
 			}).then(async ({ canceled, result: query }) => {
 				if (canceled) return;
 
@@ -162,7 +162,7 @@ export default Vue.extend({
 					this.searching = true;
 					try {
 						const res = await this.$root.api('ap/show', {
-							uri: q
+							uri: q,
 						});
 						if (res.type == 'User') {
 							this.$router.push(`/@${res.object.username}@${res.object.host}`);
@@ -192,7 +192,7 @@ export default Vue.extend({
 		},
 
 		settings() {
-			this.$router.push(`/i/settings`);
+			this.$router.push('/i/settings');
 		},
 
 		signout() {
@@ -233,17 +233,17 @@ export default Vue.extend({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
 		},
 
 		goToTop() {
 			window.scrollTo({
 				top: 0,
-				behavior: 'smooth'
+				behavior: 'smooth',
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

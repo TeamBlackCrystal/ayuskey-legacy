@@ -20,7 +20,7 @@ export default Vue.extend({
 	data() {
 		return {
 			now: new Date(),
-			clock: null
+			clock: null,
 		};
 	},
 	computed: {
@@ -38,7 +38,7 @@ export default Vue.extend({
 		},
 		nn(): string {
 			return ('0' + this.now.getMinutes()).slice(-2);
-		}
+		},
 	},
 	mounted() {
 		this.tick();
@@ -50,8 +50,8 @@ export default Vue.extend({
 	methods: {
 		tick() {
 			this.now = new Date();
-		}
-	}
+		},
+	},
 });
 </script>
 

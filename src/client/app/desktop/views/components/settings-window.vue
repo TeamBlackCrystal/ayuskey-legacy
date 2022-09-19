@@ -13,20 +13,20 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/settings-window.vue'),
 
 	components: {
-		XSettings: () => import('./settings.vue').then(m => m.default)
+		XSettings: () => import('./settings.vue').then(m => m.default),
 	},
 
 	props: {
 		initialPage: {
 			type: String,
-			required: false
-		}
+			required: false,
+		},
 	},
 	methods: {
 		close() {
 			(this as any).$refs.window.close();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,5 +1,6 @@
 <template>
-<div class="root nav-folder"
+<div
+	class="root nav-folder"
 	:data-draghover="draghover"
 	@click="onClick"
 	@dragover.prevent.stop="onDragover"
@@ -21,13 +22,13 @@ export default Vue.extend({
 	data() {
 		return {
 			hover: false,
-			draghover: false
+			draghover: false,
 		};
 	},
 	computed: {
 		browser(): any {
 			return this.$parent;
-		}
+		},
 	},
 	methods: {
 		onClick() {
@@ -81,7 +82,7 @@ export default Vue.extend({
 				this.browser.removeFile(file.id);
 				this.$root.api('drive/files/update', {
 					fileId: file.id,
-					folderId: this.folder ? this.folder.id : null
+					folderId: this.folder ? this.folder.id : null,
 				});
 			}
 			//#endregion
@@ -95,12 +96,12 @@ export default Vue.extend({
 				this.browser.removeFolder(folder.id);
 				this.$root.api('drive/folders/update', {
 					folderId: folder.id,
-					parentId: this.folder ? this.folder.id : null
+					parentId: this.folder ? this.folder.id : null,
 				});
 			}
 			//#endregion
-		}
-	}
+		},
+	},
 });
 </script>
 

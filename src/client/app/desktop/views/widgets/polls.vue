@@ -10,15 +10,15 @@
 		</template>
 
 		<div class="mkw-polls--body">
-			<div class="poll" v-if="!fetching && poll != null">
+			<div v-if="!fetching && poll != null" class="poll">
 				<p v-if="poll.text"><router-link :to="poll | notePage">
 					<mfm :text="poll.text" :author="poll.user" :custom-emojis="poll.emojis"/>
 				</router-link></p>
 				<p v-if="!poll.text"><router-link :to="poll | notePage"><fa icon="link"/></router-link></p>
 				<mk-poll :note="poll"/>
 			</div>
-			<p class="empty" v-if="!fetching && poll == null">{{ $t('nothing') }}</p>
-			<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<p v-if="!fetching && poll == null" class="empty">{{ $t('nothing') }}</p>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
 		</div>
 	</ui-container>
 </div>
@@ -31,8 +31,8 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'polls',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n('desktop/views/widgets/polls.vue'),
 	data() {
@@ -40,7 +40,7 @@ export default define({
 			poll: null,
 			fetching: true,
 			more: true,
-			offset: 0
+			offset: 0,
 		};
 	},
 	mounted() {
@@ -57,7 +57,7 @@ export default define({
 
 			this.$root.api('notes/polls/recommendation', {
 				limit: 1,
-				offset: this.offset
+				offset: this.offset,
 			}).then(notes => {
 				const poll = notes ? notes[0] : null;
 				if (poll == null) {
@@ -74,8 +74,8 @@ export default define({
 				this.fetching = false;
 				this.more = false;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

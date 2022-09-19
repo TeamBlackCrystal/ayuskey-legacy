@@ -1,20 +1,21 @@
 <template>
-	<mk-window ref="window" is-modal width="800px" :can-close="false">
-		<template #header><fa icon="crop"/>{{ title }}</template>
-		<div class="body">
-			<vue-cropper ref="cropper"
-				:src="imageUrl"
-				:view-mode="1"
-				:aspect-ratio="aspectRatio"
-				:container-style="{ width: '100%', 'max-height': '400px' }"
-			/>
-		</div>
-		<div :class="$style.actions">
-			<button :class="$style.skip" @click="skip">{{ $t('skip') }}</button>
-			<button :class="$style.cancel" @click="cancel">{{ $t('cancel') }}</button>
-			<button :class="$style.ok" @click="ok">{{ $t('ok') }}</button>
-		</div>
-	</mk-window>
+<mk-window ref="window" is-modal width="800px" :can-close="false">
+	<template #header><fa icon="crop"/>{{ title }}</template>
+	<div class="body">
+		<vue-cropper
+			ref="cropper"
+			:src="imageUrl"
+			:view-mode="1"
+			:aspect-ratio="aspectRatio"
+			:container-style="{ width: '100%', 'max-height': '400px' }"
+		/>
+	</div>
+	<div :class="$style.actions">
+		<button :class="$style.skip" @click="skip">{{ $t('skip') }}</button>
+		<button :class="$style.cancel" @click="cancel">{{ $t('cancel') }}</button>
+		<button :class="$style.ok" @click="ok">{{ $t('ok') }}</button>
+	</div>
+</mk-window>
 </template>
 
 <script lang="ts">
@@ -27,26 +28,26 @@ import * as url from '../../../../../prelude/url';
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/crop-window.vue'),
 	components: {
-		VueCropper
+		VueCropper,
 	},
 	props: {
 		image: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		title: {
 			type: String,
-			required: true
+			required: true,
 		},
 		aspectRatio: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 	computed: {
 		imageUrl() {
 			return `/proxy/?${url.query({
-				url: this.image.url
+				url: this.image.url,
 			})}`;
 		},
 	},
@@ -66,13 +67,12 @@ export default Vue.extend({
 		cancel() {
 			this.$emit('canceled');
 			(this.$refs.window as any).close();
-		}
-	}
+		},
+	},
 });
 </script>
 
 <style lang="stylus" module>
-
 
 .header
 	> [data-icon]

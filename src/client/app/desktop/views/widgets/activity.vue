@@ -12,8 +12,8 @@ export default define({
 	name: 'activity',
 	props: () => ({
 		design: 0,
-		view: 0
-	})
+		view: 0,
+	}),
 }).extend({
 	methods: {
 		func() {
@@ -27,7 +27,7 @@ export default define({
 		viewChanged(view) {
 			this.props.view = view;
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>

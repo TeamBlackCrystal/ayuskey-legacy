@@ -17,7 +17,7 @@ export default Vue.extend({
 				opacity: 1,
 				translateY: [-64, 0],
 				easing: 'easeOutElastic',
-				duration: 500
+				duration: 500,
 			});
 
 			setTimeout(() => {
@@ -27,11 +27,11 @@ export default Vue.extend({
 					translateY: -64,
 					duration: 500,
 					easing: 'easeInElastic',
-					complete: () => this.destroyDom()
+					complete: () => this.destroyDom(),
 				});
 			}, 5000);
 		});
-	}
+	},
 });
 </script>
 

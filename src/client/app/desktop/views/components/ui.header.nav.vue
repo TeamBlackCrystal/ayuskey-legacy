@@ -33,7 +33,7 @@ export default Vue.extend({
 		return {
 			hasGameInvitations: false,
 			connection: null,
-			faNewspaper, faHashtag
+			faNewspaper, faHashtag,
 		};
 	},
 	mounted() {
@@ -65,10 +65,10 @@ export default Vue.extend({
 		goToTop() {
 			window.scrollTo({
 				top: 0,
-				behavior: 'smooth'
+				behavior: 'smooth',
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

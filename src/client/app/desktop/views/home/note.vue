@@ -1,6 +1,6 @@
 <template>
 <div v-if="!fetching" class="kcthdwmv">
-	<mk-note-detail :note="note" :key="note.id"/>
+	<mk-note-detail :key="note.id" :note="note"/>
 	<footer>
 		<router-link v-if="note.next" :to="note.next"><fa icon="angle-left"/> {{ $t('next') }}</router-link>
 		<router-link v-if="note.prev" :to="note.prev">{{ $t('prev') }} <fa icon="angle-right"/></router-link>
@@ -18,11 +18,11 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			note: null
+			note: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		this.fetch();
@@ -33,15 +33,15 @@ export default Vue.extend({
 			this.fetching = true;
 
 			this.$root.api('notes/show', {
-				noteId: this.$route.params.note
+				noteId: this.$route.params.note,
 			}).then(note => {
 				this.note = note;
 				this.fetching = false;
 
 				Progress.done();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

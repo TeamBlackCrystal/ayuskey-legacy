@@ -12,7 +12,7 @@ import XMenu from './context-menu.menu.vue';
 
 export default Vue.extend({
 	components: {
-		XMenu
+		XMenu,
 	},
 	props: ['x', 'y', 'menu'],
 	mounted() {
@@ -44,7 +44,7 @@ export default Vue.extend({
 				targets: this.$el,
 				opacity: [0, 1],
 				duration: 100,
-				easing: 'linear'
+				easing: 'linear',
 			});
 		});
 	},
@@ -65,8 +65,8 @@ export default Vue.extend({
 
 			this.$emit('closed');
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

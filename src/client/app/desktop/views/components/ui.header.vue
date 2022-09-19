@@ -1,10 +1,10 @@
 <template>
 <div class="header" :style="style">
-	<p class="warn" v-if="env != 'production'">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
-	<div class="main" ref="main">
+	<p v-if="env != 'production'" class="warn">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
+	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="main">
-			<div class="container" ref="mainContainer">
+			<div ref="mainContainer" class="container">
 				<div class="left">
 					<x-nav/>
 				</div>
@@ -49,21 +49,21 @@ export default Vue.extend({
 		XNotifications,
 		XMessaging,
 		XPost,
-		XClock
+		XClock,
 	},
 
 	data() {
 		return {
-			env: env
+			env: env,
 		};
 	},
 
 	computed: {
 		style(): any {
 			return {
-				'box-shadow': this.$store.state.device.useShadow ? '0 0px 8px rgba(0, 0, 0, 0.2)' : 'none'
+				'box-shadow': this.$store.state.device.useShadow ? '0 0px 8px rgba(0, 0, 0, 0.2)' : 'none',
 			};
-		}
+		},
 	},
 
 	mounted() {
@@ -74,9 +74,9 @@ export default Vue.extend({
 		goToTop() {
 			window.scrollTo({
 				top: 0,
-				behavior: 'smooth'
+				behavior: 'smooth',
 			});
-		}
+		},
 	},
 });
 </script>

@@ -2,14 +2,15 @@
 <mk-window ref="window" :is-modal="false" :can-close="false" width="500px" @closed="destroyDom">
 	<template #header>{{ title }}<mk-ellipsis/></template>
 	<div :class="$style.body">
-		<p :class="$style.init" v-if="isNaN(value)">{{ $t('waiting') }}<mk-ellipsis/></p>
-		<p :class="$style.percentage" v-if="!isNaN(value)">{{ Math.floor((value / max) * 100) }}</p>
-		<progress :class="$style.progress"
+		<p v-if="isNaN(value)" :class="$style.init">{{ $t('waiting') }}<mk-ellipsis/></p>
+		<p v-if="!isNaN(value)" :class="$style.percentage">{{ Math.floor((value / max) * 100) }}</p>
+		<progress
 			v-if="!isNaN(value) && value < max"
+			:class="$style.progress"
 			:value="isNaN(value) ? 0 : value"
 			:max="max"
 		></progress>
-		<div :class="[$style.progress, $style.waiting]" v-if="value >= max"></div>
+		<div v-if="value >= max" :class="[$style.progress, $style.waiting]"></div>
 	</div>
 </mk-window>
 </template>
@@ -24,7 +25,7 @@ export default Vue.extend({
 	data() {
 		return {
 			value: this.initValue,
-			max: this.initMax
+			max: this.initMax,
 		};
 	},
 	methods: {
@@ -34,13 +35,12 @@ export default Vue.extend({
 		},
 		close() {
 			(this.$refs.window as any).close();
-		}
-	}
+		},
+	},
 });
 </script>
 
 <style lang="stylus" module>
-
 
 .body
 	padding 18px 24px 24px 24px

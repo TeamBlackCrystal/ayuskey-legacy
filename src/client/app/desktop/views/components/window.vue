@@ -1,17 +1,18 @@
 <template>
 <div class="mk-window" :data-flexible="isFlexible" @dragover="onDragover">
-	<div class="bg" :class="{'blur': $store.state.device.useBlur}" ref="bg" v-show="isModal" @click="onBgClick"></div>
-	<div class="main" ref="main" tabindex="-1" :data-is-modal="isModal" @mousedown="onBodyMousedown" @keydown="onKeydown" :style="{ width, height }">
+	<div v-show="isModal" ref="bg" class="bg" :class="{'blur': $store.state.device.useBlur}" @click="onBgClick"></div>
+	<div ref="main" class="main" tabindex="-1" :data-is-modal="isModal" :style="{ width, height }" @mousedown="onBodyMousedown" @keydown="onKeydown">
 		<div class="body">
-			<header ref="header"
+			<header
+				ref="header"
 				@contextmenu.prevent="() => {}" @mousedown.prevent="onHeaderMousedown"
 			>
 				<h1><slot name="header"></slot></h1>
 				<div>
-					<button class="popout" v-if="popoutUrl" @mousedown.stop="() => {}" @click="popout" :title="$t('popout')">
+					<button v-if="popoutUrl" class="popout" :title="$t('popout')" @mousedown.stop="() => {}" @click="popout">
 						<i><fa :icon="['far', 'window-restore']"/></i>
 					</button>
-					<button class="close" v-if="canClose" @mousedown.stop="() => {}" @click="close" :title="$t('close')">
+					<button v-if="canClose" class="close" :title="$t('close')" @mousedown.stop="() => {}" @click="close">
 						<i><fa icon="times"/></i>
 					</button>
 				</div>
@@ -44,15 +45,15 @@ const minHeight = 40;
 const minWidth = 200;
 
 function dragListen(fn) {
-	window.addEventListener('mousemove',  fn);
+	window.addEventListener('mousemove', fn);
 	window.addEventListener('mouseleave', dragClear.bind(null, fn));
-	window.addEventListener('mouseup',    dragClear.bind(null, fn));
+	window.addEventListener('mouseup', dragClear.bind(null, fn));
 }
 
 function dragClear(fn) {
-	window.removeEventListener('mousemove',  fn);
+	window.removeEventListener('mousemove', fn);
 	window.removeEventListener('mouseleave', dragClear);
-	window.removeEventListener('mouseup',    dragClear);
+	window.removeEventListener('mouseup', dragClear);
 }
 
 export default Vue.extend({
@@ -60,38 +61,38 @@ export default Vue.extend({
 	props: {
 		isModal: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		canClose: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		width: {
 			type: String,
-			default: '530px'
+			default: '530px',
 		},
 		height: {
 			type: String,
-			default: 'auto'
+			default: 'auto',
 		},
 		popoutUrl: {
 			type: [String, Function],
-			default: null
+			default: null,
 		},
 		name: {
 			type: String,
-			default: null
+			default: null,
 		},
 		animation: {
 			type: Boolean,
 			required: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 	data() {
 		return {
 			blurStrength: 0,
-		}
+		};
 	},
 
 	computed: {
@@ -100,7 +101,7 @@ export default Vue.extend({
 		},
 		canResize(): boolean {
 			return !this.isFlexible;
-		}
+		},
 	},
 
 	created() {
@@ -119,14 +120,14 @@ export default Vue.extend({
 			this.open();
 		});
 		if (this.$store.state.device.useBlur == false) {
-			return
+			return;
 		}
 		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.blurStrength = 0.5
+			this.blurStrength = 0.5;
 		} else {
-			this.blurStrength = 0.2
+			this.blurStrength = 0.2;
 		}
-		},
+	},
 
 	destroyed() {
 		// ウィンドウをウィンドウシステムから削除
@@ -150,7 +151,7 @@ export default Vue.extend({
 					targets: bg,
 					opacity: 1,
 					duration: this.animation ? 100 : 0,
-					easing: 'linear'
+					easing: 'linear',
 				});
 			}
 
@@ -160,7 +161,7 @@ export default Vue.extend({
 				opacity: 1,
 				scale: [1.1, 1],
 				duration: this.animation ? 200 : 0,
-				easing: 'easeOutQuad'
+				easing: 'easeOutQuad',
 			});
 
 			if (focus) main.focus();
@@ -182,7 +183,7 @@ export default Vue.extend({
 					targets: bg,
 					opacity: 0,
 					duration: this.animation ? 300 : 0,
-					easing: 'linear'
+					easing: 'linear',
 				});
 			}
 
@@ -193,7 +194,7 @@ export default Vue.extend({
 				opacity: 0,
 				scale: 0.8,
 				duration: this.animation ? 300 : 0,
-				easing: 'cubicBezier(0.5, -0.5, 1, 0.5)'
+				easing: 'cubicBezier(0.5, -0.5, 1, 0.5)',
 			});
 
 			setTimeout(() => {
@@ -203,7 +204,7 @@ export default Vue.extend({
 		},
 
 		popout() {
-			const url = typeof this.popoutUrl == 'function' ? this.popoutUrl() : this.popoutUrl;
+			const url = typeof this.popoutUrl === 'function' ? this.popoutUrl() : this.popoutUrl;
 
 			const main = this.$refs.main as any;
 
@@ -459,8 +460,8 @@ export default Vue.extend({
 			if (position.left < 0) main.style.left = 0;	// 左はみ出し
 			if (position.top < 0) main.style.top = 0;	// 上はみ出し
 			if (position.left + windowWidth > browserWidth) main.style.left = browserWidth - windowWidth + 'px';	// 右はみ出し
-		}
-	}});
+		},
+	} });
 </script>
 
 <style lang="stylus" scoped>

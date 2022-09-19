@@ -23,10 +23,10 @@ export default Vue.extend({
 				endpoint: 'notes/search-by-tag',
 				limit: 20,
 				params: {
-					tag: this.$route.params.tag
-				}
+					tag: this.$route.params.tag,
+				},
 			};
-		}
+		},
 	},
 	mounted() {
 		document.addEventListener('keydown', this.onDocumentKeydown);
@@ -46,7 +46,7 @@ export default Vue.extend({
 		inited() {
 			Progress.done();
 		},
-	}
+	},
 });
 </script>
 

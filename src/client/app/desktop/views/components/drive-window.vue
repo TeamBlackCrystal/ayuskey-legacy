@@ -1,10 +1,10 @@
 <template>
-<mk-window ref="window" @closed="destroyDom" width="800px" height="500px" :popout-url="popout">
+<mk-window ref="window" width="800px" height="500px" :popout-url="popout" @closed="destroyDom">
 	<template #header>
 		<p v-if="usage" :class="$style.info"><b>{{ usage.toFixed(1) }}%</b> {{ $t('used') }}</p>
 		<span :class="$style.title"><fa icon="cloud"/>{{ $t('@.drive') }}</span>
 	</template>
-	<x-drive :class="$style.browser" multiple :init-folder="folder" ref="browser"/>
+	<x-drive ref="browser" :class="$style.browser" multiple :init-folder="folder"/>
 </mk-window>
 </template>
 
@@ -21,7 +21,7 @@ export default Vue.extend({
 	props: ['folder'],
 	data() {
 		return {
-			usage: null
+			usage: null,
 		};
 	},
 	mounted() {
@@ -37,8 +37,8 @@ export default Vue.extend({
 			} else {
 				return `${url}/i/drive`;
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

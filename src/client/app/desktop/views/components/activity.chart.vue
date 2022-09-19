@@ -30,15 +30,15 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 
 function dragListen(fn) {
-	window.addEventListener('mousemove',  fn);
+	window.addEventListener('mousemove', fn);
 	window.addEventListener('mouseleave', dragClear.bind(null, fn));
-	window.addEventListener('mouseup',    dragClear.bind(null, fn));
+	window.addEventListener('mouseup', dragClear.bind(null, fn));
 }
 
 function dragClear(fn) {
-	window.removeEventListener('mousemove',  fn);
+	window.removeEventListener('mousemove', fn);
 	window.removeEventListener('mouseleave', dragClear);
-	window.removeEventListener('mouseup',    dragClear);
+	window.removeEventListener('mouseup', dragClear);
 }
 
 export default Vue.extend({
@@ -53,7 +53,7 @@ export default Vue.extend({
 			pointsNote: null,
 			pointsReply: null,
 			pointsRenote: null,
-			pointsTotal: null
+			pointsTotal: null,
 		};
 	},
 	created() {
@@ -93,8 +93,8 @@ export default Vue.extend({
 
 				this.render();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

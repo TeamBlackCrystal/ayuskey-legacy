@@ -10,17 +10,17 @@
 		</template>
 
 		<div class="mkw-users--body">
-			<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
 			<template v-else-if="users.length != 0">
-				<div class="user" v-for="_user in users">
+				<div v-for="_user in users" class="user">
 					<mk-avatar class="avatar" :user="_user"/>
 					<div class="body">
-						<router-link class="name" :to="_user | userPage" v-user-preview="_user.id"><mk-user-name :user="_user"/></router-link>
+						<router-link v-user-preview="_user.id" class="name" :to="_user | userPage"><mk-user-name :user="_user"/></router-link>
 						<p class="username">@{{ _user | acct }}</p>
 					</div>
 				</div>
 			</template>
-			<p class="empty" v-else>{{ $t('no-one') }}</p>
+			<p v-else class="empty">{{ $t('no-one') }}</p>
 		</div>
 	</ui-container>
 </div>
@@ -35,8 +35,8 @@ const limit = 3;
 export default define({
 	name: 'users',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n('desktop/views/widgets/users.vue'),
 	data() {
@@ -44,7 +44,7 @@ export default define({
 			users: [],
 			fetching: true,
 			more: true,
-			page: 0
+			page: 0,
 		};
 	},
 	mounted() {
@@ -61,7 +61,7 @@ export default define({
 
 			this.$root.api('users/recommendation', {
 				limit: limit,
-				offset: limit * this.page
+				offset: limit * this.page,
 			}).then(users => {
 				this.users = users;
 				this.fetching = false;
@@ -81,8 +81,8 @@ export default define({
 				this.page++;
 			}
 			this.fetch();
-		}
-	}
+		},
+	},
 });
 </script>
 

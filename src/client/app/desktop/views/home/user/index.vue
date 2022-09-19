@@ -1,9 +1,9 @@
 <template>
-<div class="omechnps" v-if="!fetching">
-	<div class="is-suspended" v-if="user.isSuspended" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
+<div v-if="!fetching" class="omechnps">
+	<div v-if="user.isSuspended" class="is-suspended" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 		<fa icon="exclamation-triangle"/> {{ $t('@.user-suspended') }}
 	</div>
-	<div class="is-remote" v-if="user.host != null" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
+	<div v-if="user.host != null" class="is-remote" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
 		<fa icon="exclamation-triangle"/> {{ $t('@.is-remote-user') }}<a :href="user.url" rel="nofollow noopener" target="_blank">{{ $t('@.view-on-remote') }}</a>
 	</div>
 	<div class="main">
@@ -23,16 +23,16 @@ import XHeader from './user.header.vue';
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		XHeader
+		XHeader,
 	},
 	data() {
 		return {
 			fetching: true,
-			user: null
+			user: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		this.fetch();
@@ -50,8 +50,8 @@ export default Vue.extend({
 
 		warp(date) {
 			(this.$refs.tl as any).warp(date);
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -3,10 +3,10 @@
 	<mk-note-preview class="preview" :note="note"/>
 	<template v-if="!quote">
 		<footer>
-			<a class="quote" v-if="!quote" @click="onQuote">{{ $t('quote') }}</a>
+			<a v-if="!quote" class="quote" @click="onQuote">{{ $t('quote') }}</a>
 			<ui-button class="button cancel" inline @click="cancel">{{ $t('cancel') }}</ui-button>
-			<ui-button class="button home" inline :primary="visibility != 'public'" @click="ok('home')"   :disabled="wait">{{ wait ? this.$t('reposting') : this.$t('renote-home') }}</ui-button>
-			<ui-button class="button ok"   inline :primary="visibility == 'public'" @click="ok('public')" :disabled="wait">{{ wait ? this.$t('reposting') : this.$t('renote') }}</ui-button>
+			<ui-button class="button home" inline :primary="visibility != 'public'" :disabled="wait"   @click="ok('home')">{{ wait ? $t('reposting') : $t('renote-home') }}</ui-button>
+			<ui-button class="button ok"   inline :primary="visibility == 'public'" :disabled="wait" @click="ok('public')">{{ wait ? $t('reposting') : $t('renote') }}</ui-button>
 		</footer>
 	</template>
 	<template v-if="quote">
@@ -23,21 +23,21 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/renote-form.vue'),
 
 	components: {
-		XPostForm: () => import('./post-form.vue').then(m => m.default)
+		XPostForm: () => import('./post-form.vue').then(m => m.default),
 	},
 
 	props: {
 		note: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			wait: false,
 			quote: false,
-			visibility: this.$store.state.settings.defaultNoteVisibility
+			visibility: this.$store.state.settings.defaultNoteVisibility,
 		};
 	},
 
@@ -46,7 +46,7 @@ export default Vue.extend({
 			this.wait = true;
 			this.$root.api('notes/create', {
 				renoteId: this.note.id,
-				visibility: v || this.visibility
+				visibility: v || this.visibility,
 			}).then(data => {
 				this.$emit('posted');
 				this.$notify(this.$t('success'));
@@ -71,8 +71,8 @@ export default Vue.extend({
 
 		onChildFormPosted() {
 			this.$emit('posted');
-		}
-	}
+		},
+	},
 });
 </script>
 

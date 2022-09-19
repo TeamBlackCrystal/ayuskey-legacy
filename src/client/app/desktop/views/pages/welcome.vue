@@ -18,7 +18,7 @@
 
 					<div class="info">
 						<span><b>{{ host }}</b> - <span v-html="$t('powered-by-misskey')"></span></span>
-						<span class="stats" v-if="stats">
+						<span v-if="stats" class="stats">
 							<span><fa icon="user"/> {{ stats.originalUsersCount | number }}</span>
 							<span><fa icon="pencil-alt"/> {{ stats.originalNotesCount | number }}</span>
 						</span>
@@ -99,39 +99,39 @@
 	<modal name="about" class="about modal" width="800px" height="auto" scrollable>
 		<article class="fpdezooorhntlzyeszemrsqdlgbysvxq">
 			<h1>{{ $t('@.intro.title') }}</h1>
-			<p v-html="this.$t('@.intro.about')"></p>
+			<p v-html="$t('@.intro.about')"></p>
 			<section>
 				<h2>{{ $t('@.intro.features') }}</h2>
 				<section>
 					<div class="body">
 						<h3>{{ $t('@.intro.rich-contents') }}</h3>
-						<p v-html="this.$t('@.intro.rich-contents-desc')"></p>
+						<p v-html="$t('@.intro.rich-contents-desc')"></p>
 					</div>
 					<div class="image"><img src="/assets/about/post.png" alt=""></div>
 				</section>
 				<section>
 					<div class="body">
 						<h3>{{ $t('@.intro.reaction') }}</h3>
-						<p v-html="this.$t('@.intro.reaction-desc')"></p>
+						<p v-html="$t('@.intro.reaction-desc')"></p>
 					</div>
 					<div class="image"><img src="/assets/about/reaction.png" alt=""></div>
 				</section>
 				<section>
 					<div class="body">
 						<h3>{{ $t('@.intro.ui') }}</h3>
-						<p v-html="this.$t('@.intro.ui-desc')"></p>
+						<p v-html="$t('@.intro.ui-desc')"></p>
 					</div>
 					<div class="image"><img src="/assets/about/ui.png" alt=""></div>
 				</section>
 				<section>
 					<div class="body">
 						<h3>{{ $t('@.intro.drive') }}</h3>
-						<p v-html="this.$t('@.intro.drive-desc')"></p>
+						<p v-html="$t('@.intro.drive-desc')"></p>
 					</div>
 					<div class="image"><img src="/assets/about/drive.png" alt=""></div>
 				</section>
 			</section>
-			<p v-html="this.$t('@.intro.outro')"></p>
+			<p v-html="$t('@.intro.outro')"></p>
 		</article>
 	</modal>
 
@@ -166,7 +166,7 @@ export default Vue.extend({
 			name: null,
 			description: '',
 			announcements: [],
-			photos: []
+			photos: [],
 		};
 	},
 
@@ -194,7 +194,7 @@ export default Vue.extend({
 		this.$root.api('notes/local-timeline', {
 			fileType: image,
 			excludeNsfw: true,
-			limit: 6
+			limit: 6,
 		}).then((notes: any[]) => {
 			const files = concat(notes.map((n: any): any[] => n.files));
 			this.photos = files.filter(f => image.includes(f.type)).slice(0, 6);
@@ -217,10 +217,10 @@ export default Vue.extend({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 
