@@ -42,11 +42,11 @@ router.get('/disconnect/twitter', async ctx => {
 
 	const user = await Users.findOne({
 		host: null,
-		token: userToken
+		token: userToken,
 	}).then(ensure);
 
 	await UserProfiles.update({
-		userId: user.id
+		userId: user.id,
 	}, {
 		twitter: false,
 		twitterAccessToken: null,
@@ -55,12 +55,12 @@ router.get('/disconnect/twitter', async ctx => {
 		twitterScreenName: null,
 	});
 
-	ctx.body = `Twitterの連携を解除しました :v:`;
+	ctx.body = 'Twitterの連携を解除しました :v:';
 
 	// Publish i updated event
 	publishMainStream(user.id, 'meUpdated', await Users.pack(user, user, {
 		detail: true,
-		includeSecrets: true
+		includeSecrets: true,
 	}));
 });
 
@@ -71,7 +71,7 @@ async function getTwAuth() {
 		return autwh({
 			consumerKey: meta.twitterConsumerKey,
 			consumerSecret: meta.twitterConsumerSecret,
-			callbackUrl: `${config.url}/api/tw/cb`
+			callbackUrl: `${config.url}/api/tw/cb`,
 		});
 	} else {
 		return null;
@@ -107,7 +107,7 @@ router.get('/signin/twitter', async ctx => {
 	ctx.cookies.set('signin_with_twitter_session_id', sessid, {
 		path: '/',
 		secure: config.url.startsWith('https'),
-		httpOnly: true
+		httpOnly: true,
 	});
 
 	ctx.redirect(twCtx.url);
@@ -167,7 +167,7 @@ router.get('/tw/cb', async ctx => {
 
 		const user = await Users.findOne({
 			host: null,
-			token: userToken
+			token: userToken,
 		}).then(ensure);
 
 		await UserProfiles.update({ userId: user.id }, {
@@ -183,7 +183,7 @@ router.get('/tw/cb', async ctx => {
 		// Publish i updated event
 		publishMainStream(user.id, 'meUpdated', await Users.pack(user, user, {
 			detail: true,
-			includeSecrets: true
+			includeSecrets: true,
 		}));
 	}
 });

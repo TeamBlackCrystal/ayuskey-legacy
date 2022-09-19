@@ -13,16 +13,16 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 			version: 'v1',
 			title: 'Misskey API',
 			description: getDescription(lang),
-			'x-logo': { url: '/assets/api-doc.png' }
+			'x-logo': { url: '/assets/api-doc.png' },
 		},
 
 		externalDocs: {
 			description: 'Repository',
-			url: 'https://github.com/TeamOrangeServer/misskey'
+			url: 'https://github.com/TeamOrangeServer/misskey',
 		},
 
 		servers: [{
-			url: config.apiUrl
+			url: config.apiUrl,
 		}],
 
 		paths: {} as any,
@@ -34,10 +34,10 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 				ApiKeyAuth: {
 					type: 'apiKey',
 					in: 'body',
-					name: 'i'
-				}
-			}
-		}
+					name: 'i',
+				},
+			},
+		},
 	};
 
 	function genProps(props: { [key: string]: Context; }) {
@@ -71,11 +71,11 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 			} : {}),
 			...(param.name === 'Object' ? {
 				...(required.length > 0 ? { required } : {}),
-				properties: (param as any).props ? genProps((param as any).props) : {}
+				properties: (param as any).props ? genProps((param as any).props) : {},
 			} : {}),
 			...(param.name === 'Array' ? {
-				items: (param as any).ctx ? genProp((param as any).ctx) : {}
-			} : {})
+				items: (param as any).ctx ? genProp((param as any).ctx) : {},
+			} : {}),
 		};
 	}
 
@@ -87,8 +87,8 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 			for (const e of Object.values(endpoint.meta.errors)) {
 				errors[e.code] = {
 					value: {
-						error: e
-					}
+						error: e,
+					},
 				};
 			}
 		}
@@ -120,15 +120,15 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 			description: desc,
 			externalDocs: {
 				description: 'Source code',
-				url: `https://github.com/syuilo/misskey/blob/develop/src/server/api/endpoints/${endpoint.name}.ts`
+				url: `https://github.com/syuilo/misskey/blob/develop/src/server/api/endpoints/${endpoint.name}.ts`,
 			},
 			...(endpoint.meta.tags ? {
-				tags: endpoint.meta.tags
+				tags: endpoint.meta.tags,
 			} : {}),
 			...(endpoint.meta.requireCredential ? {
 				security: [{
-					ApiKeyAuth: []
-				}]
+					ApiKeyAuth: [],
+				}],
 			} : {}),
 			requestBody: {
 				required: true,
@@ -137,10 +137,10 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 						schema: {
 							type: 'object',
 							...(required.length > 0 ? { required } : {}),
-							properties: endpoint.meta.params ? genProps(porops) : {}
-						}
-					}
-				}
+							properties: endpoint.meta.params ? genProps(porops) : {},
+						},
+					},
+				},
 			},
 			responses: {
 				...(endpoint.meta.res ? {
@@ -148,58 +148,58 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 						description: 'OK (with results)',
 						content: {
 							'application/json': {
-								schema: resSchema
-							}
-						}
-					}
+								schema: resSchema,
+							},
+						},
+					},
 				} : {
 					'204': {
 						description: 'OK (without any results)',
-					}
+					},
 				}),
 				'400': {
 					description: 'Client error',
 					content: {
 						'application/json': {
 							schema: {
-								$ref: '#/components/schemas/Error'
+								$ref: '#/components/schemas/Error',
 							},
-							examples: { ...errors, ...basicErrors['400'] }
-						}
-					}
+							examples: { ...errors, ...basicErrors['400'] },
+						},
+					},
 				},
 				'401': {
 					description: 'Authentication error',
 					content: {
 						'application/json': {
 							schema: {
-								$ref: '#/components/schemas/Error'
+								$ref: '#/components/schemas/Error',
 							},
-							examples: basicErrors['401']
-						}
-					}
+							examples: basicErrors['401'],
+						},
+					},
 				},
 				'403': {
 					description: 'Forbiddon error',
 					content: {
 						'application/json': {
 							schema: {
-								$ref: '#/components/schemas/Error'
+								$ref: '#/components/schemas/Error',
 							},
-							examples: basicErrors['403']
-						}
-					}
+							examples: basicErrors['403'],
+						},
+					},
 				},
 				'418': {
 					description: 'I\'m Ai',
 					content: {
 						'application/json': {
 							schema: {
-								$ref: '#/components/schemas/Error'
+								$ref: '#/components/schemas/Error',
 							},
-							examples: basicErrors['418']
-						}
-					}
+							examples: basicErrors['418'],
+						},
+					},
 				},
 				...(endpoint.meta.limit ? {
 					'429': {
@@ -207,29 +207,29 @@ export function genOpenapiSpec(lang = 'ja-JP') {
 						content: {
 							'application/json': {
 								schema: {
-									$ref: '#/components/schemas/Error'
+									$ref: '#/components/schemas/Error',
 								},
-								examples: basicErrors['429']
-							}
-						}
-					}
+								examples: basicErrors['429'],
+							},
+						},
+					},
 				} : {}),
 				'500': {
 					description: 'Internal server error',
 					content: {
 						'application/json': {
 							schema: {
-								$ref: '#/components/schemas/Error'
+								$ref: '#/components/schemas/Error',
 							},
-							examples: basicErrors['500']
-						}
-					}
+							examples: basicErrors['500'],
+						},
+					},
 				},
-			}
+			},
 		};
 
 		spec.paths['/' + endpoint.name] = {
-			post: info
+			post: info,
 		};
 	}
 
