@@ -17,9 +17,9 @@ export const meta = {
 		md5: {
 			validator: $.str,
 			desc: {
-				'ja-JP': 'ファイルのMD5ハッシュ'
-			}
-		}
+				'ja-JP': 'ファイルのMD5ハッシュ',
+			},
+		},
 	},
 
 	res: {
@@ -29,7 +29,7 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'DriveFile',
-		}
+		},
 	},
 };
 

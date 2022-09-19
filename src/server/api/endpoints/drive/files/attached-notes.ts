@@ -9,7 +9,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': '指定したドライブのファイルが添付されている投稿一覧を取得します。',
-		'en-US': 'Get the notes that specified file of drive attached.'
+		'en-US': 'Get the notes that specified file of drive attached.',
 	},
 
 	tags: ['drive', 'notes'],
@@ -23,9 +23,9 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のファイルID',
-				'en-US': 'Target file ID'
-			}
-		}
+				'en-US': 'Target file ID',
+			},
+		},
 	},
 
 	res: {
@@ -35,7 +35,7 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'Note',
-		}
+		},
 	},
 
 	errors: {
@@ -43,8 +43,8 @@ export const meta = {
 			message: 'No such file.',
 			code: 'NO_SUCH_FILE',
 			id: 'c118ece3-2e4b-4296-99d1-51756e32d232',
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -63,6 +63,6 @@ export default define(meta, async (ps, user) => {
 		.getMany();
 
 	return await Notes.packMany(notes, user, {
-		detail: true
+		detail: true,
 	});
 });

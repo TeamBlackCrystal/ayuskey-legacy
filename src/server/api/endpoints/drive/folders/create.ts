@@ -11,7 +11,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': 'ドライブのフォルダを作成します。',
-		'en-US': 'Create a folder of drive.'
+		'en-US': 'Create a folder of drive.',
 	},
 
 	tags: ['drive'],
@@ -26,26 +26,26 @@ export const meta = {
 			default: 'Untitled',
 			desc: {
 				'ja-JP': 'フォルダ名',
-				'en-US': 'Folder name'
-			}
+				'en-US': 'Folder name',
+			},
 		},
 
 		parentId: {
 			validator: $.optional.nullable.type(ID),
 			desc: {
 				'ja-JP': '親フォルダID',
-				'en-US': 'Parent folder ID'
-			}
-		}
+				'en-US': 'Parent folder ID',
+			},
+		},
 	},
 
 	errors: {
 		noSuchFolder: {
 			message: 'No such folder.',
 			code: 'NO_SUCH_FOLDER',
-			id: '53326628-a00d-40a6-a3cd-8975105c0f95'
+			id: '53326628-a00d-40a6-a3cd-8975105c0f95',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -55,7 +55,7 @@ export default define(meta, async (ps, user) => {
 		// Fetch parent folder
 		parent = await DriveFolders.findOne({
 			id: ps.parentId,
-			userId: user.id
+			userId: user.id,
 		});
 
 		if (parent == null) {
@@ -69,7 +69,7 @@ export default define(meta, async (ps, user) => {
 		createdAt: new Date(),
 		name: ps.name,
 		parentId: parent !== null ? parent.id : null,
-		userId: user.id
+		userId: user.id,
 	});
 
 	const folderObj = await DriveFolders.pack(folder);

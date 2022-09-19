@@ -12,15 +12,15 @@ export const meta = {
 
 	params: {
 		name: {
-			validator: $.str
+			validator: $.str,
 		},
 
 		parentId: {
 			validator: $.optional.nullable.type(ID),
 			default: null as any,
 			desc: {
-				'ja-JP': 'フォルダID'
-			}
+				'ja-JP': 'フォルダID',
+			},
 		},
 	},
 
@@ -31,7 +31,7 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'DriveFolder',
-		}
+		},
 	},
 };
 
@@ -39,7 +39,7 @@ export default define(meta, async (ps, user) => {
 	const folders = await DriveFolders.find({
 		name: ps.name,
 		userId: user.id,
-		parentId: ps.parentId
+		parentId: ps.parentId,
 	});
 
 	return await Promise.all(folders.map(folder => DriveFolders.pack(folder)));
