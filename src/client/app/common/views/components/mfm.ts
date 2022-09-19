@@ -48,8 +48,8 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 		},
 	},
 
-	render(createElement) {
-		if (this.text == null || this.text == '') return createElement('span');
+	render() {
+		if (this.text == null || this.text == '') return h('span');
 
 		const ast = (this.plain ? parsePlain : parse)(this.text);
 
@@ -68,24 +68,24 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 					if (!this.plain) {
 						const x = text.split('\n')
-							.map(t => t == '' ? [createElement('br')] : [createElement('span', t), createElement('br')]);
+							.map(t => t == '' ? [h('br')] : [h('span', t), h('br')]);
 						x[x.length - 1].pop();
 						return x;
 					} else {
-						return [createElement('span', text.replace(/\n/g, ' '))];
+						return [h('span', text.replace(/\n/g, ' '))];
 					}
 				}
 
 				case 'bold': {
-					return [createElement('b', genEl(token.children))];
+					return [h('b', genEl(token.children))];
 				}
 
 				case 'strike': {
-					return [createElement('del', genEl(token.children))];
+					return [h('del', genEl(token.children))];
 				}
 
 				case 'italic': {
-					return (createElement as any)('i', {
+					return (h as any)('i', {
 						attrs: {
 							style: 'font-style: oblique;',
 						},
@@ -93,7 +93,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'sup': {
-					return (createElement as any)('sup', {
+					return (h as any)('sup', {
 						attrs: {
 							style: 'vertical-align: super; font-size: smaller;',
 						},
@@ -101,7 +101,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'sub': {
-					return (createElement as any)('sub', {
+					return (h as any)('sub', {
 						attrs: {
 							style: 'vertical-align: sub; font-size: smaller;',
 						},
@@ -112,7 +112,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					bigCount++;
 					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
 					const isMany = bigCount > 3;
-					return (createElement as any)('strong', {
+					return (h as any)('strong', {
 						attrs: {
 							style: `display: inline-block; font-size: ${ isMany ? '100%' : '150%' };`,
 						},
@@ -127,7 +127,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					bigCount++;
 					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
 					const isMany = bigCount > 3;
-					return (createElement as any)('strong', {
+					return (h as any)('strong', {
 						attrs: {
 							style: `display: inline-block; font-size: ${ isMany ? '100%' : '300%' };`,
 						},
@@ -262,7 +262,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 							break;
 						}*/
 						case 'blur': {
-							return [createElement('span', {
+							return [h('span', {
 								attrs: {
 									class: '_mfm_blur_',
 								},
@@ -282,7 +282,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 								count, speed,
 							}, genEl(token.children));
 							*/
-							return [createElement(MkSparkle, {
+							return [h(MkSparkle, {
 								props: {
 									count,
 									speed,
@@ -291,7 +291,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 						}
 					}
 
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style,
 						},
@@ -299,7 +299,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'small': {
-					return [createElement('small', {
+					return [h('small', {
 						attrs: {
 							style: 'opacity: 0.7;',
 						},
@@ -307,7 +307,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'center': {
-					return [createElement('div', {
+					return [h('div', {
 						attrs: {
 							style: 'text-align:center;',
 						},
@@ -315,7 +315,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'right': {
-					return [createElement('div', {
+					return [h('div', {
 						attrs: {
 							style: 'text-align:right;',
 						},
@@ -326,7 +326,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					motionCount++;
 					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
 					const isMany = motionCount > 5;
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block;',
 						},
@@ -348,7 +348,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
 						? ''
 						: `animation: spin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style,
 						},
@@ -366,7 +366,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
 						? ''
 						: `animation: xspin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style,
 						},
@@ -384,7 +384,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
 						? ''
 						: `animation: yspin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block;' + style,
 						},
@@ -395,7 +395,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					motionCount++;
 					const isLong = sumTextsLength(token.children) > 30 || countNodesF(token.children) > 5;
 					const isMany = motionCount > 5;
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: (this.$store.state.settings.disableAnimatedMfm || isLong || isMany) ? 'display: inline-block;' : 'display: inline-block; animation: jump 0.75s linear infinite;',
 						},
@@ -403,7 +403,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'blink': {
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: (this.$store.state.settings.disableAnimatedMfm) ? 'display: inline-block;' : 'display: inline-block; animation: blink 0.75s linear infinite;',
 						},
@@ -411,7 +411,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'flip': {
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block; transform: scaleX(-1);',
 						},
@@ -419,7 +419,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'vflip': {
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: 'display: inline-block; transform: scaleY(-1);',
 						},
@@ -430,7 +430,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					const isLong = sumTextsLength(token.children) > 100 || countNodesF(token.children) > 20;
 					const deg = token.node.props.attr;
 
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						attrs: {
 							style: isLong ? '' : `display: inline-block; transform: rotate(${deg}deg);`,
 						},
@@ -438,19 +438,19 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'twitch': {
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-twitch 0.5s ease infinite;' : 'display: inline-block;',
 					}, genEl(token.children));
 				}
 
 				case 'shake': {
-					return (createElement as any)('span', {
+					return (h as any)('span', {
 						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: anime-shake 0.5s ease infinite;' : 'display: inline-block;',
 					}, genEl(token.children));
 				}
 
 				case 'url': {
-					return [createElement(MkUrl, {
+					return [h(MkUrl, {
 						key: Math.random(),
 						props: {
 							url: token.node.props.url,
@@ -463,7 +463,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'link': {
-					return [createElement('a', {
+					return [h('a', {
 						attrs: {
 							class: 'link',
 							href: token.node.props.url,
@@ -476,7 +476,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'mention': {
-					return [createElement(MkMention, {
+					return [h(MkMention, {
 						key: Math.random(),
 						props: {
 							host: (token.node.props.host == null && this.author && this.author.host != null ? this.author.host : token.node.props.host) || host,
@@ -486,7 +486,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'hashtag': {
-					return [createElement('router-link', {
+					return [h('router-link', {
 						key: Math.random(),
 						attrs: {
 							to: this.isNote ? `/tags/${encodeURIComponent(token.node.props.hashtag)}` : `/explore/tags/${encodeURIComponent(token.node.props.hashtag)}`,
@@ -496,7 +496,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'blockCode': {
-					return [createElement(MkCode, {
+					return [h(MkCode, {
 						key: Math.random(),
 						props: {
 							code: token.node.props.code,
@@ -506,7 +506,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'inlineCode': {
-					return [createElement(MkCode, {
+					return [h(MkCode, {
 						key: Math.random(),
 						props: {
 							code: token.node.props.code,
@@ -518,13 +518,13 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 				case 'quote': {
 					if (this.shouldBreak) {
-						return [createElement('div', {
+						return [h('div', {
 							attrs: {
 								class: 'quote',
 							},
 						}, genEl(token.children))];
 					} else {
-						return [createElement('span', {
+						return [h('span', {
 							attrs: {
 								class: 'quote',
 							},
@@ -533,7 +533,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				}
 
 				case 'title': {
-					return [createElement('div', {
+					return [h('div', {
 						attrs: {
 							class: 'title',
 						},
@@ -542,7 +542,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 				case 'emoji': {
 					const customEmojis = (this.$root.getMetaSync() || { emojis: [] }).emojis || [];
-					return [createElement('mk-emoji', {
+					return [h('mk-emoji', {
 						key: Math.random(),
 						attrs: {
 							emoji: token.node.props.emoji,
@@ -557,7 +557,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 				case 'mathInline': {
 					//const MkFormula = () => import('./formula.vue').then(m => m.default);
-					return [createElement(MkFormula, {
+					return [h(MkFormula, {
 						key: Math.random(),
 						props: {
 							formula: token.node.props.formula,
@@ -568,7 +568,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 				case 'mathBlock': {
 					//const MkFormula = () => import('./formula.vue').then(m => m.default);
-					return [createElement(MkFormula, {
+					return [h(MkFormula, {
 						key: Math.random(),
 						props: {
 							formula: token.node.props.formula,
@@ -579,7 +579,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 
 				case 'search': {
 					//const MkGoogle = () => import('./google.vue').then(m => m.default);
-					return [createElement(MkGoogle, {
+					return [h(MkGoogle, {
 						key: Math.random(),
 						props: {
 							q: token.node.props.query,
@@ -608,7 +608,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 						behavior = 'slide';
 					}
 
-					return [createElement('marquee', {
+					return [h('marquee', {
 						attrs: {
 							behavior,
 							direction,
@@ -622,6 +622,6 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 		}));
 
 		// Parse ast to DOM
-		return createElement('span', genEl(ast));
+		return h('span', genEl(ast));
 	},
 });

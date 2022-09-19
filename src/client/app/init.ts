@@ -2,7 +2,7 @@
  * App initializer
  */
 
-import Vue from 'vue';
+import Vue, { h } from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
@@ -510,7 +510,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 					},
 				},
 				router,
-				render: createEl => createEl(App),
+				render: () => h(App),
 			});
 
 			os.app = app;
