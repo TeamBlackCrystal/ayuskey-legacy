@@ -1,14 +1,14 @@
 <template>
 <div>
-	<div class="about815" v-if="meta" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }">
+	<div v-if="meta" class="about815" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }">
 		<header>{{ meta.name }}</header>
-		<div class="desc" v-if="meta.description" v-html="meta.description"></div>
+		<div v-if="meta.description" class="desc" v-html="meta.description"></div>
 	</div>
 
 	<!-- 基本 -->
 	<ui-container>
 		<template #header><fa :icon="faServer"/> {{ $t('basic') }}</template>
-		<div class="items" v-if="meta">
+		<div v-if="meta" class="items">
 			<div class="item">
 				<div class="key">Ayuskey</div>
 				<div class="value">v{{ meta.version }}</div>
@@ -17,11 +17,11 @@
 				<div class="key">Misskey</div>
 				<div class="value">v11.37.1</div>
 			</div>
-			<div class="item" v-if="meta.maintainer && meta.maintainer.name">
+			<div v-if="meta.maintainer && meta.maintainer.name" class="item">
 				<div class="key">{{ $t('maintainerName') }}</div>
 				<div class="value">{{ meta.maintainer.name}}</div>
 			</div>
-			<div class="item" v-if="meta.maintainer && meta.maintainer.email">
+			<div v-if="meta.maintainer && meta.maintainer.email" class="item">
 				<div class="key">{{ $t('maintainerEmail') }}</div>
 				<div class="value">{{ meta.maintainer.email }}</div>
 			</div>
@@ -31,7 +31,7 @@
 	<!-- 統計 -->
 	<ui-container>
 		<template #header><fa :icon="faChartBar"/> {{ $t('stats') }}</template>
-		<div class="items" v-if="stats">
+		<div v-if="stats" class="items">
 			<div class="item">
 				<div class="key">{{ $t('users') }}</div>
 				<div class="value">{{ stats.originalUsersCount }}</div>
@@ -61,7 +61,7 @@ export default Vue.extend({
 		return {
 			meta: null,
 			stats: null,
-			faServer, faChartBar
+			faServer, faChartBar,
 		};
 	},
 

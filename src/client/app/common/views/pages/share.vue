@@ -6,7 +6,7 @@
 		<x-post-form v-else-if="!posted" :initial-text="template" :instant="true" @posted="posted = true"/>
 		<p v-if="posted" class="posted"><fa icon="check"/></p>
 	</div>
-	<ui-button class="close" v-if="posted" @click="close">{{ $t('@.close') }}</ui-button>
+	<ui-button v-if="posted" class="close" @click="close">{{ $t('@.close') }}</ui-button>
 </div>
 </template>
 
@@ -17,7 +17,7 @@ import i18n from '../../../i18n';
 export default Vue.extend({
 	i18n: i18n('mobile/views/pages/share.vue'),
 	components: {
-		XPostForm: () => import('../../../desktop/views/components/post-form.vue').then(m => m.default)
+		XPostForm: () => import('../../../desktop/views/components/post-form.vue').then(m => m.default),
 	},
 	data() {
 		return {
@@ -35,7 +35,7 @@ export default Vue.extend({
 			if (this.text) t += `${this.text}\n`;
 			if (this.url) t += `${this.url}`;
 			return t.trim();
-		}
+		},
 	},
 	mounted() {
 		this.$root.getMeta().then(meta => {
@@ -45,8 +45,8 @@ export default Vue.extend({
 	methods: {
 		close() {
 			window.close();
-		}
-	}
+		},
+	},
 });
 </script>
 
