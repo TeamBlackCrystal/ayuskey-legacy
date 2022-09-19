@@ -11,7 +11,7 @@ export default async function(followee: User, follower: User) {
 	if (Users.isRemoteUser(follower)) {
 		const request = await FollowRequests.findOne({
 			followeeId: followee.id,
-			followerId: follower.id
+			followerId: follower.id,
 		});
 
 		const content = renderActivity(renderReject(renderFollow(follower, followee, request!.requestId!), followee as ILocalUser));
@@ -20,7 +20,7 @@ export default async function(followee: User, follower: User) {
 
 	const request = await FollowRequests.findOne({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	if (request) {
@@ -28,7 +28,7 @@ export default async function(followee: User, follower: User) {
 	} else {
 		const following = await Followings.findOne({
 			followeeId: followee.id,
-			followerId: follower.id
+			followerId: follower.id,
 		});
 
 		if (following) {
@@ -38,9 +38,9 @@ export default async function(followee: User, follower: User) {
 	}
 
 	Users.pack(followee, follower, {
-		detail: true
+		detail: true,
 	}).then(packed => {
 		publishUserEvent(follower.id, 'unfollow', packed);
-		publishMainStream(follower.id, 'unfollow', packed)
+		publishMainStream(follower.id, 'unfollow', packed);
 	});
 }
