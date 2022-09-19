@@ -12,7 +12,7 @@ export async function extractApMentions(tags: IObject | IObject[] | null | undef
 
 	const limit = promiseLimit<User | null>(2);
 	const mentionedUsers = (await Promise.all(
-		hrefs.map(x => limit(() => resolvePerson(x, resolver).catch(() => null)))
+		hrefs.map(x => limit(() => resolvePerson(x, resolver).catch(() => null))),
 	)).filter((x): x is User => x != null);
 
 	return mentionedUsers;

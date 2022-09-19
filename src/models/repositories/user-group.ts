@@ -12,7 +12,7 @@ export class UserGroupRepository extends Repository<UserGroup> {
 		const userGroup = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
 		const users = await UserGroupJoinings.find({
-			userGroupId: userGroup.id
+			userGroupId: userGroup.id,
 		});
 
 		return {
@@ -20,7 +20,7 @@ export class UserGroupRepository extends Repository<UserGroup> {
 			createdAt: userGroup.createdAt.toISOString(),
 			name: userGroup.name,
 			ownerId: userGroup.userId,
-			userIds: users.map(x => x.userId)
+			userIds: users.map(x => x.userId),
 		};
 	}
 }
@@ -40,12 +40,12 @@ export const packedUserGroupSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the UserGroup was created.'
+			description: 'The date that the UserGroup was created.',
 		},
 		name: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
-			description: 'The name of the UserGroup.'
+			description: 'The name of the UserGroup.',
 		},
 		ownerId: {
 			type: 'string' as const,
@@ -59,7 +59,7 @@ export const packedUserGroupSchema = {
 				type: 'string' as const,
 				nullable: false as const, optional: false as const,
 				format: 'id',
-			}
+			},
 		},
 	},
 };

@@ -3,9 +3,9 @@
 	<img src="/assets/error.jpg" onerror="this.src='https://raw.githubusercontent.com/syuilo/misskey/develop/src/client/assets/error.jpg';" alt=""/>
 	<h1>{{ $t('title') }}</h1>
 	<p class="text">
-		<span>{{ this.$t('description').substr(0, this.$t('description').indexOf('{')) }}</span>
-		<a @click="reload">{{ this.$t('description').match(/\{(.+?)\}/)[1] }}</a>
-		<span>{{ this.$t('description').substr(this.$t('description').indexOf('}') + 1) }}</span>
+		<span>{{ $t('description').substr(0, $t('description').indexOf('{')) }}</span>
+		<a @click="reload">{{ $t('description').match(/\{(.+?)\}/)[1] }}</a>
+		<span>{{ $t('description').substr($t('description').indexOf('}') + 1) }}</span>
 	</p>
 	<button v-if="!troubleshooting" @click="troubleshooting = true">{{ $t('troubleshoot') }}</button>
 	<x-troubleshooter v-if="troubleshooting"/>
@@ -21,11 +21,11 @@ import XTroubleshooter from './connect-failed.troubleshooter.vue';
 export default Vue.extend({
 	i18n: i18n('common/views/components/connect-failed.vue'),
 	components: {
-		XTroubleshooter
+		XTroubleshooter,
 	},
 	data() {
 		return {
-			troubleshooting: false
+			troubleshooting: false,
 		};
 	},
 	mounted() {
@@ -35,13 +35,12 @@ export default Vue.extend({
 	methods: {
 		reload() {
 			location.reload(true);
-		}
-	}
+		},
+	},
 });
 </script>
 
 <style lang="stylus" scoped>
-
 
 .mk-connect-failed
 	width 100%

@@ -17,7 +17,7 @@ type action = {
 const getKeyMap = keymap => Object.entries(keymap).map(([patterns, callback]): action => {
 	const result = {
 		patterns: [],
-		callback: callback
+		callback: callback,
 	} as action;
 
 	result.patterns = patterns.split('|').map(part => {
@@ -25,7 +25,7 @@ const getKeyMap = keymap => Object.entries(keymap).map(([patterns, callback]): a
 			which: [],
 			ctrl: false,
 			alt: false,
-			shift: false
+			shift: false,
 		} as pattern;
 
 		const keys = part.trim().split('+').map(x => x.trim().toLowerCase());
@@ -52,7 +52,7 @@ function match(e: KeyboardEvent, patterns: action['patterns']): boolean {
 		pattern.ctrl == e.ctrlKey &&
 		pattern.shift == e.shiftKey &&
 		pattern.alt == e.altKey &&
-		!e.metaKey
+		!e.metaKey,
 	);
 }
 
@@ -100,7 +100,7 @@ export default {
 				} else {
 					el.removeEventListener('keydown', el._keyHandler);
 				}
-			}
+			},
 		});
-	}
+	},
 };

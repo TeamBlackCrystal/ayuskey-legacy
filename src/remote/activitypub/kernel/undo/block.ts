@@ -8,13 +8,13 @@ export default async (actor: IRemoteUser, activity: IBlock): Promise<string> => 
 	const blockee = await dbResolver.getUserFromApId(activity.object);
 
 	if (blockee == null) {
-		return `skip: blockee not found`;
+		return 'skip: blockee not found';
 	}
 
 	if (blockee.host != null) {
-		return `skip: ブロック解除しようとしているユーザーはローカルユーザーではありません`;
+		return 'skip: ブロック解除しようとしているユーザーはローカルユーザーではありません';
 	}
 
 	await unblock(actor, blockee);
-	return `ok`;
+	return 'ok';
 };

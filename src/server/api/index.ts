@@ -22,7 +22,7 @@ import config from '../../config';
 const app = new Koa();
 
 app.use(cors({
-	origin: '*'
+	origin: '*',
 }));
 
 // No caching
@@ -33,7 +33,7 @@ app.use(async (ctx, next) => {
 
 app.use(bodyParser({
 	// リクエストが multipart/form-data でない限りはJSONだと見なす
-	detectJSON: ctx => !ctx.is('multipart/form-data')
+	detectJSON: ctx => !ctx.is('multipart/form-data'),
 }));
 
 // Init multer instance
@@ -42,7 +42,7 @@ const upload = multer({
 	limits: {
 		fileSize: config.maxFileSize || 262144000,
 		files: 1,
-	}
+	},
 });
 
 // Init router
@@ -80,7 +80,7 @@ router.get('/v1/instance/peers', async ctx => {
 	if (config.disableFederation) ctx.throw(404);
 
 	const instances = await Instances.find({
-		select: ['host']
+		select: ['host'],
 	});
 
 	ctx.body = instances.map(instance => instance.host);

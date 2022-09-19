@@ -18,22 +18,22 @@ import MkMessagingWindow from '../components/messaging-window.vue';
 export default define({
 	name: 'messaging',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	i18n: i18n(''),
 	components: {
-		XMessaging: () => import('../../../common/views/components/messaging.vue').then(m => m.default)
+		XMessaging: () => import('../../../common/views/components/messaging.vue').then(m => m.default),
 	},
 	methods: {
 		navigate(user) {
 			this.$root.new(MkMessagingRoomWindow, {
-				user: user
+				user: user,
 			});
 		},
 		navigateGroup(group) {
 			this.$root.new(MkMessagingRoomWindow, {
-				group: group
+				group: group,
 			});
 		},
 		add() {
@@ -46,8 +46,8 @@ export default define({
 				this.props.design++;
 			}
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>
 

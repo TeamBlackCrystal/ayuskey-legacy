@@ -1,10 +1,10 @@
 <template>
-	<span class="mk-avatar" :style="style" :class="{ cat }" :title="user | acct" v-if="disableLink" v-user-preview="disablePreview ? undefined : user.id" @click="onClick" v-once>
-		<img class="inner" :style="style" :src="url" decoding="async"/>
-	</span>
-	<router-link class="mk-avatar" :style="style" :class="{ cat }" :to="user | userPage" :title="user | acct" :target="target" v-else v-user-preview="disablePreview ? undefined : user.id">
-		<img class="inner" :style="style" :src="url" decoding="async"/>
-	</router-link>
+<span v-if="disableLink" v-once v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :title="user | acct" @click="onClick">
+	<img class="inner" :style="style" :src="url" decoding="async"/>
+</span>
+<router-link v-else v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :to="user | userPage" :title="user | acct" :target="target">
+	<img class="inner" :style="style" :src="url" decoding="async"/>
+</router-link>
 </template>
 
 <script lang="ts">
@@ -15,20 +15,20 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		target: {
 			required: false,
-			default: null
+			default: null,
 		},
 		disableLink: {
 			required: false,
-			default: false
+			default: false,
 		},
 		disablePreview: {
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		lightmode(): boolean {
@@ -40,26 +40,26 @@ export default Vue.extend({
 		// TODO: 2020/10/28 お嬢様アイコン追加
 		style(): any {
 			return {
-				borderRadius: this.$store.state.settings.circleIcons ? '100%' : null
+				borderRadius: this.$store.state.settings.circleIcons ? '100%' : null,
 			};
 		},
 		url(): string {
 			return this.$store.state.device.disableShowingAnimatedImages
 				? getStaticImageUrl(this.user.avatarUrl)
 				: this.user.avatarUrl;
-		}
+		},
 	},
 	watch: {
 		'user.avatarBlurhash'() {
 			this.$el.style.color = this.getBlurhashAvgColor(this.user.avatarBlurhash);
-		}
+		},
 	},
 	mounted() {
 		this.$el.style.color = this.getBlurhashAvgColor(this.user.avatarBlurhash);
 	},
 	methods: {
 		getBlurhashAvgColor(s) {
-			return typeof s == 'string'
+			return typeof s === 'string'
 				? '#' + [...s.slice(2, 6)]
 						.map(x => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~'.indexOf(x))
 						.reduce((a, c) => a * 83 + c, 0)
@@ -69,8 +69,8 @@ export default Vue.extend({
 		},
 		onClick(e) {
 			this.$emit('click', e);
-		}
-	}
+		},
+	},
 });
 </script>
 

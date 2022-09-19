@@ -9,12 +9,12 @@
 		<header>
 			<b><mk-user-name :user="user"/></b>
 			<span class="username">@{{ user | acct }}</span>
-			<span class="is-admin" v-if="user.isAdmin">admin</span>
-			<span class="is-moderator" v-if="user.isModerator">moderator</span>
-			<span class="is-verified" v-if="user.isVerified" :title="$t('@.verified-user')"><fa icon="star"/></span>
-			<span class="is-premium" v-if="user.isPremium" :title="$t('@.premium-user')"><fa icon="crown"/></span>
-			<span class="is-silenced" v-if="user.isSilenced" :title="$t('@.silenced-user')"><fa :icon="faMicrophoneSlash"/></span>
-			<span class="is-suspended" v-if="user.isSuspended" :title="$t('@.suspended-user')"><fa :icon="faSnowflake"/></span>
+			<span v-if="user.isAdmin" class="is-admin">admin</span>
+			<span v-if="user.isModerator" class="is-moderator">moderator</span>
+			<span v-if="user.isVerified" class="is-verified" :title="$t('@.verified-user')"><fa icon="star"/></span>
+			<span v-if="user.isPremium" class="is-premium" :title="$t('@.premium-user')"><fa icon="crown"/></span>
+			<span v-if="user.isSilenced" class="is-silenced" :title="$t('@.silenced-user')"><fa :icon="faMicrophoneSlash"/></span>
+			<span v-if="user.isSuspended" class="is-suspended" :title="$t('@.suspended-user')"><fa :icon="faSnowflake"/></span>
 		</header>
 		<div>
 			<span>{{ $t('users.updatedAt') }}: <mk-time :time="user.updatedAt" mode="detail"/></span>
@@ -37,7 +37,7 @@ export default Vue.extend({
 	props: ['user', 'click'],
 	data() {
 		return {
-			faSnowflake, faMicrophoneSlash
+			faSnowflake, faMicrophoneSlash,
 		};
 	},
 });

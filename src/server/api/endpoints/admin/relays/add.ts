@@ -6,7 +6,7 @@ import { ApiError } from '../../../error';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'Add relay'
+		'ja-JP': 'Add relay',
 	},
 
 	tags: ['admin'],
@@ -16,7 +16,7 @@ export const meta = {
 
 	params: {
 		inbox: {
-			validator: $.str
+			validator: $.str,
 		},
 	},
 
@@ -24,9 +24,9 @@ export const meta = {
 		invalidUrl: {
 			message: 'Invalid URL',
 			code: 'INVALID_URL',
-			id: 'fb8c92d3-d4e5-44e7-b3d4-800d5cef8b2c'
+			id: 'fb8c92d3-d4e5-44e7-b3d4-800d5cef8b2c',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {

@@ -16,8 +16,8 @@ export default Vue.extend({
 	props: {
 		platform: {
 			type: String,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -30,14 +30,14 @@ export default Vue.extend({
 			notesComponent:
 				this.platform === 'desktop' ? () => import('../../../desktop/views/components/detail-notes.vue').then(m => m.default) :
 				this.platform === 'mobile' ? () => import('../../../mobile/views/components/detail-notes.vue').then(m => m.default) :
-				this.platform === 'deck' ? () => import('../deck/deck.notes.vue').then(m => m.default) : null
+				this.platform === 'deck' ? () => import('../deck/deck.notes.vue').then(m => m.default) : null,
 		};
 	},
 
 	created() {
 		this.$emit('init', {
 			title: this.$t('@.favorites'),
-			icon: faStar
+			icon: faStar,
 		});
 	},
 

@@ -18,7 +18,7 @@ export default async function(user: User, note: Note, choice: number) {
 	// if already voted
 	const exist = await PollVotes.find({
 		noteId: note.id,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (poll.multiple) {
@@ -35,7 +35,7 @@ export default async function(user: User, note: Note, choice: number) {
 		createdAt: new Date(),
 		noteId: note.id,
 		userId: user.id,
-		choice: choice
+		choice: choice,
 	});
 
 	// Increment votes count
@@ -44,13 +44,13 @@ export default async function(user: User, note: Note, choice: number) {
 
 	publishNoteStream(note.id, 'pollVoted', {
 		choice: choice,
-		userId: user.id
+		userId: user.id,
 	});
 
 	// Notify
 	createNotification(note.userId, user.id, 'pollVote', {
 		noteId: note.id,
-		choice: choice
+		choice: choice,
 	});
 
 	// Fetch watchers
@@ -62,7 +62,7 @@ export default async function(user: User, note: Note, choice: number) {
 		for (const watcher of watchers) {
 			createNotification(watcher.userId, user.id, 'pollVote', {
 				noteId: note.id,
-				choice: choice
+				choice: choice,
 			});
 		}
 	});

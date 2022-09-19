@@ -16,19 +16,19 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'activity',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n(),
 	components: {
-		XActivity: () => import('../../../common/views/components/activity.vue').then(m => m.default)
+		XActivity: () => import('../../../common/views/components/activity.vue').then(m => m.default),
 	},
 	methods: {
 		func() {
 			this.props.compact = !this.props.compact;
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -1,7 +1,7 @@
 import { initDb } from '../db/postgre';
 
 async function main(username: string) {
-	if (!username) throw `username required`;
+	if (!username) throw 'username required';
 	username = username.replace(/^@/, '');
 
 	await initDb();
@@ -9,9 +9,9 @@ async function main(username: string) {
 
 	const res = await Users.update({
 		usernameLower: username.toLowerCase(),
-		host: null
+		host: null,
 	}, {
-		isAdmin: true
+		isAdmin: true,
 	});
 
 	if (res.affected !== 1) {

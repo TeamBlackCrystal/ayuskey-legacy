@@ -20,14 +20,14 @@ export default Vue.extend({
 					untilDate: init ? undefined : (this.date ? this.date.getTime() : undefined),
 					includeMyRenotes: this.$store.state.settings.showMyRenotes,
 					includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-					includeLocalRenotes: this.$store.state.settings.showLocalRenotes
-				})
-			}
+					includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
+				}),
+			},
 		};
 	},
 
 	watch: {
-		$route: 'init'
+		$route: 'init',
 	},
 
 	mounted() {
@@ -47,7 +47,7 @@ export default Vue.extend({
 		init() {
 			if (this.connection) this.connection.dispose();
 			this.connection = this.$root.stream.connectToChannel('userList', {
-				listId: this.list.id
+				listId: this.list.id,
 			});
 			this.connection.on('note', this.onNote);
 			this.connection.on('userAdded', this.onUserAdded);
@@ -70,7 +70,7 @@ export default Vue.extend({
 		warp(date) {
 			this.date = date;
 			(this.$refs.timeline as any).reload();
-		}
-	}
+		},
+	},
 });
 </script>

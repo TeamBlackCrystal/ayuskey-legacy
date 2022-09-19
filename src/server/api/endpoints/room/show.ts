@@ -20,16 +20,16 @@ export const meta = {
 			validator: $.optional.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
+				'en-US': 'Target user ID',
+			},
 		},
 
 		username: {
-			validator: $.optional.str
+			validator: $.optional.str,
 		},
 
 		host: {
-			validator: $.optional.nullable.str
+			validator: $.optional.nullable.str,
 		},
 	},
 
@@ -37,9 +37,9 @@ export const meta = {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '7ad3fa3e-5e12-42f0-b23a-f3d13f10ee4b'
-		}
-	}
+			id: '7ad3fa3e-5e12-42f0-b23a-f3d13f10ee4b',
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -57,8 +57,8 @@ export default define(meta, async (ps, me) => {
 		await UserProfiles.update({ userId: user.id }, {
 			room: {
 				furnitures: [],
-				...profile.room
-			}
+				...profile.room,
+			},
 		});
 
 		profile.room.furnitures = [];
@@ -69,8 +69,8 @@ export default define(meta, async (ps, me) => {
 		await UserProfiles.update({ userId: user.id }, {
 			room: {
 				roomType: initialType as any,
-				...profile.room
-			}
+				...profile.room,
+			},
 		});
 
 		profile.room.roomType = initialType;
@@ -81,8 +81,8 @@ export default define(meta, async (ps, me) => {
 		await UserProfiles.update({ userId: user.id }, {
 			room: {
 				carpetColor: initialColor as any,
-				...profile.room
-			}
+				...profile.room,
+			},
 		});
 
 		profile.room.carpetColor = initialColor;

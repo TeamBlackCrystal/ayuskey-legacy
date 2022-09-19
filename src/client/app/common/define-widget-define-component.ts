@@ -7,20 +7,26 @@ export default function <T extends object>(data: {
 	return defineComponent({
 		props: {
 			widget: {
-				type: Object
+				type: Object,
 			},
 			column: {
 				type: Object,
-				default: null
+				default: null,
 			},
 			platform: {
 				type: String,
-				required: true
+				required: true,
 			},
 			isCustomizeMode: {
 				type: Boolean,
-				default: false
-			}
+				default: false,
+			},
+		},
+
+		data() {
+			return {
+				bakedOldProps: null,
+			};
 		},
 
 		computed: {
@@ -30,13 +36,7 @@ export default function <T extends object>(data: {
 
 			props(): T {
 				return this.widget.data;
-			}
-		},
-
-		data() {
-			return {
-				bakedOldProps: null
-			};
+			},
 		},
 
 		created() {
@@ -65,7 +65,7 @@ export default function <T extends object>(data: {
 				} else {
 					this.$store.commit('updateWidget', this.widget);
 				}
-			}
-		}
+			},
+		},
 	});
 }

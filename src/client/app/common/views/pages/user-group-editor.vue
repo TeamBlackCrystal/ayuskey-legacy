@@ -20,7 +20,7 @@
 				<ui-button @click="invite()"><fa :icon="faPlus"/> {{ $t('invite') }}</ui-button>
 			</ui-margin>
 			<sequential-entrance animation="entranceFromTop" delay="25">
-				<div class="kjlrfbes" v-for="user in users">
+				<div v-for="user in users" class="kjlrfbes">
 					<div>
 						<a :href="user | userPage">
 							<mk-avatar class="avatar" :user="user" :disable-link="true"/>
@@ -29,7 +29,7 @@
 					<div>
 						<header>
 							<b><mk-user-name :user="user"/></b>
-							<span class="is-owner" v-if="group.ownerId === user.id">owner</span>
+							<span v-if="group.ownerId === user.id" class="is-owner">owner</span>
 							<span class="username">@{{ user | acct }}</span>
 						</header>
 						<div v-if="group.ownerId !== user.id">
@@ -54,27 +54,27 @@ export default Vue.extend({
 
 	props: {
 		groupId: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			group: null,
 			users: [],
-			faCrown, faICursor, faTrashAlt, faUsers, faPlus
+			faCrown, faICursor, faTrashAlt, faUsers, faPlus,
 		};
 	},
 
 	created() {
 		this.$root.api('users/groups/show', {
-			groupId: this.groupId
+			groupId: this.groupId,
 		}).then(group => {
 			this.group = group;
 			this.fetchUsers();
 			this.$emit('init', {
 				title: this.group.name,
-				icon: faUsers
+				icon: faUsers,
 			});
 		});
 	},
@@ -82,15 +82,15 @@ export default Vue.extend({
 	methods: {
 		fetchGroup() {
 			this.$root.api('users/groups/show', {
-				groupId: this.group.id
+				groupId: this.group.id,
 			}).then(group => {
 				this.group = group;
-			})
+			});
 		},
 
 		fetchUsers() {
 			this.$root.api('users/show', {
-				userIds: this.group.userIds
+				userIds: this.group.userIds,
 			}).then(users => {
 				this.users = users;
 			});
@@ -100,43 +100,43 @@ export default Vue.extend({
 			this.$root.dialog({
 				title: this.$t('rename'),
 				input: {
-					default: this.group.name
-				}
+					default: this.group.name,
+				},
 			}).then(({ canceled, result: name }) => {
 				if (canceled) return;
 				this.$root.api('users/groups/update', {
 					groupId: this.group.id,
-					name: name
+					name: name,
 				}).then(() => {
 					this.fetchGroup();
 				}).catch(e => {
 					this.$root.dialog({
 						type: 'error',
-						text: e
+						text: e,
 					});
 				});
-			})
+			});
 		},
 
 		del() {
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('delete-are-you-sure').replace('$1', this.group.name),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 
 				this.$root.api('users/groups/delete', {
-					groupId: this.group.id
+					groupId: this.group.id,
 				}).then(() => {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('deleted')
+						text: this.$t('deleted'),
 					});
 				}).catch(e => {
 					this.$root.dialog({
 						type: 'error',
-						text: e
+						text: e,
 					});
 				});
 			});
@@ -145,14 +145,14 @@ export default Vue.extend({
 		remove(user: any) {
 			this.$root.api('users/groups/pull', {
 				groupId: this.group.id,
-				userId: user.id
+				userId: user.id,
 			}).then(() => {
 				this.fetchGroup();
 				this.fetchUsers();
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -161,22 +161,22 @@ export default Vue.extend({
 			const t = this.$t('invited');
 			const { result: user } = await this.$root.dialog({
 				user: {
-					local: true
-				}
+					local: true,
+				},
 			});
 			if (user == null) return;
 			this.$root.api('users/groups/invite', {
 				groupId: this.group.id,
-				userId: user.id
+				userId: user.id,
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: t
+					text: t,
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -184,35 +184,35 @@ export default Vue.extend({
 		async transfer() {
 			const { result: user } = await this.$root.dialog({
 				user: {
-					local: true
-				}
+					local: true,
+				},
 			});
 			if (user == null) return;
 
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('transfer-are-you-sure').replace('$1', this.group.name).replace('$2', user.username),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 
 				this.$root.api('users/groups/transfer', {
 					groupId: this.group.id,
-					userId: user.id
+					userId: user.id,
 				}).then(() => {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('transferred')
+						text: this.$t('transferred'),
 					});
 				}).catch(e => {
 					this.$root.dialog({
 						type: 'error',
-						text: e
+						text: e,
 					});
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

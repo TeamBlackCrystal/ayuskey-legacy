@@ -14,7 +14,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 
 	return text.trim();
 
-	function appendChildren(childNodes: any,): void {
+	function appendChildren(childNodes: any): void {
 		if (childNodes) {
 			for (const n of childNodes) {
 				analyze(n);
@@ -113,11 +113,11 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 					= behavior === 'alternate' ? ' alternate'
 					: behavior === 'slide'
 						? direction === 'right' ? ' reverse-slide' : ' slide'
-						: direction === 'right' ? ' reverse' : ''
+						: direction === 'right' ? ' reverse' : '';
 
-						text += `<marquee${attr}>`;
-					appendChildren(node.childNodes);
-					text += `</marquee>`;
+				text += `<marquee${attr}>`;
+				appendChildren(node.childNodes);
+				text += '</marquee>';
 				break;
 			}
 

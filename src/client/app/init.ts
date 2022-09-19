@@ -2,7 +2,7 @@
  * App initializer
  */
 
-import Vue from 'vue';
+import Vue, { h } from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
@@ -168,7 +168,7 @@ import {
 import {
 	faTwitter as fabTwitter,
 	faGithub as fabGithub,
-	faDiscord as fabDiscord
+	faDiscord as fabDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 import i18n from './i18n';
 
@@ -307,7 +307,7 @@ library.add(
 
 	fabTwitter,
 	fabGithub,
-	fabDiscord
+	fabDiscord,
 );
 //#endregion
 
@@ -321,7 +321,7 @@ Vue.use(VueI18n);
 Vue.use(SequentialEntrance);
 Vue.use(hljs.vuePlugin);
 
-Vue.component('fa', FontAwesomeIcon);
+Vue.component('Fa', FontAwesomeIcon);
 
 // Register global directives
 require('./common/views/directives');
@@ -341,15 +341,15 @@ Vue.mixin({
 			if (this.$el.parentNode) {
 				this.$el.parentNode.removeChild(this.$el);
 			}
-		}
-	}
+		},
+	},
 });
 
 /**
  * APP ENTRY POINT!
  */
 
-console.info(`Misskey v11.37.1 (daybreak)`);
+console.info('Misskey v11.37.1 (daybreak)');
 console.info(`Ayuskey v${version} (${codename})`);
 console.info('%cSTOP', 'color: red; font-size: 100px; font-weight: bold;');
 console.info(
@@ -466,10 +466,10 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 				data() {
 					return {
 						os: {
-							windows: os.windows
+							windows: os.windows,
 						},
 						stream: os.stream,
-						instanceName: os.instanceName
+						instanceName: os.instanceName,
 					};
 				},
 				methods: {
@@ -480,7 +480,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 					new(vm, props) {
 						const x = new vm({
 							parent: this,
-							propsData: props
+							propsData: props,
 						}).$mount();
 						document.body.appendChild(x.$el);
 						return x;
@@ -490,7 +490,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 							vm().then(vm => {
 								const x = new vm({
 									parent: this,
-									propsData: props
+									propsData: props,
 								}).$mount();
 								document.body.appendChild(x.$el);
 								res(x);
@@ -507,10 +507,10 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 							vm.close();
 						};
 						return p;
-					}
+					},
 				},
 				router,
-				render: createEl => createEl(App)
+				render: () => h(App),
 			});
 
 			os.app = app;
@@ -531,7 +531,7 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 		os.store.commit('device/set', {
 			key: 'inDeckMode',
 			value: os.store.getters.isSignedIn && os.store.state.device.deckMode
-				&& (document.location.pathname === '/' || window.performance.navigation.type === 1)
+				&& (document.location.pathname === '/' || window.performance.navigation.type === 1),
 		});
 
 		callback(launch, os);

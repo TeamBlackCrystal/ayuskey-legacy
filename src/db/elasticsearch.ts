@@ -8,10 +8,10 @@ const indexData = {
 		analysis: {
 			analyzer: {
 				ngram: {
-					tokenizer: 'ngram'
-				}
-			}
-		}
+					tokenizer: 'ngram',
+				},
+			},
+		},
 	},
 	mappings: {
 		properties: {
@@ -27,9 +27,9 @@ const indexData = {
 			userHost: {
 				type: 'keyword',
 				index: true,
-			}
-		}
-	}
+			},
+		},
+	},
 };
 
 class ElasticSearch extends SearchClientBase {
@@ -40,18 +40,18 @@ class ElasticSearch extends SearchClientBase {
 		// Init ElasticSearch connection
 		this._client = new elasticsearch.Client({
 			node: address,
-			pingTimeout: 30000
+			pingTimeout: 30000,
 		});
 
 		this._client.indices
 			.exists({
-				index: this.index
+				index: this.index,
 			})
 			.then(exist => {
 				if (!exist.body) {
 					this._client.indices.create({
 						index: this.index,
-						body: indexData
+						body: indexData,
 					});
 				}
 			});
@@ -65,21 +65,21 @@ class ElasticSearch extends SearchClientBase {
 		content: string,
 		qualifiers: {userId?: string | null; userHost?: string | null} = {},
 		limit?: number,
-		offset?: number
+		offset?: number,
 	) {
 		const queries: any[] = [
 			{
 				simple_query_string: {
 					fields: ['text'],
 					query: content.toLowerCase(),
-					default_operator: 'and'
-				}
-			}
+					default_operator: 'and',
+				},
+			},
 		];
 
 		if (qualifiers.userId) {
 			queries.push({
-				term: {userId: qualifiers.userId}
+				term: { userId: qualifiers.userId },
 			});
 		} else if (qualifiers.userHost !== undefined) {
 			if (qualifiers.userHost === null) {
@@ -87,16 +87,16 @@ class ElasticSearch extends SearchClientBase {
 					bool: {
 						must_not: {
 							exists: {
-								field: 'userHost'
-							}
-						}
-					}
+								field: 'userHost',
+							},
+						},
+					},
 				});
 			} else {
 				queries.push({
 					term: {
-						userHost: qualifiers.userHost
-					}
+						userHost: qualifiers.userHost,
+					},
 				});
 			}
 		}
@@ -109,10 +109,10 @@ class ElasticSearch extends SearchClientBase {
 					from: offset,
 					query: {
 						bool: {
-							must: queries
-						}
-					}
-				}
+							must: queries,
+						},
+					},
+				},
 			})
 			.then(result => result.body.hits.hits.map((hit: any) => hit._id));
 	}
@@ -124,8 +124,8 @@ class ElasticSearch extends SearchClientBase {
 			body: {
 				text: String(note.text).toLowerCase(),
 				userId: note.userId,
-				userHost: note.userHost
-			}
+				userHost: note.userHost,
+			},
 		});
 	}
 }
@@ -133,6 +133,6 @@ class ElasticSearch extends SearchClientBase {
 export default (config.elasticsearch
 	? new ElasticSearch(
 		`${config.elasticsearch.ssl ? 'https://' : 'http://'}${config.elasticsearch.host}:${config.elasticsearch.port}`,
-		config.elasticsearch.index
+		config.elasticsearch.index,
 	)
 	: null);

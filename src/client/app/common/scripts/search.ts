@@ -39,12 +39,12 @@ export async function search(v: any, q: string) {
 			text: v.$t('@.fetching-as-ap-object'),
 			showOkButton: false,
 			showCancelButton: false,
-			cancelableByBgClick: false
+			cancelableByBgClick: false,
 		});
 
 		try {
 			const res = await v.$root.api('ap/show', {
-				uri: q
+				uri: q,
 			});
 			dialog.close();
 			if (res.type == 'User') {

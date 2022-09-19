@@ -53,12 +53,12 @@ export default class extends Channel {
 		if (!['map', 'bw', 'isLlotheo', 'canPutEverywhere', 'loopedBoard'].includes(key)) return;
 
 		await ReversiGames.update(this.gameId!, {
-			[key]: value
+			[key]: value,
 		});
 
 		publishReversiGameStream(this.gameId!, 'updateSettings', {
 			key: key,
-			value: value
+			value: value,
 		});
 	}
 
@@ -73,16 +73,16 @@ export default class extends Channel {
 		if ((game.user1Id !== this.user.id) && (game.user2Id !== this.user.id)) return;
 
 		const set = game.user1Id === this.user.id ? {
-			form1: form
+			form1: form,
 		} : {
-			form2: form
+			form2: form,
 		};
 
 		await ReversiGames.update(this.gameId!, set);
 
 		publishReversiGameStream(this.gameId!, 'initForm', {
 			userId: this.user.id,
-			form
+			form,
 		});
 	}
 
@@ -105,17 +105,17 @@ export default class extends Channel {
 		item.value = value;
 
 		const set = game.user1Id === this.user.id ? {
-			form2: form
+			form2: form,
 		} : {
-				form1: form
-			};
+			form1: form,
+		};
 
 		await ReversiGames.update(this.gameId!, set);
 
 		publishReversiGameStream(this.gameId!, 'updateForm', {
 			userId: this.user.id,
 			id,
-			value
+			value,
 		});
 	}
 
@@ -126,7 +126,7 @@ export default class extends Channel {
 		message.id = Math.random();
 		publishReversiGameStream(this.gameId!, 'message', {
 			userId: this.user.id,
-			message
+			message,
 		});
 	}
 
@@ -143,23 +143,23 @@ export default class extends Channel {
 
 		if (game.user1Id === this.user.id) {
 			await ReversiGames.update(this.gameId!, {
-				user1Accepted: accept
+				user1Accepted: accept,
 			});
 
 			publishReversiGameStream(this.gameId!, 'changeAccepts', {
 				user1: accept,
-				user2: game.user2Accepted
+				user2: game.user2Accepted,
 			});
 
 			if (accept && game.user2Accepted) bothAccepted = true;
 		} else if (game.user2Id === this.user.id) {
 			await ReversiGames.update(this.gameId!, {
-				user2Accepted: accept
+				user2Accepted: accept,
 			});
 
 			publishReversiGameStream(this.gameId!, 'changeAccepts', {
 				user1: game.user1Accepted,
-				user2: accept
+				user2: accept,
 			});
 
 			if (accept && game.user1Accepted) bothAccepted = true;
@@ -193,14 +193,14 @@ export default class extends Channel {
 					startedAt: new Date(),
 					isStarted: true,
 					black: bw,
-					map: map
+					map: map,
 				});
 
 				//#region 盤面に最初から石がないなどして始まった瞬間に勝敗が決定する場合があるのでその処理
 				const o = new Reversi(map, {
 					isLlotheo: freshGame.isLlotheo,
 					canPutEverywhere: freshGame.canPutEverywhere,
-					loopedBoard: freshGame.loopedBoard
+					loopedBoard: freshGame.loopedBoard,
 				});
 
 				if (o.isEnded) {
@@ -215,12 +215,12 @@ export default class extends Channel {
 
 					await ReversiGames.update(this.gameId!, {
 						isEnded: true,
-						winnerId: winner
+						winnerId: winner,
 					});
 
 					publishReversiGameStream(this.gameId!, 'ended', {
 						winnerId: winner,
-						game: await ReversiGames.pack(this.gameId!, this.user)
+						game: await ReversiGames.pack(this.gameId!, this.user),
 					});
 				}
 				//#endregion
@@ -246,7 +246,7 @@ export default class extends Channel {
 		const o = new Reversi(game.map, {
 			isLlotheo: game.isLlotheo,
 			canPutEverywhere: game.canPutEverywhere,
-			loopedBoard: game.loopedBoard
+			loopedBoard: game.loopedBoard,
 		});
 
 		for (const log of game.logs) {
@@ -275,7 +275,7 @@ export default class extends Channel {
 		const log = {
 			at: new Date(),
 			color: myColor,
-			pos
+			pos,
 		};
 
 		const crc32 = CRC32.str(game.logs.map(x => x.pos.toString()).join('') + pos.toString()).toString();
@@ -286,17 +286,17 @@ export default class extends Channel {
 			crc32,
 			isEnded: o.isEnded,
 			winnerId: winner,
-			logs: game.logs
+			logs: game.logs,
 		});
 
 		publishReversiGameStream(this.gameId!, 'set', Object.assign(log, {
-			next: o.turn
+			next: o.turn,
 		}));
 
 		if (o.isEnded) {
 			publishReversiGameStream(this.gameId!, 'ended', {
 				winnerId: winner,
-				game: await ReversiGames.pack(this.gameId!, this.user)
+				game: await ReversiGames.pack(this.gameId!, this.user),
 			});
 		}
 	}

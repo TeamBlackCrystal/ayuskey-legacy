@@ -34,17 +34,17 @@ export default define(meta, async () => {
 		redis: redis_version,
 		cpu: {
 			model: os.cpus()[0].model,
-			cores: os.cpus().length
+			cores: os.cpus().length,
 		},
 		mem: {
-			total: memStats.total
+			total: memStats.total,
 		},
 		fs: {
 			total: fsStats[0].size,
 			used: fsStats[0].used,
 		},
 		net: {
-			interface: netInterface
-		}
+			interface: netInterface,
+		},
 	};
 });

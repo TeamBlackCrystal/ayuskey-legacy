@@ -1,21 +1,22 @@
 <template>
 <div class="ui-input" :class="[{ focused, filled, inline, disabled }, styl]">
-	<div class="icon" ref="icon"><slot name="icon"></slot></div>
+	<div ref="icon" class="icon"><slot name="icon"></slot></div>
 	<div class="input">
-		<div class="password-meter" v-if="withPasswordMeter" v-show="passwordStrength != ''" :data-strength="passwordStrength">
-			<div class="value" ref="passwordMetar"></div>
+		<div v-if="withPasswordMeter" v-show="passwordStrength != ''" class="password-meter" :data-strength="passwordStrength">
+			<div ref="passwordMetar" class="value"></div>
 		</div>
-		<span class="label" ref="label"><slot></slot></span>
-		<span class="title" ref="title">
+		<span ref="label" class="label"><slot></slot></span>
+		<span ref="title" class="title">
 			<slot name="title"></slot>
-			<span class="warning" v-if="invalid"><fa :icon="['fa', 'exclamation-circle']"/>{{ $refs.input.validationMessage }}</span>
+			<span v-if="invalid" class="warning"><fa :icon="['fa', 'exclamation-circle']"/>{{ $refs.input.validationMessage }}</span>
 		</span>
-		<div class="prefix" ref="prefix"><slot name="prefix"></slot></div>
+		<div ref="prefix" class="prefix"><slot name="prefix"></slot></div>
 		<template v-if="type != 'file'">
-			<input v-if="debounce" ref="input"
+			<input
+				v-if="debounce" ref="input"
+				v-model.lazy="v"
 				v-debounce="500"
 				:type="type"
-				v-model.lazy="v"
 				:disabled="disabled"
 				:required="required"
 				:readonly="readonly"
@@ -23,15 +24,16 @@
 				:pattern="pattern"
 				:autocomplete="autocomplete"
 				:spellcheck="spellcheck"
+				:list="id"
 				@focus="focused = true"
 				@blur="focused = false"
 				@keydown="$emit('keydown', $event)"
 				@change="$emit('change', $event)"
-				:list="id"
 			>
-			<input v-else ref="input"
-				:type="type"
+			<input
+				v-else ref="input"
 				v-model="v"
+				:type="type"
 				:disabled="disabled"
 				:required="required"
 				:readonly="readonly"
@@ -39,32 +41,34 @@
 				:pattern="pattern"
 				:autocomplete="autocomplete"
 				:spellcheck="spellcheck"
+				:list="id"
 				@focus="focused = true"
 				@blur="focused = false"
 				@keydown="$emit('keydown', $event)"
 				@change="$emit('change', $event)"
-				:list="id"
 			>
-			<datalist :id="id" v-if="datalist">
+			<datalist v-if="datalist" :id="id">
 				<option v-for="data in datalist" :value="data"/>
 			</datalist>
 		</template>
 		<template v-else>
-			<input ref="input"
+			<input
+				ref="input"
 				type="text"
 				:value="filePlaceholder"
 				readonly
 				@click="chooseFile"
 			>
-			<input ref="file"
+			<input
+				ref="file"
 				type="file"
 				:value="value"
 				@change="onChangeFile"
 			>
 		</template>
-		<div class="suffix" ref="suffix"><slot name="suffix"></slot></div>
+		<div ref="suffix" class="suffix"><slot name="suffix"></slot></div>
 	</div>
-	<div class="toggle" v-if="withPasswordToggle">
+	<div v-if="withPasswordToggle" class="toggle">
 		<a @click="togglePassword">
 			<span v-if="type == 'password'"><fa :icon="['fa', 'eye']"/> {{ $t('@.show-password') }}</span>
 			<span v-if="type != 'password'"><fa :icon="['far', 'eye-slash']"/> {{ $t('@.hide-password') }}</span>
@@ -81,64 +85,64 @@ const getPasswordStrength = require('syuilo-password-strength');
 
 export default Vue.extend({
 	directives: {
-		debounce
+		debounce,
 	},
 	inject: {
 		horizonGrouped: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	props: {
 		value: {
-			required: false
+			required: false,
 		},
 		type: {
 			type: String,
-			required: false
+			required: false,
 		},
 		required: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		readonly: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		disabled: {
 			type: Boolean,
-			required: false
+			required: false,
 		},
 		pattern: {
 			type: String,
-			required: false
+			required: false,
 		},
 		placeholder: {
 			type: String,
-			required: false
+			required: false,
 		},
 		autofocus: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		autocomplete: {
-			required: false
+			required: false,
 		},
 		spellcheck: {
-			required: false
+			required: false,
 		},
 		debounce: {
-			required: false
+			required: false,
 		},
 		withPasswordMeter: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		withPasswordToggle: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		datalist: {
 			type: Array,
@@ -149,13 +153,13 @@ export default Vue.extend({
 			required: false,
 			default(): boolean {
 				return this.horizonGrouped;
-			}
+			},
 		},
 		styl: {
 			type: String,
 			required: false,
-			default: 'line'
-		}
+			default: 'line',
+		},
 	},
 	data() {
 		return {
@@ -163,7 +167,7 @@ export default Vue.extend({
 			focused: false,
 			invalid: false,
 			passwordStrength: '',
-			id: Math.random().toString()
+			id: Math.random().toString(),
 		};
 	},
 	computed: {
@@ -174,14 +178,14 @@ export default Vue.extend({
 			if (this.type != 'file') return null;
 			if (this.v == null) return null;
 
-			if (typeof this.v == 'string') return this.v;
+			if (typeof this.v === 'string') return this.v;
 
 			if (Array.isArray(this.v)) {
 				return this.v.map(file => file.name).join(', ');
 			} else {
 				return this.v.name;
 			}
-		}
+		},
 	},
 	watch: {
 		value(v) {
@@ -206,7 +210,7 @@ export default Vue.extend({
 			}
 
 			this.invalid = this.$refs.input.validity.badInput;
-		}
+		},
 	},
 	mounted() {
 		if (this.autofocus) {
@@ -249,9 +253,9 @@ export default Vue.extend({
 		},
 		togglePassword() {
 			if (this.type == 'password') {
-				this.type = 'text'
+				this.type = 'text';
 			} else {
-				this.type = 'password'
+				this.type = 'password';
 			}
 		},
 		chooseFile() {
@@ -261,8 +265,8 @@ export default Vue.extend({
 			this.v = Array.from((this.$refs.file as any).files);
 			this.$emit('input', this.v);
 			this.$emit('change', this.v);
-		}
-	}
+		},
+	},
 });
 </script>
 

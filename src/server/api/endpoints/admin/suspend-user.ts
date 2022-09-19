@@ -10,7 +10,7 @@ import { doPostSuspend } from '../../../../services/suspend-user';
 export const meta = {
 	desc: {
 		'ja-JP': '指定したユーザーを凍結します。',
-		'en-US': 'Suspend a user.'
+		'en-US': 'Suspend a user.',
 	},
 
 	tags: ['admin'],
@@ -23,10 +23,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to suspend'
-			}
+				'en-US': 'The user ID which you want to suspend',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -45,7 +45,7 @@ export default define(meta, async (ps, me) => {
 	}
 
 	await Users.update(user.id, {
-		isSuspended: true
+		isSuspended: true,
 	});
 
 	insertModerationLog(me, 'suspend', {
@@ -61,12 +61,12 @@ export default define(meta, async (ps, me) => {
 
 async function unFollowAll(follower: User) {
 	const followings = await Followings.find({
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	for (const following of followings) {
 		const followee = await Users.findOne({
-			id: following.followeeId
+			id: following.followeeId,
 		});
 
 		if (followee == null) {
@@ -82,6 +82,6 @@ async function readAllNotify(notifier: User) {
 		notifierId: notifier.id,
 		isRead: false,
 	}, {
-		isRead: true
+		isRead: true,
 	});
 }

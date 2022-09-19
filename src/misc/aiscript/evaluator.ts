@@ -44,7 +44,7 @@ export class ASEvaluator {
 			MY_FOLLOWING_COUNT: opts.user ? opts.user.followingCount : 0,
 			SEED: opts.randomSeed ? opts.randomSeed : '',
 			YMD: `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`,
-			NULL: null
+			NULL: null,
 		};
 	}
 
@@ -118,7 +118,7 @@ export class ASEvaluator {
 				slots: block.value.slots.map(x => x.name),
 				exec: (slotArg: Record<string, any>) => {
 					return this.evaluate(block.value.expression, scope.createChildScope(slotArg, block.id));
-				}
+				},
 			} as Fn;
 		}
 
@@ -153,7 +153,7 @@ export class ASEvaluator {
 				const result = [];
 				for (let i = 0; i < times; i++) {
 					result.push(fn.exec({
-						[fn.slots[0]]: i + 1
+						[fn.slots[0]]: i + 1,
 					}));
 				}
 				return result;
@@ -261,7 +261,7 @@ class Scope {
 
 		throw new AiScriptError(
 			`No such variable '${name}' in scope '${this.name}'`, {
-				scope: this.layerdStates
+				scope: this.layerdStates,
 			});
 	}
 }

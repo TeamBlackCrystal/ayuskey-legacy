@@ -15,39 +15,39 @@ export default (opts) => ({
 
 	components: {
 		XPostFormAttaches: () => import('../views/components/post-form-attaches.vue').then(m => m.default),
-		XPollEditor: () => import('../views/components/poll-editor.vue').then(m => m.default)
+		XPollEditor: () => import('../views/components/poll-editor.vue').then(m => m.default),
 	},
 
 	props: {
 		reply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		airReply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		renote: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		mention: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		initialText: {
 			type: String,
-			required: false
+			required: false,
 		},
 		initialNote: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		instant: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -70,7 +70,7 @@ export default (opts) => ({
 			draghover: false,
 			quoteId: null,
 			recentHashtags: JSON.parse(localStorage.getItem('hashtags') || '[]'),
-			maxNoteTextLength: 1000
+			maxNoteTextLength: 1000,
 		};
 	},
 
@@ -90,7 +90,7 @@ export default (opts) => ({
 				this.$t('@.note-placeholders.c'),
 				this.$t('@.note-placeholders.d'),
 				this.$t('@.note-placeholders.e'),
-				this.$t('@.note-placeholders.f')
+				this.$t('@.note-placeholders.f'),
 			];
 			const x = xs[Math.floor(Math.random() * xs.length)];
 
@@ -114,7 +114,7 @@ export default (opts) => ({
 				(1 <= this.text.length || 1 <= this.files.length || this.poll || this.renote) &&
 				(length(this.text.trim()) <= this.maxNoteTextLength) &&
 				(!this.poll || this.pollChoices.length >= 2);
-		}
+		},
 	},
 
 	created() {
@@ -166,7 +166,7 @@ export default (opts) => ({
 			this.visibility = this.reply.visibility;
 			if (this.reply.visibility === 'specified') {
 				this.$root.api('users/show', {
-					userIds: this.reply.visibleUserIds.filter(uid => uid !== this.$store.state.i.id && uid !== this.reply.userId)
+					userIds: this.reply.visibleUserIds.filter(uid => uid !== this.$store.state.i.id && uid !== this.reply.userId),
 				}).then(users => {
 					this.visibleUsers.push(...users);
 				});
@@ -229,7 +229,7 @@ export default (opts) => ({
 					this.$nextTick(() => {
 						(this.$refs.poll as any).set({
 							choices: init.poll.choices.map(c => c.text),
-							multiple: init.poll.multiple
+							multiple: init.poll.multiple,
 						});
 					});
 				}
@@ -269,7 +269,7 @@ export default (opts) => ({
 
 		chooseFileFromDrive() {
 			this.$chooseDriveFile({
-				multiple: true
+				multiple: true,
 			}).then(files => {
 				for (const x of files) this.attachMedia(x);
 			});
@@ -309,7 +309,7 @@ export default (opts) => ({
 			if (navigator.geolocation == null) {
 				this.$root.dialog({
 					type: 'warning',
-					text: this.$t('@.post-form.geolocation-alert')
+					text: this.$t('@.post-form.geolocation-alert'),
 				});
 				return;
 			}
@@ -321,11 +321,11 @@ export default (opts) => ({
 				this.$root.dialog({
 					type: 'error',
 					title: this.$t('@.post-form.error'),
-					text: err.message
+					text: err.message,
 				});
 			}, {
-					enableHighAccuracy: true
-				});
+				enableHighAccuracy: true,
+			});
 		},
 
 		removeGeo() {
@@ -336,7 +336,7 @@ export default (opts) => ({
 		setVisibility() {
 			const w = this.$root.new(MkVisibilityChooser, {
 				source: this.$refs.visibilityButton,
-				currentVisibility: this.localOnly ? `local-${this.visibility}` : this.visibility
+				currentVisibility: this.localOnly ? `local-${this.visibility}` : this.visibility,
 			});
 			w.$once('chosen', v => {
 				this.applyVisibility(v);
@@ -360,7 +360,7 @@ export default (opts) => ({
 		addVisibleUser() {
 			this.$root.dialog({
 				title: this.$t('@.post-form.enter-username'),
-				user: true
+				user: true,
 			}).then(({ canceled, result: user }) => {
 				if (canceled) return;
 				this.visibleUsers.push(user);
@@ -384,7 +384,7 @@ export default (opts) => ({
 		},
 
 		async onPaste(e: ClipboardEvent) {
-			for (const { item, i } of Array.from(e.clipboardData.items).map((item, i) => ({item, i}))) {
+			for (const { item, i } of Array.from(e.clipboardData.items).map((item, i) => ({ item, i }))) {
 				if (item.kind == 'file') {
 					const file = item.getAsFile();
 					const lio = file.name.lastIndexOf('.');
@@ -392,12 +392,12 @@ export default (opts) => ({
 					const formatted = `${formatTimeString(new Date(file.lastModified), this.$store.state.settings.pastedFileName).replace(/{{number}}/g, `${i + 1}`)}${ext}`;
 					const name = this.$store.state.settings.pasteDialog
 						? await this.$root.dialog({
-								title: this.$t('@.post-form.enter-file-name'),
-								input: {
-									default: formatted
-								},
-								allowEmpty: false
-							}).then(({ canceled, result }) => canceled ? false : result)
+							title: this.$t('@.post-form.enter-file-name'),
+							input: {
+								default: formatted,
+							},
+							allowEmpty: false,
+						}).then(({ canceled, result }) => canceled ? false : result)
 						: formatted;
 					if (name) this.upload(file, name);
 				}
@@ -411,7 +411,7 @@ export default (opts) => ({
 				this.$root.dialog({
 					type: 'info',
 					text: this.$t('@.post-form.quote-question'),
-					showCancelButton: true
+					showCancelButton: true,
 				}).then(({ canceled }) => {
 					if (canceled) {
 						insertTextAtCursor(this.$refs.text, paste);
@@ -468,7 +468,7 @@ export default (opts) => ({
 			const rect = button.getBoundingClientRect();
 			const vm = this.$root.new(Picker, {
 				x: button.offsetWidth + rect.left + window.pageXOffset,
-				y: rect.top + window.pageYOffset
+				y: rect.top + window.pageYOffset,
 			});
 			vm.$once('chosen', emoji => {
 				insertTextAtCursor(this.$refs.text, emoji);
@@ -488,8 +488,8 @@ export default (opts) => ({
 				data: {
 					text: this.text,
 					files: this.files,
-					poll: this.poll && this.$refs.poll ? (this.$refs.poll as any).get() : undefined
-				}
+					poll: this.poll && this.$refs.poll ? (this.$refs.poll as any).get() : undefined,
+				},
 			};
 
 			localStorage.setItem('drafts', JSON.stringify(data));
@@ -550,7 +550,7 @@ export default (opts) => ({
 					heading: isNaN(this.geo.heading) ? null : this.geo.heading,
 					speed: this.geo.speed,
 				} : null,
-				viaMobile: viaMobile
+				viaMobile: viaMobile,
 			}).then(data => {
 				this.clear();
 				this.deleteDraft();
@@ -568,5 +568,5 @@ export default (opts) => ({
 				localStorage.setItem('hashtags', JSON.stringify(unique(hashtags.concat(history))));
 			}
 		},
-	}
+	},
 });

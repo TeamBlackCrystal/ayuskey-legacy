@@ -27,15 +27,15 @@ import ApexCharts from 'apexcharts';
 export default define({
 	name: 'queue',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	data() {
 		return {
 			stats: [],
 			inChart: null,
 			outChart: null,
-			faTasks
+			faTasks,
 		};
 	},
 
@@ -43,37 +43,37 @@ export default define({
 		stats(stats) {
 			this.inChart.updateSeries([{
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.activeSincePrevTick }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.activeSincePrevTick })),
 			}, {
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.active }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.active })),
 			}, {
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.waiting }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.waiting })),
 			}, {
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x.inbox.delayed }))
+				data: stats.map((x, i) => ({ x: i, y: x.inbox.delayed })),
 			}]);
 			this.outChart.updateSeries([{
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.activeSincePrevTick }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.activeSincePrevTick })),
 			}, {
 				type: 'area',
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.active }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.active })),
 			}, {
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.waiting }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.waiting })),
 			}, {
 				type: 'line',
-				data: stats.map((x, i) => ({ x: i, y: x.deliver.delayed }))
+				data: stats.map((x, i) => ({ x: i, y: x.deliver.delayed })),
 			}]);
-		}
+		},
 	},
 
 	computed: {
 		latestStats(): any {
 			return this.stats[this.stats.length - 1];
-		}
+		},
 	},
 
 	mounted() {
@@ -83,28 +83,28 @@ export default define({
 				height: 70,
 				animations: {
 					dynamicAnimation: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				sparkline: {
 					enabled: true,
-				}
+				},
 			},
 			dataLabels: {
-				enabled: false
+				enabled: false,
 			},
 			tooltip: {
-				enabled: false
+				enabled: false,
 			},
 			stroke: {
 				curve: 'straight',
-				width: 1
+				width: 1,
 			},
 			colors: ['#00E396', '#00BCD4', '#FFB300', '#e53935'],
 			series: [{ data: [] }, { data: [] }, { data: [] }, { data: [] }] as any,
 			yaxis: {
 				min: 0,
-			}
+			},
 		};
 
 		this.inChart = new ApexCharts(this.$refs.in, chartOpts);
@@ -118,7 +118,7 @@ export default define({
 		connection.on('statsLog', this.onStatsLog);
 		connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: 50
+			length: 50,
 		});
 
 		this.$once('hook:beforeDestroy', () => {
@@ -143,8 +143,8 @@ export default define({
 			for (const stats of statsLog.reverse()) {
 				this.onStats(stats);
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

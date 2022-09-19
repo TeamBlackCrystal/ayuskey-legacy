@@ -1,10 +1,10 @@
 <template>
 <div class="root notes">
-	<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+	<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
 	<div v-if="!fetching && notes.length > 0">
 		<mk-note-card v-for="note in notes" :key="note.id" :note="note"/>
 	</div>
-	<p class="empty" v-if="!fetching && notes.length == 0">{{ $t('@.no-notes') }}</p>
+	<p v-if="!fetching && notes.length == 0" class="empty">{{ $t('@.no-notes') }}</p>
 </div>
 </template>
 
@@ -17,7 +17,7 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			notes: []
+			notes: [],
 		};
 	},
 	mounted() {
@@ -27,7 +27,7 @@ export default Vue.extend({
 			this.notes = notes;
 			this.fetching = false;
 		});
-	}
+	},
 });
 </script>
 

@@ -1,19 +1,19 @@
 <template>
 <div class="zmdxowus">
-	<p class="caution" v-if="choices.length < 2">
+	<p v-if="choices.length < 2" class="caution">
 		<fa icon="exclamation-triangle"/>{{ $t('no-only-one-choice') }}
 	</p>
 	<ul ref="choices">
 		<li v-for="(choice, i) in choices">
-			<input :value="choice" @input="onInput(i, $event)" :placeholder="$t('choice-n').replace('{}', i + 1)">
-			<button @click="remove(i)" :title="$t('remove')">
+			<input :value="choice" :placeholder="$t('choice-n').replace('{}', i + 1)" @input="onInput(i, $event)">
+			<button :title="$t('remove')" @click="remove(i)">
 				<fa icon="times"/>
 			</button>
 		</li>
 	</ul>
-	<button class="add" v-if="choices.length < 20" @click="add">{{ $t('add') }}</button>
-	<button class="add" v-else disabled>{{ $t('no-more') }}</button>
-	<button class="destroy" @click="destroy" :title="$t('destroy')">
+	<button v-if="choices.length < 20" class="add" @click="add">{{ $t('add') }}</button>
+	<button v-else class="add" disabled>{{ $t('no-more') }}</button>
+	<button class="destroy" :title="$t('destroy')" @click="destroy">
 		<fa icon="times"/>
 	</button>
 	<section>
@@ -67,13 +67,13 @@ export default Vue.extend({
 			atDate: formatDateTimeString(addTimespan(new Date(), 1, 'days'), 'yyyy-MM-dd'),
 			atTime: '00:00',
 			after: 0,
-			unit: 'second'
+			unit: 'second',
 		};
 	},
 	watch: {
 		choices() {
 			this.$emit('updated');
-		}
+		},
 	},
 	methods: {
 		onInput(i, e) {
@@ -116,7 +116,7 @@ export default Vue.extend({
 				multiple: this.multiple,
 				...(
 					this.expiration === 'at' ? { expiresAt: at() } :
-					this.expiration === 'after' ? { expiredAfter: after() } : {})
+					this.expiration === 'after' ? { expiredAfter: after() } : {}),
 			};
 		},
 
@@ -134,8 +134,8 @@ export default Vue.extend({
 			} else {
 				this.expiration = 'infinite';
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

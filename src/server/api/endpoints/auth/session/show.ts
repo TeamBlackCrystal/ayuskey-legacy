@@ -13,24 +13,24 @@ export const meta = {
 			validator: $.str,
 			desc: {
 				'ja-JP': 'セッションのトークン',
-				'en-US': 'The token of a session.'
-			}
-		}
+				'en-US': 'The token of a session.',
+			},
+		},
 	},
 
 	errors: {
 		noSuchSession: {
 			message: 'No such session.',
 			code: 'NO_SUCH_SESSION',
-			id: 'bd72c97d-eba7-4adb-a467-f171b8847250'
-		}
-	}
+			id: 'bd72c97d-eba7-4adb-a467-f171b8847250',
+		},
+	},
 };
 
 export default define(meta, async (ps, user) => {
 	// Lookup session
 	const session = await AuthSessions.findOne({
-		token: ps.token
+		token: ps.token,
 	});
 
 	if (session == null) {

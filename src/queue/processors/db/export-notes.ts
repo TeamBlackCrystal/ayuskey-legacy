@@ -53,12 +53,12 @@ export async function exportNotes(job: Bull.Job<DbUserJobData>, done: any): Prom
 		const notes = await Notes.find({
 			where: {
 				userId: user.id,
-				...(cursor ? { id: MoreThan(cursor) } : {})
+				...(cursor ? { id: MoreThan(cursor) } : {}),
 			},
 			take: 100,
 			order: {
-				id: 1
-			}
+				id: 1,
+			},
 		});
 
 		if (notes.length === 0) {
@@ -131,6 +131,6 @@ function serialize(note: Note, poll: Poll | null = null): any {
 		visibleUserIds: note.visibleUserIds,
 		appId: note.appId,
 		geo: note.geo,
-		localOnly: note.localOnly
+		localOnly: note.localOnly,
 	};
 }

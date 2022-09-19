@@ -9,14 +9,14 @@ initDb().then(() => {
 
 	async function tick() {
 		const [all, local] = await Promise.all([Notes.count({
-			createdAt: MoreThanOrEqual(new Date(Date.now() - interval))
+			createdAt: MoreThanOrEqual(new Date(Date.now() - interval)),
 		}), Notes.count({
 			createdAt: MoreThanOrEqual(new Date(Date.now() - interval)),
-			userHost: null
+			userHost: null,
 		})]);
 
 		const stats = {
-			all, local
+			all, local,
 		};
 
 		process.send!(stats);

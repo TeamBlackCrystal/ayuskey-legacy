@@ -8,30 +8,30 @@
 import Vue from 'vue';
 export default Vue.extend({
 	provide: {
-		horizonGrouped: true
+		horizonGrouped: true,
 	},
 	props: {
 		inputs: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		noGrow: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 	data() {
 		return {
-			children: 0
+			children: 0,
 		};
 	},
 	mounted() {
 		this.$nextTick(() => {
 			this.children = this.$slots.default.length;
 		});
-	}
+	},
 });
 </script>
 

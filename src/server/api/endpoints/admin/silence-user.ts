@@ -7,7 +7,7 @@ import { insertModerationLog } from '../../../../services/insert-moderation-log'
 export const meta = {
 	desc: {
 		'ja-JP': '指定したユーザーをサイレンスにします。',
-		'en-US': 'Make silence a user.'
+		'en-US': 'Make silence a user.',
 	},
 
 	tags: ['admin'],
@@ -20,10 +20,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to make silence'
-			}
+				'en-US': 'The user ID which you want to make silence',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -38,7 +38,7 @@ export default define(meta, async (ps, me) => {
 	}
 
 	await Users.update(user.id, {
-		isSilenced: true
+		isSilenced: true,
 	});
 
 	insertModerationLog(me, 'silence', {

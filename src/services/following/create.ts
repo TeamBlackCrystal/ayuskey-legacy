@@ -35,7 +35,7 @@ export async function insertFollowingDoc(followee: User, follower: User) {
 		followerSharedInbox: Users.isRemoteUser(follower) ? follower.sharedInbox : null,
 		followeeHost: followee.host,
 		followeeInbox: Users.isRemoteUser(followee) ? followee.inbox : null,
-		followeeSharedInbox: Users.isRemoteUser(followee) ? followee.sharedInbox : null
+		followeeSharedInbox: Users.isRemoteUser(followee) ? followee.sharedInbox : null,
 	}).catch(e => {
 		if (isDuplicateKeyValueError(e) && Users.isRemoteUser(follower) && Users.isLocalUser(followee)) {
 			logger.info(`Insert duplicated ignore. ${follower.id} => ${followee.id}`);
@@ -47,7 +47,7 @@ export async function insertFollowingDoc(followee: User, follower: User) {
 
 	await FollowRequests.delete({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	if (alreadyFollowed) return;
@@ -78,10 +78,10 @@ export async function insertFollowingDoc(followee: User, follower: User) {
 	// Publish follow event
 	if (Users.isLocalUser(follower)) {
 		Users.pack(followee, follower, {
-			detail: true
+			detail: true,
 		}).then(packed => {
 			publishUserEvent(follower.id, 'follow', packed);
-			publishMainStream(follower.id, 'follow', packed)
+			publishMainStream(follower.id, 'follow', packed);
 		});
 	}
 
@@ -104,7 +104,7 @@ export default async function(follower: User, followee: User, requestId?: string
 		Blockings.findOne({
 			blockerId: followee.id,
 			blockeeId: follower.id,
-		})
+		}),
 	]);
 
 	if (Users.isRemoteUser(follower) && Users.isLocalUser(followee) && blocked) {
@@ -147,7 +147,7 @@ export default async function(follower: User, followee: User, requestId?: string
 		if (!autoAccept && (Users.isLocalUser(followee) && followeeProfile.autoAcceptFollowed)) {
 			const followed = await Followings.findOne({
 				followerId: followee.id,
-				followeeId: follower.id
+				followeeId: follower.id,
 			});
 
 			if (followed) autoAccept = true;

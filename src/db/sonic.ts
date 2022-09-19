@@ -40,7 +40,7 @@ export class SonicDriver extends SearchClientBase {
 			retrying() { },
 			error(err: Error) {
 				self.emit('error', err);
-			}
+			},
 		});
 
 		self._searchClient = new Sonic.Search(connectionArgs).connect({
@@ -58,7 +58,7 @@ export class SonicDriver extends SearchClientBase {
 			retrying() { },
 			error(err: Error) {
 				self.emit('error', err);
-			}
+			},
 		});
 	}
 
@@ -78,9 +78,9 @@ export class SonicDriver extends SearchClientBase {
 	public search(
 		content: string,
 		qualifiers: { userId?: string | null; userHost?: string | null } = {},
-		limit: number = 20,
+		limit = 20,
 		offset?: number,
-		locale?: string
+		locale?: string,
 	) {
 		const doSearch = () =>
 			this._searchClient.query(
@@ -99,7 +99,7 @@ export class SonicDriver extends SearchClientBase {
 				this._searchQueue.push(() =>
 					doSearch()
 						.then(resolve)
-						.catch(reject)
+						.catch(reject),
 				);
 			});
 		}
@@ -115,9 +115,9 @@ export class SonicDriver extends SearchClientBase {
 							bucket,
 							note.id,
 							String(note.text).toLowerCase(),
-							this.locale
-						)
-					)
+							this.locale,
+						),
+					),
 			);
 		};
 
@@ -128,7 +128,7 @@ export class SonicDriver extends SearchClientBase {
 				this._ingestQueue.push(() =>
 					doIngest()
 						.then(resolve)
-						.catch(reject)
+						.catch(reject),
 				);
 			});
 		}
@@ -153,6 +153,6 @@ export default (config.sonic
 	? new SonicDriver({
 		host: config.sonic.host,
 		port: config.sonic.port,
-		auth: config.sonic.pass == undefined ? null : config.sonic.pass
+		auth: config.sonic.pass == undefined ? null : config.sonic.pass,
 	}, config.sonic.index)
 	: null);

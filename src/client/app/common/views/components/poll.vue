@@ -1,12 +1,12 @@
 <template>
 <div class="mk-poll" :data-done="closed || isVoted">
 	<ul>
-		<li v-for="(choice, i) in poll.choices" :key="i" @click="vote(i)" :class="{ voted: choice.voted }" :title="!closed && !isVoted ? $t('vote-to').replace('{}', choice.text) : ''">
+		<li v-for="(choice, i) in poll.choices" :key="i" :class="{ voted: choice.voted }" :title="!closed && !isVoted ? $t('vote-to').replace('{}', choice.text) : ''" @click="vote(i)">
 			<div class="backdrop" :style="{ 'width': `${showResult ? (choice.votes / total * 100) : 0}%` }"></div>
 			<span>
 				<template v-if="choice.isVoted"><fa icon="check"/></template>
 				<mfm :text="choice.text" :plain="true" :custom-emojis="note.emojis"/>
-				<span class="votes" v-if="showResult">({{ $t('vote-count').replace('{}', choice.votes) }})</span>
+				<span v-if="showResult" class="votes">({{ $t('vote-count').replace('{}', choice.votes) }})</span>
 			</span>
 		</li>
 	</ul>
@@ -31,7 +31,7 @@ export default Vue.extend({
 	data() {
 		return {
 			remaining: -1,
-			showResult: false
+			showResult: false,
 		};
 	},
 	computed: {
@@ -56,17 +56,15 @@ export default Vue.extend({
 		},
 		isVoted(): boolean {
 			return !this.poll.multiple && this.poll.choices.some(c => c.isVoted);
-		}
+		},
 	},
 	created() {
 		this.showResult = this.isVoted;
 
 		if (this.note.poll.expiresAt) {
 			const update = () => {
-				if (this.remaining = Math.floor(Math.max(new Date(this.note.poll.expiresAt).getTime() - Date.now(), 0) / 1000))
-					requestAnimationFrame(update);
-				else
-					this.showResult = true;
+				if (this.remaining = Math.floor(Math.max(new Date(this.note.poll.expiresAt).getTime() - Date.now(), 0) / 1000)) requestAnimationFrame(update);
+				else this.showResult = true;
 			};
 
 			update();
@@ -80,12 +78,12 @@ export default Vue.extend({
 			if (this.closed || !this.poll.multiple && this.poll.choices.some(c => c.isVoted)) return;
 			this.$root.api('notes/polls/vote', {
 				noteId: this.note.id,
-				choice: id
+				choice: id,
 			}).then(() => {
 				if (!this.showResult) this.showResult = !this.poll.multiple;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

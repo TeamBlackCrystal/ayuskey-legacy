@@ -6,14 +6,14 @@ import { In } from 'typeorm';
 
 export async function readNotification(
 	userId: User['id'],
-	notificationIds: Notification['id'][]
+	notificationIds: Notification['id'][],
 ) {
 	// Update documents
 	await Notifications.update({
 		id: In(notificationIds),
-		isRead: false
+		isRead: false,
 	}, {
-		isRead: true
+		isRead: true,
 	});
 
 	post(userId);
@@ -21,15 +21,15 @@ export async function readNotification(
 
 export async function readNotificationByQuery(
 	userId: User['id'],
-	query: Record<string, any>
+	query: Record<string, any>,
 ) {
 	// Update documents
 	await Notifications.update({
 		...query,
 		notifieeId: userId,
-		isRead: false
+		isRead: false,
 	}, {
-		isRead: true
+		isRead: true,
 	});
 
 	post(userId);

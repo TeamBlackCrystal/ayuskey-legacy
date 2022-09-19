@@ -1,6 +1,6 @@
 <template>
-	<code class="inline" v-if="inline">{{ code }}</code>
-	<highlightjs v-else :language="lang" :code="code" />
+<code v-if="inline" class="inline">{{ code }}</code>
+<highlightjs v-else :language="lang" :code="code" />
 </template>
 
 <script setup lang="ts">

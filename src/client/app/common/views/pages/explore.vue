@@ -3,11 +3,11 @@
 	<ui-input v-model="query" style="margin: 1.2em 0.5em 1.5em;">
 		<span>{{ $t('searchUser') }}</span>
 	</ui-input>
-	<mk-user-list v-if="query && query !== ''" :pagination="foundUsers" :key="`${query}`">
+	<mk-user-list v-if="query && query !== ''" :key="`${query}`" :pagination="foundUsers">
 		<fa :icon="faSearch" fixed-width/>{{ query }}
 	</mk-user-list>
 
-	<div class="localfedi7" v-if="meta && stats && tag == null" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }">
+	<div v-if="meta && stats && tag == null" class="localfedi7" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }">
 		<header>{{ $t('explore', { host: meta.name || 'Misskey' }) }}</header>
 		<div>{{ $t('users-info', { users: num(stats.originalUsersCount) }) }}</div>
 	</div>
@@ -30,20 +30,20 @@
 		</mk-user-list>
 	</template>
 
-	<div class="localfedi7" v-if="tag == null" :style="{ backgroundImage: `url(/assets/fedi.jpg)` }">
+	<div v-if="tag == null" class="localfedi7" :style="{ backgroundImage: `url(/assets/fedi.jpg)` }">
 		<header>{{ $t('explore-fediverse') }}</header>
 	</div>
 
-	<ui-container :body-togglable="true" :expanded="false" ref="tags">
+	<ui-container ref="tags" :body-togglable="true" :expanded="false">
 		<template #header><fa :icon="faHashtag" fixed-width/>{{ $t('popular-tags') }}</template>
 
 		<div class="vxjfqztj">
-			<router-link v-for="tag in tagsLocal" :to="`/explore/tags/${tag.tag}`" :key="'local:' + tag.tag" class="local">{{ tag.tag }}</router-link>
-			<router-link v-for="tag in tagsRemote" :to="`/explore/tags/${tag.tag}`" :key="'remote:' + tag.tag">{{ tag.tag }}</router-link>
+			<router-link v-for="tag in tagsLocal" :key="'local:' + tag.tag" :to="`/explore/tags/${tag.tag}`" class="local">{{ tag.tag }}</router-link>
+			<router-link v-for="tag in tagsRemote" :key="'remote:' + tag.tag" :to="`/explore/tags/${tag.tag}`">{{ tag.tag }}</router-link>
 		</div>
 	</ui-container>
 
-	<mk-user-list v-if="tag != null" :pagination="tagUsers" :key="`${tag}`">
+	<mk-user-list v-if="tag != null" :key="`${tag}`" :pagination="tagUsers">
 		<fa :icon="faHashtag" fixed-width/>{{ tag }}
 	</mk-user-list>
 	<template v-if="tag == null">
@@ -63,24 +63,24 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { faChartLine, faPlus, faHashtag, faRocket, faCertificate, faSearch  } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faPlus, faHashtag, faRocket, faCertificate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import endpoint from '../../../../../server/api/endpoints/endpoint';
 
 export default Vue.extend({
 	i18n: i18n('common/views/pages/explore.vue'),
 
+	inject: {
+		inNakedDeckColumn: {
+			default: false,
+		},
+	},
+
 	props: {
 		tag: {
 			type: String,
-			required: false
-		}
-	},
-
-	inject: {
-		inNakedDeckColumn: {
-			default: false
-		}
+			required: false,
+		},
 	},
 
 	data() {
@@ -124,7 +124,7 @@ export default Vue.extend({
 			query: null,
 			meta: null,
 			num: Vue.filter('number'),
-			faBookmark, faChartLine, faCommentAlt, faPlus, faHashtag, faRocket, faCertificate, faSearch
+			faBookmark, faChartLine, faCommentAlt, faPlus, faHashtag, faRocket, faCertificate, faSearch,
 		};
 	},
 
@@ -137,7 +137,7 @@ export default Vue.extend({
 					tag: this.tag,
 					origin: 'combined',
 					sort: '+follower',
-				}
+				},
 			};
 		},
 		foundUsers(): any {
@@ -146,7 +146,7 @@ export default Vue.extend({
 				limit: 30,
 				params: {
 					username: this.query,
-				}
+				},
 			};
 		},
 	},
@@ -154,25 +154,25 @@ export default Vue.extend({
 	watch: {
 		tag() {
 			if (this.$refs.tags) this.$refs.tags.toggleContent(this.tag == null);
-		}
+		},
 	},
 
 	created() {
 		this.$emit('init', {
 			title: this.$t('@.explore'),
-			icon: faHashtag
+			icon: faHashtag,
 		});
 		this.$root.api('hashtags/list', {
 			sort: '+attachedLocalUsers',
 			attachedToLocalUserOnly: true,
-			limit: 30
+			limit: 30,
 		}).then(tags => {
 			this.tagsLocal = tags;
 		});
 		this.$root.api('hashtags/list', {
 			sort: '+attachedRemoteUsers',
 			attachedToRemoteUserOnly: true,
-			limit: 30
+			limit: 30,
 		}).then(tags => {
 			this.tagsRemote = tags;
 		});

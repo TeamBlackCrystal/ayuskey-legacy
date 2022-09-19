@@ -1,5 +1,5 @@
 <template>
-<x-container @remove="() => $emit('remove')" :draggable="true">
+<x-container :draggable="true" @remove="() => $emit('remove')">
 	<template #header><fa :icon="faImage"/> {{ $t('blocks.image') }}</template>
 	<template #func>
 		<button @click="choose()">
@@ -8,7 +8,7 @@
 	</template>
 
 	<section class="oyyftmcf">
-		<x-file-thumbnail class="preview" v-if="file" :file="file" fit="contain" @click="choose()"/>
+		<x-file-thumbnail v-if="file" class="preview" :file="file" fit="contain" @click="choose()"/>
 	</section>
 </x-container>
 </template>
@@ -25,19 +25,19 @@ export default Vue.extend({
 	i18n: i18n('pages'),
 
 	components: {
-		XContainer, XFileThumbnail
+		XContainer, XFileThumbnail,
 	},
 
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 	},
 
 	data() {
 		return {
 			file: null,
-			faPencilAlt, faImage, faFolderOpen
+			faPencilAlt, faImage, faFolderOpen,
 		};
 	},
 
@@ -50,7 +50,7 @@ export default Vue.extend({
 			this.choose();
 		} else {
 			this.$root.api('drive/files/show', {
-				fileId: this.value.fileId
+				fileId: this.value.fileId,
 			}).then(file => {
 				this.file = file;
 			});
@@ -60,13 +60,13 @@ export default Vue.extend({
 	methods: {
 		async choose() {
 			this.$chooseDriveFile({
-				multiple: false
+				multiple: false,
 			}).then(file => {
 				this.file = file;
 				this.value.fileId = file.id;
 			});
 		},
-	}
+	},
 });
 </script>
 

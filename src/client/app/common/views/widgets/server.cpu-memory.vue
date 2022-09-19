@@ -85,14 +85,14 @@ export default Vue.extend({
 			memHeadX: null,
 			memHeadY: null,
 			cpuP: '',
-			memP: ''
+			memP: '',
 		};
 	},
 	mounted() {
 		this.connection.on('stats', this.onStats);
 		this.connection.on('statsLog', this.onStatsLog);
 		this.connection.send('requestLog', {
-			id: Math.random().toString().substr(2, 8)
+			id: Math.random().toString().substr(2, 8),
 		});
 	},
 	beforeDestroy() {
@@ -122,8 +122,8 @@ export default Vue.extend({
 		},
 		onStatsLog(statsLog) {
 			for (const stats of statsLog.reverse()) this.onStats(stats);
-		}
-	}
+		},
+	},
 });
 </script>
 

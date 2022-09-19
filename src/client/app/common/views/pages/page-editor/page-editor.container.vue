@@ -16,8 +16,8 @@
 			</button>
 		</div>
 	</header>
-	<p v-show="showBody" class="error" v-if="error != null">{{ $t('script.typeError', { slot: error.arg + 1, expect: $t(`script.types.${error.expect}`), actual: $t(`script.types.${error.actual}`) }) }}</p>
-	<p v-show="showBody" class="warn" v-if="warn != null">{{ $t('script.thereIsEmptySlot', { slot: warn.slot + 1 }) }}</p>
+	<p v-show="showBody" v-if="error != null" class="error">{{ $t('script.typeError', { slot: error.arg + 1, expect: $t(`script.types.${error.expect}`), actual: $t(`script.types.${error.actual}`) }) }}</p>
+	<p v-show="showBody" v-if="warn != null" class="warn">{{ $t('script.thereIsEmptySlot', { slot: warn.slot + 1 }) }}</p>
 	<div v-show="showBody">
 		<slot></slot>
 	</div>
@@ -36,29 +36,29 @@ export default Vue.extend({
 	props: {
 		expanded: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		removable: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		draggable: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		error: {
 			required: false,
-			default: null
+			default: null,
 		},
 		warn: {
 			required: false,
-			default: null
-		}
+			default: null,
+		},
 	},
 	data() {
 		return {
 			showBody: this.expanded,
-			faTrashAlt, faBars
+			faTrashAlt, faBars,
 		};
 	},
 	methods: {
@@ -68,8 +68,8 @@ export default Vue.extend({
 		},
 		remove() {
 			this.$emit('remove');
-		}
-	}
+		},
+	},
 });
 </script>
 

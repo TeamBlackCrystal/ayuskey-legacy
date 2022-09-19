@@ -27,6 +27,13 @@
 		"paths": {
 			"@/*": ["./*"]
 		},
+		"plugins": [
+			{
+				"transform": "tsc-progress",
+				"title": "Ayuskey BE",
+				"color": "blue"
+			}
+		],
 		"typeRoots": [
 			"../node_modules/@types",
 			"./@types"

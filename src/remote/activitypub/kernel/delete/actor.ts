@@ -13,7 +13,7 @@ export async function deleteActor(actor: IRemoteUser, uri: string): Promise<stri
 	}
 
 	if (actor.isDeleted) {
-		logger.info(`skip: already deleted`);
+		logger.info('skip: already deleted');
 	}
 
 	const job = await createDeleteAccountJob(actor);

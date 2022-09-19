@@ -14,7 +14,7 @@ export async function createNotification(
 		noteId?: Note['id'];
 		reaction?: string;
 		choice?: number;
-	}
+	},
 ) {
 	if (notifieeId === notifierId) {
 		return null;
@@ -56,7 +56,7 @@ export async function createNotification(
 		if (!fresh.isRead) {
 			//#region ただしミュートしているユーザーからの通知なら無視
 			const mutings = await Mutings.find({
-				muterId: notifieeId
+				muterId: notifieeId,
 			});
 			if (mutings.map(m => m.muteeId).includes(notifierId)) {
 				return;

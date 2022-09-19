@@ -3,7 +3,7 @@ export default ($root: any) => {
 
 	$root.dialog({
 		title: $root.$t('@.signin-required'),
-		text: null
+		text: null,
 	});
 
 	throw new Error('signin required');

@@ -20,7 +20,7 @@ export async function addPinned(user: User, noteId: Note['id']) {
 	// Fetch pinee
 	const note = await Notes.findOne({
 		id: noteId,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (note == null) {
@@ -41,7 +41,7 @@ export async function addPinned(user: User, noteId: Note['id']) {
 		id: genId(),
 		createdAt: new Date(),
 		userId: user.id,
-		noteId: note.id
+		noteId: note.id,
 	} as UserNotePining);
 
 	// Deliver to remote followers
@@ -59,7 +59,7 @@ export async function removePinned(user: User, noteId: Note['id']) {
 	// Fetch unpinee
 	const note = await Notes.findOne({
 		id: noteId,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (note == null) {
@@ -68,7 +68,7 @@ export async function removePinned(user: User, noteId: Note['id']) {
 
 	UserNotePinings.delete({
 		userId: user.id,
-		noteId: note.id
+		noteId: note.id,
 	});
 
 	// Deliver to remote followers

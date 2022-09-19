@@ -9,7 +9,7 @@ export const meta = {
 	cacheSec: 600,
 
 	desc: {
-		'en-US': 'Get the instance\'s statistics'
+		'en-US': 'Get the instance\'s statistics',
 	},
 
 	tags: ['meta'],
@@ -56,8 +56,8 @@ export const meta = {
 				optional: false as const, nullable: false as const,
 				description: 'The count of federated instances.',
 			},
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async () => {
@@ -70,7 +70,7 @@ export default define(meta, async () => {
 		//originalReactionsCount,
 		instances,
 		driveUsageLocal,
-		driveUsageRemote
+		driveUsageRemote,
 	] = await Promise.all([
 		Notes.count({ cache: 3600000 }), // 1 hour
 		Notes.count({ where: { userHost: null }, cache: 3600000 }),
@@ -92,6 +92,6 @@ export default define(meta, async () => {
 		//originalReactionsCount,
 		instances,
 		driveUsageLocal,
-		driveUsageRemote
+		driveUsageRemote,
 	};
 });

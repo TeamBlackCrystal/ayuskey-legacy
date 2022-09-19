@@ -6,7 +6,8 @@
 			<button class="close" @click="cancel"><fa icon="times"/></button>
 			<button class="ok" @click="ok"><fa icon="check"/></button>
 		</header>
-		<x-drive ref="browser"
+		<x-drive
+			ref="browser"
 			select-folder
 		/>
 	</div>
@@ -29,8 +30,8 @@ export default Vue.extend({
 		ok() {
 			this.$emit('selected', (this.$refs.browser as any).folder);
 			this.destroyDom();
-		}
-	}
+		},
+	},
 });
 </script>
 

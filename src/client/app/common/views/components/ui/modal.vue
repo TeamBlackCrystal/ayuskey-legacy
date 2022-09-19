@@ -1,6 +1,6 @@
 <template>
 <div class="modal">
-	<div class="bg" :class="{'blur': $store.state.device.useBlur}" ref="bg" @click="onBgClick" />
+	<div ref="bg" class="bg" :class="{'blur': $store.state.device.useBlur}" @click="onBgClick" />
 	<slot class="main" />
 </div>
 </template>
@@ -14,25 +14,25 @@ export default Vue.extend({
 		closeOnBgClick: {
 			type: Boolean,
 			required: false,
-			default: true
+			default: true,
 		},
 		openAnimeDuration: {
 			type: Number,
 			required: false,
-			default: 100
+			default: 100,
 		},
 		closeAnimeDuration: {
 			type: Number,
 			required: false,
-			default: 100
-		}
+			default: 100,
+		},
 	},
 	mounted() {
 		anime({
 			targets: this.$refs.bg,
 			opacity: 1,
 			duration: this.openAnimeDuration,
-			easing: 'linear'
+			easing: 'linear',
 		});
 	},
 	methods: {
@@ -48,10 +48,10 @@ export default Vue.extend({
 				opacity: 0,
 				duration: this.closeAnimeDuration,
 				easing: 'linear',
-				complete: () => (this as any).destroyDom()
+				complete: () => (this as any).destroyDom(),
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

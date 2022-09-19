@@ -1,17 +1,18 @@
 <template>
 <div class="fquwcbxs">
 	<transition name="back">
-		<div class="backdrop"
+		<div
 			v-if="isOpen"
+			class="backdrop"
 			:class="{'blur': $store.state.device.useBlur}"
 			@click="$parent.isDrawerOpening = false"
 			@touchstart="$parent.isDrawerOpening = false"
 		></div>
 	</transition>
 	<transition name="nav">
-		<div class="body" :class="{ notifications: showNotifications }" v-if="isOpen">
-			<div class="nav" v-show="!showNotifications">
-				<router-link class="me" v-if="$store.getters.isSignedIn" :to="`/@${$store.state.i.username}`">
+		<div v-if="isOpen" class="body" :class="{ notifications: showNotifications }">
+			<div v-show="!showNotifications" class="nav">
+				<router-link v-if="$store.getters.isSignedIn" class="me" :to="`/@${$store.state.i.username}`">
 					<img class="avatar" :src="$store.state.i.avatarUrl" alt="avatar"/>
 					<p class="name"><mk-user-name :user="$store.state.i"/></p>
 				</router-link>
@@ -44,16 +45,16 @@
 						<li @click="dark"><p><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon" fixed-width/></i><span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span></p></li>
 					</ul>
 				</div>
-				<div class="announcements" v-if="announcements && announcements.length > 0">
+				<div v-if="announcements && announcements.length > 0" class="announcements">
 					<article v-for="announcement in announcements">
-						<span v-html="announcement.title" class="title"></span>
+						<span class="title" v-html="announcement.title"></span>
 						<div><mfm :text="announcement.text"/></div>
 						<img v-if="announcement.image" :src="announcement.image" alt="" style="display: block; max-height: 120px; max-width: 100%;"/>
 					</article>
 				</div>
 				<a :href="aboutUrl"><p class="about">{{ $t('about') }}</p></a>
 			</div>
-			<div class="notifications" v-if="showNotifications">
+			<div v-if="showNotifications" class="notifications">
 				<header>
 					<button @click="showNotifications = false"><fa icon="times"/></button>
 					<i v-if="hasUnreadNotification" class="circle"><fa icon="circle"/></i>
@@ -76,11 +77,11 @@ import { search } from '../../../common/scripts/search';
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/ui.nav.vue'),
 
-	props: ['isOpen'],
-
 	provide: {
-		narrow: true
+		narrow: true,
 	},
+
+	props: ['isOpen'],
 
 	data() {
 		return {
@@ -101,13 +102,13 @@ export default Vue.extend({
 
 		hasUnreadMessagingMessage(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		}
+		},
 	},
 
 	watch: {
 		isOpen() {
 			this.showNotifications = false;
-		}
+		},
 	},
 
 	mounted() {
@@ -135,7 +136,7 @@ export default Vue.extend({
 
 			this.$root.dialog({
 				title: this.$t('search'),
-				input: true
+				input: true,
 			}).then(async ({ canceled, result: query }) => {
 				if (canceled) return;
 
@@ -157,7 +158,7 @@ export default Vue.extend({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
 		},
 
@@ -165,7 +166,7 @@ export default Vue.extend({
 			this.$store.commit('device/set', { key: 'deckMode', value: !this.$store.state.device.inDeckMode });
 			location.replace('/');
 		},
-	}
+	},
 });
 </script>
 

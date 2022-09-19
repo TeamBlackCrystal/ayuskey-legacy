@@ -1,19 +1,22 @@
 <template>
 <svg viewBox="0 0 21 7">
-	<rect v-for="record in data" class="day"
+	<rect
+		v-for="record in data" class="day"
 		width="1" height="1"
 		:x="record.x" :y="record.date.weekday"
 		rx="1" ry="1"
 		fill="transparent">
 		<title>{{ record.date.year }}/{{ record.date.month + 1 }}/{{ record.date.day }}</title>
 	</rect>
-	<rect v-for="record in data" class="day"
+	<rect
+		v-for="record in data" class="day"
 		:width="record.v" :height="record.v"
 		:x="record.x + ((1 - record.v) / 2)" :y="record.date.weekday + ((1 - record.v) / 2)"
 		rx="1" ry="1"
 		:fill="record.color"
 		style="pointer-events: none;"/>
-	<rect class="today"
+	<rect
+		class="today"
 		width="1" height="1"
 		:x="data[0].x" :y="data[0].date.weekday"
 		rx="1" ry="1"
@@ -48,7 +51,7 @@ export default Vue.extend({
 				year: date.getFullYear(),
 				month: date.getMonth(),
 				day: date.getDate(),
-				weekday: date.getDay()
+				weekday: date.getDay(),
 			};
 
 			d.v = peak == 0 ? 0 : d.total / (peak / 2);
@@ -60,7 +63,7 @@ export default Vue.extend({
 
 			if (d.date.weekday == 0) x--;
 		});
-	}
+	},
 });
 </script>
 

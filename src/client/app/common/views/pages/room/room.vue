@@ -1,6 +1,6 @@
 <template>
 <div class="hveuntkp">
-	<div class="controller" v-if="objectSelected">
+	<div v-if="objectSelected" class="controller">
 		<section>
 			<p class="name">{{ selectedFurnitureName }}</p>
 			<x-preview ref="preview"/>
@@ -17,8 +17,8 @@
 			</template>
 		</section>
 		<section>
-			<ui-button @click="translate()" :primary="isTranslateMode"><fa :icon="faArrowsAlt"/> {{ $t('translate') }}</ui-button>
-			<ui-button @click="rotate()" :primary="isRotateMode"><fa :icon="faUndo"/> {{ $t('rotate') }}</ui-button>
+			<ui-button :primary="isTranslateMode" @click="translate()"><fa :icon="faArrowsAlt"/> {{ $t('translate') }}</ui-button>
+			<ui-button :primary="isRotateMode" @click="rotate()"><fa :icon="faUndo"/> {{ $t('rotate') }}</ui-button>
 			<ui-button v-if="isTranslateMode || isRotateMode" @click="exit()"><fa :icon="faBan"/> {{ $t('exit') }}</ui-button>
 		</section>
 		<section>
@@ -26,7 +26,7 @@
 		</section>
 	</div>
 
-	<div class="menu" :class="{'blur': $store.state.device.useBlur}" v-if="isMyRoom">
+	<div v-if="isMyRoom" class="menu" :class="{'blur': $store.state.device.useBlur}">
 		<section>
 			<ui-button @click="add()"><fa :icon="faBoxOpen"/> {{ $t('add-furniture') }}</ui-button>
 		</section>
@@ -66,13 +66,31 @@ export default Vue.extend({
 	i18n: i18n('room'),
 
 	components: {
-		XPreview
+		XPreview,
+	},
+
+	beforeRouteLeave(to, from, next) {
+		if (this.changed) {
+			this.$root.dialog({
+				type: 'warning',
+				text: this.$t('leave-confirm'),
+				showCancelButton: true,
+			}).then(({ canceled }) => {
+				if (canceled) {
+					next(false);
+				} else {
+					next();
+				}
+			});
+		} else {
+			next();
+		}
 	},
 
 	props: {
 		acct: {
 			type: String,
-			required: true
+			required: true,
 		},
 	},
 
@@ -96,13 +114,13 @@ export default Vue.extend({
 		window.addEventListener('beforeunload', this.beforeunload);
 
 		const user = await this.$root.api('users/show', {
-			...parseAcct(this.acct)
+			...parseAcct(this.acct),
 		});
 
 		this.isMyRoom = this.$store.getters.isSignedIn && this.$store.state.i.id === user.id;
 
 		const roomInfo = await this.$root.api('room/show', {
-			userId: user.id
+			userId: user.id,
 		});
 
 		this.roomType = roomInfo.roomType;
@@ -124,26 +142,8 @@ export default Vue.extend({
 					});
 				}
 			},
-			useOrthographicCamera: this.$store.state.device.roomUseOrthographicCamera
+			useOrthographicCamera: this.$store.state.device.roomUseOrthographicCamera,
 		});
-	},
-
-	beforeRouteLeave(to, from, next) {
-		if (this.changed) {
-			this.$root.dialog({
-				type: 'warning',
-				text: this.$t('leave-confirm'),
-				showCancelButton: true
-			}).then(({ canceled }) => {
-				if (canceled) {
-					next(false);
-				} else {
-					next();
-				}
-			});
-		} else {
-			next();
-		}
 	},
 
 	beforeDestroy() {
@@ -165,10 +165,10 @@ export default Vue.extend({
 				title: this.$t('add-furniture'),
 				select: {
 					items: storeItems.map(item => ({
-						value: item.id, text: this.$t('furnitures.' + item.id)
-					}))
+						value: item.id, text: this.$t('furnitures.' + item.id),
+					})),
 				},
-				showCancelButton: true
+				showCancelButton: true,
 			});
 			if (canceled) return;
 			room.addFurniture(id);
@@ -184,17 +184,17 @@ export default Vue.extend({
 
 		save() {
 			this.$root.api('room/update', {
-				room: room.getRoomInfo()
+				room: room.getRoomInfo(),
 			}).then(() => {
 				this.changed = false;
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('saved')
+					text: this.$t('saved'),
 				});
 			}).catch((e: any) => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.message
+					text: e.message,
 				});
 			});
 		},
@@ -203,7 +203,7 @@ export default Vue.extend({
 			this.$root.dialog({
 				type: 'warning',
 				text: this.$t('clear-confirm'),
-				showCancelButton: true
+				showCancelButton: true,
 			}).then(({ canceled }) => {
 				if (canceled) return;
 				room.removeAllFurnitures();
@@ -213,7 +213,7 @@ export default Vue.extend({
 
 		chooseImage(key) {
 			this.$chooseDriveFile({
-				multiple: false
+				multiple: false,
 			}).then(file => {
 				room.updateProp(key, `/proxy/?${urlQuery({ url: file.thumbnailUrl })}`);
 				this.$refs.preview.selected(room.getSelectedObject());
@@ -266,8 +266,8 @@ export default Vue.extend({
 			this.isRotateMode = false;
 			room.exitTransformMode();
 			this.changed = true;
-		}
-	}
+		},
+	},
 });
 </script>
 

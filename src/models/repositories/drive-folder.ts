@@ -18,10 +18,10 @@ export class DriveFolderRepository extends Repository<DriveFolder> {
 		src: DriveFolder['id'] | DriveFolder,
 		options?: {
 			detail: boolean
-		}
+		},
 	): Promise<Packed<'DriveFolder'>> {
 		const opts = Object.assign({
-			detail: false
+			detail: false,
 		}, options);
 
 		const folder = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
@@ -34,18 +34,18 @@ export class DriveFolderRepository extends Repository<DriveFolder> {
 
 			...(opts.detail ? {
 				foldersCount: DriveFolders.count({
-					parentId: folder.id
+					parentId: folder.id,
 				}),
 				filesCount: DriveFiles.count({
-					folderId: folder.id
+					folderId: folder.id,
 				}),
 
 				...(folder.parentId ? {
 					parent: this.pack(folder.parentId, {
-						detail: true
-					})
-				} : {})
-			} : {})
+						detail: true,
+					}),
+				} : {}),
+			} : {}),
 		});
 	}
 }
@@ -65,7 +65,7 @@ export const packedDriveFolderSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the Drive folder was created.'
+			description: 'The date that the Drive folder was created.',
 		},
 		name: {
 			type: 'string' as const,

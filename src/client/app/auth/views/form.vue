@@ -36,17 +36,17 @@ export default Vue.extend({
 	computed: {
 		name(): string {
 			const el = document.createElement('div');
-			el.textContent = this.app.name
+			el.textContent = this.app.name;
 			return el.innerHTML;
 		},
 		app(): any {
 			return this.session.app;
-		}
+		},
 	},
 	methods: {
 		cancel() {
 			this.$root.api('auth/deny', {
-				token: this.session.token
+				token: this.session.token,
 			}).then(() => {
 				this.$emit('denied');
 			});
@@ -54,12 +54,12 @@ export default Vue.extend({
 
 		accept() {
 			this.$root.api('auth/accept', {
-				token: this.session.token
+				token: this.session.token,
 			}).then(() => {
 				this.$emit('accepted');
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

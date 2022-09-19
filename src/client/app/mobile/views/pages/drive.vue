@@ -5,7 +5,7 @@
 		<template v-if="file"><mk-file-type-icon data-icon :type="file.type" style="margin-right:4px;"/>{{ file.name }}</template>
 		<template v-if="!folder && !file"><span style="margin-right:4px;"><fa icon="cloud"/></span>{{ $t('@.drive') }}</template>
 	</template>
-	<template #func v-if="folder || (!folder && !file)"><button @click="openContextMenu" ref="contextSource"><fa icon="ellipsis-h"/></button></template>
+	<template v-if="folder || (!folder && !file)" #func><button ref="contextSource" @click="openContextMenu"><fa icon="ellipsis-h"/></button></template>
 	<x-drive
 		ref="browser"
 		:init-folder="initFolder"
@@ -41,7 +41,7 @@ export default Vue.extend({
 			folder: null,
 			file: null,
 			initFolder: null,
-			initFile: null
+			initFile: null,
 		};
 	},
 	created() {
@@ -111,37 +111,37 @@ export default Vue.extend({
 					type: 'item',
 					text: this.$t('contextmenu.upload'),
 					icon: 'upload',
-					action: this.$refs.browser.selectLocalFile
+					action: this.$refs.browser.selectLocalFile,
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.url-upload'),
 					icon: faCloudUploadAlt,
-					action: this.$refs.browser.urlUpload
+					action: this.$refs.browser.urlUpload,
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.create-folder'),
 					icon: ['far', 'folder'],
-					action: this.$refs.browser.createFolder
+					action: this.$refs.browser.createFolder,
 				}, ...(this.folder ? [{
 					type: 'item',
 					text: this.$t('contextmenu.rename-folder'),
 					icon: 'i-cursor',
-					action: this.$refs.browser.renameFolder
+					action: this.$refs.browser.renameFolder,
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.move-folder'),
 					icon: ['far', 'folder-open'],
-					action: this.$refs.browser.moveFolder
+					action: this.$refs.browser.moveFolder,
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.delete-folder'),
 					icon: faTrashAlt,
-					action: this.$refs.browser.deleteFolder
+					action: this.$refs.browser.deleteFolder,
 				}] : [])],
 				source: this.$refs.contextSource,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

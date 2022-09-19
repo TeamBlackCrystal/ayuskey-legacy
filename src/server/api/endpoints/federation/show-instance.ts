@@ -10,9 +10,9 @@ export const meta = {
 
 	params: {
 		host: {
-			validator: $.str
-		}
-	}
+			validator: $.str,
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {

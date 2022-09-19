@@ -8,7 +8,7 @@ import { ApiError } from '../../../error';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'カスタム絵文字を更新します。'
+		'ja-JP': 'カスタム絵文字を更新します。',
 	},
 
 	tags: ['admin'],
@@ -18,33 +18,33 @@ export const meta = {
 
 	params: {
 		id: {
-			validator: $.type(ID)
+			validator: $.type(ID),
 		},
 
 		name: {
-			validator: $.str
+			validator: $.str,
 		},
 
 		category: {
-			validator: $.optional.str
+			validator: $.optional.str,
 		},
 
 		url: {
-			validator: $.str
+			validator: $.str,
 		},
 
 		aliases: {
-			validator: $.arr($.str)
-		}
+			validator: $.arr($.str),
+		},
 	},
 
 	errors: {
 		noSuchEmoji: {
 			message: 'No such emoji.',
 			code: 'NO_SUCH_EMOJI',
-			id: '684dec9d-a8c2-4364-9aa8-456c49cb1dc8'
-		}
-	}
+			id: '684dec9d-a8c2-4364-9aa8-456c49cb1dc8',
+		},
+	},
 };
 
 export default define(meta, async (ps) => {

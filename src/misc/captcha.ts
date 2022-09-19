@@ -9,7 +9,7 @@ export async function verifyRecaptcha(secret: string, response: string) {
 	});
 
 	if (result.success !== true) {
-		const errorCodes = result['error-codes'] ? result['error-codes']?.join(', ') : '';
+		const errorCodes = result['error-codes'] ? result['error-codes'].join(', ') : '';
 		throw `recaptcha-failed: ${errorCodes}`;
 	}
 }
@@ -20,7 +20,7 @@ export async function verifyHcaptcha(secret: string, response: string) {
 	});
 
 	if (result.success !== true) {
-		const errorCodes = result['error-codes'] ? result['error-codes']?.join(', ') : '';
+		const errorCodes = result['error-codes'] ? result['error-codes'].join(', ') : '';
 		throw `hcaptcha-failed: ${errorCodes}`;
 	}
 }
@@ -33,17 +33,17 @@ type CaptchaResponse = {
 async function getCaptchaResponse(url: string, secret: string, response: string): Promise<CaptchaResponse> {
 	const params = new URLSearchParams({
 		secret,
-		response
+		response,
 	});
 
 	const res = await fetch(url, {
 		method: 'POST',
 		body: params,
 		headers: {
-			'User-Agent': config.userAgent
+			'User-Agent': config.userAgent,
 		},
 		timeout: 10 * 1000,
-		agent: getAgentByUrl
+		agent: getAgentByUrl,
 	}).catch(e => {
 		throw `${e.message || e}`;
 	});

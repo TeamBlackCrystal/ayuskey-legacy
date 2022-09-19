@@ -9,7 +9,6 @@ export default class extends Channel {
 
 	@autobind
 	public async init(params: any) {
-
 		// Subscribe main stream channel
 		this.subscriber.on(`mainStream:${this.user!.id}`, async data => {
 			let { type, body } = data;
@@ -19,7 +18,7 @@ export default class extends Channel {
 					if (this.muting.has(body.userId)) return;
 					if (body.note && body.note.isHidden) {
 						const note = await Notes.pack(body.note.id, this.user, {
-							detail: true
+							detail: true,
 						});
 						this.connection.cacheNote(note);
 						body.note = note;
@@ -30,7 +29,7 @@ export default class extends Channel {
 					if (this.muting.has(body.userId)) return;
 					if (body.isHidden) {
 						const note = await Notes.pack(body.id, this.user, {
-							detail: true
+							detail: true,
 						});
 						this.connection.cacheNote(note);
 						body = note;

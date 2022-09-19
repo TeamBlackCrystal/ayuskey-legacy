@@ -1,10 +1,10 @@
 <template>
-<div class="notifications" v-hotkey.global="keymap">
-	<button :data-active="isOpen" @click="toggle" :title="$t('title')">
+<div v-hotkey.global="keymap" class="notifications">
+	<button :data-active="isOpen" :title="$t('title')" @click="toggle">
 		<i class="bell"><fa :icon="['far', 'bell']"/></i>
-		<i class="circle" v-if="hasUnreadNotification"><fa icon="circle"/></i>
+		<i v-if="hasUnreadNotification" class="circle"><fa icon="circle"/></i>
 	</button>
-	<div class="pop" :class="{'blur': $store.state.device.useBlur}" v-if="isOpen">
+	<div v-if="isOpen" class="pop" :class="{'blur': $store.state.device.useBlur}">
 		<mk-notifications/>
 	</div>
 </div>
@@ -19,7 +19,7 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.header.notifications.vue'),
 	data() {
 		return {
-			isOpen: false
+			isOpen: false,
 		};
 	},
 
@@ -30,9 +30,9 @@ export default Vue.extend({
 
 		keymap(): any {
 			return {
-				'shift+n': this.toggle
+				'shift+n': this.toggle,
 			};
-		}
+		},
 	},
 
 	methods: {
@@ -58,8 +58,8 @@ export default Vue.extend({
 			e.preventDefault();
 			if (!contains(this.$el, e.target) && this.$el != e.target) this.close();
 			return false;
-		}
-	}
+		},
+	},
 });
 </script>
 

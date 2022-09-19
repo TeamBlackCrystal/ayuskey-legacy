@@ -3,30 +3,30 @@
 	<mk-avatar class="avatar" :user="message.user" target="_blank"/>
 	<div class="content">
 		<div class="balloon" :data-no-text="message.text == null">
-			<button class="delete-button" v-if="isMe" :title="$t('@.delete')" @click="del">
+			<button v-if="isMe" class="delete-button" :title="$t('@.delete')" @click="del">
 				<img src="/assets/desktop/remove.png" alt="Delete"/>
 			</button>
-			<div class="content" v-if="!message.isDeleted">
-				<mfm class="text" v-if="message.text" ref="text" :text="message.text" :i="$store.state.i"/>
-				<div class="file" v-if="message.file">
+			<div v-if="!message.isDeleted" class="content">
+				<mfm v-if="message.text" ref="text" class="text" :text="message.text" :i="$store.state.i"/>
+				<div v-if="message.file" class="file">
 					<a :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
 						<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name"/>
 						<p v-else>{{ message.file.name }}</p>
 					</a>
 				</div>
 			</div>
-			<div class="content" v-else>
+			<div v-else class="content">
 				<p class="is-deleted">{{ $t('deleted') }}</p>
 			</div>
 		</div>
 		<div></div>
-		<mk-url-preview v-for="url in urls" :url="url" :key="url"/>
+		<mk-url-preview v-for="url in urls" :key="url" :url="url"/>
 		<footer>
 			<template v-if="isGroup">
-				<span class="read" v-if="message.reads.length > 0">{{ $t('is-read') }} {{ message.reads.length }}</span>
+				<span v-if="message.reads.length > 0" class="read">{{ $t('is-read') }} {{ message.reads.length }}</span>
 			</template>
 			<template v-else>
-				<span class="read" v-if="isMe && message.isRead">{{ $t('is-read') }}</span>
+				<span v-if="isMe && message.isRead" class="read">{{ $t('is-read') }}</span>
 			</template>
 			<mk-time :time="message.createdAt"/>
 			<template v-if="message.is_edited"><fa icon="pencil-alt"/></template>
@@ -45,11 +45,11 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/messaging-room.message.vue'),
 	props: {
 		message: {
-			required: true
+			required: true,
 		},
 		isGroup: {
-			required: false
-		}
+			required: false,
+		},
 	},
 	computed: {
 		isMe(): boolean {
@@ -64,15 +64,15 @@ export default Vue.extend({
 			} else {
 				return null;
 			}
-		}
+		},
 	},
 	methods: {
 		del() {
 			this.$root.api('messaging/messages/delete', {
-				messageId: this.message.id
+				messageId: this.message.id,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

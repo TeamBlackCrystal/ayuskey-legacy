@@ -8,39 +8,39 @@ export class Log {
 
 	@Index()
 	@Column('timestamp with time zone', {
-		comment: 'The created date of the Log.'
+		comment: 'The created date of the Log.',
 	})
 	public createdAt: Date;
 
 	@Index()
 	@Column('varchar', {
-		length: 64, array: true, default: '{}'
+		length: 64, array: true, default: '{}',
 	})
 	public domain: string[];
 
 	@Index()
 	@Column('enum', {
-		enum: ['error', 'warning', 'info', 'success', 'debug']
+		enum: ['error', 'warning', 'info', 'success', 'debug'],
 	})
 	public level: string;
 
 	@Column('varchar', {
-		length: 8
+		length: 8,
 	})
 	public worker: string;
 
 	@Column('varchar', {
-		length: 128
+		length: 128,
 	})
 	public machine: string;
 
 	@Column('varchar', {
-		length: 2048
+		length: 2048,
 	})
 	public message: string;
 
 	@Column('jsonb', {
-		default: {}
+		default: {},
 	})
 	public data: Record<string, any>;
 }

@@ -17,15 +17,15 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'hashtags',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n('common/views/widgets/hashtags.vue'),
 	methods: {
 		func() {
 			this.props.compact = !this.props.compact;
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>

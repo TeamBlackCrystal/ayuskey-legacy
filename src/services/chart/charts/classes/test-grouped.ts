@@ -41,7 +41,7 @@ export default class TestGroupedChart extends Chart<TestGroupedLog> {
 		this.total[group]++;
 
 		await this.inc({
-			foo: update
+			foo: update,
 		}, group);
 	}
 }

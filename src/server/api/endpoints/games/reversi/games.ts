@@ -11,7 +11,7 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		sinceId: {
@@ -24,9 +24,9 @@ export const meta = {
 
 		my: {
 			validator: $.optional.bool,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -44,6 +44,6 @@ export default define(meta, async (ps, user) => {
 	const games = await query.take(ps.limit!).getMany();
 
 	return await Promise.all(games.map((g) => ReversiGames.pack(g, user, {
-		detail: false
+		detail: false,
 	})));
 });

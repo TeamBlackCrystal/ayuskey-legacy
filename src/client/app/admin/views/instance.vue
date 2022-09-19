@@ -173,7 +173,7 @@
 		</section>
 		<section v-if="enableRecaptcha && recaptchaSiteKey">
 			<header>{{ $t('recaptcha-preview') }}</header>
-			<div ref="recaptcha" style="margin: 16px 0 0 0;" :key="recaptchaSiteKey"></div>
+			<div ref="recaptcha" :key="recaptchaSiteKey" style="margin: 16px 0 0 0;"></div>
 		</section>
 		<section>
 			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
@@ -264,7 +264,7 @@ export default Vue.extend({
 			maintainerName: null,
 			maintainerEmail: null,
 			ToSUrl: null,
-			repositoryUrl: "https://github.com/TeamOrangeServer/misskey",
+			repositoryUrl: 'https://github.com/TeamOrangeServer/misskey',
 			feedbackUrl: null,
 			disableRegistration: false,
 			disableLocalTimeline: false,
@@ -323,7 +323,7 @@ export default Vue.extend({
 			objectStorageUseProxy: true,
 			objectStorageSetPublicRead: false,
 			objectStorageS3ForcePathStyle: true,
-			faHeadset, faShieldAlt, faGhost, faUserPlus, farEnvelope, faBolt, faThumbtack, faPencilAlt, faSave, faHashtag
+			faHeadset, faShieldAlt, faGhost, faUserPlus, farEnvelope, faBolt, faThumbtack, faPencilAlt, faSave, faHashtag,
 		};
 	},
 
@@ -400,7 +400,7 @@ export default Vue.extend({
 			if (!this.$refs.recaptcha) return;
 			if (!this.recaptchaSiteKey) return;
 			(window as any).grecaptcha.render(this.$refs.recaptcha, {
-				sitekey: this.recaptchaSiteKey
+				sitekey: this.recaptchaSiteKey,
 			});
 		};
 
@@ -427,12 +427,12 @@ export default Vue.extend({
 			this.$root.api('admin/invite').then(x => {
 				this.$root.dialog({
 					type: 'info',
-					text: x.code
+					text: x.code,
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -441,16 +441,16 @@ export default Vue.extend({
 			this.$root.api('admin/send-email', {
 				to: this.maintainerEmail,
 				subject: 'Test email',
-				text: 'Yo'
+				text: 'Yo',
 			}).then(x => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
 		},
@@ -521,15 +521,15 @@ export default Vue.extend({
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('saved')
+					text: this.$t('saved'),
 				});
 			}).catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e
+					text: e,
 				});
 			});
-		}
-	}
+		},
+	},
 });
 </script>

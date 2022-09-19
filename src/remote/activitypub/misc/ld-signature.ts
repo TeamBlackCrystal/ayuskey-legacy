@@ -37,7 +37,7 @@ export class LdSignature {
 			creator,
 			domain,
 			nonce: crypto.randomBytes(16).toString('hex'),
-			created: (created || new Date()).toISOString()
+			created: (created || new Date()).toISOString(),
 		};
 
 		if (!domain) {
@@ -55,8 +55,8 @@ export class LdSignature {
 			...data,
 			signature: {
 				...options,
-				signatureValue: signature.toString('base64')
-			}
+				signatureValue: signature.toString('base64'),
+			},
 		};
 	}
 
@@ -75,7 +75,7 @@ export class LdSignature {
 	public async createVerifyData(data: any, options: RsaSignature2017Options | RsaSignature2017) {
 		const transformedOptions = {
 			...options,
-			'@context': 'https://w3id.org/identity/v1'
+			'@context': 'https://w3id.org/identity/v1',
 		};
 		delete transformedOptions['type'];
 		delete (transformedOptions as any)['id'];
@@ -96,7 +96,7 @@ export class LdSignature {
 		const customLoader = this.getLoader();
 		return await jsonld.normalize(data, {
 			algorithm: 'URDNA2015',
-			documentLoader: customLoader
+			documentLoader: customLoader,
 		});
 	}
 
@@ -110,7 +110,7 @@ export class LdSignature {
 					return {
 						contextUrl: null,
 						document: CONTEXTS[url],
-						documentUrl: url
+						documentUrl: url,
 					};
 				}
 			}
@@ -126,7 +126,7 @@ export class LdSignature {
 			return {
 				contextUrl: null,
 				document: document,
-				documentUrl: url
+				documentUrl: url,
 			};
 		};
 	}

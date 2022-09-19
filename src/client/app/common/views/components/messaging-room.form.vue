@@ -1,25 +1,26 @@
 <template>
-<div class="mk-messaging-form"
+<div
+	class="mk-messaging-form"
 	@dragover.stop="onDragover"
 	@drop.stop="onDrop"
 >
 	<textarea
-		v-model="text"
 		ref="textarea"
+		v-model="text"
+		v-autocomplete="{ model: 'text' }"
+		:placeholder="$t('input-message-here')"
 		@keypress="onKeypress"
 		@paste="onPaste"
-		:placeholder="$t('input-message-here')"
-		v-autocomplete="{ model: 'text' }"
 	></textarea>
-	<div class="file" @click="file = null" v-if="file">{{ file.name }}</div>
+	<div v-if="file" class="file" @click="file = null">{{ file.name }}</div>
 	<mk-uploader ref="uploader" @uploaded="onUploaded"/>
-	<button class="send" @click="send" :disabled="!canSend || sending" :title="$t('send')">
+	<button class="send" :disabled="!canSend || sending" :title="$t('send')" @click="send">
 		<template v-if="!sending"><fa icon="paper-plane"/></template><template v-if="sending"><fa icon="spinner .spin"/></template>
 	</button>
-	<button class="attach-from-local" @click="chooseFile" :title="$t('attach-from-local')">
+	<button class="attach-from-local" :title="$t('attach-from-local')" @click="chooseFile">
 		<fa icon="upload"/>
 	</button>
-	<button class="attach-from-drive" @click="chooseFileFromDrive" :title="$t('attach-from-drive')">
+	<button class="attach-from-drive" :title="$t('attach-from-drive')" @click="chooseFileFromDrive">
 		<fa :icon="['far', 'folder-open']"/>
 	</button>
 	<input ref="file" type="file" @change="onChangeFile"/>
@@ -48,7 +49,7 @@ export default Vue.extend({
 		return {
 			text: null,
 			file: null,
-			sending: false
+			sending: false,
 		};
 	},
 	computed: {
@@ -60,7 +61,7 @@ export default Vue.extend({
 		},
 		room(): any {
 			return this.$parent;
-		}
+		},
 	},
 	watch: {
 		text() {
@@ -72,7 +73,7 @@ export default Vue.extend({
 			if (this.room.isBottom()) {
 				this.room.scrollToBottom();
 			}
-		}
+		},
 	},
 	mounted() {
 		autosize(this.$refs.textarea);
@@ -99,9 +100,9 @@ export default Vue.extend({
 						? await this.$root.dialog({
 							title: this.$t('@.post-form.enter-file-name'),
 							input: {
-								default: formatted
+								default: formatted,
 							},
-							allowEmpty: false
+							allowEmpty: false,
 						}).then(({ canceled, result }) => canceled ? false : result)
 						: formatted;
 					if (name) this.upload(file, name);
@@ -110,7 +111,7 @@ export default Vue.extend({
 				if (items[0].kind == 'file') {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('only-one-file-attached')
+						text: this.$t('only-one-file-attached'),
 					});
 				}
 			}
@@ -135,7 +136,7 @@ export default Vue.extend({
 				e.preventDefault();
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('only-one-file-attached')
+					text: this.$t('only-one-file-attached'),
 				});
 				return;
 			}
@@ -161,7 +162,7 @@ export default Vue.extend({
 
 		chooseFileFromDrive() {
 			this.$chooseDriveFile({
-				multiple: false
+				multiple: false,
 			}).then(file => {
 				this.file = file;
 			});
@@ -185,7 +186,7 @@ export default Vue.extend({
 				userId: this.user ? this.user.id : undefined,
 				groupId: this.group ? this.group.id : undefined,
 				text: this.text ? this.text : undefined,
-				fileId: this.file ? this.file.id : undefined
+				fileId: this.file ? this.file.id : undefined,
 			}).then(message => {
 				this.clear();
 			}).catch(err => {
@@ -208,9 +209,9 @@ export default Vue.extend({
 				updatedAt: new Date(),
 				data: {
 					text: this.text,
-					file: this.file
-				}
-			}
+					file: this.file,
+				},
+			};
 
 			localStorage.setItem('message_drafts', JSON.stringify(data));
 		},
@@ -222,7 +223,7 @@ export default Vue.extend({
 
 			localStorage.setItem('message_drafts', JSON.stringify(data));
 		},
-	}
+	},
 });
 </script>
 

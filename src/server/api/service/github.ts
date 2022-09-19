@@ -43,11 +43,11 @@ router.get('/disconnect/github', async ctx => {
 
 	const user = await Users.findOne({
 		host: null,
-		token: userToken
+		token: userToken,
 	}).then(ensure);
 
 	await UserProfiles.update({
-		userId: user.id
+		userId: user.id,
 	}, {
 		github: false,
 		githubAccessToken: null,
@@ -55,12 +55,12 @@ router.get('/disconnect/github', async ctx => {
 		githubLogin: null,
 	});
 
-	ctx.body = `GitHubの連携を解除しました :v:`;
+	ctx.body = 'GitHubの連携を解除しました :v:';
 
 	// Publish i updated event
 	publishMainStream(user.id, 'meUpdated', await Users.pack(user, user, {
 		detail: true,
-		includeSecrets: true
+		includeSecrets: true,
 	}));
 });
 
@@ -94,7 +94,7 @@ router.get('/connect/github', async ctx => {
 	const params = {
 		redirect_uri: `${config.url}/api/gh/cb`,
 		scope: ['read:user'],
-		state: uuid()
+		state: uuid(),
 	};
 
 	redisClient.set(userToken, JSON.stringify(params));
@@ -109,13 +109,13 @@ router.get('/signin/github', async ctx => {
 	const params = {
 		redirect_uri: `${config.url}/api/gh/cb`,
 		scope: ['read:user'],
-		state: uuid()
+		state: uuid(),
 	};
 
 	ctx.cookies.set('signin_with_github_session_id', sessid, {
 		path: '/',
 		secure: config.url.startsWith('https'),
-		httpOnly: true
+		httpOnly: true,
 	});
 
 	redisClient.set(sessid, JSON.stringify(params));
@@ -157,7 +157,7 @@ router.get('/gh/cb', async ctx => {
 
 		const { accessToken } = await new Promise<any>((res, rej) =>
 			oauth2!.getOAuthAccessToken(code, {
-				redirect_uri
+				redirect_uri,
 			}, (err, accessToken, refresh, result) => {
 				if (err) {
 					rej(err);
@@ -169,7 +169,7 @@ router.get('/gh/cb', async ctx => {
 			}));
 
 		const { login, id } = await getJson('https://api.github.com/user', 'application/vnd.github.v3+json', 10 * 1000, {
-			'Authorization': `bearer ${accessToken}`
+			'Authorization': `bearer ${accessToken}`,
 		});
 		if (!login || !id) {
 			ctx.throw(400, 'invalid session');
@@ -211,16 +211,13 @@ router.get('/gh/cb', async ctx => {
 				code,
 				{ redirect_uri },
 				(err, accessToken, refresh, result) => {
-					if (err)
-						rej(err);
-					else if (result.error)
-						rej(result.error);
-					else
-						res({ accessToken });
+					if (err) rej(err);
+					else if (result.error) rej(result.error);
+					else res({ accessToken });
 				}));
 
 		const { login, id } = await getJson('https://api.github.com/user', 'application/vnd.github.v3+json', 10 * 1000, {
-			'Authorization': `bearer ${accessToken}`
+			'Authorization': `bearer ${accessToken}`,
 		});
 
 		if (!login || !id) {
@@ -230,7 +227,7 @@ router.get('/gh/cb', async ctx => {
 
 		const user = await Users.findOne({
 			host: null,
-			token: userToken
+			token: userToken,
 		}).then(ensure);
 
 		await UserProfiles.update({ userId: user.id }, {
@@ -245,7 +242,7 @@ router.get('/gh/cb', async ctx => {
 		// Publish i updated event
 		publishMainStream(user.id, 'meUpdated', await Users.pack(user, user, {
 			detail: true,
-			includeSecrets: true
+			includeSecrets: true,
 		}));
 	}
 });

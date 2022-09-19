@@ -17,5 +17,5 @@ export default async (actor: IRemoteUser, activity: ILike) => {
 		throw e;
 	});
 
-	return `ok`;
+	return 'ok';
 };

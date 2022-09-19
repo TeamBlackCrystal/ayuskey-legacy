@@ -66,14 +66,14 @@ export async function resolveUser(username: string, host: string | null, option?
 			// validate uri
 			const uri = new URL(self.href);
 			if (uri.hostname !== host) {
-				throw new Error(`Invalid uri`);
+				throw new Error('Invalid uri');
 			}
 
 			await Users.update({
 				usernameLower,
-				host: host
+				host: host,
 			}, {
-				uri: self.href
+				uri: self.href,
 			});
 		} else {
 			logger.info(`uri is fine: ${acctLower}`);

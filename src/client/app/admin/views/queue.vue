@@ -48,7 +48,7 @@
 				</ui-select>
 			</ui-horizon-group>
 			<sequential-entrance animation="entranceFromTop" delay="25">
-				<div class="xvvuvgsv" v-for="job in jobs" :key="job.id">
+				<div v-for="job in jobs" :key="job.id" class="xvvuvgsv">
 					<b>{{ job.id }}</b>
 					<template v-if="domain === 'deliver'">
 						<span>{{ job.data.to }}</span>
@@ -76,7 +76,7 @@ export default Vue.extend({
 	i18n: i18n('admin/views/queue.vue'),
 
 	components: {
-		XChart
+		XChart,
 	},
 
 	data() {
@@ -88,7 +88,7 @@ export default Vue.extend({
 			jobsFetched: Date.now(),
 			domain: 'deliver',
 			state: 'delayed',
-			faTasks, faPaperPlane, faInbox, faChartBar, faDatabase, faCloud
+			faTasks, faPaperPlane, faInbox, faChartBar, faDatabase, faCloud,
 		};
 	},
 
@@ -110,7 +110,7 @@ export default Vue.extend({
 		this.connection = this.$root.stream.useSharedConnection('queueStats');
 		this.connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
-			length: this.chartLimit
+			length: this.chartLimit,
 		});
 
 		this.$once('hook:beforeDestroy', () => {
@@ -124,14 +124,14 @@ export default Vue.extend({
 				await this.$root.api('admin/queue/clear');
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			};
 
 			await process().catch(e => {
 				this.$root.dialog({
 					type: 'error',
-					text: e.toString()
+					text: e.toString(),
 				});
 			});
 		},
@@ -140,13 +140,13 @@ export default Vue.extend({
 			this.$root.api('admin/queue/jobs', {
 				domain: this.domain,
 				state: this.state,
-				limit: this.jobsLimit
+				limit: this.jobsLimit,
 			}).then(jobs => {
 				this.jobsFetched = Date.now(),
 				this.jobs = jobs;
 			});
 		},
-	}
+	},
 });
 </script>
 

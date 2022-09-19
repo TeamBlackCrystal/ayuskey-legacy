@@ -8,6 +8,6 @@ export async function insertModerationLog(moderator: ILocalUser, type: string, i
 		createdAt: new Date(),
 		userId: moderator.id,
 		type: type,
-		info: info || {}
+		info: info || {},
 	});
 }

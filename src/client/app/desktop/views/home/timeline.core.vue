@@ -22,11 +22,11 @@ export default Vue.extend({
 	props: {
 		src: {
 			type: String,
-			required: true
+			required: true,
 		},
 		tagTl: {
-			required: false
-		}
+			required: false,
+		},
 	},
 
 	data() {
@@ -36,18 +36,18 @@ export default Vue.extend({
 			baseQuery: {
 				includeMyRenotes: this.$store.state.settings.showMyRenotes,
 				includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-				includeLocalRenotes: this.$store.state.settings.showLocalRenotes
+				includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
 			},
 			query: {},
 			endpoint: null,
-			pagination: null
+			pagination: null,
 		};
 	},
 
 	computed: {
 		alone(): boolean {
 			return this.$store.state.i.followingCount == 0;
-		}
+		},
 	},
 
 	created() {
@@ -64,7 +64,7 @@ export default Vue.extend({
 		if (this.src == 'tag') {
 			this.endpoint = 'notes/search-by-tag';
 			this.query = {
-				query: this.tagTl.query
+				query: this.tagTl.query,
 			};
 			this.connection = this.$root.stream.connectToChannel('hashtag', { q: this.tagTl.query });
 			this.connection.on('note', prepend);
@@ -96,7 +96,7 @@ export default Vue.extend({
 		} else if (this.src == 'messages') {
 			this.endpoint = 'notes/mentions';
 			this.query = {
-				visibility: 'specified'
+				visibility: 'specified',
 			};
 			const onNote = note => {
 				if (note.visibility == 'specified') {
@@ -112,8 +112,8 @@ export default Vue.extend({
 			limit: 10,
 			params: init => ({
 				untilDate: init ? undefined : (this.date ? this.date.getTime() : undefined),
-				...this.baseQuery, ...this.query
-			})
+				...this.baseQuery, ...this.query,
+			}),
 		};
 	},
 
@@ -125,8 +125,8 @@ export default Vue.extend({
 		warp(date) {
 			this.date = date;
 			(this.$refs.timeline as any).reload();
-		}
-	}
+		},
+	},
 });
 </script>
 

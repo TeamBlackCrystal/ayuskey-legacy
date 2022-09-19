@@ -7,25 +7,25 @@
 	:close-on-bg-click="false"
 	@bg-click="onBgClick"
 	@before-close="onBeforeClose">
-	<div class="main" ref="main" :class="{ round: $store.state.device.roundedCorners }">
+	<div ref="main" class="main" :class="{ round: $store.state.device.roundedCorners }">
 		<template v-if="type == 'signin'">
 			<mk-signin/>
 		</template>
 		<template v-else>
-			<div class="icon" v-if="icon">
+			<div v-if="icon" class="icon">
 				<fa :icon="icon"/>
 			</div>
-			<div class="icon" v-else-if="!input && !select && !user" :class="type">
-				<fa icon="check" v-if="type === 'success'"/>
-				<fa :icon="faTimesCircle" v-if="type === 'error'"/>
-				<fa icon="exclamation-triangle" v-if="type === 'warning'"/>
-				<fa icon="info-circle" v-if="type === 'info'"/>
-				<fa :icon="faQuestionCircle" v-if="type === 'question'"/>
-				<fa icon="spinner" pulse v-if="type === 'waiting'"/>
+			<div v-else-if="!input && !select && !user" class="icon" :class="type">
+				<fa v-if="type === 'success'" icon="check"/>
+				<fa v-if="type === 'error'" :icon="faTimesCircle"/>
+				<fa v-if="type === 'warning'" icon="exclamation-triangle"/>
+				<fa v-if="type === 'info'" icon="info-circle"/>
+				<fa v-if="type === 'question'" :icon="faQuestionCircle"/>
+				<fa v-if="type === 'waiting'" icon="spinner" pulse/>
 			</div>
 			<header v-if="title"><mfm :text="title"/></header>
 			<header v-if="title == null && user">{{ $t('@.enter-username') }}</header>
-			<div class="body" v-if="text"><mfm :text="text"/></div>
+			<div v-if="text" class="body"><mfm :text="text"/></div>
 			<ui-input v-if="input" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder" @keydown="onInputKeydown"></ui-input>
 			<ui-input v-if="user" v-model="userInputValue" autofocus @keydown="onInputKeydown"><template #prefix>@</template></ui-input>
 			<ui-select v-if="select" v-model="selectedValue" autofocus>
@@ -38,9 +38,9 @@
 					</optgroup>
 				</template>
 			</ui-select>
-			<ui-horizon-group no-grow class="buttons fit-bottom" v-if="!splash && (showOkButton || showCancelButton)">
-				<ui-button @click="ok" v-if="showOkButton" primary :autofocus="!input && !select && !user" :disabled="!canOk">{{ (showCancelButton || input || select || user) ? $t('@.ok') : $t('@.got-it') }}</ui-button>
-				<ui-button @click="cancel" v-if="showCancelButton || input || select || user">{{ $t('@.cancel') }}</ui-button>
+			<ui-horizon-group v-if="!splash && (showOkButton || showCancelButton)" no-grow class="buttons fit-bottom">
+				<ui-button v-if="showOkButton" primary :autofocus="!input && !select && !user" :disabled="!canOk" @click="ok">{{ (showCancelButton || input || select || user) ? $t('@.ok') : $t('@.got-it') }}</ui-button>
+				<ui-button v-if="showCancelButton || input || select || user" @click="cancel">{{ $t('@.cancel') }}</ui-button>
 			</ui-horizon-group>
 		</template>
 	</div>
@@ -51,7 +51,7 @@
 import Vue from 'vue';
 import anime from 'animejs';
 import { faTimesCircle, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import parseAcct from "../../../../../misc/acct/parse";
+import parseAcct from '../../../../../misc/acct/parse';
 import i18n from '../../../i18n';
 
 export default Vue.extend({
@@ -60,44 +60,44 @@ export default Vue.extend({
 		type: {
 			type: String,
 			required: false,
-			default: 'info'
+			default: 'info',
 		},
 		title: {
 			type: String,
-			required: false
+			required: false,
 		},
 		text: {
 			type: String,
-			required: false
+			required: false,
 		},
 		input: {
-			required: false
+			required: false,
 		},
 		select: {
-			required: false
+			required: false,
 		},
 		user: {
-			required: false
+			required: false,
 		},
 		icon: {
-			required: false
+			required: false,
 		},
 		showOkButton: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		showCancelButton: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		cancelableByBgClick: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		splash: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -106,7 +106,7 @@ export default Vue.extend({
 			userInputValue: null,
 			selectedValue: this.select ? this.select.default ? this.select.default : this.select.items ? this.select.items[0].value : this.select.groupedItems[0].items[0].value : null,
 			canOk: true,
-			faTimesCircle, faQuestionCircle
+			faTimesCircle, faQuestionCircle,
 		};
 	},
 
@@ -119,7 +119,7 @@ export default Vue.extend({
 					this.canOk = false;
 				});
 			}
-		}
+		},
 	},
 
 	mounted() {
@@ -131,7 +131,7 @@ export default Vue.extend({
 				opacity: 1,
 				scale: [1.2, 1],
 				duration: 300,
-				easing: 'cubicBezier(0, 0.5, 0.5, 1)'
+				easing: 'cubicBezier(0, 0.5, 0.5, 1)',
 			});
 
 			if (this.splash) {
@@ -195,8 +195,8 @@ export default Vue.extend({
 				e.stopPropagation();
 				this.ok();
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -20,10 +20,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to suspend'
-			}
+				'en-US': 'The user ID which you want to suspend',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {
@@ -43,12 +43,12 @@ export default define(meta, async (ps) => {
 	const hash = bcrypt.hashSync(passwd);
 
 	await UserProfiles.update({
-		userId: user.id
+		userId: user.id,
 	}, {
-		password: hash
+		password: hash,
 	});
 
 	return {
-		password: passwd
+		password: passwd,
 	};
 });

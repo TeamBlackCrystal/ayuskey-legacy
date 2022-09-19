@@ -19,9 +19,9 @@ export const meta = {
 
 		limit: {
 			validator: $.optional.num,
-			default: 50
+			default: 50,
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {

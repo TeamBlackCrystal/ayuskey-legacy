@@ -8,7 +8,7 @@ export default function(scope?: string) {
 		sync: false,
 		locale: lang,
 		messages: {
-			[lang]: texts
-		}
+			[lang]: texts,
+		},
 	};
 }

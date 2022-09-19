@@ -1,25 +1,27 @@
 <template>
-<div class="dnpfarvgbnfmyzbdquhhzyxcmstpdqzs" :class="{ naked, narrow, active, isStacked, draghover, dragging, dropready, isMobile: $root.isMobile, shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }"
-		@dragover.prevent.stop="onDragover"
-		@dragleave="onDragleave"
-		@drop.prevent.stop="onDrop"
-		v-hotkey="keymap">
-	<header :class="{ indicate: count > 0 }"
-			draggable="true"
-			@click="goTop"
-			@dragstart="onDragstart"
-			@dragend="onDragend"
-			@contextmenu.prevent.stop="onContextmenu">
-		<button class="toggleActive" @click="toggleActive" v-if="isStacked">
+<div
+	v-hotkey="keymap" class="dnpfarvgbnfmyzbdquhhzyxcmstpdqzs"
+	:class="{ naked, narrow, active, isStacked, draghover, dragging, dropready, isMobile: $root.isMobile, shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }"
+	@dragover.prevent.stop="onDragover"
+	@dragleave="onDragleave"
+	@drop.prevent.stop="onDrop">
+	<header
+		:class="{ indicate: count > 0 }"
+		draggable="true"
+		@click="goTop"
+		@dragstart="onDragstart"
+		@dragend="onDragend"
+		@contextmenu.prevent.stop="onContextmenu">
+		<button v-if="isStacked" class="toggleActive" @click="toggleActive">
 			<template v-if="active"><fa icon="angle-up"/></template>
 			<template v-else><fa icon="angle-down"/></template>
 		</button>
 		<span class="header"><slot name="header"></slot></span>
-		<span class="count" v-if="count > 0">({{ count }})</span>
-		<button v-if="!isTemporaryColumn" class="menu" ref="menu" @click.stop="showMenu"><fa icon="caret-down"/></button>
+		<span v-if="count > 0" class="count">({{ count }})</span>
+		<button v-if="!isTemporaryColumn" ref="menu" class="menu" @click.stop="showMenu"><fa icon="caret-down"/></button>
 		<button v-else class="close" @click.stop="close"><fa icon="times"/></button>
 	</header>
-	<div ref="body" v-show="active">
+	<div v-show="active" ref="body">
 		<slot></slot>
 	</div>
 </div>
@@ -35,41 +37,54 @@ import { faWindowMaximize } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('deck'),
+
+	inject: {
+		getColumnVm: { from: 'getColumnVm' },
+	},
+
+	provide() {
+		return {
+			column: this,
+			isScrollTop: this.isScrollTop,
+			count: v => this.count = v,
+			inNakedDeckColumn: !this.naked,
+		};
+	},
 	props: {
 		column: {
 			type: Object,
 			required: false,
-			default: null
+			default: null,
 		},
 		isStacked: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		pos: {
 			type: Object,
 			required: false,
-			default: () => {}
+			default: () => {},
 		},
 		name: {
 			type: String,
-			required: false
+			required: false,
 		},
 		menu: {
 			type: Array,
 			required: false,
-			default: null
+			default: null,
 		},
 		naked: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		narrow: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -79,7 +94,7 @@ export default Vue.extend({
 			dragging: false,
 			draghover: false,
 			dropready: false,
-			faArrowUp, faArrowDown
+			faArrowUp, faArrowDown,
 		};
 	},
 
@@ -95,11 +110,7 @@ export default Vue.extend({
 				'shift+left': () => this.$parent.$emit('parentFocus', 'left'),
 				'shift+right': () => this.$parent.$emit('parentFocus', 'right'),
 			};
-		}
-	},
-
-	inject: {
-		getColumnVm: { from: 'getColumnVm' }
+		},
 	},
 
 	watch: {
@@ -110,16 +121,7 @@ export default Vue.extend({
 		},
 		dragging(v) {
 			this.$root.$emit(v ? 'deck.column.dragStart' : 'deck.column.dragEnd');
-		}
-	},
-
-	provide() {
-		return {
-			column: this,
-			isScrollTop: this.isScrollTop,
-			count: v => this.count = v,
-			inNakedDeckColumn: !this.naked
-		};
+		},
 	},
 
 	mounted() {
@@ -181,70 +183,70 @@ export default Vue.extend({
 						title: this.$t('rename'),
 						input: {
 							default: this.name,
-							allowEmpty: false
-						}
+							allowEmpty: false,
+						},
 					}).then(({ canceled, result: name }) => {
 						if (canceled) return;
 						this.$store.commit('renameDeckColumn', { id: this.column.id, name });
 					});
-				}
+				},
 			},
-			// アイテムが1つなら区切り線は表示しない
-			this.pos?.alone ? undefined : null,
-			// 左に移動
-			this.pos?.first ? undefined : {
-				icon: 'arrow-left',
-				text: this.$t('swap-left'),
-				action: () => {
-					this.$store.commit('swapLeftDeckColumn', this.column.id);
-				}
-			},
-			// 右に移動
-			this.pos?.last ? undefined : {
-				icon: 'arrow-right',
-				text: this.$t('swap-right'),
-				action: () => {
-					this.$store.commit('swapRightDeckColumn', this.column.id);
-				}
-			},
-			// 上に移動
-			this.pos?.top ? undefined : {
-				icon: faArrowUp,
-				text: this.$t('swap-up'),
-				action: () => {
-					this.$store.commit('swapUpDeckColumn', this.column.id);
-				}
-			},
-			// 下に移動
-			this.pos?.bottom ? undefined : {
-				icon: faArrowDown,
-				text: this.$t('swap-down'),
-				action: () => {
-					this.$store.commit('swapDownDeckColumn', this.column.id);
-				}
-			},
-			// 左に重ねる
-			this.pos?.first ? undefined : {
-				icon: ['far', 'window-restore'],
-				text: this.$t('stack-left'),
-				action: () => {
-					this.$store.commit('stackLeftDeckColumn', this.column.id);
-				}
-			},
-			// 右に出す
-			this.isStacked ? {
-				icon: faWindowMaximize,
-				text: this.$t('pop-right'),
-				action: () => {
-					this.$store.commit('popRightDeckColumn', this.column.id);
-				}
-			} : undefined, null, {
-				icon: ['far', 'trash-alt'],
-				text: this.$t('remove'),
-				action: () => {
-					this.$store.commit('removeDeckColumn', this.column.id);
-				}
-			}];
+				// アイテムが1つなら区切り線は表示しない
+																		this.pos?.alone ? undefined : null,
+				// 左に移動
+																		this.pos?.first ? undefined : {
+																			icon: 'arrow-left',
+																			text: this.$t('swap-left'),
+																			action: () => {
+																				this.$store.commit('swapLeftDeckColumn', this.column.id);
+																			},
+																		},
+				// 右に移動
+																		this.pos?.last ? undefined : {
+																			icon: 'arrow-right',
+																			text: this.$t('swap-right'),
+																			action: () => {
+																				this.$store.commit('swapRightDeckColumn', this.column.id);
+																			},
+																		},
+				// 上に移動
+																		this.pos?.top ? undefined : {
+																			icon: faArrowUp,
+																			text: this.$t('swap-up'),
+																			action: () => {
+																				this.$store.commit('swapUpDeckColumn', this.column.id);
+																			},
+																		},
+				// 下に移動
+																		this.pos?.bottom ? undefined : {
+																			icon: faArrowDown,
+																			text: this.$t('swap-down'),
+																			action: () => {
+																				this.$store.commit('swapDownDeckColumn', this.column.id);
+																			},
+																		},
+				// 左に重ねる
+																		this.pos?.first ? undefined : {
+																			icon: ['far', 'window-restore'],
+																			text: this.$t('stack-left'),
+																			action: () => {
+																				this.$store.commit('stackLeftDeckColumn', this.column.id);
+																			},
+																		},
+				// 右に出す
+																		this.isStacked ? {
+																			icon: faWindowMaximize,
+																			text: this.$t('pop-right'),
+																			action: () => {
+																				this.$store.commit('popRightDeckColumn', this.column.id);
+																			},
+																		} : undefined, null, {
+																			icon: ['far', 'trash-alt'],
+																			text: this.$t('remove'),
+																			action: () => {
+																				this.$store.commit('removeDeckColumn', this.column.id);
+																			},
+																		}];
 
 			if (this.menu) {
 				items.unshift(null);
@@ -264,7 +266,7 @@ export default Vue.extend({
 		showMenu() {
 			this.$root.new(Menu, {
 				source: this.$refs.menu,
-				items: this.getMenu()
+				items: this.getMenu(),
 			});
 		},
 
@@ -275,7 +277,7 @@ export default Vue.extend({
 		goTop() {
 			this.$refs.body.scrollTo({
 				top: 0,
-				behavior: 'smooth'
+				behavior: 'smooth',
 			});
 		},
 
@@ -333,11 +335,11 @@ export default Vue.extend({
 			if (id != null && id != '') {
 				this.$store.commit('swapDeckColumn', {
 					a: this.column.id,
-					b: id
+					b: id,
 				});
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -14,7 +14,7 @@ import getAcct from '../../../../../misc/acct/render';
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default)
+		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default),
 	},
 	props: ['user', 'group'],
 	computed: {
@@ -24,8 +24,8 @@ export default Vue.extend({
 			} else if (this.group) {
 				return `${url}/i/messaging/group/${this.group.id}`;
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

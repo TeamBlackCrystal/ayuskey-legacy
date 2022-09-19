@@ -16,29 +16,29 @@
 				<template v-if="!showNav"><fa icon="angle-down"/></template>
 				<template v-else><fa icon="angle-up"/></template>
 			</span>
-			<i :class="$style.badge" v-if="$store.state.i.hasUnreadMentions || $store.state.i.hasUnreadSpecifiedNotes"><fa icon="circle"/></i>
+			<i v-if="$store.state.i.hasUnreadMentions || $store.state.i.hasUnreadSpecifiedNotes" :class="$style.badge"><fa icon="circle"/></i>
 		</span>
 	</template>
 
 	<main>
-		<div class="nav" v-if="showNav">
+		<div v-if="showNav" class="nav">
 			<div class="bg" :class="{'blur': $store.state.device.useBlur}" @click="showNav = false"></div>
 			<div class="pointer"></div>
 			<div class="body">
 				<div>
 					<span :data-active="src == 'home'" @click="src = 'home'"><fa icon="home"/> {{ $t('home') }}</span>
-					<span :data-active="src == 'local'" @click="src = 'local'" v-if="enableLocalTimeline"><fa :icon="['far', 'comments']"/> {{ $t('local') }}</span>
-					<span :data-active="src == 'hybrid'" @click="src = 'hybrid'" v-if="enableLocalTimeline"><fa icon="share-alt"/> {{ $t('hybrid') }}</span>
-					<span :data-active="src == 'global'" @click="src = 'global'" v-if="enableGlobalTimeline"><fa icon="globe"/> {{ $t('global') }}</span>
+					<span v-if="enableLocalTimeline" :data-active="src == 'local'" @click="src = 'local'"><fa :icon="['far', 'comments']"/> {{ $t('local') }}</span>
+					<span v-if="enableLocalTimeline" :data-active="src == 'hybrid'" @click="src = 'hybrid'"><fa icon="share-alt"/> {{ $t('hybrid') }}</span>
+					<span v-if="enableGlobalTimeline" :data-active="src == 'global'" @click="src = 'global'"><fa icon="globe"/> {{ $t('global') }}</span>
 					<div class="hr"></div>
-					<span :data-active="src == 'mentions'" @click="src = 'mentions'"><fa icon="at"/> {{ $t('mentions') }}<i class="badge" v-if="$store.state.i.hasUnreadMentions"><fa icon="circle"/></i></span>
-					<span :data-active="src == 'messages'" @click="src = 'messages'"><fa :icon="['far', 'envelope']"/> {{ $t('messages') }}<i class="badge" v-if="$store.state.i.hasUnreadSpecifiedNotes"><fa icon="circle"/></i></span>
+					<span :data-active="src == 'mentions'" @click="src = 'mentions'"><fa icon="at"/> {{ $t('mentions') }}<i v-if="$store.state.i.hasUnreadMentions" class="badge"><fa icon="circle"/></i></span>
+					<span :data-active="src == 'messages'" @click="src = 'messages'"><fa :icon="['far', 'envelope']"/> {{ $t('messages') }}<i v-if="$store.state.i.hasUnreadSpecifiedNotes" class="badge"><fa icon="circle"/></i></span>
 					<template v-if="lists">
-						<div class="hr" v-if="lists.length > 0"></div>
-						<span v-for="l in lists" :data-active="src == 'list' && list == l" @click="src = 'list'; list = l" :key="l.id"><fa icon="list"/> {{ l.name }}</span>
+						<div v-if="lists.length > 0" class="hr"></div>
+						<span v-for="l in lists" :key="l.id" :data-active="src == 'list' && list == l" @click="src = 'list'; list = l"><fa icon="list"/> {{ l.name }}</span>
 					</template>
-					<div class="hr" v-if="$store.state.settings.tagTimelines && $store.state.settings.tagTimelines.length > 0"></div>
-					<span v-for="tl in $store.state.settings.tagTimelines" :data-active="src == 'tag' && tagTl == tl" @click="src = 'tag'; tagTl = tl" :key="tl.id"><fa icon="hashtag"/> {{ tl.title }}</span>
+					<div v-if="$store.state.settings.tagTimelines && $store.state.settings.tagTimelines.length > 0" class="hr"></div>
+					<span v-for="tl in $store.state.settings.tagTimelines" :key="tl.id" :data-active="src == 'tag' && tagTl == tl" @click="src = 'tag'; tagTl = tl"><fa icon="hashtag"/> {{ tl.title }}</span>
 				</div>
 			</div>
 		</div>
@@ -67,7 +67,7 @@ export default Vue.extend({
 	i18n: i18n('mobile/views/pages/home.vue'),
 
 	components: {
-		XTl
+		XTl,
 	},
 
 	data() {
@@ -106,7 +106,7 @@ export default Vue.extend({
 					this.lists = lists;
 				});
 			}
-		}
+		},
 	},
 
 	created() {
@@ -147,14 +147,14 @@ export default Vue.extend({
 		saveSrc() {
 			this.$store.commit('device/setTl', {
 				src: this.src,
-				arg: this.src == 'list' ? this.list : this.tagTl
+				arg: this.src == 'list' ? this.list : this.tagTl,
 			});
 		},
 
 		warp() {
 
-		}
-	}
+		},
+	},
 });
 </script>
 

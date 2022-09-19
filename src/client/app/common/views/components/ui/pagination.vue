@@ -1,9 +1,9 @@
 <template>
-<div class="mwermpua" v-if="!fetching">
+<div v-if="!fetching" class="mwermpua">
 	<sequential-entrance animation="entranceFromTop" delay="25">
 		<slot :items="items"></slot>
 	</sequential-entrance>
-	<div class="more" v-if="more">
+	<div v-if="more" class="more">
 		<ui-button @click="fetchMore()">{{ $t('@.load-more') }}</ui-button>
 	</div>
 </div>
@@ -22,7 +22,7 @@ export default Vue.extend({
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 	},
 });

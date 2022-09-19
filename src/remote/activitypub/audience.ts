@@ -21,14 +21,14 @@ export async function parseAudience(actor: IRemoteUser, to?: ApObject, cc?: ApOb
 
 	const limit = promiseLimit<User | null>(2);
 	const mentionedUsers = (await Promise.all(
-		others.map(id => limit(() => resolvePerson(id, resolver).catch(() => null)))
+		others.map(id => limit(() => resolvePerson(id, resolver).catch(() => null))),
 	)).filter((x): x is User => x != null);
 
 	if (toGroups.public.length > 0) {
 		return {
 			visibility: 'public',
 			mentionedUsers,
-			visibleUsers: []
+			visibleUsers: [],
 		};
 	}
 
@@ -36,7 +36,7 @@ export async function parseAudience(actor: IRemoteUser, to?: ApObject, cc?: ApOb
 		return {
 			visibility: 'home',
 			mentionedUsers,
-			visibleUsers: []
+			visibleUsers: [],
 		};
 	}
 
@@ -44,14 +44,14 @@ export async function parseAudience(actor: IRemoteUser, to?: ApObject, cc?: ApOb
 		return {
 			visibility: 'followers',
 			mentionedUsers,
-			visibleUsers: []
+			visibleUsers: [],
 		};
 	}
 
 	return {
 		visibility: 'specified',
 		mentionedUsers,
-		visibleUsers: mentionedUsers
+		visibleUsers: mentionedUsers,
 	};
 }
 

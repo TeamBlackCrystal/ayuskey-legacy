@@ -6,7 +6,8 @@
 	:aria-disabled="disabled"
 	@click="toggle"
 >
-	<input type="radio"
+	<input
+		type="radio"
 		:disabled="disabled"
 	>
 	<span class="button">
@@ -21,30 +22,30 @@ import Vue from 'vue';
 export default Vue.extend({
 	model: {
 		prop: 'model',
-		event: 'change'
+		event: 'change',
 	},
 	props: {
 		model: {
-			required: false
+			required: false,
 		},
 		value: {
-			required: false
+			required: false,
 		},
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		checked(): boolean {
 			return this.model === this.value;
-		}
+		},
 	},
 	methods: {
 		toggle() {
 			this.$emit('change', this.value);
-		}
-	}
+		},
+	},
 });
 </script>
 

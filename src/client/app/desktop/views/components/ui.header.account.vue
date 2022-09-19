@@ -1,11 +1,11 @@
 <template>
-<div class="account" v-hotkey.global="keymap">
+<div v-hotkey.global="keymap" class="account">
 	<button class="header" :data-active="isOpen" @click="toggle">
 		<span class="username">{{ $store.state.i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
 		<mk-avatar class="avatar" :user="$store.state.i"/>
 	</button>
 	<transition name="zoom-in-top">
-		<div class="menu" v-if="isOpen" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
+		<div v-if="isOpen" class="menu" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 			<ul>
 				<li>
 					<router-link :to="`/@${ $store.state.i.username }`">
@@ -128,12 +128,22 @@ export default Vue.extend({
 	computed: {
 		keymap(): any {
 			return {
-				'a|m': this.toggle
+				'a|m': this.toggle,
 			};
-		}
+		},
 	},
 	beforeDestroy() {
 		this.close();
+	},
+	mounted() {
+		if (this.$store.state.device.useBlur == false) {
+			return;
+		}
+		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
+			this.blurStrength = 2;
+		} else {
+			this.blurStrength = 0.3;
+		}
 	},
 	methods: {
 		toggle() {
@@ -166,7 +176,7 @@ export default Vue.extend({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
 		},
 		toggleDeckMode() {
@@ -174,16 +184,6 @@ export default Vue.extend({
 			location.replace('/');
 		},
 	},
-	mounted() {
-		if (this.$store.state.device.useBlur == false) {
-			return
-		}
-		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
-			this.blurStrength = 2
-		} else {
-			this.blurStrength = 0.3
-		}
-	}
 });
 </script>
 

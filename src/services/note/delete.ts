@@ -23,7 +23,7 @@ export default async function(user: User, note: Note, quiet = false) {
 
 	await Notes.delete({
 		id: note.id,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (note.renoteId) {
@@ -33,7 +33,7 @@ export default async function(user: User, note: Note, quiet = false) {
 
 	if (!quiet) {
 		publishNoteStream(note.id, 'deleted', {
-			deletedAt: deletedAt
+			deletedAt: deletedAt,
 		});
 
 		//#region ローカルの投稿なら削除アクティビティを配送
@@ -42,7 +42,7 @@ export default async function(user: User, note: Note, quiet = false) {
 
 			if (note.renoteId && note.text == null && !note.hasPoll && (note.fileIds == null || note.fileIds.length == 0)) {
 				renote = await Notes.findOne({
-					id: note.renoteId
+					id: note.renoteId,
 				});
 			}
 

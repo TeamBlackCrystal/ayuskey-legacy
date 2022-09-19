@@ -37,8 +37,8 @@ export default Vue.extend({
 	props: {
 		src: {
 			type: Array,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
@@ -50,13 +50,13 @@ export default Vue.extend({
 			polygonPoints: '',
 			headX: null,
 			headY: null,
-			clock: null
+			clock: null,
 		};
 	},
 	watch: {
 		src() {
 			this.draw();
-		}
+		},
 	},
 	created() {
 		this.draw();
@@ -74,7 +74,7 @@ export default Vue.extend({
 
 			const polylinePoints = stats.map((n, i) => [
 				i * (this.viewBoxX / (stats.length - 1)),
-				(1 - (n / peak)) * this.viewBoxY
+				(1 - (n / peak)) * this.viewBoxY,
 			]);
 
 			this.polylinePoints = polylinePoints.map(xy => `${xy[0]},${xy[1]}`).join(' ');
@@ -83,7 +83,7 @@ export default Vue.extend({
 
 			this.headX = polylinePoints[polylinePoints.length - 1][0];
 			this.headY = polylinePoints[polylinePoints.length - 1][1];
-		}
-	}
+		},
+	},
 });
 </script>

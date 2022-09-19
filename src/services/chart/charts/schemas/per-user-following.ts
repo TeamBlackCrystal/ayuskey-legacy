@@ -32,7 +32,7 @@ export const logSchema = {
 				optional: false as const, nullable: false as const,
 				description: 'フォロー解除した数',
 			},
-		}
+		},
 	},
 
 	/**
@@ -68,7 +68,7 @@ export const logSchema = {
 				optional: false as const, nullable: false as const,
 				description: 'フォロー解除された数',
 			},
-		}
+		},
 	},
 };
 
@@ -79,14 +79,14 @@ export const schema = {
 		local: {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
-			properties: logSchema
+			properties: logSchema,
 		},
 		remote: {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
-			properties: logSchema
+			properties: logSchema,
 		},
-	}
+	},
 };
 
 export const name = 'perUserFollowing';

@@ -4,8 +4,8 @@
 		<template #header><fa :icon="faEdit" fixed-width/>{{ $t('my-pages') }}</template>
 		<div class="rknalgpo my">
 			<ui-button class="new" @click="create()"><fa :icon="faPlus"/></ui-button>
-			<ui-pagination :pagination="myPagesPagination" #default="{items}">
-				<x-page-preview v-for="page in items" class="ckltabjg" :page="page" :key="page.id"/>
+			<ui-pagination v-slot="{items}" :pagination="myPagesPagination">
+				<x-page-preview v-for="page in items" :key="page.id" class="ckltabjg" :page="page"/>
 			</ui-pagination>
 		</div>
 	</ui-container>
@@ -13,8 +13,8 @@
 	<ui-container :body-togglable="true">
 		<template #header><fa :icon="faHeart" fixed-width/>{{ $t('liked-pages') }}</template>
 		<div class="rknalgpo">
-			<ui-pagination :pagination="likedPagesPagination" #default="{items}">
-				<x-page-preview v-for="like in items" class="ckltabjg" :page="like.page" :key="like.page.id"/>
+			<ui-pagination v-slot="{items}" :pagination="likedPagesPagination">
+				<x-page-preview v-for="like in items" :key="like.page.id" class="ckltabjg" :page="like.page"/>
 			</ui-pagination>
 		</div>
 	</ui-container>
@@ -31,7 +31,7 @@ import XPagePreview from '../../views/components/page-preview.vue';
 export default Vue.extend({
 	i18n: i18n('pages'),
 	components: {
-		XPagePreview
+		XPagePreview,
 	},
 	data() {
 		return {
@@ -43,13 +43,13 @@ export default Vue.extend({
 				endpoint: 'i/page-likes',
 				limit: 5,
 			},
-			faStickyNote, faPlus, faEdit, faHeart
+			faStickyNote, faPlus, faEdit, faHeart,
 		};
 	},
 	created() {
 		this.$emit('init', {
 			title: this.$t('@.pages'),
-			icon: faStickyNote
+			icon: faStickyNote,
 		});
 	},
 	mounted() {
@@ -57,9 +57,9 @@ export default Vue.extend({
 	},
 	methods: {
 		create() {
-			this.$router.push(`/i/pages/new`);
-		}
-	}
+			this.$router.push('/i/pages/new');
+		},
+	},
 });
 </script>
 

@@ -40,15 +40,15 @@ export const meta = {
 					items: {
 						type: 'number' as const,
 						optional: false as const, nullable: false as const,
-					}
+					},
 				},
 				usersCount: {
 					type: 'number' as const,
 					optional: false as const, nullable: false as const,
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+	},
 };
 
 export default define(meta, async () => {
@@ -59,8 +59,8 @@ export default define(meta, async () => {
 	now.setMinutes(Math.round(now.getMinutes() / 5) * 5, 0, 0);
 
 	const tagNotes = await Notes.createQueryBuilder('note')
-		.where(`note.createdAt > :date`, { date: new Date(now.getTime() - rangeA) })
-		.andWhere(`note.tags != '{}'`)
+		.where('note.createdAt > :date', { date: new Date(now.getTime() - rangeA) })
+		.andWhere('note.tags != \'{}\'')
 		.select(['note.tags', 'note.userId'])
 		.cache(60000) // 1 min
 		.getMany();
@@ -86,7 +86,7 @@ export default define(meta, async () => {
 			} else {
 				tags.push({
 					name: tag,
-					users: [note.userId]
+					users: [note.userId],
 				});
 			}
 		}
@@ -114,7 +114,7 @@ export default define(meta, async () => {
 			.andWhere('note.createdAt > :gt', { gt: new Date(now.getTime() - (interval * (i + 1))) })
 			.cache(60000) // 1 min
 			.getRawOne()
-			.then(x => parseInt(x.count, 10))
+			.then(x => parseInt(x.count, 10)),
 		)));
 	}
 
@@ -126,14 +126,14 @@ export default define(meta, async () => {
 		.andWhere('note.createdAt > :gt', { gt: new Date(now.getTime() - (interval * range)) })
 		.cache(60000) // 1 min
 		.getRawOne()
-		.then(x => parseInt(x.count, 10))
+		.then(x => parseInt(x.count, 10)),
 	));
 	//#endregion
 
 	const stats = hots.map((tag, i) => ({
 		tag,
 		chart: countsLog.map(counts => counts[i]),
-		usersCount: totalCounts[i]
+		usersCount: totalCounts[i],
 	}));
 
 	return stats;

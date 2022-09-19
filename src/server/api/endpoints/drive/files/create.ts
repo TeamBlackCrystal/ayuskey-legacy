@@ -10,7 +10,7 @@ import { DriveFiles } from '../../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': 'ドライブにファイルをアップロードします。',
-		'en-US': 'Upload a file to drive.'
+		'en-US': 'Upload a file to drive.',
 	},
 
 	tags: ['drive'],
@@ -19,7 +19,7 @@ export const meta = {
 
 	limit: {
 		duration: ms('1hour'),
-		max: 120
+		max: 120,
 	},
 
 	requireFile: true,
@@ -31,16 +31,16 @@ export const meta = {
 			validator: $.optional.nullable.type(ID),
 			default: null as any,
 			desc: {
-				'ja-JP': 'フォルダID'
-			}
+				'ja-JP': 'フォルダID',
+			},
 		},
 
 		name: {
 			validator: $.optional.nullable.str,
 			default: null as any,
 			desc: {
-				'ja-JP': 'ファイル名（拡張子があるなら含めて）'
-			}
+				'ja-JP': 'ファイル名（拡張子があるなら含めて）',
+			},
 		},
 
 		isSensitive: {
@@ -49,8 +49,8 @@ export const meta = {
 			transform: (v: any): boolean => v === true || v === 'true',
 			desc: {
 				'ja-JP': 'このメディアが「閲覧注意」(NSFW)かどうか',
-				'en-US': 'Whether this media is NSFW'
-			}
+				'en-US': 'Whether this media is NSFW',
+			},
 		},
 
 		force: {
@@ -59,8 +59,8 @@ export const meta = {
 			transform: (v: any): boolean => v === true || v === 'true',
 			desc: {
 				'ja-JP': 'true にすると、同じハッシュを持つファイルが既にアップロードされていても強制的にファイルを作成します。',
-			}
-		}
+			},
+		},
 	},
 
 	res: {
@@ -73,9 +73,9 @@ export const meta = {
 		invalidFileName: {
 			message: 'Invalid file name.',
 			code: 'INVALID_FILE_NAME',
-			id: 'f449b209-0c60-4e51-84d5-29486263bfd4'
-		}
-	}
+			id: 'f449b209-0c60-4e51-84d5-29486263bfd4',
+		},
+	},
 };
 
 export default define(meta, async (ps, user, app, file, cleanup) => {

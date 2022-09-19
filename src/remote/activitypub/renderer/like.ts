@@ -7,20 +7,20 @@ import renderEmoji from './emoji';
 export const renderLike = async (noteReaction: NoteReaction, note: Note) => {
 	const reaction = noteReaction.reaction;
 
-	const object =  {
+	const object = {
 		type: noteReaction.dislike ? 'Dislike' : 'Like',
 		id: `${config.url}/likes/${noteReaction.id}`,
 		actor: `${config.url}/users/${noteReaction.userId}`,
 		object: note.uri ? note.uri : `${config.url}/notes/${noteReaction.noteId}`,
 		content: reaction,
-		_misskey_reaction: reaction
+		_misskey_reaction: reaction,
 	} as any;
 
 	if (reaction.startsWith(':')) {
 		const name = reaction.replace(/:/g, '');
 		const emoji = await Emojis.findOne({
 			name,
-			host: null
+			host: null,
 		});
 
 		if (emoji) object.tag = [ renderEmoji(emoji) ];

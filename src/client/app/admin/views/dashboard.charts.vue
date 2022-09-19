@@ -31,7 +31,7 @@
 			</optgroup>
 		</select>
 		<div>
-			<span @click="span = 'day'" :class="{ active: span == 'day' }">{{ $t('per-day') }}</span> | <span @click="span = 'hour'" :class="{ active: span == 'hour' }">{{ $t('per-hour') }}</span>
+			<span :class="{ active: span == 'day' }" @click="span = 'day'">{{ $t('per-day') }}</span> | <span :class="{ active: span == 'hour' }" @click="span = 'hour'">{{ $t('per-hour') }}</span>
 		</div>
 	</header>
 	<div ref="chart"></div>
@@ -56,7 +56,7 @@ export default Vue.extend({
 			chart: null,
 			src: 'notes',
 			span: 'hour',
-			chartInstance: null
+			chartInstance: null,
 		};
 	},
 
@@ -90,7 +90,7 @@ export default Vue.extend({
 				null;
 
 			return stats;
-		}
+		},
 	},
 
 	watch: {
@@ -100,7 +100,7 @@ export default Vue.extend({
 
 		span() {
 			this.render();
-		}
+		},
 	},
 
 	async mounted() {
@@ -112,14 +112,14 @@ export default Vue.extend({
 			this.$root.api('charts/active-users', { limit: limit, span: 'hour' }),
 			this.$root.api('charts/notes', { limit: limit, span: 'hour' }),
 			this.$root.api('charts/drive', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/network', { limit: limit, span: 'hour' })
+			this.$root.api('charts/network', { limit: limit, span: 'hour' }),
 		]), Promise.all([
 			this.$root.api('charts/federation', { limit: limit, span: 'day' }),
 			this.$root.api('charts/users', { limit: limit, span: 'day' }),
 			this.$root.api('charts/active-users', { limit: limit, span: 'day' }),
 			this.$root.api('charts/notes', { limit: limit, span: 'day' }),
 			this.$root.api('charts/drive', { limit: limit, span: 'day' }),
-			this.$root.api('charts/network', { limit: limit, span: 'day' })
+			this.$root.api('charts/network', { limit: limit, span: 'day' }),
 		])]);
 
 		const chart = {
@@ -129,7 +129,7 @@ export default Vue.extend({
 				activeUsers: perHour[2],
 				notes: perHour[3],
 				drive: perHour[4],
-				network: perHour[5]
+				network: perHour[5],
 			},
 			perDay: {
 				federation: perDay[0],
@@ -137,8 +137,8 @@ export default Vue.extend({
 				activeUsers: perDay[2],
 				notes: perDay[3],
 				drive: perDay[4],
-				network: perDay[5]
-			}
+				network: perDay[5],
+			},
 		};
 
 		this.chart = chart;
@@ -166,18 +166,18 @@ export default Vue.extend({
 					height: 300,
 					animations: {
 						dynamicAnimation: {
-							enabled: false
-						}
+							enabled: false,
+						},
 					},
 					toolbar: {
-						show: false
+						show: false,
 					},
 					zoom: {
-						enabled: false
-					}
+						enabled: false,
+					},
 				},
 				dataLabels: {
-					enabled: false
+					enabled: false,
 				},
 				grid: {
 					clipMarkers: false,
@@ -185,41 +185,41 @@ export default Vue.extend({
 					xaxis: {
 						lines: {
 							show: true,
-						}
+						},
 					},
 				},
 				stroke: {
 					curve: 'straight',
-					width: 2
+					width: 2,
 				},
 				legend: {
 					labels: {
-						colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
+						colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
 					},
 				},
 				xaxis: {
 					type: 'datetime',
 					labels: {
 						style: {
-							colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-						}
+							colors: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+						},
 					},
 					axisBorder: {
-						color: 'rgba(0, 0, 0, 0.1)'
+						color: 'rgba(0, 0, 0, 0.1)',
 					},
 					axisTicks: {
-						color: 'rgba(0, 0, 0, 0.1)'
+						color: 'rgba(0, 0, 0, 0.1)',
 					},
 				},
 				yaxis: {
 					labels: {
 						formatter: this.data.bytes ? v => Vue.filter('bytes')(v, 0) : v => Vue.filter('number')(v),
 						style: {
-							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString()
-						}
-					}
+							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
+						},
+					},
 				},
-				series: this.data.series
+				series: this.data.series,
 			});
 
 			this.chartInstance.render();
@@ -248,9 +248,9 @@ export default Vue.extend({
 					name: 'Instances',
 					data: this.format(total
 						? this.stats.federation.instance.total
-						: sum(this.stats.federation.instance.inc, negate(this.stats.federation.instance.dec))
-					)
-				}]
+						: sum(this.stats.federation.instance.inc, negate(this.stats.federation.instance.dec)),
+					),
+				}],
 			};
 		},
 
@@ -261,30 +261,30 @@ export default Vue.extend({
 					type: 'line',
 					data: this.format(type == 'combined'
 						? sum(this.stats.notes.local.inc, negate(this.stats.notes.local.dec), this.stats.notes.remote.inc, negate(this.stats.notes.remote.dec))
-						: sum(this.stats.notes[type].inc, negate(this.stats.notes[type].dec))
-					)
+						: sum(this.stats.notes[type].inc, negate(this.stats.notes[type].dec)),
+					),
 				}, {
 					name: 'Renotes',
 					type: 'area',
 					data: this.format(type == 'combined'
 						? sum(this.stats.notes.local.diffs.renote, this.stats.notes.remote.diffs.renote)
-						: this.stats.notes[type].diffs.renote
-					)
+						: this.stats.notes[type].diffs.renote,
+					),
 				}, {
 					name: 'Replies',
 					type: 'area',
 					data: this.format(type == 'combined'
 						? sum(this.stats.notes.local.diffs.reply, this.stats.notes.remote.diffs.reply)
-						: this.stats.notes[type].diffs.reply
-					)
+						: this.stats.notes[type].diffs.reply,
+					),
 				}, {
 					name: 'Normal',
 					type: 'area',
 					data: this.format(type == 'combined'
 						? sum(this.stats.notes.local.diffs.normal, this.stats.notes.remote.diffs.normal)
-						: this.stats.notes[type].diffs.normal
-					)
-				}]
+						: this.stats.notes[type].diffs.normal,
+					),
+				}],
 			};
 		},
 
@@ -293,16 +293,16 @@ export default Vue.extend({
 				series: [{
 					name: 'Combined',
 					type: 'line',
-					data: this.format(sum(this.stats.notes.local.total, this.stats.notes.remote.total))
+					data: this.format(sum(this.stats.notes.local.total, this.stats.notes.remote.total)),
 				}, {
 					name: 'Local',
 					type: 'area',
-					data: this.format(this.stats.notes.local.total)
+					data: this.format(this.stats.notes.local.total),
 				}, {
 					name: 'Remote',
 					type: 'area',
-					data: this.format(this.stats.notes.remote.total)
-				}]
+					data: this.format(this.stats.notes.remote.total),
+				}],
 			};
 		},
 
@@ -313,23 +313,23 @@ export default Vue.extend({
 					type: 'line',
 					data: this.format(total
 						? sum(this.stats.users.local.total, this.stats.users.remote.total)
-						: sum(this.stats.users.local.inc, negate(this.stats.users.local.dec), this.stats.users.remote.inc, negate(this.stats.users.remote.dec))
-					)
+						: sum(this.stats.users.local.inc, negate(this.stats.users.local.dec), this.stats.users.remote.inc, negate(this.stats.users.remote.dec)),
+					),
 				}, {
 					name: 'Local',
 					type: 'area',
 					data: this.format(total
 						? this.stats.users.local.total
-						: sum(this.stats.users.local.inc, negate(this.stats.users.local.dec))
-					)
+						: sum(this.stats.users.local.inc, negate(this.stats.users.local.dec)),
+					),
 				}, {
 					name: 'Remote',
 					type: 'area',
 					data: this.format(total
 						? this.stats.users.remote.total
-						: sum(this.stats.users.remote.inc, negate(this.stats.users.remote.dec))
-					)
-				}]
+						: sum(this.stats.users.remote.inc, negate(this.stats.users.remote.dec)),
+					),
+				}],
 			};
 		},
 
@@ -338,16 +338,16 @@ export default Vue.extend({
 				series: [{
 					name: 'Combined',
 					type: 'line',
-					data: this.format(sum(this.stats.activeUsers.local.count, this.stats.activeUsers.remote.count))
+					data: this.format(sum(this.stats.activeUsers.local.count, this.stats.activeUsers.remote.count)),
 				}, {
 					name: 'Local',
 					type: 'area',
-					data: this.format(this.stats.activeUsers.local.count)
+					data: this.format(this.stats.activeUsers.local.count),
 				}, {
 					name: 'Remote',
 					type: 'area',
-					data: this.format(this.stats.activeUsers.remote.count)
-				}]
+					data: this.format(this.stats.activeUsers.remote.count),
+				}],
 			};
 		},
 
@@ -362,26 +362,26 @@ export default Vue.extend({
 							this.stats.drive.local.incSize,
 							negate(this.stats.drive.local.decSize),
 							this.stats.drive.remote.incSize,
-							negate(this.stats.drive.remote.decSize)
-						)
-					)
+							negate(this.stats.drive.remote.decSize),
+						),
+					),
 				}, {
 					name: 'Local +',
 					type: 'area',
-					data: this.format(this.stats.drive.local.incSize)
+					data: this.format(this.stats.drive.local.incSize),
 				}, {
 					name: 'Local -',
 					type: 'area',
-					data: this.format(negate(this.stats.drive.local.decSize))
+					data: this.format(negate(this.stats.drive.local.decSize)),
 				}, {
 					name: 'Remote +',
 					type: 'area',
-					data: this.format(this.stats.drive.remote.incSize)
+					data: this.format(this.stats.drive.remote.incSize),
 				}, {
 					name: 'Remote -',
 					type: 'area',
-					data: this.format(negate(this.stats.drive.remote.decSize))
-				}]
+					data: this.format(negate(this.stats.drive.remote.decSize)),
+				}],
 			};
 		},
 
@@ -391,16 +391,16 @@ export default Vue.extend({
 				series: [{
 					name: 'Combined',
 					type: 'line',
-					data: this.format(sum(this.stats.drive.local.totalSize, this.stats.drive.remote.totalSize))
+					data: this.format(sum(this.stats.drive.local.totalSize, this.stats.drive.remote.totalSize)),
 				}, {
 					name: 'Local',
 					type: 'area',
-					data: this.format(this.stats.drive.local.totalSize)
+					data: this.format(this.stats.drive.local.totalSize),
 				}, {
 					name: 'Remote',
 					type: 'area',
-					data: this.format(this.stats.drive.remote.totalSize)
-				}]
+					data: this.format(this.stats.drive.remote.totalSize),
+				}],
 			};
 		},
 
@@ -414,26 +414,26 @@ export default Vue.extend({
 							this.stats.drive.local.incCount,
 							negate(this.stats.drive.local.decCount),
 							this.stats.drive.remote.incCount,
-							negate(this.stats.drive.remote.decCount)
-						)
-					)
+							negate(this.stats.drive.remote.decCount),
+						),
+					),
 				}, {
 					name: 'Local +',
 					type: 'area',
-					data: this.format(this.stats.drive.local.incCount)
+					data: this.format(this.stats.drive.local.incCount),
 				}, {
 					name: 'Local -',
 					type: 'area',
-					data: this.format(negate(this.stats.drive.local.decCount))
+					data: this.format(negate(this.stats.drive.local.decCount)),
 				}, {
 					name: 'Remote +',
 					type: 'area',
-					data: this.format(this.stats.drive.remote.incCount)
+					data: this.format(this.stats.drive.remote.incCount),
 				}, {
 					name: 'Remote -',
 					type: 'area',
-					data: this.format(negate(this.stats.drive.remote.decCount))
-				}]
+					data: this.format(negate(this.stats.drive.remote.decCount)),
+				}],
 			};
 		},
 
@@ -442,16 +442,16 @@ export default Vue.extend({
 				series: [{
 					name: 'Combined',
 					type: 'line',
-					data: this.format(sum(this.stats.drive.local.totalCount, this.stats.drive.remote.totalCount))
+					data: this.format(sum(this.stats.drive.local.totalCount, this.stats.drive.remote.totalCount)),
 				}, {
 					name: 'Local',
 					type: 'area',
-					data: this.format(this.stats.drive.local.totalCount)
+					data: this.format(this.stats.drive.local.totalCount),
 				}, {
 					name: 'Remote',
 					type: 'area',
-					data: this.format(this.stats.drive.remote.totalCount)
-				}]
+					data: this.format(this.stats.drive.remote.totalCount),
+				}],
 			};
 		},
 
@@ -459,8 +459,8 @@ export default Vue.extend({
 			return {
 				series: [{
 					name: 'Incoming',
-					data: this.format(this.stats.network.incomingRequests)
-				}]
+					data: this.format(this.stats.network.incomingRequests),
+				}],
 			};
 		},
 
@@ -474,8 +474,8 @@ export default Vue.extend({
 			return {
 				series: [{
 					name: 'Avg time',
-					data: this.format(data)
-				}]
+					data: this.format(data),
+				}],
 			};
 		},
 
@@ -484,14 +484,14 @@ export default Vue.extend({
 				bytes: true,
 				series: [{
 					name: 'Incoming',
-					data: this.format(this.stats.network.incomingBytes)
+					data: this.format(this.stats.network.incomingBytes),
 				}, {
 					name: 'Outgoing',
-					data: this.format(this.stats.network.outgoingBytes)
-				}]
+					data: this.format(this.stats.network.outgoingBytes),
+				}],
 			};
 		},
-	}
+	},
 });
 </script>
 

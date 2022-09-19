@@ -14,17 +14,17 @@ import getUserName from '../../../../../misc/get-user-name';
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default)
+		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default),
 	},
 	data() {
 		return {
 			fetching: true,
 			user: null,
-			group: null
+			group: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		const applyBg = v =>
@@ -67,8 +67,8 @@ export default Vue.extend({
 					Progress.done();
 				});
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

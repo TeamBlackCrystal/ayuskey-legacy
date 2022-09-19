@@ -262,7 +262,7 @@ export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentione
 			a.href = `https://www.google.com/?#q=${token.node.props.query}`;
 			a.textContent = token.node.props.content;
 			return a;
-		}
+		},
 	};
 
 	appendChildren(tokens, doc.body);

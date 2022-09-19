@@ -6,7 +6,7 @@ import { Notes } from '../../../models';
 
 export const meta = {
 	desc: {
-		'ja-JP': '投稿を取得します。'
+		'ja-JP': '投稿を取得します。',
 	},
 
 	tags: ['notes'],
@@ -15,41 +15,41 @@ export const meta = {
 		local: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'ローカルの投稿に限定するか否か'
-			}
+				'ja-JP': 'ローカルの投稿に限定するか否か',
+			},
 		},
 
 		reply: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': '返信に限定するか否か'
-			}
+				'ja-JP': '返信に限定するか否か',
+			},
 		},
 
 		renote: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'Renoteに限定するか否か'
-			}
+				'ja-JP': 'Renoteに限定するか否か',
+			},
 		},
 
 		withFiles: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'ファイルが添付された投稿に限定するか否か'
-			}
+				'ja-JP': 'ファイルが添付された投稿に限定するか否か',
+			},
 		},
 
 		poll: {
 			validator: $.optional.bool,
 			desc: {
-				'ja-JP': 'アンケートが添付された投稿に限定するか否か'
-			}
+				'ja-JP': 'アンケートが添付された投稿に限定するか否か',
+			},
 		},
 
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		sinceId: {
@@ -68,14 +68,14 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'Note',
-		}
+		},
 	},
 };
 
 export default define(meta, async (ps) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'), ps.sinceId, ps.untilId)
-		.andWhere(`note.visibility = 'public'`)
-		.andWhere(`note.localOnly = FALSE`)
+		.andWhere('note.visibility = \'public\'')
+		.andWhere('note.localOnly = FALSE')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
 		.leftJoinAndSelect('user.banner', 'banner')
@@ -101,7 +101,7 @@ export default define(meta, async (ps) => {
 	}
 
 	if (ps.withFiles != undefined) {
-		query.andWhere(ps.withFiles ? `note.fileIds != '{}'` : `note.fileIds = '{}'`);
+		query.andWhere(ps.withFiles ? 'note.fileIds != \'{}\'' : 'note.fileIds = \'{}\'');
 	}
 
 	if (ps.poll != undefined) {

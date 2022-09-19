@@ -1,10 +1,12 @@
 <template>
 <div class="mkw-profile">
 	<ui-container>
-		<div :class="$style.banner"
+		<div
+			:class="$style.banner"
 			:style="$store.state.i.bannerUrl ? `background-image: url(${$store.state.i.bannerUrl})` : ''"
 		></div>
-		<img :class="$style.avatar"
+		<img
+			:class="$style.avatar"
 			:src="$store.state.i.avatarUrl"
 			alt="avatar"
 		/>
@@ -19,7 +21,7 @@
 import define from '../../../common/define-widget';
 
 export default define({
-	name: 'profile'
+	name: 'profile',
 });
 </script>
 

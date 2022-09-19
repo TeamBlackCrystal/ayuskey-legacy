@@ -17,7 +17,7 @@ export default Vue.extend({
 				limit: 30,
 				params: {
 					...parseAcct(this.$route.params.user),
-				}
+				},
 			},
 		};
 	},

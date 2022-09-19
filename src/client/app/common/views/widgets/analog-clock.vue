@@ -15,9 +15,9 @@ import define from '../../../common/define-widget-define-component';
 const widget = define({
 	name: 'analog-clock',
 	props: () => ({
-		style: 0
-	})
-})
+		style: 0,
+	}),
+});
 
 export default defineComponent({
 	extends: widget,
@@ -25,8 +25,8 @@ export default defineComponent({
 		func() {
 			this.props.style = (this.props.style + 1) % 4;
 			this.save();
-		}
-	}
+		},
+	},
 });
 </script>
 

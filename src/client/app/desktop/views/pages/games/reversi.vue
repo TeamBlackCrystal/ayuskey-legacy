@@ -1,6 +1,6 @@
 <template>
 <component :is="ui ? 'mk-ui' : 'div'">
-	<x-reversi :game-id="$route.params.game" @nav="nav" :self-nav="false"/>
+	<x-reversi :game-id="$route.params.game" :self-nav="false" @nav="nav"/>
 </component>
 </template>
 
@@ -9,12 +9,12 @@ import Vue from 'vue';
 
 export default Vue.extend({
 	components: {
-		XReversi: () => import('../../../../common/views/components/games/reversi/reversi.vue').then(m => m.default)
+		XReversi: () => import('../../../../common/views/components/games/reversi/reversi.vue').then(m => m.default),
 	},
 	props: {
 		ui: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	methods: {
 		nav(game, actualNav) {
@@ -24,7 +24,7 @@ export default Vue.extend({
 				// TODO: https://github.com/vuejs/vue-router/issues/703
 				this.$router.push(`/games/reversi/${game.id}`);
 			}
-		}
-	}
+		},
+	},
 });
 </script>

@@ -24,7 +24,7 @@ export async function createMessage(user: User, recipientUser: User | undefined,
 		userId: user.id,
 		isRead: false,
 		reads: [] as any[],
-		uri
+		uri,
 	} as MessagingMessage);
 
 	const messageObj = await MessagingMessages.pack(message);
@@ -94,7 +94,7 @@ export async function createMessage(user: User, recipientUser: User | undefined,
 			mentionedRemoteUsers: JSON.stringify([ recipientUser ].map(u => ({
 				uri: u.uri,
 				username: u.username,
-				host: u.host
+				host: u.host,
 			}))),
 		} as Note;
 

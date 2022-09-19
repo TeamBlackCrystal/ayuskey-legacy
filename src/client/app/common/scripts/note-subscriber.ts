@@ -3,7 +3,7 @@ import Vue from 'vue';
 export default prop => ({
 	data() {
 		return {
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -50,7 +50,7 @@ export default prop => ({
 		capture(withHandler = false) {
 			if (this.$store.getters.isSignedIn) {
 				const data = {
-					id: this.$_ns_target.id
+					id: this.$_ns_target.id,
 				} as any;
 
 				if (
@@ -68,7 +68,7 @@ export default prop => ({
 		decapture(withHandler = false) {
 			if (this.$store.getters.isSignedIn) {
 				this.connection.send('un', {
-					id: this.$_ns_target.id
+					id: this.$_ns_target.id,
 				});
 				if (withHandler) this.connection.off('noteUpdated', this.onStreamNoteUpdated);
 			}
@@ -153,5 +153,5 @@ export default prop => ({
 				}
 			}
 		},
-	}
+	},
 });

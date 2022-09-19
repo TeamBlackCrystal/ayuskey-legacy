@@ -4,10 +4,11 @@
 	:close-on-bg-click="false"
 	:close-anime-duration="300"
 	@before-close="onBeforeClose">
-	<div class="main" ref="main">
-		<x-post-form ref="form"
+	<div ref="main" class="main">
+		<x-post-form
+			ref="form"
 			:reply="reply"
-			:airReply="airReply"
+			:air-reply="airReply"
 			:renote="renote"
 			:mention="mention"
 			:initial-text="initialText"
@@ -26,39 +27,39 @@ import XPostForm from './post-form.vue';
 
 export default Vue.extend({
 	components: {
-		XPostForm
+		XPostForm,
 	},
 
 	props: {
 		reply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		airReply: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		renote: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		mention: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		initialText: {
 			type: String,
-			required: false
+			required: false,
 		},
 		initialNote: {
 			type: Object,
-			required: false
+			required: false,
 		},
 		instant: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	mounted() {
@@ -68,7 +69,7 @@ export default Vue.extend({
 				opacity: 1,
 				translateY: [-16, 0],
 				duration: 300,
-				easing: 'easeOutQuad'
+				easing: 'easeOutQuad',
 			});
 		});
 	},
@@ -86,7 +87,7 @@ export default Vue.extend({
 				opacity: 0,
 				translateY: 16,
 				duration: 300,
-				easing: 'easeOutQuad'
+				easing: 'easeOutQuad',
 			});
 		},
 
@@ -102,8 +103,8 @@ export default Vue.extend({
 		onCanceled() {
 			this.$emit('cancel');
 			this.close();
-		}
-	}
+		},
+	},
 });
 </script>
 

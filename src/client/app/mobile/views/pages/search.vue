@@ -21,19 +21,19 @@ export default Vue.extend({
 			pagination: {
 				endpoint: 'notes/search',
 				limit: 20,
-				params: () => genSearchQuery(this, this.q)
-			}
+				params: () => genSearchQuery(this, this.q),
+			},
 		};
 	},
 	computed: {
 		q(): string {
 			return this.$route.query.q;
-		}
+		},
 	},
 	watch: {
 		$route() {
 			this.$refs.timeline.reload();
-		}
+		},
 	},
 	mounted() {
 		document.title = `${this.$t('search')}: ${this.q} | ${this.$root.instanceName}`;
@@ -42,6 +42,6 @@ export default Vue.extend({
 		inited() {
 			Progress.done();
 		},
-	}
+	},
 });
 </script>

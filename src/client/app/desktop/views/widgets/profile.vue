@@ -1,19 +1,22 @@
 <template>
 <div class="egwyvoaaryotefqhqtmiyawwefemjfsd">
 	<ui-container :show-header="false" :naked="props.design == 2">
-		<div class="egwyvoaaryotefqhqtmiyawwefemjfsd-body"
+		<div
+			class="egwyvoaaryotefqhqtmiyawwefemjfsd-body"
 			:data-compact="props.design == 1 || props.design == 2"
 			:data-melt="props.design == 2"
 		>
-			<div class="banner"
+			<div
+				class="banner"
 				:style="$store.state.i.bannerUrl ? `background-image: url(${$store.state.i.bannerUrl})` : ''"
 				:title="$t('update-banner')"
 				@click="updateBanner()"
 			></div>
-			<mk-avatar class="avatar" :user="$store.state.i"
+			<mk-avatar
+				class="avatar" :user="$store.state.i"
 				:disable-link="true"
-				@click="updateAvatar()"
 				:title="$t('update-avatar')"
+				@click="updateAvatar()"
 			/>
 			<router-link class="name" :to="$store.state.i | userPage"><mk-user-name :user="$store.state.i"/></router-link>
 			<p class="username">@{{ $store.state.i | acct }}</p>
@@ -31,8 +34,8 @@ import updateBanner from '../../api/update-banner';
 export default define({
 	name: 'profile',
 	props: () => ({
-		design: 0
-	})
+		design: 0,
+	}),
 }).extend({
 	i18n: i18n('desktop/views/widgets/profile.vue'),
 	methods: {
@@ -49,8 +52,8 @@ export default define({
 		},
 		updateBanner() {
 			updateBanner(this.$root)();
-		}
-	}
+		},
+	},
 });
 </script>
 

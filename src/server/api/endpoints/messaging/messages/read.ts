@@ -8,7 +8,7 @@ import { readUserMessagingMessage, readGroupMessagingMessage } from '../../../co
 export const meta = {
 	desc: {
 		'ja-JP': '指定した自分宛てのトークメッセージを既読にします。',
-		'en-US': 'Mark as read a message of messaging.'
+		'en-US': 'Mark as read a message of messaging.',
 	},
 
 	tags: ['messaging'],
@@ -22,18 +22,18 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '既読にするメッセージのID',
-				'en-US': 'The ID of a message that you want to mark as read'
-			}
-		}
+				'en-US': 'The ID of a message that you want to mark as read',
+			},
+		},
 	},
 
 	errors: {
 		noSuchMessage: {
 			message: 'No such message.',
 			code: 'NO_SUCH_MESSAGE',
-			id: '86d56a2f-a9c3-4afb-b13c-3e9bfef9aa14'
+			id: '86d56a2f-a9c3-4afb-b13c-3e9bfef9aa14',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {

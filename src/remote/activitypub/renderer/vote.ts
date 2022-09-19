@@ -17,7 +17,7 @@ export default async function renderVote(user: ILocalUser, vote: PollVote, note:
 			attributedTo: `${config.url}/users/${user.id}`,
 			to: [pollOwner.uri],
 			inReplyTo: note.uri,
-			name: poll.choices[vote.choice]
-		}
+			name: poll.choices[vote.choice],
+		},
 	};
 }

@@ -9,7 +9,7 @@ import { CleanRemoteFilesJobData } from '../../types';
 const logger = queueLogger.createSubLogger('clean-remote-files');
 
 export default async function cleanRemoteFiles(job: Bull.Job<CleanRemoteFilesJobData>, done: any): Promise<void> {
-	logger.info(`Deleting cached remote files...`);
+	logger.info('Deleting cached remote files...');
 
 	let deletedCount = 0;
 	let cursor: any = null;
@@ -19,12 +19,12 @@ export default async function cleanRemoteFiles(job: Bull.Job<CleanRemoteFilesJob
 			where: {
 				userHost: Not(IsNull()),
 				isLink: false,
-				...(cursor ? { id: MoreThan(cursor) } : {})
+				...(cursor ? { id: MoreThan(cursor) } : {}),
 			},
 			take: 8,
 			order: {
-				id: 1
-			}
+				id: 1,
+			},
 		});
 
 		if (files.length === 0) {
@@ -46,6 +46,6 @@ export default async function cleanRemoteFiles(job: Bull.Job<CleanRemoteFilesJob
 		job.progress(deletedCount / total);
 	}
 
-	logger.succ(`All cahced remote files has been deleted.`);
+	logger.succ('All cahced remote files has been deleted.');
 	done();
 }

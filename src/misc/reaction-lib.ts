@@ -1,3 +1,4 @@
+/* eslint-disable key-spacing */
 import { emojiRegex } from './emoji-regex';
 import { fetchMeta } from './fetch-meta';
 import { Emojis } from '../models';
@@ -113,14 +114,14 @@ export function decodeReaction(str: string): DecodedReaction {
 		return {
 			reaction: `:${name}@${host || '.'}:`,	// ローカル分は@以降を省略するのではなく.にする
 			name,
-			host
+			host,
 		};
 	}
 
 	return {
 		reaction: str,
 		name: undefined,
-		host: undefined
+		host: undefined,
 	};
 }
 

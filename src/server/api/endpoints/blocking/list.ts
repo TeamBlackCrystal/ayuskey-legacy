@@ -7,7 +7,7 @@ import { makePaginationQuery } from '../../common/make-pagination-query';
 export const meta = {
 	desc: {
 		'ja-JP': 'ブロックしているユーザー一覧を取得します。',
-		'en-US': 'Get blocking users.'
+		'en-US': 'Get blocking users.',
 	},
 
 	tags: ['blocking', 'account'],
@@ -19,7 +19,7 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 30
+			default: 30,
 		},
 
 		sinceId: {
@@ -38,13 +38,13 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'Blocking',
-		}
+		},
 	},
 };
 
 export default define(meta, async (ps, me) => {
 	const query = makePaginationQuery(Blockings.createQueryBuilder('blocking'), ps.sinceId, ps.untilId)
-		.andWhere(`blocking.blockerId = :meId`, { meId: me.id });
+		.andWhere('blocking.blockerId = :meId', { meId: me.id });
 
 	const blockings = await query
 		.take(ps.limit!)

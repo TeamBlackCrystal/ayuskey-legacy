@@ -7,7 +7,7 @@ import { makePaginationQuery } from '../../common/make-pagination-query';
 export const meta = {
 	desc: {
 		'ja-JP': 'ドライブのファイル一覧を取得します。',
-		'en-US': 'Get files of drive.'
+		'en-US': 'Get files of drive.',
 	},
 
 	tags: ['drive'],
@@ -19,7 +19,7 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 10
+			default: 10,
 		},
 
 		sinceId: {
@@ -36,8 +36,8 @@ export const meta = {
 		},
 
 		type: {
-			validator: $.optional.str.match(/^[a-zA-Z\/\-*]+$/)
-		}
+			validator: $.optional.str.match(/^[a-zA-Z\/\-*]+$/),
+		},
 	},
 
 	res: {
@@ -47,7 +47,7 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'DriveFile',
-		}
+		},
 	},
 };
 

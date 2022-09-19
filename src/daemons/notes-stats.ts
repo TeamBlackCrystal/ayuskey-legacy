@@ -22,5 +22,4 @@ export default function() {
 	process.on('exit', code => {
 		process.kill(p.pid);
 	});
-
 }

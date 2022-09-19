@@ -4,7 +4,7 @@
 	<section class="nicnklzforebnpfgasiypmpdaaglujqm fit-top">
 		<div class="dark">
 			<div class="toggleWrapper">
-				<input type="checkbox" class="dn" id="dn" v-model="darkmode"/>
+				<input id="dn" v-model="darkmode" type="checkbox" class="dn"/>
 				<label for="dn" class="toggle">
 					<span class="toggle__handler">
 						<span class="crater crater--1"></span>
@@ -25,10 +25,10 @@
 			<ui-select v-model="light" :placeholder="$t('light-theme')">
 				<template #label><fa :icon="faSun"/> {{ $t('light-theme') }}</template>
 				<optgroup :label="$t('light-themes')">
-					<option v-for="x in lightThemes" :value="x.id" :key="x.id" :style="getStyle(x)">{{ x.name }}</option>
+					<option v-for="x in lightThemes" :key="x.id" :value="x.id" :style="getStyle(x)">{{ x.name }}</option>
 				</optgroup>
 				<optgroup :label="$t('dark-themes')">
-					<option v-for="x in darkThemes" :value="x.id" :key="x.id" :style="getStyle(x)">{{ x.name }}</option>
+					<option v-for="x in darkThemes" :key="x.id" :value="x.id" :style="getStyle(x)">{{ x.name }}</option>
 				</optgroup>
 			</ui-select>
 		</label>
@@ -37,10 +37,10 @@
 			<ui-select v-model="dark" :placeholder="$t('dark-theme')">
 				<template #label><fa :icon="faMoon"/> {{ $t('dark-theme') }}</template>
 				<optgroup :label="$t('dark-themes')">
-					<option v-for="x in darkThemes" :value="x.id" :key="x.id" :style="getStyle(x)">{{ x.name }}</option>
+					<option v-for="x in darkThemes" :key="x.id" :value="x.id" :style="getStyle(x)">{{ x.name }}</option>
 				</optgroup>
 				<optgroup :label="$t('light-themes')">
-					<option v-for="x in lightThemes" :value="x.id" :key="x.id" :style="getStyle(x)">{{ x.name }}</option>
+					<option v-for="x in lightThemes" :key="x.id" :value="x.id" :style="getStyle(x)">{{ x.name }}</option>
 				</optgroup>
 			</ui-select>
 		</label>
@@ -87,20 +87,20 @@
 			<ui-textarea v-model="installThemeCode">
 				<span>{{ $t('theme-code') }}</span>
 			</ui-textarea>
-			<ui-button @click="() => install(this.installThemeCode)"><fa icon="check"/> {{ $t('install') }}</ui-button>
+			<ui-button @click="() => install(installThemeCode)"><fa icon="check"/> {{ $t('install') }}</ui-button>
 		</details>
 
 		<details>
 			<summary><fa icon="folder-open"/> {{ $t('manage-themes') }}</summary>
 			<ui-select v-model="selectedThemeId" :placeholder="$t('select-theme')">
 				<optgroup :label="$t('builtin-themes')">
-					<option v-for="x in builtinThemes" :value="x.id" :key="x.id">{{ x.name }}</option>
+					<option v-for="x in builtinThemes" :key="x.id" :value="x.id">{{ x.name }}</option>
 				</optgroup>
 				<optgroup :label="$t('my-themes')">
-					<option v-for="x in installedThemes.filter(t => t.author == this.$store.state.i.username)" :value="x.id" :key="x.id">{{ x.name }}</option>
+					<option v-for="x in installedThemes.filter(t => t.author == $store.state.i.username)" :key="x.id" :value="x.id">{{ x.name }}</option>
 				</optgroup>
 				<optgroup :label="$t('installed-themes')">
-					<option v-for="x in installedThemes.filter(t => t.author != this.$store.state.i.username)" :value="x.id" :key="x.id">{{ x.name }}</option>
+					<option v-for="x in installedThemes.filter(t => t.author != $store.state.i.username)" :key="x.id" :value="x.id">{{ x.name }}</option>
 				</optgroup>
 			</ui-select>
 			<template v-if="selectedTheme">
@@ -113,8 +113,8 @@
 				<ui-textarea readonly tall :value="selectedThemeCode">
 					<span>{{ $t('theme-code') }}</span>
 				</ui-textarea>
-				<ui-button @click="export_()" link :download="`${selectedTheme.name}.misskeytheme`" ref="export"><fa icon="box"/> {{ $t('export') }}</ui-button>
-				<ui-button @click="uninstall()" v-if="!builtinThemes.some(t => t.id == selectedTheme.id)"><fa :icon="['far', 'trash-alt']"/> {{ $t('uninstall') }}</ui-button>
+				<ui-button ref="export" link :download="`${selectedTheme.name}.misskeytheme`" @click="export_()"><fa icon="box"/> {{ $t('export') }}</ui-button>
+				<ui-button v-if="!builtinThemes.some(t => t.id == selectedTheme.id)" @click="uninstall()"><fa :icon="['far', 'trash-alt']"/> {{ $t('uninstall') }}</ui-button>
 			</template>
 		</details>
 	</section>
@@ -134,7 +134,7 @@ import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 export default Vue.extend({
 	i18n: i18n('common/views/components/theme.vue'),
 	components: {
-		ColorPicker: Chrome
+		ColorPicker: Chrome,
 	},
 
 	data() {
@@ -148,7 +148,7 @@ export default Vue.extend({
 			myThemePrimary: lightTheme.vars.primary,
 			myThemeSecondary: lightTheme.vars.secondary,
 			myThemeText: lightTheme.vars.text,
-			faMoon, faSun
+			faMoon, faSun,
 		};
 	},
 
@@ -171,12 +171,12 @@ export default Vue.extend({
 
 		light: {
 			get() { return this.$store.state.device.lightTheme; },
-			set(value) { this.$store.commit('device/set', { key: 'lightTheme', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'lightTheme', value }); },
 		},
 
 		dark: {
 			get() { return this.$store.state.device.darkTheme; },
-			set(value) { this.$store.commit('device/set', { key: 'darkTheme', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'darkTheme', value }); },
 		},
 
 		selectedTheme() {
@@ -196,16 +196,16 @@ export default Vue.extend({
 				desc: this.myThemeDesc,
 				base: this.myThemeBase,
 				vars: {
-					primary: tinycolor(typeof this.myThemePrimary == 'string' ? this.myThemePrimary : this.myThemePrimary.rgba).toRgbString(),
-					secondary: tinycolor(typeof this.myThemeSecondary == 'string' ? this.myThemeSecondary : this.myThemeSecondary.rgba).toRgbString(),
-					text: tinycolor(typeof this.myThemeText == 'string' ? this.myThemeText : this.myThemeText.rgba).toRgbString()
-				}
+					primary: tinycolor(typeof this.myThemePrimary === 'string' ? this.myThemePrimary : this.myThemePrimary.rgba).toRgbString(),
+					secondary: tinycolor(typeof this.myThemeSecondary === 'string' ? this.myThemeSecondary : this.myThemeSecondary.rgba).toRgbString(),
+					text: tinycolor(typeof this.myThemeText === 'string' ? this.myThemeText : this.myThemeText.rgba).toRgbString(),
+				},
 			};
 		},
 
 		darkmode: {
 			get() { return this.$store.state.device.darkmode; },
-			set(value) { this.$store.commit('device/set', { key: 'darkmode', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'darkmode', value }); },
 		},
 	},
 
@@ -215,7 +215,7 @@ export default Vue.extend({
 			this.myThemePrimary = theme.vars.primary;
 			this.myThemeSecondary = theme.vars.secondary;
 			this.myThemeText = theme.vars.text;
-		}
+		},
 	},
 
 	methods: {
@@ -227,7 +227,7 @@ export default Vue.extend({
 			} catch (e) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('invalid-theme')
+					text: this.$t('invalid-theme'),
 				});
 				return;
 			}
@@ -235,7 +235,7 @@ export default Vue.extend({
 			if (theme.id == null) {
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('invalid-theme')
+					text: this.$t('invalid-theme'),
 				});
 				return;
 			}
@@ -243,19 +243,19 @@ export default Vue.extend({
 			if (this.$store.state.device.themes.some(t => t.id == theme.id)) {
 				this.$root.dialog({
 					type: 'info',
-					text: this.$t('already-installed')
+					text: this.$t('already-installed'),
 				});
 				return;
 			}
 
 			const themes = this.$store.state.device.themes.concat(theme);
 			this.$store.commit('device/set', {
-				key: 'themes', value: themes
+				key: 'themes', value: themes,
 			});
 
 			this.$root.dialog({
 				type: 'success',
-				text: this.$t('installed').replace('{}', theme.name)
+				text: this.$t('installed').replace('{}', theme.name),
 			});
 		},
 
@@ -263,12 +263,12 @@ export default Vue.extend({
 			const theme = this.selectedTheme;
 			const themes = this.$store.state.device.themes.filter(t => t.id != theme.id);
 			this.$store.commit('device/set', {
-				key: 'themes', value: themes
+				key: 'themes', value: themes,
 			});
 
 			this.$root.dialog({
 				type: 'info',
-				text: this.$t('uninstalled').replace('{}', theme.name)
+				text: this.$t('uninstalled').replace('{}', theme.name),
 			});
 		},
 
@@ -278,7 +278,7 @@ export default Vue.extend({
 
 		export_() {
 			const blob = new Blob([this.selectedThemeCode], {
-				type: 'application/json5'
+				type: 'application/json5',
 			});
 			this.$refs.export.$el.href = window.URL.createObjectURL(blob);
 		},
@@ -305,7 +305,7 @@ export default Vue.extend({
 			if (theme.name == null || theme.name.trim() == '') {
 				this.$root.dialog({
 					type: 'warning',
-					text: this.$t('theme-name-required')
+					text: this.$t('theme-name-required'),
 				});
 				return;
 			}
@@ -314,12 +314,12 @@ export default Vue.extend({
 
 			const themes = this.$store.state.device.themes.concat(theme);
 			this.$store.commit('device/set', {
-				key: 'themes', value: themes
+				key: 'themes', value: themes,
 			});
 
 			this.$root.dialog({
 				type: 'success',
-				text: this.$t('saved')
+				text: this.$t('saved'),
 			});
 		},
 
@@ -327,10 +327,10 @@ export default Vue.extend({
 			if (theme.vars && theme.vars.primary && theme.vars.secondary) {
 				return `color: ${theme.vars.primary}; background-color: ${theme.vars.secondary}`;
 			} else {
-				return ''
+				return '';
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

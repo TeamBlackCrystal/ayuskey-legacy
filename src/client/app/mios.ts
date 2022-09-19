@@ -1,5 +1,5 @@
 import autobind from 'autobind-decorator';
-import Vue from 'vue';
+import Vue, { h } from 'vue';
 import { EventEmitter } from 'eventemitter3';
 import { v4 as uuid } from 'uuid';
 
@@ -135,11 +135,11 @@ export default class MiOS extends EventEmitter {
 			fetch(`${apiUrl}/i`, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					i: token
-				})
+					i: token,
+				}),
 			})
 			// When success
 			.then(res => {
@@ -160,7 +160,7 @@ export default class MiOS extends EventEmitter {
 				// Render the error screen
 				document.body.innerHTML = '<div id="err"></div>';
 				new Vue({
-					render: createEl => createEl(Err)
+					render: () => h(Err),
 				}).$mount('#err');
 
 				Progress.done();
@@ -235,56 +235,56 @@ export default class MiOS extends EventEmitter {
 
 			main.on('readAllNotifications', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadNotification: false
+					hasUnreadNotification: false,
 				});
 			});
 
 			main.on('unreadNotification', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadNotification: true
+					hasUnreadNotification: true,
 				});
 			});
 
 			main.on('readAllMessagingMessages', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadMessagingMessage: false
+					hasUnreadMessagingMessage: false,
 				});
 			});
 
 			main.on('unreadMessagingMessage', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadMessagingMessage: true
+					hasUnreadMessagingMessage: true,
 				});
 			});
 
 			main.on('unreadMention', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadMentions: true
+					hasUnreadMentions: true,
 				});
 			});
 
 			main.on('readAllUnreadMentions', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadMentions: false
+					hasUnreadMentions: false,
 				});
 			});
 
 			main.on('unreadSpecifiedNote', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadSpecifiedNotes: true
+					hasUnreadSpecifiedNotes: true,
 				});
 			});
 
 			main.on('readAllUnreadSpecifiedNotes', () => {
 				this.store.dispatch('mergeMe', {
-					hasUnreadSpecifiedNotes: false
+					hasUnreadSpecifiedNotes: false,
 				});
 			});
 
 			main.on('clientSettingUpdated', x => {
 				this.store.commit('settings/set', {
 					key: x.key,
-					value: x.value
+					value: x.value,
 				});
 			});
 
@@ -327,7 +327,7 @@ export default class MiOS extends EventEmitter {
 
 				// A public key your push server will use to send
 				// messages to client apps via a push server.
-				applicationServerKey: urlBase64ToUint8Array(swPublickey)
+				applicationServerKey: urlBase64ToUint8Array(swPublickey),
 			};
 
 			// Subscribe push notification
@@ -342,7 +342,7 @@ export default class MiOS extends EventEmitter {
 				this.api('sw/register', {
 					endpoint: subscription.endpoint,
 					auth: encode(subscription.getKey('auth')),
-					publickey: encode(subscription.getKey('p256dh'))
+					publickey: encode(subscription.getKey('p256dh')),
 				});
 			})
 			// When subscribe failed
@@ -411,7 +411,7 @@ export default class MiOS extends EventEmitter {
 				name: endpoint,
 				data,
 				res: null,
-				status: null
+				status: null,
 			};
 
 			if (this.debug) {
@@ -428,15 +428,15 @@ export default class MiOS extends EventEmitter {
 
 			const fetchPromise = anonGet ? fetch(url, {
 				method: 'GET',
-				credentials: 'omit'
+				credentials: 'omit',
 			}) : fetch(url, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(data),
 				credentials: endpoint === 'signin' ? 'include' : 'omit',
-				cache: 'no-cache'
+				cache: 'no-cache',
 			});
 
 			// Send request
@@ -491,11 +491,11 @@ export default class MiOS extends EventEmitter {
 			if (force || this.meta == null || Date.now() - this.meta.chachedAt.getTime() > expire) {
 				this.isMetaFetching = true;
 				const meta = await this.api('meta', {
-					detail: false
+					detail: false,
 				}, false, !force);	// forceでない限りは匿名GET
 				this.meta = {
 					data: meta,
-					chachedAt: new Date()
+					chachedAt: new Date(),
 				};
 				this.isMetaFetching = false;
 				this.emit('_meta_fetched_');

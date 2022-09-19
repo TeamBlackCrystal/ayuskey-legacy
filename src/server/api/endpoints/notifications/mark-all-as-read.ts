@@ -5,14 +5,14 @@ import { Notifications } from '../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': '全ての通知を既読にします。',
-		'en-US': 'Mark all notifications as read.'
+		'en-US': 'Mark all notifications as read.',
 	},
 
 	tags: ['notifications', 'account'],
 
 	requireCredential: true,
 
-	kind: 'write:notifications'
+	kind: 'write:notifications',
 };
 
 export default define(meta, async (ps, user) => {
@@ -21,7 +21,7 @@ export default define(meta, async (ps, user) => {
 		notifieeId: user.id,
 		isRead: false,
 	}, {
-		isRead: true
+		isRead: true,
 	});
 
 	// 全ての通知を読みましたよというイベントを発行

@@ -8,7 +8,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-	props: ['url', 'text', 'icon', 'service']
+	props: ['url', 'text', 'icon', 'service'],
 });
 </script>
 

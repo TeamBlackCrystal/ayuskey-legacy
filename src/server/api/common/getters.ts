@@ -6,7 +6,7 @@ import { Notes, Users } from '../../../models';
 /**
  * Get note for API processing
  */
- export async function getNote(noteId: Note['id'], withRelations = false) {
+export async function getNote(noteId: Note['id'], withRelations = false) {
 	const note = await Notes.findOne(noteId, {
 		relations: withRelations ? [
 			'user',
@@ -20,7 +20,7 @@ import { Notes, Users } from '../../../models';
 			'renote.user',
 			'renote.user.avatar',
 			'renote.user.banner',
-		] : undefined
+		] : undefined,
 	});
 
 	if (note == null) {

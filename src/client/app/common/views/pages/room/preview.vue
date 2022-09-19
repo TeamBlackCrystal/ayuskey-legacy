@@ -11,7 +11,7 @@ export default Vue.extend({
 		return {
 			selected: null,
 			objectHeight: 0,
-			orbitRadius: 5
+			orbitRadius: 5,
 		};
 	},
 
@@ -26,7 +26,7 @@ export default Vue.extend({
 		const renderer = new THREE.WebGLRenderer({
 			canvas: canvas,
 			antialias: true,
-			alpha: false
+			alpha: false,
 		});
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(width, height);

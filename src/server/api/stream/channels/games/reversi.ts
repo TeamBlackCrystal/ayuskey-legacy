@@ -21,9 +21,10 @@ export default class extends Channel {
 		switch (type) {
 			case 'ping':
 				if (body.id == null) return;
+				// eslint-disable-next-line no-case-declarations
 				const matching = await ReversiMatchings.findOne({
-					parentId: this.user!.id,
-					childId: body.id
+					parentId: this.user?.id,
+					childId: body.id,
 				});
 				if (matching == null) return;
 				publishMainStream(matching.childId, 'reversiInvited', await ReversiMatchings.pack(matching, matching.childId));

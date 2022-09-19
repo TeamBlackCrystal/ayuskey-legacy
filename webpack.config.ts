@@ -7,7 +7,7 @@ import * as webpack from 'webpack';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
 const { VueLoaderPlugin } = require('vue-loader');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const WebpackBar = require('webpackbar');
 const TerserPlugin = require('terser-webpack-plugin');
 
 class WebpackOnBuildPlugin {
@@ -179,9 +179,8 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new ProgressBarPlugin({
-			format: chalk`  {cyan.bold webpack} {bold [}:bar{bold ]} {green.bold :percent} :msg :elapseds`,
-			clear: false
+		new WebpackBar({
+			name: 'Ayuskey FE'
 		}),
 		new webpack.DefinePlugin({
 			_COPYRIGHT_: JSON.stringify(constants.copyright),

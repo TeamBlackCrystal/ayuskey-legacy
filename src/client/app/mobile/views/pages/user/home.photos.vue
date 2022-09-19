@@ -1,14 +1,15 @@
 <template>
 <div class="root photos">
-	<p class="initializing" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-	<div class="stream" v-if="!fetching && images.length > 0">
-		<a v-for="(image, i) in images" :key="i"
+	<p v-if="fetching" class="initializing"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+	<div v-if="!fetching && images.length > 0" class="stream">
+		<a
+			v-for="(image, i) in images" :key="i"
 			class="img"
 			:style="`background-image: url(${thumbnail(image.file)})`"
 			:href="image.note | notePage"
 		></a>
 	</div>
-	<p class="empty" v-if="!fetching && images.length == 0">{{ $t('no-photos') }}</p>
+	<p v-if="!fetching && images.length == 0" class="empty">{{ $t('no-photos') }}</p>
 </div>
 </template>
 
@@ -23,7 +24,7 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			images: []
+			images: [],
 		};
 	},
 	mounted() {
@@ -45,7 +46,7 @@ export default Vue.extend({
 					if (this.images.length < 9) {
 						this.images.push({
 							note,
-							file
+							file,
 						});
 					}
 				}

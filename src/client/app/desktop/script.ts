@@ -56,7 +56,7 @@ init(async (launch, os) => {
 				if (o.renote) {
 					const vm = this.$root.new(RenoteFormWindow, {
 						note: o.renote,
-						animation: o.animation == null ? true : o.animation
+						animation: o.animation == null ? true : o.animation,
 					});
 					if (o.cb) vm.$once('closed', o.cb);
 				} else {
@@ -83,7 +83,7 @@ init(async (launch, os) => {
 							title: o.title,
 							type: o.type,
 							multiple: o.multiple,
-							initFolder: o.currentFolder
+							initFolder: o.currentFolder,
 						});
 						w.$once('selected', file => {
 							res(file);
@@ -105,7 +105,7 @@ init(async (launch, os) => {
 					const o = opts || {};
 					const w = this.$root.new(MkChooseFolderFromDriveWindow, {
 						title: o.title,
-						initFolder: o.currentFolder
+						initFolder: o.currentFolder,
 					});
 					w.$once('selected', folder => {
 						res(folder);
@@ -115,10 +115,10 @@ init(async (launch, os) => {
 
 			$notify(message) {
 				this.$root.new(Notification, {
-					message
+					message,
 				});
-			}
-		}
+			},
+		},
 	});
 
 	// Register directives
@@ -138,14 +138,14 @@ init(async (launch, os) => {
 						{ path: '', name: 'user', component: () => import('../common/views/deck/deck.user-column.home.vue').then(m => m.default) },
 						{ path: 'following', component: () => import('../common/views/pages/following.vue').then(m => m.default) },
 						{ path: 'followers', component: () => import('../common/views/pages/followers.vue').then(m => m.default) },
-					]},
+					] },
 					{ path: '/notes/:note', name: 'note', component: () => import('../common/views/deck/deck.note-column.vue').then(m => m.default) },
 					{ path: '/search', component: () => import('../common/views/deck/deck.search-column.vue').then(m => m.default) },
 					{ path: '/tags/:tag', name: 'tag', component: () => import('../common/views/deck/deck.hashtag-column.vue').then(m => m.default) },
 					{ path: '/featured', name: 'featured', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/featured.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/explore', name: 'explore', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 					{ path: '/explore/tags/:tag', name: 'explore-tag', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
-					{ path: '/about', name: 'about', component: DeckColumn, props: route => ({component: () => import('../common/views/deck/deck.about-column.vue').then(m => m.default) }) },
+					{ path: '/about', name: 'about', component: DeckColumn, props: route => ({ component: () => import('../common/views/deck/deck.about-column.vue').then(m => m.default) }) },
 					{ path: '/i/favorites', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/favorites.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/i/pages', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/pages.vue').then(m => m.default) }) },
 					{ path: '/i/lists', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/user-lists.vue').then(m => m.default) }) },
@@ -154,14 +154,14 @@ init(async (launch, os) => {
 					{ path: '/i/groups/:groupId', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/user-group-editor.vue').then(m => m.default), groupId: route.params.groupId }) },
 					{ path: '/i/follow-requests', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/follow-requests.vue').then(m => m.default) }) },
 					{ path: '/@:username/pages/:pageName', name: 'page', props: true, component: () => import('../common/views/deck/deck.page-column.vue').then(m => m.default) },
-				]}
+				] }
 				: { path: '/', component: MkHome, children: [
 					{ path: '', name: 'index', component: MkHomeTimeline },
 					{ path: '/@:user', component: () => import('./views/home/user/index.vue').then(m => m.default), children: [
 						{ path: '', name: 'user', component: () => import('./views/home/user/user.home.vue').then(m => m.default) },
 						{ path: 'following', component: () => import('../common/views/pages/following.vue').then(m => m.default) },
 						{ path: 'followers', component: () => import('../common/views/pages/followers.vue').then(m => m.default) },
-					]},
+					] },
 					{ path: '/notes/:note', name: 'note', component: () => import('./views/home/note.vue').then(m => m.default) },
 					{ path: '/search', component: () => import('./views/home/search.vue').then(m => m.default) },
 					{ path: '/tags/:tag', name: 'tag', component: () => import('./views/home/tag.vue').then(m => m.default) },
@@ -180,7 +180,7 @@ init(async (launch, os) => {
 					{ path: '/i/pages/edit/:pageId', component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default), props: route => ({ initPageId: route.params.pageId }) },
 					{ path: '/@:user/pages/:page', component: () => import('../common/views/pages/page.vue').then(m => m.default), props: route => ({ pageName: route.params.page, username: route.params.user }) },
 					{ path: '/@:user/pages/:pageName/view-source', component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default), props: route => ({ initUser: route.params.user, initPageName: route.params.pageName }) },
-				]},
+				] },
 			{ path: '/i/pages/new', component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default) },
 			{ path: '/i/pages/edit/:pageId', component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default), props: route => ({ initPageId: route.params.pageId }) },
 			{ path: '/@:user/pages/:pageName/view-source', component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default), props: route => ({ initUser: route.params.user, initPageName: route.params.pageName }) },
@@ -197,11 +197,11 @@ init(async (launch, os) => {
 			{ path: '/authorize-follow', component: MkFollow },
 			{ path: '/deck', redirect: '/' },
 			{ path: '/flags', component: () => import('../common/views/pages/flags.vue').then(m => m.default) },
-			{ path: '*', component: MkNotFound }
+			{ path: '*', component: MkNotFound },
 		],
 		scrollBehavior(to, from, savedPosition) {
 			return { x: 0, y: 0 };
-		}
+		},
 	});
 
 	// Launch the app
@@ -233,7 +233,7 @@ function registerNotifications(os: MiOS) {
 		const _n = composeNotification('notification', notification);
 		const n = new Notification(_n.title, {
 			body: _n.body,
-			icon: _n.icon
+			icon: _n.icon,
 		});
 		setTimeout(n.close.bind(n), 6000);
 	});
@@ -242,7 +242,7 @@ function registerNotifications(os: MiOS) {
 		const _n = composeNotification('driveFileCreated', file);
 		const n = new Notification(_n.title, {
 			body: _n.body,
-			icon: _n.icon
+			icon: _n.icon,
 		});
 		setTimeout(n.close.bind(n), 5000);
 	});
@@ -251,7 +251,7 @@ function registerNotifications(os: MiOS) {
 		const _n = composeNotification('unreadMessagingMessage', message);
 		const n = new Notification(_n.title, {
 			body: _n.body,
-			icon: _n.icon
+			icon: _n.icon,
 		});
 		n.onclick = () => {
 			n.close();
@@ -266,7 +266,7 @@ function registerNotifications(os: MiOS) {
 		const _n = composeNotification('reversiInvited', matching);
 		const n = new Notification(_n.title, {
 			body: _n.body,
-			icon: _n.icon
+			icon: _n.icon,
 		});
 	});
 }

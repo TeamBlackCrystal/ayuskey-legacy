@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 
 // Style
 import './style.styl';
-import './style.scss'
+import './style.scss';
 
 import init from '../init';
 
@@ -39,7 +39,7 @@ init((launch, os) => {
 	Vue.mixin({
 		data() {
 			return {
-				isMobile: true
+				isMobile: true,
 			};
 		},
 
@@ -74,7 +74,7 @@ init((launch, os) => {
 					const vm = this.$root.new(FileChooser, {
 						title: o.title,
 						multiple: o.multiple,
-						initFolder: o.currentFolder
+						initFolder: o.currentFolder,
 					});
 					vm.$once('selected', file => {
 						res(file);
@@ -87,7 +87,7 @@ init((launch, os) => {
 					const o = opts || {};
 					const vm = this.$root.new(FolderChooser, {
 						title: o.title,
-						initFolder: o.currentFolder
+						initFolder: o.currentFolder,
 					});
 					vm.$once('selected', folder => {
 						res(folder);
@@ -97,8 +97,8 @@ init((launch, os) => {
 
 			$notify(message) {
 				alert(message);
-			}
-		}
+			},
+		},
 	});
 
 	// Register directives
@@ -121,14 +121,14 @@ init((launch, os) => {
 						{ path: '', name: 'user', component: () => import('../common/views/deck/deck.user-column.home.vue').then(m => m.default) },
 						{ path: 'following', component: () => import('../common/views/pages/following.vue').then(m => m.default) },
 						{ path: 'followers', component: () => import('../common/views/pages/followers.vue').then(m => m.default) },
-					]},
+					] },
 					{ path: '/notes/:note', name: 'note', component: () => import('../common/views/deck/deck.note-column.vue').then(m => m.default) },
 					{ path: '/search', component: () => import('../common/views/deck/deck.search-column.vue').then(m => m.default) },
 					{ path: '/tags/:tag', name: 'tag', component: () => import('../common/views/deck/deck.hashtag-column.vue').then(m => m.default) },
 					{ path: '/featured', name: 'featured', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/featured.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/explore', name: 'explore', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 					{ path: '/explore/tags/:tag', name: 'explore-tag', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
-					{ path: '/about', name: 'about', component: DeckColumn, props: route => ({component: () => import('../common/views/deck/deck.about-column.vue').then(m => m.default) }) },
+					{ path: '/about', name: 'about', component: DeckColumn, props: route => ({ component: () => import('../common/views/deck/deck.about-column.vue').then(m => m.default) }) },
 					{ path: '/i/favorites', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/favorites.vue').then(m => m.default), platform: 'deck' }) },
 					{ path: '/i/pages', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/pages.vue').then(m => m.default) }) },
 					{ path: '/i/lists', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/user-lists.vue').then(m => m.default) }) },
@@ -137,10 +137,10 @@ init((launch, os) => {
 					{ path: '/i/groups/:groupId', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/user-group-editor.vue').then(m => m.default), groupId: route.params.groupId }) },
 					{ path: '/i/follow-requests', component: DeckColumn, props: route => ({ component: () => import('../common/views/pages/follow-requests.vue').then(m => m.default) }) },
 					{ path: '/@:username/pages/:pageName', name: 'page', props: true, component: () => import('../common/views/deck/deck.page-column.vue').then(m => m.default) },
-				]}]
-			: [
-				{ path: '/', name: 'index', component: MkIndex },
-		]),
+				] }]
+				: [
+					{ path: '/', name: 'index', component: MkIndex },
+				]),
 			{ path: '/signup', name: 'signup', component: MkSignup },
 			{ path: '/i/settings', name: 'settings', component: () => import('./views/pages/settings.vue').then(m => m.default) },
 			{ path: '/i/settings/:page', redirect: '/i/settings' },
@@ -167,21 +167,21 @@ init((launch, os) => {
 			{ path: '/featured', name: 'featured', component: UI, props: route => ({ component: () => import('../common/views/pages/featured.vue').then(m => m.default), platform: 'mobile' }) },
 			{ path: '/explore', name: 'explore', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 			{ path: '/explore/tags/:tag', name: 'explore-tag', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
-			{ path: '/about', name: 'about', component: UI, props: route => ({component: () => import('./views/pages/about.vue').then(m => m.default) }) },
+			{ path: '/about', name: 'about', component: UI, props: route => ({ component: () => import('./views/pages/about.vue').then(m => m.default) }) },
 			{ path: '/share', component: MkShare },
 			{ path: '/games/reversi/:game?', name: 'reversi', component: MkReversi },
 			{ path: '/@:user', name: 'user', component: () => import('./views/pages/user/index.vue').then(m => m.default), children: [
 				{ path: 'following', component: () => import('../common/views/pages/following.vue').then(m => m.default) },
 				{ path: 'followers', component: () => import('../common/views/pages/followers.vue').then(m => m.default) },
-			]},
+			] },
 			{ path: '/@:user/pages/:page', component: UI, props: route => ({ component: () => import('../common/views/pages/page.vue').then(m => m.default), pageName: route.params.page, username: route.params.user }) },
 			{ path: '/@:user/pages/:pageName/view-source', component: UI, props: route => ({ component: () => import('../common/views/pages/page-editor/page-editor.vue').then(m => m.default), initUser: route.params.user, initPageName: route.params.pageName }) },
 			{ path: '/@:acct/room', props: true, component: () => import('../common/views/pages/room/room.vue').then(m => m.default) },
 			{ path: '/notes/:note', component: MkNote },
 			{ path: '/authorize-follow', component: MkFollow },
 			{ path: '/flags', component: () => import('../common/views/pages/flags.vue').then(m => m.default) },
-			{ path: '*', component: MkNotFound }
-		]
+			{ path: '*', component: MkNotFound },
+		],
 	});
 
 	// Launch the app

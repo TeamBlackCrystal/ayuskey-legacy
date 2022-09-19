@@ -13,11 +13,11 @@ import { url } from '../../../config';
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/game-window.vue'),
 	components: {
-		XReversi: () => import('../../../common/views/components/games/reversi/reversi.vue').then(m => m.default)
+		XReversi: () => import('../../../common/views/components/games/reversi/reversi.vue').then(m => m.default),
 	},
 	data() {
 		return {
-			game: null
+			game: null,
 		};
 	},
 	computed: {
@@ -25,8 +25,8 @@ export default Vue.extend({
 			return this.game
 				? `${url}/games/reversi/${this.game.id}`
 				: `${url}/games/reversi`;
-		}
-	}
+		},
+	},
 });
 </script>
 

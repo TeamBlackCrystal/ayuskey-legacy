@@ -12,14 +12,14 @@ export const meta = {
 
 	desc: {
 		'ja-JP': '指定したユーザーをブロックします。',
-		'en-US': 'Block a user.'
+		'en-US': 'Block a user.',
 	},
 
 	tags: ['blocking', 'users'],
 
 	limit: {
 		duration: ms('1hour'),
-		max: 100
+		max: 100,
 	},
 
 	requireCredential: true,
@@ -31,30 +31,30 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
-		}
+				'en-US': 'Target user ID',
+			},
+		},
 	},
 
 	errors: {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '7cc4f851-e2f1-4621-9633-ec9e1d00c01e'
+			id: '7cc4f851-e2f1-4621-9633-ec9e1d00c01e',
 		},
 
 		blockeeIsYourself: {
 			message: 'Blockee is yourself.',
 			code: 'BLOCKEE_IS_YOURSELF',
-			id: '88b19138-f28d-42c0-8499-6a31bbd0fdc6'
+			id: '88b19138-f28d-42c0-8499-6a31bbd0fdc6',
 		},
 
 		alreadyBlocking: {
 			message: 'You are already blocking that user.',
 			code: 'ALREADY_BLOCKING',
-			id: '787fed64-acb9-464a-82eb-afbd745b9614'
+			id: '787fed64-acb9-464a-82eb-afbd745b9614',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -74,7 +74,7 @@ export default define(meta, async (ps, user) => {
 	// Check if already blocking
 	const exist = await Blockings.findOne({
 		blockerId: blocker.id,
-		blockeeId: blockee.id
+		blockeeId: blockee.id,
 	});
 
 	if (exist != null) {
@@ -86,7 +86,7 @@ export default define(meta, async (ps, user) => {
 
 	NoteWatchings.delete({
 		userId: blocker.id,
-		noteUserId: blockee.id
+		noteUserId: blockee.id,
 	});
 
 	return await Users.pack(blockee.id, user);

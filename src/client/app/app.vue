@@ -3,17 +3,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { url, lang } from './config';
 
-export default Vue.extend({
+export default defineComponent({
 	computed: {
 		keymap(): any {
 			return {
 				'h|slash': this.help,
-				'd': this.dark
+				'd': this.dark,
 			};
-		}
+		},
 	},
 
 	methods: {
@@ -24,9 +24,9 @@ export default Vue.extend({
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
-				value: !this.$store.state.device.darkmode
+				value: !this.$store.state.device.darkmode,
 			});
-		}
-	}
+		},
+	},
 });
 </script>

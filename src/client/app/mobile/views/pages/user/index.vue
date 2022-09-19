@@ -1,11 +1,11 @@
 <template>
 <mk-ui>
-	<template #header v-if="!fetching">
-		<img :src="avator" alt=""><mk-user-name :user="user" :key="user.id"/>
+	<template v-if="!fetching" #header>
+		<img :src="avator" alt=""><mk-user-name :key="user.id" :user="user"/>
 	</template>
-	<div class="wwtwuxyh" v-if="!fetching">
-		<div class="is-suspended" v-if="user.isSuspended"><p><fa icon="exclamation-triangle"/> {{ $t('@.user-suspended') }}</p></div>
-		<div class="is-remote" v-if="user.host != null"><p><fa icon="exclamation-triangle"/> {{ $t('@.is-remote-user') }}<a :href="user.url" rel="nofollow noopener" target="_blank">{{ $t('@.view-on-remote') }}</a></p></div>
+	<div v-if="!fetching" class="wwtwuxyh">
+		<div v-if="user.isSuspended" class="is-suspended"><p><fa icon="exclamation-triangle"/> {{ $t('@.user-suspended') }}</p></div>
+		<div v-if="user.host != null" class="is-remote"><p><fa icon="exclamation-triangle"/> {{ $t('@.is-remote-user') }}<a :href="user.url" rel="nofollow noopener" target="_blank">{{ $t('@.view-on-remote') }}</a></p></div>
 		<header>
 			<div class="banner" :style="style"></div>
 			<div class="body">
@@ -13,21 +13,21 @@
 					<a class="avatar">
 						<img :src="avator" alt="avatar"/>
 					</a>
-					<button class="menu" ref="menu" @click="menu"><fa icon="ellipsis-h"/></button>
+					<button ref="menu" class="menu" @click="menu"><fa icon="ellipsis-h"/></button>
 					<mk-follow-button v-if="$store.getters.isSignedIn && $store.state.i.id != user.id" :user="user"/>
 				</div>
 				<div class="title">
-					<h1><mk-user-name :user="user" :key="user.id" :nowrap="false"/></h1>
-					<span class="username"><mk-acct :user="user" :detail="true" :key="user.id"/></span>
-					<span class="moved" v-if="user.movedToUser != null">moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
-					<span class="followed" v-if="user.isFollowed">{{ $t('follows-you') }}</span>
+					<h1><mk-user-name :key="user.id" :user="user" :nowrap="false"/></h1>
+					<span class="username"><mk-acct :key="user.id" :user="user" :detail="true"/></span>
+					<span v-if="user.movedToUser != null" class="moved">moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
+					<span v-if="user.isFollowed" class="followed">{{ $t('follows-you') }}</span>
 				</div>
 				<div class="description">
-					<mfm v-if="user.description" :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis" :key="user.id"/>
+					<mfm v-if="user.description" :key="user.id" :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis"/>
 					<x-integrations :user="user" style="margin:20px 0;"/>
 				</div>
-				<div class="fields" v-if="user.fields" :key="user.id">
-					<dl class="field" v-for="(field, i) in user.fields" :key="i">
+				<div v-if="user.fields" :key="user.id" class="fields">
+					<dl v-for="(field, i) in user.fields" :key="i" class="field">
 						<dt class="name">
 							<mfm :text="field.name" :plain="true" :custom-emojis="user.emojis"/>
 						</dt>
@@ -37,10 +37,10 @@
 					</dl>
 				</div>
 				<div class="info">
-					<p class="location" v-if="user.host === null && user.location">
+					<p v-if="user.host === null && user.location" class="location">
 						<fa icon="map-marker"/>{{ user.location }}
 					</p>
-					<p class="birthday" v-if="user.host === null && user.birthday">
+					<p v-if="user.host === null && user.birthday" class="birthday">
 						<fa icon="birthday-cake"/>{{ user.birthday.replace('-', '年').replace('-', '月') + '日' }} ({{ $t('years-old', { age }) }})
 					</p>
 				</div>
@@ -69,9 +69,9 @@
 		</nav>
 		<main>
 			<template v-if="$route.name == 'user'">
-				<x-home v-if="page == 'home'" :user="user" :key="user.id"/>
-				<mk-user-timeline v-if="page == 'notes'" :user="user" :key="`tl:${user.id}`"/>
-				<mk-user-timeline v-if="page == 'media'" :user="user" :with-media="true" :key="`media:${user.id}`"/>
+				<x-home v-if="page == 'home'" :key="user.id" :user="user"/>
+				<mk-user-timeline v-if="page == 'notes'" :key="`tl:${user.id}`" :user="user"/>
+				<mk-user-timeline v-if="page == 'media'" :key="`media:${user.id}`" :user="user" :with-media="true"/>
 			</template>
 			<router-view :user="user"></router-view>
 		</main>
@@ -94,13 +94,13 @@ export default Vue.extend({
 	i18n: i18n('mobile/views/pages/user.vue'),
 	components: {
 		XHome,
-		XIntegrations
+		XIntegrations,
 	},
 	data() {
 		return {
 			fetching: true,
 			user: null,
-			page: this.$route.name == 'user' ? 'home' : null
+			page: this.$route.name == 'user' ? 'home' : null,
 		};
 	},
 	computed: {
@@ -116,12 +116,12 @@ export default Vue.extend({
 			if (this.user.bannerUrl == null) return {};
 			return {
 				backgroundColor: this.user.bannerColor,
-				backgroundImage: `url(${ this.user.bannerUrl })`
+				backgroundImage: `url(${ this.user.bannerUrl })`,
 			};
-		}
+		},
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		this.fetch();
@@ -142,10 +142,10 @@ export default Vue.extend({
 		menu() {
 			this.$root.new(XUserMenu, {
 				source: this.$refs.menu,
-				user: this.user
+				user: this.user,
 			});
 		},
-	}
+	},
 });
 </script>
 

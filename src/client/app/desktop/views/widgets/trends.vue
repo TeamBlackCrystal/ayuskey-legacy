@@ -5,12 +5,12 @@
 		<template #func><button :title="$t('title')" @click="fetch"><fa icon="sync"/></button></template>
 
 		<div class="mkw-trends--body">
-			<p class="fetching" v-if="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
-			<div class="note" v-else-if="note != null">
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<div v-else-if="note != null" class="note">
 				<p class="text"><router-link :to="note | notePage">{{ note.text }}</router-link></p>
 				<p class="author">―<router-link :to="note.user | userPage">@{{ note.user | acct }}</router-link></p>
 			</div>
-			<p class="empty" v-else>{{ $t('nothing') }}</p>
+			<p v-else class="empty">{{ $t('nothing') }}</p>
 		</div>
 	</ui-container>
 </div>
@@ -23,15 +23,15 @@ import i18n from '../../../i18n';
 export default define({
 	name: 'trends',
 	props: () => ({
-		compact: false
-	})
+		compact: false,
+	}),
 }).extend({
 	i18n: i18n('desktop/views/widgets/trends.vue'),
 	data() {
 		return {
 			note: null,
 			fetching: true,
-			offset: 0
+			offset: 0,
 		};
 	},
 	mounted() {
@@ -52,7 +52,7 @@ export default define({
 				renote: false,
 				reply: false,
 				file: false,
-				poll: false
+				poll: false,
 			}).then(notes => {
 				const note = notes ? notes[0] : null;
 				if (note == null) {
@@ -63,8 +63,8 @@ export default define({
 				this.note = note;
 				this.fetching = false;
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

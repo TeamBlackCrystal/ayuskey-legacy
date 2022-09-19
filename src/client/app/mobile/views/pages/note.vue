@@ -3,7 +3,7 @@
 	<template #header><span style="margin-right:4px;"><fa :icon="['far', 'sticky-note']"/></span>{{ $t('title') }}</template>
 	<main v-if="!fetching">
 		<div>
-			<mk-note-detail :note="note" :key="note.id"/>
+			<mk-note-detail :key="note.id" :note="note"/>
 		</div>
 		<footer>
 			<router-link v-if="note.prev" :to="note.prev"><fa icon="angle-left"/> {{ $t('prev') }}</router-link>
@@ -23,11 +23,11 @@ export default Vue.extend({
 	data() {
 		return {
 			fetching: true,
-			note: null
+			note: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		this.fetch();
@@ -41,15 +41,15 @@ export default Vue.extend({
 			this.fetching = true;
 
 			this.$root.api('notes/show', {
-				noteId: this.$route.params.note
+				noteId: this.$route.params.note,
 			}).then(note => {
 				this.note = note;
 				this.fetching = false;
 
 				Progress.done();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

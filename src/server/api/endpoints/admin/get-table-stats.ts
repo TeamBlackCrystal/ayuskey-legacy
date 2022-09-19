@@ -5,7 +5,7 @@ export const meta = {
 	requireCredential: false,
 
 	desc: {
-		'en-US': 'Get table stats'
+		'en-US': 'Get table stats',
 	},
 
 	tags: ['meta'],
@@ -16,7 +16,7 @@ export const meta = {
 
 export default define(meta, async () => {
 	const sizes = await
-		getConnection().query(`
+	getConnection().query(`
 			SELECT relname AS "table", reltuples as "count", pg_total_relation_size(C.oid) AS "size"
 			FROM pg_class C LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace)
 			WHERE nspname NOT IN ('pg_catalog', 'information_schema')

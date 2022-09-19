@@ -38,7 +38,7 @@ export default defineComponent({
 		return {
 			INFO: {
 				title: 'RegEdit',
-				icon: faCode
+				icon: faCode,
 			},
 			settings: JSON5.stringify(this.$store.state.settings, null, '\t'),
 			deviceSettings: JSON5.stringify(this.$store.state.device, null, '\t'),
@@ -57,6 +57,6 @@ export default defineComponent({
 			const obj = JSON5.parse(this.deviceUserSettings);
 			this.$store.commit('deviceUser/overwrite', obj);
 		},*/
-	}
+	},
 });
 </script>

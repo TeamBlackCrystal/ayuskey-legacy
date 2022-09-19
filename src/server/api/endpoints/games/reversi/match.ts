@@ -20,8 +20,8 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
+				'en-US': 'Target user ID',
+			},
 		},
 	},
 
@@ -29,15 +29,15 @@ export const meta = {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '0b4f0559-b484-4e31-9581-3f73cee89b28'
+			id: '0b4f0559-b484-4e31-9581-3f73cee89b28',
 		},
 
 		isYourself: {
 			message: 'Target user is yourself.',
 			code: 'TARGET_IS_YOURSELF',
-			id: '96fd7bd6-d2bc-426c-a865-d055dcd2828e'
+			id: '96fd7bd6-d2bc-426c-a865-d055dcd2828e',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -49,7 +49,7 @@ export default define(meta, async (ps, user) => {
 	// Find session
 	const exist = await ReversiMatchings.findOne({
 		parentId: ps.userId,
-		childId: user.id
+		childId: user.id,
 	});
 
 	if (exist) {
@@ -69,13 +69,13 @@ export default define(meta, async (ps, user) => {
 			logs: [],
 			map: eighteight.data,
 			bw: 'random',
-			isLlotheo: false
+			isLlotheo: false,
 		} as Partial<ReversiGame>);
 
 		publishReversiStream(exist.parentId, 'matched', await ReversiGames.pack(game, exist.parentId));
 
 		const other = await ReversiMatchings.count({
-			childId: user.id
+			childId: user.id,
 		});
 
 		if (other == 0) {
@@ -92,7 +92,7 @@ export default define(meta, async (ps, user) => {
 
 		// 以前のセッションはすべて削除しておく
 		await ReversiMatchings.delete({
-			parentId: user.id
+			parentId: user.id,
 		});
 
 		// セッションを作成
@@ -100,7 +100,7 @@ export default define(meta, async (ps, user) => {
 			id: genId(),
 			createdAt: new Date(),
 			parentId: user.id,
-			childId: child.id
+			childId: child.id,
 		} as ReversiMatching);
 
 		const packed = await ReversiMatchings.pack(matching, child);

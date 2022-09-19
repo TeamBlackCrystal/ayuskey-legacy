@@ -8,8 +8,8 @@
 	@click="toggle"
 >
 	<input
-		type="checkbox"
 		ref="input"
+		type="checkbox"
 		:disabled="disabled"
 		@keydown.enter="toggle"
 	>
@@ -30,29 +30,29 @@ import Vue from 'vue';
 export default Vue.extend({
 	model: {
 		prop: 'value',
-		event: 'change'
+		event: 'change',
 	},
 	props: {
 		value: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		checked(): boolean {
 			return this.value;
-		}
+		},
 	},
 	methods: {
 		toggle() {
 			if (this.disabled) return;
 			this.$emit('change', !this.checked);
-		}
-	}
+		},
+	},
 });
 </script>
 

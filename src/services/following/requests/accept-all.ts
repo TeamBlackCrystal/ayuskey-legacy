@@ -9,7 +9,7 @@ import { ensure } from '../../../prelude/ensure';
  */
 export default async function(user: User) {
 	const requests = await FollowRequests.find({
-		followeeId: user.id
+		followeeId: user.id,
 	});
 
 	for (const request of requests) {

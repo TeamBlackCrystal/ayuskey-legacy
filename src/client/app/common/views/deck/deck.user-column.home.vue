@@ -3,7 +3,7 @@
 	<ui-container v-if="user.pinnedPage" :body-togglable="true">
 		<template #header><fa icon="thumbtack"/> {{ $t('pinned-page') }}</template>
 		<div>
-			<x-page :page="user.pinnedPage" :key="user.pinnedPage.id" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
+			<x-page :key="user.pinnedPage.id" :page="user.pinnedPage" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
 		</div>
 	</ui-container>
 	<ui-container v-if="user.pinnedNotes && user.pinnedNotes.length > 0" :body-togglable="true">
@@ -12,20 +12,23 @@
 			<mk-note v-for="n in user.pinnedNotes" :key="n.id" :note="n"/>
 		</div>
 	</ui-container>
-	<ui-container v-if="images.length > 0" :body-togglable="true"
+	<ui-container
+		v-if="images.length > 0" :body-togglable="true"
 		:expanded="$store.state.device.expandUsersPhotos"
 		@toggle="expanded => $store.commit('device/set', { key: 'expandUsersPhotos', value: expanded })">
 		<template #header><fa :icon="['far', 'images']"/> {{ $t('images') }}</template>
 		<div class="sainvnaq">
-			<router-link v-for="image in images"
-				:style="`background-image: url(${image.thumbnailUrl})`"
+			<router-link
+				v-for="image in images"
 				:key="`${image.id}:${image._note.id}`"
+				:style="`background-image: url(${image.thumbnailUrl})`"
 				:to="image._note | notePage"
 				:title="`${image.name}\n${(new Date(image.createdAt)).toLocaleString()}`"
 			></router-link>
 		</div>
 	</ui-container>
-	<ui-container :body-togglable="true"
+	<ui-container
+		:body-togglable="true"
 		:expanded="$store.state.device.expandUsersActivity"
 		@toggle="expanded => $store.commit('device/set', { key: 'expandUsersActivity', value: expanded })">
 		<template #header><fa :icon="['far', 'chart-bar']"/> {{ $t('activity') }}</template>
@@ -36,7 +39,7 @@
 	<ui-container>
 		<template #header><fa :icon="['far', 'comment-alt']"/> {{ $t('timeline') }}</template>
 		<div>
-			<x-notes ref="timeline" :pagination="pagination" @inited="() => $emit('loaded')" :key="user.id"/>
+			<x-notes ref="timeline" :key="user.id" :pagination="pagination" @inited="() => $emit('loaded')"/>
 		</div>
 	</ui-container>
 </div>
@@ -60,15 +63,15 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			withFiles: false,
 			images: [],
-			chart: null as ApexCharts
+			chart: null as ApexCharts,
 		};
 	},
 
@@ -83,16 +86,16 @@ export default Vue.extend({
 					withFiles: this.withFiles,
 					includeMyRenotes: this.$store.state.settings.showMyRenotes,
 					includeRenotedMyNotes: this.$store.state.settings.showRenotedMyNotes,
-					includeLocalRenotes: this.$store.state.settings.showLocalRenotes
-				})
-			}
-		}
+					includeLocalRenotes: this.$store.state.settings.showLocalRenotes,
+				}),
+			};
+		},
 	},
 
 	watch: {
 		user() {
 			this.fetch();
-		}
+		},
 	},
 
 	created() {
@@ -127,7 +130,7 @@ export default Vue.extend({
 			this.$root.api('charts/user/notes', {
 				userId: this.user.id,
 				span: 'day',
-				limit: 21
+				limit: 21,
 			}).then(stats => {
 				const normal = [];
 				const reply = [];
@@ -142,15 +145,15 @@ export default Vue.extend({
 					const x = new Date(y, m, d - i);
 					normal.push([
 						x,
-						stats.diffs.normal[i]
+						stats.diffs.normal[i],
 					]);
 					reply.push([
 						x,
-						stats.diffs.reply[i]
+						stats.diffs.reply[i],
 					]);
 					renote.push([
 						x,
-						stats.diffs.renote[i]
+						stats.diffs.renote[i],
 					]);
 				}
 
@@ -162,16 +165,16 @@ export default Vue.extend({
 						stacked: true,
 						height: 100,
 						sparkline: {
-							enabled: true
+							enabled: true,
 						},
 					},
 					plotOptions: {
 						bar: {
-							columnWidth: '80%'
-						}
+							columnWidth: '80%',
+						},
 					},
 					dataLabels: {
-						enabled: false
+						enabled: false,
 					},
 					grid: {
 						clipMarkers: false,
@@ -179,36 +182,36 @@ export default Vue.extend({
 							top: 16,
 							right: 16,
 							bottom: 16,
-							left: 16
-						}
+							left: 16,
+						},
 					},
 					tooltip: {
 						shared: true,
-						intersect: false
+						intersect: false,
 					},
 					series: [{
 						name: 'Normal',
-						data: normal
+						data: normal,
 					}, {
 						name: 'Reply',
-						data: reply
+						data: reply,
 					}, {
 						name: 'Renote',
-						data: renote
+						data: renote,
 					}],
 					xaxis: {
 						type: 'datetime',
 						crosshairs: {
 							width: 1,
-							opacity: 1
-						}
-					}
+							opacity: 1,
+						},
+					},
 				});
 
 				this.chart.render();
 			});
 		},
-	}
+	},
 });
 </script>
 

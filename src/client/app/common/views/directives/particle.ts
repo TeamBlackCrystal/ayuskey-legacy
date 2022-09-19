@@ -16,11 +16,11 @@ export default {
 				parent: vn.context,
 				propsData: {
 					x,
-					y
-				}
+					y,
+				},
 			}).$mount();
 
 			document.body.appendChild(particle.$el);
 		});
-	}
+	},
 };

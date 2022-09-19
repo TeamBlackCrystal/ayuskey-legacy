@@ -1,29 +1,29 @@
 <template>
 <div class="gqyayizv">
-	<div class="backdrop" :class="{'blur': $store.state.device.useBlur}" ref="backdrop" @click="close"></div>
-	<div class="popover" :class="{ isMobile: $root.isMobile }" ref="popover">
-		<div @click="choose('public')" :class="{ active: v == 'public' }">
+	<div ref="backdrop" class="backdrop" :class="{'blur': $store.state.device.useBlur}" @click="close"></div>
+	<div ref="popover" class="popover" :class="{ isMobile: $root.isMobile }">
+		<div :class="{ active: v == 'public' }" @click="choose('public')">
 			<x-visibility-icon v="public"/>
 			<div>
 				<span>{{ $t('public') }}</span>
 				<span>{{ $t('public-desc') }}</span>
 			</div>
 		</div>
-		<div @click="choose('home')" :class="{ active: v == 'home' }">
+		<div :class="{ active: v == 'home' }" @click="choose('home')">
 			<x-visibility-icon v="home"/>
 			<div>
 				<span>{{ $t('home') }}</span>
 				<span>{{ $t('home-desc') }}</span>
 			</div>
 		</div>
-		<div @click="choose('followers')" :class="{ active: v == 'followers' }">
+		<div :class="{ active: v == 'followers' }" @click="choose('followers')">
 			<x-visibility-icon v="followers"/>
 			<div>
 				<span>{{ $t('followers') }}</span>
 				<span>{{ $t('followers-desc') }}</span>
 			</div>
 		</div>
-		<div @click="choose('specified')" :class="{ active: v == 'specified' }">
+		<div :class="{ active: v == 'specified' }" @click="choose('specified')">
 			<x-visibility-icon v="specified"/>
 			<div>
 				<span>{{ $t('specified') }}</span>
@@ -39,20 +39,20 @@
 			</div>
 		</div>
 		-->
-		<div @click="choose('local-public')" :class="{ active: v == 'local-public' }">
+		<div :class="{ active: v == 'local-public' }" @click="choose('local-public')">
 			<x-visibility-icon v="local-public"/>
 			<div>
 				<span>{{ $t('local-public') }}</span>
 				<span>{{ $t('local-public-desc') }}</span>
 			</div>
 		</div>
-		<div @click="choose('local-home')" :class="{ active: v == 'local-home' }">
+		<div :class="{ active: v == 'local-home' }" @click="choose('local-home')">
 			<x-visibility-icon v="local-home"/>
 			<div>
 				<span>{{ $t('local-home') }}</span>
 			</div>
 		</div>
-		<div @click="choose('local-followers')" :class="{ active: v == 'local-followers' }">
+		<div :class="{ active: v == 'local-followers' }" @click="choose('local-followers')">
 			<x-visibility-icon v="local-followers"/>
 			<div>
 				<span>{{ $t('local-followers') }}</span>
@@ -83,17 +83,17 @@ export default Vue.extend({
 	},
 	props: {
 		source: {
-			required: true
+			required: true,
 		},
 		currentVisibility: {
 			type: String,
-			required: false
-		}
+			required: false,
+		},
 	},
 	data() {
 		return {
-			v: this.$store.state.settings.rememberNoteVisibility ? (this.$store.state.device.visibility || this.$store.state.settings.defaultNoteVisibility) : (this.currentVisibility || this.$store.state.settings.defaultNoteVisibility)
-		}
+			v: this.$store.state.settings.rememberNoteVisibility ? (this.$store.state.device.visibility || this.$store.state.settings.defaultNoteVisibility) : (this.currentVisibility || this.$store.state.settings.defaultNoteVisibility),
+		};
 	},
 	mounted() {
 		this.$nextTick(() => {
@@ -129,14 +129,14 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 1,
 				duration: 100,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			anime({
 				targets: this.$refs.popover,
 				opacity: 1,
 				scale: [0.5, 1],
-				duration: 500
+				duration: 500,
 			});
 		});
 	},
@@ -154,7 +154,7 @@ export default Vue.extend({
 				targets: this.$refs.backdrop,
 				opacity: 0,
 				duration: 200,
-				easing: 'linear'
+				easing: 'linear',
 			});
 
 			(this.$refs.popover as any).style.pointerEvents = 'none';
@@ -164,10 +164,10 @@ export default Vue.extend({
 				scale: 0.5,
 				duration: 200,
 				easing: 'easeInBack',
-				complete: () => this.destroyDom()
+				complete: () => this.destroyDom(),
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

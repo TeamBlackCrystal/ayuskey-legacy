@@ -21,7 +21,7 @@ export const meta = {
 		text: {
 			validator: $.str,
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {

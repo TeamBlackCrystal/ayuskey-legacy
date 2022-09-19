@@ -10,7 +10,7 @@ export const meta = {
 
 	desc: {
 		'ja-JP': '指定したドライブのフォルダを削除します。',
-		'en-US': 'Delete specified folder of drive.'
+		'en-US': 'Delete specified folder of drive.',
 	},
 
 	tags: ['drive'],
@@ -24,31 +24,31 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のフォルダID',
-				'en-US': 'Target folder ID'
-			}
-		}
+				'en-US': 'Target folder ID',
+			},
+		},
 	},
 
 	errors: {
 		noSuchFolder: {
 			message: 'No such folder.',
 			code: 'NO_SUCH_FOLDER',
-			id: '1069098f-c281-440f-b085-f9932edbe091'
+			id: '1069098f-c281-440f-b085-f9932edbe091',
 		},
 
 		hasChildFilesOrFolders: {
 			message: 'This folder has child files or folders.',
 			code: 'HAS_CHILD_FILES_OR_FOLDERS',
-			id: 'b0fc8a17-963c-405d-bfbc-859a487295e1'
+			id: 'b0fc8a17-963c-405d-bfbc-859a487295e1',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
 	// Get folder
 	const folder = await DriveFolders.findOne({
 		id: ps.folderId,
-		userId: user.id
+		userId: user.id,
 	});
 
 	if (folder == null) {
@@ -57,7 +57,7 @@ export default define(meta, async (ps, user) => {
 
 	const [childFoldersCount, childFilesCount] = await Promise.all([
 		DriveFolders.count({ parentId: folder.id }),
-		DriveFiles.count({ folderId: folder.id })
+		DriveFiles.count({ folderId: folder.id }),
 	]);
 
 	if (childFoldersCount !== 0 || childFilesCount !== 0) {

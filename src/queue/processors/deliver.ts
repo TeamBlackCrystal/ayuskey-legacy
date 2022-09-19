@@ -25,9 +25,9 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 	// isSuspendedなら中断
 	const suspendedHosts = await Instances.find({
 		where: {
-			isSuspended: true
+			isSuspended: true,
 		},
-		cache: 60 * 1000
+		cache: 60 * 1000,
 	});
 	if (suspendedHosts.map(x => x.host).includes(toPuny(host))) {
 		return 'skip (suspended)';
@@ -42,7 +42,7 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 				latestRequestSentAt: new Date(),
 				latestStatus: 200,
 				lastCommunicatedAt: new Date(),
-				isNotResponding: false
+				isNotResponding: false,
 			});
 
 			fetchInstanceMetadata(i);
@@ -57,7 +57,7 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			Instances.update(i.id, {
 				latestRequestSentAt: new Date(),
 				latestStatus: res instanceof StatusError ? res.statusCode : null,
-				isNotResponding: true
+				isNotResponding: true,
 			});
 
 			instanceChart.requestSent(i.host, false);

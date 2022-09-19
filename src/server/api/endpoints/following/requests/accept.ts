@@ -8,7 +8,7 @@ import { getUser } from '../../../common/getters';
 export const meta = {
 	desc: {
 		'ja-JP': '自分に届いた、指定したフォローリクエストを承認します。',
-		'en-US': 'Accept a follow request.'
+		'en-US': 'Accept a follow request.',
 	},
 
 	tags: ['following', 'account'],
@@ -22,23 +22,23 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
-		}
+				'en-US': 'Target user ID',
+			},
+		},
 	},
 
 	errors: {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '66ce1645-d66c-46bb-8b79-96739af885bd'
+			id: '66ce1645-d66c-46bb-8b79-96739af885bd',
 		},
 		noFollowRequest: {
 			message: 'No follow request.',
 			code: 'NO_FOLLOW_REQUEST',
-			id: 'bcde4f8b-0913-4614-8881-614e522fb041'
+			id: 'bcde4f8b-0913-4614-8881-614e522fb041',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {

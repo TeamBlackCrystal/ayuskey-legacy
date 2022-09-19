@@ -1,10 +1,10 @@
 <template>
-<div class="skeikyzd" v-show="files.length != 0">
+<div v-show="files.length != 0" class="skeikyzd">
 	<x-draggable class="files" :list="files" animation="150">
 		<div v-for="file in files" :key="file.id" @click="showFileMenu(file, $event)" @contextmenu.prevent="showFileMenu(file, $event)">
 			<x-file-thumbnail :data-id="file.id" class="thumbnail" :file="file" fit="cover"/>
-			<img class="remove" @click.stop="detachMedia(file.id)" src="/assets/desktop/remove.png" :title="$t('attach-cancel')" alt=""/>
-			<div class="sensitive" v-if="file.isSensitive">
+			<img class="remove" src="/assets/desktop/remove.png" :title="$t('attach-cancel')" alt="" @click.stop="detachMedia(file.id)"/>
+			<div v-if="file.isSensitive" class="sensitive">
 				<fa class="icon" :icon="faExclamationTriangle"/>
 			</div>
 		</div>
@@ -20,42 +20,42 @@ import XDraggable from 'vuedraggable';
 import XMenu from '../../../common/views/components/menu.vue';
 import { faTimesCircle, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import XFileThumbnail from './drive-file-thumbnail.vue'
+import XFileThumbnail from './drive-file-thumbnail.vue';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/post-form-attaches.vue'),
 
 	components: {
 		XDraggable,
-		XFileThumbnail
+		XFileThumbnail,
 	},
 
 	props: {
 		files: {
 			type: Array,
-			required: true
+			required: true,
 		},
 		detachMediaFn: {
 			type: Function,
-			required: false
-		}
+			required: false,
+		},
 	},
 
 	data() {
 		return {
-			faExclamationTriangle
+			faExclamationTriangle,
 		};
 	},
 
 	methods: {
 		detachMedia(id) {
-			if (this.detachMediaFn) this.detachMediaFn(id)
-			else if (this.$parent.detachMedia) this.$parent.detachMedia(id)
+			if (this.detachMediaFn) this.detachMediaFn(id);
+			else if (this.$parent.detachMedia) this.$parent.detachMedia(id);
 		},
 		toggleSensitive(file) {
 			this.$root.api('drive/files/update', {
 				fileId: file.id,
-				isSensitive: !file.isSensitive
+				isSensitive: !file.isSensitive,
 			}).then(() => {
 				file.isSensitive = !file.isSensitive;
 			});
@@ -66,17 +66,17 @@ export default Vue.extend({
 					type: 'item',
 					text: file.isSensitive ? this.$t('unmark-as-sensitive') : this.$t('mark-as-sensitive'),
 					icon: file.isSensitive ? faEyeSlash : faEye,
-					action: () => { this.toggleSensitive(file) }
+					action: () => { this.toggleSensitive(file); },
 				}, {
 					type: 'item',
 					text: this.$t('attach-cancel'),
 					icon: faTimesCircle,
-					action: () => { this.detachMedia(file.id) }
+					action: () => { this.detachMedia(file.id); },
 				}],
-				source: ev.currentTarget || ev.target
+				source: ev.currentTarget || ev.target,
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

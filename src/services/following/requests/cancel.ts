@@ -15,7 +15,7 @@ export default async function(followee: User, follower: User) {
 
 	const request = await FollowRequests.findOne({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	if (request == null) {
@@ -24,10 +24,10 @@ export default async function(followee: User, follower: User) {
 
 	await FollowRequests.delete({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	Users.pack(followee, followee, {
-		detail: true
+		detail: true,
 	}).then(packed => publishMainStream(followee.id, 'meUpdated', packed));
 }

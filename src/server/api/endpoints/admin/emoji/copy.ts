@@ -16,7 +16,7 @@ export const meta = {
 
 	params: {
 		emojiId: {
-			validator: $.type(ID)
+			validator: $.type(ID),
 		},
 	},
 
@@ -24,9 +24,9 @@ export const meta = {
 		noSuchEmoji: {
 			message: 'No such emoji.',
 			code: 'NO_SUCH_EMOJI',
-			id: 'e2785b66-dca3-4087-9cac-b93c541cc425'
-		}
-	}
+			id: 'e2785b66-dca3-4087-9cac-b93c541cc425',
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {
@@ -59,6 +59,6 @@ export default define(meta, async (ps, me) => {
 	await getConnection().queryResultCache!.remove(['meta_emojis']);
 
 	return {
-		id: copied.id
+		id: copied.id,
 	};
 });

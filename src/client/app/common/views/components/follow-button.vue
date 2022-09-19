@@ -1,9 +1,10 @@
 <template>
-<button class="wfliddvnhxvyusikowhxozkyxyenqxqr"
+<button
+	class="wfliddvnhxvyusikowhxozkyxyenqxqr"
 	:class="{ wait, block, inline, mini, transparent, active: isFollowing || hasPendingFollowRequestFromYou }"
-	@click="onClick"
 	:disabled="wait"
 	:inline="inline"
+	@click="onClick"
 >
 	<template v-if="!wait">
 		<fa :icon="iconAndText[0]"/> <template v-if="!mini">{{ iconAndText[1] }}</template>
@@ -22,27 +23,27 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		block: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		inline: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		mini: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		transparent: {
 			type: Boolean,
 			required: false,
-			default: true
+			default: true,
 		},
 	},
 
@@ -51,7 +52,7 @@ export default Vue.extend({
 			isFollowing: this.user.isFollowing,
 			hasPendingFollowRequestFromYou: this.user.hasPendingFollowRequestFromYou,
 			wait: false,
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -65,7 +66,7 @@ export default Vue.extend({
 				(!this.isFollowing && !this.user.isLocked) ? ['plus', this.$t('follow')] :
 				[]
 			);
-		}
+		},
 	},
 
 	mounted() {
@@ -95,27 +96,27 @@ export default Vue.extend({
 					const { canceled } = await this.$root.dialog({
 						type: 'warning',
 						text: this.$t('@.unfollow-confirm', { name: this.user.name || this.user.username }),
-						showCancelButton: true
+						showCancelButton: true,
 					});
 
 					if (canceled) return;
 
 					await this.$root.api('following/delete', {
-						userId: this.user.id
+						userId: this.user.id,
 					});
 				} else {
 					if (this.hasPendingFollowRequestFromYou) {
 						await this.$root.api('following/requests/cancel', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 					} else if (this.user.isLocked) {
 						await this.$root.api('following/create', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 						this.hasPendingFollowRequestFromYou = true;
 					} else {
 						await this.$root.api('following/create', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 						this.hasPendingFollowRequestFromYou = true;
 					}
@@ -125,8 +126,8 @@ export default Vue.extend({
 			} finally {
 				this.wait = false;
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

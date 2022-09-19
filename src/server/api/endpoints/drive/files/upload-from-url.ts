@@ -8,14 +8,14 @@ import { DB_MAX_IMAGE_COMMENT_LENGTH } from '@/misc/hard-limits';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'ドライブに指定されたURLに存在するファイルをアップロードします。'
+		'ja-JP': 'ドライブに指定されたURLに存在するファイルをアップロードします。',
 	},
 
 	tags: ['drive'],
 
 	limit: {
 		duration: ms('1hour'),
-		max: 60
+		max: 60,
 	},
 
 	requireCredential: true,
@@ -38,16 +38,16 @@ export const meta = {
 			default: false,
 			desc: {
 				'ja-JP': 'このメディアが「閲覧注意」(NSFW)かどうか',
-				'en-US': 'Whether this media is NSFW'
-			}
+				'en-US': 'Whether this media is NSFW',
+			},
 		},
 
 		comment: {
 			validator: $.optional.nullable.str.max(DB_MAX_IMAGE_COMMENT_LENGTH),
 			default: null,
 			desc: {
-				'ja-JP': 'コメント (INOP)'
-			}
+				'ja-JP': 'コメント (INOP)',
+			},
 		},
 
 		force: {
@@ -55,9 +55,9 @@ export const meta = {
 			default: false,
 			desc: {
 				'ja-JP': 'true にすると、同じハッシュを持つファイルが既にアップロードされていても強制的にファイルを作成します。',
-			}
-		}
-	}
+			},
+		},
+	},
 };
 
 export default define(meta, async (ps, user) => {

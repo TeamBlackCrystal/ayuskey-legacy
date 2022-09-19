@@ -4,7 +4,7 @@ import { removeRelay } from '../../../../../services/relay';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'Remove relay'
+		'ja-JP': 'Remove relay',
 	},
 
 	tags: ['admin'],
@@ -14,7 +14,7 @@ export const meta = {
 
 	params: {
 		inbox: {
-			validator: $.str
+			validator: $.str,
 		},
 	},
 };

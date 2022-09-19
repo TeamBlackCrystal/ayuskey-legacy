@@ -22,7 +22,7 @@ export class PageRepository extends Repository<Page> {
 				if (x.type === 'image') {
 					attachedFiles.push(DriveFiles.findOne({
 						id: x.fileId,
-						userId: page.userId
+						userId: page.userId,
 					}));
 				}
 				if (x.children) {
@@ -54,7 +54,7 @@ export class PageRepository extends Repository<Page> {
 		migrate(page.content);
 		if (migrated) {
 			this.update(page.id, {
-				content: page.content
+				content: page.content,
 			});
 		}
 
@@ -137,5 +137,5 @@ export const packedPageSchema = {
 			ref: 'User' as const,
 			optional: false as const, nullable: false as const,
 		},
-	}
+	},
 };

@@ -10,7 +10,7 @@ import { Packed } from '@/misc/schema';
 export class ReversiMatchingRepository extends Repository<ReversiMatching> {
 	public async pack(
 		src: ReversiMatching['id'] | ReversiMatching,
-		me: { id: User['id'] }
+		me: { id: User['id'] },
 	): Promise<Packed<'ReversiMatching'>> {
 		const matching = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -19,12 +19,12 @@ export class ReversiMatchingRepository extends Repository<ReversiMatching> {
 			createdAt: matching.createdAt.toISOString(),
 			parentId: matching.parentId,
 			parent: Users.pack(matching.parentId, me, {
-				detail: true
+				detail: true,
 			}),
 			childId: matching.childId,
 			child: Users.pack(matching.childId, me, {
-				detail: true
-			})
+				detail: true,
+			}),
 		});
 	}
 }
@@ -66,5 +66,5 @@ export const packedReversiMatchingSchema = {
 			optional: false as const, nullable: false as const,
 			ref: 'User' as const,
 		},
-	}
+	},
 };

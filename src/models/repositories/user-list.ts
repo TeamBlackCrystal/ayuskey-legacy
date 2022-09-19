@@ -12,14 +12,14 @@ export class UserListRepository extends Repository<UserList> {
 		const userList = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
 		const users = await UserListJoinings.find({
-			userListId: userList.id
+			userListId: userList.id,
 		});
 
 		return {
 			id: userList.id,
 			createdAt: userList.createdAt.toISOString(),
 			name: userList.name,
-			userIds: users.map(x => x.userId)
+			userIds: users.map(x => x.userId),
 		};
 	}
 }
@@ -39,12 +39,12 @@ export const packedUserListSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the UserList was created.'
+			description: 'The date that the UserList was created.',
 		},
 		name: {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
-			description: 'The name of the UserList.'
+			description: 'The name of the UserList.',
 		},
 		userIds: {
 			type: 'array' as const,
@@ -53,7 +53,7 @@ export const packedUserListSchema = {
 				type: 'string' as const,
 				nullable: false as const, optional: false as const,
 				format: 'id',
-			}
+			},
 		},
 	},
 };

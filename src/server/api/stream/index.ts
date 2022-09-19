@@ -34,7 +34,7 @@ export default class Connection {
 		wsConnection: websocket.connection,
 		subscriber: EventEmitter,
 		user: User | null | undefined,
-		app: App | null | undefined
+		app: App | null | undefined,
 	) {
 		this.wsConnection = wsConnection;
 		this.subscriber = subscriber;
@@ -83,7 +83,7 @@ export default class Connection {
 				this.followingChannels.delete(body.id);
 				break;
 
-			/*
+				/*
 			case 'updateUserProfile':
 				this.userProfile = body;
 				break;
@@ -175,7 +175,7 @@ export default class Connection {
 
 		const endpoint = payload.endpoint || payload.ep; // alias
 
-		this.sendMessageToWs(`api:${payload.id}`, { msg: "deprecated. use http(s)." })
+		this.sendMessageToWs(`api:${payload.id}`, { msg: 'deprecated. use http(s).' });
 
 		// 呼び出し
 		call(endpoint, user, this.app, payload.data).then(res => {
@@ -261,7 +261,7 @@ export default class Connection {
 	public sendMessageToWs(type: string, payload: any) {
 		this.wsConnection.send(JSON.stringify({
 			type: type,
-			body: payload
+			body: payload,
 		}));
 	}
 
@@ -285,7 +285,7 @@ export default class Connection {
 
 		if (pong) {
 			this.sendMessageToWs('connected', {
-				id: id
+				id: id,
 			});
 		}
 	}
@@ -327,9 +327,9 @@ export default class Connection {
 	private async updateFollowing() {
 		const followings = await Followings.find({
 			where: {
-				followerId: this.user!.id
+				followerId: this.user?.id,
 			},
-			select: ['followeeId']
+			select: ['followeeId'],
 		});
 
 		this.following = new Set<string>(followings.map(x => x.followeeId));
@@ -339,9 +339,9 @@ export default class Connection {
 	private async updateMuting() {
 		const mutings = await Mutings.find({
 			where: {
-				muterId: this.user!.id
+				muterId: this.user?.id,
 			},
-			select: ['muteeId']
+			select: ['muteeId'],
 		});
 
 		this.muting = new Set<string>(mutings.map(x => x.muteeId));
@@ -351,9 +351,9 @@ export default class Connection {
 	private async updateFollowingChannels() {
 		const followings = await ChannelFollowings.find({
 			where: {
-				followerId: this.user!.id
+				followerId: this.user?.id,
 			},
-			select: ['followeeId']
+			select: ['followeeId'],
 		});
 
 		this.followingChannels = new Set<string>(followings.map(x => x.followeeId));
@@ -367,6 +367,5 @@ export default class Connection {
 		for (const c of this.channels.filter(c => c.dispose)) {
 			if (c.dispose) c.dispose();
 		}
-
 	}
 }

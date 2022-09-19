@@ -17,7 +17,7 @@
 	</div>
 	<section v-if="invitations.length > 0">
 		<h2>{{ $t('invitations') }}</h2>
-		<div class="invitation" v-for="i in invitations" tabindex="-1" @click="accept(i)">
+		<div v-for="i in invitations" class="invitation" tabindex="-1" @click="accept(i)">
 			<mk-avatar class="avatar" :user="i.parent"/>
 			<span class="name"><b><mk-user-name :user="i.parent"/></b></span>
 			<span class="username">@{{ i.parent.username }}</span>
@@ -26,7 +26,7 @@
 	</section>
 	<section v-if="myGames.length > 0">
 		<h2>{{ $t('my-games') }}</h2>
-		<a class="game" v-for="g in myGames" tabindex="-1" @click.prevent="go(g)" :href="`/games/reversi/${g.id}`">
+		<a v-for="g in myGames" class="game" tabindex="-1" :href="`/games/reversi/${g.id}`" @click.prevent="go(g)">
 			<mk-avatar class="avatar" :user="g.user1"/>
 			<mk-avatar class="avatar" :user="g.user2"/>
 			<span><b><mk-user-name :user="g.user1"/></b> vs <b><mk-user-name :user="g.user2"/></b></span>
@@ -36,7 +36,7 @@
 	</section>
 	<section v-if="games.length > 0">
 		<h2>{{ $t('all-games') }}</h2>
-		<a class="game" v-for="g in games" tabindex="-1" @click.prevent="go(g)" :href="`/games/reversi/${g.id}`">
+		<a v-for="g in games" class="game" tabindex="-1" :href="`/games/reversi/${g.id}`" @click.prevent="go(g)">
 			<mk-avatar class="avatar" :user="g.user1"/>
 			<mk-avatar class="avatar" :user="g.user2"/>
 			<span><b><mk-user-name :user="g.user1"/></b> vs <b><mk-user-name :user="g.user2"/></b></span>
@@ -61,7 +61,7 @@ export default Vue.extend({
 			myGames: [],
 			matching: null,
 			invitations: [],
-			connection: null
+			connection: null,
 		};
 	},
 
@@ -72,7 +72,7 @@ export default Vue.extend({
 			this.connection.on('invited', this.onInvited);
 
 			this.$root.api('games/reversi/games', {
-				my: true
+				my: true,
 			}).then(games => {
 				this.myGames = games;
 			});
@@ -103,12 +103,12 @@ export default Vue.extend({
 			const { result: user } = await this.$root.dialog({
 				title: this.$t('enter-username'),
 				user: {
-					local: true
-				}
+					local: true,
+				},
 			});
 			if (user == null) return;
 			this.$root.api('games/reversi/match', {
-				userId: user.id
+				userId: user.id,
 			}).then(res => {
 				if (res == null) {
 					this.$emit('matching', user);
@@ -120,7 +120,7 @@ export default Vue.extend({
 
 		accept(invitation) {
 			this.$root.api('games/reversi/match', {
-				userId: invitation.parent.id
+				userId: invitation.parent.id,
 			}).then(game => {
 				if (game) {
 					this.$emit('go', game);
@@ -130,8 +130,8 @@ export default Vue.extend({
 
 		onInvited(invite) {
 			this.invitations.unshift(invite);
-		}
-	}
+		},
+	},
 });
 </script>
 

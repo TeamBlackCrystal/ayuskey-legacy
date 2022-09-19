@@ -16,7 +16,7 @@ export class MessagingMessageRepository extends Repository<MessagingMessage> {
 		options?: {
 			populateRecipient?: boolean,
 			populateGroup?: boolean,
-		}
+		},
 	): Promise<Packed<'MessagingMessage'>> {
 		const opts = options || {
 			populateRecipient: true,
@@ -58,7 +58,7 @@ export const packedMessagingMessageSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the MessagingMessage was created.'
+			description: 'The date that the MessagingMessage was created.',
 		},
 		userId: {
 			type: 'string' as const,
@@ -114,8 +114,8 @@ export const packedMessagingMessageSchema = {
 			items: {
 				type: 'string' as const,
 				optional: false as const, nullable: false as const,
-				format: 'id'
-			}
+				format: 'id',
+			},
 		},
 	},
 };

@@ -17,11 +17,11 @@ import XAbout from '../../../common/views/pages/about.vue';
 export default Vue.extend({
 	i18n: i18n(''),
 	components: {
-		XAbout
+		XAbout,
 	},
 	data() {
 		return {
-			faInfoCircle
+			faInfoCircle,
 		};
 	},
 });

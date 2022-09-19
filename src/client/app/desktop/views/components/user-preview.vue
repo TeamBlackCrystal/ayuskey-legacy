@@ -21,7 +21,7 @@
 				<p>{{ $t('followers') }}</p><span>{{ u.followersCount }}</span>
 			</div>
 		</div>
-		<mk-follow-button class="koudoku-button" v-if="$store.getters.isSignedIn && u.id != $store.state.i.id" :user="u" mini/>
+		<mk-follow-button v-if="$store.getters.isSignedIn && u.id != $store.state.i.id" class="koudoku-button" :user="u" mini/>
 	</template>
 </div>
 </template>
@@ -37,16 +37,16 @@ export default Vue.extend({
 	props: {
 		user: {
 			type: [Object, String],
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
-			u: null
+			u: null,
 		};
 	},
 	mounted() {
-		if (typeof this.user == 'object') {
+		if (typeof this.user === 'object') {
 			this.u = this.user;
 			this.$nextTick(() => {
 				this.open();
@@ -69,7 +69,7 @@ export default Vue.extend({
 				opacity: 1,
 				'margin-top': 0,
 				duration: 200,
-				easing: 'easeOutQuad'
+				easing: 'easeOutQuad',
 			});
 		},
 		close() {
@@ -79,10 +79,10 @@ export default Vue.extend({
 				'margin-top': '-8px',
 				duration: 200,
 				easing: 'easeOutQuad',
-				complete: () => this.destroyDom()
+				complete: () => this.destroyDom(),
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

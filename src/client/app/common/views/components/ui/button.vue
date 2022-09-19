@@ -1,6 +1,7 @@
 <template>
-<component class="dmtdnykelhudezerjlfpbhgovrgnqqgr"
+<component
 	:is="link ? 'a' : 'button'"
+	class="dmtdnykelhudezerjlfpbhgovrgnqqgr"
 	:class="{ inline, primary, wait, round: $store.state.device.roundedCorners }"
 	:type="type"
 	@click="$emit('click')"
@@ -18,40 +19,40 @@ import Vue from 'vue';
 export default Vue.extend({
 	inject: {
 		horizonGrouped: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	props: {
 		type: {
 			type: String,
-			required: false
+			required: false,
 		},
 		primary: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		inline: {
 			type: Boolean,
 			required: false,
 			default(): boolean {
 				return this.horizonGrouped;
-			}
+			},
 		},
 		link: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		autofocus: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		wait: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 	},
 	mounted() {
@@ -68,11 +69,11 @@ export default Vue.extend({
 			}
 
 			function calcCircleScale(boxW, boxH, circleCenterX, circleCenterY) {
-				const origin = {x: circleCenterX, y: circleCenterY};
-				const dist1 = distance({x: 0, y: 0}, origin);
-				const dist2 = distance({x: boxW, y: 0}, origin);
-				const dist3 = distance({x: 0, y: boxH}, origin);
-				const dist4 = distance({x: boxW, y: boxH }, origin);
+				const origin = { x: circleCenterX, y: circleCenterY };
+				const dist1 = distance({ x: 0, y: 0 }, origin);
+				const dist2 = distance({ x: boxW, y: 0 }, origin);
+				const dist3 = distance({ x: 0, y: boxH }, origin);
+				const dist4 = distance({ x: boxW, y: boxH }, origin);
 				return Math.max(dist1, dist2, dist3, dist4) * 2;
 			}
 
@@ -99,8 +100,8 @@ export default Vue.extend({
 			setTimeout(() => {
 				if (this.$refs.ripples) this.$refs.ripples.removeChild(ripple);
 			}, 2000);
-		}
-	}
+		},
+	},
 });
 </script>
 

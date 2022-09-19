@@ -23,9 +23,9 @@ export const meta = {
 		noSuchApp: {
 			message: 'No such app.',
 			code: 'NO_SUCH_APP',
-			id: 'dce83913-2dc6-4093-8a7b-71dbb11718a3'
-		}
-	}
+			id: 'dce83913-2dc6-4093-8a7b-71dbb11718a3',
+		},
+	},
 };
 
 export default define(meta, async (ps, user, app) => {
@@ -40,6 +40,6 @@ export default define(meta, async (ps, user, app) => {
 
 	return await Apps.pack(ap, user, {
 		detail: true,
-		includeSecret: isSecure && (ap.userId === user.id)
+		includeSecret: isSecure && (ap.userId === user.id),
 	});
 });

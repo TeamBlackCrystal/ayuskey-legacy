@@ -1,10 +1,10 @@
 <template>
 <div class="ivaojijs" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
-	<div class="empty" v-if="empty">{{ $t('@.no-notes') }}</div>
+	<div v-if="empty" class="empty">{{ $t('@.no-notes') }}</div>
 
 	<mk-error v-if="error" @retry="init()"/>
 
-	<div class="placeholder" v-if="fetching">
+	<div v-if="fetching" class="placeholder">
 		<template v-for="i in 10">
 			<mk-note-skeleton :key="i"/>
 		</template>
@@ -13,8 +13,8 @@
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notes" class="transition" tag="div">
 		<template v-for="(note, i) in _notes">
-			<mk-note :note="note" :key="note.id"/>
-			<p class="date" :key="note.id + '_date'" v-if="i != items.length - 1 && note._date != _notes[i + 1]._date">
+			<mk-note :key="note.id" :note="note"/>
+			<p v-if="i != items.length - 1 && note._date != _notes[i + 1]._date" :key="note.id + '_date'" class="date">
 				<span><fa icon="angle-up"/>{{ note._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notes[i + 1]._datetext }}</span>
 			</p>
@@ -22,7 +22,7 @@
 	</component>
 
 	<footer v-if="more">
-		<button @click="fetchMore()" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }">
+		<button :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" @click="fetchMore()">
 			<template v-if="!moreFetching">{{ $t('@.load-more') }}</template>
 			<template v-if="moreFetching"><fa icon="spinner" pulse fixed-width/></template>
 		</button>
@@ -80,13 +80,13 @@ export default Vue.extend({
 
 			onInited: (self) => {
 				self.$emit('loaded');
-			}
+			},
 		}),
 	],
 
 	props: {
 		pagination: {
-			required: true
+			required: true,
 		},
 	},
 
@@ -99,7 +99,7 @@ export default Vue.extend({
 				item._datetext = this.$t('@.month-and-day').replace('{month}', month.toString()).replace('{day}', date.toString());
 				return item;
 			});
-		}
+		},
 	},
 });
 </script>

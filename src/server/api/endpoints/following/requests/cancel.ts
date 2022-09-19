@@ -9,7 +9,7 @@ import { Users } from '../../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': '自分が作成した、指定したフォローリクエストをキャンセルします。',
-		'en-US': 'Cancel a follow request.'
+		'en-US': 'Cancel a follow request.',
 	},
 
 	tags: ['following', 'account'],
@@ -23,24 +23,24 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーのID',
-				'en-US': 'Target user ID'
-			}
-		}
+				'en-US': 'Target user ID',
+			},
+		},
 	},
 
 	errors: {
 		noSuchUser: {
 			message: 'No such user.',
 			code: 'NO_SUCH_USER',
-			id: '4e68c551-fc4c-4e46-bb41-7d4a37bf9dab'
+			id: '4e68c551-fc4c-4e46-bb41-7d4a37bf9dab',
 		},
 
 		followRequestNotFound: {
 			message: 'Follow request not found.',
 			code: 'FOLLOW_REQUEST_NOT_FOUND',
-			id: '089b125b-d338-482a-9a09-e2622ac9f8d4'
+			id: '089b125b-d338-482a-9a09-e2622ac9f8d4',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {

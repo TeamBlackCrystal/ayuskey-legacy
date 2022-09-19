@@ -17,11 +17,11 @@ export function generateMutedUserQuery(q: SelectQueryBuilder<any>, me: User, exc
 	q
 		.andWhere(`note.userId NOT IN (${ mutingQuery.getQuery() })`)
 		.andWhere(new Brackets(qb => { qb
-			.where(`note.replyUserId IS NULL`)
+			.where('note.replyUserId IS NULL')
 			.orWhere(`note.replyUserId NOT IN (${ mutingQuery.getQuery() })`);
 		}))
 		.andWhere(new Brackets(qb => { qb
-			.where(`note.renoteUserId IS NULL`)
+			.where('note.renoteUserId IS NULL')
 			.orWhere(`note.renoteUserId NOT IN (${ mutingQuery.getQuery() })`);
 		}));
 

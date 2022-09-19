@@ -6,7 +6,7 @@
 
 	<div class="xroyrflcmhhtmlwmyiwpfqiirqokfueb">
 		<div ref="chart" class="chart"></div>
-		<x-hashtag-tl :tag-tl="tagTl" class="tl" :key="JSON.stringify(tagTl)"/>
+		<x-hashtag-tl :key="JSON.stringify(tagTl)" :tag-tl="tagTl" class="tl"/>
 	</div>
 </x-column>
 </template>
@@ -20,7 +20,7 @@ import ApexCharts from 'apexcharts';
 export default Vue.extend({
 	components: {
 		XColumn,
-		XHashtagTl
+		XHashtagTl,
 	},
 
 	computed: {
@@ -30,13 +30,13 @@ export default Vue.extend({
 
 		tagTl(): any {
 			return {
-				query: [[this.tag]]
+				query: [[this.tag]],
 			};
-		}
+		},
 	},
 
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 
 	created() {
@@ -48,7 +48,7 @@ export default Vue.extend({
 			this.$root.api('charts/hashtag', {
 				tag: this.tag,
 				span: 'hour',
-				limit: 24
+				limit: 24,
 			}).then(stats => {
 				const local = [];
 				const remote = [];
@@ -70,11 +70,11 @@ export default Vue.extend({
 						type: 'area',
 						height: 70,
 						sparkline: {
-							enabled: true
+							enabled: true,
 						},
 					},
 					dataLabels: {
-						enabled: false
+						enabled: false,
 					},
 					grid: {
 						clipMarkers: false,
@@ -82,29 +82,29 @@ export default Vue.extend({
 							top: 16,
 							right: 16,
 							bottom: 16,
-							left: 16
-						}
+							left: 16,
+						},
 					},
 					stroke: {
 						curve: 'straight',
-						width: 2
+						width: 2,
 					},
 					series: [{
 						name: 'Local',
-						data: local
+						data: local,
 					}, {
 						name: 'Remote',
-						data: remote
+						data: remote,
 					}],
 					xaxis: {
 						type: 'datetime',
-					}
+					},
 				});
 
 				chart.render();
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

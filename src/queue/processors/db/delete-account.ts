@@ -24,12 +24,12 @@ export async function deleteAccount(job: Bull.Job<DbUserDeleteJobData>): Promise
 			const notes = await Notes.find({
 				where: {
 					userId: user.id,
-					...(cursor ? { id: MoreThan(cursor) } : {})
+					...(cursor ? { id: MoreThan(cursor) } : {}),
 				},
 				take: 100,
 				order: {
-					id: 1
-				}
+					id: 1,
+				},
 			});
 
 			if (notes.length === 0) {
@@ -41,7 +41,7 @@ export async function deleteAccount(job: Bull.Job<DbUserDeleteJobData>): Promise
 			await Notes.delete(notes.map(note => note.id));
 		}
 
-		logger.succ(`All of notes deleted`);
+		logger.succ('All of notes deleted');
 	}
 
 	{ // Delete files
@@ -51,12 +51,12 @@ export async function deleteAccount(job: Bull.Job<DbUserDeleteJobData>): Promise
 			const files = await DriveFiles.find({
 				where: {
 					userId: user.id,
-					...(cursor ? { id: MoreThan(cursor) } : {})
+					...(cursor ? { id: MoreThan(cursor) } : {}),
 				},
 				take: 10,
 				order: {
-					id: 1
-				}
+					id: 1,
+				},
 			});
 
 			if (files.length === 0) {
@@ -70,7 +70,7 @@ export async function deleteAccount(job: Bull.Job<DbUserDeleteJobData>): Promise
 			}
 		}
 
-		logger.succ(`All of files deleted`);
+		logger.succ('All of files deleted');
 	}
 
 	if (job.data.soft) {

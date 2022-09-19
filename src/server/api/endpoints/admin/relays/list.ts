@@ -3,7 +3,7 @@ import { listRelay } from '../../../../../services/relay';
 
 export const meta = {
 	desc: {
-		'ja-JP': 'List relay'
+		'ja-JP': 'List relay',
 	},
 
 	tags: ['admin'],

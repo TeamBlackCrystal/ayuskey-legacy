@@ -8,11 +8,11 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
-			required: true
+			required: true,
 		},
 		script: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -25,7 +25,7 @@ export default Vue.extend({
 		this.$watch('script.vars', () => {
 			this.text = this.script.interpolate(this.value.text);
 		}, { deep: true });
-	}
+	},
 });
 </script>
 

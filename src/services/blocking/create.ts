@@ -15,7 +15,7 @@ export default async function(blocker: User, blockee: User) {
 		cancelRequest(blocker, blockee),
 		cancelRequest(blockee, blocker),
 		unFollow(blocker, blockee),
-		unFollow(blockee, blocker)
+		unFollow(blockee, blocker),
 	]);
 
 	await Blockings.save({
@@ -34,7 +34,7 @@ export default async function(blocker: User, blockee: User) {
 async function cancelRequest(follower: User, followee: User) {
 	const request = await FollowRequests.findOne({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	if (request == null) {
@@ -43,21 +43,21 @@ async function cancelRequest(follower: User, followee: User) {
 
 	await FollowRequests.delete({
 		followeeId: followee.id,
-		followerId: follower.id
+		followerId: follower.id,
 	});
 
 	if (Users.isLocalUser(followee)) {
 		Users.pack(followee, followee, {
-			detail: true
+			detail: true,
 		}).then(packed => publishMainStream(followee.id, 'meUpdated', packed));
 	}
 
 	if (Users.isLocalUser(follower)) {
 		Users.pack(followee, follower, {
-			detail: true
+			detail: true,
 		}).then(packed => {
 			publishUserEvent(follower.id, 'unfollow', packed);
-			publishMainStream(follower.id, 'unfollow', packed)
+			publishMainStream(follower.id, 'unfollow', packed);
 		});
 	}
 
@@ -77,7 +77,7 @@ async function cancelRequest(follower: User, followee: User) {
 async function unFollow(follower: User, followee: User) {
 	const following = await Followings.findOne({
 		followerId: follower.id,
-		followeeId: followee.id
+		followeeId: followee.id,
 	});
 
 	if (following == null) {
@@ -94,10 +94,10 @@ async function unFollow(follower: User, followee: User) {
 	// Publish unfollow event
 	if (Users.isLocalUser(follower)) {
 		Users.pack(followee, follower, {
-			detail: true
+			detail: true,
 		}).then(packed => {
 			publishUserEvent(follower.id, 'unfollow', packed);
-			publishMainStream(follower.id, 'unfollow', packed)
+			publishMainStream(follower.id, 'unfollow', packed);
 		});
 	}
 

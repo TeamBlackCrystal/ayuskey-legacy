@@ -5,5 +5,5 @@ export const entities = Object.values(require('require-all')({
 	filter: /^.+\.[jt]s$/,
 	resolve: (x: any) => {
 		return Chart.schemaToEntity(x.name, x.schema);
-	}
+	},
 }));

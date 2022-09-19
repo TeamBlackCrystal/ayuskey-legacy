@@ -24,7 +24,7 @@ export default Vue.extend({
 			width: 0,
 			r1: (Math.random() * 100) - 50,
 			r2: (Math.random() * 100) - 50,
-			r3: (Math.random() * 100) - 50
+			r3: (Math.random() * 100) - 50,
 		};
 	},
 
@@ -40,13 +40,13 @@ export default Vue.extend({
 
 		secondary(): string {
 			return '#' + this.text.clone().darken(20).toHex();
-		}
+		},
 	},
 
 	mounted() {
 		let width = this.$el.clientWidth;
 		if (width < 400) width = 400;
 		this.width = width;
-	}
+	},
 });
 </script>

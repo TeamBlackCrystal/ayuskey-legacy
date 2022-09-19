@@ -22,33 +22,37 @@
 			<ui-radio v-model="instanceTicker" value="remote">{{ $t('@._settings.instance-ticker-remote') }}</ui-radio>
 			<ui-radio v-model="instanceTicker" value="always">{{ $t('@._settings.instance-ticker-always') }}</ui-radio>
 		</section>
+		<!--
 		<section>
 			<ui-switch v-model="disableBlur">ダークテーマのぼかしを抑える</ui-switch>
 		</section>
+		-->
 	</ui-card>
 </div>
 </template>
 
 <script>
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	data() {
 		return {
-		}
+		};
 	},
 	computed: {
 		instanceTicker: {
 			get() { return this.$store.state.device.instanceTicker; },
-			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'instanceTicker', value }); },
 		},
+		/*
 		disableBlur: {
 			get() { return this.$store.state.device.disableBlur; },
-			set(value) { this.$store.commit('device/set', { key: 'disableBlur', value }); }
+			set(value) { this.$store.commit('device/set', { key: 'disableBlur', value }); },
 		},
-	}
+		*/
+	},
 });
 </script>
 

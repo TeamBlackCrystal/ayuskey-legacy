@@ -6,14 +6,14 @@
 			<div class="top">
 				<p class="name"><fa icon="spinner" pulse/>{{ ctx.name }}</p>
 				<p class="status">
-					<span class="initing" v-if="ctx.progressValue === undefined">{{ $t('waiting') }}<mk-ellipsis/></span>
-					<span class="kb" v-if="ctx.progressValue !== undefined">{{ String(Math.floor(ctx.progressValue / 1024)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') }}<i>KB</i> / {{ String(Math.floor(ctx.progressMax / 1024)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') }}<i>KB</i></span>
-					<span class="percentage" v-if="ctx.progressValue !== undefined">{{ Math.floor((ctx.progressValue / ctx.progressMax) * 100) }}</span>
+					<span v-if="ctx.progressValue === undefined" class="initing">{{ $t('waiting') }}<mk-ellipsis/></span>
+					<span v-if="ctx.progressValue !== undefined" class="kb">{{ String(Math.floor(ctx.progressValue / 1024)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') }}<i>KB</i> / {{ String(Math.floor(ctx.progressMax / 1024)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') }}<i>KB</i></span>
+					<span v-if="ctx.progressValue !== undefined" class="percentage">{{ Math.floor((ctx.progressValue / ctx.progressMax) * 100) }}</span>
 				</p>
 			</div>
 			<progress v-if="ctx.progressValue !== undefined && ctx.progressValue !== ctx.progressMax" :value="ctx.progressValue" :max="ctx.progressMax"></progress>
-			<div class="progress initing" v-if="ctx.progressValue === undefined"></div>
-			<div class="progress waiting" v-if="ctx.progressValue !== undefined && ctx.progressValue === ctx.progressMax"></div>
+			<div v-if="ctx.progressValue === undefined" class="progress initing"></div>
+			<div v-if="ctx.progressValue !== undefined && ctx.progressValue === ctx.progressMax" class="progress waiting"></div>
 		</li>
 	</ol>
 </div>
@@ -29,7 +29,7 @@ export default Vue.extend({
 	i18n: i18n('common/views/components/uploader.vue'),
 	data() {
 		return {
-			uploads: []
+			uploads: [],
 		};
 	},
 	methods: {
@@ -39,7 +39,7 @@ export default Vue.extend({
 				data.append('md5', getMD5(fileData));
 
 				this.$root.api('drive/files/find-by-hash', {
-					md5: getMD5(fileData)
+					md5: getMD5(fileData),
 				}).then(resp => {
 					resolve(resp.length > 0 ? resp[0] : null);
 				});
@@ -47,7 +47,7 @@ export default Vue.extend({
 		},
 
 		upload(file: File, folder: any, name?: string) {
-			if (folder && typeof folder == 'object') folder = folder.id;
+			if (folder && typeof folder === 'object') folder = folder.id;
 
 			const id = Math.random();
 
@@ -65,7 +65,7 @@ export default Vue.extend({
 						progress: undefined,
 						progressMax: undefined,
 						progressValue: undefined,
-						img: window.URL.createObjectURL(file)
+						img: window.URL.createObjectURL(file),
 					};
 
 					this.uploads.push(ctx);
@@ -99,11 +99,11 @@ export default Vue.extend({
 					};
 
 					xhr.send(data);
-				})
-			}
+				});
+			};
 			reader.readAsArrayBuffer(file);
-		}
-	}
+		},
+	},
 });
 </script>
 

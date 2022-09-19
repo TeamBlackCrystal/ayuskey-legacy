@@ -7,7 +7,7 @@ import { Mutings } from '../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': 'ミュートしているユーザー一覧を取得します。',
-		'en-US': 'Get muted users.'
+		'en-US': 'Get muted users.',
 	},
 
 	tags: ['mute', 'account'],
@@ -19,7 +19,7 @@ export const meta = {
 	params: {
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 30
+			default: 30,
 		},
 
 		sinceId: {
@@ -38,13 +38,13 @@ export const meta = {
 			type: 'object' as const,
 			optional: false as const, nullable: false as const,
 			ref: 'Muting',
-		}
+		},
 	},
 };
 
 export default define(meta, async (ps, me) => {
 	const query = makePaginationQuery(Mutings.createQueryBuilder('muting'), ps.sinceId, ps.untilId)
-		.andWhere(`muting.muterId = :meId`, { meId: me.id });
+		.andWhere('muting.muterId = :meId', { meId: me.id });
 
 	const mutings = await query
 		.take(ps.limit!)

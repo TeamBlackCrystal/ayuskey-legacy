@@ -3,7 +3,7 @@
 	<template #header>
 		<span class="jqiaciqv">
 			<span class="title">{{ $t('choose-prompt') }}</span>
-			<span class="count" v-if="multiple && files.length > 0">({{ $t('chosen-files', { count: files.length }) }})</span>
+			<span v-if="multiple && files.length > 0" class="count">({{ $t('chosen-files', { count: files.length }) }})</span>
 		</span>
 	</template>
 
@@ -18,7 +18,7 @@
 		/>
 		<div class="footer">
 			<button class="upload" :title="$t('title')" @click="upload"><fa icon="upload"/></button>
-			<ui-button inline @click="cancel" style="margin-right:16px;">{{ $t('cancel') }}</ui-button>
+			<ui-button inline style="margin-right:16px;" @click="cancel">{{ $t('cancel') }}</ui-button>
 			<ui-button inline primary :disabled="multiple && files.length == 0" @click="ok">{{ $t('ok') }}</ui-button>
 		</div>
 	</div>
@@ -37,15 +37,15 @@ export default Vue.extend({
 		type: {
 			type: String,
 			required: false,
-			default: undefined 
+			default: undefined, 
 		},
 		multiple: {
-			default: false
-		}
+			default: false,
+		},
 	},
 	data() {
 		return {
-			files: []
+			files: [],
 		};
 	},
 	methods: {
@@ -65,8 +65,8 @@ export default Vue.extend({
 		},
 		cancel() {
 			(this.$refs.window as any).close();
-		}
-	}
+		},
+	},
 });
 </script>
 

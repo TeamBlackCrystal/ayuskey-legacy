@@ -1,19 +1,19 @@
 <template>
-	<div class="disk">
-		<x-pie class="pie" :value="usage" />
-		<div>
-			<p><fa :icon="['far', 'hdd']" />Storage</p>
-			<p>Total: {{ total | bytes(1) }}</p>
-			<p>Free: {{ available | bytes(1) }}</p>
-			<p>Used: {{ used | bytes(1) }}</p>
-		</div>
+<div class="disk">
+	<x-pie class="pie" :value="usage" />
+	<div>
+		<p><fa :icon="['far', 'hdd']" />Storage</p>
+		<p>Total: {{ total | bytes(1) }}</p>
+		<p>Free: {{ available | bytes(1) }}</p>
+		<p>Used: {{ used | bytes(1) }}</p>
 	</div>
+</div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import Stream from "../../scripts/stream";
-import XPie from "./server.pie.vue";
+import { onMounted, onUnmounted, ref } from 'vue';
+import Stream from '../../scripts/stream';
+import XPie from './server.pie.vue';
 
 const props = defineProps({
 	connection: {
@@ -35,10 +35,10 @@ const onStats = (stats) => {
 };
 
 onMounted(() => {
-	props.connection.on("stats", onStats);
+	props.connection.on('stats', onStats);
 });
 onUnmounted(() => {
-	props.connection.off("stats", onStats);
+	props.connection.off('stats', onStats);
 });
 </script>
 

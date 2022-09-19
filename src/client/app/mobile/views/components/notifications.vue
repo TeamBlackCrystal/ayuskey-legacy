@@ -1,6 +1,6 @@
 <template>
 <div class="mk-notifications">
-	<div class="placeholder" v-if="fetching">
+	<div v-if="fetching" class="placeholder">
 		<template v-for="i in 10">
 			<mk-note-skeleton :key="i"/>
 		</template>
@@ -9,20 +9,20 @@
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notifications" class="transition notifications" tag="div">
 		<template v-for="(notification, i) in _notifications">
-			<mk-notification :notification="notification" :key="notification.id" :class="{ wide: wide }"/>
-			<p class="date" :key="notification.id + '_date'" v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date">
+			<mk-notification :key="notification.id" :notification="notification" :class="{ wide: wide }"/>
+			<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" :key="notification.id + '_date'" class="date">
 				<span><fa icon="angle-up"/>{{ notification._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notifications[i + 1]._datetext }}</span>
 			</p>
 		</template>
 	</component>
 
-	<button class="more" v-if="more" @click="fetchMore" :disabled="moreFetching">
+	<button v-if="more" class="more" :disabled="moreFetching" @click="fetchMore">
 		<template v-if="moreFetching"><fa icon="spinner" pulse fixed-width/></template>
 		{{ moreFetching ? $t('@.loading') : $t('@.load-more') }}
 	</button>
 
-	<p class="empty" v-if="empty">{{ $t('empty') }}</p>
+	<p v-if="empty" class="empty">{{ $t('empty') }}</p>
 
 	<mk-error v-if="error" @retry="init()"/>
 </div>
@@ -43,20 +43,20 @@ export default Vue.extend({
 			},
 			onInited: (self) => {
 				self.$emit('inited');
-			}
+			},
 		}),
 	],
 
 	props: {
 		type: {
 			type: String,
-			required: false
+			required: false,
 		},
 		wide: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -66,9 +66,9 @@ export default Vue.extend({
 				endpoint: 'i/notifications',
 				limit: 15,
 				params: () => ({
-					includeTypes: this.type ? [this.type] : undefined
-				})
-			}
+					includeTypes: this.type ? [this.type] : undefined,
+				}),
+			},
 		};
 	},
 
@@ -81,13 +81,13 @@ export default Vue.extend({
 				notification._datetext = this.$t('@.month-and-day').replace('{month}', month.toString()).replace('{day}', date.toString());
 				return notification;
 			});
-		}
+		},
 	},
 
 	watch: {
 		type() {
 			this.reload();
-		}
+		},
 	},
 
 	mounted() {
@@ -103,12 +103,12 @@ export default Vue.extend({
 		onNotification(notification) {
 			// TODO: ユーザーが画面を見てないと思われるとき(ブラウザやタブがアクティブじゃないなど)は送信しない
 			this.$root.stream.send('readNotification', {
-				id: notification.id
+				id: notification.id,
 			});
 
 			this.prepend(notification);
 		},
-	}
+	},
 });
 </script>
 

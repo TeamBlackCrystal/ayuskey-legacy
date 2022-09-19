@@ -1,15 +1,15 @@
 <template>
 <div
+	v-show="($store.state.settings.remainDeletedNote || appearNote.deletedAt == null) && !hideThisNote"
+	v-hotkey="keymap"
 	class="note"
 	:class="{ mini: narrow, 'note-reply-frame': appearNote.reply }"
-	v-show="(this.$store.state.settings.remainDeletedNote || appearNote.deletedAt == null) && !hideThisNote"
 	:tabindex="appearNote.deletedAt == null ? '-1' : null"
-	v-hotkey="keymap"
 	:title="title"
 >
 	<x-sub v-for="note in conversation" :key="note.id" :note="note"/>
-	<mk-renote class="renote" v-if="isRenote" :note="note" :class="{'reply-border': appearNote.reply}"/>
-	<div class="reply-to" v-if="appearNote.reply && (!$store.getters.isSignedIn || $store.state.settings.showReplyTarget)">
+	<mk-renote v-if="isRenote" class="renote" :note="note" :class="{'reply-border': appearNote.reply}"/>
+	<div v-if="appearNote.reply && (!$store.getters.isSignedIn || $store.state.settings.showReplyTarget)" class="reply-to">
 		<x-sub :note="appearNote.reply"/>
 	</div>
 	<article class="article" :class="{'reply-border': appearNote.reply}">
@@ -17,54 +17,54 @@
 		<div class="main">
 			<mk-note-header class="header" :note="appearNote" :mini="narrow"/>
 			<x-instance-ticker v-if="appearNote.user.instance && $store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
-			<div class="body" v-if="appearNote.deletedAt == null">
+			<div v-if="appearNote.deletedAt == null" class="body">
 				<p v-if="appearNote.cw != null" class="cw">
 					<mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis" />
 					<mk-cw-button v-model="showContent" :note="appearNote"/>
 				</p>
-				<div class="content" v-show="appearNote.cw == null || showContent">
+				<div v-show="appearNote.cw == null || showContent" class="content">
 					<div class="text">
 						<span v-if="appearNote.isHidden" style="opacity: 0.5">{{ $t('private') }}</span>
-						<a class="reply" v-if="appearNote.reply"><fa icon="reply"/></a>
+						<a v-if="appearNote.reply" class="reply"><fa icon="reply"/></a>
 						<mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis"/>
 					</div>
-					<div class="files" v-if="appearNote.files.length > 0">
+					<div v-if="appearNote.files.length > 0" class="files">
 						<mk-media-list :media-list="appearNote.files"/>
 					</div>
-					<mk-poll v-if="appearNote.poll" :note="appearNote" ref="pollViewer"/>
-					<a class="location" v-if="appearNote.geo" :href="`https://maps.google.com/maps?q=${appearNote.geo.coordinates[1]},${appearNote.geo.coordinates[0]}`" rel="noopener" target="_blank"><fa icon="map-marker-alt"/> 位置情報</a>
-					<div class="renote" v-if="appearNote.renote"><mk-note-preview :note="appearNote.renote"/></div>
-					<mk-url-preview v-for="url in urls" :url="url" :key="url" :compact="compact"/>
+					<mk-poll v-if="appearNote.poll" ref="pollViewer" :note="appearNote"/>
+					<a v-if="appearNote.geo" class="location" :href="`https://maps.google.com/maps?q=${appearNote.geo.coordinates[1]},${appearNote.geo.coordinates[0]}`" rel="noopener" target="_blank"><fa icon="map-marker-alt"/> 位置情報</a>
+					<div v-if="appearNote.renote" class="renote"><mk-note-preview :note="appearNote.renote"/></div>
+					<mk-url-preview v-for="url in urls" :key="url" :url="url" :compact="compact"/>
 				</div>
 			</div>
 			<footer v-if="appearNote.deletedAt == null && !preview" class="footer">
-				<span class="app" v-if="appearNote.app && narrow && $store.state.settings.showVia">via <b>{{ appearNote.app.name }}</b></span>
-				<mk-reactions-viewer :note="appearNote" ref="reactionsViewer"/>
-				<button class="replyButton button" @click="reply()" :title="$t('reply')">
+				<span v-if="appearNote.app && narrow && $store.state.settings.showVia" class="app">via <b>{{ appearNote.app.name }}</b></span>
+				<mk-reactions-viewer ref="reactionsViewer" :note="appearNote"/>
+				<button class="replyButton button" :title="$t('reply')" @click="reply()">
 					<template v-if="appearNote.reply"><fa icon="reply-all"/></template>
 					<template v-else><fa icon="reply"/></template>
-					<p class="count" v-if="appearNote.repliesCount > 0">{{ appearNote.repliesCount }}</p>
+					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 				</button>
-				<button v-if="['public', 'home'].includes(appearNote.visibility)" class="renoteButton button" @click="renote()" :title="$t('renote')">
+				<button v-if="['public', 'home'].includes(appearNote.visibility)" class="renoteButton button" :title="$t('renote')" @click="renote()">
 					<fa icon="retweet"/>
-					<p class="count" v-if="appearNote.renoteCount > 0">{{ appearNote.renoteCount }}</p>
+					<p v-if="appearNote.renoteCount > 0" class="count">{{ appearNote.renoteCount }}</p>
 				</button>
 				<button v-else class="inhibitedButton button">
 					<fa icon="ban"/>
 				</button>
-				<button v-if="appearNote.myReaction == null" class="reactionButton button" @click="react()" ref="reactButton" :title="$t('add-reaction')">
+				<button v-if="appearNote.myReaction == null" ref="reactButton" class="reactionButton button" :title="$t('add-reaction')" @click="react()">
 					<fa icon="plus"/>
-					<p class="count" v-if="Object.values(appearNote.reactions).some(x => x)">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
+					<p v-if="Object.values(appearNote.reactions).some(x => x)" class="count">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
 				</button>
-				<button v-if="appearNote.myReaction != null" class="reactionButton reacted button" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
+				<button v-if="appearNote.myReaction != null" ref="reactButton" class="reactionButton reacted button" :title="$t('undo-reaction')" @click="undoReact(appearNote)">
 					<fa icon="minus"/>
-					<p class="count" v-if="Object.values(appearNote.reactions).some(x => x)">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
+					<p v-if="Object.values(appearNote.reactions).some(x => x)" class="count">{{ Object.values(appearNote.reactions).reduce((a, c) => a + c, 0) }}</p>
 				</button>
-				<button @click="menu()" ref="menuButton" class="button">
+				<button ref="menuButton" class="button" @click="menu()">
 					<fa icon="ellipsis-h"/>
 				</button>
 			</footer>
-			<div class="deleted" v-if="appearNote.deletedAt != null">{{ $t('deleted') }}</div>
+			<div v-if="appearNote.deletedAt != null" class="deleted">{{ $t('deleted') }}</div>
 		</div>
 	</article>
 	<x-sub v-for="note in replies" :key="note.id" :note="note"/>
@@ -85,46 +85,46 @@ export default Vue.extend({
 
 	components: {
 		XSub,
-		XInstanceTicker
+		XInstanceTicker,
 	},
 
 	mixins: [
 		noteMixin(),
-		noteSubscriber('note')
+		noteSubscriber('note'),
 	],
+
+	inject: {
+		narrow: {
+			default: false,
+		},
+	},
 
 	props: {
 		note: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		detail: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		compact: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		preview: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
-	},
-
-	inject: {
-		narrow: {
-			default: false
-		}
 	},
 
 	data() {
 		return {
 			conversation: [],
-			replies: []
+			replies: [],
 		};
 	},
 
@@ -132,13 +132,13 @@ export default Vue.extend({
 		if (this.detail) {
 			this.$root.api('notes/children', {
 				noteId: this.appearNote.id,
-				limit: 30
+				limit: 30,
 			}).then(replies => {
 				this.replies = replies;
 			});
 
 			this.$root.api('notes/conversation', {
-				noteId: this.appearNote.replyId
+				noteId: this.appearNote.replyId,
 			}).then(conversation => {
 				this.conversation = conversation.reverse();
 			});
@@ -149,8 +149,8 @@ export default Vue.extend({
 			if (this.$store.state.device.instanceTicker === 'always') return true;
 			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
 			return false;
-		}
-	}
+		},
+	},
 });
 </script>
 

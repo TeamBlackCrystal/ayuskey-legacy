@@ -6,7 +6,7 @@ import { Users } from '../../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': '指定したユーザーの公式アカウントを解除します。',
-		'en-US': 'Mark a user as unverified.'
+		'en-US': 'Mark a user as unverified.',
 	},
 
 	tags: ['admin'],
@@ -19,10 +19,10 @@ export const meta = {
 			validator: $.type(ID),
 			desc: {
 				'ja-JP': '対象のユーザーID',
-				'en-US': 'The user ID which you want to unverify'
-			}
+				'en-US': 'The user ID which you want to unverify',
+			},
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps) => {
@@ -33,6 +33,6 @@ export default define(meta, async (ps) => {
 	}
 
 	await Users.update(user.id, {
-		isVerified: false
+		isVerified: false,
 	});
 });

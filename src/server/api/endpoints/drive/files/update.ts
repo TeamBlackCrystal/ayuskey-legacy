@@ -9,7 +9,7 @@ import { DB_MAX_IMAGE_COMMENT_LENGTH } from '@/misc/hard-limits';
 export const meta = {
 	desc: {
 		'ja-JP': '指定したドライブのファイルの情報を更新します。',
-		'en-US': 'Update specified file of drive.'
+		'en-US': 'Update specified file of drive.',
 	},
 
 	tags: ['drive'],
@@ -22,16 +22,16 @@ export const meta = {
 		fileId: {
 			validator: $.type(ID),
 			desc: {
-				'ja-JP': '対象のファイルID'
-			}
+				'ja-JP': '対象のファイルID',
+			},
 		},
 
 		folderId: {
 			validator: $.optional.nullable.type(ID),
 			default: undefined as any,
 			desc: {
-				'ja-JP': 'フォルダID'
-			}
+				'ja-JP': 'フォルダID',
+			},
 		},
 
 		name: {
@@ -39,8 +39,8 @@ export const meta = {
 			default: undefined as any,
 			desc: {
 				'ja-JP': 'ファイル名',
-				'en-US': 'Name of the file'
-			}
+				'en-US': 'Name of the file',
+			},
 		},
 
 		isSensitive: {
@@ -48,38 +48,38 @@ export const meta = {
 			default: undefined as any,
 			desc: {
 				'ja-JP': 'このメディアが「閲覧注意」(NSFW)かどうか',
-				'en-US': 'Whether this media is NSFW'
-			}
+				'en-US': 'Whether this media is NSFW',
+			},
 		},
 
 		comment: {
 			validator: $.optional.nullable.str.max(DB_MAX_IMAGE_COMMENT_LENGTH),
 			default: undefined as any,
 			desc: {
-				'ja-JP': 'コメント'
-			}
-		}
+				'ja-JP': 'コメント',
+			},
+		},
 	},
 
 	errors: {
 		noSuchFile: {
 			message: 'No such file.',
 			code: 'NO_SUCH_FILE',
-			id: 'e7778c7e-3af9-49cd-9690-6dbc3e6c972d'
+			id: 'e7778c7e-3af9-49cd-9690-6dbc3e6c972d',
 		},
 
 		accessDenied: {
 			message: 'Access denied.',
 			code: 'ACCESS_DENIED',
-			id: '01a53b27-82fc-445b-a0c1-b558465a8ed2'
+			id: '01a53b27-82fc-445b-a0c1-b558465a8ed2',
 		},
 
 		noSuchFolder: {
 			message: 'No such folder.',
 			code: 'NO_SUCH_FOLDER',
-			id: 'ea8fb7a5-af77-4a08-b608-c0218176cd73'
+			id: 'ea8fb7a5-af77-4a08-b608-c0218176cd73',
 		},
-	}
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -105,7 +105,7 @@ export default define(meta, async (ps, user) => {
 		} else {
 			const folder = await DriveFolders.findOne({
 				id: ps.folderId,
-				userId: user.id
+				userId: user.id,
 			});
 
 			if (folder == null) {
@@ -120,7 +120,7 @@ export default define(meta, async (ps, user) => {
 		name: file.name,
 		comment: file.comment,
 		folderId: file.folderId,
-		isSensitive: file.isSensitive
+		isSensitive: file.isSensitive,
 	});
 
 	const fileObj = await DriveFiles.pack(file, { self: true });

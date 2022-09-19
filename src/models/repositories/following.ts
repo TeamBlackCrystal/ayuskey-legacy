@@ -53,7 +53,7 @@ export class FollowingRepository extends Repository<Following> {
 		opts?: {
 			populateFollowee?: boolean;
 			populateFollower?: boolean;
-		}
+		},
 	): Promise<Packed<'Following'>> {
 		const following = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -65,10 +65,10 @@ export class FollowingRepository extends Repository<Following> {
 			followeeId: following.followeeId,
 			followerId: following.followerId,
 			followee: opts.populateFollowee ? Users.pack(following.followee || following.followeeId, me, {
-				detail: true
+				detail: true,
 			}) : undefined,
 			follower: opts.populateFollower ? Users.pack(following.follower || following.followerId, me, {
-				detail: true
+				detail: true,
 			}) : undefined,
 		});
 	}
@@ -79,7 +79,7 @@ export class FollowingRepository extends Repository<Following> {
 		opts?: {
 			populateFollowee?: boolean;
 			populateFollower?: boolean;
-		}
+		},
 	) {
 		return Promise.all(followings.map(x => this.pack(x, me, opts)));
 	}
@@ -100,7 +100,7 @@ export const packedFollowingSchema = {
 			type: 'string' as const,
 			optional: false as const, nullable: false as const,
 			format: 'date-time',
-			description: 'The date that the following was created.'
+			description: 'The date that the following was created.',
 		},
 		followeeId: {
 			type: 'string' as const,
@@ -111,7 +111,7 @@ export const packedFollowingSchema = {
 			type: 'object' as const,
 			optional: true as const, nullable: false as const,
 			ref: 'User' as const,
-			description: 'The followee.'
+			description: 'The followee.',
 		},
 		followerId: {
 			type: 'string' as const,
@@ -122,7 +122,7 @@ export const packedFollowingSchema = {
 			type: 'object' as const,
 			optional: true as const, nullable: false as const,
 			ref: 'User' as const,
-			description: 'The follower.'
+			description: 'The follower.',
 		},
-	}
+	},
 };

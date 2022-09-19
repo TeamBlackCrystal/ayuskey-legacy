@@ -9,22 +9,22 @@ export const meta = {
 
 	desc: {
 		'ja-JP': 'URIを指定してActivityPubオブジェクトを参照します。',
-		'en-US': 'Browse to the ActivityPub object by specifying the URI.'
+		'en-US': 'Browse to the ActivityPub object by specifying the URI.',
 	},
 
 	requireCredential: true as const,
 
 	limit: {
 		duration: ms('1hour'),
-		max: 30
+		max: 30,
 	},
 
 	params: {
 		uri: {
 			validator: $.str,
 			desc: {
-				'ja-JP': 'ActivityPubオブジェクトのURI'
-			}
+				'ja-JP': 'ActivityPubオブジェクトのURI',
+			},
 		},
 	},
 
@@ -34,7 +34,7 @@ export const meta = {
 	res: {
 		type: 'object' as const,
 		optional: false as const, nullable: false as const,
-	}
+	},
 };
 
 export default define(meta, async (ps) => {

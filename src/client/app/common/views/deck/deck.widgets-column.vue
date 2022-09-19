@@ -37,14 +37,14 @@
 				animation="150"
 				@sort="onWidgetSort"
 			>
-				<div v-for="widget in column.widgets" class="customize-container" :key="widget.id" @contextmenu.stop.prevent="widgetFunc(widget.id)">
+				<div v-for="widget in column.widgets" :key="widget.id" class="customize-container" @contextmenu.stop.prevent="widgetFunc(widget.id)">
 					<button class="remove" @click="removeWidget(widget)"><fa icon="times"/></button>
-					<component :is="`mkw-${widget.name}`" :widget="widget" :ref="widget.id" :is-customize-mode="true" platform="deck" :column="column"/>
+					<component :is="`mkw-${widget.name}`" :ref="widget.id" :widget="widget" :is-customize-mode="true" platform="deck" :column="column"/>
 				</div>
 			</x-draggable>
 		</template>
 		<template v-else>
-			<component class="widget" v-for="widget in column.widgets" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="deck" :column="column"/>
+			<component :is="`mkw-${widget.name}`" v-for="widget in column.widgets" :key="widget.id" :ref="widget.id" class="widget" :widget="widget" platform="deck" :column="column"/>
 		</template>
 	</div>
 </x-column>
@@ -61,22 +61,22 @@ export default Vue.extend({
 	i18n: i18n(),
 	components: {
 		XColumn,
-		XDraggable
+		XDraggable,
 	},
 
 	props: {
 		column: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		isStacked: {
 			type: Boolean,
-			required: true
+			required: true,
 		},
 		pos: {
 			type: Object,
 			required: false,
-			default: () => {}
+			default: () => {},
 		},
 	},
 
@@ -84,15 +84,15 @@ export default Vue.extend({
 		return {
 			edit: false,
 			menu: null,
-			widgetAdderSelected: null
-		}
+			widgetAdderSelected: null,
+		};
 	},
 
 	computed: {
 		name(): string {
 			if (this.column.name) return this.column.name;
 			return this.$t('@deck.widgets');
-		}
+		},
 	},
 
 	created() {
@@ -101,7 +101,7 @@ export default Vue.extend({
 			text: this.$t('edit'),
 			action: () => {
 				this.edit = !this.edit;
-			}
+			},
 		}];
 	},
 
@@ -121,8 +121,8 @@ export default Vue.extend({
 				widget: {
 					name: this.widgetAdderSelected,
 					id: uuid(),
-					data: {}
-				}
+					data: {},
+				},
 			});
 
 			this.widgetAdderSelected = null;
@@ -131,14 +131,14 @@ export default Vue.extend({
 		removeWidget(widget) {
 			this.$store.commit('removeDeckWidget', {
 				id: this.column.id,
-				widget
+				widget,
 			});
 		},
 
 		saveWidgets() {
 			this.$store.commit('updateDeckColumn', this.column);
-		}
-	}
+		},
+	},
 });
 </script>
 

@@ -30,7 +30,7 @@ export default Vue.extend({
 			tables: null,
 			fullVacuum: true,
 			analyzeVacuum: true,
-			faDatabase, faBroom
+			faDatabase, faBroom,
 		};
 	},
 
@@ -52,10 +52,10 @@ export default Vue.extend({
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					splash: true
+					splash: true,
 				});
 			});
 		},
-	}
+	},
 });
 </script>

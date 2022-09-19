@@ -1,7 +1,7 @@
 <template>
-<router-link class="instance-info-wrap" v-if="instance != null" :to="`/search?q=${ encodeURIComponent(`${instance.host}`) }`">
+<router-link v-if="instance != null" class="instance-info-wrap" :to="`/search?q=${ encodeURIComponent(`${instance.host}`) }`">
 	<div class="instance-info" :title="getDetail(instance)" :style="{ background: `linear-gradient(to right, ${themeColor}, rgba(0, 0, 0, 0))` }">
-		<img class="icon" v-if="instance.faviconUrl != null" :src="`/proxy/icon.ico?${urlQuery({ url: instance.faviconUrl })}`"/>
+		<img v-if="instance.faviconUrl != null" class="icon" :src="`/proxy/icon.ico?${urlQuery({ url: instance.faviconUrl })}`"/>
 		<div class="name">
 			{{ (instance.name && instance.name !== instance.host) ? `${instance.name} (${instance.host})` : `${instance.host}` }}
 		</div>
@@ -24,8 +24,8 @@ export default Vue.extend({
 	props: ['instance'],
 	data() {
 		return {
-			urlQuery
-		}
+			urlQuery,
+		};
 	},
 	computed: {
 		themeColor(): string {
@@ -36,7 +36,7 @@ export default Vue.extend({
 				const b = parseInt(m[3], 16);
 				return `rgba(${r}, ${g}, ${b}, 0.5)`;
 			} else {
-				return `rgba(64, 64, 255, 0.5)`;
+				return 'rgba(64, 64, 255, 0.5)';
 			}
 		},
 	},
@@ -61,7 +61,7 @@ export default Vue.extend({
 			}
 			return s;
 		},
-	}
+	},
 });
 </script>
 

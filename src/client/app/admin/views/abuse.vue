@@ -39,7 +39,7 @@ export default Vue.extend({
 			untilId: undefined,
 			userReports: [],
 			existMore: false,
-			faExclamationCircle
+			faExclamationCircle,
 		};
 	},
 
@@ -51,7 +51,7 @@ export default Vue.extend({
 		fetchUserReports() {
 			this.$root.api('admin/abuse-user-reports', {
 				untilId: this.untilId,
-				limit: this.limit + 1
+				limit: this.limit + 1,
 			}).then(reports => {
 				if (reports.length == this.limit + 1) {
 					reports.pop();
@@ -66,12 +66,12 @@ export default Vue.extend({
 
 		removeReport(report) {
 			this.$root.api('admin/remove-abuse-user-report', {
-				reportId: report.id
+				reportId: report.id,
 			}).then(() => {
 				this.userReports = this.userReports.filter(r => r.id != report.id);
 			});
-		}
-	}
+		},
+	},
 });
 </script>
 

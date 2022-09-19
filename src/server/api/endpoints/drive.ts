@@ -5,7 +5,7 @@ import { DriveFiles } from '../../../models';
 export const meta = {
 	desc: {
 		'ja-JP': 'ドライブの情報を取得します。',
-		'en-US': 'Get drive information.'
+		'en-US': 'Get drive information.',
 	},
 
 	tags: ['drive', 'account'],
@@ -25,9 +25,9 @@ export const meta = {
 			usage: {
 				type: 'number' as const,
 				optional: false as const, nullable: false as const,
-			}
-		}
-	}
+			},
+		},
+	},
 };
 
 export default define(meta, async (ps, user) => {
@@ -38,6 +38,6 @@ export default define(meta, async (ps, user) => {
 
 	return {
 		capacity: 1024 * 1024 * instance.localDriveCapacityMb,
-		usage: usage
+		usage: usage,
 	};
 });

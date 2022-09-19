@@ -4,7 +4,7 @@ import define from '../define';
 export const meta = {
 	desc: {
 		'ja-JP': 'インスタンスバージョンを取得します。',
-		'en-US': 'Get the version of this instance.'
+		'en-US': 'Get the version of this instance.',
 	},
 
 	tags: ['meta'],
@@ -17,10 +17,10 @@ export const meta = {
 			version: {
 				type: 'string',
 				description: 'The version of Misskey of this instance.',
-				example: config.version
+				example: config.version,
 			},
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {

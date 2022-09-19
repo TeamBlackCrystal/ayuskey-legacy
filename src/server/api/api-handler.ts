@@ -15,12 +15,12 @@ export default (endpoint: IEndpoint, ctx: Koa.Context) => new Promise<void>((res
 			ctx.status = x;
 			ctx.body = {
 				error: {
-					message: y!.message,
-					code: y!.code,
-					id: y!.id,
-					kind: y!.kind,
-					...(y!.info ? { info: y!.info } : {})
-				}
+					message: y?.message,
+					code: y?.code,
+					id: y?.id,
+					kind: y?.kind,
+					...(y?.info ? { info: y.info } : {}),
+				},
 			};
 		} else {
 			ctx.body = x;
@@ -44,7 +44,7 @@ export default (endpoint: IEndpoint, ctx: Koa.Context) => new Promise<void>((res
 			reply(403, new ApiError({
 				message: 'Authentication failed. Please ensure your token is correct.',
 				code: 'AUTHENTICATION_FAILED',
-				id: 'b0a7f5f8-dc2f-4171-b91f-de88ad238e14'
+				id: 'b0a7f5f8-dc2f-4171-b91f-de88ad238e14',
 			}));
 		} else {
 			reply(500, new ApiError());

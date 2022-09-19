@@ -1,5 +1,5 @@
 <template>
-<div class="syxhndwprovvuqhmyvveewmbqayniwkv" v-if="!fetching">
+<div v-if="!fetching" class="syxhndwprovvuqhmyvveewmbqayniwkv">
 	<div class="signed-in-as">
 		<mfm :text="$t('signed-in-as').replace('{}', myName)" :plain="true" :custom-emojis="$store.state.i.emojis"/>
 	</div>
@@ -18,9 +18,9 @@
 	</main>
 
 	<button
-			:class="{ wait: followWait, active: user.isFollowing || user.hasPendingFollowRequestFromYou }"
-			@click="onClick"
-			:disabled="followWait">
+		:class="{ wait: followWait, active: user.isFollowing || user.hasPendingFollowRequestFromYou }"
+		:disabled="followWait"
+		@click="onClick">
 		<template v-if="!followWait">
 			<template v-if="user.hasPendingFollowRequestFromYou && user.isLocked"><fa icon="hourglass-half"/> {{ $t('request-pending') }}</template>
 			<template v-else-if="user.hasPendingFollowRequestFromYou && !user.isLocked"><fa icon="spinner"/> {{ $t('follow-processing') }}</template>
@@ -45,7 +45,7 @@ export default Vue.extend({
 		return {
 			fetching: true,
 			user: null,
-			followWait: false
+			followWait: false,
 		};
 	},
 
@@ -58,9 +58,9 @@ export default Vue.extend({
 			if (this.user.bannerUrl == null) return {};
 			return {
 				backgroundColor: this.user.bannerColor,
-				backgroundImage: `url(${ this.user.bannerUrl })`
+				backgroundImage: `url(${ this.user.bannerUrl })`,
 			};
-		}
+		},
 	},
 
 	created() {
@@ -74,8 +74,8 @@ export default Vue.extend({
 			Progress.start();
 			if (acct.match(/^https?:/)) {
 				this.$root.api('ap/show', {
-					uri: acct
-				}).then((res: { type: string, object: any })  => {
+					uri: acct,
+				}).then((res: { type: string, object: any }) => {
 					if (res.type === 'User') {
 						this.user = res.object;
 					} else if (res.type === 'Note') {
@@ -83,13 +83,13 @@ export default Vue.extend({
 					} else {
 						this.$root.dialog({
 							type: 'error',
-							text: 'Not supported'
+							text: 'Not supported',
 						});
 					}
 				}).catch((e: any) => {
 					this.$root.dialog({
 						type: 'error',
-						text: e.message
+						text: e.message,
 					});
 				}).finally(() => {
 					this.fetching = false;
@@ -101,7 +101,7 @@ export default Vue.extend({
 				}).catch((e: any) => {
 					this.$root.dialog({
 						type: 'error',
-						text: e.message
+						text: e.message,
 					});
 				}).finally(() => {
 					this.fetching = false;
@@ -116,20 +116,20 @@ export default Vue.extend({
 			try {
 				if (this.user.isFollowing) {
 					this.user = await this.$root.api('following/delete', {
-						userId: this.user.id
+						userId: this.user.id,
 					});
 				} else {
 					if (this.user.hasPendingFollowRequestFromYou) {
 						this.user = await this.$root.api('following/requests/cancel', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 					} else if (this.user.isLocked) {
 						this.user = await this.$root.api('following/create', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 					} else {
 						this.user = await this.$root.api('following/create', {
-							userId: this.user.id
+							userId: this.user.id,
 						});
 					}
 				}
@@ -138,8 +138,8 @@ export default Vue.extend({
 			} finally {
 				this.followWait = false;
 			}
-		}
-	}
+		},
+	},
 });
 </script>
 

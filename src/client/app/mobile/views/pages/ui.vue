@@ -1,9 +1,9 @@
 <template>
 <mk-ui>
-	<template #header><span style="margin-right:4px;" v-if="icon"><fa :icon="icon"/></span>{{ title }}</template>
+	<template #header><span v-if="icon" style="margin-right:4px;"><fa :icon="icon"/></span>{{ title }}</template>
 
 	<main>
-		<component :is="component" @init="init" v-bind="$attrs"/>
+		<component :is="component" v-bind="$attrs" @init="init"/>
 	</main>
 </mk-ui>
 </template>
@@ -14,8 +14,8 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		component: {
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -32,7 +32,7 @@ export default Vue.extend({
 		init(v) {
 			this.title = v.title;
 			this.icon = v.icon;
-		}
-	}
+		},
+	},
 });
 </script>

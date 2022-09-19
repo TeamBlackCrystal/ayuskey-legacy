@@ -1,13 +1,13 @@
 <template>
 <form class="mk-signin" :class="{ signing, totpLogin }" @submit.prevent="onSubmit">
-	<div class="avatar" :style="{ backgroundImage: user ? `url('${ user.avatarUrl }')` : null }" v-show="withAvatar"></div>
-	<div class="normal-signin" v-if="!totpLogin">
+	<div v-show="withAvatar" class="avatar" :style="{ backgroundImage: user ? `url('${ user.avatarUrl }')` : null }"></div>
+	<div v-if="!totpLogin" class="normal-signin">
 		<ui-input v-model="username" type="text" pattern="^[a-zA-Z0-9_]+$" spellcheck="false" autofocus required @input="onUsernameChange">
 			<span>{{ $t('username') }}</span>
 			<template #prefix>@</template>
 			<template #suffix>@{{ host }}</template>
 		</ui-input>
-		<ui-input v-model="password" type="password" :with-password-toggle="true" v-if="!user || user && !user.usePasswordLessLogin" required>
+		<ui-input v-if="!user || user && !user.usePasswordLessLogin" v-model="password" type="password" :with-password-toggle="true" required>
 			<span>{{ $t('password') }}</span>
 			<template #prefix><fa icon="lock"/></template>
 		</ui-input>
@@ -17,19 +17,19 @@
 		<p v-if="meta && meta.enableDiscordIntegration" style="margin: 8px 0;"><a :href="`${apiUrl}/signin/discord`"><fa :icon="['fab', 'discord']"/> {{ $t('signin-with-discord') /* TODO: Make these layouts better */ }}</a></p>
 		<p style="margin: 8px 0;"><a @click="onFlush">{{ $t('@.flush') }}</a></p>
 	</div>
-	<div class="2fa-signin" v-if="totpLogin" :class="{ securityKeys: user && user.securityKeys }">
+	<div v-if="totpLogin" class="2fa-signin" :class="{ securityKeys: user && user.securityKeys }">
 		<div v-if="user && user.securityKeys" class="twofa-group tap-group">
 			<p>{{ $t('tap-key') }}</p>
-			<ui-button @click="queryKey" v-if="!queryingKey">
+			<ui-button v-if="!queryingKey" @click="queryKey">
 				{{ $t('@.error.retry') }}
 			</ui-button>
 		</div>
-		<div class="or-hr" v-if="user && user.securityKeys">
+		<div v-if="user && user.securityKeys" class="or-hr">
 			<p class="or-msg">{{ $t('or') }}</p>
 		</div>
 		<div class="twofa-group totp-group">
 			<p style="margin-bottom:0;">{{ $t('enter-2fa-code') }}</p>
-			<ui-input v-model="password" type="password" :with-password-toggle="true" v-if="user && user.usePasswordLessLogin" required>
+			<ui-input v-if="user && user.usePasswordLessLogin" v-model="password" type="password" :with-password-toggle="true" required>
 				<span>{{ $t('password') }}</span>
 				<template #prefix><fa icon="lock"/></template>
 			</ui-input>
@@ -58,8 +58,8 @@ export default Vue.extend({
 		withAvatar: {
 			type: Boolean,
 			required: false,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	data() {
@@ -88,7 +88,7 @@ export default Vue.extend({
 	methods: {
 		onUsernameChange() {
 			this.$root.api('users/show', {
-				username: this.username
+				username: this.username,
 			}).then(user => {
 				this.user = user;
 			}, () => {
@@ -104,10 +104,10 @@ export default Vue.extend({
 					allowCredentials: this.challengeData.securityKeys.map(key => ({
 						id: byteify(key.id, 'hex'),
 						type: 'public-key',
-						transports: ['usb', 'nfc', 'ble', 'internal']
+						transports: ['usb', 'nfc', 'ble', 'internal'],
 					})),
-					timeout: 60 * 1000
-				}
+					timeout: 60 * 1000,
+				},
 			}).catch(() => {
 				this.queryingKey = false;
 				return Promise.reject(null);
@@ -121,7 +121,7 @@ export default Vue.extend({
 					authenticatorData: hexifyAB(credential.response.authenticatorData),
 					clientDataJSON: hexifyAB(credential.response.clientDataJSON),
 					credentialId: credential.id,
-					challengeId: this.challengeData.challengeId
+					challengeId: this.challengeData.challengeId,
 				});
 			}).then(res => {
 				localStorage.setItem('i', res.i);
@@ -131,7 +131,7 @@ export default Vue.extend({
 				if (err === null) return;
 				this.$root.dialog({
 					type: 'error',
-					text: this.$t('login-failed')
+					text: this.$t('login-failed'),
 				});
 				this.signing = false;
 			});
@@ -144,7 +144,7 @@ export default Vue.extend({
 				if (window.PublicKeyCredential && this.user.securityKeys) {
 					this.$root.api('signin', {
 						username: this.username,
-						password: this.password
+						password: this.password,
 					}).then(res => {
 						this.totpLogin = true;
 						this.signing = false;
@@ -153,7 +153,7 @@ export default Vue.extend({
 					}).catch(() => {
 						this.$root.dialog({
 							type: 'error',
-							text: this.$t('login-failed')
+							text: this.$t('login-failed'),
 						});
 						this.challengeData = null;
 						this.totpLogin = false;
@@ -167,7 +167,7 @@ export default Vue.extend({
 				this.$root.api('signin', {
 					username: this.username,
 					password: this.password,
-					token: this.user && this.user.twoFactorEnabled ? this.token : undefined
+					token: this.user && this.user.twoFactorEnabled ? this.token : undefined,
 				}).then(res => {
 					localStorage.setItem('i', res.i);
 					document.cookie = `token=${res.i}; path=/; max-age=31536000`; // bull dashboardの認証とかで使う
@@ -175,7 +175,7 @@ export default Vue.extend({
 				}).catch(() => {
 					this.$root.dialog({
 						type: 'error',
-						text: this.$t('login-failed')
+						text: this.$t('login-failed'),
 					});
 					this.signing = false;
 				});
@@ -186,7 +186,7 @@ export default Vue.extend({
 			const r = confirm('ブラウザに保存されたキャッシュをクリアしますか？');
 			if (r) location.href = '/flush';
 		},
-	}
+	},
 });
 </script>
 

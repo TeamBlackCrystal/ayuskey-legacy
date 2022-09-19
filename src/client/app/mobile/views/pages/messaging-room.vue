@@ -1,5 +1,5 @@
 <template>
-<mk-ui :displayPostButton="false">
+<mk-ui :display-post-button="false">
 	<template #header>
 		<template v-if="user"><span style="margin-right:4px;"><fa :icon="['far', 'comments']"/></span><mk-user-name :user="user"/></template>
 		<template v-else-if="group"><span style="margin-right:4px;"><fa :icon="['far', 'comments']"/></span>{{ group.name }}</template>
@@ -17,18 +17,18 @@ import parseAcct from '../../../../../misc/acct/parse';
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default)
+		XMessagingRoom: () => import('../../../common/views/components/messaging-room.vue').then(m => m.default),
 	},
 	data() {
 		return {
 			fetching: true,
 			user: null,
 			group: null,
-			unwatchDarkmode: null
+			unwatchDarkmode: null,
 		};
 	},
 	watch: {
-		$route: 'fetch'
+		$route: 'fetch',
 	},
 	created() {
 		const applyBg = v =>
@@ -65,7 +65,7 @@ export default Vue.extend({
 					document.title = this.$t('@.messaging') + ': ' + this.group.name;
 				});
 			}
-		}
-	}
+		},
+	},
 });
 </script>

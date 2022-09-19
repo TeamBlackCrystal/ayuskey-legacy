@@ -39,18 +39,18 @@ export const meta = {
 
 		limit: {
 			validator: $.optional.num.range(1, 100),
-			default: 30
+			default: 30,
 		},
 
 		offset: {
 			validator: $.optional.num.min(0),
-			default: 0
+			default: 0,
 		},
 
 		sort: {
 			validator: $.optional.str,
-		}
-	}
+		},
+	},
 };
 
 export default define(meta, async (ps, me) => {
