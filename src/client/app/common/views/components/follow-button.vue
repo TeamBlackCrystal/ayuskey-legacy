@@ -16,6 +16,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/follow-button.vue'),
@@ -70,7 +71,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 
 		this.connection.on('follow', this.onFollowChange);
 		this.connection.on('unfollow', this.onFollowChange);

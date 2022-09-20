@@ -84,6 +84,7 @@ import i18n from '../../../i18n';
 import XDraggable from 'vuedraggable';
 import { v4 as uuid } from 'uuid';
 import XWelcome from '../pages/welcome.vue';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/home.vue'),
@@ -194,7 +195,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 	},
 
 	beforeDestroy() {

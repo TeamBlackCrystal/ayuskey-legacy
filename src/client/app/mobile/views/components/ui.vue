@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { stream } from '../../../stream';
 import MkNotify from './notify.vue';
 import XHeader from './ui.header.vue';
 import XNav from './ui.nav.vue';
@@ -69,7 +70,7 @@ export default Vue.extend({
 		this.$el.style.paddingTop = this.$store.state.uiHeaderHeight + 'px';
 
 		if (this.$store.getters.isSignedIn) {
-			this.connection = this.$root.stream.useSharedConnection('main');
+			this.connection = stream.useChannel('main');
 
 			this.connection.on('notification', this.onNotification);
 			this.connection.on('reversiInvited', this.onReversiInvited);
@@ -86,7 +87,7 @@ export default Vue.extend({
 	methods: {
 		onNotification(notification) {
 			// TODO: ユーザーが画面を見てないと思われるとき(ブラウザやタブがアクティブじゃないなど)は送信しない
-			this.$root.stream.send('readNotification', {
+			stream.send('readNotification', {
 				id: notification.id,
 			});
 

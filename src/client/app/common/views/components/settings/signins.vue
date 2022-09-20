@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { stream } from '../../../../stream';
 export default Vue.extend({
 	data() {
 		return {
@@ -33,7 +34,7 @@ export default Vue.extend({
 			this.fetching = false;
 		});
 
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 
 		this.connection.on('signin', this.onSignin);
 	},

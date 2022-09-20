@@ -71,6 +71,7 @@ import { faTasks, faInbox, faDatabase, faCloud } from '@fortawesome/free-solid-s
 import { faPaperPlane, faChartBar } from '@fortawesome/free-regular-svg-icons';
 import i18n from '../../i18n';
 import XChart from './queue.chart.vue';
+import { stream } from '../../stream';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/queue.vue'),
@@ -107,7 +108,7 @@ export default Vue.extend({
 	mounted() {
 		this.fetchJobs();
 
-		this.connection = this.$root.stream.useSharedConnection('queueStats');
+		this.connection = stream.useChannel('queueStats');
 		this.connection.send('requestLog', {
 			id: Math.random().toString().substr(2, 8),
 			length: this.chartLimit,

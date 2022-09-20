@@ -14,6 +14,7 @@ import Vue from 'vue';
 import XNotes from './deck.notes.vue';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('deck'),
@@ -47,10 +48,10 @@ export default Vue.extend({
 	computed: {
 		stream(): any {
 			switch (this.src) {
-				case 'home': return this.$root.stream.useSharedConnection('homeTimeline');
-				case 'local': return this.$root.stream.useSharedConnection('localTimeline');
-				case 'hybrid': return this.$root.stream.useSharedConnection('hybridTimeline');
-				case 'global': return this.$root.stream.useSharedConnection('globalTimeline');
+				case 'home': return stream.useChannel('homeTimeline');
+				case 'local': return stream.useChannel('localTimeline');
+				case 'hybrid': return stream.useChannel('hybridTimeline');
+				case 'global': return stream.useChannel('globalTimeline');
 			}
 		},
 

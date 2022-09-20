@@ -21,6 +21,7 @@
 <script lang="ts">
 import define from '../../../common/define-widget';
 import i18n from '../../../i18n';
+import { stream } from '../../../stream';
 import { getStaticImageUrl } from '../../scripts/get-static-image-url';
 
 export default define({
@@ -40,7 +41,7 @@ export default define({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 
 		this.connection.on('driveFileCreated', this.onDriveFileCreated);
 

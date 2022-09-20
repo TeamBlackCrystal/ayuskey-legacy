@@ -9,6 +9,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
+import { stream } from '../../../stream';
 import XColumn from './deck.column.vue';
 import XNotes from './deck.notes.vue';
 
@@ -60,7 +61,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 		this.connection.on('mention', this.onNote);
 	},
 
