@@ -991,10 +991,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsrsasign@npm:10.5.3":
-  version: 10.5.3
-  resolution: "@types/jsrsasign@npm:10.5.3"
-  checksum: eb7dd217a7c1fc7b23c6b70168810703986ea58325350d5fbe5daa6e07a35a088eeb324be0c18832e4ae4b1f8c17a7277d20a39236aaf67ace3bf0edf04a9d07
+"@types/jsrsasign@npm:10.5.4":
+  version: 10.5.4
+  resolution: "@types/jsrsasign@npm:10.5.4"
+  checksum: e0ec7dcd534fe9a672a9b306f951f24eef1019b4d879d57e29a154eeb38cfb47f59239c2af1d202da211357feb452b96c45b8229ef3c440cf6d96606f4e5cff1
   languageName: node
   linkType: hard
 
@@ -9625,7 +9625,7 @@ __metadata:
     "@types/js-yaml": 4.0.5
     "@types/jsdom": 20.0.0
     "@types/jsonld": 1.5.6
-    "@types/jsrsasign": 10.5.3
+    "@types/jsrsasign": 10.5.4
     "@types/katex": 0.14.0
     "@types/koa": 2.13.5
     "@types/koa-bodyparser": 4.3.8
