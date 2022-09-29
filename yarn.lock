@@ -2855,10 +2855,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blurhash@npm:2.0.0":
-  version: 2.0.0
-  resolution: "blurhash@npm:2.0.0"
-  checksum: b7d9f0f414d08784add6c6424259204b2422b65ba81a72b05668b3bd016ec9ed1534cacc36ed26f1cf735e90db80ee00653ac90e5f27f52de604d715391a3221
+"blurhash@npm:2.0.2":
+  version: 2.0.2
+  resolution: "blurhash@npm:2.0.2"
+  checksum: 6de9869915054c36036a6f406d6377456a9299e8cc976181cc411f555ed977a2008d46fd9dc7bbba7d89c6449695cceb22f0e5d08a3f95f11bc6085c4e9696da
   languageName: node
   linkType: hard
 
@@ -9680,7 +9680,7 @@ __metadata:
     autwh: 0.1.0
     aws-sdk: 2.1225.0
     bcryptjs: 2.4.3
-    blurhash: 2.0.0
+    blurhash: 2.0.2
     bootstrap: 4.6.2
     bootstrap-vue: 2.22.0
     broadcast-channel: 4.14.0
