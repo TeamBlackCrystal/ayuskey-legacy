@@ -3818,10 +3818,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:4.1.0":
-  version: 4.1.0
-  resolution: "commander@npm:4.1.0"
-  checksum: 64a0b09abc6365a556091cfe7781ad32a55c97895cfb0a24734b65fa176afffe25c7861bc1fe89e3ee9236d0230002e2ef53861f06a5a726bd9cd55499d355a6
+"commander@npm:4.1.1":
+  version: 4.1.1
+  resolution: "commander@npm:4.1.1"
+  checksum: d7b9913ff92cae20cb577a4ac6fcc121bd6223319e54a40f51a14740a681ad5c574fd29a57da478a5f234a6fa6c52cbf0b7c641353e03c648b1ae85ba670b977
   languageName: node
   linkType: hard
 
@@ -9690,7 +9690,7 @@ __metadata:
     cbor: 8.1.0
     chalk: 4.1.2
     cli-highlight: 2.1.11
-    commander: 4.1.0
+    commander: 4.1.1
     concurrently: 7.4.0
     content-disposition: 0.5.4
     crc-32: 1.2.2
