@@ -9757,7 +9757,7 @@ __metadata:
     nested-property: 4.0.0
     node-fetch: 2.6.7
     node-gyp: 9.1.0
-    nodemailer: 6.7.8
+    nodemailer: 6.8.0
     npm-run-all: 4.1.5
     nprogress: 0.2.0
     oauth: 0.10.0
@@ -10343,10 +10343,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemailer@npm:6.7.8":
-  version: 6.7.8
-  resolution: "nodemailer@npm:6.7.8"
-  checksum: 92d4a1d48813825989c7f5fc7cbcf5ba8d1a8acf8e10e420b4aa7670ade7abd0c543cc6cf8adf14e44c62552e26efb37b2a15a9af90a515fa90b40ffc71c433e
+"nodemailer@npm:6.8.0":
+  version: 6.8.0
+  resolution: "nodemailer@npm:6.8.0"
+  checksum: e1827df714d207a00f1bf8012e767826862467b72440fc9c37cf238a14d01a4c591b7657f4d1805bfb2764883c07aa9f2e31ee96a5fec51ccf1e6ad6dd01bd1d
   languageName: node
   linkType: hard
 
