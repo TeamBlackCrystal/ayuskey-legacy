@@ -168,7 +168,7 @@
 		"sass": "1.55.0",
 		"sass-loader": "13.0.2",
 		"seedrandom": "3.0.5",
-		"sharp": "0.31.0",
+		"sharp": "0.31.1",
 		"showdown": "2.1.0",
 		"showdown-highlightjs-extension": "0.1.2",
 		"sonic-channel": "1.2.14",
