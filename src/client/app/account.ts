@@ -1,17 +1,12 @@
 import { reactive } from 'vue';
+import * as ayuskey from 'ayuskey.js';
 import { apiUrl } from './config';
 //import { waiting } from './os';
 import { unisonReload } from './common/scripts/unison-reload';
 
 // TODO: 他のタブと永続化されたstateを同期
 
-type Account = {
-	id: string;
-	token: string;
-	isModerator: boolean;
-	isAdmin: boolean;
-	isDeleted: boolean;
-};
+type Account = ayuskey.entities.MeDetailed;
 
 const data = localStorage.getItem('account');
 
@@ -25,7 +20,11 @@ const vuex = localStorage.getItem('vuex');
 if (vuex) {
 	tmp = JSON.parse(vuex);
 }
-export const $i = tmp.i;
+export const $i = tmp ? reactive(tmp.i as Account) : null;
+
+export const iAmModerator = $i != null && ($i.isAdmin || $i.isModerator);
+export const iAmAdmin = $i != null && $i.isAdmin;
+
 //#endregion
 
 export function signout() {
