@@ -1,6 +1,6 @@
 import { onUnmounted, Ref, ref, watch } from 'vue';
 import { $i } from './account';
-import { api } from './os';
+import { apiV12 } from './os';
 
 type StateDef = Record<string, {
 	where: 'account' | 'device' | 'deviceAccount';
@@ -99,7 +99,7 @@ export class Storage<T extends StateDef> {
 				const cache = JSON.parse(localStorage.getItem(this.keyForLocalStorage + '::cache::' + $i.id) || '{}');
 				cache[key] = value;
 				localStorage.setItem(this.keyForLocalStorage + '::cache::' + $i.id, JSON.stringify(cache));
-				api('i/registry/set', {
+				apiV12('i/registry/set', {
 					scope: ['client', this.key],
 					key: key,
 					value: value,

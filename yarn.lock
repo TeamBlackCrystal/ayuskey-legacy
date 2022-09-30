@@ -2674,7 +2674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autobind-decorator@npm:2.4.0":
+"autobind-decorator@npm:2.4.0, autobind-decorator@npm:^2.4.0":
   version: 2.4.0
   resolution: "autobind-decorator@npm:2.4.0"
   checksum: 6fcc922580d3585a3aeef1a480f935c0827b1a4505b9e39ff9bcad9039958bd47b27a4e35152f566e01befb2924701dbc9f744ec29eeb880c99eef8e39fce4a3
@@ -2719,6 +2719,17 @@ __metadata:
     uuid: 8.0.0
     xml2js: 0.4.19
   checksum: 4483fad82f3cf27540b6beeedbb0c3dd8d8e00751cbd1c7f996bc28822d052879db24b2a646ae1add561112051e0f68705ad77eaa16e13f12d51feb67d8094b1
+  languageName: node
+  linkType: hard
+
+"ayuskey.js@npm:1.0.0-rc.8":
+  version: 1.0.0-rc.8
+  resolution: "ayuskey.js@npm:1.0.0-rc.8"
+  dependencies:
+    autobind-decorator: ^2.4.0
+    eventemitter3: ^4.0.7
+    reconnecting-websocket: ^4.4.0
+  checksum: e1b1c1e99195587162318a009a22d3a6d2527aaed212cced36bfb6df9ab827ab414ef5f47609eed16c4bc7c87bdc5f6654b23639ad80fd3c5090ef454e430098
   languageName: node
   linkType: hard
 
@@ -5570,7 +5581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:4.0.7, eventemitter3@npm:^4.0.0, eventemitter3@npm:^4.0.4":
+"eventemitter3@npm:4.0.7, eventemitter3@npm:^4.0.0, eventemitter3@npm:^4.0.4, eventemitter3@npm:^4.0.7":
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
@@ -9686,6 +9697,7 @@ __metadata:
     autosize: 5.0.1
     autwh: 0.1.0
     aws-sdk: 2.1225.0
+    ayuskey.js: 1.0.0-rc.8
     bcryptjs: 2.4.3
     blurhash: 2.0.2
     bootstrap: 4.6.2
@@ -12509,7 +12521,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reconnecting-websocket@npm:4.4.0":
+"reconnecting-websocket@npm:4.4.0, reconnecting-websocket@npm:^4.4.0":
   version: 4.4.0
   resolution: "reconnecting-websocket@npm:4.4.0"
   checksum: 7ee379ff3a4bddf9d47fb6f3fb2d9450865f0ed2d91f003e6d0c12c901e8c135379a143a933e7bed7bc33133f04bdaed534bd68591c95730044dc69d32da4866

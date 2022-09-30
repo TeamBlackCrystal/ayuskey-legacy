@@ -161,6 +161,7 @@ import i18n from '../../../i18n';
 import * as sound from '../../../common/scripts/sound';
 import getNoteSummary from '../../../../../misc/get-note-summary';
 import paging from '../../../common/scripts/paging';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/notifications.vue'),
@@ -211,7 +212,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 		this.connection.on('notification', this.onNotification);
 	},
 
@@ -222,7 +223,7 @@ export default Vue.extend({
 	methods: {
 		onNotification(notification) {
 			// TODO: ユーザーが画面を見てないと思われるとき(ブラウザやタブがアクティブじゃないなど)は送信しない
-			this.$root.stream.send('readNotification', {
+			stream.send('readNotification', {
 				id: notification.id,
 			});
 

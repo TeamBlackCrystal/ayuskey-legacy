@@ -97,6 +97,7 @@ import XApLog from './dashboard.ap-log.vue';
 import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import MarqueeText from 'vue-marquee-text-component';
 import randomColor from 'randomcolor';
+import { stream } from '../../stream';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/dashboard.vue'),
@@ -120,7 +121,7 @@ export default Vue.extend({
 	},
 
 	created() {
-		this.connection = this.$root.stream.useSharedConnection('serverStats');
+		this.connection = stream.useChannel('serverStats');
 
 		this.updateStats();
 

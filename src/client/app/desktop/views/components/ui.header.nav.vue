@@ -26,6 +26,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import MkGameWindow from './game-window.vue';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.header.nav.vue'),
@@ -38,7 +39,7 @@ export default Vue.extend({
 	},
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
-			this.connection = this.$root.stream.useSharedConnection('main');
+			this.connection = stream.useChannel('main');
 
 			this.connection.on('reversiInvited', this.onReversiInvited);
 			this.connection.on('reversiNoInvites', this.onReversiNoInvites);

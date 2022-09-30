@@ -73,6 +73,7 @@ import { lang } from '../../../config';
 import { faNewspaper, faHashtag, faHome, faColumns, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faSun, faStickyNote, faBell } from '@fortawesome/free-regular-svg-icons';
 import { search } from '../../../common/scripts/search';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/ui.nav.vue'),
@@ -117,7 +118,7 @@ export default Vue.extend({
 		});
 
 		if (this.$store.getters.isSignedIn) {
-			this.connection = this.$root.stream.useSharedConnection('main');
+			this.connection = stream.useChannel('main');
 
 			this.connection.on('reversiInvited', this.onReversiInvited);
 			this.connection.on('reversiNoInvites', this.onReversiNoInvites);

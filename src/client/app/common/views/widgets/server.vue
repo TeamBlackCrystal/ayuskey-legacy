@@ -26,6 +26,7 @@ import XMemory from './server.memory.vue';
 import XDisk from './server.disk.vue';
 import XUptimes from './server.uptimes.vue';
 import XInfo from './server.info.vue';
+import { stream } from '../../../stream';
 
 export default define({
 	name: 'server',
@@ -57,7 +58,7 @@ export default define({
 			this.fetching = false;
 		});
 
-		this.connection = this.$root.stream.useSharedConnection('serverStats');
+		this.connection = stream.useChannel('serverStats');
 	},
 	beforeDestroy() {
 		this.connection.dispose();

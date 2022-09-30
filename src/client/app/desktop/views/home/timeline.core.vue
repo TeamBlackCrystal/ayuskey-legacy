@@ -15,6 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/timeline.core.vue'),
@@ -73,25 +74,25 @@ export default Vue.extend({
 			const onChangeFollowing = () => {
 				this.fetch();
 			};
-			this.connection = this.$root.stream.useSharedConnection('homeTimeline');
+			this.connection = stream.useChannel('homeTimeline');
 			this.connection.on('note', prepend);
 			this.connection.on('follow', onChangeFollowing);
 			this.connection.on('unfollow', onChangeFollowing);
 		} else if (this.src == 'local') {
 			this.endpoint = 'notes/local-timeline';
-			this.connection = this.$root.stream.useSharedConnection('localTimeline');
+			this.connection = stream.useChannel('localTimeline');
 			this.connection.on('note', prepend);
 		} else if (this.src == 'hybrid') {
 			this.endpoint = 'notes/hybrid-timeline';
-			this.connection = this.$root.stream.useSharedConnection('hybridTimeline');
+			this.connection = stream.useChannel('hybridTimeline');
 			this.connection.on('note', prepend);
 		} else if (this.src == 'global') {
 			this.endpoint = 'notes/global-timeline';
-			this.connection = this.$root.stream.useSharedConnection('globalTimeline');
+			this.connection = stream.useChannel('globalTimeline');
 			this.connection.on('note', prepend);
 		} else if (this.src == 'mentions') {
 			this.endpoint = 'notes/mentions';
-			this.connection = this.$root.stream.useSharedConnection('main');
+			this.connection = stream.useChannel('main');
 			this.connection.on('mention', prepend);
 		} else if (this.src == 'messages') {
 			this.endpoint = 'notes/mentions';
@@ -103,7 +104,7 @@ export default Vue.extend({
 					prepend(note);
 				}
 			};
-			this.connection = this.$root.stream.useSharedConnection('main');
+			this.connection = stream.useChannel('main');
 			this.connection.on('mention', onNote);
 		}
 

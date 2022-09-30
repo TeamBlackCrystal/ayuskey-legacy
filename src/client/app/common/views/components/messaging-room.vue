@@ -36,6 +36,7 @@ import XForm from './messaging-room.form.vue';
 import * as sound from '../../../common/scripts/sound';
 import { url } from '../../../config';
 import { faArrowCircleDown, faFlag } from '@fortawesome/free-solid-svg-icons';
+import { stream } from '../../../stream';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/messaging-room.vue'),
@@ -90,7 +91,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.connectToChannel('messaging', {
+		this.connection = stream.useChannel('messaging', {
 			otherparty: this.user ? this.user.id : undefined,
 			group: this.group ? this.group.id : undefined,
 		});

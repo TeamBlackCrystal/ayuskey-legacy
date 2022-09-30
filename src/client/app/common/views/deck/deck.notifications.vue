@@ -31,6 +31,7 @@ import * as sound from '../../scripts/sound';
 import XNotification from './deck.notification.vue';
 import paging from '../../../common/scripts/paging';
 import * as config from '../../../config';
+import { stream } from '../../../stream';
 
 const displayLimit = 20;
 
@@ -90,7 +91,7 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.connection = this.$root.stream.useSharedConnection('main');
+		this.connection = stream.useChannel('main');
 		this.connection.on('notification', this.onNotification);
 
 		this.column.$on('top', this.onTop);
@@ -107,7 +108,7 @@ export default Vue.extend({
 	methods: {
 		onNotification(notification) {
 			// TODO: ユーザーが画面を見てないと思われるとき(ブラウザやタブがアクティブじゃないなど)は送信しない
-			this.$root.stream.send('readNotification', {
+			stream.send('readNotification', {
 				id: notification.id,
 			});
 
