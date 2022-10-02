@@ -1230,9 +1230,7 @@ common/views/components/account-info.vue:
   other: Others
   statistics: Statistics
   'true': 'Yes'
-  'false': 'No
-
-'
+  'false': 'No'
 common/views/components/api-settings.vue:
   intro: To access the API, set this token as the key 'i' of request parameters.
   caution: Do not enter this token to any apps nor tell this token to others otherwise
