@@ -179,6 +179,27 @@ export const meta = {
 			},
 		},
 
+		enableTurnstile: {
+			validator: $.optional.bool,
+			desc: {
+				'ja-JP': 'reCAPTCHAを使用するか否か',
+			},
+		},
+
+		turnstileSiteKey: {
+			validator: $.optional.nullable.str,
+			desc: {
+				'ja-JP': 'reCAPTCHA site key',
+			},
+		},
+
+		turnstileSecretKey: {
+			validator: $.optional.nullable.str,
+			desc: {
+				'ja-JP': 'reCAPTCHA secret key',
+			},
+		},
+
 		proxyAccount: {
 			validator: $.optional.nullable.str,
 			desc: {
@@ -518,6 +539,18 @@ export default define(meta, async (ps, me) => {
 
 	if (ps.recaptchaSecretKey !== undefined) {
 		set.recaptchaSecretKey = ps.recaptchaSecretKey;
+	}
+
+	if (ps.enableTurnstile !== undefined) {
+		set.enableTurnstile = ps.enableTurnstile;
+	}
+
+	if (ps.turnstileSiteKey !== undefined) {
+		set.turnstileSiteKey = ps.turnstileSiteKey;
+	}
+
+	if (ps.turnstileSecretKey !== undefined) {
+		set.turnstileSecretKey = ps.turnstileSecretKey;
 	}
 
 	if (ps.proxyAccount !== undefined) {

@@ -4,7 +4,7 @@ import { generateKeyPair } from 'crypto';
 import generateUserToken from '../common/generate-native-user-token';
 import config from '../../../config';
 import { fetchMeta } from '../../../misc/fetch-meta';
-import { verifyRecaptcha } from '../../../misc/captcha'; 
+import { verifyRecaptcha, verifyTurnstile } from '../../../misc/captcha'; 
 import { Users, Signins, RegistrationTickets, UsedUsernames } from '../../../models';
 import { genId } from '../../../misc/gen-id';
 import { usersChart } from '../../../services/chart';
@@ -28,19 +28,25 @@ export default async (ctx: Koa.Context) => {
 		});
 	}
 
+	if (process.env.NODE_ENV !== 'test' && instance.enableTurnstile && instance.turnstileSecretKey) {
+		await verifyTurnstile(instance.turnstileSecretKey, body['turnstile-response']).catch(e => {
+			ctx.throw(400, e);
+		});
+	}
+
 	const username = body['username'];
 	const password = body['password'];
 	const host: string | null = process.env.NODE_ENV === 'test' ? (body['host'] || null) : null;
 	const invitationCode = body['invitationCode'];
 
 	if (instance && instance.disableRegistration) {
-		if (invitationCode == null || typeof invitationCode != 'string') {
+		if (invitationCode == null || typeof invitationCode !== 'string') {
 			ctx.status = 400;
 			return;
 		}
 
 		const ticket = await RegistrationTickets.findOne({
-			code: invitationCode
+			code: invitationCode,
 		});
 
 		if (ticket == null) {
@@ -89,16 +95,16 @@ export default async (ctx: Koa.Context) => {
 			modulusLength: 4096,
 			publicKeyEncoding: {
 				type: 'spki',
-				format: 'pem'
+				format: 'pem',
 			},
 			privateKeyEncoding: {
 				type: 'pkcs8',
 				format: 'pem',
 				cipher: undefined,
-				passphrase: undefined
-			}
+				passphrase: undefined,
+			},
 		} as any, (err, publicKey, privateKey) =>
-			err ? rej(err) : res([publicKey, privateKey])
+			err ? rej(err) : res([publicKey, privateKey]),
 		));
 
 	let account!: User;
@@ -107,7 +113,7 @@ export default async (ctx: Koa.Context) => {
 	await getConnection().transaction(async transactionalEntityManager => {
 		const exist = await transactionalEntityManager.findOne(User, {
 			usernameLower: username.toLowerCase(),
-			host: null
+			host: null,
 		});
 
 		if (exist) throw new Error(' the username is already used');
@@ -125,7 +131,7 @@ export default async (ctx: Koa.Context) => {
 		await transactionalEntityManager.save(new UserKeypair({
 			publicKey: keyPair[0],
 			privateKey: keyPair[1],
-			userId: account.id
+			userId: account.id,
 		}));
 
 		await transactionalEntityManager.save(new UserProfile({
@@ -151,12 +157,12 @@ export default async (ctx: Koa.Context) => {
 		userId: account.id,
 		ip: ctx.ip,
 		headers: ctx.headers,
-		success: true
+		success: true,
 	});
 
 	const res = await Users.pack(account, account, {
 		detail: true,
-		includeSecrets: true
+		includeSecrets: true,
 	});
 
 	(res as any).token = secret;
