@@ -50,14 +50,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 const getPasswordStrength = require('syuilo-password-strength');
 import { host, url } from '../../../config';
 import { toUnicode } from 'punycode';
 import { $i } from '../../../account';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/signup.vue'),
 
 	components: {
@@ -155,7 +155,7 @@ export default Vue.extend({
 				password: this.password,
 				invitationCode: this.invitationCode,
 				'hcaptcha-response': this.hCaptchaResponse,
-				'g-recaptcha-response': this.meta.reCaptchaResponse,
+				'g-recaptcha-response': this.reCaptchaResponse,
 			}).then(() => {
 				this.$root.api('signin', {
 					username: this.username,
