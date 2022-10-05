@@ -301,5 +301,5 @@
 		"webpack-dev-server": "4.8.1",
 		"webpackbar": "5.0.2"
 	},
-	"packageManager": "yarn@3.2.3"
+	"packageManager": "yarn@3.2.4"
 }
