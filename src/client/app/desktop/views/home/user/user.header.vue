@@ -37,8 +37,8 @@
 			</dl>
 		</div>
 		<div class="info">
-			<span v-if="user.host === null && user.location" class="location"><fa icon="map-marker"/> {{ user.location }}</span>
-			<span v-if="user.host === null && user.birthday" class="birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
+			<span v-if="user.location" class="location"><fa icon="map-marker"/> {{ user.location }}</span>
+			<span v-if="user.birthday" class="birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
 		</div>
 		<div class="status">
 			<router-link :to="user | userPage()" class="notes-count"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</router-link>
