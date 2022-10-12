@@ -236,7 +236,7 @@
 		"@types/is-url": "1.2.30",
 		"@types/js-yaml": "4.0.5",
 		"@types/jsdom": "20.0.0",
-		"@types/jsonld": "1.5.6",
+		"@types/jsonld": "1.5.7",
 		"@types/jsrsasign": "10.5.4",
 		"@types/katex": "0.14.0",
 		"@types/koa": "2.13.5",
