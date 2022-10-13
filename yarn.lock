@@ -101,15 +101,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bull-board/api@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@bull-board/api@npm:4.4.0"
-  dependencies:
-    redis-info: ^3.0.8
-  checksum: 00fec00a22cca592732375c6de970341c52b4d42b8d3851407f16b88379208323b112100da2b809d56e91b66c237dd0a6be20e7aae34b6d35724b0c74a557704
-  languageName: node
-  linkType: hard
-
 "@bull-board/api@npm:4.5.0":
   version: 4.5.0
   resolution: "@bull-board/api@npm:4.5.0"
@@ -119,28 +110,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bull-board/koa@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@bull-board/koa@npm:4.4.0"
+"@bull-board/koa@npm:4.5.0":
+  version: 4.5.0
+  resolution: "@bull-board/koa@npm:4.5.0"
   dependencies:
-    "@bull-board/api": 4.4.0
-    "@bull-board/ui": 4.4.0
+    "@bull-board/api": 4.5.0
+    "@bull-board/ui": 4.5.0
     ejs: ^3.1.7
     koa: ^2.13.1
     koa-mount: ^4.0.0
     koa-router: ^10.0.0
     koa-static: ^5.0.0
     koa-views: ^7.0.1
-  checksum: e785ed10235034a1319bb9c0a766d10512f8585fb6b5229e6a546cdd5f1a5f4c51b5e3d3671789d492b8b6fd0ed6e049ea0cb0289dd96174aeeaa5749c71a507
-  languageName: node
-  linkType: hard
-
-"@bull-board/ui@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@bull-board/ui@npm:4.4.0"
-  dependencies:
-    "@bull-board/api": 4.4.0
-  checksum: ab4c4b74843f3e39c6dffe771ce2a2acda066d27ac052ac09709afbc463965dc55335733c78dbb07c3ec48db4e2d594afc4ec041f7d60efca5e5fb2805c78285
+  checksum: d0456421bf36e2d2940df26771afb297cca7d5edc370f9d8675a38d0d7809312c673b521a2c5b60ae742ad851013054082f150175d3be5552e69110149230155
   languageName: node
   linkType: hard
 
@@ -9617,7 +9599,7 @@ __metadata:
     "@ayuskey/summaly": 2.5.0-rei0784.4
     "@ayuskey/xev": 2.0.1-rei0784.2
     "@bull-board/api": 4.5.0
-    "@bull-board/koa": 4.4.0
+    "@bull-board/koa": 4.5.0
     "@bull-board/ui": 4.5.0
     "@discordapp/twemoji": 14.0.2
     "@elastic/elasticsearch": 7.17.0
