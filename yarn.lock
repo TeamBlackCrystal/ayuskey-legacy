@@ -1725,14 +1725,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-sfc@npm:2.7.10":
-  version: 2.7.10
-  resolution: "@vue/compiler-sfc@npm:2.7.10"
+"@vue/compiler-sfc@npm:2.7.12":
+  version: 2.7.12
+  resolution: "@vue/compiler-sfc@npm:2.7.12"
   dependencies:
     "@babel/parser": ^7.18.4
     postcss: ^8.4.14
     source-map: ^0.6.1
-  checksum: f20d79183ed2b9242d2c1ff196ddc9c3c384f541b85ca59543842af098653c3c0732a9b2f28dd031383bb9e02a40a5a001b4c6bbcb12fbd389372225b12b9020
+  checksum: f71030f57e4bfcdb88636ccc3e700a6c3ab9ffedbe794fc43e7e58104f4603bf887afabc8261b6fa6299f77cfbfd652a113bf4d58284818123e5b0e0f5d85b36
   languageName: node
   linkType: hard
 
@@ -9694,7 +9694,7 @@ __metadata:
     "@types/ws": 8.5.3
     "@typescript-eslint/eslint-plugin": 5.40.0
     "@typescript-eslint/parser": 5.40.0
-    "@vue/compiler-sfc": 2.7.10
+    "@vue/compiler-sfc": 2.7.12
     abort-controller: 3.0.0
     animejs: 3.2.1
     apexcharts: 3.36.0
@@ -9848,7 +9848,7 @@ __metadata:
     uuid: 9.0.0
     v-animate-css: 0.0.5
     v-debounce: 0.1.2
-    vue: 2.7.10
+    vue: 2.7.12
     vue-color: 2.8.1
     vue-content-loading: 1.6.0
     vue-cropperjs: 4.2.0
@@ -15706,13 +15706,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:2.7.10":
-  version: 2.7.10
-  resolution: "vue@npm:2.7.10"
+"vue@npm:2.7.12":
+  version: 2.7.12
+  resolution: "vue@npm:2.7.12"
   dependencies:
-    "@vue/compiler-sfc": 2.7.10
+    "@vue/compiler-sfc": 2.7.12
     csstype: ^3.1.0
-  checksum: 97887eea9ae0c7ec7309dcaed1ac9bb65803af235f63f629fe21df959be3c1b801f8aa7d1e85428624e149e5f47706950d0efe09f19b6a6e3b4d38a6352d5c71
+  checksum: d5b9fc55f29f5ea5bf6a6d05a2f588ea42fe3ea624dfae1324aba639e79a6d39eabd1f1477c2aec9e8efa6b60f38e70fb02f054e377cdb6bb32ef0917dc9534e
   languageName: node
   linkType: hard
 
