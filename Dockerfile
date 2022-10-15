@@ -21,7 +21,8 @@ RUN apk add --no-cache \
 
 COPY . ./
 
-RUN pnpm i --frozen-lockfile
+RUN corepack enable pnpm &&
+    pnpm i --frozen-lockfile
 
 ENV NODE_ENV=production
 
@@ -31,12 +32,15 @@ FROM base AS runner
 
 RUN apk add --no-cache \
     ffmpeg \
-    tini
+    tini &&
+	  corepack enable pnpm
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
 COPY . ./
+
+ENV NODE_ENV=production
 
 CMD ["pnpm", "migrateandstart"]
