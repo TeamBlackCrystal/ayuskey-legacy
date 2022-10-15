@@ -30,7 +30,7 @@ jobs:
       with:
         submodules: true
 
-    - uses: pnpm/action-setup@v2.2.2
+    - uses: pnpm/action-setup@v2.2.3
       with:
         version: 7
 
