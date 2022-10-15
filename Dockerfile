@@ -23,7 +23,7 @@ COPY . ./
 
 RUN corepack enable pnpm
 
-RUN pnpm i --frozen-lockfile
+RUN pnpm i --frozen-lockfile --strict-peer-dependencies false
 
 ENV NODE_ENV=production
 
