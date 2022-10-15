@@ -21,7 +21,7 @@ RUN apk add --no-cache \
 
 COPY . ./
 
-RUN corepack enable pnpm &&
+RUN corepack enable pnpm &
     pnpm i --frozen-lockfile
 
 ENV NODE_ENV=production
@@ -32,7 +32,7 @@ FROM base AS runner
 
 RUN apk add --no-cache \
     ffmpeg \
-    tini &&
+    tini &
 	  corepack enable pnpm
 
 ENTRYPOINT ["/sbin/tini", "--"]
