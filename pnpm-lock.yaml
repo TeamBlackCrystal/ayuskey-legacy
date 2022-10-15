@@ -215,7 +215,7 @@ specifiers:
   stylus: 0.59.0
   stylus-loader: 7.1.0
   syslog-pro: 1.0.0
-  systeminformation: 5.12.6
+  systeminformation: 5.12.7
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3
   textarea-caret: 3.1.0
@@ -401,7 +401,7 @@ dependencies:
   stylus: 0.59.0
   stylus-loader: 7.1.0_rgwcw63jhyplbyg2jpw7ajyoqm
   syslog-pro: 1.0.0
-  systeminformation: 5.12.6
+  systeminformation: 5.12.7
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3_webpack@5.74.0
   textarea-caret: 3.1.0
@@ -11230,8 +11230,8 @@ packages:
       moment: 2.29.4
     dev: false
 
-  /systeminformation/5.12.6:
-    resolution: {integrity: sha512-FkCvT5BOuH1OE3+8lFM25oXIYJ0CM8kq4Wgvz2jyBTrsOIgha/6gdJXgbF4rv+g0j/5wJqQLDKan7kc/p7uIvw==}
+  /systeminformation/5.12.7:
+    resolution: {integrity: sha512-Kubdu6YzMWtGEsnGF5ddohvIWsxOlEkV0P/3oKTPl56ADOowDiWBR59RpIRvbijXwEQrnRKeF3MOuH7apdEc/g==}
     engines: {node: '>=8.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
