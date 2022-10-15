@@ -1,9 +1,9 @@
 {
-	"name": "@ayuskey/next-api",
-	"private": "true",
-	"license": "AGPLv2",
-	"version": "rolling",
-	"scripts": {
+  "name": "@ayuskey/next-api",
+  "private": "true",
+  "license": "AGPLv2",
+  "version": "rolling",
+  "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -22,6 +22,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "js-yaml": "4.1.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -32,6 +33,7 @@
     "@nestjs/testing": "^9.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.8",
+    "@types/js-yaml": "4.0.5",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
