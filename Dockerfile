@@ -33,7 +33,7 @@ FROM base AS runner
 
 RUN apk add --no-cache \
     ffmpeg \
-    tini
+    tini \
  && corepack enable pnpm
 
 ENTRYPOINT ["/sbin/tini", "--"]
