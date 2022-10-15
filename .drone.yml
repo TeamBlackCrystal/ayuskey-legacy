@@ -8,10 +8,10 @@ steps:
   image: node:17-alpine3.13
   command: 
     - apk add --no-cache autoconf automake file g++ gcc libc-dev libtool make nasm pkgconfig python3 zlib-dev vips-dev vips
-    - NODE_ENV=production yarn install
-    - NODE_ENV=production yarn build
+    - NODE_ENV=production pnpm i
+    - NODE_ENV=production pnpm build
     #- cp test/test.yml .config
-    #- yarn test
+    #- pnpm test
 
 ---
 kind: pipeline
