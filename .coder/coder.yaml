@@ -28,8 +28,8 @@ workspace:
             sudo apt install -y nodejs redis postgresql
             sudo /etc/init.d/postgresql start
             sudo /etc/init.d/redis-server start
-        - name: "enable yarn"
-          command: "sudo corepack enable yarn"
+        - name: "enable pnpm"
+          command: "sudo corepack enable pnpm"
         - name: "setup postgres"
           command: |
             sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'example-misskey-pass'"
@@ -43,12 +43,12 @@ workspace:
           directory: /home/coder/work/teamblackcrystal/ayuskey
         - name: "Install dependencies"
           command:
-            yarn install
+            pnpm i
           directory: /home/coder/work/teamblackcrystal/ayuskey
         - name: "build"
           command:
-            yarn build
+            pnpm build
           directory: /home/coder/work/teamblackcrystal/ayuskey
         - name: "migrate"
-          command: "yarn migrate"
+          command: "pnpm migrate"
           continue-on-error: true

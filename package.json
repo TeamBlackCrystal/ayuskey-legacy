@@ -15,12 +15,12 @@
 	"private": true,
 	"scripts": {
 		"start": "node ./index.js",
-		"init": "yarn migrate",
+		"init": "pnpm migrate",
 		"ormconfig": "node ./built/ormconfig.js",
 		"migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
-		"migrateandstart": "yarn migrate && yarn start",
-		"build": "yarn build-webpack && yarn build-ts && yarn build-gulp",
-		"build:product": "cross-env NODE_ENV=production yarn build",
+		"migrateandstart": "pnpm migrate && pnpm start",
+		"build": "pnpm build-webpack && pnpm build-ts && pnpm build-gulp",
+		"build:product": "cross-env NODE_ENV=production pnpm build",
 		"build-webpack": "webpack",
 		"build-ts": "ttsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
 		"build-gulp": "gulp build",
@@ -301,5 +301,5 @@
 		"webpack-dev-server": "4.8.1",
 		"webpackbar": "5.0.2"
 	},
-	"packageManager": "yarn@3.2.4"
+	"packageManager": "pnpm@7.13.4"
 }
