@@ -39,7 +39,7 @@ jobs:
     - run: node devtools/diag-environment.js
     - run: sudo apt-get update
     - run: sudo apt-get install -y ffmpeg
-    - run: pnpm i --frozen-lockfile
+    - run: pnpm i
     - run: pnpm build
     - run: cp test/test.yml .config
     - run: pnpm test

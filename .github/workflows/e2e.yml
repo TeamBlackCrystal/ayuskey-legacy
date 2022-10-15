@@ -41,7 +41,7 @@ jobs:
         cache: 'pnpm'
 
     # キャッシュの調整が必要かも
-    - run: pnpm i --frozen-lockfile
+    - run: pnpm i
     - run: pnpm build
     - run: cp e2e/e2e.yml .config/default.yml
     - run: pnpm migrateandstart &
