@@ -21,11 +21,11 @@ RUN apk add --no-cache \
 
 COPY . ./
 
-RUN yarn install --immutable
+RUN pnpm i --frozen-lockfile
 
 ENV NODE_ENV=production
 
-RUN yarn build
+RUN pnpm build
 
 FROM base AS runner
 
@@ -37,8 +37,6 @@ ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
-COPY --from=builder /misskey/.yarn ./.yarn
-COPY --from=builder /misskey/.yarnrc.yml ./
 COPY . ./
 
-CMD ["yarn", "migrateandstart"]
+CMD ["pnpm", "migrateandstart"]
