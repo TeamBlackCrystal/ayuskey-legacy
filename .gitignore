@@ -39,11 +39,3 @@ ormconfig.json
 *.blend3
 *.blend4
 *.blend5
-
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-yarn-error.log
