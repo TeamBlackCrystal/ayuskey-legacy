@@ -20,6 +20,7 @@
 		"migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
 		"migrateandstart": "pnpm migrate && pnpm start",
 		"build": "pnpm build-webpack && pnpm build-ts && pnpm build-gulp",
+		"build:dev": "ttsc -p src/tsconfig.dev.json || echo done. && tsc-alias -p src/tsconfig.dev.json",
 		"build:product": "cross-env NODE_ENV=production pnpm build",
 		"build-webpack": "webpack",
 		"build-ts": "ttsc -p src/tsconfig.json || echo done. && tsc-alias -p src/tsconfig.json",
