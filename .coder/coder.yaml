@@ -29,7 +29,11 @@ workspace:
             sudo /etc/init.d/postgresql start
             sudo /etc/init.d/redis-server start
         - name: "enable pnpm"
-          command: "sudo corepack enable pnpm"
+          command: |
+            "sudo corepack enable pnpm"
+            "pnpm setup"
+            "source /root/.bashrc"
+            "pnpm i -g @nestjs/cli"
         - name: "setup postgres"
           command: |
             sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'example-misskey-pass'"
