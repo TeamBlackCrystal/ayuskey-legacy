@@ -12,8 +12,8 @@ const config = yaml.load(
 const port = config.port + 100;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+	const app = await NestFactory.create(AppModule);
 	console.log(`port: ${port}`);
-  await app.listen(port);
+	await app.listen(port);
 }
 bootstrap();
