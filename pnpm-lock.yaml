@@ -546,6 +546,7 @@ importers:
       eslint-plugin-prettier: ^4.0.0
       jest: 28.1.3
       js-yaml: 4.1.0
+      pg: 8.8.0
       prettier: ^2.3.2
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
@@ -556,15 +557,18 @@ importers:
       ts-loader: ^9.2.3
       ts-node: ^10.0.0
       tsconfig-paths: 4.1.0
+      typeorm: 0.2.44
       typescript: ^4.7.4
     dependencies:
       '@nestjs/common': 9.1.4_yzt46al3aifnexifjjdb4dxxja
       '@nestjs/core': 9.1.4_os3bpar6zvfsuh6rrdsifrg6hi
       '@nestjs/platform-express': 9.1.4_osbqhc5bxkxr7p4xaw5wgzf7bi
       js-yaml: 4.1.0
+      pg: 8.8.0
       reflect-metadata: 0.1.13
       rimraf: 3.0.2
       rxjs: 7.5.7
+      typeorm: 0.2.44_pg@8.8.0
     devDependencies:
       '@nestjs/cli': 9.1.4
       '@nestjs/schematics': 9.0.3_typescript@4.8.4
@@ -14066,6 +14070,79 @@ packages:
       dotenv: 8.6.0
       glob: 7.2.3
       ioredis: 4.28.5
+      js-yaml: 4.1.0
+      mkdirp: 1.0.4
+      pg: 8.8.0
+      reflect-metadata: 0.1.13
+      sha.js: 2.4.11
+      tslib: 2.4.0
+      uuid: 8.3.2
+      xml2js: 0.4.23
+      yargs: 17.6.0
+      zen-observable-ts: 1.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /typeorm/0.2.44_pg@8.8.0:
+    resolution: {integrity: sha512-yFyb9Ts73vGaS/O06TvLpzvT5U/ngO31GeciNc0eoH7P1QcG8kVZdOy9FHJqkTeDmIljMRgWjbYUoMw53ZY7Xw==}
+    hasBin: true
+    peerDependencies:
+      '@sap/hana-client': ^2.11.14
+      better-sqlite3: ^7.1.2
+      hdb-pool: ^0.1.6
+      ioredis: ^4.28.3
+      mongodb: ^3.6.0
+      mssql: ^6.3.1
+      mysql2: ^2.2.5
+      oracledb: ^5.1.0
+      pg: ^8.5.1
+      pg-native: ^3.0.0
+      pg-query-stream: ^4.0.0
+      redis: ^3.1.1
+      sql.js: ^1.4.0
+      sqlite3: ^5.0.2
+      typeorm-aurora-data-api-driver: ^2.0.0
+    peerDependenciesMeta:
+      '@sap/hana-client':
+        optional: true
+      better-sqlite3:
+        optional: true
+      hdb-pool:
+        optional: true
+      ioredis:
+        optional: true
+      mongodb:
+        optional: true
+      mssql:
+        optional: true
+      mysql2:
+        optional: true
+      oracledb:
+        optional: true
+      pg:
+        optional: true
+      pg-native:
+        optional: true
+      pg-query-stream:
+        optional: true
+      redis:
+        optional: true
+      sql.js:
+        optional: true
+      sqlite3:
+        optional: true
+      typeorm-aurora-data-api-driver:
+        optional: true
+    dependencies:
+      '@sqltools/formatter': 1.2.3
+      app-root-path: 3.1.0
+      buffer: 6.0.3
+      chalk: 4.1.2
+      cli-highlight: 2.1.11
+      debug: 4.3.4
+      dotenv: 8.6.0
+      glob: 7.2.3
       js-yaml: 4.1.0
       mkdirp: 1.0.4
       pg: 8.8.0
