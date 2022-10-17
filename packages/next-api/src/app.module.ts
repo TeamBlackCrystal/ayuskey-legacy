@@ -5,6 +5,8 @@ import { NotesModule } from './notes/notes.module';
 import { TypeOrmModule } from '@ayuskey/nestjs-typeorm';
 import { config } from './const';
 import { entities } from './db/entities';
+import { AuthGuard } from './auth.guard';
+import { User } from '@ayuskey/models';
 
 @Module({
 	imports: [
@@ -17,9 +19,10 @@ import { entities } from './db/entities';
 			database: config.db.db,
 			entities: entities,
 		}),
+		TypeOrmModule.forFeature([User]),
 		NotesModule,
 	],
 	controllers: [AppController],
-	providers: [AppService],
+	providers: [AppService, AuthGuard],
 })
 export class AppModule {}
