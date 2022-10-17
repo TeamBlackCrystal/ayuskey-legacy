@@ -3,65 +3,66 @@ import config from '../config';
 import { entities as charts } from '../services/chart/entities';
 import { dbLogger } from './logger';
 import * as highlight from 'cli-highlight';
-
-import { Log } from '../models/entities/log';
-import { User } from '../models/entities/user';
-import { DriveFile } from '../models/entities/drive-file';
-import { DriveFolder } from '../models/entities/drive-folder';
-import { AccessToken } from '../models/entities/access-token';
-import { App } from '../models/entities/app';
-import { PollVote } from '../models/entities/poll-vote';
-import { Note } from '../models/entities/note';
-import { NoteReaction } from '../models/entities/note-reaction';
-import { NoteWatching } from '../models/entities/note-watching';
-import { NoteUnread } from '../models/entities/note-unread';
-import { Notification } from '../models/entities/notification';
-import { Meta } from '../models/entities/meta';
-import { Following } from '../models/entities/following';
-import { Instance } from '../models/entities/instance';
-import { Muting } from '../models/entities/muting';
-import { SwSubscription } from '../models/entities/sw-subscription';
-import { Blocking } from '../models/entities/blocking';
-import { UserList } from '../models/entities/user-list';
-import { UserListJoining } from '../models/entities/user-list-joining';
-import { UserGroup } from '../models/entities/user-group';
-import { UserGroupJoining } from '../models/entities/user-group-joining';
-import { UserGroupInvite } from '../models/entities/user-group-invite';
-import { Hashtag } from '../models/entities/hashtag';
-import { NoteFavorite } from '../models/entities/note-favorite';
-import { AbuseUserReport } from '../models/entities/abuse-user-report';
-import { RegistrationTicket } from '../models/entities/registration-tickets';
-import { MessagingMessage } from '../models/entities/messaging-message';
-import { Signin } from '../models/entities/signin';
-import { AuthSession } from '../models/entities/auth-session';
-import { FollowRequest } from '../models/entities/follow-request';
-import { Emoji } from '../models/entities/emoji';
-import { ReversiGame } from '../models/entities/games/reversi/game';
-import { ReversiMatching } from '../models/entities/games/reversi/matching';
-import { UserNotePining } from '../models/entities/user-note-pinings';
-import { Poll } from '../models/entities/poll';
-import { UserKeypair } from '../models/entities/user-keypair';
-import { UserPublickey } from '../models/entities/user-publickey';
-import { UserProfile } from '../models/entities/user-profile';
-import { UserSecurityKey } from '../models/entities/user-security-key';
-import { AttestationChallenge } from '../models/entities/attestation-challenge';
-import { Page } from '../models/entities/page';
-import { PageLike } from '../models/entities/page-like';
-import { ModerationLog } from '../models/entities/moderation-log';
-import { UsedUsername } from '../models/entities/used-username';
-import { Announcement } from '../models/entities/announcement';
-import { AnnouncementRead } from '../models/entities/announcement-read';
-import { Clip } from '../models/entities/clip';
-import { ClipNote } from '../models/entities/clip-note';
-import { Antenna } from '../models/entities/antenna';
-import { AntennaNote } from '../models/entities/antenna-note';
-import { Relay } from '../models/entities/relay';
-import { Channel } from '../models/entities/channel';
-import { ChannelFollowing } from '../models/entities/channel-following';
-import { ChannelNotePining } from '../models/entities/channel-note-pining';
-import { RegistryItem } from '../models/entities/registry-item';
+import {
+	Log,
+	User,
+	DriveFile,
+	DriveFolder,
+	AccessToken,
+	App,
+	PollVote,
+	Note,
+	NoteReaction,
+	NoteWatching,
+	NoteUnread,
+	Notification,
+	Meta,
+	Following,
+	Instance,
+	Muting,
+	SwSubscription,
+	Blocking,
+	UserList,
+	UserListJoining,
+	UserGroup,
+	UserGroupJoining,
+	UserGroupInvite,
+	Hashtag,
+	NoteFavorite,
+	AbuseUserReport,
+	RegistrationTicket,
+	MessagingMessage,
+	Signin,
+	AuthSession,
+	FollowRequest,
+	Emoji,
+	ReversiGame,
+	ReversiMatching,
+	UserNotePining,
+	Poll,
+	UserKeypair,
+	UserPublickey,
+	UserProfile,
+	UserSecurityKey,
+	AttestationChallenge,
+	Page,
+	PageLike,
+	ModerationLog,
+	UsedUsername,
+	Announcement,
+	AnnouncementRead,
+	Clip,
+	ClipNote,
+	Antenna,
+	AntennaNote,
+	Relay,
+	Channel,
+	ChannelFollowing,
+	ChannelNotePining,
+	RegistryItem,
+	PasswordResetRequest
+} from '@ayuskey/models';
 import { RedisOptions } from 'ioredis';
-import { PasswordResetRequest } from '../models/entities/password-reset-request';
 
 const sqlLogger = dbLogger.createSubLogger('sql', 'white', false);
 

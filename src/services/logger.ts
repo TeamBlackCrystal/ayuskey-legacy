@@ -4,7 +4,7 @@ import * as chalk from 'chalk';
 import * as dateformat from 'dateformat';
 import { program } from '../argv';
 import { getRepository } from 'typeorm';
-import { Log } from '../models/entities/log';
+import { Log } from '@ayuskey/models';
 import { genId } from '../misc/gen-id';
 import config from '../config';
 
