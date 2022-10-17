@@ -31,7 +31,7 @@
 		"plugins": [
 			{
 				"transform": "tsc-progress",
-				"title": "Ayuskey Models",
+				"title": "Ayuskey Shared",
 				"color": "blue"
 			}
 		],
