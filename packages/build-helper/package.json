@@ -1,0 +1,16 @@
+{
+  "name": "@ayuskey/build-helper",
+  "private": "true",
+  "license": "AGPLv2",
+  "version": "rolling",
+  "scripts": {},
+  "dependencies": {
+    "zx": "7.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.0",
+    "ts-node": "10.9.1",
+    "ttypescript": "1.5.13",
+    "typescript": "4.8.4"
+  }
+}
