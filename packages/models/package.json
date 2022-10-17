@@ -2,7 +2,7 @@
   "name": "@ayuskey/models",
   "private": "true",
   "license": "AGPLv2",
-  "version": "rolling",
+  "version": "0.0.1",
   "main": "./built/index.js",
   "types": "./built/index.d.ts",
   "scripts": {
