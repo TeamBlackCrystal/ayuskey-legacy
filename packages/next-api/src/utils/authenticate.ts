@@ -9,9 +9,9 @@ export const getToken = (request: Request): string | null => {
 
     const cookie = JSON.parse(request.headers.cookie)
 
-    if (!cookie.i || !validateToken(cookie.i)) {
+    if (!cookie.token || !validateToken(cookie.token)) {
         return null
     }
 
-    return cookie.i
+    return cookie.token
 }
