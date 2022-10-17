@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import { TypeOrmModule } from '@ayuskey/nestjs-typeorm';
 import { config } from './const';
+import { entities } from './db/entities';
 
 @Module({
 	imports: [
@@ -14,7 +15,7 @@ import { config } from './const';
 			username: config.db.user,
 			password: config.db.pass,
 			database: config.db.db,
-			entities: [],
+			entities: entities,
 		}),
 		NotesModule,
 	],
