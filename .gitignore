@@ -40,3 +40,5 @@ ormconfig.json
 *.blend4
 *.blend5
 !/packages/models/package.json
+
+/built-dts
