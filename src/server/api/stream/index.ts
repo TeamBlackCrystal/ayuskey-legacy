@@ -6,12 +6,9 @@ import readNote from '../../../services/note/read';
 import Channel from './channel';
 import channels from './channels';
 import { EventEmitter } from 'events';
-import { User } from '../../../models/entities/user';
-import { App } from '../../../models/entities/app';
-import { Channel as ChannelModel } from '../../../models/entities/channel';
-import { Users, Followings, Mutings, UserProfiles, ChannelFollowings } from '../../../models';
+import { User, App, Channel as ChannelModel, UserProfile } from '@ayuskey/models';
+import { Users, Followings, Mutings, UserProfiles, ChannelFollowings } from '@/models';
 import { publishChannelStream } from '../../../services/stream';
-import { UserProfile } from '../../../models/entities/user-profile';
 import { Packed } from '@/misc/schema';
 import { deprecate } from 'util';
 

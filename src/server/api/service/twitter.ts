@@ -8,7 +8,7 @@ import config from '../../../config';
 import signin from '../common/signin';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { Users, UserProfiles } from '../../../models';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { ensure } from '../../../prelude/ensure';
 
 function getUserToken(ctx: Koa.Context) {

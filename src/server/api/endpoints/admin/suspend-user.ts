@@ -3,7 +3,7 @@ import { ID } from '../../../../misc/cafy-id';
 import define from '../../define';
 import deleteFollowing from '../../../../services/following/delete';
 import { Users, Followings, Notifications } from '../../../../models';
-import { User } from '../../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { insertModerationLog } from '../../../../services/insert-moderation-log';
 import { doPostSuspend } from '../../../../services/suspend-user';
 

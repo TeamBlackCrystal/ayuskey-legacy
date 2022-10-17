@@ -1,17 +1,14 @@
 import { EntityRepository, Repository, In } from 'typeorm';
-import { Note } from '../entities/note';
-import { User } from '../entities/user';
+import { Note, User, Emoji, NoteReaction } from '@ayuskey/models';
 import { unique, concat } from '../../prelude/array';
 import { nyaize } from '../../misc/nyaize';
 import { Emojis, Users, Apps, PollVotes, DriveFiles, NoteReactions, Followings, Polls, Channels } from '..';
 import { ensure } from '../../prelude/ensure';
 import { Packed } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
-import { Emoji } from '../entities/emoji';
 import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '../../misc/reaction-lib';
 import parseAcct from '../../misc/acct/parse';
 import { resolveUser } from '../../remote/resolve-user';
-import { NoteReaction } from '../entities/note-reaction';
 
 @EntityRepository(Note)
 export class NoteRepository extends Repository<Note> {

@@ -1,6 +1,5 @@
-import { User } from '../../models/entities/user';
+import { User, Note } from '@ayuskey/models';
 import { NoteWatchings } from '../../models';
-import { Note } from '../../models/entities/note';
 
 export default async (me: User['id'], note: Note) => {
 	await NoteWatchings.delete({

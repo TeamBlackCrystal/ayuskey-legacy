@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Hashtag } from '../entities/hashtag';
+import { Hashtag } from '@ayuskey/models';
 import { Packed } from '../../misc/schema';
 
 @EntityRepository(Hashtag)

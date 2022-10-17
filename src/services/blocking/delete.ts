@@ -3,7 +3,7 @@ import renderBlock from '../../remote/activitypub/renderer/block';
 import renderUndo from '../../remote/activitypub/renderer/undo';
 import { deliver } from '../../queue';
 import Logger from '../logger';
-import { User } from '../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Blockings, Users } from '../../models';
 
 const logger = new Logger('blocking/delete');

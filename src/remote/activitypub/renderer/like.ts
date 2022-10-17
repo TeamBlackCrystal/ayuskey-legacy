@@ -1,6 +1,5 @@
 import config from '../../../config';
-import { NoteReaction } from '../../../models/entities/note-reaction';
-import { Note } from '../../../models/entities/note';
+import { NoteReaction, Note } from '@ayuskey/models';
 import { Emojis } from '../../../models';
 import renderEmoji from './emoji';
 

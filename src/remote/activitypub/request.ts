@@ -1,6 +1,6 @@
 import config from '../../config';
 import { getUserKeypair } from '@/misc/keypair-store';
-import { User } from '@/models/entities/user';
+import { User } from '@ayuskey/models';
 import { getResponse } from '../../misc/fetch';
 import { createSignedPost, createSignedGet } from './ap-request';
 

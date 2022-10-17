@@ -1,7 +1,7 @@
 import deleteNote from './note';
 import { IDelete, getApId, IObject, validPost, validActor, isTombstone } from '../../type';
 import { toSingle } from '../../../../prelude/array';
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { deleteActor } from './actor';
 
 /**

@@ -2,7 +2,7 @@ import autobind from 'autobind-decorator';
 import Channel from '../channel';
 import { Notes, UserListJoinings, UserLists } from '../../../../models';
 import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
-import { User } from '../../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Packed } from '@/misc/schema';
 
 export default class extends Channel {

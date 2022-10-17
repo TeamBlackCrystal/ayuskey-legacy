@@ -1,11 +1,9 @@
 import { URL } from 'url';
 import create from './add-file';
-import { User } from '../../models/entities/user';
+import { User, DriveFolder, DriveFile } from '@ayuskey/models';
 import { driveLogger } from './logger';
 import { createTemp } from '../../misc/create-temp';
 import { downloadUrl } from '../../misc/download-url';
-import { DriveFolder } from '../../models/entities/drive-folder';
-import { DriveFile } from '../../models/entities/drive-file';
 import { DriveFiles } from '../../models';
 
 const logger = driveLogger.createSubLogger('downloader');

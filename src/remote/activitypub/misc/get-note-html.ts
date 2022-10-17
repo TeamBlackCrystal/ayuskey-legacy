@@ -1,4 +1,4 @@
-import { Note } from '../../../models/entities/note';
+import { Note } from '@ayuskey/models';
 import { toHtml } from '../../../mfm/toHtml';
 import { parse } from '../../../mfm/parse';
 

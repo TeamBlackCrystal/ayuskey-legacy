@@ -1,6 +1,5 @@
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
-import { MessagingMessage } from '../../../models/entities/messaging-message';
+import { ILocalUser, MessagingMessage } from '@ayuskey/models';
 
 export const renderReadActivity = (user: ILocalUser, message: MessagingMessage) => ({
 	type: 'Read',

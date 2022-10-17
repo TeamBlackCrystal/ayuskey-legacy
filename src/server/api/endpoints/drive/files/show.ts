@@ -2,7 +2,7 @@ import $ from 'cafy';
 import { ID } from '../../../../../misc/cafy-id';
 import define from '../../../define';
 import { ApiError } from '../../../error';
-import { DriveFile } from '../../../../../models/entities/drive-file';
+import { DriveFile } from '@ayuskey/models';
 import { DriveFiles } from '../../../../../models';
 
 export const meta = {

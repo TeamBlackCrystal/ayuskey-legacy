@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
-import { Following } from '../entities/following';
+import { Following } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 import { Packed } from '../../misc/schema';

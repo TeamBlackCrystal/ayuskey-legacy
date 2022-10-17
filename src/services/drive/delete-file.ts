@@ -1,4 +1,4 @@
-import { DriveFile } from '../../models/entities/drive-file';
+import { DriveFile } from '@ayuskey/models';
 import { InternalStorage } from './internal-storage';
 import { DriveFiles, Instances } from '../../models';
 import { driveChart, perUserDriveChart, instanceChart } from '../chart';

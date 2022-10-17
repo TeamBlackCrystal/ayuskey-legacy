@@ -4,8 +4,7 @@ import renderUndo from '../../../remote/activitypub/renderer/undo';
 import { renderActivity } from '../../../remote/activitypub/renderer';
 import DeliverManager from '../../../remote/activitypub/deliver-manager';
 import { IdentifiableError } from '../../../misc/identifiable-error';
-import { User, IRemoteUser } from '../../../models/entities/user';
-import { Note } from '../../../models/entities/note';
+import { User, IRemoteUser, Note } from '@ayuskey/models';
 import { NoteReactions, Users, Notes } from '../../../models';
 import { decodeReaction } from '../../../misc/reaction-lib';
 

@@ -4,12 +4,9 @@ import renderMention from './mention';
 import renderEmoji from './emoji';
 import config from '../../../config';
 import toHtml from '../misc/get-note-html';
-import { Note, IMentionedRemoteUsers } from '../../../models/entities/note';
-import { DriveFile } from '../../../models/entities/drive-file';
+import { Note, IMentionedRemoteUsers, DriveFile, Emoji, Poll } from '@ayuskey/models';
 import { DriveFiles, Notes, Users, Emojis, Polls } from '../../../models';
 import { In } from 'typeorm';
-import { Emoji } from '../../../models/entities/emoji';
-import { Poll } from '../../../models/entities/poll';
 import { ensure } from '../../../prelude/ensure';
 
 /**

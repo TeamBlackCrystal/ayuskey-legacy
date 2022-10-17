@@ -1,7 +1,7 @@
 import * as Sonic from 'sonic-channel';
 import config from '../config';
 import { SearchClientBase } from './SearchClientBase';
-import { Note } from '../models/entities/note';
+import { Note } from '@ayuskey/models';
 
 export class SonicDriver extends SearchClientBase {
 	public available = true;

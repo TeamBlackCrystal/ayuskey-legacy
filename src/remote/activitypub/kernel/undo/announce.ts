@@ -1,5 +1,5 @@
 import { Notes } from '../../../../models';
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { IAnnounce, getApId } from '../../type';
 import deleteNote from '../../../../services/note/delete';
 

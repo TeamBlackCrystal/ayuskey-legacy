@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom';
 import config from '../config';
 import { intersperse } from '../prelude/array';
 import { MfmForest, MfmTree } from './prelude';
-import { IMentionedRemoteUsers } from '../models/entities/note';
+import { IMentionedRemoteUsers } from '@ayuskey/models';
 import { wellKnownServices } from '../well-known-services';
 
 export function toHtml(tokens: MfmForest | null, mentionedRemoteUsers: IMentionedRemoteUsers = []) {

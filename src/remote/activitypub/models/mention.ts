@@ -3,7 +3,7 @@ import { IObject, isMention, IApMention } from '../type';
 import { resolvePerson } from './person';
 import * as promiseLimit from 'promise-limit';
 import Resolver from '../resolver';
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 
 export async function extractApMentions(tags: IObject | IObject[] | null | undefined) {
 	const hrefs = unique(extractApMentionObjects(tags).map(x => x.href as string));

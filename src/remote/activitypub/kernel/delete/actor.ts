@@ -1,6 +1,6 @@
 import { apLogger } from '../../logger';
 import { createDeleteAccountJob } from '../../../../queue';
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { Users } from '../../../../models';
 
 const logger = apLogger;

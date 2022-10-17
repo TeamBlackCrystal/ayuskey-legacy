@@ -1,5 +1,5 @@
 import { createSystemUser } from './create-system-user';
-import { ILocalUser } from '../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { Users } from '../models';
 
 const ACTOR_USERNAME = 'instance.actor' as const;

@@ -1,10 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Page } from '../entities/page';
+import { Page, DriveFile, User } from '@ayuskey/models';
 import { Packed } from '../../misc/schema';
 import { Users, DriveFiles, PageLikes } from '..';
 import { awaitAll } from '../../prelude/await-all';
-import { DriveFile } from '../entities/drive-file';
-import { User } from '../entities/user';
 import { ensure } from '../../prelude/ensure';
 
 @EntityRepository(Page)

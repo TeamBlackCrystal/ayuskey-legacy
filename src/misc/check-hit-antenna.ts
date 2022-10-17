@@ -1,6 +1,4 @@
-import { Antenna } from '../models/entities/antenna';
-import { Note } from '../models/entities/note';
-import { User } from '../models/entities/user';
+import { Antenna, Note, User } from '@ayuskey/models';
 import { UserListJoinings, UserGroupJoinings } from '../models';
 import parseAcct from './acct/parse';
 import { getFullApAccount } from './convert-host';

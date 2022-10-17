@@ -3,7 +3,7 @@ import Resolver from '../resolver';
 import { IObject, IQuestion, isQuestion,  } from '../type';
 import { apLogger } from '../logger';
 import { Notes, Polls } from '../../../models';
-import { IPoll } from '../../../models/entities/poll';
+import { IPoll } from '@ayuskey/models';
 
 export async function extractPollFromQuestion(source: string | IObject, resolver?: Resolver): Promise<IPoll> {
 	if (resolver == null) resolver = new Resolver();

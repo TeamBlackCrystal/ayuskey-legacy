@@ -2,7 +2,7 @@ import define from '../define';
 import { Users } from '../../../models';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import parseAcct from '../../../misc/acct/parse';
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 
 export const meta = {
 	tags: ['users'],

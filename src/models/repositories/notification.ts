@@ -1,14 +1,10 @@
 import { EntityRepository, In, Repository } from 'typeorm';
 import { Users, Notes, NoteReactions, Emojis } from '..';
-import { Notification } from '../entities/notification';
+import { Notification, Note, NoteReaction, User, Emoji } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 import { Packed } from '../../misc/schema';
-import { Note } from '../entities/note';
-import { NoteReaction } from '../entities/note-reaction';
-import { User } from '../entities/user';
 import { decodeReaction } from '../../misc/reaction-lib';
-import { Emoji } from '../entities/emoji';
 import { notificationTypes } from '@/types';
 
 @EntityRepository(Notification)

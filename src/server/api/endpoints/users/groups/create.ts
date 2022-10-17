@@ -2,8 +2,7 @@ import $ from 'cafy';
 import define from '../../../define';
 import { UserGroups, UserGroupJoinings } from '../../../../../models';
 import { genId } from '../../../../../misc/gen-id';
-import { UserGroup } from '../../../../../models/entities/user-group';
-import { UserGroupJoining } from '../../../../../models/entities/user-group-joining';
+import { UserGroup, UserGroupJoining } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

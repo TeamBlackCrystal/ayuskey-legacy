@@ -1,7 +1,6 @@
-import { User } from '@/models/entities/user';
+import { User, ReversiGame } from '@ayuskey/models';
 import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '../../../index';
-import { ReversiGame } from '@/models/entities/games/reversi/game';
 import { Packed } from '@/misc/schema';
 
 @EntityRepository(ReversiGame)

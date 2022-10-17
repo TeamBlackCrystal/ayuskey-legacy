@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { UserList } from '../entities/user-list';
+import { UserList } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { UserListJoinings } from '..';
 import { Packed } from '../../misc/schema';

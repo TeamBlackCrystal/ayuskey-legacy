@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../define';
 import { UserProfiles, Users } from '../../../../models';
-import { User } from '../../../../models/entities/user';
+import { User } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

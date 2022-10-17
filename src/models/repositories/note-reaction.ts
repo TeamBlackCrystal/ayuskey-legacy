@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { NoteReaction } from '../entities/note-reaction';
+import { NoteReaction } from '@ayuskey/models';
 import { Users } from '..';
 import { ensure } from '../../prelude/ensure';
 import { Packed } from '../../misc/schema';

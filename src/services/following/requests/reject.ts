@@ -3,7 +3,7 @@ import renderFollow from '../../../remote/activitypub/renderer/follow';
 import renderReject from '../../../remote/activitypub/renderer/reject';
 import { deliver } from '../../../queue';
 import { publishMainStream, publishUserEvent } from '../../stream';
-import { User, ILocalUser } from '../../../models/entities/user';
+import { User, ILocalUser } from '@ayuskey/models';
 import { Users, FollowRequests, Followings } from '../../../models';
 import { decrementFollowing } from '../delete';
 

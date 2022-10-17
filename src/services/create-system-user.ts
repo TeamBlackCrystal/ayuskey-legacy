@@ -2,12 +2,9 @@ import * as bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import generateNativeUserToken from '../server/api/common/generate-native-user-token';
 import { genRsaKeyPair } from '../misc/gen-key-pair';
-import { User } from '../models/entities/user';
-import { UserProfile } from '../models/entities/user-profile';
+import { User, UserProfile, UserKeypair, UsedUsername } from '@ayuskey/models';
 import { getConnection } from 'typeorm';
 import { genId } from '../misc/gen-id';
-import { UserKeypair } from '../models/entities/user-keypair';
-import { UsedUsername } from '../models/entities/used-username';
 
 export async function createSystemUser(username: string) {
 	const password = uuid();

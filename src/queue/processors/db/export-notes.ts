@@ -7,8 +7,7 @@ import addFile from '../../../services/drive/add-file';
 import * as dateFormat from 'dateformat';
 import { Users, Notes, Polls } from '../../../models';
 import { MoreThan } from 'typeorm';
-import { Note } from '../../../models/entities/note';
-import { Poll } from '../../../models/entities/poll';
+import { Note, Poll } from '@ayuskey/models';
 import { ensure } from '../../../prelude/ensure';
 import { DbUserJobData } from '../../types';
 

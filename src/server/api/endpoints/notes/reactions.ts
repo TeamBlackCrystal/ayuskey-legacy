@@ -5,7 +5,7 @@ import { getNote } from '../../common/getters';
 import { ApiError } from '../../error';
 import { NoteReactions } from '../../../../models';
 import { DeepPartial } from 'typeorm';
-import { NoteReaction } from '../../../../models/entities/note-reaction';
+import { NoteReaction } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

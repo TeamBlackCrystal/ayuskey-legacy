@@ -3,7 +3,7 @@ import Chart, { Obj, DeepPartial } from '../../core';
 import { SchemaType } from '../../../../misc/schema';
 import { Users } from '../../../../models';
 import { Not, IsNull } from 'typeorm';
-import { User } from '../../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { name, schema } from '../schemas/users';
 
 type UsersLog = SchemaType<typeof schema>;

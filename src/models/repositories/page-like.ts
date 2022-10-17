@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { PageLike } from '../entities/page-like';
+import { PageLike } from '@ayuskey/models';
 import { Pages } from '..';
 import { ensure } from '../../prelude/ensure';
 

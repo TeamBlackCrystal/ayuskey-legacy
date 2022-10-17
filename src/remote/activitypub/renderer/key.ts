@@ -1,6 +1,5 @@
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
-import { UserKeypair } from '../../../models/entities/user-keypair';
+import { ILocalUser, UserKeypair } from '@ayuskey/models';
 import { createPublicKey } from 'crypto';
 
 export default (user: ILocalUser, key: UserKeypair, postfix?: string) => ({

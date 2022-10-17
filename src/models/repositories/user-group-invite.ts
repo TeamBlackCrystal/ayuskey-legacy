@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { UserGroupInvite } from '../entities/user-group-invite';
+import { UserGroupInvite } from '@ayuskey/models';
 import { UserGroups } from '..';
 import { ensure } from '../../prelude/ensure';
 

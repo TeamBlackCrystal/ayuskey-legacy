@@ -1,5 +1,5 @@
 import { fetchMeta } from './fetch-meta';
-import { ILocalUser } from '../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { Users } from '../models';
 import { ensure } from '../prelude/ensure';
 

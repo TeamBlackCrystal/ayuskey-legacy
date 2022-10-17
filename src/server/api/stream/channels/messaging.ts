@@ -2,7 +2,7 @@ import autobind from 'autobind-decorator';
 import { readUserMessagingMessage, readGroupMessagingMessage, deliverReadActivity } from '../../common/read-messaging-message';
 import Channel from '../channel';
 import { UserGroupJoinings, Users, MessagingMessages } from '../../../../models';
-import { User, ILocalUser, IRemoteUser } from '../../../../models/entities/user';
+import { User, ILocalUser, IRemoteUser } from '@ayuskey/models';
 
 export default class extends Channel {
 	public readonly chName = 'messaging';

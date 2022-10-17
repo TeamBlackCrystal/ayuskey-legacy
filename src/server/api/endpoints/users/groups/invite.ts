@@ -5,7 +5,7 @@ import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
 import { UserGroups, UserGroupJoinings, UserGroupInvites } from '../../../../../models';
 import { genId } from '../../../../../misc/gen-id';
-import { UserGroupInvite } from '../../../../../models/entities/user-group-invite';
+import { UserGroupInvite } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

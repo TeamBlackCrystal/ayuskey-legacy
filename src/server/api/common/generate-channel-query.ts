@@ -1,4 +1,4 @@
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { ChannelFollowings } from '../../../models/index';
 import { Brackets, SelectQueryBuilder } from 'typeorm';
 

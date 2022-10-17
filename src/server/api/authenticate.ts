@@ -1,6 +1,5 @@
 import isNativeToken from './common/is-native-token';
-import { User } from '../../models/entities/user';
-import { App } from '../../models/entities/app';
+import { User, App } from '@ayuskey/models';
 import { Users, AccessTokens, Apps } from '../../models';
 
 export class AuthenticationError extends Error {

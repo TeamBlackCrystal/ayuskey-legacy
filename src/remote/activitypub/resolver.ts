@@ -1,6 +1,6 @@
 import config from '../../config';
 import { getJson } from '../../misc/fetch';
-import { ILocalUser } from '../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { getInstanceActor } from '../../services/instance-actor';
 import { signedGet } from './request';
 import { IObject, isCollectionOrOrderedCollection, ICollection, IOrderedCollection } from './type';

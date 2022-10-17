@@ -4,7 +4,7 @@ import renderAccept from '../../../remote/activitypub/renderer/accept';
 import { deliver } from '../../../queue';
 import { publishMainStream } from '../../stream';
 import { insertFollowingDoc } from '../create';
-import { User, ILocalUser } from '../../../models/entities/user';
+import { User, ILocalUser } from '@ayuskey/models';
 import { FollowRequests, Users } from '../../../models';
 import { IdentifiableError } from '../../../misc/identifiable-error';
 

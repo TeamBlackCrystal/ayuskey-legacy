@@ -8,7 +8,7 @@ import createFollowRequest from './requests/create';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
 import Logger from '../logger';
 import { IdentifiableError } from '../../misc/identifiable-error';
-import { User } from '../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Followings, Users, FollowRequests, Blockings, Instances, UserProfiles } from '../../models';
 import { instanceChart, perUserFollowingChart } from '../chart';
 import { genId } from '../../misc/gen-id';

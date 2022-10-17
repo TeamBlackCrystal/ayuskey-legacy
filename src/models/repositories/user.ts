@@ -1,13 +1,12 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
-import { User, ILocalUser, IRemoteUser } from '../entities/user';
+import { User, ILocalUser, IRemoteUser, Emoji } from '@ayuskey/models';
 import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Users, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { Packed } from '../../misc/schema';
 import { awaitAll } from '../../prelude/await-all';
 import { toPunyNullable } from '../../misc/convert-host';
-import { Emoji } from '../entities/emoji';
 import { getAntennas } from '../../misc/antenna-cache';
 import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
 

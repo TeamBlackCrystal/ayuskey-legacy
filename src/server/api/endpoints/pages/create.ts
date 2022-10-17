@@ -4,7 +4,7 @@ import define from '../../define';
 import { ID } from '../../../../misc/cafy-id';
 import { Pages, DriveFiles } from '../../../../models';
 import { genId } from '../../../../misc/gen-id';
-import { Page } from '../../../../models/entities/page';
+import { Page } from '@ayuskey/models';
 import { ApiError } from '../../error';
 
 export const meta = {

@@ -1,5 +1,5 @@
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 
 export default (user: ILocalUser, target: any, object: any) => ({
 	type: 'Remove',

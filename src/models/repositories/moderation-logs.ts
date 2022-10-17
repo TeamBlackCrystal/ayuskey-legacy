@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
-import { ModerationLog } from '../entities/moderation-log';
+import { ModerationLog } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 

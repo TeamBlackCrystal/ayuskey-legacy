@@ -2,7 +2,7 @@ import config from '../../../config';
 import { v4 as uuid } from 'uuid';
 import { IActivity } from '../type';
 import { LdSignature } from '../misc/ld-signature';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { UserKeypairs } from '../../../models';
 import { ensure } from '../../../prelude/ensure';
 

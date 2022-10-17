@@ -1,9 +1,8 @@
 import uploadFromUrl from '../../../services/drive/upload-from-url';
-import { IRemoteUser } from '../../../models/entities/user';
+import { IRemoteUser, DriveFile } from '@ayuskey/models';
 import Resolver from '../resolver';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { apLogger } from '../logger';
-import { DriveFile } from '../../../models/entities/drive-file';
 import { DriveFiles } from '../../../models';
 import { ensure } from '../../../prelude/ensure';
 import { truncate } from '@/misc/truncate';

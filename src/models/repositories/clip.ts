@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Clip } from '../entities/clip';
+import { Clip } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { Packed } from '@/misc/schema';
 import { Users } from '../index';

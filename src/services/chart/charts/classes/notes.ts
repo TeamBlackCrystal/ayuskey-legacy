@@ -3,7 +3,7 @@ import Chart, { Obj, DeepPartial } from '../../core';
 import { SchemaType } from '../../../../misc/schema';
 import { Notes } from '../../../../models';
 import { Not, IsNull } from 'typeorm';
-import { Note } from '../../../../models/entities/note';
+import { Note } from '@ayuskey/models';
 import { name, schema } from '../schemas/notes';
 
 type NotesLog = SchemaType<typeof schema>;
