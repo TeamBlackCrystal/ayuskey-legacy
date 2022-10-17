@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@ayuskey/nestjs-typeorm';
 import { Config } from '../../../built/config/types';
 
 const config = yaml.load(
