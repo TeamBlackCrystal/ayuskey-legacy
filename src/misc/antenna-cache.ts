@@ -1,5 +1,5 @@
 import { Antennas } from '../models';
-import { Antenna } from '../models/entities/antenna';
+import { Antenna } from '@ayuskey/models';
 import { subsdcriber } from '../db/redis';
 
 let antennasFetched = false;

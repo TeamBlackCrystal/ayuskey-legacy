@@ -1,4 +1,4 @@
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Blockings } from '../../../models';
 import { SelectQueryBuilder } from 'typeorm';
 

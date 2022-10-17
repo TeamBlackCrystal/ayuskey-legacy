@@ -4,7 +4,7 @@ import * as chalk from 'chalk';
 import * as dateformat from 'dateformat';
 import { program } from '../argv';
 import { getRepository } from 'typeorm';
-import { Log } from '../models/entities/log';
+import { Log } from '@ayuskey/models';
 import { genId } from '../misc/gen-id';
 import config from '../config';
 
@@ -32,7 +32,7 @@ export default class Logger {
 
 		if (config.syslog) {
 			this.syslogClient = new SyslogPro.RFC5424({
-				applacationName: 'Misskey',
+				applacationName: 'Misskey', // TODO: typo?
 				timestamp: true,
 				encludeStructuredData: true,
 				color: true,

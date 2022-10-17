@@ -3,7 +3,7 @@ import Chart, { Obj, DeepPartial } from '../../core';
 import { SchemaType } from '../../../../misc/schema';
 import { DriveFiles } from '../../../../models';
 import { Not, IsNull } from 'typeorm';
-import { DriveFile } from '../../../../models/entities/drive-file';
+import { DriveFile } from '@ayuskey/models';
 import { name, schema } from '../schemas/drive';
 
 type DriveLog = SchemaType<typeof schema>;

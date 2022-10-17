@@ -3,7 +3,7 @@ import { ID } from '../../../../misc/cafy-id';
 import define from '../../define';
 import { ApiError } from '../../error';
 import { getNote } from '../../common/getters';
-import { Note } from '../../../../models/entities/note';
+import { Note } from '@ayuskey/models';
 import { Notes } from '../../../../models';
 
 export const meta = {

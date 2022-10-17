@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { getApType, IUpdate, isActor } from '../../type';
 import { apLogger } from '../../logger';
 import { updateQuestion } from '../../models/question';

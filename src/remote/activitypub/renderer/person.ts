@@ -2,7 +2,7 @@ import { URL } from 'url';
 import renderImage from './image';
 import renderKey from './key';
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { toHtml } from '../../../mfm/toHtml';
 import { parse } from '../../../mfm/parse';
 import { getEmojis } from './note';

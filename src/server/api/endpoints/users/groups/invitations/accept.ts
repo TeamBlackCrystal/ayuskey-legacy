@@ -4,7 +4,7 @@ import define from '../../../../define';
 import { ApiError } from '../../../../error';
 import { UserGroupJoinings, UserGroupInvites } from '../../../../../../models';
 import { genId } from '../../../../../../misc/gen-id';
-import { UserGroupJoining } from '../../../../../../models/entities/user-group-joining';
+import { UserGroupJoining } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

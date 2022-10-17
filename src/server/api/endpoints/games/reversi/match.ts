@@ -7,8 +7,7 @@ import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
 import { genId } from '../../../../../misc/gen-id';
 import { ReversiMatchings, ReversiGames } from '../../../../../models';
-import { ReversiGame } from '../../../../../models/entities/games/reversi/game';
-import { ReversiMatching } from '../../../../../models/entities/games/reversi/matching';
+import { ReversiGame, ReversiMatching } from '@ayuskey/models';
 
 export const meta = {
 	tags: ['games'],

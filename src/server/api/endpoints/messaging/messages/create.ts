@@ -4,8 +4,7 @@ import define from '../../../define';
 import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
 import { MessagingMessages, DriveFiles, UserGroups, UserGroupJoinings } from '../../../../../models';
-import { User } from '../../../../../models/entities/user';
-import { UserGroup } from '../../../../../models/entities/user-group';
+import { User, UserGroup } from '@ayuskey/models';
 import { createMessage } from '../../../../../services/messages/create';
 
 export const meta = {

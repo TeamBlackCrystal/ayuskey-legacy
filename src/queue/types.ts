@@ -1,6 +1,6 @@
 //import { ObjectID } from 'mongodb';
 import * as httpSignature from 'http-signature';
-import { ILocalUser, User } from '../models/entities/user';
+import { ILocalUser, User } from '@ayuskey/models';
 import { IActivity } from '../remote/activitypub/type';
 
 export type DeliverJobData = {

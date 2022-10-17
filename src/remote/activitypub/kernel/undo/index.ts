@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { IUndo, isFollow, isBlock, isLike, isAnnounce, getApType } from '../../type';
 import unfollow from './follow';
 import unblock from './block';

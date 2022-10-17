@@ -1,7 +1,7 @@
 import unfollow from '../../../../services/following/delete';
 import cancelRequest from '../../../../services/following/requests/cancel';
 import { IFollow } from '../../type';
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { FollowRequests, Followings } from '../../../../models';
 import DbResolver from '../../db-resolver';
 

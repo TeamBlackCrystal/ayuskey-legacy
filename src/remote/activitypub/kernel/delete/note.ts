@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import deleteNode from '../../../../services/note/delete';
 import { apLogger } from '../../logger';
 import DbResolver from '../../db-resolver';

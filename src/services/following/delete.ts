@@ -5,7 +5,7 @@ import renderUndo from '../../remote/activitypub/renderer/undo';
 import { deliver } from '../../queue';
 import Logger from '../logger';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
-import { User } from '../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Followings, Users, Instances } from '../../models';
 import { instanceChart, perUserFollowingChart } from '../chart';
 

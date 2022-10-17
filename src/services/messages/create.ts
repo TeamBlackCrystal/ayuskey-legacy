@@ -1,13 +1,9 @@
-import { User } from '../../models/entities/user';
-import { UserGroup } from '../../models/entities/user-group';
-import { DriveFile } from '../../models/entities/drive-file';
+import { User, UserGroup, DriveFile, MessagingMessage, Note } from '@ayuskey/models';
 import { MessagingMessages, UserGroupJoinings, Mutings, Users } from '../../models';
 import { genId } from '../../misc/gen-id';
-import { MessagingMessage } from '../../models/entities/messaging-message';
 import { publishMessagingStream, publishMessagingIndexStream, publishMainStream, publishGroupMessagingStream } from '../stream';
 import pushNotification from '../push-notification';
 import { Not } from 'typeorm';
-import { Note } from '../../models/entities/note';
 import renderNote from '../../remote/activitypub/renderer/note';
 import renderCreate from '../../remote/activitypub/renderer/create';
 import { renderActivity } from '../../remote/activitypub/renderer';

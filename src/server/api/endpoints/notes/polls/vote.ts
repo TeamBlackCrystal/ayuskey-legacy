@@ -12,7 +12,7 @@ import renderVote from '../../../../../remote/activitypub/renderer/vote';
 import { deliverQuestionUpdate } from '../../../../../services/note/polls/update';
 import { PollVotes, NoteWatchings, Users, Polls, UserProfiles } from '../../../../../models';
 import { Not } from 'typeorm';
-import { IRemoteUser } from '../../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { genId } from '../../../../../misc/gen-id';
 import { ensure } from '../../../../../prelude/ensure';
 

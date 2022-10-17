@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { IRead, getApId } from '../type';
 import { isSelfHost, extractDbHost } from '../../../misc/convert-host';
 import { MessagingMessages } from '../../../models';

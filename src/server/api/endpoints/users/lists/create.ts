@@ -2,7 +2,7 @@ import $ from 'cafy';
 import define from '../../../define';
 import { UserLists } from '../../../../../models';
 import { genId } from '../../../../../misc/gen-id';
-import { UserList } from '../../../../../models/entities/user-list';
+import { UserList } from '@ayuskey/models';
 
 export const meta = {
 	desc: {

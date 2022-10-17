@@ -1,6 +1,5 @@
 import { UserKeypairs } from '@/models/index';
-import { User } from '@/models/entities/user';
-import { UserKeypair } from '@/models/entities/user-keypair';
+import { User, UserKeypair } from '@ayuskey/models';
 import { Cache } from './cache';
 
 const cache = new Cache<UserKeypair>(Infinity);

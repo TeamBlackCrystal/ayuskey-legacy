@@ -1,6 +1,6 @@
 import Resolver from '../../resolver';
 import post from '../../../../services/note/create';
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { IAnnounce, getApId } from '../../type';
 import { fetchNote, resolveNote } from '../../models/note';
 import { apLogger } from '../../logger';

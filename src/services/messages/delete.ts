@@ -1,7 +1,7 @@
 import config from '../../config';
 import { ensure } from '../../prelude/ensure';
 import { MessagingMessages, Users } from '../../models';
-import { MessagingMessage } from '../../models/entities/messaging-message';
+import { MessagingMessage } from '@ayuskey/models';
 import { publishGroupMessagingStream, publishMessagingStream } from '../stream';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import renderDelete from '../../remote/activitypub/renderer/delete';

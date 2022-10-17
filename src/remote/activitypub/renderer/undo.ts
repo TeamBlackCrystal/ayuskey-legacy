@@ -1,5 +1,5 @@
 import config from '../../../config';
-import { ILocalUser, User } from '../../../models/entities/user';
+import { ILocalUser, User } from '@ayuskey/models';
 
 export default (object: any, user: ILocalUser | User) => {
 	if (object == null) return null;

@@ -1,6 +1,6 @@
 import $ from 'cafy';
 import define from '../../define';
-import { MessagingMessage } from '../../../../models/entities/messaging-message';
+import { MessagingMessage } from '@ayuskey/models';
 import { MessagingMessages, Mutings, UserGroupJoinings } from '../../../../models';
 import { Brackets } from 'typeorm';
 

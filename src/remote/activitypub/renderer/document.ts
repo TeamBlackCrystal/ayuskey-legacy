@@ -1,4 +1,4 @@
-import { DriveFile } from '../../../models/entities/drive-file';
+import { DriveFile } from '@ayuskey/models';
 import { DriveFiles } from '../../../models';
 
 export default (file: DriveFile) => ({

@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
-import { Blocking } from '../entities/blocking';
+import { Blocking } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 import { Packed } from '@/misc/schema';

@@ -1,4 +1,4 @@
-import { ILocalUser } from '../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { ModerationLogs } from '../models';
 import { genId } from '../misc/gen-id';
 

@@ -1,5 +1,5 @@
 import config from '../../../config';
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Users } from '../../../models';
 
 export default (follower: User, followee: User, requestId?: string) => {

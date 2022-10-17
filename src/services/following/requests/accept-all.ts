@@ -1,5 +1,5 @@
 import accept from './accept';
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { FollowRequests, Users } from '../../../models';
 import { ensure } from '../../../prelude/ensure';
 

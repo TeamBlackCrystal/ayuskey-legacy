@@ -6,7 +6,7 @@ import Acct from '../misc/acct/type';
 import { links } from './nodeinfo';
 import { escapeAttribute, escapeValue } from '../prelude/xml';
 import { Users } from '../models';
-import { User } from '../models/entities/user';
+import { User } from '@ayuskey/models';
 
 // Init router
 const router = new Router();

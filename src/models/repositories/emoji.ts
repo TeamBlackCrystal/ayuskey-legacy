@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Emoji } from '../entities/emoji';
+import { Emoji } from '@ayuskey/models';
 import { Packed } from '@/misc/schema';
 
 @EntityRepository(Emoji)

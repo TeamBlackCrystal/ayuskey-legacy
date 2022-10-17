@@ -8,12 +8,9 @@ import { verifyRecaptcha } from '../../../misc/captcha';
 import { Users, Signins, RegistrationTickets, UsedUsernames } from '../../../models';
 import { genId } from '../../../misc/gen-id';
 import { usersChart } from '../../../services/chart';
-import { User } from '../../../models/entities/user';
-import { UserKeypair } from '../../../models/entities/user-keypair';
+import { User, UserKeypair, UserProfile, UsedUsername } from '@ayuskey/models';
 import { toPunyNullable } from '../../../misc/convert-host';
-import { UserProfile } from '../../../models/entities/user-profile';
 import { getConnection } from 'typeorm';
-import { UsedUsername } from '../../../models/entities/used-username';
 
 export default async (ctx: Koa.Context) => {
 	const body = ctx.request.body;

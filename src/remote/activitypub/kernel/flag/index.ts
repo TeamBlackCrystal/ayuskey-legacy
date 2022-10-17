@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import config from '../../../../config';
 import { IFlag, getApIds } from '../../type';
 import { AbuseUserReports, Users } from '../../../../models';

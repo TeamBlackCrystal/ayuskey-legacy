@@ -1,6 +1,5 @@
 import { IdentifiableError } from '../../../misc/identifiable-error';
-import { User } from '../../../models/entities/user';
-import { Note } from '../../../models/entities/note';
+import { User, Note } from '@ayuskey/models';
 import { Notes, Users } from '../../../models';
 
 /**

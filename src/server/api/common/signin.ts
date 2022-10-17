@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { Signins } from '../../../models';
 import { genId } from '../../../misc/gen-id';
 import { publishMainStream } from '../../../services/stream';

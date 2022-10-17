@@ -2,7 +2,7 @@ import { Entity, Column, Index, OneToOne, JoinColumn, PrimaryColumn } from 'type
 import { id } from '../id';
 import { User } from './user';
 import { Page } from './page';
-import { notificationTypes } from '../../types';
+import { notificationTypes } from '../consts';
 
 @Entity()
 export class UserProfile {

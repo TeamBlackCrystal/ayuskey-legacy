@@ -1,7 +1,6 @@
 import autobind from 'autobind-decorator';
 import Chart, { DeepPartial } from '../../core';
-import { User } from '../../../../models/entities/user';
-import { Note } from '../../../../models/entities/note';
+import { User, Note } from '@ayuskey/models';
 import { SchemaType } from '../../../../misc/schema';
 import { Users } from '../../../../models';
 import { name, schema } from '../schemas/per-user-reactions';

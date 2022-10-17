@@ -1,4 +1,4 @@
-import { User } from '../../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Mutings } from '../../../models';
 import { SelectQueryBuilder, Brackets } from 'typeorm';
 

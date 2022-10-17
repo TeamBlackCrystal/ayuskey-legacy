@@ -1,7 +1,5 @@
 import config from '../../../config';
-import { ILocalUser } from '../../../models/entities/user';
-import { Note } from '../../../models/entities/note';
-import { Poll } from '../../../models/entities/poll';
+import { ILocalUser, Note, Poll } from '@ayuskey/models';
 
 export default async function renderQuestion(user: ILocalUser, note: Note, poll: Poll) {
 	const question = {

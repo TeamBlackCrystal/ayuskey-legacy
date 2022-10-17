@@ -1,8 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Channel } from '../entities/channel';
+import { Channel, User } from '@ayuskey/models';
 import { Packed } from '@/misc/schema';
 import { DriveFiles, ChannelFollowings, NoteUnreads } from '../index';
-import { User } from '../entities/user';
 
 @EntityRepository(Channel)
 export class ChannelRepository extends Repository<Channel> {

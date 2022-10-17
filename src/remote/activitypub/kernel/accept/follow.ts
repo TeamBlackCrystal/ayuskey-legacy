@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import accept from '../../../../services/following/requests/accept';
 import { IFollow } from '../../type';
 import DbResolver from '../../db-resolver';

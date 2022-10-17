@@ -4,7 +4,7 @@ import * as speakeasy from 'speakeasy';
 import signin from '../common/signin';
 import config from '../../../config';
 import { Users, Signins, UserProfiles, UserSecurityKeys, AttestationChallenges } from '../../../models';
-import { ILocalUser } from '../../../models/entities/user';
+import { ILocalUser } from '@ayuskey/models';
 import { genId } from '../../../misc/gen-id';
 import { ensure } from '../../../prelude/ensure';
 import { verifyLogin, hash } from '../2fa';

@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { IAdd } from '../../type';
 import { resolveNote } from '../../models/note';
 import { addPinned } from '../../../../services/i/pin';

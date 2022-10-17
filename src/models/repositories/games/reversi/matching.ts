@@ -1,9 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { ReversiMatching } from '../../../entities/games/reversi/matching';
+import { ReversiMatching, User } from '@ayuskey/models';
 import { Users } from '../../..';
 import { ensure } from '../../../../prelude/ensure';
 import { awaitAll } from '../../../../prelude/await-all';
-import { User } from '@/models/entities/user';
 import { Packed } from '@/misc/schema';
 
 @EntityRepository(ReversiMatching)

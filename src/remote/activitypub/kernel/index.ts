@@ -1,5 +1,5 @@
 import { IObject, isCreate, isDelete, isUpdate, isRead, isFollow, isAccept, isReject, isAdd, isRemove, isAnnounce, isLike, isUndo, isBlock, isCollectionOrOrderedCollection, isCollection, isFlag } from '../type';
-import { IRemoteUser } from '../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import create from './create';
 import performDeleteActivity from './delete';
 import performUpdateActivity from './update';

@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../define';
 import { getConnection } from 'typeorm';
-import { Meta } from '../../../../models/entities/meta';
+import { Meta } from '@ayuskey/models';
 import { insertModerationLog } from '../../../../services/insert-moderation-log';
 import { DB_MAX_NOTE_TEXT_LENGTH } from '../../../../misc/hard-limits';
 

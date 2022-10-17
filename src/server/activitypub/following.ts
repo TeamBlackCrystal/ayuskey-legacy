@@ -10,7 +10,7 @@ import renderFollowUser from '../../remote/activitypub/renderer/follow-user';
 import { setResponseType } from '../activitypub';
 import { Users, Followings } from '../../models';
 import { LessThan, FindConditions } from 'typeorm';
-import { Following } from '../../models/entities/following';
+import { Following } from '@ayuskey/models';
 
 export default async (ctx: Router.RouterContext) => {
 	if (config.disableFederation) ctx.throw(404);

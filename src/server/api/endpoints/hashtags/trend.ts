@@ -1,7 +1,7 @@
 import define from '../../define';
 import { fetchMeta } from '../../../../misc/fetch-meta';
 import { Notes } from '../../../../models';
-import { Note } from '../../../../models/entities/note';
+import { Note } from '@ayuskey/models';
 import { safeForSql } from '../../../../misc/safe-for-sql';
 
 /*

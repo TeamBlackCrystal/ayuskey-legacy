@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Signin } from '../entities/signin';
+import { Signin } from '@ayuskey/models';
 
 @EntityRepository(Signin)
 export class SigninRepository extends Repository<Signin> {

@@ -4,7 +4,7 @@ import { publishReversiGameStream } from '../../../../../services/stream';
 import Reversi from '../../../../../games/reversi/core';
 import * as maps from '../../../../../games/reversi/maps';
 import Channel from '../../channel';
-import { ReversiGame } from '../../../../../models/entities/games/reversi/game';
+import { ReversiGame } from '@ayuskey/models';
 import { ReversiGames } from '../../../../../models';
 
 export default class extends Channel {

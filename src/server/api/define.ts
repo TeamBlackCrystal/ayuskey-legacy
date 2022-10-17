@@ -1,8 +1,7 @@
 import * as fs from 'fs';
-import { ILocalUser } from '../../models/entities/user';
+import { ILocalUser, App } from '@ayuskey/models';
 import { IEndpointMeta } from './endpoints';
 import { ApiError } from './error';
-import { App } from '../../models/entities/app';
 import { SchemaType } from '../../misc/schema';
 
 type Params<T extends IEndpointMeta> = {

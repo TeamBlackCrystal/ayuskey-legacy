@@ -1,7 +1,7 @@
 import renderUpdate from '../../remote/activitypub/renderer/update';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import { Users } from '../../models';
-import { User } from '../../models/entities/user';
+import { User } from '@ayuskey/models';
 import { renderPerson } from '../../remote/activitypub/renderer/person';
 import { deliverToFollowers } from '../../remote/activitypub/deliver-manager';
 import { deliverToRelays } from '../relay';

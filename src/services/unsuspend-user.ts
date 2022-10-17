@@ -3,7 +3,7 @@ import renderUndo from '../remote/activitypub/renderer/undo';
 import { renderActivity } from '../remote/activitypub/renderer';
 import { deliver } from '../queue';
 import config from '../config';
-import { User } from '../models/entities/user';
+import { User } from '@ayuskey/models';
 import { Users, Followings } from '../models';
 import { Not, IsNull } from 'typeorm';
 

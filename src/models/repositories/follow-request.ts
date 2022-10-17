@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { FollowRequest } from '../entities/follow-request';
+import { FollowRequest } from '@ayuskey/models';
 import { Users } from '..';
 import { ensure } from '../../prelude/ensure';
 

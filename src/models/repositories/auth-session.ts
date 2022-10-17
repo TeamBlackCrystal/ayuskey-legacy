@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Apps } from '..';
-import { AuthSession } from '../entities/auth-session';
+import { AuthSession } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
 

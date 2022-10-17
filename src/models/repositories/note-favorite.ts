@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { NoteFavorite } from '../entities/note-favorite';
+import { NoteFavorite } from '@ayuskey/models';
 import { Notes } from '..';
 import { ensure } from '../../prelude/ensure';
 

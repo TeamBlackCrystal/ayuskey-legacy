@@ -3,7 +3,7 @@ import Channel from '../channel';
 import { Notes, Users } from '@/models/index';
 import { isMutedUserRelated } from '@/misc/is-muted-user-related';
 //import { isBlockerUserRelated } from '@/misc/is-blocker-user-related';
-import { User } from '@/models/entities/user';
+import { User } from '@ayuskey/models';
 import { Packed } from '@/misc/schema';
 
 export default class extends Channel {

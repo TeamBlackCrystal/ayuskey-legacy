@@ -1,7 +1,6 @@
 import watch from '../../../services/note/watch';
 import { publishNoteStream } from '../../stream';
-import { User } from '../../../models/entities/user';
-import { Note } from '../../../models/entities/note';
+import { User, Note } from '@ayuskey/models';
 import { PollVotes, Users, NoteWatchings, Polls, UserProfiles } from '../../../models';
 import { Not } from 'typeorm';
 import { genId } from '../../../misc/gen-id';

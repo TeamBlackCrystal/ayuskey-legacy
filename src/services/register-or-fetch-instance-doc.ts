@@ -1,4 +1,4 @@
-import { Instance } from '../models/entities/instance';
+import { Instance } from '@ayuskey/models';
 import { Instances } from '../models';
 import { federationChart } from './chart';
 import { genId } from '../misc/gen-id';

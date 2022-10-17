@@ -1,5 +1,5 @@
 import { Users, Followings } from '../../models';
-import { ILocalUser, IRemoteUser } from '../../models/entities/user';
+import { ILocalUser, IRemoteUser } from '@ayuskey/models';
 import { deliver } from '../../queue';
 
 //#region types

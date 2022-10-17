@@ -1,12 +1,19 @@
 {
   "name": "@ayuskey/models",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": "true",
+  "license": "AGPLv2",
+  "version": "0.0.1",
+  "main": "./built/index.js",
+  "types": "./built/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ttsc -p ./tsconfig.json"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "typeorm": "0.2.44"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.0",
+    "ttypescript": "1.5.13",
+    "typescript": "4.8.4"
+  }
 }

@@ -1,4 +1,4 @@
-import { IRemoteUser } from '../../../models/entities/user';
+import { IRemoteUser } from '@ayuskey/models';
 import { ILike, getApId } from '../type';
 import create from '../../../services/note/reaction/create';
 import { fetchNote, extractEmojis } from '../models/note';

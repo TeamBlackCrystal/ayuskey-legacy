@@ -1,5 +1,5 @@
 import config from '../../../config';
-import { ILocalUser, IRemoteUser } from '../../../models/entities/user';
+import { ILocalUser, IRemoteUser } from '@ayuskey/models';
 
 export default (blocker: ILocalUser, blockee: IRemoteUser) => ({
 	type: 'Block',

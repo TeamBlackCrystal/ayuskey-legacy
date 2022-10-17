@@ -1,6 +1,5 @@
 import { publishMainStream } from '@/services/stream';
-import { User } from '@/models/entities/user';
-import { Notification } from '@/models/entities/notification';
+import { User, Notification } from '@ayuskey/models';
 import { Notifications, Users } from '@/models/index';
 import { In } from 'typeorm';
 
