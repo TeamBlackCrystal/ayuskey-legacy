@@ -14,6 +14,7 @@
 	"main": "./index.js",
 	"private": true,
 	"scripts": {
+		"postinstall": "pnpm add @ayuskey/models@workspace:./packages/models -w",
 		"start": "node ./index.js",
 		"init": "pnpm migrate",
 		"ormconfig": "node ./built/ormconfig.js",

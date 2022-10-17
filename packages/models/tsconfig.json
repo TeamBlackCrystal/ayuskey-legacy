@@ -7,7 +7,7 @@
 		"noUnusedParameters": false,
 		"noUnusedLocals": true,
 		"noFallthroughCasesInSwitch": true,
-		"declaration": false,
+		"declaration": true,
 		"sourceMap": true,
 		"target": "es2017",
 		"module": "commonjs",
@@ -21,22 +21,18 @@
 		"emitDecoratorMetadata": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"rootDir": "./",
+		"rootDir": "./src",
 		"baseUrl": "./",
-		"outDir": "../built",
+		"outDir": "./built",
 		"paths": {
 			"@/*": ["./*"]
 		},
 		"plugins": [
 			{
 				"transform": "tsc-progress",
-				"title": "Ayuskey BE",
+				"title": "Ayuskey Next-Api",
 				"color": "blue"
 			}
-		],
-		"typeRoots": [
-			"../node_modules/@types",
-			"./@types"
 		],
 		"lib": [
 			"esnext",
