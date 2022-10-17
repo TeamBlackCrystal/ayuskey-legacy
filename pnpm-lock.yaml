@@ -56,7 +56,7 @@ importers:
       '@types/koa__router': 8.0.11
       '@types/lolex': 5.1.2
       '@types/mocha': 10.0.0
-      '@types/node': 18.6.3
+      '@types/node': 18.11.0
       '@types/node-fetch': 2.6.2
       '@types/nodemailer': 6.4.6
       '@types/nprogress': 0.2.0
@@ -412,7 +412,7 @@ importers:
       tinycolor2: 1.4.2
       tmp: 0.2.1
       ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
-      ts-node: 10.9.1_d5zpjul4emwqilpwpa5uupf2xy
+      ts-node: 10.9.1_o6ib7qqltxpe7qrskddglns2ga
       tsc-alias: 1.7.0
       tsconfig-paths: 4.1.0
       typeorm: 0.2.44_ioredis@4.28.5+pg@8.8.0
@@ -477,7 +477,7 @@ importers:
       '@types/koa__router': 8.0.11
       '@types/lolex': 5.1.2
       '@types/mocha': 10.0.0
-      '@types/node': 18.6.3
+      '@types/node': 18.11.0
       '@types/node-fetch': 2.6.2
       '@types/nodemailer': 6.4.6
       '@types/nprogress': 0.2.0
@@ -541,15 +541,19 @@ importers:
       ttypescript: 1.5.13_mwhvu7sfp6vq5ryuwb6hlbjfka
       typescript: 4.8.4
 
+  packages/models:
+    specifiers: {}
+
   packages/next-api:
     specifiers:
+      '@ayuskey/models': workspace:*
+      '@ayuskey/nestjs-typeorm': 8.0.4-njs9-1.0.0
       '@nestjs/cli': ^9.0.0
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
       '@nestjs/platform-express': ^9.0.0
       '@nestjs/schematics': ^9.0.0
       '@nestjs/testing': ^9.0.0
-      '@nestjs/typeorm': 9.0.1
       '@types/express': ^4.17.13
       '@types/jest': 28.1.8
       '@types/js-yaml': 4.0.5
@@ -576,10 +580,11 @@ importers:
       typeorm: 0.2.44
       typescript: ^4.7.4
     dependencies:
+      '@ayuskey/models': link:../models
+      '@ayuskey/nestjs-typeorm': 8.0.4-njs9-1.0.0_ca6nv7mkqmdeuq2podowkgw3g4
       '@nestjs/common': 9.1.4_yzt46al3aifnexifjjdb4dxxja
       '@nestjs/core': 9.1.4_os3bpar6zvfsuh6rrdsifrg6hi
       '@nestjs/platform-express': 9.1.4_osbqhc5bxkxr7p4xaw5wgzf7bi
-      '@nestjs/typeorm': 9.0.1_ca6nv7mkqmdeuq2podowkgw3g4
       js-yaml: 4.1.0
       pg: 8.8.0
       reflect-metadata: 0.1.13
@@ -727,6 +732,23 @@ packages:
     transitivePeerDependencies:
       - chokidar
     dev: true
+
+  /@ayuskey/nestjs-typeorm/8.0.4-njs9-1.0.0_ca6nv7mkqmdeuq2podowkgw3g4:
+    resolution: {integrity: sha512-xkqGtuJ0KMCMVqyTU6hXwZrxS+ySL8kbmlMuiPoWYQJFIRBm1nOJ83A02trGMb/8DC8qq9xyJEssH3nM78N/Sw==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0
+      '@nestjs/core': ^8.0.0 || ^9.0.0
+      reflect-metadata: ^0.1.13
+      rxjs: ^7.2.0
+      typeorm: ^0.2.34
+    dependencies:
+      '@nestjs/common': 9.1.4_yzt46al3aifnexifjjdb4dxxja
+      '@nestjs/core': 9.1.4_os3bpar6zvfsuh6rrdsifrg6hi
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.7
+      typeorm: 0.2.44_pg@8.8.0
+      uuid: 8.3.2
+    dev: false
 
   /@ayuskey/summaly/2.5.0-rei0784.4:
     resolution: {integrity: sha512-UH6fuIoAGjT+PSZFraUl4dMymLGcfJG3yKMy9g0CR+Bra/d5xLEQGsesS0Sa8G7d4BQ61xdLWMv7ucsY2LXQSA==}
@@ -1799,23 +1821,6 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@nestjs/typeorm/9.0.1_ca6nv7mkqmdeuq2podowkgw3g4:
-    resolution: {integrity: sha512-A2BgLIPsMtmMI0bPKEf4bmzgFPsnvHqNBx3KkvaJ7hJrBQy0OqYOb+Rr06ifblKWDWS2tUPNrAFQbZjtk3PI+g==}
-    peerDependencies:
-      '@nestjs/common': ^8.0.0 || ^9.0.0
-      '@nestjs/core': ^8.0.0 || ^9.0.0
-      reflect-metadata: ^0.1.13
-      rxjs: ^7.2.0
-      typeorm: ^0.3.0
-    dependencies:
-      '@nestjs/common': 9.1.4_yzt46al3aifnexifjjdb4dxxja
-      '@nestjs/core': 9.1.4_os3bpar6zvfsuh6rrdsifrg6hi
-      reflect-metadata: 0.1.13
-      rxjs: 7.5.7
-      typeorm: 0.2.44_pg@8.8.0
-      uuid: 8.3.2
-    dev: false
-
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2388,9 +2393,6 @@ packages:
 
   /@types/node/18.11.0:
     resolution: {integrity: sha512-IOXCvVRToe7e0ny7HpT/X9Rb2RYtElG1a+VshjwT00HxrM2dWBApHQoqsI6WiY7Q03vdf2bCrIGzVrkF/5t10w==}
-
-  /@types/node/18.6.3:
-    resolution: {integrity: sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==}
 
   /@types/nodemailer/6.4.6:
     resolution: {integrity: sha512-pD6fL5GQtUKvD2WnPmg5bC2e8kWCAPDwMPmHe/ohQbW+Dy0EcHgZ2oCSuPlWNqk74LS5BVMig1SymQbFMPPK3w==}
@@ -13908,37 +13910,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node/10.9.1_d5zpjul4emwqilpwpa5uupf2xy:
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': '>=1.2.50'
-      '@swc/wasm': '>=1.2.50'
-      '@types/node': '*'
-      typescript: '>=2.7'
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      '@swc/wasm':
-        optional: true
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.9
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.3
-      '@types/node': 18.6.3
-      acorn: 8.8.0
-      acorn-walk: 8.2.0
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 4.8.4
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-    dev: false
-
   /ts-node/10.9.1_o6ib7qqltxpe7qrskddglns2ga:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -13968,7 +13939,6 @@ packages:
       typescript: 4.8.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    dev: true
 
   /tsc-alias/1.7.0:
     resolution: {integrity: sha512-n/K6g8S7Ec7Y/A2Z77Ikp2Uv1S1ERtT63ni69XV4W1YPT4rnNmz8ItgIiJYvKfFnKfqcZQ81UPjoKpMTxaC/rg==}
