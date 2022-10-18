@@ -2,7 +2,7 @@ import $ from 'cafy';
 import define from '../../../define';
 import { detectUrlMime } from '../../../../../misc/detect-url-mime';
 import { Emojis } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { getConnection } from 'typeorm';
 import { insertModerationLog } from '../../../../../services/insert-moderation-log';
 import { ApiError } from '../../../error';

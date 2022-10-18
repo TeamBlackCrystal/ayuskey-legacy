@@ -1,7 +1,7 @@
 import { User, Hashtag } from '@ayuskey/models';
 import { Hashtags, Users } from '../models';
 import { hashtagChart } from './chart';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { normalizeTag } from '../misc/normalize-tag';
 
 export async function updateHashtags(user: User, tags: string[]) {

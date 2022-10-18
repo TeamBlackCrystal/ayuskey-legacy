@@ -4,7 +4,7 @@ import { publishDriveStream } from '../../../../../services/stream';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { DriveFolders } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	stability: 'stable',

@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import { UserLists } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { UserList } from '@ayuskey/models';
 
 export const meta = {

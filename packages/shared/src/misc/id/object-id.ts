@@ -21,6 +21,12 @@ function getRandom() {
 	return str;
 }
 
+/**
+ * そもそも非推奨
+ * @deprecated
+ * @param date 
+ * @returns 
+ */
 export function genObjectId(date: Date): string {
 	return getTime(date.getTime()) + getRandom();
 }

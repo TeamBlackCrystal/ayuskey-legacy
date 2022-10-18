@@ -4,7 +4,7 @@ import renderFollow from '../../../remote/activitypub/renderer/follow';
 import { deliver } from '../../../queue';
 import { User } from '@ayuskey/models';
 import { Blockings, FollowRequests, Users } from '../../../models';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { createNotification } from '../../create-notification';
 
 export default async function(follower: User, followee: User, requestId?: string) {

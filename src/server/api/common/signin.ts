@@ -3,7 +3,7 @@ import * as Koa from 'koa';
 import config from '../../../config';
 import { ILocalUser } from '@ayuskey/models';
 import { Signins } from '../../../models';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { publishMainStream } from '../../../services/stream';
 
 export default function(ctx: Koa.Context, user: ILocalUser, redirect = false) {

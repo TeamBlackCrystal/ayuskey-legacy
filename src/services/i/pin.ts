@@ -5,7 +5,7 @@ import { renderActivity } from '../../remote/activitypub/renderer';
 import { IdentifiableError } from '../../misc/identifiable-error';
 import { User, Note, UserNotePining } from '@ayuskey/models';
 import { Notes, UserNotePinings, Users } from '../../models';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { deliverToFollowers } from '../../remote/activitypub/deliver-manager';
 import { deliverToRelays } from '../relay';
 

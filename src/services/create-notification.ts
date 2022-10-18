@@ -1,7 +1,7 @@
 import { publishMainStream } from './stream';
 import pushSw from './push-notification';
 import { Notifications, Mutings, UserProfiles } from '../models';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { User, Note, Notification } from '@ayuskey/models';
 
 export async function createNotification(

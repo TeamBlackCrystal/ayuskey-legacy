@@ -4,7 +4,7 @@ import generateNativeUserToken from '../server/api/common/generate-native-user-t
 import { genRsaKeyPair } from '../misc/gen-key-pair';
 import { User, UserProfile, UserKeypair, UsedUsername } from '@ayuskey/models';
 import { getConnection } from 'typeorm';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export async function createSystemUser(username: string) {
 	const password = uuid();

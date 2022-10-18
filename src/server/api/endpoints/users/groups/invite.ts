@@ -4,7 +4,7 @@ import define from '../../../define';
 import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
 import { UserGroups, UserGroupJoinings, UserGroupInvites } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { UserGroupInvite } from '@ayuskey/models';
 
 export const meta = {

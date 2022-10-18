@@ -3,7 +3,7 @@ import { ID } from '@/misc/cafy-id';
 import define from '../../define';
 import { ApiError } from '../../error';
 import { Channels, ChannelFollowings } from '@/models/index';
-import { genId } from '@/misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { publishUserEvent } from '@/services/stream';
 
 export const meta = {

@@ -14,7 +14,7 @@ import { DriveFiles, DriveFolders, Users, Instances, UserProfiles } from '../../
 import { InternalStorage } from './internal-storage';
 import { DriveFile, IRemoteUser, User } from '@ayuskey/models';
 import { driveChart, perUserDriveChart, instanceChart } from '../chart';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
 import * as S3 from 'aws-sdk/clients/s3';
 import { getS3 } from './s3';

@@ -1,7 +1,7 @@
 import { Note, User } from '@ayuskey/models';
 import { publishMainStream } from '../stream';
 import { Mutings, NoteUnreads } from '../../models';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export default async function(userId: User['id'], note: Note, params: {
 	// NOTE: isSpecifiedがtrueならisMentionedは必ずfalse

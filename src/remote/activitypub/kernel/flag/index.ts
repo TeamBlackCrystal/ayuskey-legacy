@@ -3,7 +3,7 @@ import config from '../../../../config';
 import { IFlag, getApIds } from '../../type';
 import { AbuseUserReports, Users } from '../../../../models';
 import { In } from 'typeorm';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export default async (actor: IRemoteUser, activity: IFlag): Promise<string> => {
 	// objectは `(User|Note) | (User|Note)[]` だけど、全パターンDBスキーマと対応させられないので

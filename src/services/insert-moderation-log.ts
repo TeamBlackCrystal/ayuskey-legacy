@@ -1,6 +1,6 @@
 import { ILocalUser } from '@ayuskey/models';
 import { ModerationLogs } from '../models';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export async function insertModerationLog(moderator: ILocalUser, type: string, info?: Record<string, any>) {
 	await ModerationLogs.save({

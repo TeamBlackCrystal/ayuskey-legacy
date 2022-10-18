@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import { Announcements } from '../../../../../models/index';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	tags: ['admin'],

@@ -1,7 +1,7 @@
 import { publishUserListStream } from '../stream';
 import { User, UserList, UserListJoining } from '@ayuskey/models';
 import { UserListJoinings, Users } from '../../models';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { fetchProxyAccount } from '../../misc/fetch-proxy-account';
 import createFollowing from '../following/create';
 

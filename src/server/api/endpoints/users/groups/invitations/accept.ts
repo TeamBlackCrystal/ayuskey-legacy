@@ -3,7 +3,7 @@ import { ID } from '../../../../../../misc/cafy-id';
 import define from '../../../../define';
 import { ApiError } from '../../../../error';
 import { UserGroupJoinings, UserGroupInvites } from '../../../../../../models';
-import { genId } from '../../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { UserGroupJoining } from '@ayuskey/models';
 
 export const meta = {

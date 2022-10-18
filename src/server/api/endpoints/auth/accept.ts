@@ -3,7 +3,7 @@ import $ from 'cafy';
 import define from '../../define';
 import { ApiError } from '../../error';
 import { AuthSessions, AccessTokens, Apps } from '../../../../models';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { ensure } from '../../../../prelude/ensure';
 import { secureRndstr } from '../../../../misc/secure-rndstr';
 

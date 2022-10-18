@@ -6,7 +6,7 @@ import { Users, UserProfiles, PasswordResetRequests } from '../../../models';
 import config from '../../../config';
 import { secureRndstr } from '../../../misc/secure-rndstr';
 import { apiLogger } from '../logger';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { IsNull } from 'typeorm';
 
 export const meta = {

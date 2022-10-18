@@ -1,5 +1,5 @@
 import { initDb } from '../db/postgre';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 async function main(name: string, url: string, alias?: string): Promise<any> {
 	await initDb();

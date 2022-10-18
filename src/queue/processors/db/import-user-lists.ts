@@ -7,7 +7,7 @@ import { pushUserToUserList } from '../../../services/user-list/push';
 import { downloadTextFile } from '../../../misc/download-text-file';
 import { isSelfHost, toPuny } from '../../../misc/convert-host';
 import { DriveFiles, Users, UserLists, UserListJoinings } from '../../../models';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { DbUserImportJobData } from '../../types';
 
 const logger = queueLogger.createSubLogger('import-user-lists');

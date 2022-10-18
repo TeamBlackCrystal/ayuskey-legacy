@@ -5,7 +5,7 @@ import * as dateformat from 'dateformat';
 import { program } from '../argv';
 import { getRepository } from 'typeorm';
 import { Log } from '@ayuskey/models';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import config from '../config';
 
 const SyslogPro = require('syslog-pro');

@@ -1,6 +1,6 @@
 import { User, UserGroup, DriveFile, MessagingMessage, Note } from '@ayuskey/models';
 import { MessagingMessages, UserGroupJoinings, Mutings, Users } from '../../models';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { publishMessagingStream, publishMessagingIndexStream, publishMainStream, publishGroupMessagingStream } from '../stream';
 import pushNotification from '../push-notification';
 import { Not } from 'typeorm';

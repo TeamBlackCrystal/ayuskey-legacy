@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../define';
 import { Apps } from '../../../../models';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { unique } from '../../../../prelude/array';
 import { secureRndstr } from '../../../../misc/secure-rndstr';
 

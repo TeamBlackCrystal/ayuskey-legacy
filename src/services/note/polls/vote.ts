@@ -3,7 +3,7 @@ import { publishNoteStream } from '../../stream';
 import { User, Note } from '@ayuskey/models';
 import { PollVotes, Users, NoteWatchings, Polls, UserProfiles } from '../../../models';
 import { Not } from 'typeorm';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { createNotification } from '../../create-notification';
 
 export default async function(user: User, note: Note, choice: number) {

@@ -11,7 +11,7 @@ import { IdentifiableError } from '../../misc/identifiable-error';
 import { User } from '@ayuskey/models';
 import { Followings, Users, FollowRequests, Blockings, Instances, UserProfiles } from '../../models';
 import { instanceChart, perUserFollowingChart } from '../chart';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
 import { ensure } from '../../prelude/ensure';

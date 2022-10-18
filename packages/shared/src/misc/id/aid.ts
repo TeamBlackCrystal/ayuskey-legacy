@@ -17,6 +17,12 @@ function getNoise() {
 	return counter.toString(36).padStart(2, '0').slice(-2);
 }
 
+/**
+ * 稀に被るのでだめ
+ * @deprecated
+ * @param date 
+ * @returns 
+ */
 export function genAid(date: Date): string {
 	counter++;
 	return getTime(date.getTime()) + getNoise();

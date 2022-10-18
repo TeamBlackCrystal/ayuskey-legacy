@@ -19,7 +19,7 @@ import extractHashtags from '../../misc/extract-hashtags';
 import { Note, IMentionedRemoteUsers, DriveFile, App, User, ILocalUser, IRemoteUser, Poll, IPoll, Channel } from '@ayuskey/models';
 import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Antennas, Followings, Channels, ChannelFollowings } from '../../models';
 import { Not, getConnection, In } from 'typeorm';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { notesChart, perUserNotesChart, activeUsersChart, instanceChart } from '../chart';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';

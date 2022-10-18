@@ -1,6 +1,6 @@
 import { Antenna, Note, User } from '@ayuskey/models';
 import { AntennaNotes, Mutings, Notes } from '../models';
-import { genId } from '../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { isMutedUserRelated } from '../misc/is-muted-user-related';
 import { publishAntennaStream, publishMainStream } from './stream';
 

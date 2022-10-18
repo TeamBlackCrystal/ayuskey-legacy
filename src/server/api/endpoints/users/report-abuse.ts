@@ -5,7 +5,7 @@ import { publishAdminStream } from '../../../../services/stream';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import { AbuseUserReports, Users } from '../../../../models';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	desc: {

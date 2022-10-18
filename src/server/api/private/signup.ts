@@ -6,7 +6,7 @@ import config from '../../../config';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { verifyRecaptcha } from '../../../misc/captcha'; 
 import { Users, Signins, RegistrationTickets, UsedUsernames } from '../../../models';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { usersChart } from '../../../services/chart';
 import { User, UserKeypair, UserProfile, UsedUsername } from '@ayuskey/models';
 import { toPunyNullable } from '../../../misc/convert-host';

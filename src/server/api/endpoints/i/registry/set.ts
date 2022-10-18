@@ -2,7 +2,7 @@ import $ from 'cafy';
 import { publishMainStream } from '../../../../../services/stream';
 import define from '../../../define';
 import { RegistryItems } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	requireCredential: true as const,

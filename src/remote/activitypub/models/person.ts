@@ -15,7 +15,7 @@ import { apLogger } from '../logger';
 import { Note, Emoji, UserNotePining, User, IRemoteUser, UserPublickey, UserProfile } from '@ayuskey/models';
 import { updateUsertags } from '../../../services/update-hashtag';
 import { Users, Instances, Followings, UserProfiles, UserPublickeys } from '../../../models';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { instanceChart, usersChart } from '../../../services/chart';
 import { isDuplicateKeyValueError } from '../../../misc/is-duplicate-key-value-error';
 import { toPuny } from '../../../misc/convert-host';

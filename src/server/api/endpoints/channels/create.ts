@@ -3,7 +3,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { Channels, DriveFiles } from '../../../../models/index';
 import { Channel } from '@ayuskey/models';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { ID } from '../../../../misc/cafy-id';
 
 export const meta = {

@@ -5,7 +5,7 @@ import { eighteight } from '../../../../../games/reversi/maps';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { getUser } from '../../../common/getters';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { ReversiMatchings, ReversiGames } from '../../../../../models';
 import { ReversiGame, ReversiMatching } from '@ayuskey/models';
 

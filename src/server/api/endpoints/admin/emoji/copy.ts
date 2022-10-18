@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import { Emojis } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { getConnection } from 'typeorm';
 import { ApiError } from '../../../error';
 import { DriveFile } from '@ayuskey/models';

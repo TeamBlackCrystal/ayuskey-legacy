@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../define';
 import { fetchMeta } from '../../../../misc/fetch-meta';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { SwSubscriptions } from '../../../../models';
 
 export const meta = {

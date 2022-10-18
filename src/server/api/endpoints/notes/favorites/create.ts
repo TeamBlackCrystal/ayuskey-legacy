@@ -4,7 +4,7 @@ import define from '../../../define';
 import { ApiError } from '../../../error';
 import { getNote } from '../../../common/getters';
 import { NoteFavorites } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	stability: 'stable',

@@ -8,7 +8,7 @@ import renderReject from '../../remote/activitypub/renderer/reject';
 import { User } from '@ayuskey/models';
 import { Blockings, Users, FollowRequests, Followings } from '../../models';
 import { perUserFollowingChart } from '../chart';
-import { genId } from '../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export default async function(blocker: User, blockee: User) {
 	await Promise.all([

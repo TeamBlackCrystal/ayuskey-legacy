@@ -3,7 +3,7 @@ import { ID } from '../../../../misc/cafy-id';
 import define from '../../define';
 import { ClipNotes, Clips } from '../../../../models/index';
 import { ApiError } from '../../error';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { getNote } from '../../common/getters';
 
 export const meta = {

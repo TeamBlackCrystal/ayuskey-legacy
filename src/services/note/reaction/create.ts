@@ -8,7 +8,7 @@ import { User, IRemoteUser, Note } from '@ayuskey/models';
 import { NoteReactions, Users, NoteWatchings, Notes, UserProfiles, Emojis } from '../../../models';
 import { Not } from 'typeorm';
 import { perUserReactionsChart } from '../../chart';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { createNotification } from '../../create-notification';
 import deleteReaction from './delete';
 

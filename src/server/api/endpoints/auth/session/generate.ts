@@ -4,7 +4,7 @@ import config from '../../../../../config';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { Apps, AuthSessions } from '../../../../../models';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 
 export const meta = {
 	tags: ['auth'],

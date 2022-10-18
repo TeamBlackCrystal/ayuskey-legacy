@@ -17,7 +17,7 @@ import { deliverQuestionUpdate } from '../../../services/note/polls/update';
 import { extractDbHost, toPuny } from '../../../misc/convert-host';
 import { Emojis, Polls, MessagingMessages } from '../../../models';
 import { IObject, getOneApId, getApId, validPost, IPost, isEmoji, getApType } from '../type';
-import { genId } from '../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { ensure } from '../../../prelude/ensure';
 import { getApLock } from '../../../misc/app-lock';

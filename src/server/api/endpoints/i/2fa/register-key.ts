@@ -5,7 +5,7 @@ import { UserProfiles, AttestationChallenges } from '../../../../../models';
 import { ensure } from '../../../../../prelude/ensure';
 import { promisify } from 'util';
 import * as crypto from 'crypto';
-import { genId } from '../../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { hash } from '../../../2fa';
 
 const randomBytes = promisify(crypto.randomBytes);

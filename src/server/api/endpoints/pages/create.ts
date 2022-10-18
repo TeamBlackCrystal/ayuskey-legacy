@@ -3,7 +3,7 @@ import * as ms from 'ms';
 import define from '../../define';
 import { ID } from '../../../../misc/cafy-id';
 import { Pages, DriveFiles } from '../../../../models';
-import { genId } from '../../../../misc/gen-id';
+import { genId } from '@ayuskey/shared';
 import { Page } from '@ayuskey/models';
 import { ApiError } from '../../error';
 
