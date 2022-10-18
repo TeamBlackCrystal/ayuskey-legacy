@@ -5,8 +5,8 @@ import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMes
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { Packed } from '../../misc/schema';
-import { awaitAll } from '../../prelude/await-all';
-import { toPunyNullable } from '../../misc/convert-host';
+import { awaitAll } from '@ayuskey/shared';
+import { toPunyNullable } from '@ayuskey/shared';
 import { getAntennas } from '../../misc/antenna-cache';
 import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
 

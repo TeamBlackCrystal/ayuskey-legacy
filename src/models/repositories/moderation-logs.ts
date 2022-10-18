@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
 import { ModerationLog } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
-import { awaitAll } from '../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 
 @EntityRepository(ModerationLog)
 export class ModerationLogRepository extends Repository<ModerationLog> {

@@ -5,7 +5,7 @@ import { createPerson } from '../../../../remote/activitypub/models/person';
 import { createNote } from '../../../../remote/activitypub/models/note';
 import Resolver from '../../../../remote/activitypub/resolver';
 import { ApiError } from '../../error';
-import { extractDbHost } from '../../../../misc/convert-host';
+import { extractDbHost } from '@ayuskey/shared';
 import { Users, Notes } from '../../../../models';
 import { Note, User } from '@ayuskey/models';
 import { fetchMeta } from '../../../../misc/fetch-meta';

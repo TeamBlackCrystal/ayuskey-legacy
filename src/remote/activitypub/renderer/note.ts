@@ -7,7 +7,6 @@ import toHtml from '../misc/get-note-html';
 import { Note, IMentionedRemoteUsers, DriveFile, Emoji, Poll } from '@ayuskey/models';
 import { DriveFiles, Notes, Users, Emojis, Polls } from '../../../models';
 import { In } from 'typeorm';
-import { ensure } from '../../../prelude/ensure';
 
 /**
  * Render Note object

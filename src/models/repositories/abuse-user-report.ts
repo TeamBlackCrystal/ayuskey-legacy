@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
 import { AbuseUserReport } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
-import { awaitAll } from '../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 
 @EntityRepository(AbuseUserReport)
 export class AbuseUserReportRepository extends Repository<AbuseUserReport> {

@@ -14,7 +14,7 @@ import vote from '../../../services/note/polls/vote';
 import { apLogger } from '../logger';
 import { DriveFile, Note, Emoji } from '@ayuskey/models';
 import { deliverQuestionUpdate } from '../../../services/note/polls/update';
-import { extractDbHost, toPuny } from '../../../misc/convert-host';
+import { extractDbHost, toPuny } from '@ayuskey/shared';
 import { Emojis, Polls, MessagingMessages } from '../../../models';
 import { IObject, getOneApId, getApId, validPost, IPost, isEmoji, getApType } from '../type';
 import { genId } from '@ayuskey/shared';

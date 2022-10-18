@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import * as bcrypt from 'bcryptjs';
 import { publishMainStream } from '../../../../services/stream';
-import generateUserToken from '../../common/generate-native-user-token';
+import generateUserToken from '@ayuskey/shared';
 import define from '../../define';
 import { Users, UserProfiles } from '../../../../models';
 import { ensure } from '../../../../prelude/ensure';

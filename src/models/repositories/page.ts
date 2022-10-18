@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Page, DriveFile, User } from '@ayuskey/models';
 import { Packed } from '../../misc/schema';
 import { Users, DriveFiles, PageLikes } from '..';
-import { awaitAll } from '../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 import { ensure } from '../../prelude/ensure';
 
 @EntityRepository(Page)

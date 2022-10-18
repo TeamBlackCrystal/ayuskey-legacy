@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import { queueLogger } from '../../logger';
 import addFile from '../../../services/drive/add-file';
 import * as dateFormat from 'dateformat';
-import { getFullApAccount } from '../../../misc/convert-host';
+import { getFullApAccount } from '@ayuskey/shared';
 import { Users, UserLists, UserListJoinings } from '../../../models';
 import { In } from 'typeorm';
 import { DbUserJobData } from '../../types';

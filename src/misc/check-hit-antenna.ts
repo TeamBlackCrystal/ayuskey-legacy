@@ -1,7 +1,7 @@
 import { Antenna, Note, User } from '@ayuskey/models';
 import { UserListJoinings, UserGroupJoinings } from '../models';
 import parseAcct from './acct/parse';
-import { getFullApAccount } from './convert-host';
+import { getFullApAccount } from '@ayuskey/shared';
 import { Packed } from './schema';
 
 /**

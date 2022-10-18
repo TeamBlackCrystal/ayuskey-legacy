@@ -7,7 +7,7 @@ import { registerOrFetchInstanceDoc } from '../../services/register-or-fetch-ins
 import { Instances } from '../../models';
 import { instanceChart } from '../../services/chart';
 import { fetchMeta } from '../../misc/fetch-meta';
-import { toPuny, extractDbHost } from '../../misc/convert-host';
+import { toPuny, extractDbHost } from '@ayuskey/shared';
 import { getApId } from '../../remote/activitypub/type';
 import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { InboxJobData } from '../types';

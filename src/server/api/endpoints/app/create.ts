@@ -3,7 +3,7 @@ import define from '../../define';
 import { Apps } from '../../../../models';
 import { genId } from '@ayuskey/shared';
 import { unique } from '../../../../prelude/array';
-import { secureRndstr } from '../../../../misc/secure-rndstr';
+import { secureRndstr } from '@ayuskey/shared';
 
 export const meta = {
 	tags: ['app'],

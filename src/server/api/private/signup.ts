@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as bcrypt from 'bcryptjs';
 import { generateKeyPair } from 'crypto';
-import generateUserToken from '../common/generate-native-user-token';
+import generateUserToken from '@ayuskey/shared';
 import config from '../../../config';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { verifyRecaptcha } from '../../../misc/captcha'; 
@@ -9,7 +9,7 @@ import { Users, Signins, RegistrationTickets, UsedUsernames } from '../../../mod
 import { genId } from '@ayuskey/shared';
 import { usersChart } from '../../../services/chart';
 import { User, UserKeypair, UserProfile, UsedUsername } from '@ayuskey/models';
-import { toPunyNullable } from '../../../misc/convert-host';
+import { toPunyNullable } from '@ayuskey/shared';
 import { getConnection } from 'typeorm';
 
 export default async (ctx: Koa.Context) => {

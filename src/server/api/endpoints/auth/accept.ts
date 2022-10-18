@@ -5,7 +5,7 @@ import { ApiError } from '../../error';
 import { AuthSessions, AccessTokens, Apps } from '../../../../models';
 import { genId } from '@ayuskey/shared';
 import { ensure } from '../../../../prelude/ensure';
-import { secureRndstr } from '../../../../misc/secure-rndstr';
+import { secureRndstr } from '@ayuskey/shared';
 
 export const meta = {
 	tags: ['auth'],

@@ -3,7 +3,7 @@ import { Clip } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
 import { Packed } from '@/misc/schema';
 import { Users } from '../index';
-import { awaitAll } from '@/prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 
 @EntityRepository(Clip)
 export class ClipRepository extends Repository<Clip> {

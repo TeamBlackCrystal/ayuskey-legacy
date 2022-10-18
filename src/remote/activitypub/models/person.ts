@@ -18,7 +18,7 @@ import { Users, Instances, Followings, UserProfiles, UserPublickeys } from '../.
 import { genId } from '@ayuskey/shared';
 import { instanceChart, usersChart } from '../../../services/chart';
 import { isDuplicateKeyValueError } from '../../../misc/is-duplicate-key-value-error';
-import { toPuny } from '../../../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 import { getConnection, Not } from 'typeorm';
 import { ensure } from '../../../prelude/ensure';
 import { toArray } from '../../../prelude/array';

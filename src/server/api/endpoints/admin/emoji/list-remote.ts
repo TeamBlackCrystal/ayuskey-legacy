@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import { Emojis } from '../../../../../models';
-import { toPuny } from '../../../../../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 import { makePaginationQuery } from '../../../common/make-pagination-query';
 import { ID } from '../../../../../misc/cafy-id';
 

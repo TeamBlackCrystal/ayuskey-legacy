@@ -4,7 +4,7 @@ import { SchemaType } from '../../../../misc/schema';
 import { DriveFiles, Followings, Users, Notes } from '../../../../models';
 import { DriveFile, Note } from '@ayuskey/models';
 import { name, schema } from '../schemas/instance';
-import { toPuny } from '../../../../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 
 type InstanceLog = SchemaType<typeof schema>;
 

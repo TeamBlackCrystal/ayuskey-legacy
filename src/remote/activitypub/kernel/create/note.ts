@@ -3,7 +3,7 @@ import { IRemoteUser } from '@ayuskey/models';
 import { createNote, fetchNote } from '../../models/note';
 import { getApId, IObject, ICreate } from '../../type';
 import { getApLock } from '../../../../misc/app-lock';
-import { extractDbHost } from '../../../../misc/convert-host';
+import { extractDbHost } from '@ayuskey/shared';
 import { StatusError } from '@/misc/fetch';
 
 /**

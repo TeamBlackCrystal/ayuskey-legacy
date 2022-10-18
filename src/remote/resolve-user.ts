@@ -6,7 +6,7 @@ import { remoteLogger } from './logger';
 import * as chalk from 'chalk';
 import { User, IRemoteUser } from '@ayuskey/models';
 import { Users } from '../models';
-import { toPuny } from '../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 
 const logger = remoteLogger.createSubLogger('resolve-user');
 

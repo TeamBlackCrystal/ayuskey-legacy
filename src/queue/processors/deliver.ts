@@ -7,7 +7,7 @@ import { Instances } from '../../models';
 import { instanceChart } from '../../services/chart';
 import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { fetchMeta } from '../../misc/fetch-meta';
-import { toPuny } from '../../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 import { DeliverJobData } from '../types';
 import { StatusError } from '@/misc/fetch';
 

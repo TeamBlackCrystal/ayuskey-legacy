@@ -17,7 +17,7 @@ import extractMentions from '../../misc/extract-mentions';
 import extractEmojis from '../../misc/extract-emojis';
 import extractHashtags from '../../misc/extract-hashtags';
 import { Note, IMentionedRemoteUsers, DriveFile, App, User, ILocalUser, IRemoteUser, Poll, IPoll, Channel } from '@ayuskey/models';
-import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Antennas, Followings, Channels, ChannelFollowings } from '../../models';
+import { Mutings, Users, NoteWatchings, Notes, Instances, UserProfiles, Followings, Channels, ChannelFollowings } from '../../models';
 import { Not, getConnection, In } from 'typeorm';
 import { genId } from '@ayuskey/shared';
 import { notesChart, perUserNotesChart, activeUsersChart, instanceChart } from '../chart';

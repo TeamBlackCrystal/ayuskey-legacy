@@ -2,7 +2,7 @@ import { Instance } from '@ayuskey/models';
 import { Instances } from '../models';
 import { federationChart } from './chart';
 import { genId } from '@ayuskey/shared';
-import { toPuny } from '../misc/convert-host';
+import { toPuny } from '@ayuskey/shared';
 
 export async function registerOrFetchInstanceDoc(host: string): Promise<Instance> {
 	host = toPuny(host);

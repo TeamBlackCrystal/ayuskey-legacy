@@ -1,8 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { DriveFile, User, Meta } from '@ayuskey/models';
 import { Users, DriveFolders } from '..';
-import { toPuny } from '../../misc/convert-host';
-import { awaitAll } from '../../prelude/await-all';
+import { toPuny } from '@ayuskey/shared';
+import { awaitAll } from '@ayuskey/shared';
 import { Packed } from '@/misc/schema';
 import config from '../../config';
 import { query, appendQuery } from '../../prelude/url';

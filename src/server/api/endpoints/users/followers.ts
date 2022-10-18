@@ -4,7 +4,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { Users, Followings } from '../../../../models';
 import { makePaginationQuery } from '../../common/make-pagination-query';
-import { toPunyNullable } from '../../../../misc/convert-host';
+import { toPunyNullable } from '@ayuskey/shared';
 
 export const meta = {
 	desc: {
