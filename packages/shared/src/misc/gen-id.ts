@@ -3,7 +3,7 @@ import { genAid } from './id/aid';
 import { genMeid } from './id/meid';
 import { genMeidg } from './id/meidg';
 import { genObjectId } from './id/object-id';
-import type { Config } from '@/../../built/config/types';
+import type { Config } from '../../../../built-dts/config/types';
 // TODO: なんとかできそう
 const config: Config = require('../../../../built/config');
 
