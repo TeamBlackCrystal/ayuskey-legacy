@@ -1,3 +1,3 @@
 import { secureRndstr } from "@/src";
 
-export default () => secureRndstr(16, true);
+export const generateNativeUserToken = () => secureRndstr(16, true);
