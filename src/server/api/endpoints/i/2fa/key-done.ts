@@ -14,7 +14,7 @@ import config from '../../../../../config';
 import { procedures, hash } from '../../../2fa';
 import { publishMainStream } from '../../../../../services/stream';
 
-const cborDecodeFirst = promisify(cbor.decodeFirst) as any;
+const cborDecodeFirst = promisify(cbor.decodeFirst);
 
 export const meta = {
 	requireCredential: true,
