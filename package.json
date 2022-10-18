@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"@ayuskey/models": "link:packages\\models",
+		"@ayuskey/shared": "link:packages\\shared",
 		"@ayuskey/summaly": "2.5.0-rei0784.4",
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "4.5.0",

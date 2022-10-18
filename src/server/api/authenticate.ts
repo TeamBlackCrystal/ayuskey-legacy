@@ -1,4 +1,4 @@
-import isNativeToken from './common/is-native-token';
+import { isNativeToken } from '@ayuskey/shared';
 import { User, App } from '@ayuskey/models';
 import { Users, AccessTokens, Apps } from '../../models';
 
