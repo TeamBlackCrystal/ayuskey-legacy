@@ -43,7 +43,7 @@
 		"@ayuskey/summaly": "2.5.0-rei0784.4",
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "4.6.0",
-		"@bull-board/koa": "4.5.0",
+		"@bull-board/koa": "4.6.0",
 		"@bull-board/ui": "4.6.0",
 		"@discordapp/twemoji": "14.0.2",
 		"@elastic/elasticsearch": "7.17.0",

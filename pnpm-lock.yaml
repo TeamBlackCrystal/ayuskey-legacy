@@ -7,7 +7,7 @@ specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.6.0
-  '@bull-board/koa': 4.5.0
+  '@bull-board/koa': 4.6.0
   '@bull-board/ui': 4.6.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -267,7 +267,7 @@ dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.6.0
-  '@bull-board/koa': 4.5.0_47hhf6s5g2iqergy3sns66l4iy
+  '@bull-board/koa': 4.6.0_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.6.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -600,23 +600,17 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@bull-board/api/4.5.0:
-    resolution: {integrity: sha512-0KthWt/oyWEM8pZGcCpe1JWPv+zaalXSSCQaUHPkj8duM+Sh0pnSc1mrj6LHTZe0xf2zs7GqjhzzWA62mieQ5g==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
   /@bull-board/api/4.6.0:
     resolution: {integrity: sha512-CXWlZaTXnmIXx0vbikirza1Vuz/Clju8DkR+PXggVDcreoA5pz5ImnAVdNt+PKQKiVOCvA9baySjmPu3AtT+aA==}
     dependencies:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/koa/4.5.0_47hhf6s5g2iqergy3sns66l4iy:
-    resolution: {integrity: sha512-20hFAzrPX1H01vDE4rKp25JNeXyAsPIwCXZg0Ho/qanXesfIWg9BUatOHawW7Y3ZuaUSgp/oBfjB5wq+1XmzVA==}
+  /@bull-board/koa/4.6.0_47hhf6s5g2iqergy3sns66l4iy:
+    resolution: {integrity: sha512-f1V3b0Ns8xVteeqWG9cwmTCxP8KsaGJ7e88KFSJbVXfg/hyHAFcH5L8AvMbE4hxggQJ7qMVAE1VXzzeCel2OHw==}
     dependencies:
-      '@bull-board/api': 4.5.0
-      '@bull-board/ui': 4.5.0
+      '@bull-board/api': 4.6.0
+      '@bull-board/ui': 4.6.0
       ejs: 3.1.8
       koa: 2.13.4
       koa-mount: 4.0.0
@@ -678,12 +672,6 @@ packages:
       - velocityjs
       - walrus
       - whiskers
-    dev: false
-
-  /@bull-board/ui/4.5.0:
-    resolution: {integrity: sha512-F5VYwDJei8xaKf4CGqnu6T4hFWqViUnb6YS7aRGgi+z+mq8MqjPydArixKJRdCjJ3dS6omw1wg/HFFjLiOSu4A==}
-    dependencies:
-      '@bull-board/api': 4.5.0
     dev: false
 
   /@bull-board/ui/4.6.0:
