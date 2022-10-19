@@ -12,7 +12,7 @@ import { updateUsertags } from '../../../../services/update-hashtag';
 import { ApiError } from '../../error';
 import { Users, DriveFiles, UserProfiles, Pages } from '../../../../models';
 import { User, UserProfile } from '@ayuskey/models';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { notificationTypes } from '../../../../types';
 import { normalizeTag } from '../../../../misc/normalize-tag';
 

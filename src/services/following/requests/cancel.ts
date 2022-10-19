@@ -1,6 +1,6 @@
 import { renderActivity } from '../../../remote/activitypub/renderer';
 import renderFollow from '../../../remote/activitypub/renderer/follow';
-import renderUndo from '../../../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import { deliver } from '../../../queue';
 import { publishMainStream } from '../../stream';
 import { IdentifiableError } from '../../../misc/identifiable-error';

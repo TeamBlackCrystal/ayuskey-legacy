@@ -5,7 +5,7 @@ import * as QRCode from 'qrcode';
 import config from '../../../../../config';
 import define from '../../../define';
 import { UserProfiles } from '../../../../../models';
-import { ensure } from '../../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const meta = {
 	requireCredential: true,

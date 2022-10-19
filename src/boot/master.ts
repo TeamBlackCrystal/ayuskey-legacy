@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import * as os from 'os';
 import * as cluster from 'cluster';
@@ -8,7 +7,7 @@ import * as portscanner from 'portscanner';
 
 import Logger from '../services/logger';
 import loadConfig from '../config/load';
-import { Config } from '../config/types';
+import { Config } from '@ayuskey/shared';
 import { lessThan } from '../prelude/array';
 import { program } from '../argv';
 import { showMachineInfo } from '../misc/show-machine-info';

@@ -19,7 +19,7 @@ import { Emojis, Polls, MessagingMessages } from '../../../models';
 import { IObject, getOneApId, getApId, validPost, IPost, isEmoji, getApType } from '../type';
 import { genId } from '@ayuskey/shared';
 import { fetchMeta } from '../../../misc/fetch-meta';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { getApLock } from '../../../misc/app-lock';
 import { createMessage } from '../../../services/messages/create';
 import { parseAudience } from '../audience';

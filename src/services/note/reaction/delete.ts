@@ -1,6 +1,6 @@
 import { publishNoteStream } from '../../stream';
 import { renderLike } from '../../../remote/activitypub/renderer/like';
-import renderUndo from '../../../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import { renderActivity } from '../../../remote/activitypub/renderer';
 import DeliverManager from '../../../remote/activitypub/deliver-manager';
 import { IdentifiableError } from '../../../misc/identifiable-error';

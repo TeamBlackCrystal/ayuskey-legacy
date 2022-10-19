@@ -12,8 +12,8 @@ process.env.NODE_ENV = 'test';
 import rndstr from 'rndstr';
 import * as assert from 'assert';
 import { initTestDb } from './utils';
-import { LdSignature } from '../src/remote/activitypub/misc/ld-signature';
-import { genRsaKeyPair, genEcKeyPair } from '../src/misc/gen-key-pair';
+import { LdSignature } from '@ayuskey/shared';
+import { genRsaKeyPair, genEcKeyPair } from '@ayuskey/shared';
 
 describe('ActivityPub', () => {
 	before(async () => {

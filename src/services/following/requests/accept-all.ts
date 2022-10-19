@@ -1,7 +1,7 @@
 import accept from './accept';
 import { User } from '@ayuskey/models';
 import { FollowRequests, Users } from '../../../models';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 /**
  * 指定したユーザー宛てのフォローリクエストをすべて承認

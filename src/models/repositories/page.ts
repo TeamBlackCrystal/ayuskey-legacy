@@ -3,7 +3,7 @@ import { Page, DriveFile, User } from '@ayuskey/models';
 import { Packed } from '../../misc/schema';
 import { Users, DriveFiles, PageLikes } from '..';
 import { awaitAll } from '@ayuskey/shared';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 @EntityRepository(Page)
 export class PageRepository extends Repository<Page> {

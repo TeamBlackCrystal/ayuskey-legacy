@@ -1,7 +1,7 @@
 import { EntityRepository, In, Repository } from 'typeorm';
 import { Users, Notes, NoteReactions, Emojis } from '..';
 import { Notification, Note, NoteReaction, User, Emoji } from '@ayuskey/models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { awaitAll } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 import { decodeReaction } from '../../misc/reaction-lib';

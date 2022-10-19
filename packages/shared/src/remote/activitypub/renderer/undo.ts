@@ -1,7 +1,7 @@
-import config from '../../../config';
+import { config } from '../../../config';
 import { ILocalUser, User } from '@ayuskey/models';
 
-export default (object: any, user: ILocalUser | User) => {
+export const renderUndo = (object: any, user: ILocalUser | User) => {
 	if (object == null) return null;
 
 	return {

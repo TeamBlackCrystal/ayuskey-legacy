@@ -6,7 +6,7 @@ import config from '../../../config';
 import { Users, Signins, UserProfiles, UserSecurityKeys, AttestationChallenges } from '../../../models';
 import { ILocalUser } from '@ayuskey/models';
 import { genId } from '@ayuskey/shared';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { verifyLogin, hash } from '../2fa';
 import { randomBytes } from 'crypto';
 

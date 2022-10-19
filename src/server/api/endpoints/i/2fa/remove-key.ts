@@ -2,7 +2,7 @@ import $ from 'cafy';
 import * as bcrypt from 'bcryptjs';
 import define from '../../../define';
 import { UserProfiles, UserSecurityKeys, Users } from '../../../../../models';
-import { ensure } from '../../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { publishMainStream } from '../../../../../services/stream';
 
 export const meta = {

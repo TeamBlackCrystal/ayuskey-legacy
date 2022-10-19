@@ -10,7 +10,7 @@ import signin from '../common/signin';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { Users, UserProfiles } from '../../../models';
 import { ILocalUser } from '@ayuskey/models';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 function getUserToken(ctx: Koa.Context) {
 	return ((ctx.headers['cookie'] || '').match(/i=(\w+)/) || [null, null])[1];

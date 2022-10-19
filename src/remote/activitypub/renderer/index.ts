@@ -1,10 +1,10 @@
 import config from '../../../config';
 import { v4 as uuid } from 'uuid';
 import { IActivity } from '../type';
-import { LdSignature } from '../misc/ld-signature';
+import { LdSignature } from '@ayuskey/shared';
 import { ILocalUser } from '@ayuskey/models';
 import { UserKeypairs } from '../../../models';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const renderActivity = (x: any): IActivity | null => {
 	if (x == null) return null;

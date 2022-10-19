@@ -2,7 +2,7 @@ import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser, Emoji } from '@ayuskey/models';
 import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Instances, DriveFiles, Users, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import config from '../../config';
 import { Packed } from '../../misc/schema';
 import { awaitAll } from '@ayuskey/shared';

@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { UserGroupInvite } from '@ayuskey/models';
 import { UserGroups } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 @EntityRepository(UserGroupInvite)
 export class UserGroupInviteRepository extends Repository<UserGroupInvite> {

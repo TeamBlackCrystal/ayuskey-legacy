@@ -5,7 +5,7 @@ import performDeleteActivity from './delete';
 import performUpdateActivity from './update';
 import { performReadActivity } from './read';
 import follow from './follow';
-import undo from './undo';
+import { renderUndo } from '@ayuskey/shared';
 import like from './like';
 import announce from './announce';
 import accept from './accept';
@@ -60,7 +60,7 @@ async function performOneActivity(actor: IRemoteUser, activity: IObject): Promis
 	} else if (isLike(activity)) {
 		await like(actor, activity);
 	} else if (isUndo(activity)) {
-		await undo(actor, activity);
+		await renderUndo(actor, activity);
 	} else if (isBlock(activity)) {
 		await block(actor, activity);
 	} else if (isFlag(activity)) {

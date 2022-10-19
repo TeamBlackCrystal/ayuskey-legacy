@@ -3,7 +3,7 @@ import { Note, User, Emoji, NoteReaction } from '@ayuskey/models';
 import { unique, concat } from '../../prelude/array';
 import { nyaize } from '../../misc/nyaize';
 import { Emojis, Users, Apps, PollVotes, DriveFiles, NoteReactions, Followings, Polls, Channels } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 import { awaitAll } from '@ayuskey/shared';
 import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '../../misc/reaction-lib';

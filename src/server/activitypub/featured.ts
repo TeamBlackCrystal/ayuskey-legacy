@@ -5,7 +5,7 @@ import renderOrderedCollection from '../../remote/activitypub/renderer/ordered-c
 import { setResponseType } from '../activitypub';
 import renderNote from '../../remote/activitypub/renderer/note';
 import { Users, Notes, UserNotePinings } from '../../models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export default async (ctx: Router.RouterContext) => {
 	if (config.disableFederation) ctx.throw(404);

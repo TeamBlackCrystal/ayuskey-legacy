@@ -1,7 +1,7 @@
 import { publishNoteStream } from '../stream';
 import renderDelete from '../../remote/activitypub/renderer/delete';
 import renderAnnounce from '../../remote/activitypub/renderer/announce';
-import renderUndo from '../../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import renderTombstone from '../../remote/activitypub/renderer/tombstone';
 import config from '../../config';

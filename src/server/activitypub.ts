@@ -16,7 +16,7 @@ import { isSelfHost } from '@ayuskey/shared';
 import { Notes, Users, Emojis, UserKeypairs } from '../models';
 import { ILocalUser, User } from '@ayuskey/models';
 import { In } from 'typeorm';
-import { ensure } from '../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import config from '../config';
 
 // Init router

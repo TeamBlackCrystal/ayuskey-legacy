@@ -3,10 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import { TypeOrmModule } from '@ayuskey/nestjs-typeorm';
-import { config } from './const';
+import { config, redisConfig } from './const';
 import { entities } from './db/entities';
 import { AuthGuard } from './auth.guard';
 import { User } from '@ayuskey/models';
+import { UtilsModule } from './utils/utils.module';
+import { BullModule } from '@nestjs/bull';
+import { ServicesModule } from './services/services.module';
+import { RendererModule } from './remote/activitypub/renderer/renderer.module';
+import { QueueModule } from './queue/queue.module';
 
 @Module({
 	imports: [
@@ -19,10 +24,17 @@ import { User } from '@ayuskey/models';
 			database: config.db.db,
 			entities: entities,
 		}),
+		BullModule.forRoot({
+			redis: redisConfig
+		}),
 		TypeOrmModule.forFeature([User]),
 		NotesModule,
+		UtilsModule,
+		ServicesModule,
+		RendererModule,
+		QueueModule
 	],
 	controllers: [AppController],
 	providers: [AppService, AuthGuard],
 })
-export class AppModule {}
+export class AppModule { }

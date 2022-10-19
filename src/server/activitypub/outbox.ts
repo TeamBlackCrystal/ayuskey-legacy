@@ -15,7 +15,7 @@ import { Users, Notes } from '../../models';
 import { makePaginationQuery } from '../api/common/make-pagination-query';
 import { Brackets } from 'typeorm';
 import { Note } from '@ayuskey/models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export default async (ctx: Router.RouterContext) => {
 	if (config.disableFederation) ctx.throw(404);

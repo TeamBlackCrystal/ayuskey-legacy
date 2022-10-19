@@ -1,7 +1,7 @@
 import { createSystemUser } from './create-system-user';
-import { renderFollowRelay } from '../remote/activitypub/renderer/follow-relay';
+import { renderFollowRelay } from '@ayuskey/shared';
 import { renderActivity, attachLdSignature } from '../remote/activitypub/renderer';
-import renderUndo from '../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import { deliver } from '../queue';
 import { ILocalUser } from '@ayuskey/models';
 import { Users, Relays } from '../models';

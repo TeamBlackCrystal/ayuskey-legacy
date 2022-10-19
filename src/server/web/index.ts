@@ -21,7 +21,7 @@ import config from '../../config';
 import { Users, Notes, Emojis, UserProfiles, Pages } from '../../models';
 import parseAcct from '../../misc/acct/parse';
 import getNoteSummary from '../../misc/get-note-summary';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { getConnection } from 'typeorm';
 import { redisClient } from '../../db/redis';
 import { queues } from '@/queue/queues';

@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { DriveFolders, DriveFiles } from '..';
 import { DriveFolder } from '@ayuskey/models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { awaitAll } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 

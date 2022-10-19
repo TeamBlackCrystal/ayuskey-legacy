@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { NoteReaction } from '@ayuskey/models';
 import { Users } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 import { convertLegacyReaction } from '../../misc/reaction-lib';
 

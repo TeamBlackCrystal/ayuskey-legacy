@@ -20,7 +20,7 @@ import { instanceChart, usersChart } from '../../../services/chart';
 import { isDuplicateKeyValueError } from '../../../misc/is-duplicate-key-value-error';
 import { toPuny } from '@ayuskey/shared';
 import { getConnection, Not } from 'typeorm';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { toArray } from '../../../prelude/array';
 import { fetchInstanceMetadata } from '../../../services/fetch-instance-metadata';
 import { normalizeTag } from '../../../misc/normalize-tag';

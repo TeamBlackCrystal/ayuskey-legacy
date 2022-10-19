@@ -2,7 +2,7 @@ import $ from 'cafy';
 import define from '../../../define';
 import deleteFollowing from '../../../../../services/following/delete';
 import { Followings, Users } from '../../../../../models';
-import { ensure } from '../../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const meta = {
 	tags: ['admin'],

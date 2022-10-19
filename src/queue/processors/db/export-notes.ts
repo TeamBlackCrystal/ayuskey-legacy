@@ -8,7 +8,7 @@ import * as dateFormat from 'dateformat';
 import { Users, Notes, Polls } from '../../../models';
 import { MoreThan } from 'typeorm';
 import { Note, Poll } from '@ayuskey/models';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { DbUserJobData } from '../../types';
 
 const logger = queueLogger.createSubLogger('export-notes');

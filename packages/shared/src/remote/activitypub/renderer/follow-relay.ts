@@ -1,4 +1,4 @@
-import config from '../../../config';
+import { config } from '../../../config';
 import { Relay, ILocalUser } from '@ayuskey/models';
 
 export function renderFollowRelay(relay: Relay, relayActor: ILocalUser) {

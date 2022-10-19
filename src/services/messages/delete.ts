@@ -1,5 +1,5 @@
 import config from '../../config';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { MessagingMessages, Users } from '../../models';
 import { MessagingMessage } from '@ayuskey/models';
 import { publishGroupMessagingStream, publishMessagingStream } from '../stream';

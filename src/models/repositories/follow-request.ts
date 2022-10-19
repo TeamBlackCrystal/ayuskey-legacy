@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { FollowRequest } from '@ayuskey/models';
 import { Users } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 @EntityRepository(FollowRequest)
 export class FollowRequestRepository extends Repository<FollowRequest> {

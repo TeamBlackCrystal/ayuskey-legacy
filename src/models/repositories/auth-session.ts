@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Apps } from '..';
 import { AuthSession } from '@ayuskey/models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { awaitAll } from '@ayuskey/shared';
 
 @EntityRepository(AuthSession)
