@@ -1,6 +1,7 @@
 import IsNativeToken from './server/api/is-native-token';
 
 export { tryCreateUrl } from './config/index';
+export type { Config, Mixin, Source } from './config/types';
 export { genAid } from './misc/id/aid';
 export { genMeid } from './misc/id/meid';
 export { genMeidg } from './misc/id/meidg';
