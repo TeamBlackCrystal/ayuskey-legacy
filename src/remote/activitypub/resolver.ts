@@ -5,7 +5,7 @@ import { getInstanceActor } from '../../services/instance-actor';
 import { signedGet } from './request';
 import { IObject, isCollectionOrOrderedCollection, ICollection, IOrderedCollection } from './type';
 import { fetchMeta } from '@/misc/fetch-meta';
-import { extractDbHost } from '@/misc/convert-host';
+import { extractDbHost } from '@ayuskey/shared';
 
 export default class Resolver {
 	private history: Set<string>;

@@ -4,7 +4,7 @@ import { ApiError } from '../../error';
 import { Users, UserProfiles } from '../../../../models';
 import { ID } from '../../../../misc/cafy-id';
 import { ensure } from '../../../../prelude/ensure';
-import { toPunyNullable } from '../../../../misc/convert-host';
+import { toPunyNullable } from '@ayuskey/shared';
 
 export const meta = {
 	desc: {

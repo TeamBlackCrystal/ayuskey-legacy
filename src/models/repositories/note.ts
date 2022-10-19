@@ -5,7 +5,7 @@ import { nyaize } from '../../misc/nyaize';
 import { Emojis, Users, Apps, PollVotes, DriveFiles, NoteReactions, Followings, Polls, Channels } from '..';
 import { ensure } from '../../prelude/ensure';
 import { Packed } from '../../misc/schema';
-import { awaitAll } from '../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '../../misc/reaction-lib';
 import parseAcct from '../../misc/acct/parse';
 import { resolveUser } from '../../remote/resolve-user';

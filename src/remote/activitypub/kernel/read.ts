@@ -1,6 +1,6 @@
 import { IRemoteUser } from '@ayuskey/models';
 import { IRead, getApId } from '../type';
-import { isSelfHost, extractDbHost } from '../../../misc/convert-host';
+import { isSelfHost, extractDbHost } from '@ayuskey/shared';
 import { MessagingMessages } from '../../../models';
 import { readUserMessagingMessage } from '../../../server/api/common/read-messaging-message';
 

@@ -5,7 +5,7 @@ import parseAcct from '../../../misc/acct/parse';
 import { resolveUser } from '../../../remote/resolve-user';
 import { pushUserToUserList } from '../../../services/user-list/push';
 import { downloadTextFile } from '../../../misc/download-text-file';
-import { isSelfHost, toPuny } from '../../../misc/convert-host';
+import { isSelfHost, toPuny } from '@ayuskey/shared';
 import { DriveFiles, Users, UserLists, UserListJoinings } from '../../../models';
 import { genId } from '@ayuskey/shared';
 import { DbUserImportJobData } from '../../types';

@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import { Emojis } from '../../../../../models';
-import { toPunyNullable } from '../../../../../misc/convert-host';
+import { toPunyNullable } from '@ayuskey/shared';
 
 export const meta = {
 	desc: {

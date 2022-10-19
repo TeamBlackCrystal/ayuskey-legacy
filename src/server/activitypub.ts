@@ -12,7 +12,7 @@ import Followers from './activitypub/followers';
 import Following from './activitypub/following';
 import Featured from './activitypub/featured';
 import { inbox as processInbox } from '../queue';
-import { isSelfHost } from '../misc/convert-host';
+import { isSelfHost } from '@ayuskey/shared';
 import { Notes, Users, Emojis, UserKeypairs } from '../models';
 import { ILocalUser, User } from '@ayuskey/models';
 import { In } from 'typeorm';

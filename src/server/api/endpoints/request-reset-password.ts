@@ -4,7 +4,7 @@ import * as ms from 'ms';
 import { sendEmail } from '../../../services/send-email';
 import { Users, UserProfiles, PasswordResetRequests } from '../../../models';
 import config from '../../../config';
-import { secureRndstr } from '../../../misc/secure-rndstr';
+import { secureRndstr } from '@ayuskey/shared';
 import { apiLogger } from '../logger';
 import { genId } from '@ayuskey/shared';
 import { IsNull } from 'typeorm';

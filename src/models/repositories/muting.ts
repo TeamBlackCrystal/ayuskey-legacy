@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Users } from '..';
 import { Muting } from '@ayuskey/models';
 import { ensure } from '../../prelude/ensure';
-import { awaitAll } from '../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 
 @EntityRepository(Muting)

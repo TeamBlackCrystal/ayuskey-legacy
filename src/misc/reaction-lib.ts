@@ -2,7 +2,7 @@
 import { emojiRegex } from './emoji-regex';
 import { fetchMeta } from './fetch-meta';
 import { Emojis } from '../models';
-import { toPunyNullable } from './convert-host';
+import { toPunyNullable } from '@ayuskey/shared';
 
 // あまり乗り気じゃないけど、動くようにするためにv12のをそのまま使う by aki
 

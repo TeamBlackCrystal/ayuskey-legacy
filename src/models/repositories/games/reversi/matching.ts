@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { ReversiMatching, User } from '@ayuskey/models';
 import { Users } from '../../..';
 import { ensure } from '../../../../prelude/ensure';
-import { awaitAll } from '../../../../prelude/await-all';
+import { awaitAll } from '@ayuskey/shared';
 import { Packed } from '@/misc/schema';
 
 @EntityRepository(ReversiMatching)

@@ -5,7 +5,7 @@ import follow from '../../../services/following/create';
 import parseAcct from '../../../misc/acct/parse';
 import { resolveUser } from '../../../remote/resolve-user';
 import { downloadTextFile } from '../../../misc/download-text-file';
-import { isSelfHost, toPuny } from '../../../misc/convert-host';
+import { isSelfHost, toPuny } from '@ayuskey/shared';
 import { Users, DriveFiles } from '../../../models';
 import { DbUserImportJobData } from '../../types';
 
