@@ -7,8 +7,14 @@ function removeBuilt(name = 'built/') {
 }
 
 if (os.platform() === 'win32') {
-	echo(chalk.bold.yellow('I: win32 mode'))
-	$.shell = which.sync('pwsh.exe')
+	echo(chalk.blueBright('I: win32 mode'))
+	try {
+		$.shell = which.sync('pwsh.exe')
+	} catch(err) {
+		echo(chalk.bold.red('E: not installed "pwsh"'))
+		echo(chalk.bold.yellow('W: fallback "Windows PowerShell"'))
+		$.shell = which.sync('powershell.exe')
+	}
 	$.quote = quotePowerShell
 	$.prefix = ''
 }
