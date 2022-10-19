@@ -12,6 +12,7 @@ import { BullModule } from '@nestjs/bull';
 import { ServicesModule } from './services/services.module';
 import { RendererModule } from './remote/activitypub/renderer/renderer.module';
 import { QueueModule } from './queue/queue.module';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
 	imports: [
@@ -27,7 +28,11 @@ import { QueueModule } from './queue/queue.module';
 		BullModule.forRoot({
 			redis: redisConfig
 		}),
+		BullModule.registerQueue({
+			name: 'deliver'
+		}),
 		TypeOrmModule.forFeature([User]),
+		LoggerModule.forRoot(),
 		NotesModule,
 		UtilsModule,
 		ServicesModule,

@@ -6,6 +6,8 @@ export const config = yaml.load(
 	readFileSync('../../.config/default.yml', 'utf-8'),
 ) as Config;
 
+config.port = config.port + 100
+
 const url = tryCreateUrl(config.url);
 
 export const redisConfig = {
