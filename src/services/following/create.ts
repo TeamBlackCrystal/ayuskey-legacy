@@ -14,7 +14,7 @@ import { instanceChart, perUserFollowingChart } from '../chart';
 import { genId } from '@ayuskey/shared';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 const logger = new Logger('following/create');
 

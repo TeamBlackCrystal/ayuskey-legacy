@@ -14,7 +14,7 @@ import { PollVotes, NoteWatchings, Users, Polls, UserProfiles } from '../../../.
 import { Not } from 'typeorm';
 import { IRemoteUser } from '@ayuskey/models';
 import { genId } from '@ayuskey/shared';
-import { ensure } from '../../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const meta = {
 	desc: {

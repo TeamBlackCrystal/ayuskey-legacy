@@ -1,6 +1,6 @@
 import { renderActivity } from '../../remote/activitypub/renderer';
 import renderBlock from '../../remote/activitypub/renderer/block';
-import renderUndo from '../../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import { deliver } from '../../queue';
 import Logger from '../logger';
 import { User } from '@ayuskey/models';

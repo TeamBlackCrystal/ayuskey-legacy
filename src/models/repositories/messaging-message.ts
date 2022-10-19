@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { MessagingMessage } from '@ayuskey/models';
 import { Users, DriveFiles, UserGroups } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { Packed } from '../../misc/schema';
 
 @EntityRepository(MessagingMessage)

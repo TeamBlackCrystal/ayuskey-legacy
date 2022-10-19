@@ -4,7 +4,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { AuthSessions, AccessTokens, Apps } from '../../../../models';
 import { genId } from '@ayuskey/shared';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { secureRndstr } from '@ayuskey/shared';
 
 export const meta = {

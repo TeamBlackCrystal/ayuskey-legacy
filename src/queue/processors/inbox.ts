@@ -13,7 +13,7 @@ import { fetchInstanceMetadata } from '../../services/fetch-instance-metadata';
 import { InboxJobData } from '../types';
 import DbResolver from '../../remote/activitypub/db-resolver';
 import { resolvePerson } from '../../remote/activitypub/models/person';
-import { LdSignature } from '../../remote/activitypub/misc/ld-signature';
+import { LdSignature } from '@ayuskey/shared';
 import { StatusError } from '@/misc/fetch';
 
 const logger = new Logger('inbox');

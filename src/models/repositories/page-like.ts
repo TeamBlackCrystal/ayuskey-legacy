@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { PageLike } from '@ayuskey/models';
 import { Pages } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 @EntityRepository(PageLike)
 export class PageLikeRepository extends Repository<PageLike> {

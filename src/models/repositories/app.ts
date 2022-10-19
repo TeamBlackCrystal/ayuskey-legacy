@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { App } from '@ayuskey/models';
 import { AccessTokens } from '..';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { Packed } from '@/misc/schema';
 
 @EntityRepository(App)

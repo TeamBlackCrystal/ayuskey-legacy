@@ -3,7 +3,7 @@ import config from '../../config';
 import { User } from '@ayuskey/models';
 import { Notes, DriveFiles, UserProfiles } from '../../models';
 import { In } from 'typeorm';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export default async function(user: User) {
 	const author = {

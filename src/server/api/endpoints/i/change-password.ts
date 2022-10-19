@@ -2,7 +2,7 @@ import $ from 'cafy';
 import * as bcrypt from 'bcryptjs';
 import define from '../../define';
 import { UserProfiles } from '../../../../models';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const meta = {
 	requireCredential: true,

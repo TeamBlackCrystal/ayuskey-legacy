@@ -23,7 +23,7 @@ import { genId } from '@ayuskey/shared';
 import { notesChart, perUserNotesChart, activeUsersChart, instanceChart } from '../chart';
 import { createNotification } from '../create-notification';
 import { isDuplicateKeyValueError } from '../../misc/is-duplicate-key-value-error';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { checkHitAntenna } from '../../misc/check-hit-antenna';
 import { addNoteToAntenna } from '../add-note-to-antenna';
 import { deliverToRelays } from '../relay';

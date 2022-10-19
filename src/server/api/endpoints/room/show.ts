@@ -3,7 +3,7 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { Users, UserProfiles } from '../../../../models';
 import { ID } from '../../../../misc/cafy-id';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { toPunyNullable } from '@ayuskey/shared';
 
 export const meta = {

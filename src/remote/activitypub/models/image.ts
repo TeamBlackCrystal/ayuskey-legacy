@@ -4,7 +4,7 @@ import Resolver from '../resolver';
 import { fetchMeta } from '../../../misc/fetch-meta';
 import { apLogger } from '../logger';
 import { DriveFiles } from '../../../models';
-import { ensure } from '../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { truncate } from '@/misc/truncate';
 import { DB_MAX_IMAGE_COMMENT_LENGTH } from '@/misc/hard-limits';
 

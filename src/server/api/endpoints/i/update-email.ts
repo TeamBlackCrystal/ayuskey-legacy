@@ -6,7 +6,7 @@ import config from '../../../../config';
 import * as ms from 'ms';
 import * as bcrypt from 'bcryptjs';
 import { Users, UserProfiles } from '../../../../models';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { sendEmail } from '../../../../services/send-email';
 import { ApiError } from '../../error';
 

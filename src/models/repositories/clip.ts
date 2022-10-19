@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Clip } from '@ayuskey/models';
-import { ensure } from '../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 import { Packed } from '@/misc/schema';
 import { Users } from '../index';
 import { awaitAll } from '@ayuskey/shared';

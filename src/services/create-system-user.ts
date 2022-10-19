@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import { generateNativeUserToken } from '@ayuskey/shared';
-import { genRsaKeyPair } from '../misc/gen-key-pair';
+import { genRsaKeyPair } from '@ayuskey/shared';
 import { User, UserProfile, UserKeypair, UsedUsername } from '@ayuskey/models';
 import { getConnection } from 'typeorm';
 import { genId } from '@ayuskey/shared';

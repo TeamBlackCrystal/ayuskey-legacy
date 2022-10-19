@@ -1,7 +1,7 @@
 import { publishMainStream, publishUserEvent } from '../stream';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import renderFollow from '../../remote/activitypub/renderer/follow';
-import renderUndo from '../../remote/activitypub/renderer/undo';
+import { renderUndo } from '@ayuskey/shared';
 import renderBlock from '../../remote/activitypub/renderer/block';
 import { deliver } from '../../queue';
 import renderReject from '../../remote/activitypub/renderer/reject';

@@ -6,7 +6,7 @@ import * as ms from 'ms';
 import { getNote } from '../../common/getters';
 import { ApiError } from '../../error';
 import { Users } from '../../../../models';
-import { ensure } from '../../../../prelude/ensure';
+import { ensure } from '@ayuskey/shared';
 
 export const meta = {
 	stability: 'stable',
