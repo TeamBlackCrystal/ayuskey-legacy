@@ -3,7 +3,9 @@
   "private": "true",
   "license": "AGPLv2",
   "version": "rolling",
-  "scripts": {},
+  "scripts": {
+    "build": "node --loader ts-node/esm src/index.mts"
+  },
   "dependencies": {
     "zx": "7.1.1"
   },
