@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - アカウント登録にメールアドレスの設定を必須にするオプション (ayu5-email)
-- パスワードリマインダー(パスワードリセット)
 
 ## [Unreleased]
 
@@ -26,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - blurをoffにする設定を追加しました
 - toolsにアプリケーションを作るためのサンプルを追加 [#30](https://github.com/TeamBlackCrystal/ayuskey/issues/30)
 - ハイライトがない際は無いと表示する [#120](https://github.com/TeamBlackCrystal/ayuskey/issues/120)
+- パスワードリマインダー(パスワードリセット)
 
 ## Changed
 

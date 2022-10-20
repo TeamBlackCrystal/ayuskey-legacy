@@ -13,11 +13,11 @@ const router = new Router();
 
 const XRD = (...x: { element: string, value?: string, attributes?: Record<string, string> }[]) =>
 	`<?xml version="1.0" encoding="UTF-8"?><XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">${x.map(({ element, value, attributes }) =>
-	`<${
-		Object.entries(typeof attributes === 'object' && attributes || {}).reduce((a, [k, v]) => `${a} ${k}="${escapeAttribute(v)}"`, element)
-	}${
-		typeof value === 'string' ? `>${escapeValue(value)}</${element}` : '/'
-	}>`).reduce((a, c) => a + c, '')}</XRD>`;
+		`<${
+			Object.entries(typeof attributes === 'object' && attributes || {}).reduce((a, [k, v]) => `${a} ${k}="${escapeAttribute(v)}"`, element)
+		}${
+			typeof value === 'string' ? `>${escapeValue(value)}</${element}` : '/'
+		}>`).reduce((a, c) => a + c, '')}</XRD>`;
 
 const allPath = '/.well-known/*';
 const webFingerPath = '/.well-known/webfinger';
@@ -45,8 +45,9 @@ router.get('/.well-known/host-meta', async ctx => {
 	ctx.body = XRD({ element: 'Link', attributes: {
 		rel: 'lrdd',
 		type: xrd,
-		template: `${config.url}${webFingerPath}?resource={uri}`
-	}});
+		template: `${config.url}${webFingerPath}?resource={uri}`,
+	},
+	});
 });
 
 router.get('/.well-known/host-meta.json', async ctx => {
@@ -57,8 +58,8 @@ router.get('/.well-known/host-meta.json', async ctx => {
 		links: [{
 			rel: 'lrdd',
 			type: jrd,
-			template: `${config.url}${webFingerPath}?resource={uri}`
-		}]
+			template: `${config.url}${webFingerPath}?resource={uri}`,
+		}],
 	};
 });
 
@@ -70,7 +71,7 @@ router.get(webFingerPath, async ctx => {
 	const fromId = (id: User['id']): Record<string, any> => ({
 		id,
 		host: null,
-		isSuspended: false
+		isSuspended: false,
 	});
 
 	const generateQuery = (resource: string) =>
@@ -85,7 +86,7 @@ router.get(webFingerPath, async ctx => {
 		!acct.host || acct.host === config.host.toLowerCase() ? {
 			usernameLower: acct.username,
 			host: null,
-			isSuspended: false
+			isSuspended: false,
 		} : 422;
 
 	if (typeof ctx.query.resource !== 'string') {
@@ -111,16 +112,16 @@ router.get(webFingerPath, async ctx => {
 	const self = {
 		rel: 'self',
 		type: 'application/activity+json',
-		href: `${config.url}/users/${user.id}`
+		href: `${config.url}/users/${user.id}`,
 	};
 	const profilePage = {
 		rel: 'http://webfinger.net/rel/profile-page',
 		type: 'text/html',
-		href: `${config.url}/@${user.username}`
+		href: `${config.url}/@${user.username}`,
 	};
 	const subscribe = {
 		rel: 'http://ostatus.org/schema/1.0/subscribe',
-		template: `${config.url}/authorize-follow?acct={uri}`
+		template: `${config.url}/authorize-follow?acct={uri}`,
 	};
 
 	if (ctx.accepts(jrd, xrd) === xrd) {
@@ -133,7 +134,7 @@ router.get(webFingerPath, async ctx => {
 	} else {
 		ctx.body = {
 			subject,
-			links: [self, profilePage, subscribe]
+			links: [self, profilePage, subscribe],
 		};
 		ctx.type = jrd;
 	}

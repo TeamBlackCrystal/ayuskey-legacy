@@ -53,13 +53,13 @@ export default Vue.extend({
 	},
 	computed: {
 		isMe(): boolean {
-			return this.message.userId == this.$store.state.i.id;
+			return this.message.userId === this.$store.state.i.id;
 		},
 		urls(): string[] {
 			if (this.message.text) {
 				const ast = parse(this.message.text);
 				return unique(ast
-					.filter(t => ((t.node.type == 'url' || t.node.type == 'link') && t.node.props.url && !t.node.props.silent))
+					.filter(t => ((t.node.type === 'url' || t.node.type === 'link') && t.node.props.url && !t.node.props.silent))
 					.map(t => t.node.props.url));
 			} else {
 				return null;
@@ -261,8 +261,8 @@ export default Vue.extend({
 					> p.is-deleted
 						color rgba(#fff, 0.5)
 
-					> .text >>>
-						&, *
+					> .text
+						&, :deep(*)
 							color #fff !important
 
 			> footer

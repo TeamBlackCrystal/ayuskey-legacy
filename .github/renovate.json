@@ -8,7 +8,9 @@
 	"timezone": "Asia/Tokyo",
 	"dependencyDashboard": false,
 	"automerge": false,
-	"branchConcurrentLimit": 0,
+	"prHourlyLimit": 100,
+	"prConcurrentLimit": 100,
+	"branchConcurrentLimit": 100,
 	"labels": ["📦Dependencies"],
 	"packageRules": [
 		{
