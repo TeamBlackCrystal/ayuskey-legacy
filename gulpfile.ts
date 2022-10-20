@@ -8,11 +8,11 @@ const stylus = require('gulp-stylus');
 import rimraf from 'rimraf';
 import chalk from 'chalk';
 import rename from 'gulp-rename';
-const replace = require('gulp-replace');
+import replace from 'gulp-replace';
 const cleanCSS = require('gulp-clean-css');
 const terser = require('gulp-terser');
 
-const locales = require('./locales');
+import locales from './locales';
 
 const env = process.env.NODE_ENV || 'development';
 const isDebug = env !== 'production';

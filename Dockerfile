@@ -1,4 +1,4 @@
-FROM node:18.10.0-alpine3.15 AS base
+FROM node:18.11.0-alpine3.15 AS base
 
 WORKDIR /misskey
 
@@ -21,24 +21,27 @@ RUN apk add --no-cache \
 
 COPY . ./
 
-RUN yarn install --immutable
+RUN corepack enable pnpm
+
+RUN pnpm i --frozen-lockfile --strict-peer-dependencies false
 
 ENV NODE_ENV=production
 
-RUN yarn build
+RUN pnpm build
 
 FROM base AS runner
 
 RUN apk add --no-cache \
     ffmpeg \
-    tini
+    tini \
+ && corepack enable pnpm
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
-COPY --from=builder /misskey/.yarn ./.yarn
-COPY --from=builder /misskey/.yarnrc.yml ./
 COPY . ./
 
-CMD ["yarn", "migrateandstart"]
+ENV NODE_ENV=production
+
+CMD ["pnpm", "migrateandstart"]

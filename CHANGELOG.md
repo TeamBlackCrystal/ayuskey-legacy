@@ -29,7 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
-- **yarn@3に変更**
+- ~~**yarn@3に変更**~~
+  - **pnpmに変更**
 - リバーシのグラデーションを変更 [#71](https://github.com/TeamBlackCrystal/ayuskey/issues/71)
 - メニューのアイコンの位置を統一 [#68](https://github.com/TeamBlackCrystal/ayuskey/issues/68)
 - renoteした際のHeaderの位置を変える [#33](https://github.com/TeamBlackCrystal/ayuskey/issues/33)

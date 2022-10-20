@@ -1,6 +1,6 @@
-import Vue from 'vue';
+import Vue, { defineComponent } from 'vue';
 
-export default (opts) => ({
+export default (opts) => defineComponent({
 	data() {
 		return {
 			items: [],
@@ -15,7 +15,7 @@ export default (opts) => ({
 
 	computed: {
 		empty(): boolean {
-			return this.items.length == 0 && !this.fetching && this.inited;
+			return this.items.length === 0 && !this.fetching && this.inited;
 		},
 
 		error(): boolean {
@@ -110,7 +110,7 @@ export default (opts) => ({
 			if (params && params.then) params = await params;
 			await this.$root.api(this.pagination.endpoint, {
 				limit: (this.pagination.limit || 10) + 1,
-				...(this.pagination.endpoint === 'notes/search' ? {
+				...(this.pagination.offsetMode ? {
 					offset: this.offset,
 				} : {
 					untilId: this.items[this.items.length - 1].id,
@@ -172,7 +172,8 @@ export default (opts) => ({
 				// 親要素が display none だったら弾く
 				// https://github.com/syuilo/misskey/issues/1569
 				// http://d.hatena.ne.jp/favril/20091105/1257403319
-				if (this.$el.offsetHeight == 0) return;
+				// 型エラーになるのでany
+				if ((this as any).$el.offsetHeight === 0) return;
 
 				const bottomPosition = opts.isContainer ? this.$el.scrollHeight : document.body.offsetHeight;
 
