@@ -44,12 +44,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CORSを調整
 - ビルド時の出力を調整
 
+### Deprecated
+
+- ESやsonicを利用した検索
+  - これらを使用している場合は検索の修正は提供されていません
+
 ### Fixed
 
 - メンション時にアバターの比率が異なるとアバターのデザインが崩れる #164
 - メンション時アバターが取得できない #163
 - モバイル時にRenoteするとボーダーがうまく表示されない [#31](https://github.com/TeamBlackCrystal/ayuskey/issues/31)
 - アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない TeamBlackCrystal/misskey#477
+- リモートユーザーでも可能であれば誕生日と場所を表示
+- noteの検索がおかしかった
 
 ### Security
 
