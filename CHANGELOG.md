@@ -50,6 +50,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - メンション時アバターが取得できない #163
 - モバイル時にRenoteするとボーダーがうまく表示されない [#31](https://github.com/TeamBlackCrystal/ayuskey/issues/31)
 - アプリケーションの認証時にログインしてないとテーマが白すぎて見れたものじゃない TeamBlackCrystal/misskey#477
+
+### Security
+
 - 依存関係が更新されました。脆弱性が修正されている場合があります。
   - CVE-2022-29256 (sharp)
   - CVE-2022-33987 (got)
@@ -346,7 +349,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker 環境において files をマウントするように
 - 内部的な修正をたくさん
 
-[unreleased]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.20.0...HEAD
+[unreleased]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-5.21.0...HEAD
+[11.37.1-rei0784-5.21.1]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-5.21.0...11.37.1-rei0784-5.21.1
+[11.37.1-rei0784-5.21.0]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-5.20.0...11.37.1-rei0784-5.21.0
 [11.37.1-rei0784-5.20.0]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.19.1...11.37.1-rei0784-5.20.0
 [11.37.1-rei0784-5.19.1]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.19.0...11.37.1-rei0784-5.19.1
 [11.37.1-rei0784-5.19.0]: https://github.com/TeamBlackCrystal/misskey/compare/11.37.1-rei0784-5.18.1...11.37.1-rei0784-5.19.0
