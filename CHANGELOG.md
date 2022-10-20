@@ -79,7 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - antenna, clip, list のパフォーマンス悪いのを修正
   - _ayuskey では antenna, clip の api のみを提供しています。_
 
-## Changed
+### Changed
 
 - パフォーマンスが良くなる
 - bull@4 へ移行
