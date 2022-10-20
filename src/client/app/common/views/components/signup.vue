@@ -42,22 +42,27 @@
 				<a :href="meta.ToSUrl" target="_blank">{{ $t('tos') }}</a>
 			</i18n>
 		</ui-switch>
-		<div v-if="meta.enableRecaptcha" class="g-recaptcha" :data-sitekey="meta.recaptchaSiteKey" style="margin: 16px 0;"></div>
+		<captcha v-if="meta.enableRecaptcha" ref="recaptcha" v-model="reCaptchaResponse" class="captcha" provider="grecaptcha" :sitekey="meta.recaptchaSiteKey"/>
+		<captcha v-if="meta.enableHcaptcha" ref="hcaptcha" v-model="hCaptchaResponse" class="captcha" provider="hcaptcha" :sitekey="meta.hcaptchaSiteKey"/>
 		<ui-button type="submit" :disabled=" submitting || !(meta.ToSUrl ? ToSAgreement : true) || passwordRetypeState == 'not-match'">{{ $t('create') }}</ui-button>
 	</template>
 </form>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 const getPasswordStrength = require('syuilo-password-strength');
 import { host, url } from '../../../config';
 import { toUnicode } from 'punycode';
 import { $i } from '../../../account';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/signup.vue'),
+
+	components: {
+		captcha: () => import('./captcha.vue').then(x => x.default),
+	},
 
 	data() {
 		return {
@@ -73,6 +78,8 @@ export default Vue.extend({
 			meta: {},
 			submitting: false,
 			ToSAgreement: false,
+			reCaptchaResponse: null,
+			hCaptchaResponse: null,
 		};
 	},
 
@@ -89,13 +96,6 @@ export default Vue.extend({
 		this.$root.getMeta().then(meta => {
 			this.meta = meta;
 		});
-	},
-
-	mounted() {
-		const head = document.getElementsByTagName('head')[0];
-		const script = document.createElement('script');
-		script.setAttribute('src', 'https://www.recaptcha.net/recaptcha/api.js');
-		head.appendChild(script);
 	},
 
 	methods: {
@@ -154,7 +154,8 @@ export default Vue.extend({
 				username: this.username,
 				password: this.password,
 				invitationCode: this.invitationCode,
-				'g-recaptcha-response': this.meta.enableRecaptcha ? (window as any).grecaptcha.getResponse() : null,
+				'hcaptcha-response': this.hCaptchaResponse,
+				'g-recaptcha-response': this.reCaptchaResponse,
 			}).then(() => {
 				this.$root.api('signin', {
 					username: this.username,
@@ -166,15 +167,13 @@ export default Vue.extend({
 				});
 			}).catch(() => {
 				this.submitting = false;
+				this.$refs.hcaptcha?.reset?.();
+				this.$refs.recaptcha?.reset?.();
 
 				this.$root.dialog({
 					type: 'error',
 					text: this.$t('some-error'),
 				});
-
-				if (this.meta.enableRecaptcha) {
-					(window as any).grecaptcha.reset();
-				}
 			});
 		},
 	},

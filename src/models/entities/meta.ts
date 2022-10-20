@@ -383,4 +383,21 @@ export class Meta {
 		default: true,
 	})
 	public objectStorageS3ForcePathStyle: boolean;
+
+	@Column('boolean', {
+		default: false,
+	})
+	public enableTurnstile: boolean;
+
+	@Column('varchar', {
+		length: 64,
+		nullable: true,
+	})
+	public turnstileSiteKey: string | null;
+
+	@Column('varchar', {
+		length: 64,
+		nullable: true,
+	})
+	public turnstileSecretKey: string | null;
 }
