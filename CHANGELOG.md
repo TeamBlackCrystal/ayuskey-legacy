@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ハイライトがない際は無いと表示する [#120](https://github.com/TeamBlackCrystal/ayuskey/issues/120)
 - パスワードリマインダー(パスワードリセット)
 
-## Changed
+### Changed
 
 - ~~**yarn@3に変更**~~
   - **pnpmに変更**
