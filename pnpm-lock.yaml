@@ -90,7 +90,7 @@ specifiers:
   autobind-decorator: 2.4.0
   autosize: 5.0.1
   autwh: 0.1.0
-  aws-sdk: 2.1236.0
+  aws-sdk: 2.1237.0
   bcryptjs: 2.4.3
   blurhash: 2.0.3
   bootstrap: 4.6.2
@@ -286,7 +286,7 @@ dependencies:
   autobind-decorator: 2.4.0
   autosize: 5.0.1
   autwh: 0.1.0
-  aws-sdk: 2.1236.0
+  aws-sdk: 2.1237.0
   bcryptjs: 2.4.3
   blurhash: 2.0.3
   bootstrap: 4.6.2
@@ -2498,8 +2498,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-sdk/2.1236.0:
-    resolution: {integrity: sha512-fLxLn0OhySFkfuQCZ0EF8ueiaF24Y1DWxWcw+K1NojkaKnHZq8T9R3F0UnuwpQ/AEXLyI+owYUk5QAMfhQaENA==}
+  /aws-sdk/2.1237.0:
+    resolution: {integrity: sha512-yjPtCDtyCPwRoTdO9fUYm2h5yi3Dlnfx3OUzrepVk9gA/byclzwHsVL8SibCw5y/+euGNud9xl67uDRDvzIGcg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
