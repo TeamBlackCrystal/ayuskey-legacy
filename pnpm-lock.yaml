@@ -103,7 +103,7 @@ specifiers:
   chalk: 4.1.2
   cli-highlight: 2.1.11
   commander: 4.1.1
-  concurrently: 7.4.0
+  concurrently: 7.5.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
   cropperjs: 1.5.12
@@ -299,7 +299,7 @@ dependencies:
   chalk: 4.1.2
   cli-highlight: 2.1.11
   commander: 4.1.1
-  concurrently: 7.4.0
+  concurrently: 7.5.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
   cropperjs: 1.5.12
@@ -3401,8 +3401,8 @@ packages:
       typedarray: 0.0.6
     dev: false
 
-  /concurrently/7.4.0:
-    resolution: {integrity: sha512-M6AfrueDt/GEna/Vg9BqQ+93yuvzkSKmoTixnwEJkH0LlcGrRC2eCmjeG1tLLHIYfpYJABokqSGyMcXjm96AFA==}
+  /concurrently/7.5.0:
+    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
