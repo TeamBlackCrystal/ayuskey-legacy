@@ -94,7 +94,7 @@ specifiers:
   bcryptjs: 2.4.3
   blurhash: 2.0.3
   bootstrap: 4.6.2
-  bootstrap-vue: 2.22.0
+  bootstrap-vue: 2.23.1
   broadcast-channel: 4.14.0
   bull: 4.10.1
   cacheable-lookup: 6.1.0
@@ -290,7 +290,7 @@ dependencies:
   bcryptjs: 2.4.3
   blurhash: 2.0.3
   bootstrap: 4.6.2
-  bootstrap-vue: 2.22.0_vue@2.7.13
+  bootstrap-vue: 2.23.1_vue@2.7.13
   broadcast-channel: 4.14.0
   bull: 4.10.1
   cacheable-lookup: 6.1.0
@@ -2661,8 +2661,8 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  /bootstrap-vue/2.22.0_vue@2.7.13:
-    resolution: {integrity: sha512-denjR/ae0K7Jrcqud3TrZWw0p/crtyigeGUNunWQ4t+KFi+7rzJ6j6lx1W5/gpUtSSUgNbWrXcHH4lIWXzXOOQ==}
+  /bootstrap-vue/2.23.1_vue@2.7.13:
+    resolution: {integrity: sha512-SEWkG4LzmMuWjQdSYmAQk1G/oOKm37dtNfjB5kxq0YafnL2W6qUAmeDTcIZVbPiQd2OQlIkWOMPBRGySk/zGsg==}
     requiresBuild: true
     dependencies:
       '@nuxt/opencollective': 0.3.3
