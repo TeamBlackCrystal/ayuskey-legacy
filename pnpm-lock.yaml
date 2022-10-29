@@ -136,7 +136,7 @@ specifiers:
   gulp-tslint: 8.1.4
   hard-source-webpack-plugin: 0.13.1
   highlight.js: 10.7.3
-  hpagent: 1.1.0
+  hpagent: 1.2.0
   html-minifier: 4.0.0
   http-signature: 1.3.6
   insert-text-at-cursor: 0.3.0
@@ -325,7 +325,7 @@ dependencies:
   gulp-tslint: 8.1.4_tslint@5.20.1
   hard-source-webpack-plugin: 0.13.1_webpack@5.74.0
   highlight.js: 10.7.3
-  hpagent: 1.1.0
+  hpagent: 1.2.0
   html-minifier: 4.0.0
   http-signature: 1.3.6
   insert-text-at-cursor: 0.3.0
@@ -6146,8 +6146,8 @@ packages:
     resolution: {integrity: sha512-ePqFXHtSQWAFXYmj+JtOTHr84iNrII4/QRlAAPPE+zqnKy4xJo7Ie1Y4kC7AdB+LxLxSTTzBMASsEcy0q8YyvQ==}
     dev: false
 
-  /hpagent/1.1.0:
-    resolution: {integrity: sha512-bgJcBmNTZaJO03xtXOTNfoFEf/3VwoZ/gJ2O4ekTCZu4LSFtfzQFrJ0kjq8ZSS0+IdghXqQIiDUnpp0eUR9IJg==}
+  /hpagent/1.2.0:
+    resolution: {integrity: sha512-A91dYTeIB6NoXG+PxTQpCCDDnfHsW9kc06Lvpu1TEe9gnd6ZFeiBoRO9JvzEv6xK7EX97/dUE8g/vBMTqTS3CA==}
     engines: {node: '>=14'}
     dev: false
 
