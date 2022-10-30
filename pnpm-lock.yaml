@@ -144,7 +144,7 @@ specifiers:
   ip-cidr: 3.0.10
   is-svg: 4.3.2
   js-yaml: 4.1.0
-  jsdom: 20.0.1
+  jsdom: 20.0.2
   json5: 2.2.1
   json5-loader: 4.0.1
   jsonld: 6.0.0
@@ -333,7 +333,7 @@ dependencies:
   ip-cidr: 3.0.10
   is-svg: 4.3.2
   js-yaml: 4.1.0
-  jsdom: 20.0.1
+  jsdom: 20.0.2
   json5: 2.2.1
   json5-loader: 4.0.1_webpack@5.74.0
   jsonld: 6.0.0
@@ -6983,8 +6983,8 @@ packages:
     engines: {node: '>=0.1.90'}
     dev: false
 
-  /jsdom/20.0.1:
-    resolution: {integrity: sha512-pksjj7Rqoa+wdpkKcLzQRHhJCEE42qQhl/xLMUKHgoSejaKOdaXEAnqs6uDNwMl/fciHTzKeR8Wm8cw7N+g98A==}
+  /jsdom/20.0.2:
+    resolution: {integrity: sha512-AHWa+QO/cgRg4N+DsmHg1Y7xnz+8KU3EflM0LVDTdmrYOc1WWTSkOjtpUveQH+1Bqd5rtcVnb/DuxV/UjDO4rA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
