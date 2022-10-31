@@ -92,7 +92,7 @@ specifiers:
   autwh: 0.1.0
   aws-sdk: 2.1243.0
   bcryptjs: 2.4.3
-  blurhash: 2.0.3
+  blurhash: 2.0.4
   bootstrap: 4.6.2
   bootstrap-vue: 2.23.1
   broadcast-channel: 4.14.0
@@ -288,7 +288,7 @@ dependencies:
   autwh: 0.1.0
   aws-sdk: 2.1243.0
   bcryptjs: 2.4.3
-  blurhash: 2.0.3
+  blurhash: 2.0.4
   bootstrap: 4.6.2
   bootstrap-vue: 2.23.1_vue@2.7.13
   broadcast-channel: 4.14.0
@@ -2609,8 +2609,8 @@ packages:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
     dev: false
 
-  /blurhash/2.0.3:
-    resolution: {integrity: sha512-nTnJTOheiaV3b189f7rH5AbbrnQB2r3CcOZBg47GUDaE9DrxyBPD2w0HYp4ME2UBlTP7LMIa6nMWqg/58oyIzA==}
+  /blurhash/2.0.4:
+    resolution: {integrity: sha512-r/As72u2FbucLoK5NTegM/GucxJc3d8GvHc4ngo13IO/nt2HU4gONxNLq1XPN6EM/V8Y9URIa7PcSz2RZu553A==}
     dev: false
 
   /bn.js/4.12.0:
