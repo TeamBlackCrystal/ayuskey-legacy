@@ -24,7 +24,6 @@ specifiers:
   '@redocly/openapi-core': 1.0.0-beta.111
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
-  '@types/bull': 3.15.9
   '@types/dateformat': 3.0.1
   '@types/double-ended-queue': 2.1.1
   '@types/escape-regexp': 0.0.1
@@ -445,7 +444,6 @@ devDependencies:
   '@redocly/openapi-core': 1.0.0-beta.111
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
-  '@types/bull': 3.15.9
   '@types/dateformat': 3.0.1
   '@types/double-ended-queue': 2.1.1
   '@types/escape-regexp': 0.0.1
@@ -1081,13 +1079,6 @@ packages:
     resolution: {integrity: sha512-p7ienRMiS41Nu2/igbJxxLDWrSZ0WxM8UQgCeO9KhoVF7cOVFkrKsiDr1EsJIla8vV3oEEjGcz11jc5yimhzZw==}
     dependencies:
       '@types/node': 18.6.3
-
-  /@types/bull/3.15.9:
-    resolution: {integrity: sha512-MPUcyPPQauAmynoO3ezHAmCOhbB0pWmYyijr/5ctaCqhbKWsjW0YCod38ZcLzUBprosfZ9dPqfYIcfdKjk7RNQ==}
-    dependencies:
-      '@types/ioredis': 4.28.10
-      '@types/redis': 2.8.32
-    dev: true
 
   /@types/cacheable-request/6.0.2:
     resolution: {integrity: sha512-B3xVo+dlKM6nnKTcmm5ZtY/OL8bOAOd2Olee9M1zft65ox50OzjEHW91sDiU9j6cvW8Ejg1/Qkf4xd2kugApUA==}
