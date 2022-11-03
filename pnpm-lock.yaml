@@ -9,7 +9,7 @@ specifiers:
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.6.2
   '@bull-board/koa': 4.6.1
-  '@bull-board/ui': 4.6.1
+  '@bull-board/ui': 4.6.2
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
   '@fortawesome/fontawesome-svg-core': 6.2.0
@@ -266,7 +266,7 @@ dependencies:
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.6.2
   '@bull-board/koa': 4.6.1_47hhf6s5g2iqergy3sns66l4iy
-  '@bull-board/ui': 4.6.1
+  '@bull-board/ui': 4.6.2
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
   '@fortawesome/fontawesome-svg-core': 6.2.0
@@ -679,6 +679,12 @@ packages:
     resolution: {integrity: sha512-rzZwByoF4bpOuDXmv/FquVij+R6beg+pdiX2GXPvNhk1DSDYZPG2rupF+vkooOOEEE+SAESxKUg4VRYUHheUZQ==}
     dependencies:
       '@bull-board/api': 4.6.1
+    dev: false
+
+  /@bull-board/ui/4.6.2:
+    resolution: {integrity: sha512-QwapaE5N9Y1xo8VxyeybTJHHdeGi3hfaLXtYSnAFkgPUD6b4s3knYhdoAOE0/lUy7kzFTPCEezhYOTDaXOy2OQ==}
+    dependencies:
+      '@bull-board/api': 4.6.2
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
