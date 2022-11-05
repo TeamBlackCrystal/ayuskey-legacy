@@ -39,7 +39,7 @@ specifiers:
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
   '@types/koa': 2.13.5
-  '@types/koa-bodyparser': 4.3.9
+  '@types/koa-bodyparser': 4.3.10
   '@types/koa-cors': 0.0.2
   '@types/koa-favicon': 2.0.21
   '@types/koa-logger': 3.1.2
@@ -459,7 +459,7 @@ devDependencies:
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
   '@types/koa': 2.13.5
-  '@types/koa-bodyparser': 4.3.9
+  '@types/koa-bodyparser': 4.3.10
   '@types/koa-cors': 0.0.2
   '@types/koa-favicon': 2.0.21
   '@types/koa-logger': 3.1.2
@@ -1267,8 +1267,8 @@ packages:
       '@types/node': 18.11.9
     dev: false
 
-  /@types/koa-bodyparser/4.3.9:
-    resolution: {integrity: sha512-nHgnvM5wZhbxwVyMjAhW9SNcAighAMAmQCK56mrE1vOrFSfVJexf3CQ8pmBTx90P+qBSsLsDEVDX3EeP/WWQMg==}
+  /@types/koa-bodyparser/4.3.10:
+    resolution: {integrity: sha512-6ae05pjhmrmGhUR8GYD5qr5p9LTEMEGfGXCsK8VaSL+totwigm8+H/7MHW7K4854CMeuwRAubT8qcc/EagaeIA==}
     dependencies:
       '@types/koa': 2.13.5
     dev: true
