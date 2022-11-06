@@ -25,6 +25,11 @@ export const meta = {
 			code: 'NO_SUCH_CHANNEL',
 			id: 'c0031718-d573-4e85-928e-10039f1fbb68',
 		},
+		alreadyFollowed: {
+			message: 'The channel has already been followed.',
+			code: 'ALREADY_FOLLOWED',
+			id: '3a28b66f-f1d4-4165-ab7f-1cd4430f7fd4',
+		}
 	},
 };
 
@@ -35,6 +40,17 @@ export default define(meta, async (ps, user) => {
 
 	if (channel == null) {
 		throw new ApiError(meta.errors.noSuchChannel);
+	}
+
+	const existsFollowingResult = await ChannelFollowings.findOne({
+		where: {
+			followerId: user.id,
+			followeeId: channel.id
+		}
+	})
+
+	if (existsFollowingResult) {
+		throw new ApiError(meta.errors.alreadyFollowed)
 	}
 
 	await ChannelFollowings.insert({

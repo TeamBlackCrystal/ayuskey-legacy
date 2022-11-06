@@ -51,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `channels/follow` エンドポイントで既にfollowしてる物をfollowしようとするとdbのエラーが直接帰ってきてしまう [#362](https://github.com/TeamBlackCrystal/ayuskey/issues/362)
 - メンション時にアバターの比率が異なるとアバターのデザインが崩れる #164
 - メンション時アバターが取得できない #163
 - モバイル時にRenoteするとボーダーがうまく表示されない [#31](https://github.com/TeamBlackCrystal/ayuskey/issues/31)
