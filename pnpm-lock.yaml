@@ -34,7 +34,7 @@ specifiers:
   '@types/ioredis': 4.28.10
   '@types/is-url': 1.2.30
   '@types/js-yaml': 4.0.5
-  '@types/jsdom': 20.0.0
+  '@types/jsdom': 20.0.1
   '@types/jsonld': 1.5.7
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
@@ -454,7 +454,7 @@ devDependencies:
   '@types/ioredis': 4.28.10
   '@types/is-url': 1.2.30
   '@types/js-yaml': 4.0.5
-  '@types/jsdom': 20.0.0
+  '@types/jsdom': 20.0.1
   '@types/jsonld': 1.5.7
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
@@ -1231,8 +1231,8 @@ packages:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: true
 
-  /@types/jsdom/20.0.0:
-    resolution: {integrity: sha512-YfAchFs0yM1QPDrLm2VHe+WHGtqms3NXnXAMolrgrVP6fgBHHXy1ozAbo/dFtPNtZC/m66bPiCTWYmqp1F14gA==}
+  /@types/jsdom/20.0.1:
+    resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
     dependencies:
       '@types/node': 18.11.9
       '@types/tough-cookie': 4.0.2
