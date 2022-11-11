@@ -159,7 +159,7 @@ specifiers:
   koa-slow: 2.1.0
   koa-views: 8.0.0
   langmap: 0.0.16
-  loader-utils: 3.2.0
+  loader-utils: 3.2.1
   lodash: ^4.17.21
   mocha: 10.1.0
   moji: 0.5.1
@@ -348,7 +348,7 @@ dependencies:
   koa-slow: 2.1.0
   koa-views: 8.0.0_47hhf6s5g2iqergy3sns66l4iy
   langmap: 0.0.16
-  loader-utils: 3.2.0
+  loader-utils: 3.2.1
   lodash: 4.17.21
   mocha: 10.1.0
   moji: 0.5.1
@@ -7594,8 +7594,8 @@ packages:
       json5: 2.2.1
     dev: false
 
-  /loader-utils/3.2.0:
-    resolution: {integrity: sha512-HVl9ZqccQihZ7JM85dco1MvO9G+ONvxoGa9rkhzFsneGLKSUg1gJf9bWzhRhcvm2qChhWpebQhP44qxjKIUCaQ==}
+  /loader-utils/3.2.1:
+    resolution: {integrity: sha512-ZvFw1KWS3GVyYBYb7qkmRM/WwL2TQQBxgCK62rlvm4WpVQ23Nb4tYjApUlfjrEGvOs7KHEsmyUn75OHZrJMWPw==}
     engines: {node: '>= 12.13.0'}
     dev: false
 
