@@ -1,5 +1,5 @@
 <template>
-<router-link v-if="instance != null" class="instance-info-wrap" :to="`/search?q=${ encodeURIComponent(`${instance.host}`) }`">
+<router-link v-if="instance != null" class="instance-info-wrap" :to="`/search?q=${ encodeURIComponent(`host:${instance.host}`) }`">
 	<div class="instance-info" :title="getDetail(instance)" :style="{ background: `linear-gradient(to right, ${themeColor}, rgba(0, 0, 0, 0))` }">
 		<img v-if="instance.faviconUrl != null" class="icon" :src="`/proxy/icon.ico?${urlQuery({ url: instance.faviconUrl })}`"/>
 		<div class="name">
@@ -12,6 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { query as urlQuery } from '../../../../../prelude/url';
+
 type II = {
 	host?: string;
 	name?: string;
@@ -20,6 +21,7 @@ type II = {
 	// 本家と同じ仕様?
 	faviconUrl: '/favicon.ico';
 };
+
 export default Vue.extend({ 
 	props: ['instance'],
 	data() {
