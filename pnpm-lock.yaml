@@ -7,7 +7,7 @@ overrides:
 specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.6.2
+  '@bull-board/api': 4.6.3
   '@bull-board/koa': 4.6.2
   '@bull-board/ui': 4.6.3
   '@discordapp/twemoji': 14.0.2
@@ -264,7 +264,7 @@ specifiers:
 dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.6.2
+  '@bull-board/api': 4.6.3
   '@bull-board/koa': 4.6.2_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.6.3
   '@discordapp/twemoji': 14.0.2
