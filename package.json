@@ -9,7 +9,7 @@
 	"codename": "moonstone",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/TeamOrangeServer/misskey.git"
+		"url": "https://github.com/TeamBlackCrystal/ayuskey.git"
 	},
 	"main": "./index.js",
 	"private": true,

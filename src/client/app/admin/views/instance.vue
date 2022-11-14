@@ -264,7 +264,7 @@ export default Vue.extend({
 			maintainerName: null,
 			maintainerEmail: null,
 			ToSUrl: null,
-			repositoryUrl: 'https://github.com/TeamOrangeServer/misskey',
+			repositoryUrl: 'https://github.com/TeamBlackCrystal/ayuskey',
 			feedbackUrl: null,
 			disableRegistration: false,
 			disableLocalTimeline: false,
