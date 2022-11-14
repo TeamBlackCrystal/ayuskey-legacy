@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-6.0.1] 2022-11-14
+
+### Changed
+
+- v6のコードネーム: `moonstone`
+
 ## [11.37.1-rei0784-6.0.0] 2022-11-13
 
 ### Added
