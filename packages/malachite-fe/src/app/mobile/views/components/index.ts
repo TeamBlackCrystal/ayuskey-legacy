@@ -1,0 +1,31 @@
+import Vue from 'vue';
+
+import ui from './ui.vue';
+import note from './note.vue';
+import notes from './notes.vue';
+import mediaVideo from './media-video.vue';
+import notePreview from './note-preview.vue';
+import subNoteContent from './sub-note-content.vue';
+import noteCard from './note-card.vue';
+import noteDetail from './note-detail.vue';
+import notification from './notification.vue';
+import notifications from './notifications.vue';
+import notificationPreview from './notification-preview.vue';
+import userTimeline from './user-timeline.vue';
+import userListTimeline from './user-list-timeline.vue';
+import uiContainer from './ui-container.vue';
+
+Vue.component('MkUi', ui);
+Vue.component('MkNote', note);
+Vue.component('MkNotes', notes);
+Vue.component('MkMediaVideo', mediaVideo);
+Vue.component('MkNotePreview', notePreview);
+Vue.component('MkSubNoteContent', subNoteContent);
+Vue.component('MkNoteCard', noteCard);
+Vue.component('MkNoteDetail', noteDetail);
+Vue.component('MkNotification', notification);
+Vue.component('MkNotifications', notifications);
+Vue.component('MkNotificationPreview', notificationPreview);
+Vue.component('MkUserTimeline', userTimeline);
+Vue.component('MkUserListTimeline', userListTimeline);
+Vue.component('UiContainer', uiContainer);

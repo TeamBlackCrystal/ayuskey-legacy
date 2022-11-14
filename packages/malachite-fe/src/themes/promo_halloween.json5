@@ -1,0 +1,23 @@
+{
+	id: 'ecfa4366-a879-47ba-baa9-27a2eddaaa6e',
+
+	name: 'ハロウィンなお嬢様',
+	author: 'めいめい',
+	desc: 'ハロウィンなお嬢様のためのテーマなのだわ',
+
+	base: 'dark',
+
+	vars: {
+		primary: 'rgb(24, 128, 24)',
+		secondary: 'rgb(192, 64, 0)',
+		text: 'rgb(255, 251, 185)',
+	},
+
+	props: {
+		announcementsBg: '#c04000',
+		announcementsTitle: '#e3e5e8',
+		renoteGradient: '#b72ddc',
+		noteText: '#ffe0e0',
+		noteHeaderName: '#ffe0e0',
+	},
+}
