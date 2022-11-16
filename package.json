@@ -220,7 +220,7 @@
 		"ws": "8.11.0"
 	},
 	"devDependencies": {
-		"@redocly/openapi-core": "1.0.0-beta.112",
+		"@redocly/openapi-core": "1.0.0-beta.113",
 		"@types/animejs": "3.1.6",
 		"@types/bcryptjs": "2.4.2",
 		"@types/dateformat": "3.0.1",
