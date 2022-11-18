@@ -21,7 +21,7 @@ specifiers:
   '@koa/multer': 3.0.0
   '@koa/router': 8.0.8
   '@popperjs/core': 2.11.6
-  '@redocly/openapi-core': 1.0.0-beta.113
+  '@redocly/openapi-core': 1.0.0-beta.114
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
@@ -441,7 +441,7 @@ dependencies:
   ws: 8.11.0
 
 devDependencies:
-  '@redocly/openapi-core': 1.0.0-beta.113
+  '@redocly/openapi-core': 1.0.0-beta.114
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
@@ -593,12 +593,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@bull-board/api/4.6.3:
-    resolution: {integrity: sha512-PCeqZNAlNZThbx4jbh3xwSfBACIvQDT7jgFFgDjHNmO3qT4+rKwqcLKgPLc64aCMWZC5SEhAw9YoY1PRNhU8zQ==}
-    dependencies:
-      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.6.4:
@@ -1003,8 +997,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /@redocly/openapi-core/1.0.0-beta.113:
-    resolution: {integrity: sha512-BzMQ5QB4bjnbnXOHi8C7m9fEOwDqm3i/YdHgDhtoFdEwT/PhVzK/YFO8C1r8CO9WDa55NmN9r80FekQiEB7fIA==}
+  /@redocly/openapi-core/1.0.0-beta.114:
+    resolution: {integrity: sha512-408iuAZAYwhPjbuc9VoV2mNvUp8zkGkfrxIRgpKSH73x9YsihDLspveFrUkDOMIzWWypEdbhm1w0Xjgr/NysXw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@redocly/ajv': 8.11.0
