@@ -89,7 +89,7 @@ specifiers:
   autobind-decorator: 2.4.0
   autosize: 5.0.1
   autwh: 0.1.0
-  aws-sdk: 2.1256.0
+  aws-sdk: 2.1258.0
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -285,7 +285,7 @@ dependencies:
   autobind-decorator: 2.4.0
   autosize: 5.0.1
   autwh: 0.1.0
-  aws-sdk: 2.1256.0
+  aws-sdk: 2.1258.0
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -593,12 +593,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@bull-board/api/4.6.3:
-    resolution: {integrity: sha512-PCeqZNAlNZThbx4jbh3xwSfBACIvQDT7jgFFgDjHNmO3qT4+rKwqcLKgPLc64aCMWZC5SEhAw9YoY1PRNhU8zQ==}
-    dependencies:
-      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.6.4:
@@ -2488,8 +2482,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-sdk/2.1256.0:
-    resolution: {integrity: sha512-/Dh81PZdjqyZwA3BMBUO2PMUakv0hqjxCReE59sskIFdQJdSOW+26EQ4LcV07YP6umz3n5TKC28bEfx6l2kTJQ==}
+  /aws-sdk/2.1258.0:
+    resolution: {integrity: sha512-siqNFXlhJZVN1BizPZebJViFXtTUPgcA+yLfHKl2eC4Ied7kE7spOjZmAzpuiGUTzFagk1oWCaJ1Hit4llIoGg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
