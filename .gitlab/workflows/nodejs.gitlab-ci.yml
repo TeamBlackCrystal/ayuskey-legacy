@@ -11,7 +11,8 @@ services:
     alias: redis
 
 before_script:
-  - apk add --no-cache ffmpeg curl
+  - apk add --no-cache ffmpeg curl 
+  - apk add --no-cache autoconf automake file g++ gcc libc-dev libtool make nasm pkgconfig python3 zlib-dev git
   - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
   - pnpm config set store-dir .pnpm-store
   - node devtools/diag-environment.js
