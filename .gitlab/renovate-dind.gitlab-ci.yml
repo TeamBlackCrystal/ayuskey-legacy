@@ -1,4 +1,4 @@
-include: '/templates/_common.gitlab-ci.yml'
+include: '/.gitlab/_common.gitlab-ci.yml'
 
 image: ${CI_RENOVATE_IMAGE}
 
