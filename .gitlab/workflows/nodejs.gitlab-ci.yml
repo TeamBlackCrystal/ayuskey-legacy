@@ -11,10 +11,10 @@ services:
     alias: redis
 
 before_script:
+  - apk add --no-cache ffmpeg curl
   - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
   - pnpm config set store-dir .pnpm-store
   - node devtools/diag-environment.js
-  - apk add --no-cache ffmpeg
   - cp test/test.yml .config
 
 test:
