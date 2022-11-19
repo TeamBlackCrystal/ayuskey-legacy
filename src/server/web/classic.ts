@@ -1,7 +1,3 @@
-/**
- * Web Client Server
- */
-
 import * as os from 'os';
 import ms = require('ms');
 import * as Koa from 'koa';
@@ -9,127 +5,31 @@ import * as Router from '@koa/router';
 import * as send from 'koa-send';
 import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
-import { createBullBoard } from '@bull-board/api';
-import { BullAdapter } from '@bull-board/api/bullAdapter.js';
-import { KoaAdapter } from '@bull-board/koa';
 
-import docs from './docs';
-import packFeed from './feed';
-import { fetchMeta } from '../../misc/fetch-meta';
-import { genOpenapiSpec } from '../api/openapi/gen-spec';
-import config from '../../config';
-import { Users, Notes, Emojis, UserProfiles, Pages } from '../../models';
-import parseAcct from '../../misc/acct/parse';
-import getNoteSummary from '../../misc/get-note-summary';
-import { ensure } from '../../prelude/ensure';
+import config from '@/config';
+import { fetchMeta } from '@/misc/fetch-meta';
+import { Emojis, Notes, Pages, UserProfiles, Users } from '@/models';
+import { ensure } from '@/prelude/ensure';
+import parseAcct from '@/misc/acct/parse';
+import getNoteSummary from '@/misc/get-note-summary';
+import { redisClient } from '@/db/redis';
 import { getConnection } from 'typeorm';
-import { redisClient } from '../../db/redis';
-import { queues } from '@/queue/queues';
-import classic from './classic';
 
 const env = process.env.NODE_ENV;
 
 const staticAssets = `${__dirname}/../../../assets/client/`;
-const client = `${__dirname}/../../client/`;
-
-// Init app
-const app = new Koa();
+const client = `${__dirname}/../../../packages/malachite-fe/built`;
 
 const setCache = (ctx: Koa.ParameterizedContext, onProduction: string) => {
 	ctx.set('Cache-Control', env === 'production' ? onProduction : 'no-store');
 };
 
-//#region Bull Dashboard
-const bullBoardPath = '/queue';
-
-// Authenticate
-app.use(async (ctx, next) => {
-	if (ctx.path === bullBoardPath || ctx.path.startsWith(bullBoardPath + '/')) {
-		const token = ctx.cookies.get('token');
-		if (token == null) {
-			ctx.status = 401;
-			return;
-		}
-		const user = await Users.findOne({ token });
-		if (user == null || !(user.isAdmin || user.isModerator)) {
-			ctx.status = 403;
-			return;
-		}
-	}
-	await next();
-});
-
-const serverAdapter = new KoaAdapter();
-
-createBullBoard({
-	queues: queues.map(q => new BullAdapter(q)),
-	serverAdapter,
-});
-
-serverAdapter.setBasePath(bullBoardPath);
-app.use(serverAdapter.registerPlugin());
-//#endregion
-
-// Init renderer
-app.use(views(__dirname + '/views', {
-	extension: 'pug',
-	options: {
-		config,
-	},
-}));
-
-// Serve favicon
-app.use(favicon(`${client}/assets/favicon.png`));
-
-// Common request handler
-app.use(async (ctx, next) => {
-	// IFrameの中に入れられないようにする
-	ctx.set('X-Frame-Options', 'DENY');
-	await next();
-});
-
-// Init router
 const router = new Router();
-
-//#region static assets
-
-router.get('/static-assets/*', async ctx => {
-	await send(ctx as any, ctx.path.replace('/static-assets/', ''), {
-		root: staticAssets,
-		maxage: ms('7 days'),
-	});
-});
-
-router.get('/assets/*', async ctx => {
-	if (env !== 'production') {
-		ctx.set('Cache-Control', 'no-store');
-	}
-	await send(ctx as any, ctx.path, {
-		root: client,
-		maxage: ms('7 days'),
-	});
-});
 
 // Apple touch icon
 router.get('/apple-touch-icon.png', async ctx => {
 	await send(ctx as any, '/assets/apple-touch-icon.png', {
 		root: client,
-	});
-});
-
-router.get('/twemoji/(.*)', async ctx => {
-	const path = ctx.path.replace('/twemoji/', '');
-
-	if (!path.match(/^[0-9a-f-]+\.svg$/)) {
-		ctx.status = 404;
-		return;
-	}
-
-	ctx.set('Content-Security-Policy', 'default-src \'none\'; style-src \'unsafe-inline\'');
-
-	await send(ctx as any, path, {
-		root: `${__dirname}/../../../node_modules/@discordapp/twemoji/dist/svg/`,
-		maxage: ms('30 days'),
 	});
 });
 
@@ -141,6 +41,7 @@ router.get(/^\/sw\.(.+?)\.js$/, async ctx => {
 });
 
 // Manifest
+// FIXME
 router.get('/manifest.json', require('./manifest'));
 
 router.get('/robots.txt', async ctx => {
@@ -152,13 +53,15 @@ router.get('/robots.txt', async ctx => {
 //#endregion
 
 // Docs
-router.use('/docs', docs.routes());
+// FIXME
+//router.use('/docs', docs.routes());
 router.get('/api-doc', async ctx => {
 	await send(ctx as any, '/assets/redoc.html', {
 		root: client,
 	});
 });
 
+// TODO
 // URL preview endpoint
 if (config.urlPreviewCors) {
 	router.use('/url', async (ctx, next) => {
@@ -171,58 +74,6 @@ if (config.urlPreviewCors) {
 }
 router.get('/url', require('./url-preview'));
 
-router.get('/api.json', async ctx => {
-	ctx.body = genOpenapiSpec();
-});
-
-const getFeed = async (acct: string) => {
-	const { username, host } = parseAcct(acct);
-	const user = await Users.findOne({
-		usernameLower: username.toLowerCase(),
-		host,
-		isSuspended: false,
-	});
-
-	return user && await packFeed(user);
-};
-
-// Atom
-router.get('/@:user.atom', async ctx => {
-	const feed = await getFeed(ctx.params.user);
-
-	if (feed) {
-		ctx.set('Content-Type', 'application/atom+xml; charset=utf-8');
-		ctx.body = feed.atom1();
-	} else {
-		ctx.status = 404;
-	}
-});
-
-// RSS
-router.get('/@:user.rss', async ctx => {
-	const feed = await getFeed(ctx.params.user);
-
-	if (feed) {
-		ctx.set('Content-Type', 'application/rss+xml; charset=utf-8');
-		ctx.body = feed.rss2();
-	} else {
-		ctx.status = 404;
-	}
-});
-
-// JSON
-router.get('/@:user.json', async ctx => {
-	const feed = await getFeed(ctx.params.user);
-
-	if (feed) {
-		ctx.set('Content-Type', 'application/json; charset=utf-8');
-		ctx.body = feed.json1();
-	} else {
-		ctx.status = 404;
-	}
-});
-
-//#region for crawlers
 // User
 router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 	const { username, host } = parseAcct(ctx.params.user);
@@ -478,29 +329,4 @@ router.get('/flush', async ctx => {
 	await ctx.render('flush');
 });
 
-// streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる
-router.get('/streaming', async ctx => {
-	console.log(`UNEXPECTED_STREAMING Request ${ctx.path}`);
-	ctx.status = 503;
-	ctx.set('Cache-Control', 'private, max-age=0');
-});
-
-router.get('/classic/*', classic.router);
-
-// Render base html for all requests
-router.get('*', async ctx => {
-	const meta = await fetchMeta();
-	await ctx.render('base', {
-		img: meta.bannerUrl,
-		title: meta.name || 'Misskey',
-		instanceName: meta.name || 'Misskey',
-		desc: meta.description,
-		icon: meta.iconUrl,
-	});
-	setCache(ctx, 'public, max-age=300');
-});
-
-// Register router
-app.use(router.routes());
-
-module.exports = app;
+export default router;
