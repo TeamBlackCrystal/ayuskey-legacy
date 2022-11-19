@@ -20,7 +20,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { toUnicode } from 'punycode/';
 import { host as localHost } from '../../../config';
-import { wellKnownServices } from '../../../../../well-known-services';
+import { wellKnownServices } from '../../../../well-known-services';
 
 export default Vue.extend({
 	i18n: i18n(),

@@ -1,5 +1,5 @@
-import { parse } from '../../../../mfm/parse';
-import { sum, unique } from '../../../../prelude/array';
+import { parse } from '@mfm/parse';
+import { sum, unique } from '@prelude/array';
 import shouldMuteNote from './should-mute-note';
 import MkNoteMenu from '../views/components/note-menu.vue';
 import MkReactionPicker from '../views/components/reaction-picker.vue';

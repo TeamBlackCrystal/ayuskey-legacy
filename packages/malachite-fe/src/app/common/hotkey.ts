@@ -1,5 +1,5 @@
 import keyCode from './keycode';
-import { concat } from '../../../prelude/array';
+import { concat } from '@prelude/array';
 
 type pattern = {
 	which: string[];

@@ -82,8 +82,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../i18n';
-import { calcAge } from '../../../../../../misc/calc-age';
-import parseAcct from '../../../../../../misc/acct/parse';
+import { calcAge } from '@misc/calc-age';
+import parseAcct from '@misc/acct/parse';
 import Progress from '../../../../common/scripts/loading';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
 import XHome from './home.vue';

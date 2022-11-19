@@ -159,7 +159,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import * as sound from '../../../common/scripts/sound';
-import getNoteSummary from '../../../../../misc/get-note-summary';
+import getNoteSummary from '@misc/get-note-summary';
 import paging from '../../../common/scripts/paging';
 
 export default Vue.extend({

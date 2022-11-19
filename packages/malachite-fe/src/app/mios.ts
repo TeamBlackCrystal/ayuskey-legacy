@@ -9,7 +9,7 @@ import Progress from './common/scripts/loading';
 
 import Err from './common/views/components/connect-failed.vue';
 import Stream from './common/scripts/stream';
-import { query } from '../../prelude/url';
+import { query } from '@prelude/url';
 
 //#region api requests
 let spinner = null;

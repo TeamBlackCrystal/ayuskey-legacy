@@ -57,7 +57,7 @@ import Vue from 'vue';
 import i18n from '../../../../i18n';
 import XContainer from './page-editor.container.vue';
 import { faPencilAlt, faPlug } from '@fortawesome/free-solid-svg-icons';
-import { isLiteralBlock, funcDefs, blockDefs } from '../../../../../../misc/aiscript/index';
+import { isLiteralBlock, funcDefs, blockDefs } from '@misc/aiscript/index';
 import { v4 as uuid } from 'uuid';
 
 export default Vue.extend({

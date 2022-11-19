@@ -25,7 +25,7 @@
 import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { getStaticImageUrl } from '../../../../common/scripts/get-static-image-url';
-import { concat } from '../../../../../../prelude/array';
+import { concat } from '@prelude/array';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/pages/user/user.photos.vue'),

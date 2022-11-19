@@ -31,7 +31,7 @@ import i18n from '../../../../i18n';
 import { faHeart as faHeartS } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import XBlock from './page.block.vue';
-import { ASEvaluator } from '../../../../../../misc/aiscript/evaluator';
+import { ASEvaluator } from '@misc/aiscript/evaluator';
 import { collectPageVars } from '../../../scripts/collect-page-vars';
 import { url } from '../../../../config';
 

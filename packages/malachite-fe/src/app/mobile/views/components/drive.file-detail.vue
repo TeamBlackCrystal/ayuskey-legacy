@@ -56,7 +56,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { gcd } from '../../../../../prelude/math';
+import { gcd } from '@prelude/math';
 import XFileThumbnail from '../../../common/views/components/drive-file-thumbnail.vue';
 
 export default Vue.extend({

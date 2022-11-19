@@ -3,7 +3,7 @@ import { EventEmitter } from 'eventemitter3';
 import ReconnectingWebsocket from 'reconnecting-websocket';
 import { wsUrl } from '../../config';
 import MiOS from '../../mios';
-import { query as urlQuery } from '../../../../prelude/url';
+import { query as urlQuery } from '@prelude/url';
 
 /**
  * Misskey stream connection

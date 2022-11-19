@@ -1,16 +1,16 @@
 import Vue, { VNode , h } from 'vue';
 import { length } from 'stringz';
-import { MfmForest } from '../../../../../mfm/prelude';
-import { parse, parsePlain } from '../../../../../mfm/parse';
+import { MfmForest } from '@mfm/prelude';
+import { parse, parsePlain } from '@mfm/parse';
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
-import { concat, sum } from '../../../../../prelude/array';
+import { concat, sum } from '@prelude/array';
 import MkFormula from './formula.vue';
 import MkCode from './code.vue';
 import MkGoogle from './google.vue';
 import MkSparkle from './sparkle.vue';
 import { host } from '../../../config';
-import { preorderF, countNodesF } from '../../../../../prelude/tree';
+import { preorderF, countNodesF } from '@prelude/tree';
 
 function sumTextsLength(ts: MfmForest): number {
 	const textNodes = preorderF(ts).filter(n => n.type === 'text');

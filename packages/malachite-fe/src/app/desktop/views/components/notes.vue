@@ -40,7 +40,7 @@ import i18n from '../../../i18n';
 import * as config from '../../../config';
 import shouldMuteNote from '../../../common/scripts/should-mute-note';
 import paging from '../../../common/scripts/paging';
-import { getSpeechName, getSpeechText } from '../../../../../misc/get-note-speech';
+import { getSpeechName, getSpeechText } from '@misc/get-note-speech';
 
 import * as sound from '../../../common/scripts/sound';
 

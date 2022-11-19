@@ -384,7 +384,7 @@ import { url, version } from '../../../../config';
 import { ColdDeviceStorage } from '../../../../store';
 import * as sound from '../../../../common/scripts/sound';
 import checkForUpdate from '../../../scripts/check-for-update';
-import { formatTimeString } from '../../../../../../misc/format-time-string';
+import { formatTimeString } from '@misc/format-time-string';
 import { faSave, faEye } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({

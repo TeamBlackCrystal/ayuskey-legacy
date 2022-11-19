@@ -35,7 +35,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import shouldMuteNote from '../../../common/scripts/should-mute-note';
 import paging from '../../../common/scripts/paging';
-import { getSpeechName, getSpeechText } from '../../../../../misc/get-note-speech';
+import { getSpeechName, getSpeechText } from '@misc/get-note-speech';
 
 const displayLimit = 30;
 

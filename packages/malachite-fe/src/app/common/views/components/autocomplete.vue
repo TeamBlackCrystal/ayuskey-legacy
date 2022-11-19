@@ -28,9 +28,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { emojilist } from '../../../../../misc/emojilist';
+import { emojilist } from '@misc/emojilist';
 import contains from '../../../common/scripts/contains';
-import { twemojiSvgBase } from '../../../../../misc/twemoji-base';
+import { twemojiSvgBase } from '@misc/twemoji-base';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
 
 type EmojiDef = {

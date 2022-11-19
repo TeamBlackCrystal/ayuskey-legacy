@@ -31,7 +31,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import Menu from '../../../common/views/components/menu.vue';
-import { countIf } from '../../../../../prelude/array';
+import { countIf } from '@prelude/array';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faWindowMaximize } from '@fortawesome/free-regular-svg-icons';
 

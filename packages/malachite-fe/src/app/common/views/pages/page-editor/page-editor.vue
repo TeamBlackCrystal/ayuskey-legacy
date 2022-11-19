@@ -101,8 +101,8 @@ import i18n from '../../../../i18n';
 import XVariable from './page-editor.script-block.vue';
 import XBlocks from './page-editor.blocks.vue';
 import { v4 as uuid } from 'uuid';
-import { blockDefs } from '../../../../../../misc/aiscript/index';
-import { ASTypeChecker } from '../../../../../../misc/aiscript/type-checker';
+import { blockDefs } from '@misc/aiscript/index';
+import { ASTypeChecker } from '@misc/aiscript/type-checker';
 import { url } from '../../../../config';
 import { collectPageVars } from '../../../scripts/collect-page-vars';
 

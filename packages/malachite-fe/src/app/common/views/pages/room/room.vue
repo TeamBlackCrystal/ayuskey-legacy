@@ -53,12 +53,12 @@
 import Vue from 'vue';
 import i18n from '../../../../i18n';
 import { Room } from '../../../scripts/room/room';
-import parseAcct from '../../../../../../misc/acct/parse';
+import parseAcct from '@misc/acct/parse';
 import XPreview from './preview.vue';
 const storeItems = require('../../../scripts/room/furnitures.json5');
 import { faBoxOpen, faUndo, faArrowsAlt, faBan, faBroom } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { query as urlQuery } from '../../../../../../prelude/url';
+import { query as urlQuery } from '@prelude/url';
 
 let room: Room;
 

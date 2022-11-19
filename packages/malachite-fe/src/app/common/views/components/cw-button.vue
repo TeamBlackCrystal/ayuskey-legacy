@@ -9,7 +9,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { length } from 'stringz';
-import { concat } from '../../../../../prelude/array';
+import { concat } from '@prelude/array';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/cw-button.vue'),

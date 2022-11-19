@@ -67,7 +67,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import parseAcct from '../../../../../misc/acct/parse';
+import parseAcct from '@misc/acct/parse';
 import XColumn from './deck.column.vue';
 import XUserMenu from '../../../common/views/components/user-menu.vue';
 

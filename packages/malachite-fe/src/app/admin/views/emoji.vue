@@ -61,7 +61,7 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
-import { unique } from '../../../../prelude/array';
+import { unique } from '@prelude/array';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/emoji.vue'),

@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { parse } from '../../../../../../mfm/parse';
-import { unique } from '../../../../../../prelude/array';
+import { parse } from '@mfm/parse';
+import { unique } from '@prelude/array';
 
 export default Vue.extend({
 	props: {

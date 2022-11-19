@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import parseAcct from '../../../../../misc/acct/parse';
+import parseAcct from '@misc/acct/parse';
 import i18n from '../../../i18n';
 
 export default Vue.extend({

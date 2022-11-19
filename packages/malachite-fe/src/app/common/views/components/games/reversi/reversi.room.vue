@@ -117,7 +117,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../../i18n';
-import * as maps from '../../../../../../../games/reversi/maps';
+import * as maps from '@games/reversi/maps';
 import { faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 

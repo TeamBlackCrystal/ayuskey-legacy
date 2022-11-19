@@ -52,7 +52,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../i18n';
-import { calcAge } from '../../../../../../misc/calc-age';
+import { calcAge } from '@misc/calc-age';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
 import XIntegrations from '../../../../common/views/components/integrations.vue';
 

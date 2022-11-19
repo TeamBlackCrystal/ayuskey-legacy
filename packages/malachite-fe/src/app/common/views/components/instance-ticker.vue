@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { query as urlQuery } from '../../../../../prelude/url';
+import { query as urlQuery } from '@prelude/url';
 
 type II = {
 	host?: string;

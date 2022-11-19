@@ -3,12 +3,12 @@ import { length } from 'stringz';
 import { toASCII } from 'punycode';
 import MkVisibilityChooser from '../views/components/visibility-chooser.vue';
 import getFace from './get-face';
-import { parse } from '../../../../mfm/parse';
+import { parse } from '@mfm/parse';
 import { host, url } from '../../config';
 import i18n from '../../i18n';
-import { erase, unique } from '../../../../prelude/array';
-import extractMentions from '../../../../misc/extract-mentions';
-import { formatTimeString } from '../../../../misc/format-time-string';
+import { erase, unique } from '@prelude/array';
+import extractMentions from '@misc/extract-mentions';
+import { formatTimeString } from '@misc/format-time-string';
 
 export default (opts) => ({
 	i18n: i18n(),

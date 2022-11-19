@@ -8,8 +8,8 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import Progress from '../../../common/scripts/loading';
-import parseAcct from '../../../../../misc/acct/parse';
-import getUserName from '../../../../../misc/get-user-name';
+import parseAcct from '@misc/acct/parse';
+import getUserName from '@misc/get-user-name';
 
 export default Vue.extend({
 	i18n: i18n(),

@@ -8,9 +8,11 @@ const address = new URL(location.href);
 
 export const host = address.host;
 export const hostname = address.hostname;
-export const url = address.origin;
-export const apiUrl = url + '/api';
-export const wsUrl = url.replace('http://', 'ws://').replace('https://', 'wss://') + '/streaming';
+//export const url = address.origin;
+export const _url = address.origin;
+export const url = address.origin + '/classic';
+export const apiUrl = _url + '/api';
+export const wsUrl = _url.replace('http://', 'ws://').replace('https://', 'wss://') + '/streaming';
 export const lang = localStorage.getItem('lang') || window.lang; // windowは後方互換性のため
 export const langs = _LANGS_;
 export const locale = JSON.parse(localStorage.getItem('locale'));

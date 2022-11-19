@@ -222,7 +222,7 @@ import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox, faUser, faEnvelope, faCommentAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
 import * as tinycolor from 'tinycolor2';
-import { query as urlQuery } from '../../../../prelude/url';
+import { query as urlQuery } from '@prelude/url';
 
 const chartLimit = 90;
 const sum = (...arr) => arr.reduce((r, a) => r.map((b, i) => a[i] + b));

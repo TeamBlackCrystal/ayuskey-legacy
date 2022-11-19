@@ -49,7 +49,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import XNotes from './deck.notes.vue';
-import { concat } from '../../../../../prelude/array';
+import { concat } from '@prelude/array';
 import ApexCharts from 'apexcharts';
 
 export default Vue.extend({

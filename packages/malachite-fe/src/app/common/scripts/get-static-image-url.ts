@@ -1,5 +1,5 @@
 import { url as instanceUrl } from '../../config';
-import * as url from '../../../../prelude/url';
+import * as url from '@prelude/url';
 
 export function getStaticImageUrl(baseUrl: string): string {
 	const u = new URL(baseUrl);

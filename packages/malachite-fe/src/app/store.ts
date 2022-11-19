@@ -4,8 +4,8 @@ import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
 
 import MiOS from './mios';
-import { erase } from '../../prelude/array';
-import getNoteSummary from '../../misc/get-note-summary';
+import { erase } from '@prelude/array';
+import getNoteSummary from '@misc/get-note-summary';
 
 const defaultSettings = {
 	keepCw: false,

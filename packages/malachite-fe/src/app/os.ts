@@ -1,6 +1,6 @@
 import { markRaw, reactive, Ref, ref , Component } from 'vue';
 import { apiUrl, version, locale, env, debug } from './config';
-import { query } from '../../prelude/url';
+import { query } from '@prelude/url';
 import { $i } from './account';
 
 export const pendingApiRequestsCount = ref(0);

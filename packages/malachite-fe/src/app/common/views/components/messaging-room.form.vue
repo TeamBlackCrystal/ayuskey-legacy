@@ -31,7 +31,7 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import * as autosize from 'autosize';
-import { formatTimeString } from '../../../../../misc/format-time-string';
+import { formatTimeString } from '@misc/format-time-string';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/messaging-room.form.vue'),

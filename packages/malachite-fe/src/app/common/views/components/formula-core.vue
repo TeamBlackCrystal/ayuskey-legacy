@@ -29,5 +29,5 @@ export default Vue.extend({
 </script>
 
 <style>
-@import "../../../../../../node_modules/katex/dist/katex.min.css";
+@import "../../../../../node_modules/katex/dist/katex.min.css";
 </style>

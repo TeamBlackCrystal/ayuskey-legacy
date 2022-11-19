@@ -54,7 +54,7 @@
 import Vue from 'vue';
 import anime from 'animejs';
 import { faTimesCircle, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import parseAcct from '../../../../../misc/acct/parse';
+import parseAcct from '@misc/acct/parse';
 import i18n from '../../../i18n';
 
 export default Vue.extend({
