@@ -1,0 +1,16 @@
+include: '/templates/_common.gitlab-ci.yml'
+
+image: ${CI_RENOVATE_IMAGE}
+
+services:
+  - name: ${CI_RENOVATE_SERVICE}
+    alias: docker
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_TLS_CERTDIR: /certs
+  DOCKER_CERT_PATH: /certs/client
+  CI_RENOVATE_SERVICE: docker:20.10.21-dind@sha256:80e81aecd51d80e63ae4cbbd5eb1968e84edd151b90ef2c2f17e1004c7a3832b
+  CI_RENOVATE_IMAGE: renovate/renovate:34.28.0-slim@sha256:9fc8d0f22d3e07d5d1788a7a468a174568fe4cd9d620f9d2db8669d128b4c5b5
