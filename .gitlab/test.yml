@@ -7,7 +7,7 @@ db:
   user: postgres
   pass: ''
 redis:
-  host: localhost
+  host: resis
   port: 6379
 id: aid
 autoAdmin: true
