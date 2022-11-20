@@ -105,7 +105,7 @@ specifiers:
   concurrently: 7.5.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
-  cropperjs: 1.5.12
+  cropperjs: 1.5.13
   cross-env: 7.0.3
   css-loader: 6.7.2
   cssnano: 5.1.14
@@ -301,7 +301,7 @@ dependencies:
   concurrently: 7.5.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
-  cropperjs: 1.5.12
+  cropperjs: 1.5.13
   cross-env: 7.0.3
   css-loader: 6.7.2_webpack@5.75.0
   cssnano: 5.1.14_postcss@8.4.19
@@ -593,12 +593,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@bull-board/api/4.6.3:
-    resolution: {integrity: sha512-PCeqZNAlNZThbx4jbh3xwSfBACIvQDT7jgFFgDjHNmO3qT4+rKwqcLKgPLc64aCMWZC5SEhAw9YoY1PRNhU8zQ==}
-    dependencies:
-      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.6.4:
@@ -4036,8 +4030,8 @@ packages:
       luxon: 3.0.4
     dev: false
 
-  /cropperjs/1.5.12:
-    resolution: {integrity: sha512-re7UdjE5UnwdrovyhNzZ6gathI4Rs3KGCBSc8HCIjUo5hO42CtzyblmWLj6QWVw7huHyDMfpKxhiO2II77nhDw==}
+  /cropperjs/1.5.13:
+    resolution: {integrity: sha512-by7jKAo73y5/Do0K6sxdTKHgndY0NMjG2bEdgeJxycbcmHuCiMXqw8sxy5C5Y5WTOTcDGmbT7Sr5CgKOXR06OA==}
     dev: false
 
   /cross-env/7.0.3:
@@ -12195,7 +12189,7 @@ packages:
   /vue-cropperjs/4.2.0:
     resolution: {integrity: sha512-dvwCBtjGMiznkNIK2GFd1SQm1x+wmtWg4g4t+NrJSPj/fpHnubXxAUOIvY7lMFeR2lawRLsigCaGZrcXCzuTKA==}
     dependencies:
-      cropperjs: 1.5.12
+      cropperjs: 1.5.13
     dev: false
 
   /vue-eslint-parser/9.1.0_eslint@8.27.0:
