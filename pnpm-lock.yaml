@@ -102,7 +102,7 @@ specifiers:
   chalk: 4.1.2
   cli-highlight: 2.1.11
   commander: 4.1.1
-  concurrently: 7.5.0
+  concurrently: 7.6.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
   cropperjs: 1.5.12
@@ -298,7 +298,7 @@ dependencies:
   chalk: 4.1.2
   cli-highlight: 2.1.11
   commander: 4.1.1
-  concurrently: 7.5.0
+  concurrently: 7.6.0
   content-disposition: 0.5.4
   crc-32: 1.2.2
   cropperjs: 1.5.12
@@ -593,12 +593,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@bull-board/api/4.6.3:
-    resolution: {integrity: sha512-PCeqZNAlNZThbx4jbh3xwSfBACIvQDT7jgFFgDjHNmO3qT4+rKwqcLKgPLc64aCMWZC5SEhAw9YoY1PRNhU8zQ==}
-    dependencies:
-      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.6.4:
@@ -3391,8 +3385,8 @@ packages:
       typedarray: 0.0.6
     dev: false
 
-  /concurrently/7.5.0:
-    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==}
+  /concurrently/7.6.0:
+    resolution: {integrity: sha512-BKtRgvcJGeZ4XttiDiNcFiRlxoAeZOseqUvyYRUp/Vtd+9p1ULmeoSqGsDA+2ivdeDFpqrJvGvmI+StKfKl5hw==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
