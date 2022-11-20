@@ -4,9 +4,10 @@ variables:
   POSTGRES_DB: test-misskey
   POSTGRES_HOST_AUTH_METHOD: trust
 
-services:
-  - name: postgres:15.0-alpine
-  - name: redis:7.0-alpine
+default:
+  services:
+    - name: postgres:15.0-alpine
+    - name: redis:7.0-alpine
 
 before_script:
 #  - echo https://mirrors.cat.net/alpine/v3.16/main > /etc/apk/repositories
