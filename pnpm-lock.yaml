@@ -213,7 +213,7 @@ specifiers:
   stylus: 0.59.0
   stylus-loader: 7.1.0
   syslog-pro: 1.0.0
-  systeminformation: 5.12.15
+  systeminformation: 5.14.3
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3
   textarea-caret: 3.1.0
@@ -399,7 +399,7 @@ dependencies:
   stylus: 0.59.0
   stylus-loader: 7.1.0_577zv5myo6oqbmxnic7hzxwylm
   syslog-pro: 1.0.0
-  systeminformation: 5.12.15
+  systeminformation: 5.14.3
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3_webpack@5.75.0
   textarea-caret: 3.1.0
@@ -593,12 +593,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@bull-board/api/4.6.3:
-    resolution: {integrity: sha512-PCeqZNAlNZThbx4jbh3xwSfBACIvQDT7jgFFgDjHNmO3qT4+rKwqcLKgPLc64aCMWZC5SEhAw9YoY1PRNhU8zQ==}
-    dependencies:
-      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.6.4:
@@ -11215,8 +11209,8 @@ packages:
       moment: 2.29.4
     dev: false
 
-  /systeminformation/5.12.15:
-    resolution: {integrity: sha512-LMctTV27bGqWMBsuhzvNTH3roKOQonTN730F9v0x9YtoYducXcobs0rg3QKNnWDyHJyWIgKY6FiHlFcXJYclTQ==}
+  /systeminformation/5.14.3:
+    resolution: {integrity: sha512-s+rj6uPFjtRNkAgCpX9IHG8xnsodQmTn9frglhlBCPSFAbBPKyi2iYX2apEIrPMUGBnBT+83pgeyJlMvS18OGA==}
     engines: {node: '>=8.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
