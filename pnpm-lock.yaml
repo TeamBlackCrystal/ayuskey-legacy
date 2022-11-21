@@ -147,7 +147,7 @@ specifiers:
   json5: 2.2.1
   json5-loader: 4.0.1
   jsonld: 6.0.0
-  jsrsasign: 10.6.0
+  jsrsasign: 10.6.1
   katex: 0.16.3
   koa: 2.13.4
   koa-bodyparser: 4.3.0
@@ -336,7 +336,7 @@ dependencies:
   json5: 2.2.1
   json5-loader: 4.0.1_webpack@5.75.0
   jsonld: 6.0.0
-  jsrsasign: 10.6.0
+  jsrsasign: 10.6.1
   katex: 0.16.3
   koa: 2.13.4
   koa-bodyparser: 4.3.0
@@ -7102,8 +7102,8 @@ packages:
       verror: 1.10.0
     dev: false
 
-  /jsrsasign/10.6.0:
-    resolution: {integrity: sha512-4s1WTrv4dY14815G0kd/rZXIiXmy47rSsjpi/vLJN6bXACI+oR/cphErXmLdrqQPUPHtCY6dQVXZR8cJFUqsEg==}
+  /jsrsasign/10.6.1:
+    resolution: {integrity: sha512-emiQ05haY9CRj1Ho/LiuCqr/+8RgJuWdiHYNglIg2Qjfz0n+pnUq9I2QHplXuOMO2EnAW1oCGC1++aU5VoWSlw==}
     dev: false
 
   /jstransformer/1.0.0:
