@@ -251,7 +251,7 @@ specifiers:
   vue-svg-inline-loader: 2.1.5
   vuedraggable: 2.24.3
   vuewordcloud: 18.7.12
-  vuex: 3.6.2
+  vuex: 4.1.0
   vuex-persistedstate: 4.1.0
   web-push: 3.5.0
   webpack: 5.75.0
@@ -432,8 +432,8 @@ dependencies:
   vue-svg-inline-loader: 2.1.5
   vuedraggable: 2.24.3
   vuewordcloud: 18.7.12_vue@2.7.14
-  vuex: 3.6.2_vue@2.7.14
-  vuex-persistedstate: 4.1.0_vuex@3.6.2
+  vuex: 4.1.0_vue@2.7.14
+  vuex-persistedstate: 4.1.0_vuex@4.1.0
   web-push: 3.5.0
   webpack: 5.75.0_webpack-cli@4.10.0
   webpack-cli: 4.10.0_5fmukicmy7xum63bf7rhrqg3im
@@ -1830,6 +1830,10 @@ packages:
       - velocityjs
       - walrus
       - whiskers
+    dev: false
+
+  /@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
     dev: false
 
   /@webassemblyjs/ast/1.11.1:
@@ -12378,7 +12382,7 @@ packages:
       vue: 2.7.14
     dev: false
 
-  /vuex-persistedstate/4.1.0_vuex@3.6.2:
+  /vuex-persistedstate/4.1.0_vuex@4.1.0:
     resolution: {integrity: sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     peerDependencies:
@@ -12386,14 +12390,15 @@ packages:
     dependencies:
       deepmerge: 4.2.2
       shvl: 2.0.3
-      vuex: 3.6.2_vue@2.7.14
+      vuex: 4.1.0_vue@2.7.14
     dev: false
 
-  /vuex/3.6.2_vue@2.7.14:
-    resolution: {integrity: sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==}
+  /vuex/4.1.0_vue@2.7.14:
+    resolution: {integrity: sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==}
     peerDependencies:
-      vue: ^2.0.0
+      vue: ^3.2.0
     dependencies:
+      '@vue/devtools-api': 6.4.5
       vue: 2.7.14
     dev: false
 
