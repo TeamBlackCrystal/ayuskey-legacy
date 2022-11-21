@@ -4,7 +4,7 @@ db:
   host: db
   port: 5432
   db: test-misskey
-  user: postgres
+  user: misskey
   pass: '1234'
 redis:
   host: redis
