@@ -1,11 +1,11 @@
 url: 'http://misskey.local'
 port: 61811
 db:
-  host: postgres
+  host: db
   port: 5432
   db: test-misskey
   user: postgres
-  pass: ''
+  pass: '1234'
 redis:
   host: redis
   port: 6379
