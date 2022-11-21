@@ -1,4 +1,4 @@
-image: node:18.12.0-alpine3.16
+image: node:18.12.0
 
 variables:
   POSTGRES_USER: misskey
@@ -13,10 +13,8 @@ default:
     - name: redis:7.0-alpine
 
 before_script:
-#  - echo https://mirrors.cat.net/alpine/v3.16/main > /etc/apk/repositories
-#  - echo https://mirrors.cat.net/alpine/v3.16/community >> /etc/apk/repositoriess
-  - apk add --no-cache ffmpeg curl 
-  - apk add --no-cache autoconf automake file g++ gcc libc-dev libtool make nasm pkgconfig python3 zlib-dev git
+  - apt-get update
+  - apt-get install -y --no-install-recommends build-essential ffmpeg
   - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
   - pnpm config set store-dir .pnpm-store
   - node devtools/diag-environment.js
