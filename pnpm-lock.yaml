@@ -117,7 +117,7 @@ specifiers:
   eslint-config-prettier: 8.5.0
   eslint-import-resolver-node: 0.3.6
   eslint-plugin-import: 2.26.0
-  eslint-plugin-vue: 9.7.0
+  eslint-plugin-vue: 9.8.0
   eventemitter3: 4.0.7
   feed: 4.2.2
   file-type: 16.5.4
@@ -507,7 +507,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.28.0
   eslint-import-resolver-node: 0.3.6
   eslint-plugin-import: 2.26.0_ivdjtymx6ubvknadox4oh4qsue
-  eslint-plugin-vue: 9.7.0_eslint@8.28.0
+  eslint-plugin-vue: 9.8.0_eslint@8.28.0
   form-data: 4.0.0
   node-gyp: 9.3.0
   npm-run-all: 4.1.5
@@ -4950,8 +4950,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-vue/9.7.0_eslint@8.28.0:
-    resolution: {integrity: sha512-DrOO3WZCZEwcLsnd3ohFwqCoipGRSTKTBTnLwdhqAbYZtzWl0o7D+D8ZhlmiZvABKTEl8AFsqH1GHGdybyoQmw==}
+  /eslint-plugin-vue/9.8.0_eslint@8.28.0:
+    resolution: {integrity: sha512-E/AXwcTzunyzM83C2QqDHxepMzvI2y6x+mmeYHbVDQlKFqmKYvRrhaVixEeeG27uI44p9oKDFiyCRw4XxgtfHA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
