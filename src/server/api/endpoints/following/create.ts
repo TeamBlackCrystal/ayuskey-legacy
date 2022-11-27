@@ -67,6 +67,12 @@ export const meta = {
 			code: 'BLOCKED',
 			id: 'c4ab57cc-4e41-45e9-bfd9-584f61e35ce0',
 		},
+
+		noFederation: {
+			message: 'Disable Federation',
+			code: 'NO_FEDERATION_MODE',
+			id: '32850d5a-3269-4ef2-8c5d-f08f71884df6',
+		},
 	},
 };
 
@@ -85,7 +91,7 @@ export default define(meta, async (ps, user) => {
 	});
 
 	// disableFederation
-	if (config.disableFederation && isRemoteUser(followee)) {
+	if (config.disableFederation && Users.isRemoteUser(followee)) {
 		throw new ApiError(meta.errors.noFederation);
 	}
 
