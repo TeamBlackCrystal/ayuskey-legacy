@@ -1,0 +1,12 @@
+url: 'http://localhost:8088'
+port: 8088
+db:
+  host: db
+  port: 5432
+  db: test-misskey
+  user: postgres
+  pass: ''
+redis:
+  host: redis
+  port: 6379
+id: aid
