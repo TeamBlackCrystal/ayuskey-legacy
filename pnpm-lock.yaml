@@ -35,7 +35,7 @@ specifiers:
   '@types/is-url': 1.2.30
   '@types/js-yaml': 4.0.5
   '@types/jsdom': 20.0.1
-  '@types/jsonld': 1.5.7
+  '@types/jsonld': 1.5.8
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
   '@types/koa': 2.13.5
@@ -455,7 +455,7 @@ devDependencies:
   '@types/is-url': 1.2.30
   '@types/js-yaml': 4.0.5
   '@types/jsdom': 20.0.1
-  '@types/jsonld': 1.5.7
+  '@types/jsonld': 1.5.8
   '@types/jsrsasign': 10.5.4
   '@types/katex': 0.14.0
   '@types/koa': 2.13.5
@@ -1250,8 +1250,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/jsonld/1.5.7:
-    resolution: {integrity: sha512-RkIc/gMvFMiTubsy8rDHq23Dm9ig61zng5WhCjgShlbo9MBm1s0Z2JHpZwL0dwBNCNbaaOCYlFhBVozgjAU5Jg==}
+  /@types/jsonld/1.5.8:
+    resolution: {integrity: sha512-4l5t/jDnJpqZ+i7CLTTgPcT5BYXnAnwJupb07aAokPufCV0SjDHcwctUkSTuhIuSU9yHok+WOOngIGCtpL96gw==}
     dev: true
 
   /@types/jsrsasign/10.5.4:
