@@ -8,5 +8,13 @@ variables:
 
 renovate:
   rules:
+     # Don't build push pipeline when open MR and not renovate branch
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_COMMIT_BRANCH !~ /^renovate\//
+      when: never
+    # Don't build MR pipeline when renovate branch
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH =~ /^renovate\//
+      when: never
+    # Don't build tags
+    - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "push"'
