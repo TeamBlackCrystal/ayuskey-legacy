@@ -1,6 +1,5 @@
-image: node:18.12.0
-
 test:
+  image: node:18.12.0
   variables:
     POSTGRES_USER: misskey
     POSTGRES_DB: test-misskey
