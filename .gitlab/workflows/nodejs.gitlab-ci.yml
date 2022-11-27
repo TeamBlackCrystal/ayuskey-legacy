@@ -6,11 +6,11 @@ variables:
   POSTGRES_PASSWORD: '1234'
 #  POSTGRES_HOST_AUTH_METHOD: trust
 
-default:
-  services:
-    - name: postgres:15.0-alpine
-      alias: db
-    - name: redis:7.0-alpine
+#default:
+#  services:
+#    - name: postgres:15.0-alpine
+#      alias: db
+#    - name: redis:7.0-alpine
 
 before_script:
   - apt-get update
@@ -24,7 +24,8 @@ test:
   script:
     - pnpm i
     - pnpm build
-    - pnpm test
+    - echo INOP
+    #- pnpm test
   cache:
     key:
       files:
