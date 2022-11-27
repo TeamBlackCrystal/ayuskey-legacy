@@ -1,12 +1,15 @@
 include: 
   - local: '/.gitlab/renovate.gitlab-ci.yml'
   - local: '/.gitlab/workflows/nodejs.gitlab-ci.yml'
+#  - local: '/.gitlab/workflows/e2e.gitlab-ci.yml' # off
 
 variables:
   RENOVATE_GIT_AUTHOR: Renovate Bot <bot@renovateapp.com>
   RENOVATE_EXTRA_FLAGS: '--autodiscover=true --autodiscover-filter=blackcrystal/ayuskey'
 
 renovate:
+  tags:
+    - amd64
   rules:
      # Don't build push pipeline when open MR and not renovate branch
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_COMMIT_BRANCH !~ /^renovate\//
@@ -16,5 +19,6 @@ renovate:
       when: never
     # Don't build tags
     - if: $CI_COMMIT_TAG
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "push"'

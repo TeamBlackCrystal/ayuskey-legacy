@@ -1,0 +1,35 @@
+e2e:
+  stage: test
+  image: node:18.12.0
+  variables:
+    POSTGRES_DB: test-misskey
+    POSTGRES_HOST_AUTH_METHOD: trust
+    GIT_SUBMODULE_STRATEGY: recursive
+  services:
+    - name: postgres:15.0-alpine
+      alias: db
+    - name: redis:7.0-alpine
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends build-essential ffmpeg python3 python3-pip
+    - apt-get install -y --no-install-recommends fonts-vlgothic libnss3
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    - pnpm config set store-dir .pnpm-store
+    - node devtools/diag-environment.js
+    - pnpm i
+    - pnpm build
+    - cp .gitlab/config/e2e.yml .config/default.yml
+    - pnpm migrateandstart &
+    - cd e2e
+    - pip install -r requirements.txt
+    - python3 -m playwright install
+    - cd ..
+  script:
+    - cd e2e
+    - pytest run.py --maxfail=1
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
