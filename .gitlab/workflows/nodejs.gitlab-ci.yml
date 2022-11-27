@@ -1,26 +1,22 @@
 image: node:18.12.0
 
-variables:
-  POSTGRES_USER: misskey
-  POSTGRES_DB: test-misskey
-  POSTGRES_PASSWORD: '1234'
-#  POSTGRES_HOST_AUTH_METHOD: trust
-
-#default:
+test:
+  variables:
+    POSTGRES_USER: misskey
+    POSTGRES_DB: test-misskey
+    POSTGRES_PASSWORD: '1234'
+#    POSTGRES_HOST_AUTH_METHOD: trust
 #  services:
 #    - name: postgres:15.0-alpine
 #      alias: db
 #    - name: redis:7.0-alpine
-
-before_script:
-  - apt-get update
-  - apt-get install -y --no-install-recommends build-essential ffmpeg
-  - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
-  - pnpm config set store-dir .pnpm-store
-  - node devtools/diag-environment.js
-  - cp .gitlab/test.yml .config
-
-test:
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends build-essential ffmpeg
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    - pnpm config set store-dir .pnpm-store
+    - node devtools/diag-environment.js
+    - cp .gitlab/test.yml .config
   script:
     - pnpm i
     - pnpm build
