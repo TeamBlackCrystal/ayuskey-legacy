@@ -19,8 +19,8 @@
 					<div class="info">
 						<span><b>{{ host }}</b> - <span v-html="$t('powered-by-misskey')"></span></span>
 						<span v-if="stats" class="stats">
-							<span><fa icon="user"/> {{ stats.originalUsersCount | number }}</span>
-							<span><fa icon="pencil-alt"/> {{ stats.originalNotesCount | number }}</span>
+							<span><fa icon="user"/> {{ number(stats.originalUsersCount) }}</span>
+							<span><fa icon="pencil-alt"/> {{ number(stats.originalNotesCount) }}</span>
 						</span>
 					</div>
 
@@ -158,6 +158,7 @@ import i18n from '../../../i18n';
 import { host, copyright } from '../../../config';
 import { concat } from '../../../../../prelude/array';
 import { toUnicode } from 'punycode';
+import number from '../../../common/views/filters/v12/number';
 
 export default defineComponent({
 	i18n: i18n('desktop/views/pages/welcome.vue'),
@@ -234,6 +235,8 @@ export default defineComponent({
 				value: !this.$store.state.device.darkmode,
 			});
 		},
+
+		number,
 	},
 });
 </script>

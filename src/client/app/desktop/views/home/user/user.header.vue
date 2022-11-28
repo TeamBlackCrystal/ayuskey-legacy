@@ -41,9 +41,9 @@
 			<span v-if="user.birthday" class="birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
 		</div>
 		<div class="status">
-			<router-link :to="user | userPage()" class="notes-count"><b>{{ user.notesCount | number }}</b>{{ $t('posts') }}</router-link>
-			<router-link :to="user | userPage('following')" class="following clickable"><b>{{ user.followingCount | number }}</b>{{ $t('following') }}</router-link>
-			<router-link :to="user | userPage('followers')" class="followers clickable"><b>{{ user.followersCount | number }}</b>{{ $t('followers') }}</router-link>
+			<router-link :to="user | userPage()" class="notes-count"><b>{{ number(user.notesCount) }}</b>{{ $t('posts') }}</router-link>
+			<router-link :to="user | userPage('following')" class="following clickable"><b>{{ number(user.followingCount) }}</b>{{ $t('following') }}</router-link>
+			<router-link :to="user | userPage('followers')" class="followers clickable"><b>{{ number(user.followersCount) }}</b>{{ $t('followers') }}</router-link>
 		</div>
 	</div>
 </div>
@@ -55,6 +55,7 @@ import i18n from '../../../../i18n';
 import { calcAge } from '../../../../../../misc/calc-age';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
 import XIntegrations from '../../../../common/views/components/integrations.vue';
+import number from '../../../../common/views/filters/v12/number';
 
 export default defineComponent({
 	i18n: i18n('desktop/views/pages/user/user.header.vue'),
@@ -115,6 +116,7 @@ export default defineComponent({
 				w.destroyDom();
 			});
 		},
+		number,
 	},
 });
 </script>

@@ -16,11 +16,11 @@
 				<button ref="menu" class="menu" @click="menu"><fa icon="ellipsis-h"/></button>
 				<mk-follow-button v-if="$store.getters.isSignedIn && user.id != $store.state.i.id" :user="user" class="follow" mini/>
 				<mk-avatar :key="user.id" class="avatar" :user="user" :disable-preview="true"/>
-				<router-link class="name" :to="user | userPage()">
+				<router-link class="name" :to="userPage(user)">
 					<mk-user-name :key="user.id" :user="user" :nowrap="false"/>
 				</router-link>
-				<span class="acct">@{{ user | acct }} <fa v-if="user.isLocked == true" class="locked" icon="lock" fixed-width/></span>
-				<span v-if="user.movedToUser != null" class="moved">Moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
+				<span class="acct">@{{ acct(user) }} <fa v-if="user.isLocked == true" class="locked" icon="lock" fixed-width/></span>
+				<span v-if="user.movedToUser != null" class="moved">Moved to <router-link :to="userPage(user.movedToUser)"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
 				<span v-if="user.isFollowed" class="followed">{{ $t('follows-you') }}</span>
 			</div>
 		</header>
@@ -40,20 +40,20 @@
 			</div>
 			<div class="counts">
 				<div>
-					<router-link :to="user | userPage()">
-						<b>{{ user.notesCount | number }}</b>
+					<router-link :to="userPage(user)">
+						<b>{{ number(user.notesCount) }}</b>
 						<span>{{ $t('posts') }}</span>
 					</router-link>
 				</div>
 				<div>
-					<router-link :to="user | userPage('following')">
-						<b>{{ user.followingCount | number }}</b>
+					<router-link :to="userPage(user, 'following')">
+						<b>{{ number(user.followingCount) }}</b>
 						<span>{{ $t('following') }}</span>
 					</router-link>
 				</div>
 				<div>
-					<router-link :to="user | userPage('followers')">
-						<b>{{ user.followersCount | number }}</b>
+					<router-link :to="userPage(user, 'followers')">
+						<b>{{ number(user.followersCount) }}</b>
 						<span>{{ $t('followers') }}</span>
 					</router-link>
 				</div>
@@ -65,13 +65,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import parseAcct from '../../../../../misc/acct/parse';
 import XColumn from './deck.column.vue';
 import XUserMenu from '../../../common/views/components/user-menu.vue';
+import number from '../filters/v12/number';
+import { acct, userPage } from '../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('deck/deck.user-column.vue'),
 	components: {
 		XColumn,
@@ -121,6 +123,7 @@ export default Vue.extend({
 				w.destroyDom();
 			});
 		},
+		number, acct, userPage,
 	},
 });
 </script>

@@ -1,8 +1,8 @@
 <template>
-<span v-if="disableLink" v-once v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :title="user | acct" @click="onClick">
+<span v-if="disableLink" v-once v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :title="acct(user)" @click="onClick">
 	<img class="inner" :style="style" :src="url" decoding="async"/>
 </span>
-<router-link v-else v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :to="user | userPage" :title="user | acct" :target="target">
+<router-link v-else v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :to="userPage(user)" :title="acct(user)" :target="target">
 	<img class="inner" :style="style" :src="url" decoding="async"/>
 </router-link>
 </template>
@@ -10,6 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
+import { acct, userPage } from '../filters/v12/user';
 
 export default defineComponent({
 	props: {
@@ -70,6 +71,7 @@ export default defineComponent({
 		onClick(e) {
 			this.$emit('click', e);
 		},
+		acct, userPage,
 	},
 });
 </script>

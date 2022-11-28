@@ -6,12 +6,12 @@
 		<div class="mntrproz">
 			<div>
 				<b>In</b>
-				<span v-if="latestStats">{{ latestStats.inbox.activeSincePrevTick | number }} / {{ latestStats.inbox.delayed | number }}</span>
+				<span v-if="latestStats">{{ number(latestStats.inbox.activeSincePrevTick) }} / {{ number(latestStats.inbox.delayed) }}</span>
 				<div ref="in"></div>
 			</div>
 			<div>
 				<b>Out</b>
-				<span v-if="latestStats">{{ latestStats.deliver.activeSincePrevTick | number }} / {{ latestStats.deliver.delayed | number }}</span>
+				<span v-if="latestStats">{{ number(latestStats.deliver.activeSincePrevTick) }} / {{ number(latestStats.deliver.delayed) }}</span>
 				<div ref="out"></div>
 			</div>
 		</div>
@@ -20,16 +20,21 @@
 </template>
 
 <script lang="ts">
-import define from '../../define-widget';
+import define from '../../define-widget-define-component';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
+import { defineComponent } from 'vue';
+import number from '../filters/v12/number';
 
-export default define({
+const widget = define({
 	name: 'queue',
 	props: () => ({
 		compact: false,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widget,
 	data() {
 		return {
 			stats: [],
@@ -144,6 +149,7 @@ export default define({
 				this.onStats(stats);
 			}
 		},
+		number,
 	},
 });
 </script>

@@ -15,7 +15,7 @@
 				>
 					<mk-avatar class="avatar" :user="user" :key="user.id"/>
 					<span class="name"><mk-user-name :user="user" :key="user.id"/></span>
-					<span class="username">@{{ user | acct }}</span>
+					<span class="username">@{{ acct(user) }}</span>
 				</li>
 			</ol>
 		</div>
@@ -37,7 +37,7 @@
 				</header>
 				<header v-else>
 					<span class="name"><mk-user-name :user="isMe(message) ? message.recipient : message.user"/></span>
-					<span class="username">@{{ isMe(message) ? message.recipient : message.user | acct }}</span>
+					<span class="username">@{{ isMe(message) ? message.recipient : acct(message.user) }}</span>
 					<mk-time :time="message.createdAt"/>
 				</header>
 				<div class="body">
@@ -60,6 +60,7 @@ import { defineComponent } from 'vue';
 import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 import getAcct from '../../../../../misc/acct/render';
+import { acct } from '../filters/v12/user';
 
 export default defineComponent({
 	i18n: i18n('common/views/components/messaging.vue'),
@@ -206,13 +207,14 @@ export default defineComponent({
 				select: {
 					items: groups1.concat(groups2).map(group => ({
 						value: group, text: group.name
-					}))
+					})),
 				},
 				showCancelButton: true
 			});
 			if (canceled) return;
 			this.navigateGroup(group);
-		}
+		},
+		acct,
 	});
 </script>
 

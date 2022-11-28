@@ -12,8 +12,8 @@
 			<mk-avatar class="avatar" :user="user"/>
 			<div v-if="!iconOnly" class="body">
 				<div class="name">
-					<router-link v-user-preview="user.id" class="name" :to="user | userPage"><mk-user-name :user="user"/></router-link>
-					<p class="username">@{{ user | acct }}</p>
+					<router-link v-user-preview="user.id" class="name" :to="userPage(user)"><mk-user-name :user="user"/></router-link>
+					<p class="username">@{{ acct(user) }}</p>
 				</div>
 				<div v-if="user.description" class="description" :title="user.description">
 					<mfm :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis" :plain="true" :nowrap="true"/>
@@ -32,6 +32,7 @@
 import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import paging from '../../../common/scripts/paging';
+import { acct, userPage } from '../filters/v12/user';
 
 export default defineComponent({
 	i18n: i18n('common/views/components/user-list.vue'),
@@ -61,6 +62,10 @@ export default defineComponent({
 		users() {
 			return this.extract ? this.extract(this.items) : this.items;
 		},
+	},
+
+	methods: {
+		acct, userPage,
 	},
 });
 </script>

@@ -21,14 +21,14 @@
 			<sequential-entrance animation="entranceFromTop" delay="25">
 				<div v-for="user in users" class="phcqulfl">
 					<div>
-						<a :href="user | userPage">
+						<a :href="userPage(user)">
 							<mk-avatar class="avatar" :user="user" :disable-link="true"/>
 						</a>
 					</div>
 					<div>
 						<header>
 							<b><mk-user-name :user="user"/></b>
-							<span class="username">@{{ user | acct }}</span>
+							<span class="username">@{{ acct(user) }}</span>
 						</header>
 						<div>
 							<a @click="remove(user)">{{ $t('remove-user') }}</a>
@@ -42,12 +42,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { faListUl, faICursor, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { acct, userPage } from '../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/user-list-editor.vue'),
 
 	props: {
@@ -148,6 +149,8 @@ export default Vue.extend({
 				this.fetchUsers();
 			});
 		},
+
+		acct, userPage,
 	},
 });
 </script>

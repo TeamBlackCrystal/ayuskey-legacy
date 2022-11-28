@@ -6,7 +6,7 @@
 			<span class="name">
 				<mk-user-name :key="user.id" :user="user"/>
 			</span>
-			<span class="username">@{{ user | acct }}</span>
+			<span class="username">@{{ acct(user) }}</span>
 		</li>
 	</ol>
 	<ol v-if="hashtags.length > 0" ref="suggests" class="hashtags">
@@ -32,6 +32,7 @@ import { emojilist } from '../../../../../misc/emojilist';
 import contains from '../../../common/scripts/contains';
 import { twemojiSvgBase } from '../../../../../misc/twemoji-base';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
+import { acct } from '../../../common/views/filters/v12/user';
 
 type EmojiDef = {
 	emoji: string;
@@ -386,6 +387,8 @@ export default defineComponent({
 				(this.items[this.select] as any).focus();
 			}
 		},
+
+		acct,
 	},
 });
 </script>

@@ -3,9 +3,9 @@
 	<x-pie class="pie" :value="usage" />
 	<div>
 		<p><fa icon="memory" />Memory</p>
-		<p>Total: {{ total | bytes(1) }}</p>
-		<p>Used: {{ used | bytes(1) }}</p>
-		<p>Free: {{ free | bytes(1) }}</p>
+		<p>Total: {{ bytes(total, 1) }}</p>
+		<p>Used: {{ bytes(used, 1) }}</p>
+		<p>Free: {{ bytes(free, 1) }}</p>
 	</div>
 </div>
 </template>
@@ -14,12 +14,16 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import Stream from '../../scripts/stream';
 import XPie from './server.pie.vue';
+import _bytes from '../filters/v12/bytes';
 
 const { connection } = defineProps({ connection: { type: Stream } });
 let usage = ref(0);
 let total = ref(0);
 let used = ref(0);
 let free = ref(0);
+
+// TODO: いい感じに
+const bytes = (v: any, d?: number) => _bytes(v, d);
 
 const onStats = (stats) => {
 	stats.mem.free = stats.mem.total - stats.mem.used;
