@@ -50,7 +50,7 @@ specifiers:
   '@types/koa__multer': 2.0.4
   '@types/koa__router': 8.0.11
   '@types/lolex': 5.1.2
-  '@types/mocha': 10.0.0
+  '@types/mocha': 10.0.1
   '@types/node': 18.11.9
   '@types/node-fetch': 2.6.2
   '@types/nodemailer': 6.4.6
@@ -470,7 +470,7 @@ devDependencies:
   '@types/koa__multer': 2.0.4
   '@types/koa__router': 8.0.11
   '@types/lolex': 5.1.2
-  '@types/mocha': 10.0.0
+  '@types/mocha': 10.0.1
   '@types/node': 18.11.9
   '@types/node-fetch': 2.6.2
   '@types/nodemailer': 6.4.6
@@ -1187,7 +1187,7 @@ packages:
   /@types/gulp-mocha/0.0.33:
     resolution: {integrity: sha512-NPObaXGsFZxG1wOA76XFS2g17EL6PjMLyZg0HGWBjdNlrXzWTiiUTJBj1zj2OKXOm7OOCHFEcjHxKSGnc3JjRg==}
     dependencies:
-      '@types/mocha': 10.0.0
+      '@types/mocha': 10.0.1
       '@types/node': 18.11.9
     dev: true
 
@@ -1359,8 +1359,8 @@ packages:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
-  /@types/mocha/10.0.0:
-    resolution: {integrity: sha512-rADY+HtTOA52l9VZWtgQfn4p+UDVM2eDVkMZT1I6syp0YKxW2F9v+0pbRZLsvskhQv/vMb6ZfCay81GHbz5SHg==}
+  /@types/mocha/10.0.1:
+    resolution: {integrity: sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==}
     dev: true
 
   /@types/node-fetch/2.6.2:
