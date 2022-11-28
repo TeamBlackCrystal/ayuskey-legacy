@@ -3,9 +3,9 @@
 	<div ref="body" v-hotkey.global="keymap" class="qlvquzbjribqcaozciifydkngcwtyzje" :style="style" :class="`${$store.state.device.deckColumnAlign} ${$store.state.device.deckColumnWidth}`">
 		<template v-for="(ids, layoutIndex) in layoutL">
 			<div v-if="ids.length > 1" class="folder">
-				<template v-for="(id, stackIndex) in ids">
+				<template v-for="(id, stackIndex) in ids" :key="id">
 					<x-column-core
-						:ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
+						:ref="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
 							first: layoutIndex === 0,
 							last: layoutIndex === layoutL.length - 1 && layoutR.length === 0,
 							top: stackIndex === 0,
@@ -27,9 +27,9 @@
 		<router-view></router-view>
 		<template v-for="(ids, layoutIndex) in layoutR">
 			<div v-if="ids.length > 1" class="folder">
-				<template v-for="(id, stackIndex) in ids">
+				<template v-for="(id, stackIndex) in ids" :key="id">
 					<x-column-core
-						:ref="id" :key="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
+						:ref="id" :column="columns.find(c => c.id == id)" :is-stacked="true" :pos="{
 							first: layoutIndex === 0 && layoutL.length === 0,
 							last: layoutIndex === layoutR.length - 1,
 							top: stackIndex === 0,
@@ -171,7 +171,7 @@ export default Vue.extend({
 		document.documentElement.style.overflow = 'hidden';
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		document.documentElement.style.overflow = 'auto';
 	},
 

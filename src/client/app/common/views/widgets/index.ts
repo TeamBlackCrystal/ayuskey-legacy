@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { App } from 'vue';
 
 import wAnalogClock from './analog-clock.vue';
 import wVersion from './version.vue';
@@ -16,21 +16,23 @@ import wHashtags from './hashtags.vue';
 import wInstance from './instance.vue';
 import wPostForm from './post-form.vue';
 
-Vue.component('MkwAnalogClock', wAnalogClock);
-Vue.component('MkwNav', wNav);
-Vue.component('MkwCalendar', wCalendar);
-Vue.component('MkwPhotoStream', wPhotoStream);
-Vue.component('MkwSlideshow', wSlideshow);
-Vue.component('MkwTips', wTips);
-Vue.component('MkwBroadcast', wBroadcast);
-Vue.component('MkwServer', wServer);
-Vue.component('MkwPostsMonitor', wPostsMonitor);
-Vue.component('MkwMemo', wMemo);
-Vue.component('MkwRss', wRss);
-Vue.component('MkwVersion', wVersion);
-Vue.component('MkwHashtags', wHashtags);
-Vue.component('MkwInstance', wInstance);
-Vue.component('MkwPostForm', wPostForm);
-Vue.component('MkwQueue', () => import('./queue.vue').then(m => m.default));
-Vue.component('MkwJobQueue', () => import('./job-queue.vue').then(m => m.default));
-Vue.component('MkwAichan', () => import('./aichan.vue').then(m => m.default));
+export default function(app: App) {
+	app.component('MkwAnalogClock', wAnalogClock);
+	app.component('MkwNav', wNav);
+	app.component('MkwCalendar', wCalendar);
+	app.component('MkwPhotoStream', wPhotoStream);
+	app.component('MkwSlideshow', wSlideshow);
+	app.component('MkwTips', wTips);
+	app.component('MkwBroadcast', wBroadcast);
+	app.component('MkwServer', wServer);
+	app.component('MkwPostsMonitor', wPostsMonitor);
+	app.component('MkwMemo', wMemo);
+	app.component('MkwRss', wRss);
+	app.component('MkwVersion', wVersion);
+	app.component('MkwHashtags', wHashtags);
+	app.component('MkwInstance', wInstance);
+	app.component('MkwPostForm', wPostForm);
+	app.component('MkwQueue', () => import('./queue.vue').then(m => m.default));
+	app.component('MkwJobQueue', () => import('./job-queue.vue').then(m => m.default));
+	app.component('MkwAichan', () => import('./aichan.vue').then(m => m.default));
+}

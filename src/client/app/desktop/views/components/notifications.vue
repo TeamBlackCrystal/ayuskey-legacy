@@ -1,16 +1,16 @@
 <template>
 <div class="mk-notifications">
 	<div v-if="fetching" class="placeholder">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10"  :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<div v-if="!empty" class="notifications">
 		<!-- トランジションを有効にするとなぜかメモリリークする -->
 		<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notifications" class="transition" tag="div">
-			<template v-for="(notification, i) in _notifications">
-				<div :key="notification.id" class="notification" :class="notification.type">
+			<template v-for="(notification, i) in _notifications" :key="notification.id">
+				<div class="notification" :class="notification.type">
 					<template v-if="notification.type == 'reaction'">
 						<mk-avatar class="avatar" :user="notification.user"/>
 						<div class="text">
@@ -140,7 +140,7 @@
 					</template>
 				</div>
 
-				<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" :key="notification.id + '-time'" class="date">
+				<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" class="date">
 					<span><fa icon="angle-up"/>{{ notification._datetext }}</span>
 					<span><fa icon="angle-down"/>{{ _notifications[i + 1]._datetext }}</span>
 				</p>
@@ -215,7 +215,7 @@ export default Vue.extend({
 		this.connection.on('notification', this.onNotification);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

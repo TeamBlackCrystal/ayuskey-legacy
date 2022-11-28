@@ -50,13 +50,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import { calcAge } from '../../../../../../misc/calc-age';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
 import XIntegrations from '../../../../common/views/components/integrations.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/pages/user/user.header.vue'),
 	components: {
 		XIntegrations,
@@ -82,7 +82,7 @@ export default Vue.extend({
 			//window.addEventListener('resize', this.onScroll);
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.user.bannerUrl) {
 			//window.removeEventListener('load', this.onScroll);
 			//window.removeEventListener('scroll', this.onScroll);

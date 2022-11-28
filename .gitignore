@@ -7,7 +7,7 @@
 /.idea
 
 # Node.js
-/node_modules
+node_modules
 
 # config
 /.config/*
@@ -17,7 +17,7 @@
 
 # misskey
 /build
-/built
+built
 /data
 /.cache-loader
 /db

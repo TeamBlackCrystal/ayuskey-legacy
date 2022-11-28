@@ -1,7 +1,9 @@
-import Vue from 'vue';
+import { App } from 'vue';
 
 import autocomplete from './autocomplete';
 import particle from './particle';
 
-Vue.directive('autocomplete', autocomplete);
-Vue.directive('particle', particle);
+export default function(app: App) {
+	app.directive('autocomplete', autocomplete);
+	app.directive('particle', particle);
+}

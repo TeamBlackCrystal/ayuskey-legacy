@@ -108,7 +108,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 // import MkSettingsWindow from './settings-window.vue';
 import MkDriveWindow from './drive-window.vue';
@@ -116,7 +116,7 @@ import contains from '../../../common/scripts/contains';
 import { faHome, faColumns, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/ui.header.account.vue'),
 	data() {
 		return {
@@ -132,7 +132,7 @@ export default Vue.extend({
 			};
 		},
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.close();
 	},
 	mounted() {

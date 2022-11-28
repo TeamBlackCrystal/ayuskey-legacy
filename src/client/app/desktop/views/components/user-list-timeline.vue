@@ -40,7 +40,7 @@ export default Vue.extend({
 			this.$root.$off('warp', this.warp);
 		});
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

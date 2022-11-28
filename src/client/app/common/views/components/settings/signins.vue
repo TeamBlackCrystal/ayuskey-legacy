@@ -38,7 +38,7 @@ export default Vue.extend({
 		this.connection.on('signin', this.onSignin);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

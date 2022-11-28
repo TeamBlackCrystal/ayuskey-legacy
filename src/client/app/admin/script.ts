@@ -2,7 +2,7 @@
  * Admin
  */
 
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 // Style
 import './style.styl';
@@ -15,13 +15,12 @@ init(launch => {
 	document.title = 'Admin';
 
 	// Init router
-	const router = new VueRouter({
-		mode: 'history',
-		base: '/admin/',
+	const router = createRouter({
+		history: createWebHistory('/admin/'),
 		routes: [
 			{ path: '/:page', component: Index },
 			{ path: '/', redirect: '/dashboard' },
-			{ path: '*', component: NotFound },
+			{ path: '/:pathMatch(.*)*', component: NotFound },
 		],
 	});
 

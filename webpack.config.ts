@@ -67,7 +67,10 @@ module.exports = {
 					sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
 					cssSourceMap: false,
 					compilerOptions: {
-						preserveWhitespace: false
+						preserveWhitespace: false,
+						compatConfig: {
+              MODE: 2
+            }
 					}
 				}
 			}, {
@@ -187,7 +190,9 @@ module.exports = {
 			_VERSION_: JSON.stringify(version),
 			_CODENAME_: JSON.stringify(codename),
 			_LANGS_: JSON.stringify(Object.entries(locales).map(([k, v]: [string, any]) => [k, v && v.meta && v.meta.lang])),
-			_ENV_: JSON.stringify(process.env.NODE_ENV)
+			_ENV_: JSON.stringify(process.env.NODE_ENV),
+			__VUE_OPTIONS_API__: true,
+			__VUE_PROD_DEVTOOLS__: false,
 		}),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development')
@@ -214,7 +219,8 @@ module.exports = {
 		alias: {
 			'@client': __dirname + '/src/client/app',
 			'@': __dirname + '/src',
-			'const.styl': __dirname + '/src/client/const.styl'
+			'const.styl': __dirname + '/src/client/const.styl',
+			vue: '@vue/compat'
 		}
 	},
 	resolveLoader: {
@@ -225,6 +231,7 @@ module.exports = {
 			parallel: 1
 		})]
 	},
-	devtool: false, //'source-map',
+	// FIXME
+	devtool: 'source-map', //'source-map',
 	mode: isProduction ? 'production' : 'development'
 };

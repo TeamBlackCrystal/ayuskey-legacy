@@ -3,9 +3,9 @@
 	<nav>
 		<div class="path" @contextmenu.prevent.stop="() => {}">
 			<x-nav-folder :class="{ current: folder == null }"/>
-			<template v-for="folder in hierarchyFolders">
+			<template v-for="folder in hierarchyFolders" :key="folder.id">
 				<span class="separator"><fa icon="angle-right"/></span>
-				<x-nav-folder :key="folder.id" :folder="folder"/>
+				<x-nav-folder :folder="folder"/>
 			</template>
 			<span v-if="folder != null" class="separator"><fa icon="angle-right"/></span>
 			<span v-if="folder != null" class="folder current">{{ folder.name }}</span>
@@ -134,7 +134,7 @@ export default Vue.extend({
 			this.fetch();
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

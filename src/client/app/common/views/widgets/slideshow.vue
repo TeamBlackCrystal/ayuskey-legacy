@@ -44,7 +44,7 @@ export default define({
 
 		this.clock = setInterval(this.change, 10000);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

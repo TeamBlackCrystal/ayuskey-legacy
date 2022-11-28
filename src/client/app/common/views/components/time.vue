@@ -75,7 +75,7 @@ export default Vue.extend({
 			this.tickId = window.requestAnimationFrame(this.tick);
 		}
 	},
-	destroyed() {
+	unmounted() {
 		if (this.mode === 'relative' || this.mode === 'detail' || this.mode == 'absolute_smart' || this.mode == 'default_mode') {
 			window.clearTimeout(this.tickId);
 		}

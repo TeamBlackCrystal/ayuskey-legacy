@@ -129,7 +129,7 @@ export default Vue.extend({
 		}
 	},
 
-	destroyed() {
+	unmounted() {
 		// ウィンドウをウィンドウシステムから削除
 		this.$root.os.windows.remove(this);
 

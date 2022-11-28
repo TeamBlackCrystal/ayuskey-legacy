@@ -2,9 +2,9 @@
  * App initializer
  */
 
-import Vue, { h } from 'vue';
+import Vue, { App, createApp, h } from 'vue';
 import Vuex from 'vuex';
-import VueRouter from 'vue-router';
+import { Router } from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
@@ -14,12 +14,15 @@ import 'highlight.js/styles/monokai.css';
 
 import VueHotkey from './common/hotkey';
 import VueSize from './common/size';
-import App from './app.vue';
+import AppBase from './app.vue';
 import checkForUpdate from './common/scripts/check-for-update';
 import MiOS from './mios';
 import { version, codename, lang, locale } from './config';
 import { builtinThemes, applyTheme, darkTheme } from './theme';
 import Dialog from './common/views/components/dialog.vue';
+import directives from './common/views/directives';
+import components from './common/views/components';
+import widgets from './common/views/widgets';
 
 if (localStorage.getItem('theme') == null) {
 	applyTheme(darkTheme);
@@ -311,8 +314,8 @@ library.add(
 );
 //#endregion
 
-Vue.use(Vuex);
-Vue.use(VueRouter);
+//Vue.use(Vuex);
+//Vue.use(VueRouter);
 Vue.use(VAnimateCss);
 Vue.use(VModal);
 Vue.use(VueHotkey);
@@ -321,29 +324,22 @@ Vue.use(VueI18n);
 Vue.use(SequentialEntrance);
 Vue.use(hljs.vuePlugin);
 
-Vue.component('Fa', FontAwesomeIcon);
-
-// Register global directives
-require('./common/views/directives');
-
-// Register global components
-require('./common/views/components');
-require('./common/views/widgets');
-
 // Register global filters
 require('./common/views/filters');
 
-Vue.mixin({
-	methods: {
-		destroyDom() {
-			this.$destroy();
+function initMixin(app: App) {
+	app.mixin({
+		methods: {
+			destroyDom() {
+				this.$destroy();
 
-			if (this.$el.parentNode) {
-				this.$el.parentNode.removeChild(this.$el);
-			}
+				if (this.$el.parentNode) {
+					this.$el.parentNode.removeChild(this.$el);
+				}
+			},
 		},
-	},
-});
+	});
+}
 
 /**
  * APP ENTRY POINT!
@@ -381,14 +377,14 @@ if (localStorage.getItem('should-refresh') == 'true') {
 }
 
 // MiOSを初期化してコールバックする
-export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS) => void, sw = false) => {
+export default (callback: (launch: (router: Router) => [App, MiOS], os: MiOS) => void, sw = false) => {
 	const os = new MiOS(sw);
 
 	os.init(() => {
 		// アプリ基底要素マウント
 		document.body.innerHTML = '<div id="app"></div>';
 
-		const launch = (router: VueRouter) => {
+		const launch = (router: Router) => {
 			//#region theme
 			os.store.watch(s => {
 				return s.device.darkmode;
@@ -460,9 +456,8 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 				}
 			}, { passive: true });
 
-			const app = new Vue({
+			const app = createApp({
 				i18n: i18n(),
-				store: os.store,
 				data() {
 					return {
 						os: {
@@ -509,22 +504,40 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 						return p;
 					},
 				},
-				router,
-				render: () => h(App),
+				render: () => h(AppBase),
 			});
+
+			app.use(os.store);
+			app.use(router);
+
+			initMixin(app);
+
+			// Register global directives
+			directives(app);
+
+			// Register global components
+			components(app);
+			widgets(app);
+
+			app.config.globalProperties.$api = os.api,
+
+			app.component('Fa', FontAwesomeIcon);
 
 			os.app = app;
 
 			// マウント
-			app.$mount('#app');
+			app.mount('#app');
 
+			// FIXME
 			//#region 更新チェック
+			/*
 			setTimeout(() => {
 				checkForUpdate(app);
 			}, 3000);
 			//#endregion
+			*/
 
-			return [app, os] as [Vue, MiOS];
+			return [app, os] as [App<Element>, MiOS];
 		};
 
 		// Deck mode

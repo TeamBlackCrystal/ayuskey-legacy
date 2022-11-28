@@ -2,7 +2,7 @@
  * Authorize Form
  */
 
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 // Style
 import './style.styl';
@@ -16,12 +16,11 @@ import NotFound from '../common/views/pages/not-found.vue';
  */
 init(launch => {
 	// Init router
-	const router = new VueRouter({
-		mode: 'history',
-		base: '/auth/',
+	const router = createRouter({
+		history: createWebHistory('/auth/'),
 		routes: [
 			{ path: '/:token', component: Index },
-			{ path: '*', component: NotFound },
+			{ path: '/:pathMatch(.*)*', component: NotFound },
 		],
 	});
 

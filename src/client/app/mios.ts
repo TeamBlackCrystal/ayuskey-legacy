@@ -1,5 +1,5 @@
 import autobind from 'autobind-decorator';
-import Vue, { h } from 'vue';
+import { App, createApp, h } from 'vue';
 import { EventEmitter } from 'eventemitter3';
 import { v4 as uuid } from 'uuid';
 
@@ -39,7 +39,7 @@ export default class MiOS extends EventEmitter {
 
 	private isMetaFetching = false;
 
-	public app: Vue;
+	public app: App<Element>;
 
 	/**
 	 * Whether is debug mode
@@ -159,9 +159,9 @@ export default class MiOS extends EventEmitter {
 			.catch(() => {
 				// Render the error screen
 				document.body.innerHTML = '<div id="err"></div>';
-				new Vue({
+				createApp({
 					render: () => h(Err),
-				}).$mount('#err');
+				}).mount('#err');
 
 				Progress.done();
 			});

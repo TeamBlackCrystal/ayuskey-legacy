@@ -1,3 +1,75 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { toUnicode } from 'punycode';
+import { host, url } from '../../../config';
+import _i18n from '../../../i18n';
+import { api } from '../../../os';
+
+const getPasswordStrength = require('syuilo-password-strength');
+const i18n = _i18n('common/views/components/signup.vue');
+const unicodeHost = toUnicode(host);
+const username = ref('');
+const password = ref('');
+const retypedPassword = ref('');
+const invitationCode = '';
+const usernameState = ref('');
+const passwordStrength = ref('');
+const passwordRetypeState = ref(null);
+const meta = {};
+const submitting = false;
+const ToSAgreement = false;
+const reCaptchaResponse = null;
+const hCaptchaResponse = null;
+
+function onChangeUsername() {
+	if (username.value === '') {
+		usernameState.value = null;
+		return;
+	}
+
+	const err =
+		!username.value.match(/^[a-zA-Z0-9_]+$/) ? 'invalid-format' :
+		username.value.length < 1 ? 'min-range' :
+		username.value.length > 20 ? 'max-range' :
+		null;
+
+	if (err) {
+		usernameState.value = err;
+		return;
+	}
+
+	usernameState.value = 'wait';
+
+	api('username/available', {
+		username: username.value,
+	}).then(result => {
+		usernameState.value = result.available ? 'ok' : 'unavailable';
+	}).catch(err => {
+		usernameState.value = 'error';
+	});
+}
+
+function onChangePassword() {
+	if (password.value === '') {
+		passwordStrength.value = '';
+		return;
+	}
+
+	const strength = getPasswordStrength(password);
+	passwordStrength.value = strength > 0.7 ? 'high' : strength > 0.3 ? 'medium' : 'low';
+}
+
+function onChangePasswordRetype() {
+	if (retypedPassword.value === '') {
+		passwordRetypeState.value = null;
+		return;
+	}
+	console.log('ここ2', retypedPassword, password);
+	passwordRetypeState.value = password.value === retypedPassword.value ? 'match' : 'not-match';
+}
+
+</script>
+
 <template>
 <form class="mk-signup" :autocomplete="Math.random()" @submit.prevent="onSubmit">
 	<template v-if="meta">
@@ -9,7 +81,7 @@
 		<ui-input v-model="username" type="text" pattern="^[a-zA-Z0-9_]{1,20}$" :autocomplete="Math.random()" spellcheck="false" required styl="fill" @input="onChangeUsername">
 			<span>{{ $t('username') }}</span>
 			<template #prefix>@</template>
-			<template #suffix>@{{ host }}</template>
+			<template #suffix>@{{ unicodeHost }}</template>
 			<template #desc>
 				<span v-if="usernameState == 'wait'" style="color:#999"><fa icon="spinner" pulse fixed-width/> {{ $t('checking') }}</span>
 				<span v-if="usernameState == 'ok'" style="color:#3CB7B5"><fa icon="check" fixed-width/> {{ $t('available') }}</span>
@@ -49,6 +121,8 @@
 </form>
 </template>
 
+
+<!-- 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
@@ -85,10 +159,10 @@ export default defineComponent({
 
 	computed: {
 		shouldShowProfileUrl(): boolean {
-			return (this.username != '' &&
-				this.usernameState != 'invalid-format' &&
-				this.usernameState != 'min-range' &&
-				this.usernameState != 'max-range');
+			return (this.username !== '' &&
+				this.usernameState !== 'invalid-format' &&
+				this.usernameState !== 'min-range' &&
+				this.usernameState !== 'max-range');
 		},
 	},
 
@@ -139,10 +213,11 @@ export default defineComponent({
 
 		onChangePasswordRetype() {
 			if (this.retypedPassword == '') {
+				console.log('ここ', this.retypedPassword);
 				this.passwordRetypeState = null;
 				return;
 			}
-
+			console.log('ここ2', this.retypedPassword, this.password);
 			this.passwordRetypeState = this.password == this.retypedPassword ? 'match' : 'not-match';
 		},
 
@@ -178,7 +253,7 @@ export default defineComponent({
 		},
 	},
 });
-</script>
+</script> -->
 
 <style lang="stylus" scoped>
 .mk-signup

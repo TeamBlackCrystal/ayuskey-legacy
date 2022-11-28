@@ -153,13 +153,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { host, copyright } from '../../../config';
 import { concat } from '../../../../../prelude/array';
 import { toUnicode } from 'punycode';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/pages/welcome.vue'),
 	data() {
 		return {

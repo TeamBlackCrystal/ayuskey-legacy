@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import MkGameWindow from './game-window.vue';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/ui.header.nav.vue'),
 	data() {
 		return {
@@ -44,7 +44,7 @@ export default Vue.extend({
 			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection.dispose();
 		}

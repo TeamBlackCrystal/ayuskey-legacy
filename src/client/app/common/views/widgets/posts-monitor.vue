@@ -120,7 +120,7 @@ export default define({
 			id: Math.random().toString().substr(2, 8),
 		});
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

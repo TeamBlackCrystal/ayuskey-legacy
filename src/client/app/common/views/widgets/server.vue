@@ -59,7 +59,7 @@ export default define({
 
 		this.connection = this.$root.stream.useSharedConnection('serverStats');
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

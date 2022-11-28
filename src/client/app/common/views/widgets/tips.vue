@@ -56,7 +56,7 @@ export default defineComponent({
 
 		this.clock = setInterval(this.change, 20000);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

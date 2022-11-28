@@ -61,13 +61,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { faChartLine, faPlus, faHashtag, faRocket, faCertificate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import endpoint from '../../../../../server/api/endpoints/endpoint';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/pages/explore.vue'),
 
 	inject: {

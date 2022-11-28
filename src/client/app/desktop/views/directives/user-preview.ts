@@ -5,7 +5,7 @@
 import MkUserPreview from '../components/user-preview.vue';
 
 export default {
-	bind(el, binding, vn) {
+	mounted(el, binding, vn) {
 		const self = el._userPreviewDirective_ = {} as any;
 
 		self.user = binding.value;
@@ -63,7 +63,7 @@ export default {
 		});
 	},
 
-	unbind(el, binding, vn) {
+	unmounted(el, binding, vn) {
 		const self = el._userPreviewDirective_;
 		clearTimeout(self.showTimer);
 		clearTimeout(self.hideTimer);

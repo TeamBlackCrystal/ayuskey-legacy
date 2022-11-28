@@ -32,7 +32,7 @@ export default Vue.extend({
 		document.addEventListener('keydown', this.onDocumentKeydown);
 		Progress.start();
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		document.removeEventListener('keydown', this.onDocumentKeydown);
 	},
 	methods: {

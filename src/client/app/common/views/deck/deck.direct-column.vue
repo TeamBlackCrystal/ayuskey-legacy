@@ -64,7 +64,7 @@ export default Vue.extend({
 		this.connection.on('mention', this.onNote);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

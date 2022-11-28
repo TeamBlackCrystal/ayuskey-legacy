@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { App } from 'vue';
 
 import ui from './ui.vue';
 import uiNotification from './ui-notification.vue';
@@ -17,19 +17,21 @@ import activity from './activity.vue';
 import userListTimeline from './user-list-timeline.vue';
 import uiContainer from './ui-container.vue';
 
-Vue.component('MkUi', ui);
-Vue.component('MkUiNotification', uiNotification);
-Vue.component('MkNote', note);
-Vue.component('MkNotes', notes);
-Vue.component('MkSubNoteContent', subNoteContent);
-Vue.component('MkWindow', window);
-Vue.component('MkRenoteFormWindow', renoteFormWindow);
-Vue.component('MkMediaVideo', mediaVideo);
-Vue.component('MkNotifications', notifications);
-Vue.component('MkRenoteForm', renoteForm);
-Vue.component('MkNotePreview', notePreview);
-Vue.component('MkNoteDetail', noteDetail);
-Vue.component('MkCalendar', calendar);
-Vue.component('MkActivity', activity);
-Vue.component('MkUserListTimeline', userListTimeline);
-Vue.component('UiContainer', uiContainer);
+export default function(app: App) {
+	app.component('MkUi', ui);
+	app.component('MkUiNotification', uiNotification);
+	app.component('MkNote', note);
+	app.component('MkNotes', notes);
+	app.component('MkSubNoteContent', subNoteContent);
+	app.component('MkWindow', window);
+	app.component('MkRenoteFormWindow', renoteFormWindow);
+	app.component('MkMediaVideo', mediaVideo);
+	app.component('MkNotifications', notifications);
+	app.component('MkRenoteForm', renoteForm);
+	app.component('MkNotePreview', notePreview);
+	app.component('MkNoteDetail', noteDetail);
+	app.component('MkCalendar', calendar);
+	app.component('MkActivity', activity);
+	app.component('MkUserListTimeline', userListTimeline);
+	app.component('UiContainer', uiContainer);
+}

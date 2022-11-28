@@ -79,11 +79,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import debounce from 'v-debounce';
 const getPasswordStrength = require('syuilo-password-strength');
 
-export default Vue.extend({
+export default defineComponent({
 	directives: {
 		debounce,
 	},
@@ -252,7 +252,7 @@ export default Vue.extend({
 			this.$refs.input.focus();
 		},
 		togglePassword() {
-			if (this.type == 'password') {
+			if (this.type === 'password') {
 				this.type = 'text';
 			} else {
 				this.type = 'password';

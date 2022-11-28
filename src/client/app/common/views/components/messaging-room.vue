@@ -10,8 +10,8 @@
 		<button class="more" :class="{ fetching: fetchingMoreMessages }" v-if="existMoreMessages" @click="fetchMoreMessages" :disabled="fetchingMoreMessages">
 			<template v-if="fetchingMoreMessages"><fa icon="spinner" pulse fixed-width/></template>{{ fetchingMoreMessages ? $t('@.loading') : $t('@.load-more') }}
 		</button>
-		<template v-for="(message, i) in _messages">
-			<x-message :message="message" :key="message.id" :is-group="group != null"/>
+		<template v-for="(message, i) in _messages" :key="message.id">
+			<x-message :message="message" :is-group="group != null"/>
 			<p class="date" v-if="i != messages.length - 1 && message._date != _messages[i + 1]._date">
 				<span>{{ _messages[i + 1]._datetext }}</span>
 			</p>
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XMessage from './messaging-room.message.vue';
 import XForm from './messaging-room.form.vue';
@@ -37,7 +37,7 @@ import * as sound from '../../../common/scripts/sound';
 import { url } from '../../../config';
 import { faArrowCircleDown, faFlag } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/messaging-room.vue'),
 
 	components: {
@@ -113,7 +113,7 @@ export default Vue.extend({
 		});
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 
 		if (this.isNaked) {

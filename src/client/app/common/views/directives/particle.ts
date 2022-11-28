@@ -1,7 +1,7 @@
 import Particle from '../components/particle.vue';
 
 export default {
-	bind(el, binding, vn) {
+	mounted(el, binding, vn) {
 		if (vn.context.$store.state.device.reduceMotion) return;
 
 		el.addEventListener('click', () => {

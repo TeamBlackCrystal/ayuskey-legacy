@@ -57,7 +57,7 @@ export default Vue.extend({
 		this.connection.on('userRemoved', this.onUserRemoved);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

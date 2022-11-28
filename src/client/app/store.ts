@@ -1,5 +1,5 @@
 import Vue, { ref } from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
 
@@ -95,7 +95,7 @@ const defaultDeviceSettings = {
 	recentEmojis: [],
 };
 
-export default (os: MiOS) => new Vuex.Store({
+export default (os: MiOS) => createStore({
 	plugins: [createPersistedState({
 		paths: ['i', 'device', 'settings'],
 	})],

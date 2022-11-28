@@ -45,7 +45,7 @@ export default Vue.extend({
 	updated() {
 		this.resize();
 	},
-	destroyed() {
+	unmounted() {
 		window.cancelAnimationFrame(this.anim);
 	},
 	methods: {

@@ -1,6 +1,8 @@
-import Vue from 'vue';
+import { App } from 'vue';
 
 import userPreview from './user-preview';
 
-Vue.directive('userPreview', userPreview);
-Vue.directive('user-preview', userPreview);
+export default function(app: App) {
+	app.directive('userPreview', userPreview);
+	app.directive('user-preview', userPreview);
+}

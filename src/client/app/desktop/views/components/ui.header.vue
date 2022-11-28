@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { env } from '../../../config';
 
@@ -40,7 +40,7 @@ import XPost from './ui.header.post.vue';
 import XClock from './ui.header.clock.vue';
 import XMessaging from './ui.header.messaging.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		XNav,

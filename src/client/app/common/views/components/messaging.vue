@@ -56,12 +56,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 import getAcct from '../../../../../misc/acct/render';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/messaging.vue'),
 	props: {
 		compact: {
@@ -99,7 +99,7 @@ export default Vue.extend({
 			});
 		});
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 	methods: {

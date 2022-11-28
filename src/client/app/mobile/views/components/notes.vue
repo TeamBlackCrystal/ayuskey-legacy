@@ -5,16 +5,16 @@
 	<mk-error v-if="error" @retry="init()"/>
 
 	<div v-if="fetching" class="placeholder">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10" :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notes" class="transition" tag="div">
-		<template v-for="(note, i) in _notes">
-			<mk-note :key="note.id" :note="note"/>
-			<p v-if="i != items.length - 1 && note._date != _notes[i + 1]._date" :key="note.id + '_date'" class="date">
+		<template v-for="(note, i) in _notes" :key="note.id">
+			<mk-note :note="note"/>
+			<p v-if="i != items.length - 1 && note._date != _notes[i + 1]._date" class="date">
 				<span><fa icon="angle-up"/>{{ note._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notes[i + 1]._datetext }}</span>
 			</p>

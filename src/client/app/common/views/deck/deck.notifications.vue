@@ -1,16 +1,16 @@
 <template>
 <div class="oxynyeqmfvracxnglgulyqfgqxnxmehl">
 	<div v-if="fetching" class="placeholder">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10" :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notifications" class="transition notifications" tag="div">
-		<template v-for="(notification, i) in _notifications">
-			<x-notification :key="notification.id" class="notification" :notification="notification"/>
-			<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" :key="notification.id + '-time'" class="date">
+		<template v-for="(notification, i) in _notifications" :key="notification.id">
+			<x-notification class="notification" :notification="notification"/>
+			<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" class="date">
 				<span><fa icon="angle-up"/>{{ notification._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notifications[i + 1]._datetext }}</span>
 			</p>
@@ -97,7 +97,7 @@ export default Vue.extend({
 		this.column.$on('bottom', this.onBottom);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 
 		this.column.$off('top', this.onTop);

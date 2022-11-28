@@ -62,10 +62,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { v4 as uuid } from 'uuid';
 
-export default Vue.extend({
+export default defineComponent({
 	props: ['connection'],
 	data() {
 		return {
@@ -95,7 +95,7 @@ export default Vue.extend({
 			id: Math.random().toString().substr(2, 8),
 		});
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('stats', this.onStats);
 		this.connection.off('statsLog', this.onStatsLog);
 	},

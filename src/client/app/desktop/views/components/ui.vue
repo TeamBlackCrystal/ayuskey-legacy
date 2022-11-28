@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import XHeader from './ui.header.vue';
 import XSidebar from './ui.sidebar.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		XHeader,
 		XSidebar,

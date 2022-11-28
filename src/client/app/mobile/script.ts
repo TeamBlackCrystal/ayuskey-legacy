@@ -3,7 +3,7 @@
  */
 
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import VueRouter, { createRouter, createWebHistory } from 'vue-router';
 
 // Style
 import './style.styl';
@@ -113,8 +113,8 @@ init((launch, os) => {
 	document.body.setAttribute('ontouchstart', '');
 
 	// Init router
-	const router = new VueRouter({
-		mode: 'history',
+	const router = createRouter({
+		history: createWebHistory(),
 		routes: [
 			...(os.store.state.device.inDeckMode
 				? [{ path: '/', name: 'index', component: () => import('../common/views/deck/deck.vue').then(m => m.default), children: [
@@ -182,7 +182,7 @@ init((launch, os) => {
 			{ path: '/authorize-follow', component: MkFollow },
 			{ path: '/flags', component: () => import('../common/views/pages/flags.vue').then(m => m.default) },
 			{ path: '/reset-password/:token', component: MkResetPassword, props: true },
-			{ path: '*', component: MkNotFound },
+			{ path: '/:pathMatch(.*)*', component: MkNotFound },
 		],
 	});
 

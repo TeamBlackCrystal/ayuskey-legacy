@@ -79,13 +79,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XDraggable from 'vuedraggable';
 import { v4 as uuid } from 'uuid';
 import XWelcome from '../pages/welcome.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/home.vue'),
 
 	components: {
@@ -197,7 +197,7 @@ export default Vue.extend({
 		this.connection = this.$root.stream.useSharedConnection('main');
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 
