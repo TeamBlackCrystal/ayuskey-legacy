@@ -20,7 +20,7 @@
 	<article>
 		<mk-avatar class="avatar" :user="appearNote.user"/>
 		<header>
-			<router-link v-user-preview="appearNote.user.id" class="name" :to="appearNote.user | userPage">
+			<router-link v-user-preview="appearNote.user.id" class="name" :to="userPage(appearNote.user)">
 				<mk-user-name :user="appearNote.user"/>
 			</router-link>
 			<span class="username"><mk-acct :user="appearNote.user"/></span>
@@ -95,15 +95,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XSub from './note.sub.vue';
 import XInstanceTicker from '../../../common/views/components/instance-ticker.vue';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 import noteMixin from '../../../common/scripts/note-mixin';
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
+import { userPage } from '../../../common/views/filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/note-detail.vue'),
 
 	components: {
@@ -161,6 +162,7 @@ export default Vue.extend({
 			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
 			return false;
 		},
+		userPage,
 	},
 });
 </script>

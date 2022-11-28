@@ -18,25 +18,30 @@
 				:title="$t('update-avatar')"
 				@click="updateAvatar()"
 			/>
-			<router-link class="name" :to="$store.state.i | userPage"><mk-user-name :user="$store.state.i"/></router-link>
-			<p class="username">@{{ $store.state.i | acct }}</p>
+			<router-link class="name" :to="userPage($store.state.i)"><mk-user-name :user="$store.state.i"/></router-link>
+			<p class="username">@{{ acct($store.state.i) }}</p>
 		</div>
 	</ui-container>
 </div>
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 import updateAvatar from '../../api/update-avatar';
 import updateBanner from '../../api/update-banner';
+import { acct, userPage } from '../../../common/views/filters/v12/user';
 
-export default define({
+const widgets = define({
 	name: 'profile',
 	props: () => ({
 		design: 0,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n('desktop/views/widgets/profile.vue'),
 	methods: {
 		func() {
@@ -53,6 +58,7 @@ export default define({
 		updateBanner() {
 			updateBanner(this.$root)();
 		},
+		acct, userPage,
 	},
 });
 </script>

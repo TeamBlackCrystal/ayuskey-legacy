@@ -4,7 +4,7 @@
 		<div class="banner" :style="u.bannerUrl ? `background-image: url(${u.bannerUrl})` : ''"></div>
 		<mk-avatar class="avatar" :user="u" :disable-preview="true"/>
 		<div class="title">
-			<router-link class="name" :to="u | userPage"><mk-user-name :user="u" :nowrap="false"/></router-link>
+			<router-link class="name" :to="userPage(u)"><mk-user-name :user="u" :nowrap="false"/></router-link>
 			<p class="username"><mk-acct :user="u"/></p>
 		</div>
 		<div class="description">
@@ -27,12 +27,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import parseAcct from '../../../../../misc/acct/parse';
+import { userPage } from '../../../common/views/filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/user-preview.vue'),
 	props: {
 		user: {
@@ -82,6 +83,7 @@ export default Vue.extend({
 				complete: () => this.destroyDom(),
 			});
 		},
+		userPage,
 	},
 });
 </script>

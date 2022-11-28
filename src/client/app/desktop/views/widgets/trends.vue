@@ -7,8 +7,8 @@
 		<div class="mkw-trends--body">
 			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
 			<div v-else-if="note != null" class="note">
-				<p class="text"><router-link :to="note | notePage">{{ note.text }}</router-link></p>
-				<p class="author">―<router-link :to="note.user | userPage">@{{ note.user | acct }}</router-link></p>
+				<p class="text"><router-link :to="notePage(note)">{{ note.text }}</router-link></p>
+				<p class="author">―<router-link :to="userPage(note.user)">@{{ acct(note.user) }}</router-link></p>
 			</div>
 			<p v-else class="empty">{{ $t('nothing') }}</p>
 		</div>
@@ -17,15 +17,21 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
+import { acct, userPage } from '../../../common/views/filters/v12/user';
+import notePage from '../../../common/views/filters/v12/note';
 
-export default define({
+const widgets = define({
 	name: 'trends',
 	props: () => ({
 		compact: false,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n('desktop/views/widgets/trends.vue'),
 	data() {
 		return {
@@ -64,6 +70,7 @@ export default define({
 				this.fetching = false;
 			});
 		},
+		acct, userPage, notePage,
 	},
 });
 </script>

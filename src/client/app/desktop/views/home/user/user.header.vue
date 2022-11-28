@@ -10,7 +10,7 @@
 			<div>
 				<span class="username"><mk-acct :user="user" :detail="true" /></span>
 				<span v-if="user.isBot" :title="$t('is-bot')"><fa icon="robot"/></span>
-				<span v-if="user.movedToUser != null">moved to <router-link :to="user.movedToUser | userPage()"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
+				<span v-if="user.movedToUser != null">moved to <router-link :to="userPage(user.movedToUser)"><mk-acct :user="user.movedToUser" :detail="true"/></router-link></span>
 			</div>
 		</div>
 		<span v-if="$store.getters.isSignedIn && $store.state.i.id != user.id && user.isFollowed" class="followed">{{ $t('follows-you') }}</span>
@@ -41,9 +41,9 @@
 			<span v-if="user.birthday" class="birthday"><fa icon="birthday-cake"/> {{ user.birthday.replace('-', $t('year')).replace('-', $t('month')) + $t('day') }} ({{ $t('years-old', { age }) }})</span>
 		</div>
 		<div class="status">
-			<router-link :to="user | userPage()" class="notes-count"><b>{{ number(user.notesCount) }}</b>{{ $t('posts') }}</router-link>
-			<router-link :to="user | userPage('following')" class="following clickable"><b>{{ number(user.followingCount) }}</b>{{ $t('following') }}</router-link>
-			<router-link :to="user | userPage('followers')" class="followers clickable"><b>{{ number(user.followersCount) }}</b>{{ $t('followers') }}</router-link>
+			<router-link :to="userPage(user)" class="notes-count"><b>{{ number(user.notesCount) }}</b>{{ $t('posts') }}</router-link>
+			<router-link :to="userPage(user, 'following')" class="following clickable"><b>{{ number(user.followingCount) }}</b>{{ $t('following') }}</router-link>
+			<router-link :to="userPage(user, 'followers')" class="followers clickable"><b>{{ number(user.followersCount) }}</b>{{ $t('followers') }}</router-link>
 		</div>
 	</div>
 </div>
@@ -56,6 +56,7 @@ import { calcAge } from '../../../../../../misc/calc-age';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
 import XIntegrations from '../../../../common/views/components/integrations.vue';
 import number from '../../../../common/views/filters/v12/number';
+import { userPage } from '../../../../common/views/filters/v12/user';
 
 export default defineComponent({
 	i18n: i18n('desktop/views/pages/user/user.header.vue'),
@@ -116,7 +117,7 @@ export default defineComponent({
 				w.destroyDom();
 			});
 		},
-		number,
+		number, userPage,
 	},
 });
 </script>
