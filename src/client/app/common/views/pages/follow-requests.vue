@@ -5,7 +5,7 @@
 		<div v-if="!fetching">
 			<sequential-entrance animation="entranceFromTop" delay="25" tag="div">
 				<div v-for="req in requests" class="mcbzkkaw">
-					<router-link :key="req.id" :to="req.follower | userPage">
+					<router-link :key="req.id" :to="userPage(req.follower)">
 						<mk-user-name :user="req.follower"/>
 					</router-link>
 					<span>
@@ -19,12 +19,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import Progress from '../../scripts/loading';
 import { faUserClock } from '@fortawesome/free-solid-svg-icons';
+import { userPage } from '../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/pages/follow-requests.vue'),
 	data() {
 		return {
@@ -57,6 +58,7 @@ export default Vue.extend({
 				this.requests = this.requests.filter(r => r.follower.id != user.id);
 			});
 		},
+		userPage,
 	},
 });
 </script>

@@ -22,7 +22,7 @@
 				v-for="image in images"
 				:key="`${image.id}:${image._note.id}`"
 				:style="`background-image: url(${image.thumbnailUrl})`"
-				:to="image._note | notePage"
+				:to="notePage(image._note)"
 				:title="`${image.name}\n${(new Date(image.createdAt)).toLocaleString()}`"
 			></router-link>
 		</div>
@@ -51,6 +51,7 @@ import i18n from '../../../i18n';
 import XNotes from './deck.notes.vue';
 import { concat } from '../../../../../prelude/array';
 import ApexCharts from 'apexcharts';
+import notePage from '../filters/v12/note';
 
 export default Vue.extend({
 	i18n: i18n('deck/deck.user-column.vue'),
@@ -211,6 +212,8 @@ export default Vue.extend({
 				this.chart.render();
 			});
 		},
+
+		notePage,
 	},
 });
 </script>

@@ -26,7 +26,7 @@
 			<span class="username"><mk-acct :user="appearNote.user"/></span>
 			<x-instance-ticker v-if="appearNote.user.instance && $store.state.device.instanceTicker != 'none'" :instance="appearNote.user.instance" />
 			<div class="info">
-				<router-link class="time" :to="appearNote | notePage">
+				<router-link class="time" :to="notePage(appearNote)">
 					<mk-time :time="appearNote.createdAt"/>
 				</router-link>
 				<div class="visibility-info">
@@ -103,6 +103,7 @@ import noteSubscriber from '../../../common/scripts/note-subscriber';
 import noteMixin from '../../../common/scripts/note-mixin';
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import { userPage } from '../../../common/views/filters/v12/user';
+import notePage from '../../../common/views/filters/v12/note';
 
 export default defineComponent({
 	i18n: i18n('desktop/views/components/note-detail.vue'),
@@ -162,7 +163,7 @@ export default defineComponent({
 			if (this.$store.state.device.instanceTicker === 'remote' && this.appearNote.user.instance) return true;
 			return false;
 		},
-		userPage,
+		userPage, notePage,
 	},
 });
 </script>

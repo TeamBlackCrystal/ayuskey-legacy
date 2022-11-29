@@ -11,10 +11,10 @@
 
 		<div class="mkw-polls--body">
 			<div v-if="!fetching && poll != null" class="poll">
-				<p v-if="poll.text"><router-link :to="poll | notePage">
+				<p v-if="poll.text"><router-link :to="notePage(poll)">
 					<mfm :text="poll.text" :author="poll.user" :custom-emojis="poll.emojis"/>
 				</router-link></p>
-				<p v-if="!poll.text"><router-link :to="poll | notePage"><fa icon="link"/></router-link></p>
+				<p v-if="!poll.text"><router-link :to="notePage(poll)"><fa icon="link"/></router-link></p>
 				<mk-poll :note="poll"/>
 			</div>
 			<p v-if="!fetching && poll == null" class="empty">{{ $t('nothing') }}</p>
@@ -25,15 +25,20 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
+import notePage from '../../../common/views/filters/v12/note';
 
-export default define({
+const widgets = define({
 	name: 'polls',
 	props: () => ({
 		compact: false,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n('desktop/views/widgets/polls.vue'),
 	data() {
 		return {
@@ -75,6 +80,7 @@ export default define({
 				this.more = false;
 			});
 		},
+		notePage,
 	},
 });
 </script>
