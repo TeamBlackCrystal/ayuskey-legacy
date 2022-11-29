@@ -1,0 +1,10 @@
+docker:
+  image: node:18.12.1
+  stage: build
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends python3 python3-pip
+    - node devtools/diag-environment.js
+    - pip install loyalcat
+  script:
+    - loyalcat -a ci -c ${CI_COMMIT_SHA} -p 0827fb59-d7c3-46b6-874e-b6e77943843a
