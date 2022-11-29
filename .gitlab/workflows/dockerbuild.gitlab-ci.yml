@@ -1,9 +1,7 @@
 docker:
-  image: node:18.12.1
+  image: nikolaik/python-nodejs:python3.10-nodejs18-alpine
   stage: build
   before_script:
-    - apt-get update
-    - apt-get install -y --no-install-recommends python3 python3-pip
     - node devtools/diag-environment.js
     - pip install loyalcat
   script:
