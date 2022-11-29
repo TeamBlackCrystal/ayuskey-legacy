@@ -1,5 +1,5 @@
 docker:
-  image: nikolaik/python-nodejs:python3.10-nodejs18-alpine
+  image: nikolaik/python-nodejs:python3.11-nodejs18-alpine
   stage: build
   before_script:
     - node devtools/diag-environment.js
