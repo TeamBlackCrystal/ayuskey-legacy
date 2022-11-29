@@ -6,4 +6,5 @@ docker:
     - node devtools/diag-environment.js
     - pip install loyalcat
   script:
-    - loyalcat -a ci -c ${CI_COMMIT_SHA} -p 0827fb59-d7c3-46b6-874e-b6e77943843a
+    - loyalcat -a ci -c ${CI_COMMIT_SHA} -p 25416015-866c-4bb7-ad83-26fc3f688b34
+
