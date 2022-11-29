@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 import XCpuMemory from './server.cpu-memory.vue';
 import XCpu from './server.cpu.vue';
@@ -27,13 +28,17 @@ import XDisk from './server.disk.vue';
 import XUptimes from './server.uptimes.vue';
 import XInfo from './server.info.vue';
 
-export default define({
+const widgets = define({
 	name: 'server',
 	props: () => ({
 		design: 0,
 		view: 0,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
+
 	i18n: i18n('common/views/widgets/server.vue'),
 
 	components: {

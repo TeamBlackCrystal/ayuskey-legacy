@@ -1,4 +1,4 @@
-import Vue, { VNode , h } from 'vue';
+import { VNode , h, defineComponent } from 'vue';
 import { length } from 'stringz';
 import { MfmForest } from '../../../../../mfm/prelude';
 import { parse, parsePlain } from '../../../../../mfm/parse';
@@ -17,7 +17,8 @@ function sumTextsLength(ts: MfmForest): number {
 	return sum(textNodes.map(x => length(x.props.text)));
 }
 
-export default Vue.component('MisskeyFlavoredMarkdown', {
+//export default Vue.component('MisskeyFlavoredMarkdown', {
+export default defineComponent({
 	props: {
 		text: {
 			type: String,

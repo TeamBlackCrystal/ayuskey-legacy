@@ -141,7 +141,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import { apiUrl, host } from '../../../../config';
 import { toUnicode } from 'punycode';
@@ -150,7 +150,7 @@ import { unique } from '../../../../../../prelude/array';
 import { faDownload, faUpload, faUnlockAlt, faBoxes, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/profile-editor.vue'),
 
 	data() {

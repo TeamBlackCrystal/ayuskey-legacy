@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import VueContentLoading from 'vue-content-loading';
 import * as tinycolor from 'tinycolor2';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		VueContentLoading,
 	},

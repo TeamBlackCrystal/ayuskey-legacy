@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import * as config from '../../../config';
 import shouldMuteNote from '../../../common/scripts/should-mute-note';
@@ -46,7 +46,7 @@ import * as sound from '../../../common/scripts/sound';
 
 const displayLimit = 30;
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 
 	mixins: [

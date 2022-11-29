@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faExclamationTriangle, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 import ImageViewer from './image-viewer.vue';
@@ -29,7 +29,7 @@ import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url'
 import { extractAvgColorFromBlurhash } from '../../../common/scripts/extract-avg-color-from-blurhash';
 import ImgWithBlurhash from './img-with-blurhash.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/media-image.vue'),
 	components: {
 		ImgWithBlurhash,
