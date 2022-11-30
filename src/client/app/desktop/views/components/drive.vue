@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import MkDriveWindow from './drive-window.vue';
 import XNavFolder from './drive.nav-folder.vue';
@@ -65,7 +65,7 @@ import contains from '../../../common/scripts/contains';
 import { url } from '../../../config';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/drive.vue'),
 	components: {
 		XNavFolder,
@@ -449,7 +449,7 @@ export default Vue.extend({
 
 			if (this.folders.some(f => f.id == folder.id)) {
 				const exist = this.folders.map(f => f.id).indexOf(folder.id);
-				Vue.set(this.folders, exist, folder);
+				this.folders[exist] = folder;
 				return;
 			}
 
@@ -466,7 +466,7 @@ export default Vue.extend({
 
 			if (this.files.some(f => f.id == file.id)) {
 				const exist = this.files.map(f => f.id).indexOf(file.id);
-				Vue.set(this.files, exist, file);
+				this.files[exist] = file;
 				return;
 			}
 

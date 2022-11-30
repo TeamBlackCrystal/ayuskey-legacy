@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 import * as url from '../../../../../prelude/url';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/crop-window.vue'),
 	components: {
 		VueCropper,

@@ -5,12 +5,16 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
-export default define({
+const widgets = define({
 	name: 'customize',
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n(),
 	methods: {
 		customize(date) {
