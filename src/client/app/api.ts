@@ -4,5 +4,5 @@ import * as config from './config';
 
 export const api = new Ayuskey.api.APIClient({
 	origin: config.url,
-	credential: $i
+	credential: $i.token
 })
