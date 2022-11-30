@@ -92,6 +92,7 @@ specifiers:
   autosize: 5.0.2
   autwh: 0.1.0
   aws-sdk: 2.1261.0
+  ayuskey.js: 1.0.0-rc.8
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -290,6 +291,7 @@ dependencies:
   autosize: 5.0.2
   autwh: 0.1.0
   aws-sdk: 2.1261.0
+  ayuskey.js: 1.0.0-rc.8
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -2538,6 +2540,14 @@ packages:
       util: 0.12.4
       uuid: 8.0.0
       xml2js: 0.4.19
+    dev: false
+
+  /ayuskey.js/1.0.0-rc.8:
+    resolution: {integrity: sha512-Dhr91LIdudH8BN+swRrZtmgR073lWQEgKzkF9qrCXmDOWf14GvQrlyUxdRU75q1oBVD4+iRr+vOa4evHA/u6Ig==}
+    dependencies:
+      autobind-decorator: 2.4.0
+      eventemitter3: 4.0.7
+      reconnecting-websocket: 4.4.0
     dev: false
 
   /babel-walk/3.0.0-canary-5:
