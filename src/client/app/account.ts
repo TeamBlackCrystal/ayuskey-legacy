@@ -1,7 +1,5 @@
-import { reactive } from 'vue';
 import { apiUrl } from './config';
 //import { waiting } from './os';
-import { unisonReload } from './common/scripts/unison-reload';
 
 // TODO: 他のタブと永続化されたstateを同期
 
@@ -12,8 +10,6 @@ type Account = {
 	isAdmin: boolean;
 	isDeleted: boolean;
 };
-
-const data = localStorage.getItem('account');
 
 // TODO: 外部からはreadonlyに
 //export const $i = data ? reactive(JSON.parse(data) as Account) : null;
