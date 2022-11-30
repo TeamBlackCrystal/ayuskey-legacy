@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XSettings from '../../../common/views/components/settings/settings.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		XSettings,

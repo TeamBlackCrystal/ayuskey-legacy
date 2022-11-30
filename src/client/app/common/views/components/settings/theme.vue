@@ -122,7 +122,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import { lightTheme, darkTheme, builtinThemes, applyTheme, Theme } from '../../../../theme';
 import { Chrome } from 'vue-color';
@@ -131,7 +131,7 @@ import * as tinycolor from 'tinycolor2';
 import * as JSON5 from 'json5';
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/theme.vue'),
 	components: {
 		ColorPicker: Chrome,

@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import anime from 'animejs';
 import contains from '../../../common/scripts/contains';
 import XMenu from './context-menu.menu.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		XMenu,
 	},
