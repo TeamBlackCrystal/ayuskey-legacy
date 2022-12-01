@@ -121,6 +121,10 @@
 		"__dirname": false,
 
 		// Vue
+		"$$": false,
+		"$ref": false,
+		"$shallowRef": false,
+		"$computed": false,
 
 		// Ayuskey
 		"ENV": true,

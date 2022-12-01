@@ -1,7 +1,9 @@
+/// <reference types="vue/macros-global" />
+
 import { ComponentCustomProperties } from 'vue';
 import { Store } from 'vuex';
 
-declare module 'vue' {
+declare module '@vue/runtime-dom' {
   import { CompatVue } from 'vue';
   const Vue: CompatVue;
   export default Vue;
