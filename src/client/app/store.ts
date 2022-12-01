@@ -8,6 +8,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import MiOS from './mios';
 import { erase } from '../../prelude/array';
 import getNoteSummary from '../../misc/get-note-summary';
+import { Theme } from './theme';
 
 const defaultSettings = {
 	keepCw: false,
@@ -97,19 +98,24 @@ const defaultDeviceSettings = {
 	recentEmojis: [],
 };
 
-const _pinia = createPinia()
-_pinia.use(piniaPluginPersistedstate)
-export const pinia = _pinia
+export const pinia = createPinia().use(piniaPluginPersistedstate)
 
-const deviceStore = 	defineStore('device', {
-	state: () => ({darkmode: true}),
+const useDeviceStore = 	defineStore('device', {
+	state: () => ({
+		darkmode: true,
+		useBlur: true,
+		themes: [] as Theme[],
+		darkTheme: 'dark',
+		lightTheme: 'light',
+		}),
 	persist: {
 		storage: localStorage,
 	}
 })
 
-export const store = {
-	device: deviceStore
+
+export const useStore = () => {
+	return {device: useDeviceStore()}
 }
 
 export default (os: MiOS) => createStore({
