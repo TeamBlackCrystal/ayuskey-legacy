@@ -1,7 +1,9 @@
-import { markRaw, reactive, Ref, ref , Component } from 'vue';
+import { markRaw, reactive, Ref, ref , Component, defineAsyncComponent } from 'vue';
 import { apiUrl, version, locale, env, debug } from './config';
 import { query } from '../../prelude/url';
 import { $i } from './account';
+
+import MkWaitingDialog from './common/views/components/from-v12/MkWaitingDialog.vue';
 
 export const pendingApiRequestsCount = ref(0);
 let apiRequestsCount = 0; // for debug
@@ -79,9 +81,45 @@ export function api(endpoint: string, data: Record<string, any> = {}, token?: st
 	return promise;
 }
 
-/*
-function isModule(x: any): x is typeof import('*.vue') {
-	return x.default != null;
+export function promiseDialog<T extends Promise<any>>(
+	promise: T,
+	onSuccess?: ((res: any) => void) | null,
+	onFailure?: ((err: Error) => void) | null,
+	text?: string,
+): T {
+	const showing = ref(true);
+	const success = ref(false);
+
+	promise.then(res => {
+		if (onSuccess) {
+			showing.value = false;
+			onSuccess(res);
+		} else {
+			success.value = true;
+			window.setTimeout(() => {
+				showing.value = false;
+			}, 1000);
+		}
+	}).catch(err => {
+		showing.value = false;
+		if (onFailure) {
+			onFailure(err);
+		} else {
+			alert({
+				type: 'error',
+				text: err,
+			});
+		}
+	});
+
+	// NOTE: dynamic importすると挙動がおかしくなる(showingの変更が伝播しない)
+	popup(MkWaitingDialog, {
+		success: success,
+		showing: showing,
+		text: text,
+	}, {}, 'closed');
+
+	return promise;
 }
 
 let popupIdCount = 0;
@@ -91,17 +129,23 @@ export const popups = ref([]) as Ref<{
 	props: Record<string, any>;
 }[]>;
 
-export async function popup(component: Component | typeof import('*.vue') | Promise<Component | typeof import('*.vue')>, props: Record<string, any>, events = {}, disposeEvent?: string) {
-	if (component.then) component = await component;
+const zIndexes = {
+	low: 1000000,
+	middle: 2000000,
+	high: 3000000,
+};
+export function claimZIndex(priority: 'low' | 'middle' | 'high' = 'low'): number {
+	zIndexes[priority] += 100;
+	return zIndexes[priority];
+}
 
-	if (isModule(component)) component = component.default;
+export async function popup(component: Component, props: Record<string, any>, events = {}, disposeEvent?: string) {
 	markRaw(component);
 
 	const id = ++popupIdCount;
 	const dispose = () => {
-		//if (_DEV_) console.log('os:popup close', id, component, props, events);
 		// このsetTimeoutが無いと挙動がおかしくなる(autocompleteが閉じなくなる)。Vueのバグ？
-		setTimeout(() => {
+		window.setTimeout(() => {
 			popups.value = popups.value.filter(popup => popup.id !== id);
 		}, 0);
 	};
@@ -110,17 +154,35 @@ export async function popup(component: Component | typeof import('*.vue') | Prom
 		props,
 		events: disposeEvent ? {
 			...events,
-			[disposeEvent]: dispose
+			[disposeEvent]: dispose,
 		} : events,
 		id,
 	};
 
-	//if (_DEV_) console.log('os:popup open', id, component, props, events);
 	popups.value.push(state);
 
 	return {
 		dispose,
 	};
+}
+
+export function alert(props: {
+	type?: 'error' | 'info' | 'success' | 'warning' | 'waiting' | 'question';
+	title?: string | null;
+	text?: string | null;
+}): Promise<void> {
+	return new Promise((resolve, reject) => {
+		popup(defineAsyncComponent(() => import('./common/views/components/from-v12/MkDialog.vue')), props, {
+			done: result => {
+				resolve();
+			},
+		}, 'closed');
+	});
+}
+
+/*
+function isModule(x: any): x is typeof import('*.vue') {
+	return x.default != null;
 }
 
 export function waiting() {
