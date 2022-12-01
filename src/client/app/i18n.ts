@@ -25,7 +25,7 @@ export function i18n(scope?: string) {
 			if (data === null) {
 				data = texts[`${_path}`];
 			} else {
-				data = data[`${path}`];
+				data = data[`${_path}`];
 			}
 		}
 		return data;
