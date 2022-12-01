@@ -22,6 +22,7 @@ if (vuex) {
 	tmp = JSON.parse(vuex);
 }
 export const $i = tmp.i;
+export const $token = tmp.i?.token ? tmp.i?.token : tmp.i
 //#endregion
 
 export function signout() {
