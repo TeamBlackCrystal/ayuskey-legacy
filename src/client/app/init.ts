@@ -172,7 +172,7 @@ import {
 	faDiscord as fabDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 import i18n from './i18n';
-import { pinia } from './store';
+import { pinia, useStore } from './store';
 library.add(
 	faRetweet,
 	faPlus,
@@ -382,16 +382,73 @@ export default (callback: (launch: (router: Router) => [App, MiOS], os: MiOS) =>
 		// アプリ基底要素マウント
 		document.body.innerHTML = '<div id="app"></div>';
 
+
+		
 		const launch = (router: Router) => {
-			//#region theme
-			os.store.watch(s => {
-				return s.device.darkmode;
-			}, v => {
-				const themes = os.store.state.device.themes.concat(builtinThemes);
-				const dark = themes.find(t => t.id == os.store.state.device.darkTheme);
-				const light = themes.find(t => t.id == os.store.state.device.lightTheme);
-				applyTheme(v ? dark : light);
+
+
+			const app = createApp({
+				i18n: i18n(),
+				data() {
+					return {
+						os: {
+							windows: os.windows,
+						},
+						stream: os.stream,
+						instanceName: os.instanceName,
+					};
+				},
+				methods: {
+					api: os.api,
+					getMeta: os.getMeta,
+					getMetaSync: os.getMetaSync,
+					signout: os.signout,
+					new(vm, props) {
+						const x = new vm({
+							parent: this,
+							propsData: props,
+						}).$mount();
+						document.body.appendChild(x.$el);
+						return x;
+					},
+					newAsync(vm, props) {
+						return new Promise((res) => {
+							vm().then(vm => {
+								const x = new vm({
+									parent: this,
+									propsData: props,
+								}).$mount();
+								document.body.appendChild(x.$el);
+								res(x);
+							});
+						});
+					},
+					dialog(opts) {
+						const vm = this.new(Dialog, opts);
+						const p: any = new Promise((res) => {
+							vm.$once('ok', result => res({ canceled: false, result }));
+							vm.$once('cancel', () => res({ canceled: true }));
+						});
+						p.close = () => {
+							vm.close();
+						};
+						return p;
+					},
+				},
+				render: () => h(AppBase),
 			});
+
+			app.use(os.store);
+			app.use(router);
+			app.use(pinia)
+			//#region theme
+			const store = useStore();
+			store.device.$subscribe((mutation, state) => {
+				const themes = store.device.themes.concat(builtinThemes);
+				const dark = themes.find(t => t.id === store.device.darkTheme);
+				const light = themes.find(t => t.id === os.store.state.device.lightTheme);
+				applyTheme(state.darkmode ? dark : light);
+			})
 			os.store.watch(s => {
 				return s.device.lightTheme;
 			}, v => {
@@ -454,60 +511,6 @@ export default (callback: (launch: (router: Router) => [App, MiOS], os: MiOS) =>
 				}
 			}, { passive: true });
 
-			const app = createApp({
-				i18n: i18n(),
-				data() {
-					return {
-						os: {
-							windows: os.windows,
-						},
-						stream: os.stream,
-						instanceName: os.instanceName,
-					};
-				},
-				methods: {
-					api: os.api,
-					getMeta: os.getMeta,
-					getMetaSync: os.getMetaSync,
-					signout: os.signout,
-					new(vm, props) {
-						const x = new vm({
-							parent: this,
-							propsData: props,
-						}).$mount();
-						document.body.appendChild(x.$el);
-						return x;
-					},
-					newAsync(vm, props) {
-						return new Promise((res) => {
-							vm().then(vm => {
-								const x = new vm({
-									parent: this,
-									propsData: props,
-								}).$mount();
-								document.body.appendChild(x.$el);
-								res(x);
-							});
-						});
-					},
-					dialog(opts) {
-						const vm = this.new(Dialog, opts);
-						const p: any = new Promise((res) => {
-							vm.$once('ok', result => res({ canceled: false, result }));
-							vm.$once('cancel', () => res({ canceled: true }));
-						});
-						p.close = () => {
-							vm.close();
-						};
-						return p;
-					},
-				},
-				render: () => h(AppBase),
-			});
-
-			app.use(os.store);
-			app.use(router);
-			app.use(pinia)
 
 			initMixin(app);
 
