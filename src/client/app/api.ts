@@ -9,3 +9,24 @@ export const api = new Ayuskey.api.APIClient({
 });
 
 export const pendingApiRequestsCount = ref(api.pendingApiRequestsCount);
+
+export const apiWithDialog = ((
+	endpoint: string,
+	options: {
+		data?: Record<string, any>,
+		token?: string | null | undefined,
+	} = { data: {}, token: null },
+) => {
+	// TODO: いいかんじにしたい
+	const params = options.data; 
+	const i = options.token;
+	const promise = api.request(endpoint, { params, i });
+	promiseDialog(promise, null, (err) => {
+		alert({
+			type: 'error',
+			text: err.message + '\n' + (err as any).id,
+		});
+	});
+
+	return promise;
+}) as typeof api.request;
