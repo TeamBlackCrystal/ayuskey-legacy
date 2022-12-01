@@ -11,6 +11,7 @@ import VueI18n from 'vue-i18n';
 import SequentialEntrance from 'vue-sequential-entrance';
 import * as hljs from 'highlight.js';
 import 'highlight.js/styles/monokai.css';
+import { createPinia } from 'pinia'
 
 import VueHotkey from './common/hotkey';
 import VueSize from './common/size';
@@ -174,7 +175,6 @@ import {
 	faDiscord as fabDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 import i18n from './i18n';
-
 library.add(
 	faRetweet,
 	faPlus,
@@ -507,8 +507,10 @@ export default (callback: (launch: (router: Router) => [App, MiOS], os: MiOS) =>
 				render: () => h(AppBase),
 			});
 
+			const pinia = createPinia()
 			app.use(os.store);
 			app.use(router);
+			app.use(pinia)
 
 			initMixin(app);
 
