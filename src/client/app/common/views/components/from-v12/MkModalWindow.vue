@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import MkModal from "./MkModal.vue";
 
 const props = withDefaults(
@@ -74,14 +74,14 @@ const emit = defineEmits<{
 	(event: "ok"): void;
 }>();
 
-let modal = $ref<InstanceType<typeof MkModal>>();
-let rootEl = $ref<HTMLElement>();
-let headerEl = $ref<HTMLElement>();
-let bodyWidth = $ref(0);
-let bodyHeight = $ref(0);
+let modal = ref<InstanceType<typeof MkModal>>();
+let rootEl = ref<HTMLElement>();
+let headerEl = ref<HTMLElement>();
+let bodyWidth = ref(0);
+let bodyHeight = ref(0);
 
 const close = () => {
-	modal.close();
+	modal.value.close();
 };
 
 const onBgClick = () => {
@@ -98,14 +98,14 @@ const onKeydown = (evt) => {
 };
 
 const ro = new ResizeObserver((entries, observer) => {
-	bodyWidth = rootEl.offsetWidth;
-	bodyHeight = rootEl.offsetHeight - headerEl.offsetHeight;
+	bodyWidth.value = rootEl.value.offsetWidth;
+	bodyHeight.value = rootEl.value.offsetHeight - headerEl.value.offsetHeight;
 });
 
 onMounted(() => {
-	bodyWidth = rootEl.offsetWidth;
-	bodyHeight = rootEl.offsetHeight - headerEl.offsetHeight;
-	ro.observe(rootEl);
+	bodyWidth.value = rootEl.value.offsetWidth;
+	bodyHeight.value = rootEl.value.offsetHeight - headerEl.value.offsetHeight;
+	ro.observe(rootEl.value);
 });
 
 onUnmounted(() => {
