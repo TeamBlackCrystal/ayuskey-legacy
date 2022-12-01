@@ -70,6 +70,7 @@ module.exports = {
 					cssSourceMap: false,
 					compilerOptions: {
 						preserveWhitespace: false,
+						reactivityTransform: true,
 						compatConfig: {
               MODE: 2
             }
