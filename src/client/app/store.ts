@@ -2,6 +2,8 @@ import Vue, { ref } from 'vue';
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
+import { createPinia, defineStore } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import MiOS from './mios';
 import { erase } from '../../prelude/array';
@@ -94,6 +96,21 @@ const defaultDeviceSettings = {
 	activeEmojiCategoryName: undefined,
 	recentEmojis: [],
 };
+
+const _pinia = createPinia()
+_pinia.use(piniaPluginPersistedstate)
+export const pinia = _pinia
+
+const deviceStore = 	defineStore('device', {
+	state: () => ({darkmode: true}),
+	persist: {
+		storage: localStorage,
+	}
+})
+
+export const store = {
+	device: deviceStore
+}
 
 export default (os: MiOS) => createStore({
 	plugins: [createPersistedState({

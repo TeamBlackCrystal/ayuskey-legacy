@@ -3,7 +3,6 @@
  */
 
 import Vue, { App, createApp, h } from 'vue';
-import Vuex from 'vuex';
 import { Router } from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
@@ -11,12 +10,10 @@ import VueI18n from 'vue-i18n';
 import SequentialEntrance from 'vue-sequential-entrance';
 import * as hljs from 'highlight.js';
 import 'highlight.js/styles/monokai.css';
-import { createPinia } from 'pinia'
 
 import VueHotkey from './common/hotkey';
 import VueSize from './common/size';
 import AppBase from './app.vue';
-import checkForUpdate from './common/scripts/check-for-update';
 import MiOS from './mios';
 import { version, codename, lang, locale } from './config';
 import { builtinThemes, applyTheme, darkTheme } from './theme';
@@ -175,6 +172,7 @@ import {
 	faDiscord as fabDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 import i18n from './i18n';
+import { pinia } from './store';
 library.add(
 	faRetweet,
 	faPlus,
@@ -507,7 +505,6 @@ export default (callback: (launch: (router: Router) => [App, MiOS], os: MiOS) =>
 				render: () => h(AppBase),
 			});
 
-			const pinia = createPinia()
 			app.use(os.store);
 			app.use(router);
 			app.use(pinia)
