@@ -147,6 +147,7 @@
 		"parsimmon": "1.18.1",
 		"pg": "8.8.0",
 		"photoswipe": "5.3.4",
+		"pinia": "2.0.27",
 		"portscanner": "2.2.0",
 		"postcss": "8.4.19",
 		"postcss-loader": "7.0.1",

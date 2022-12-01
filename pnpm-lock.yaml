@@ -181,6 +181,7 @@ specifiers:
   parsimmon: 1.18.1
   pg: 8.8.0
   photoswipe: 5.3.4
+  pinia: 2.0.27
   portscanner: 2.2.0
   postcss: 8.4.19
   postcss-loader: 7.0.1
@@ -371,6 +372,7 @@ dependencies:
   parsimmon: 1.18.1
   pg: 8.8.0
   photoswipe: 5.3.4
+  pinia: 2.0.27_mgnvym7yiazkylwwogi5r767ue
   portscanner: 2.2.0
   postcss: 8.4.19
   postcss-loader: 7.0.1_upg3rk2kpasnbk27hkqapxaxfq
@@ -8992,6 +8994,24 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /pinia/2.0.27_mgnvym7yiazkylwwogi5r767ue:
+    resolution: {integrity: sha512-nOnXP0OFeL8R4WjAHsterU+11vptda643gH02xKNtSCDPiRzVfRYodOLihLDoa0gL1KKuQKV+KOzEgdt3YvqEw==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      typescript: 4.9.3
+      vue: 3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    dev: false
+
   /pinkie-promise/2.0.1:
     resolution: {integrity: sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==}
     engines: {node: '>=0.10.0'}
@@ -12099,6 +12119,21 @@ packages:
     resolution: {integrity: sha512-dvwCBtjGMiznkNIK2GFd1SQm1x+wmtWg4g4t+NrJSPj/fpHnubXxAUOIvY7lMFeR2lawRLsigCaGZrcXCzuTKA==}
     dependencies:
       cropperjs: 1.5.13
+    dev: false
+
+  /vue-demi/0.13.11_vue@3.2.45:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.45
     dev: false
 
   /vue-eslint-parser/9.1.0_eslint@8.28.0:
