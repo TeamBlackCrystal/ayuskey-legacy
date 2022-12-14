@@ -148,7 +148,7 @@ specifiers:
   json5-loader: 4.0.1
   jsonld: 6.0.0
   jsrsasign: 10.6.1
-  katex: 0.16.3
+  katex: 0.16.4
   koa: 2.13.4
   koa-bodyparser: 4.3.0
   koa-favicon: 2.1.0
@@ -337,7 +337,7 @@ dependencies:
   json5-loader: 4.0.1_webpack@5.75.0
   jsonld: 6.0.0
   jsrsasign: 10.6.1
-  katex: 0.16.3
+  katex: 0.16.4
   koa: 2.13.4
   koa-bodyparser: 4.3.0
   koa-favicon: 2.1.0
@@ -7187,8 +7187,8 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /katex/0.16.3:
-    resolution: {integrity: sha512-3EykQddareoRmbtNiNEDgl3IGjryyrp2eg/25fHDEnlHymIDi33bptkMv6K4EOC2LZCybLW/ZkEo6Le+EM9pmA==}
+  /katex/0.16.4:
+    resolution: {integrity: sha512-WudRKUj8yyBeVDI4aYMNxhx5Vhh2PjpzQw1GRu/LVGqL4m1AxwD1GcUp0IMbdJaf5zsjtj8ghP0DOQRYhroNkw==}
     hasBin: true
     dependencies:
       commander: 8.3.0
