@@ -7,9 +7,9 @@ overrides:
 specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.6.4
+  '@bull-board/api': 4.8.0
   '@bull-board/koa': 4.6.4
-  '@bull-board/ui': 4.6.4
+  '@bull-board/ui': 4.8.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
   '@fortawesome/fontawesome-svg-core': 6.2.1
@@ -91,7 +91,7 @@ specifiers:
   autobind-decorator: 2.4.0
   autosize: 5.0.2
   autwh: 0.1.0
-  aws-sdk: 2.1262.0
+  aws-sdk: 2.1274.0
   ayuskey.js: 1.0.0-rc.9
   bcryptjs: 2.4.3
   blurhash: 2.0.4
@@ -164,7 +164,7 @@ specifiers:
   langmap: 0.0.16
   loader-utils: 3.2.1
   lodash: ^4.17.21
-  mocha: 10.1.0
+  mocha: 10.2.0
   moji: 0.5.1
   ms: 2.1.3
   multer: 1.4.4-lts.1
@@ -218,7 +218,7 @@ specifiers:
   stylus: 0.59.0
   stylus-loader: 7.1.0
   syslog-pro: 1.0.0
-  systeminformation: 5.14.4
+  systeminformation: 5.15.0
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3
   textarea-caret: 3.1.0
@@ -233,7 +233,7 @@ specifiers:
   tsconfig-paths: 4.1.0
   tslint: 5.20.1
   tslint-sonarts: 1.9.0
-  ttypescript: 1.5.13
+  ttypescript: 1.5.15
   typeorm: 0.2.44
   typescript: 4.9.3
   ulid: 2.3.0
@@ -269,9 +269,9 @@ specifiers:
 dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.6.4
+  '@bull-board/api': 4.8.0
   '@bull-board/koa': 4.6.4_47hhf6s5g2iqergy3sns66l4iy
-  '@bull-board/ui': 4.6.4
+  '@bull-board/ui': 4.8.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
   '@fortawesome/fontawesome-svg-core': 6.2.1
@@ -292,7 +292,7 @@ dependencies:
   autobind-decorator: 2.4.0
   autosize: 5.0.2
   autwh: 0.1.0
-  aws-sdk: 2.1262.0
+  aws-sdk: 2.1274.0
   ayuskey.js: 1.0.0-rc.9
   bcryptjs: 2.4.3
   blurhash: 2.0.4
@@ -358,7 +358,7 @@ dependencies:
   langmap: 0.0.16
   loader-utils: 3.2.1
   lodash: 4.17.21
-  mocha: 10.1.0
+  mocha: 10.2.0
   moji: 0.5.1
   ms: 2.1.3
   multer: 1.4.4-lts.1
@@ -409,7 +409,7 @@ dependencies:
   stylus: 0.59.0
   stylus-loader: 7.1.0_577zv5myo6oqbmxnic7hzxwylm
   syslog-pro: 1.0.0
-  systeminformation: 5.14.4
+  systeminformation: 5.15.0
   syuilo-password-strength: 0.0.1
   terser-webpack-plugin: 4.2.3_webpack@5.75.0
   textarea-caret: 3.1.0
@@ -525,7 +525,7 @@ devDependencies:
   tsc-progress: 1.0.4_typescript@4.9.3
   tslint: 5.20.1_typescript@4.9.3
   tslint-sonarts: 1.9.0_gjnciczbu2qnavjkucpitaya6e
-  ttypescript: 1.5.13_2dtigtkb225m7ii7q45utxqwgi
+  ttypescript: 1.5.15_2dtigtkb225m7ii7q45utxqwgi
   vue-eslint-parser: 9.1.0_eslint@8.28.0
   webpack-dev-server: 4.8.1_pda42hcaj7d62cr262fr632kue
   webpackbar: 5.0.2_webpack@5.75.0
@@ -611,6 +611,12 @@ packages:
       redis-info: 3.1.0
     dev: false
 
+  /@bull-board/api/4.8.0:
+    resolution: {integrity: sha512-TftGEg54r0NDPpvmaSQ2Ts2bd8AMvm4Ul/bC6H1HUu+H9dtF/jDwYqEskWLHA+qpu1oM4knuTPFkiG12vJk57Q==}
+    dependencies:
+      redis-info: 3.1.0
+    dev: false
+
   /@bull-board/koa/4.6.4_47hhf6s5g2iqergy3sns66l4iy:
     resolution: {integrity: sha512-jC1vkwjERABhvM6kXgXhHtekoLAuTUUfpbSqza9StRpbW7W84qTEMhdmZ6TocIU2kel13x1G5F7/j16Tfwp2gg==}
     dependencies:
@@ -683,6 +689,12 @@ packages:
     resolution: {integrity: sha512-9d12C2M0I6/t00p7xZdvdvQ5DcWD8Wx1pCroJXIBF1IWOhjGQt93MjaPzkYZlMW/VHu6Vt9LSZ1w4HKgTWbKKw==}
     dependencies:
       '@bull-board/api': 4.6.4
+    dev: false
+
+  /@bull-board/ui/4.8.0:
+    resolution: {integrity: sha512-KNk4/robDWflZxM2HfrRsijAePDE1OVyTyfhX5+uWLclNNuBH+ZZnOJnb+qnoa2giV8UKO2WZiuRqdUDNtDlQA==}
+    dependencies:
+      '@bull-board/api': 4.8.0
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
@@ -2530,8 +2542,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-sdk/2.1262.0:
-    resolution: {integrity: sha512-XbaK/XUIxwLEBnHANhJ0RTZtiU288lFRj5FllSihQ5Kb0fibKyW8kJFPsY+NzzDezLH5D3WdGbTKb9fycn5TbA==}
+  /aws-sdk/2.1274.0:
+    resolution: {integrity: sha512-s6Dg2ymytzvwTeA5ZhPvw8KkWbPEBXF/B5wmJK0QfBZwDCW3xRsfvYGTJC0w2M2hYrZOzjPYICsOspcAK333Cg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -8036,8 +8048,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  /mocha/10.1.0:
-    resolution: {integrity: sha512-vUF7IYxEoN7XhQpFLxQAEMtE4W91acW4B6En9l97MwE9stL1A9gusXfoHZCLVHDUJ/7V5+lbCM6yMqzo5vNymg==}
+  /mocha/10.2.0:
+    resolution: {integrity: sha512-IDY7fl/BecMwFHzoqF2sg/SHHANeBoMMXFlS9r0OXKDssYE1M5O43wUY/9BVPeIvfH2zmEbBfseqN9gBQZzXkg==}
     engines: {node: '>= 14.0.0'}
     hasBin: true
     dependencies:
@@ -11148,8 +11160,8 @@ packages:
       moment: 2.29.4
     dev: false
 
-  /systeminformation/5.14.4:
-    resolution: {integrity: sha512-SpFIc6AkGL4RCtwmhCoECFdvnVVk/heA+pxdgjXvxW75oLQsJVXz0epNRNnnMucrk/+rvKFnMqC4LorDE5xzmQ==}
+  /systeminformation/5.15.0:
+    resolution: {integrity: sha512-E/Tzrtjch9KSnA1kY6urRm/yAB7rwdXnYOIDDssCU8O90qqyD8k0zbNlk1dRJ4BoTv89VDnoiaUteuV+xxa3pQ==}
     engines: {node: '>=8.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
@@ -11587,8 +11599,8 @@ packages:
       typescript: 4.9.3
     dev: true
 
-  /ttypescript/1.5.13_2dtigtkb225m7ii7q45utxqwgi:
-    resolution: {integrity: sha512-KT/RBfGGlVJFqEI8cVvI3nMsmYcFvPSZh8bU0qX+pAwbi7/ABmYkzn7l/K8skw0xmYjVCoyaV6WLsBQxdadybQ==}
+  /ttypescript/1.5.15_2dtigtkb225m7ii7q45utxqwgi:
+    resolution: {integrity: sha512-48ykDNHzFnPMnv4hYX1P8Q84TvCZyL1QlFxeuxsuZ48X2+ameBgPenvmCkHJtoOSxpoWTWi8NcgNrRnVDOmfSg==}
     hasBin: true
     peerDependencies:
       ts-node: '>=8.0.2'
