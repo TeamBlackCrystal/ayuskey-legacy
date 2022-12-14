@@ -228,7 +228,7 @@ specifiers:
   tsconfig-paths: 4.1.0
   tslint: 5.20.1
   tslint-sonarts: 1.9.0
-  ttypescript: 1.5.13
+  ttypescript: 1.5.15
   typeorm: 0.2.44
   typescript: 4.9.3
   ulid: 2.3.0
@@ -515,7 +515,7 @@ devDependencies:
   tsc-progress: 1.0.4_typescript@4.9.3
   tslint: 5.20.1_typescript@4.9.3
   tslint-sonarts: 1.9.0_gjnciczbu2qnavjkucpitaya6e
-  ttypescript: 1.5.13_2dtigtkb225m7ii7q45utxqwgi
+  ttypescript: 1.5.15_2dtigtkb225m7ii7q45utxqwgi
   vue-eslint-parser: 9.1.0_eslint@8.28.0
   webpack-dev-server: 4.8.1_pda42hcaj7d62cr262fr632kue
   webpackbar: 5.0.2_webpack@5.75.0
@@ -11679,8 +11679,8 @@ packages:
       typescript: 4.9.3
     dev: true
 
-  /ttypescript/1.5.13_2dtigtkb225m7ii7q45utxqwgi:
-    resolution: {integrity: sha512-KT/RBfGGlVJFqEI8cVvI3nMsmYcFvPSZh8bU0qX+pAwbi7/ABmYkzn7l/K8skw0xmYjVCoyaV6WLsBQxdadybQ==}
+  /ttypescript/1.5.15_2dtigtkb225m7ii7q45utxqwgi:
+    resolution: {integrity: sha512-48ykDNHzFnPMnv4hYX1P8Q84TvCZyL1QlFxeuxsuZ48X2+ameBgPenvmCkHJtoOSxpoWTWi8NcgNrRnVDOmfSg==}
     hasBin: true
     peerDependencies:
       ts-node: '>=8.0.2'
