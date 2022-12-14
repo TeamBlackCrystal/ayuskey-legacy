@@ -50,11 +50,12 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted, watch, provide } from "vue";
+import { nextTick, onMounted, watch, provide, computed } from "vue";
 import * as os from '../../../../os';
 import { isTouchUsing } from '../../../scripts/touch';
 //import { defaultStore } from "../../../../store";
 import { deviceKind } from '../../../scripts/device-kind';
+import { ref } from "vue";
 
 function getFixedContainer(el: Element | null): Element | null {
 	if (el == null || el.tagName === "BODY") return null;
@@ -100,13 +101,13 @@ const emit = defineEmits<{
 
 provide("modal", true);
 
-let maxHeight = $ref<number>();
-let fixed = $ref(false);
-let transformOrigin = $ref("center");
-let showing = $ref(true);
-let content = $ref<HTMLElement>();
+let maxHeight = ref<number>();
+let fixed = ref(false);
+let transformOrigin = ref("center");
+let showing = ref(true);
+let content = ref<HTMLElement>();
 const zIndex = os.claimZIndex(props.zPriority);
-const type = $computed(() => {
+const type = computed(() => {
 	if (props.preferType === "auto") {
 		if (
 			//!defaultStore.state.disableDrawer &&
@@ -127,7 +128,7 @@ let contentClicking = false;
 const close = () => {
 	// eslint-disable-next-line vue/no-mutating-props
 	if (props.src) props.src.style.pointerEvents = "auto";
-	showing = false;
+	showing.value = false;
 	emit("close");
 };
 
@@ -136,8 +137,8 @@ const onBgClick = () => {
 	emit("click");
 };
 
-if (type === "drawer") {
-	maxHeight = window.innerHeight / 1.5;
+if (type.value === "drawer") {
+	maxHeight.value = window.innerHeight / 1.5;
 }
 
 const keymap = {
@@ -148,15 +149,15 @@ const MARGIN = 16;
 
 const align = () => {
 	if (props.src == null) return;
-	if (type === "drawer") return;
-	if (type === "dialog") return;
+	if (type.value === "drawer") return;
+	if (type.value === "dialog") return;
 
 	if (content == null) return;
 
 	const srcRect = props.src.getBoundingClientRect();
 
-	const width = content!.offsetWidth;
-	const height = content!.offsetHeight;
+	const width = content.value!.offsetWidth;
+	const height = content.value!.offsetHeight;
 
 	let left;
 	let top;
@@ -193,16 +194,16 @@ const align = () => {
 		if (top + height > window.innerHeight - MARGIN) {
 			if (props.noOverlap && props.anchor.x === "center") {
 				if (underSpace >= upperSpace / 3) {
-					maxHeight = underSpace;
+					maxHeight.value = underSpace;
 				} else {
-					maxHeight = upperSpace;
+					maxHeight.value = upperSpace;
 					top = upperSpace + MARGIN - height;
 				}
 			} else {
 				top = window.innerHeight - MARGIN - height;
 			}
 		} else {
-			maxHeight = underSpace;
+			maxHeight.value = underSpace;
 		}
 	} else {
 		// 画面から横にはみ出る場合
@@ -217,16 +218,16 @@ const align = () => {
 		if (top + height - window.pageYOffset > window.innerHeight - MARGIN) {
 			if (props.noOverlap && props.anchor.x === "center") {
 				if (underSpace >= upperSpace / 3) {
-					maxHeight = underSpace;
+					maxHeight.value = underSpace;
 				} else {
-					maxHeight = upperSpace;
+					maxHeight.value = upperSpace;
 					top = window.pageYOffset + (upperSpace + MARGIN - height);
 				}
 			} else {
 				top = window.innerHeight - MARGIN - height + window.pageYOffset - 1;
 			}
 		} else {
-			maxHeight = underSpace;
+			maxHeight.value = underSpace;
 		}
 	}
 
@@ -259,17 +260,17 @@ const align = () => {
 		transformOriginX = "right";
 	}
 
-	transformOrigin = `${transformOriginX} ${transformOriginY}`;
+	transformOrigin.value = `${transformOriginX} ${transformOriginY}`;
 
-	content.style.left = left + "px";
-	content.style.top = top + "px";
+	content.value.style.left = left + "px";
+	content.value.style.top = top + "px";
 };
 
 const onOpened = () => {
 	emit("opened");
 
 	// モーダルコンテンツにマウスボタンが押され、コンテンツ外でマウスボタンが離されたときにモーダルバックグラウンドクリックと判定させないためにマウスイベントを監視しフラグ管理する
-	const el = content!.children[0];
+	const el = content.value!.children[0];
 	el.addEventListener(
 		"mousedown",
 		(ev) => {
@@ -297,7 +298,7 @@ onMounted(() => {
 				// eslint-disable-next-line vue/no-mutating-props
 				props.src.style.pointerEvents = "none";
 			}
-			fixed = type === "drawer" || getFixedContainer(props.src) != null;
+			fixed.value = type.value === "drawer" || getFixedContainer(props.src) != null;
 
 			await nextTick();
 
@@ -309,7 +310,7 @@ onMounted(() => {
 	nextTick(() => {
 		new ResizeObserver((entries, observer) => {
 			align();
-		}).observe(content!);
+		}).observe(content.value!);
 	});
 });
 

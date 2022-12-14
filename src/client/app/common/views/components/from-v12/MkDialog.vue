@@ -101,7 +101,6 @@ import MkButton from "./MkButton.vue";
 //import MkInput from "./form/input.vue";
 //import MkSelect from "./form/select.vue";
 import { i18n as _i18n } from "../../../../i18n";
-
 const i18n = _i18n();
 
 type Input = {

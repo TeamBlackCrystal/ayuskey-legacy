@@ -1,5 +1,6 @@
 <template>
 <div class="header" :style="style">
+	<div v-if="pendingApiRequestsCount > 0" id="wait"></div>
 	<p v-if="env != 'production'" class="warn">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
 	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
@@ -39,6 +40,7 @@ import XNotifications from './ui.header.notifications.vue';
 import XPost from './ui.header.post.vue';
 import XClock from './ui.header.clock.vue';
 import XMessaging from './ui.header.messaging.vue';
+import { pendingApiRequestsCount } from '../../../api';
 
 export default defineComponent({
 	i18n: i18n(),
@@ -54,6 +56,7 @@ export default defineComponent({
 
 	data() {
 		return {
+			pendingApiRequestsCount: pendingApiRequestsCount,
 			env: env,
 		};
 	},
@@ -87,6 +90,28 @@ export default defineComponent({
 	top 0
 	z-index 1000
 	width 100%
+
+	> #wait {
+		display: block;
+		position: fixed;
+		z-index: 4000000;
+		top: 15px;
+		right: 15px;
+	
+		&:before {
+			content: "";
+			display: block;
+			width: 18px;
+			height: 18px;
+			box-sizing: border-box;
+			border: solid 2px transparent;
+			border-top-color: var(--accent);
+			border-left-color: var(--accent);
+			border-radius: 50%;
+			animation: progress-spinner 400ms linear infinite;
+		}
+	}
+	
 
 	> .warn
 		display block

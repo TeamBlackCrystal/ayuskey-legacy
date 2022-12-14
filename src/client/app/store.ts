@@ -9,6 +9,7 @@ import MiOS from './mios';
 import { erase } from '../../prelude/array';
 import getNoteSummary from '../../misc/get-note-summary';
 import { Theme } from './theme';
+import { UserDetailed } from 'ayuskey.js/built/entities';
 
 const defaultSettings = {
 	keepCw: false,
@@ -65,7 +66,7 @@ const defaultDeviceSettings = {
 	lightTheme: 'light',
 	lineWidth: 1,
 	fontSize: 0,
-	themes: [],
+	themes: [] as Theme[],
 	enableSounds: true,
 	enableSoundsInTimeline: true,
 	enableSoundsInNotifications: true,
@@ -100,22 +101,117 @@ const defaultDeviceSettings = {
 
 export const pinia = createPinia().use(piniaPluginPersistedstate)
 
-const useDeviceStore = 	defineStore('device', {
+export const useIStore = defineStore('i', {
+	state: () => (null as UserDetailed | null),
+	persist: {
+		storage: localStorage
+	}
+})
+
+export const useDeviceStore = 	defineStore('device', {
 	state: () => ({
-		darkmode: true,
+		homeProfile: 'Default',
+		mobileHomeProfile: 'Default',
+		deckProfile: 'Default',
+		deckMode: false,
+		deckColumnAlign: 'center',
+		deckColumnWidth: 'normal',
 		useBlur: true,
-		themes: [] as Theme[],
+		useShadow: true,
+		deckTemporaryColumnPosition: 'right',
+		deckTemporaryColumnIndex: 1,
+		roundedCorners: true,
+		reduceMotion: false,
+		darkmode: true,
 		darkTheme: 'dark',
 		lightTheme: 'light',
+		lineWidth: 1,
+		fontSize: 0,
+		themes: [] as Theme[],
+		enableSounds: true,
+		enableSoundsInTimeline: true,
+		enableSoundsInNotifications: true,
+		//soundVolume: 0.5,
+		mediaVolume: 0.5,
+		enableQueueJammed: false,
+		enableSpeech: false,
+		lang: null,
+		appTypeForce: 'auto',
+		debug: false,
+		showAdvancedSettings: false,
+		lightmode: false,
+		loadRawImages: false,
+		alwaysShowNsfw: false,
+		postStyle: 'standard',
+		navbar: 'top',
+		mobileNotificationPosition: 'bottom',
+		useOsDefaultEmojis: false,
+		disableShowingAnimatedImages: false,
+		useAbsoluteTime: false,
+		expandUsersPhotos: true,
+		expandUsersActivity: true,
+		showPostPreview: true,
+		enableMobileQuickNotificationView: false,
+		instanceTicker: 'remote', // none, remote, always
+		hasDisconnectedAction: 'notify', // nothing, notify, reload
+		roomGraphicsQuality: 'medium',
+		roomUseOrthographicCamera: true,
+		activeEmojiCategoryName: undefined,
+		recentEmojis: [],
 		}),
 	persist: {
 		storage: localStorage,
 	}
 })
 
+export const useSettingsStore = defineStore('settings', {
+	state: () => ({
+		keepCw: false,
+		tagTimelines: [],
+		fetchOnScroll: true,
+		remainDeletedNote: false,
+		showPostFormOnTopOfTl: false,
+		suggestRecentHashtags: true,
+		showClockOnHeader: true,
+		circleIcons: true,
+		contrastedAcct: true,
+		showFullAcct: false,
+		showVia: true,
+		showReplyTarget: true,
+		showMyRenotes: true,
+		showRenotedMyNotes: true,
+		showLocalRenotes: true,
+		loadRemoteMedia: true,
+		disableViaMobile: false,
+		memo: null,
+		iLikeSushi: false,
+		rememberNoteVisibility: false,
+		defaultNoteVisibility: 'public',
+		wallpaper: null,
+		webSearchEngine: 'https://www.google.com/?#q={{query}}',
+		mutedWords: [],
+		gamesReversiShowBoardLabels: false,
+		gamesReversiUseAvatarStones: true,
+		disableAnimatedMfm: false,
+		homeProfiles: {},
+		mobileHomeProfiles: {},
+		deckProfiles: {},
+		uploadFolder: null,
+		pastedFileName: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
+		pasteDialog: false,
+		reactions: ['like', 'love', 'laugh', 'hmm', 'surprise', 'congrats', 'angry', 'confused', 'rip', 'pudding'],
+	}),
+	persist: {
+		storage: localStorage
+	}
+})
 
 export const useStore = () => {
-	return {device: useDeviceStore()}
+	return {
+		i: useIStore(),
+		device: useDeviceStore(),
+		settings: useSettingsStore(),
+	}
 }
 
 export default (os: MiOS) => createStore({

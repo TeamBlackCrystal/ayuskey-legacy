@@ -1,183 +1,268 @@
 <template>
-<div class="mk-welcome">
-	<div class="banner" :style="{ backgroundImage: banner ? `url(${banner})` : null }"></div>
+	<div class="mk-welcome">
+		<div
+			class="banner"
+			:style="{ backgroundImage: banner ? `url(${banner})` : null }"
+		></div>
 
-	<button @click="dark">
-		<template v-if="$store.state.device.darkmode"><fa icon="moon"/></template>
-		<template v-else><fa :icon="['far', 'moon']"/></template>
-	</button>
+		<button @click="dark">
+			<template v-if="deviceStore.darkmode"
+				><fa icon="moon"
+			/></template>
+			<template v-else><fa :icon="['far', 'moon']" /></template>
+		</button>
 
-	<mk-forkit class="forkit"/>
+		<mk-forkit class="forkit" />
 
-	<main>
-		<div class="body">
-			<div class="main block">
-				<div>
-					<h1 v-if="name != null && name != ''">{{ name }}</h1>
-					<h1 v-else><img svg-inline src="../../../../assets/title.svg" alt="Misskey"></h1>
-
-					<div class="info">
-						<span><b>{{ host }}</b> - <span v-html="$t('powered-by-misskey')"></span></span>
-						<span v-if="stats" class="stats">
-							<span><fa icon="user"/> {{ number(stats.originalUsersCount) }}</span>
-							<span><fa icon="pencil-alt"/> {{ number(stats.originalNotesCount) }}</span>
-						</span>
-					</div>
-
-					<div class="desc">
-						<span class="desc" v-html="description || $t('@.about')"></span>
-						<a class="about" @click="about">{{ $t('about') }}</a>
-					</div>
-
-					<p class="sign">
-						<span class="signup" @click="signup">{{ $t('@.signup') }}</span>
-						<span class="divider">|</span>
-						<span class="signin" @click="signin">{{ $t('@.signin') }}</span>
-					</p>
-
-					<img v-if="meta" :src="meta.mascotImageUrl" alt="" title="藍" class="char">
-				</div>
-			</div>
-
-			<div class="announcements block">
-				<header><fa icon="broadcast-tower"/> {{ $t('announcements') }}</header>
-				<div v-if="announcements && announcements.length > 0">
-					<div v-for="announcement in announcements">
-						<h1 v-html="announcement.title"></h1>
-						<mfm :text="announcement.text"/>
-						<img v-if="announcement.image" :src="announcement.image" alt="" style="display: block; max-height: 130px; max-width: 100%;"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="photos block">
-				<header><fa :icon="['far', 'images']"/> {{ $t('photos') }}</header>
-				<div>
-					<div v-for="photo in photos" :style="`background-image: url(${photo.thumbnailUrl})`"></div>
-				</div>
-			</div>
-
-			<div class="tag-cloud block">
-				<div>
-					<mk-tag-cloud/>
-				</div>
-			</div>
-
-			<div class="nav block">
-				<div>
-					<mk-nav class="nav"/>
-				</div>
-			</div>
-
-			<div class="side">
-				<div class="trends block">
+		<main>
+			<div class="body">
+				<div class="main block">
 					<div>
-						<mk-trends/>
+						<h1 v-if="name != null && name != ''">{{ name }}</h1>
+						<h1 v-else>
+							<img
+								svg-inline
+								src="../../../../assets/title.svg"
+								alt="Misskey"
+							/>
+						</h1>
+
+						<div class="info">
+							<span
+								><b>{{ host }}</b> -
+								<span v-html="i18n.t('powered-by-misskey')"></span
+							></span>
+							<span v-if="stats" class="stats">
+								<span
+									><fa icon="user" />
+									{{ number(stats.originalUsersCount) }}</span
+								>
+								<span
+									><fa icon="pencil-alt" />
+									{{ number(stats.originalNotesCount) }}</span
+								>
+							</span>
+						</div>
+
+						<div class="desc">
+							<span
+								class="desc"
+								v-html="description || i18n.t('@.about')"
+							></span>
+							<a class="about" @click="about">{{ i18n.t("about") }}</a>
+						</div>
+
+						<p class="sign">
+							<span class="signup" @click="signup">{{
+								i18n.t("@.signup")
+							}}</span>
+							<span class="divider">|</span>
+							<span class="signin" @click="signin">{{
+								i18n.t("@.signin")
+							}}</span>
+						</p>
+
+						<img
+							v-if="meta"
+							:src="meta.mascotImageUrl"
+							alt=""
+							title="藍"
+							class="char"
+						/>
 					</div>
 				</div>
 
-				<div class="tl block">
-					<header><fa :icon="['far', 'comment-alt']"/> {{ $t('timeline') }}</header>
-					<div>
-						<mk-welcome-timeline class="tl" :max="20"/>
+				<div class="announcements block">
+					<header>
+						<fa icon="broadcast-tower" /> {{ i18n.t("announcements") }}
+					</header>
+					<div v-if="announcements && announcements.length > 0">
+						<div v-for="announcement in announcements">
+							<h1 v-html="announcement.title"></h1>
+							<mfm :text="announcement.text" />
+							<img
+								v-if="announcement.image"
+								:src="announcement.image"
+								alt=""
+								style="display: block; max-height: 130px; max-width: 100%"
+							/>
+						</div>
 					</div>
 				</div>
 
-				<div class="info block">
-					<header><fa icon="info-circle"/> {{ $t('info') }}</header>
+				<div class="photos block">
+					<header>
+						<fa :icon="['far', 'images']" /> {{ i18n.t("photos") }}
+					</header>
 					<div>
-						<div v-if="meta" class="body">
-							<p>Version: <b>{{ meta.version }}</b></p>
-							<p>Maintainer: <b><a :href="'mailto:' + meta.maintainerEmail" target="_blank">{{ meta.maintainerName || $t('not-found-maintainerName') }}</a></b></p>
+						<div
+							v-for="photo in photos"
+							:style="`background-image: url(${photo.thumbnailUrl})`"
+						></div>
+					</div>
+				</div>
+
+				<div class="tag-cloud block">
+					<div>
+						<mk-tag-cloud />
+					</div>
+				</div>
+
+				<div class="nav block">
+					<div>
+						<mk-nav class="nav" />
+					</div>
+				</div>
+
+				<div class="side">
+					<div class="trends block">
+						<div>
+							<mk-trends />
+						</div>
+					</div>
+
+					<div class="tl block">
+						<header>
+							<fa :icon="['far', 'comment-alt']" /> {{ i18n.t("timeline") }}
+						</header>
+						<div>
+							<mk-welcome-timeline class="tl" :max="20" />
+						</div>
+					</div>
+
+					<div class="info block">
+						<header><fa icon="info-circle" /> {{ i18n.t("info") }}</header>
+						<div>
+							<div v-if="meta" class="body">
+								<p>
+									Version: <b>{{ meta.version }}</b>
+								</p>
+								<p>
+									Maintainer:
+									<b
+										><a
+											:href="'mailto:' + meta.maintainerEmail"
+											target="_blank"
+											>{{
+												meta.maintainerName ||
+												i18n.t("not-found-maintainerName")
+											}}</a
+										></b
+									>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</main>
+		</main>
 
-	<modal name="about" class="about modal" width="800px" height="auto" scrollable>
-		<article class="fpdezooorhntlzyeszemrsqdlgbysvxq">
-			<h1>{{ $t('@.intro.title') }}</h1>
-			<p v-html="$t('@.intro.about')"></p>
-			<section>
-				<h2>{{ $t('@.intro.features') }}</h2>
+		<modal
+			name="about"
+			class="about modal"
+			width="800px"
+			height="auto"
+			scrollable
+		>
+			<article class="fpdezooorhntlzyeszemrsqdlgbysvxq">
+				<h1>{{ i18n.t("@.intro.title") }}</h1>
+				<p v-html="i18n.t('@.intro.about')"></p>
 				<section>
-					<div class="body">
-						<h3>{{ $t('@.intro.rich-contents') }}</h3>
-						<p v-html="$t('@.intro.rich-contents-desc')"></p>
-					</div>
-					<div class="image"><img src="/assets/about/post.png" alt=""></div>
+					<h2>{{ i18n.t("@.intro.features") }}</h2>
+					<section>
+						<div class="body">
+							<h3>{{ i18n.t("@.intro.rich-contents") }}</h3>
+							<p v-html="i18n.t('@.intro.rich-contents-desc')"></p>
+						</div>
+						<div class="image"><img src="/assets/about/post.png" alt="" /></div>
+					</section>
+					<section>
+						<div class="body">
+							<h3>{{ i18n.t("@.intro.reaction") }}</h3>
+							<p v-html="i18n.t('@.intro.reaction-desc')"></p>
+						</div>
+						<div class="image">
+							<img src="/assets/about/reaction.png" alt="" />
+						</div>
+					</section>
+					<section>
+						<div class="body">
+							<h3>{{ i18n.t("@.intro.ui") }}</h3>
+							<p v-html="i18n.t('@.intro.ui-desc')"></p>
+						</div>
+						<div class="image"><img src="/assets/about/ui.png" alt="" /></div>
+					</section>
+					<section>
+						<div class="body">
+							<h3>{{ i18n.t("@.intro.drive") }}</h3>
+							<p v-html="i18n.t('@.intro.drive-desc')"></p>
+						</div>
+						<div class="image">
+							<img src="/assets/about/drive.png" alt="" />
+						</div>
+					</section>
 				</section>
-				<section>
-					<div class="body">
-						<h3>{{ $t('@.intro.reaction') }}</h3>
-						<p v-html="$t('@.intro.reaction-desc')"></p>
-					</div>
-					<div class="image"><img src="/assets/about/reaction.png" alt=""></div>
-				</section>
-				<section>
-					<div class="body">
-						<h3>{{ $t('@.intro.ui') }}</h3>
-						<p v-html="$t('@.intro.ui-desc')"></p>
-					</div>
-					<div class="image"><img src="/assets/about/ui.png" alt=""></div>
-				</section>
-				<section>
-					<div class="body">
-						<h3>{{ $t('@.intro.drive') }}</h3>
-						<p v-html="$t('@.intro.drive-desc')"></p>
-					</div>
-					<div class="image"><img src="/assets/about/drive.png" alt=""></div>
-				</section>
-			</section>
-			<p v-html="$t('@.intro.outro')"></p>
-		</article>
-	</modal>
+				<p v-html="i18n.t('@.intro.outro')"></p>
+			</article>
+		</modal>
 
-	<modal name="signup" class="modal" width="450px" height="auto" scrollable>
-		<header class="formHeader">{{ $t('@.signup') }}</header>
-		<mk-signup class="form"/>
-	</modal>
+		<modal name="signup" class="modal" width="450px" height="auto" scrollable>
+			<header class="formHeader">{{ i18n.t("@.signup") }}</header>
+			<AyuSignup class="form" />
+		</modal>
 
-	<modal name="signin" class="modal" width="450px" height="auto" scrollable>
-		<header class="formHeader">{{ $t('@.signin') }}</header>
-		<mk-signin class="form" @reminder="reminder" />
-	</modal>
+		<modal name="signin" class="modal" width="450px" height="auto" scrollable>
+			<header class="formHeader">{{ i18n.t("@.signin") }}</header>
+			<AyuSignin class="form" @reminder="reminder" />
+		</modal>
 
-	<modal name="reminder" class="modal" width="450px" height="auto" scrollable>
-		<header class="formHeader">{{ $t('@.reminder') }}</header>
-		<mk-reminder class="form" @done="doneReminder" />
-	</modal>
-</div>
+		<modal name="reminder" class="modal" width="450px" height="auto" scrollable>
+			<header class="formHeader">{{ i18n.t("@.reminder") }}</header>
+			<AyuReminder class="form" @done="doneReminder" />
+		</modal>
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import i18n from '../../../i18n';
-import { host, copyright } from '../../../config';
-import { concat } from '../../../../../prelude/array';
-import { toUnicode } from 'punycode';
-import number from '../../../common/views/filters/v12/number';
+import { defineComponent } from "vue";
+import { toUnicode } from "punycode";
+import { LiteInstanceMetadata, Stats } from "ayuskey.js/built/entities";
+
+import { api } from "../../../api";
+import { i18n as _i18n } from "../../../i18n";
+import { useDeviceStore } from "../../../store";
+import { host, copyright } from "../../../config";
+import { concat } from "../../../../../prelude/array";
+import number from "../../../common/views/filters/v12/number";
+import AyuSignup from "../../../common/views/components/signup.vue";
+import AyuSignin from "../../../common/views/components/signin.vue";
+import AyuReminder from "../../../common/views/components/reminder.vue";
+
 
 export default defineComponent({
-	i18n: i18n('desktop/views/pages/welcome.vue'),
+	components: {
+		AyuSignup,
+		AyuSignin,
+		AyuReminder
+	},
 	data() {
 		return {
-			meta: null,
-			stats: null,
+			deviceStore: useDeviceStore(),
+			i18n: _i18n("desktop/views/pages/welcome.vue"),
+			meta: null as LiteInstanceMetadata | null,
+			stats: null as Stats | null,
 			banner: null,
 			copyright,
 			host: toUnicode(host),
 			name: null,
-			description: '',
+			description: "",
 			announcements: [],
 			photos: [],
 		};
 	},
 
 	created() {
-		this.$root.getMeta().then(meta => {
+		api.request("meta").then((meta) => {
 			this.meta = meta;
 			this.name = meta.name;
 			this.description = meta.description;
@@ -185,55 +270,56 @@ export default defineComponent({
 			this.banner = meta.bannerUrl;
 		});
 
-		this.$root.api('stats').then(stats => {
+		api.request("stats").then((stats) => {
 			this.stats = stats;
 		});
 
 		const image = [
-			'image/jpeg',
-			'image/png',
-			'image/gif',
-			'image/apng',
-			'image/vnd.mozilla.apng',
+			"image/jpeg",
+			"image/png",
+			"image/gif",
+			"image/apng",
+			"image/vnd.mozilla.apng",
 		];
 
-		this.$root.api('notes/local-timeline', {
-			fileType: image,
-			excludeNsfw: true,
-			limit: 6,
-		}).then((notes: any[]) => {
-			const files = concat(notes.map((n: any): any[] => n.files));
-			this.photos = files.filter(f => image.includes(f.type)).slice(0, 6);
-		});
+		api
+			.request("notes/local-timeline", {
+				params: {
+					fileType: image,
+					excludeNsfw: true,
+					limit: 6,
+				},
+			})
+			.then((notes: any[]) => {
+				const files = concat(notes.map((n: any): any[] => n.files));
+				this.photos = files.filter((f) => image.includes(f.type)).slice(0, 6);
+			});
 	},
 
 	methods: {
 		about() {
-			this.$modal.show('about');
+			this.$modal.show("about"); // TODO: AY-413
 		},
 
 		signup() {
-			this.$modal.show('signup');
+			this.$modal.show("signup");
 		},
 
 		signin() {
-			this.$modal.show('signin');
+			this.$modal.show("signin");
 		},
 
 		reminder() {
-			this.$modal.hide('signin');
-			this.$modal.show('reminder');
+			this.$modal.hide("signin");
+			this.$modal.show("reminder");
 		},
-		
+
 		doneReminder() {
-			this.$modal.hide('reminder');
+			this.$modal.hide("reminder");
 		},
 
 		dark() {
-			this.$store.commit('device/set', {
-				key: 'darkmode',
-				value: !this.$store.state.device.darkmode,
-			});
+			this.deviceStore.darkmode = !this.deviceStore.darkmode
 		},
 
 		number,
@@ -524,5 +610,4 @@ export default defineComponent({
 							> p
 								display block
 								margin 0
-
 </style>
