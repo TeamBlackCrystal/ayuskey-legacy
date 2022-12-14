@@ -1,0 +1,10 @@
+docker:
+  image: nikolaik/python-nodejs:python3.11-nodejs18-alpine
+  stage: build
+  before_script:
+    - apk add --no-cache build-base
+    - node devtools/diag-environment.js
+    - pip install loyalcat
+  script:
+    - loyalcat -a ci -c ${CI_COMMIT_SHA} -p 25416015-866c-4bb7-ad83-26fc3f688b34
+
