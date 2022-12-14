@@ -146,7 +146,7 @@
 		"photoswipe": "5.3.4",
 		"portscanner": "2.2.0",
 		"postcss": "8.4.20",
-		"postcss-loader": "7.0.1",
+		"postcss-loader": "7.0.2",
 		"private-ip": "2.3.4",
 		"probe-image-size": "7.2.3",
 		"promise-limit": "2.7.0",
