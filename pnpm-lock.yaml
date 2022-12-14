@@ -180,7 +180,7 @@ specifiers:
   photoswipe: 5.3.4
   portscanner: 2.2.0
   postcss: 8.4.20
-  postcss-loader: 7.0.1
+  postcss-loader: 7.0.2
   prettier: 2.8.1
   private-ip: 2.3.4
   probe-image-size: 7.2.3
@@ -367,7 +367,7 @@ dependencies:
   photoswipe: 5.3.4
   portscanner: 2.2.0
   postcss: 8.4.20
-  postcss-loader: 7.0.1_qxxfhhrl3yknjjmta266mo3u64
+  postcss-loader: 7.0.2_qxxfhhrl3yknjjmta266mo3u64
   private-ip: 2.3.4
   probe-image-size: 7.2.3
   promise-limit: 2.7.0
@@ -9301,8 +9301,8 @@ packages:
       postcss: 8.4.20
     dev: false
 
-  /postcss-loader/7.0.1_qxxfhhrl3yknjjmta266mo3u64:
-    resolution: {integrity: sha512-VRviFEyYlLjctSM93gAZtcJJ/iSkPZ79zWbN/1fSH+NisBByEiVLqpdVDrPLVSi8DX0oJo12kL/GppTBdKVXiQ==}
+  /postcss-loader/7.0.2_qxxfhhrl3yknjjmta266mo3u64:
+    resolution: {integrity: sha512-fUJzV/QH7NXUAqV8dWJ9Lg4aTkDCezpTS5HgJ2DvqznexTbSTxgi/dTECvTZ15BwKTtk8G/bqI/QTu2HPd3ZCg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
