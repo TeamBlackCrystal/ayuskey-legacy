@@ -221,7 +221,7 @@ specifiers:
   throttle-debounce: 4.0.1
   tinycolor2: 1.4.2
   tmp: 0.2.1
-  ts-loader: 9.4.1
+  ts-loader: 9.4.2
   ts-node: 10.9.1
   tsc-alias: 1.7.1
   tsc-progress: 1.0.4
@@ -407,7 +407,7 @@ dependencies:
   throttle-debounce: 4.0.1
   tinycolor2: 1.4.2
   tmp: 0.2.1
-  ts-loader: 9.4.1_3fkjkrd3audxnith3e7fo4fnxi
+  ts-loader: 9.4.2_3fkjkrd3audxnith3e7fo4fnxi
   ts-node: 10.9.1_3v2cms72gsblw7jmali7btb3pu
   tsc-alias: 1.7.1
   tsconfig-paths: 4.1.1
@@ -11541,8 +11541,8 @@ packages:
     hasBin: true
     dev: false
 
-  /ts-loader/9.4.1_3fkjkrd3audxnith3e7fo4fnxi:
-    resolution: {integrity: sha512-384TYAqGs70rn9F0VBnh6BPTfhga7yFNdC5gXbQpDrBj9/KsT4iRkGqKXhziofHOlE2j6YEaiTYVGKKvPhGWvw==}
+  /ts-loader/9.4.2_3fkjkrd3audxnith3e7fo4fnxi:
+    resolution: {integrity: sha512-OmlC4WVmFv5I0PpaxYb+qGeGOdm5giHU7HwDDUjw59emP2UYMHy9fFSDcYgSNoH8sXcj4hGCSEhlDZ9ULeDraA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'
