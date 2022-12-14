@@ -21,7 +21,7 @@ specifiers:
   '@koa/multer': 3.0.0
   '@koa/router': 8.0.8
   '@popperjs/core': 2.11.6
-  '@redocly/openapi-core': 1.0.0-beta.114
+  '@redocly/openapi-core': 1.0.0-beta.117
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
@@ -441,7 +441,7 @@ dependencies:
   ws: 8.11.0
 
 devDependencies:
-  '@redocly/openapi-core': 1.0.0-beta.114
+  '@redocly/openapi-core': 1.0.0-beta.117
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
@@ -1001,8 +1001,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /@redocly/openapi-core/1.0.0-beta.114:
-    resolution: {integrity: sha512-408iuAZAYwhPjbuc9VoV2mNvUp8zkGkfrxIRgpKSH73x9YsihDLspveFrUkDOMIzWWypEdbhm1w0Xjgr/NysXw==}
+  /@redocly/openapi-core/1.0.0-beta.117:
+    resolution: {integrity: sha512-miueGmnDYQuyyHoW5EFAlpR1xcjH3vA9NPf5wXZX5QS647sLeyUq4Ym2ArP96mwvFnyzB3SH07a90OuzR4d8CQ==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@redocly/ajv': 8.11.0
