@@ -223,7 +223,7 @@ specifiers:
   tmp: 0.2.1
   ts-loader: 9.4.2
   ts-node: 10.9.1
-  tsc-alias: 1.7.1
+  tsc-alias: 1.8.2
   tsc-progress: 1.0.4
   tsconfig-paths: 4.1.1
   tslint: 5.20.1
@@ -409,7 +409,7 @@ dependencies:
   tmp: 0.2.1
   ts-loader: 9.4.2_3fkjkrd3audxnith3e7fo4fnxi
   ts-node: 10.9.1_3v2cms72gsblw7jmali7btb3pu
-  tsc-alias: 1.7.1
+  tsc-alias: 1.8.2
   tsconfig-paths: 4.1.1
   typeorm: 0.2.44_ioredis@4.28.5+pg@8.8.0
   typescript: 4.9.4
@@ -11586,8 +11586,8 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  /tsc-alias/1.7.1:
-    resolution: {integrity: sha512-P4+0i+OB0hX17Ca+U6EJ4WZZ+OSupqW32VJ34N7g7+Ch+bwSx1AqYOvDdIVYEKymBh3dfG0t1qxbxPlBbtB1lQ==}
+  /tsc-alias/1.8.2:
+    resolution: {integrity: sha512-ukBkcNekOgwtnSWYLD5QsMX3yQWg7JviAs8zg3qJGgu4LGtY3tsV4G6vnqvOXIDkbC+XL9vbhObWSpRA5/6wbg==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
