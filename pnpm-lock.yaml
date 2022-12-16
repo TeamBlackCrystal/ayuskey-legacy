@@ -144,7 +144,7 @@ specifiers:
   is-svg: 4.3.2
   js-yaml: 4.1.0
   jsdom: 20.0.3
-  json5: 2.2.1
+  json5: 2.2.2
   json5-loader: 4.0.1
   jsonld: 6.0.0
   jsrsasign: 10.6.1
@@ -333,7 +333,7 @@ dependencies:
   is-svg: 4.3.2
   js-yaml: 4.1.0
   jsdom: 20.0.3
-  json5: 2.2.1
+  json5: 2.2.2
   json5-loader: 4.0.1_webpack@5.75.0
   jsonld: 6.0.0
   jsrsasign: 10.6.1
@@ -7091,7 +7091,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      json5: 2.2.1
+      json5: 2.2.2
       loader-utils: 2.0.2
       schema-utils: 3.1.1
       webpack: 5.75.0_webpack-cli@4.10.0
@@ -7103,8 +7103,8 @@ packages:
     dependencies:
       minimist: 1.2.7
 
-  /json5/2.2.1:
-    resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
+  /json5/2.2.2:
+    resolution: {integrity: sha512-46Tk9JiOL2z7ytNQWFLpj99RZkVgeHf87yGQKsIkaPz1qSH9UczKH1rO7K3wgRselo0tYMUNfecYpm/p1vC7tQ==}
     engines: {node: '>=6'}
     hasBin: true
     dev: false
@@ -7670,7 +7670,7 @@ packages:
     dependencies:
       big.js: 5.2.2
       emojis-list: 3.0.0
-      json5: 2.2.1
+      json5: 2.2.2
     dev: false
 
   /loader-utils/3.2.1:
@@ -11656,7 +11656,7 @@ packages:
     resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==}
     engines: {node: '>=6'}
     dependencies:
-      json5: 2.2.1
+      json5: 2.2.2
       minimist: 1.2.7
       strip-bom: 3.0.0
     dev: false
