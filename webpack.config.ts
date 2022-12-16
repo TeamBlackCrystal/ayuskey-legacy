@@ -51,8 +51,8 @@ module.exports = {
 		desktop: './src/client/app/desktop/script.ts',
 		//mobile: './src/client/app/mobile/script.ts',
 		// ↓Deprecated
-		/*
 		dev: './src/client/app/dev/script.ts',
+		/*
 		auth: './src/client/app/auth/script.ts',
 		admin: './src/client/app/admin/script.ts',
 		*/

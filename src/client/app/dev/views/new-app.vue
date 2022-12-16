@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../i18n';
 import { kinds } from '../../../../server/api/kinds';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('dev/views/new-app.vue'),
 	data() {
 		return {
