@@ -8,7 +8,7 @@ specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.9.0
-  '@bull-board/koa': 4.8.0
+  '@bull-board/koa': 4.9.0
   '@bull-board/ui': 4.8.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -89,7 +89,7 @@ specifiers:
   autobind-decorator: 2.4.0
   autosize: 5.0.2
   autwh: 0.1.0
-  aws-sdk: 2.1274.0
+  aws-sdk: 2.1276.0
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -265,7 +265,7 @@ dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.9.0
-  '@bull-board/koa': 4.8.0_47hhf6s5g2iqergy3sns66l4iy
+  '@bull-board/koa': 4.9.0_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.8.0
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -285,7 +285,7 @@ dependencies:
   autobind-decorator: 2.4.0
   autosize: 5.0.2
   autwh: 0.1.0
-  aws-sdk: 2.1274.0
+  aws-sdk: 2.1276.0
   bcryptjs: 2.4.3
   blurhash: 2.0.4
   bootstrap: 4.6.2
@@ -607,11 +607,11 @@ packages:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/koa/4.8.0_47hhf6s5g2iqergy3sns66l4iy:
-    resolution: {integrity: sha512-aPH/Kn684VVA4ptdajAF157Jn70Ff9c2IBXzO2Zqln7UoqMFokmPWDBNDhONav5W7dodndBUU9W3v1hZ8QVWag==}
+  /@bull-board/koa/4.9.0_47hhf6s5g2iqergy3sns66l4iy:
+    resolution: {integrity: sha512-h0XMHcYvqBltHKL2BKsjdXoDcJlwQ/s55CnoUCLSoCnWGuhtS2JT3dIWdrR/CkZMLooN197CKtMqZDFOyuVHGA==}
     dependencies:
-      '@bull-board/api': 4.8.0
-      '@bull-board/ui': 4.8.0
+      '@bull-board/api': 4.9.0
+      '@bull-board/ui': 4.9.0
       ejs: 3.1.8
       koa: 2.14.1
       koa-mount: 4.0.0
@@ -679,6 +679,12 @@ packages:
     resolution: {integrity: sha512-KNk4/robDWflZxM2HfrRsijAePDE1OVyTyfhX5+uWLclNNuBH+ZZnOJnb+qnoa2giV8UKO2WZiuRqdUDNtDlQA==}
     dependencies:
       '@bull-board/api': 4.8.0
+    dev: false
+
+  /@bull-board/ui/4.9.0:
+    resolution: {integrity: sha512-Y2+fLZaCDmsrnF27Q0Fu4sjChP1ommt/LSydihta4ls52U5WfseeEaH78zPyTgN0+O6iAlN9z9+pLnWzxInLLw==}
+    dependencies:
+      '@bull-board/api': 4.9.0
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
@@ -2497,8 +2503,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-sdk/2.1274.0:
-    resolution: {integrity: sha512-s6Dg2ymytzvwTeA5ZhPvw8KkWbPEBXF/B5wmJK0QfBZwDCW3xRsfvYGTJC0w2M2hYrZOzjPYICsOspcAK333Cg==}
+  /aws-sdk/2.1276.0:
+    resolution: {integrity: sha512-0TGPsW/uMQy0trfYZD+dvSQ9Bf8NmKK9ISj5xQJGopNt/Kxh0vLKBPy2mFmKdxeFtis6wn4c9uTp7/3p0ADa1w==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
