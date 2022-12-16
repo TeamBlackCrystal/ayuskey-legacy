@@ -249,7 +249,7 @@ specifiers:
   vue-i18n: 8.28.2
   vue-js-modal: 1.3.35
   vue-loader: 17.0.1
-  vue-marquee-text-component: 1.2.0
+  vue-marquee-text-component: 2.0.1
   vue-router: 4.1.6
   vue-sequential-entrance: 1.1.3
   vue-style-loader: 4.1.3
@@ -435,7 +435,7 @@ dependencies:
   vue-i18n: 8.28.2_vue@3.2.45
   vue-js-modal: 1.3.35_vue@3.2.45
   vue-loader: 17.0.1_ceoavo7i67lvjzxxtqa4yhrx7m
-  vue-marquee-text-component: 1.2.0
+  vue-marquee-text-component: 2.0.1
   vue-router: 4.1.6_vue@3.2.45
   vue-sequential-entrance: 1.1.3
   vue-style-loader: 4.1.3
@@ -12252,11 +12252,11 @@ packages:
       webpack: 5.75.0_webpack-cli@4.10.0
     dev: false
 
-  /vue-marquee-text-component/1.2.0:
-    resolution: {integrity: sha512-wMqr7AnyCF1VjXFAnAXavAD2yCeiBULy6AbLet/YIGaI2KzuaUmi+Q3UyFYJOM2gWt994jl2PWilnkh9heLqAA==}
+  /vue-marquee-text-component/2.0.1:
+    resolution: {integrity: sha512-dbeRwDY5neOJcWZrDFU2tJMhPSsxN25ZpNYeZdt0jkseg1MbyGKzrfEH9nrCFZRkEfqhxG+ukyzwVwR9US5sTQ==}
     dependencies:
       core-js: 3.25.5
-      vue: 2.7.14
+      vue: 3.2.45
     dev: false
 
   /vue-router/4.1.6_vue@3.2.45:
