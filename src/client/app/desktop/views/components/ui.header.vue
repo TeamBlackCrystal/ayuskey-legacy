@@ -105,8 +105,8 @@ export default defineComponent({
 			height: 18px;
 			box-sizing: border-box;
 			border: solid 2px transparent;
-			border-top-color: var(--accent);
-			border-left-color: var(--accent);
+			border-top-color: var(--primary);
+			border-left-color: var(--primary);
 			border-radius: 50%;
 			animation: progress-spinner 400ms linear infinite;
 		}
