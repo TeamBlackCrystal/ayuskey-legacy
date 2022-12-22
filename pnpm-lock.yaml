@@ -167,7 +167,7 @@ specifiers:
   multer: 1.4.4-lts.1
   nested-property: 4.0.0
   node-fetch: 2.6.7
-  node-gyp: 9.3.0
+  node-gyp: 9.3.1
   nodemailer: 6.8.0
   npm-run-all: 4.1.5
   nprogress: 0.2.0
@@ -509,7 +509,7 @@ devDependencies:
   eslint-plugin-import: 2.26.0_4rm457sbmpckphlrug3bvwyp24
   eslint-plugin-vue: 9.8.0_eslint@8.29.0
   form-data: 4.0.0
-  node-gyp: 9.3.0
+  node-gyp: 9.3.1
   npm-run-all: 4.1.5
   prettier: 2.8.1
   tsc-progress: 1.0.4_typescript@4.9.4
@@ -971,6 +971,7 @@ packages:
   /@npmcli/move-file/2.0.1:
     resolution: {integrity: sha512-mJd2Z5TjYWq/ttPLLGqArdtnC74J6bOzg4rMDnN+p1xTacZ2yPRCk2y0oSWQtygLR9YVQXgOcONrwtnk3JupxQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This functionality has been moved to @npmcli/fs
     dependencies:
       mkdirp: 1.0.4
       rimraf: 3.0.2
@@ -8484,9 +8485,9 @@ packages:
     hasBin: true
     dev: false
 
-  /node-gyp/9.3.0:
-    resolution: {integrity: sha512-A6rJWfXFz7TQNjpldJ915WFb1LnhO4lIve3ANPbWreuEoLoKlFT3sxIepPBkLhM27crW8YmN+pjlgbasH6cH/Q==}
-    engines: {node: ^12.22 || ^14.13 || >=16}
+  /node-gyp/9.3.1:
+    resolution: {integrity: sha512-4Q16ZCqq3g8awk6UplT7AuxQ35XN4R/yf/+wSAwcBUAjg7l58RTactWaP8fIDTi0FzI7YcVLujwExakZlfWkXg==}
+    engines: {node: ^12.13 || ^14.13 || >=16}
     hasBin: true
     dependencies:
       env-paths: 2.2.1
