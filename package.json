@@ -299,5 +299,5 @@
 		"webpack-dev-server": "4.8.1",
 		"webpackbar": "5.0.2"
 	},
-	"packageManager": "pnpm@7.18.2"
+	"packageManager": "pnpm@7.19.0"
 }
