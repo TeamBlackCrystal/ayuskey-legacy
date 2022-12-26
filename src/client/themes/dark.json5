@@ -240,6 +240,27 @@
 		pageBlockBorderHover: 'rgba(255, 255, 255, 0.15)',
 
 		groupUserListOwnerFg: '#f15f71',
-		groupUserListOwnerBg: '#5d282e'
+		groupUserListOwnerBg: '#5d282e',
+
+		// from v12
+		panel: ':lighten<3<@bg',
+		buttonGradateA: '$primary',
+		buttonGradateB: ':hue<20<$primary',
+		X2: ':darken<2<@panel',
+		X3: 'rgba(255, 255, 255, 0.05)',
+		X4: 'rgba(255, 255, 255, 0.1)',
+		X5: 'rgba(255, 255, 255, 0.05)',
+		X6: 'rgba(255, 255, 255, 0.15)',
+		X7: 'rgba(255, 255, 255, 0.05)',
+		X8: ':lighten<5<$primary',
+		X9: ':darken<5<$primary',
+		X10: ':alpha<0.4<$primary',
+		X11: 'rgba(0, 0, 0, 0.3)',
+		X12: 'rgba(255, 255, 255, 0.1)',
+		X13: 'rgba(255, 255, 255, 0.15)',
+		//X14: ':alpha<0.5<@navBg',
+		X15: ':alpha<0<@panel',
+		X16: ':alpha<0.7<@panel',
+		//X17: ':alpha<0.8<@bg',
 	},
 }
