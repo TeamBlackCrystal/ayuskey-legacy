@@ -67,7 +67,7 @@ specifiers:
   '@types/request-stats': 3.0.0
   '@types/rimraf': 3.0.2
   '@types/seedrandom': 3.0.2
-  '@types/sharp': 0.31.0
+  '@types/sharp': 0.31.1
   '@types/showdown': 2.0.0
   '@types/speakeasy': 2.0.7
   '@types/three': 0.134.0
@@ -487,7 +487,7 @@ devDependencies:
   '@types/request-stats': 3.0.0
   '@types/rimraf': 3.0.2
   '@types/seedrandom': 3.0.2
-  '@types/sharp': 0.31.0
+  '@types/sharp': 0.31.1
   '@types/showdown': 2.0.0
   '@types/speakeasy': 2.0.7
   '@types/three': 0.134.0
@@ -1483,8 +1483,8 @@ packages:
       '@types/mime': 3.0.1
       '@types/node': 18.11.9
 
-  /@types/sharp/0.31.0:
-    resolution: {integrity: sha512-nwivOU101fYInCwdDcH/0/Ru6yIRXOpORx25ynEOc6/IakuCmjOAGpaO5VfUl4QkDtUC6hj+Z2eCQvgXOioknw==}
+  /@types/sharp/0.31.1:
+    resolution: {integrity: sha512-5nWwamN9ZFHXaYEincMSuza8nNfOof8nmO+mcI+Agx1uMUk4/pQnNIcix+9rLPXzKrm1pS34+6WRDbDV0Jn7ag==}
     dependencies:
       '@types/node': 18.11.9
     dev: true
