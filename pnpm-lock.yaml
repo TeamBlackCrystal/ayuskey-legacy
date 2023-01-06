@@ -7,7 +7,7 @@ overrides:
 specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.9.0
+  '@bull-board/api': 4.10.1
   '@bull-board/koa': 4.9.0
   '@bull-board/ui': 4.9.0
   '@discordapp/twemoji': 14.0.2
@@ -264,7 +264,7 @@ specifiers:
 dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.9.0
+  '@bull-board/api': 4.10.1
   '@bull-board/koa': 4.9.0_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.9.0
   '@discordapp/twemoji': 14.0.2
@@ -593,6 +593,12 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@bull-board/api/4.10.1:
+    resolution: {integrity: sha512-WIYXsQ5IFXUz2cFMayjqurFNiyMriv7Ga4XyQ8ytENtkmVF91+uOVYIFNiG+j56wpGoaUSbb++cZkkCn5kvBPg==}
+    dependencies:
+      redis-info: 3.1.0
     dev: false
 
   /@bull-board/api/4.9.0:
