@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import { Room } from '../../../scripts/room/room';
 import parseAcct from '../../../../../../misc/acct/parse';
@@ -62,7 +62,7 @@ import { query as urlQuery } from '../../../../../../prelude/url';
 
 let room: Room;
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('room'),
 
 	components: {
