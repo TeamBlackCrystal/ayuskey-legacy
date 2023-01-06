@@ -8,7 +8,7 @@ specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.10.1
-  '@bull-board/koa': 4.9.0
+  '@bull-board/koa': 4.10.1
   '@bull-board/ui': 4.10.1
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -265,7 +265,7 @@ dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.10.1
-  '@bull-board/koa': 4.9.0_47hhf6s5g2iqergy3sns66l4iy
+  '@bull-board/koa': 4.10.1_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.10.1
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -601,17 +601,11 @@ packages:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/api/4.9.0:
-    resolution: {integrity: sha512-JzFJ80ZFnFozpVygA8sDFbrOxsXKMWfcxx1ixcoRLfP7KjBXEPkhKO8CUGMku1SQak1mkcKJehwmNC/rdUttew==}
+  /@bull-board/koa/4.10.1_47hhf6s5g2iqergy3sns66l4iy:
+    resolution: {integrity: sha512-lh2IWrXaPmeYp33xksydBA5FD/a6xJGyMfKpuWrJywYU1vuJdqG21vbNUhF15+x9IswLA9uoOGqH69qXsNPRdg==}
     dependencies:
-      redis-info: 3.1.0
-    dev: false
-
-  /@bull-board/koa/4.9.0_47hhf6s5g2iqergy3sns66l4iy:
-    resolution: {integrity: sha512-h0XMHcYvqBltHKL2BKsjdXoDcJlwQ/s55CnoUCLSoCnWGuhtS2JT3dIWdrR/CkZMLooN197CKtMqZDFOyuVHGA==}
-    dependencies:
-      '@bull-board/api': 4.9.0
-      '@bull-board/ui': 4.9.0
+      '@bull-board/api': 4.10.1
+      '@bull-board/ui': 4.10.1
       ejs: 3.1.8
       koa: 2.14.1
       koa-mount: 4.0.0
@@ -679,12 +673,6 @@ packages:
     resolution: {integrity: sha512-2tKqHjpMtnPIxVvL0depVUzT8FoifMc52oOdMqgzP35ttEghU2+6vNKdV1C8ARB4Wf0jBINaEgfsURWEelNhJA==}
     dependencies:
       '@bull-board/api': 4.10.1
-    dev: false
-
-  /@bull-board/ui/4.9.0:
-    resolution: {integrity: sha512-Y2+fLZaCDmsrnF27Q0Fu4sjChP1ommt/LSydihta4ls52U5WfseeEaH78zPyTgN0+O6iAlN9z9+pLnWzxInLLw==}
-    dependencies:
-      '@bull-board/api': 4.9.0
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
