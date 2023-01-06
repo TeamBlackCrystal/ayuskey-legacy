@@ -37,7 +37,7 @@ specifiers:
   '@types/jsdom': 20.0.1
   '@types/jsonld': 1.5.8
   '@types/jsrsasign': 10.5.4
-  '@types/katex': 0.14.0
+  '@types/katex': 0.16.0
   '@types/koa': 2.13.5
   '@types/koa-bodyparser': 4.3.10
   '@types/koa-cors': 0.0.2
@@ -457,7 +457,7 @@ devDependencies:
   '@types/jsdom': 20.0.1
   '@types/jsonld': 1.5.8
   '@types/jsrsasign': 10.5.4
-  '@types/katex': 0.14.0
+  '@types/katex': 0.16.0
   '@types/koa': 2.13.5
   '@types/koa-bodyparser': 4.3.10
   '@types/koa-cors': 0.0.2
@@ -1271,8 +1271,8 @@ packages:
     resolution: {integrity: sha512-05S2f4lGaWgCwFHsa3OEirc4VJf/sJRfhofzxUbuFbmm6NbffPXZrnJqquQAtS3g4C8Z0L9NHgW0znmtDxNoTQ==}
     dev: true
 
-  /@types/katex/0.14.0:
-    resolution: {integrity: sha512-+2FW2CcT0K3P+JMR8YG846bmDwplKUTsWgT2ENwdQ1UdVfRk3GQrh6Mi4sTopy30gI8Uau5CEqHTDZ6YvWIUPA==}
+  /@types/katex/0.16.0:
+    resolution: {integrity: sha512-hz+S3nV6Mym5xPbT9fnO8dDhBFQguMYpY0Ipxv06JMi1ORgnEM4M1ymWDUhUNer3ElLmT583opRo4RzxKmh9jw==}
     dev: true
 
   /@types/keygrip/1.0.2:

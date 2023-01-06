@@ -236,7 +236,7 @@
 		"@types/jsdom": "20.0.1",
 		"@types/jsonld": "1.5.8",
 		"@types/jsrsasign": "10.5.4",
-		"@types/katex": "0.14.0",
+		"@types/katex": "0.16.0",
 		"@types/koa": "2.13.5",
 		"@types/koa-bodyparser": "4.3.10",
 		"@types/koa-cors": "0.0.2",
