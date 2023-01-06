@@ -25,7 +25,7 @@ specifiers:
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
-  '@types/double-ended-queue': 2.1.1
+  '@types/double-ended-queue': 2.1.2
   '@types/escape-regexp': 0.0.1
   '@types/fluent-ffmpeg': 2.1.20
   '@types/gulp': 4.0.10
@@ -445,7 +445,7 @@ devDependencies:
   '@types/animejs': 3.1.6
   '@types/bcryptjs': 2.4.2
   '@types/dateformat': 3.0.1
-  '@types/double-ended-queue': 2.1.1
+  '@types/double-ended-queue': 2.1.2
   '@types/escape-regexp': 0.0.1
   '@types/fluent-ffmpeg': 2.1.20
   '@types/gulp': 4.0.10
@@ -1120,8 +1120,8 @@ packages:
     resolution: {integrity: sha512-KlPPdikagvL6ELjWsljbyDIPzNCeliYkqRpI+zea99vBBbCIA5JNshZAwQKTON139c87y9qvTFVgkFd14rtS4g==}
     dev: true
 
-  /@types/double-ended-queue/2.1.1:
-    resolution: {integrity: sha512-O2+umEIlHBVyi+ePmucPjpINqTvSnsz+hAok0D4IpvrOsIsDr6c34B0AbNXW2UDVYuxbv51z5dxnrRt23ohgWg==}
+  /@types/double-ended-queue/2.1.2:
+    resolution: {integrity: sha512-iAjbBa3X4UQtYxcCsAr0YaZMRwyC79q4KHui0XtEN7GGLJA4fzD116KUYXXZKskaOYSchnaOFT/a8zSlEx3P9Q==}
     dev: true
 
   /@types/escape-regexp/0.0.1:
