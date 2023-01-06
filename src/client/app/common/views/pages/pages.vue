@@ -22,13 +22,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faStickyNote, faHeart } from '@fortawesome/free-regular-svg-icons';
 import i18n from '../../../i18n';
 import XPagePreview from '../../views/components/page-preview.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('pages'),
 	components: {
 		XPagePreview,

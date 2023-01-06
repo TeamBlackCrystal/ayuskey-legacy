@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XDraggable from 'vuedraggable';
 import XMenu from '../../../common/views/components/menu.vue';
@@ -22,7 +22,7 @@ import { faTimesCircle, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import XFileThumbnail from './drive-file-thumbnail.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/post-form-attaches.vue'),
 
 	components: {
