@@ -66,7 +66,7 @@ specifiers:
   '@types/rename': 1.0.4
   '@types/request-stats': 3.0.0
   '@types/rimraf': 3.0.2
-  '@types/seedrandom': 3.0.2
+  '@types/seedrandom': 3.0.4
   '@types/sharp': 0.31.1
   '@types/showdown': 2.0.0
   '@types/speakeasy': 2.0.7
@@ -486,7 +486,7 @@ devDependencies:
   '@types/rename': 1.0.4
   '@types/request-stats': 3.0.0
   '@types/rimraf': 3.0.2
-  '@types/seedrandom': 3.0.2
+  '@types/seedrandom': 3.0.4
   '@types/sharp': 0.31.1
   '@types/showdown': 2.0.0
   '@types/speakeasy': 2.0.7
@@ -1476,8 +1476,8 @@ packages:
       '@types/node': 18.11.18
     dev: true
 
-  /@types/seedrandom/3.0.2:
-    resolution: {integrity: sha512-YPLqEOo0/X8JU3rdiq+RgUKtQhQtrppE766y7vMTu8dGML7TVtZNiiiaC/hhU9Zqw9UYopXxhuWWENclMVBwKQ==}
+  /@types/seedrandom/3.0.4:
+    resolution: {integrity: sha512-/rWdxeiuZenlawrHU+XV6ZHMTKOqrC2hMfeDfLTIWJhDZP5aVqXRysduYHBbhD7CeJO6FJr/D2uBVXB7GT6v7w==}
     dev: true
 
   /@types/semver/7.3.12:
