@@ -16,12 +16,12 @@ type Account = {
 
 //適当に互換取る
 //#region Load settings
-let tmp = null;
+let tmp = { i: { token: null } };
 const vuex = localStorage.getItem('vuex');
 if (vuex) {
 	tmp = JSON.parse(vuex);
 }
-export const $i = tmp.i;
+export const $i = tmp.i as Account;
 export const $token = tmp.i?.token ? tmp.i?.token : tmp.i
 //#endregion
 
