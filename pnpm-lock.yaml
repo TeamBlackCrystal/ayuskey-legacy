@@ -259,7 +259,7 @@ specifiers:
   webpack-dev-server: 4.8.1
   webpackbar: 5.0.2
   websocket: 1.0.34
-  ws: 8.11.0
+  ws: 8.12.0
 
 dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
@@ -438,7 +438,7 @@ dependencies:
   webpack: 5.75.0_webpack-cli@4.10.0
   webpack-cli: 4.10.0_5fmukicmy7xum63bf7rhrqg3im
   websocket: 1.0.34
-  ws: 8.11.0
+  ws: 8.12.0
 
 devDependencies:
   '@redocly/openapi-core': 1.0.0-beta.120
@@ -7050,7 +7050,7 @@ packages:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
-      ws: 8.11.0
+      ws: 8.12.0
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -12595,7 +12595,7 @@ packages:
       webpack: 5.75.0_webpack-cli@4.10.0
       webpack-cli: 4.10.0_5fmukicmy7xum63bf7rhrqg3im
       webpack-dev-middleware: 5.3.3_webpack@5.75.0
-      ws: 8.11.0
+      ws: 8.12.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -12866,12 +12866,12 @@ packages:
       write-file-atomic: 2.4.3
     dev: false
 
-  /ws/8.11.0:
-    resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
+  /ws/8.12.0:
+    resolution: {integrity: sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
+      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true
