@@ -14,7 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+
 - `disableFederation`使用中の際、ユーザーフォローを行うともれなく`500`エラーが返ってくる AY-402
+
+### Security
+
+- forkbomにを引き起こす問題の緩和
 
 ## [11.37.1-rei0784-6.0.1] 2022-11-14
 
