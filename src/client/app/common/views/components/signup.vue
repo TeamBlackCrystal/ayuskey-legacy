@@ -86,151 +86,147 @@ function onChangePasswordRetype() {
 </script>
 
 <template>
-	<form
-		class="mk-signup"
-		:autocomplete="Math.random()"
-		@submit.prevent="onSubmit"
-	>
-		<template v-if="meta">
-			<uiInput
-				v-if="meta.disableRegistration"
-				v-model="invitationCode"
-				type="text"
-				:autocomplete="Math.random()"
-				spellcheck="false"
-				required
-				styl="fill"
-			>
-				<span>{{ i18n.t("invitation-code") }}</span>
-				<template #prefix><fa icon="id-card-alt" /></template>
-				<template
-					#desc
-					v-html="
-						i18n
-							.t('invitation-info')
-							.replace('{}', 'mailto:' + meta.maintainerEmail)
-					"
-				></template>
-			</uiInput>
-			<uiInput
-				v-model="username"
-				type="text"
-				pattern="^[a-zA-Z0-9_]{1,20}$"
-				:autocomplete="Math.random()"
-				spellcheck="false"
-				required
-				styl="fill"
-				@input="onChangeUsername"
-			>
-				<span>{{ i18n.t("username") }}</span>
-				<template #prefix>@</template>
-				<template #suffix>@{{ unicodeHost }}</template>
-				<template #desc>
-					<span v-if="usernameState == 'wait'" style="color: #999"
-						><fa icon="spinner" pulse fixed-width />
-						{{ i18n.t("checking") }}</span
-					>
-					<span v-if="usernameState == 'ok'" style="color: #3cb7b5"
-						><fa icon="check" fixed-width /> {{ i18n.t("available") }}</span
-					>
-					<span v-if="usernameState == 'unavailable'" style="color: #ff1161"
-						><fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("unavailable") }}</span
-					>
-					<span v-if="usernameState == 'error'" style="color: #ff1161"
-						><fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("error") }}</span
-					>
-					<span v-if="usernameState == 'invalid-format'" style="color: #ff1161"
-						><fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("invalid-format") }}</span
-					>
-					<span v-if="usernameState == 'min-range'" style="color: #ff1161"
-						><fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("too-short") }}</span
-					>
-					<span v-if="usernameState == 'max-range'" style="color: #ff1161"
-						><fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("too-long") }}</span
-					>
-				</template>
-			</uiInput>
-			<uiInput
-				v-model="password"
-				type="password"
-				:autocomplete="Math.random()"
-				required
-				:with-password-meter="true"
-				styl="fill"
-				@input="onChangePassword"
-			>
-				<span>{{ i18n.t("password") }}</span>
-				<template #prefix><fa icon="lock" /></template>
-				<template #desc>
-					<p v-if="passwordStrength == 'low'" style="color: #ff1161">
-						<fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("weak-password") }}
-					</p>
-					<p v-if="passwordStrength == 'medium'" style="color: #3cb7b5">
-						<fa icon="check" fixed-width /> {{ i18n.t("normal-password") }}
-					</p>
-					<p v-if="passwordStrength == 'high'" style="color: #3cb7b5">
-						<fa icon="check" fixed-width /> {{ i18n.t("strong-password") }}
-					</p>
-				</template>
-			</uiInput>
-			<uiInput
-				v-model="retypedPassword"
-				type="password"
-				:autocomplete="Math.random()"
-				required
-				styl="fill"
-				@input="onChangePasswordRetype"
-			>
-				<span>{{ i18n.t("password") }} ({{ i18n.t("retype") }})</span>
-				<template #prefix><fa icon="lock" /></template>
-				<template #desc>
-					<p v-if="passwordRetypeState == 'match'" style="color: #3cb7b5">
-						<fa icon="check" fixed-width /> {{ i18n.t("password-matched") }}
-					</p>
-					<p v-if="passwordRetypeState == 'not-match'" style="color: #ff1161">
-						<fa icon="exclamation-triangle" fixed-width />
-						{{ i18n.t("password-not-matched") }}
-					</p>
-				</template>
-			</uiInput>
-			<ui-switch v-if="meta.ToSUrl" v-model="ToSAgreement">
-				<i18n path="agree-to">
-					<a :href="meta.ToSUrl" target="_blank">{{ i18n.t("tos") }}</a>
-				</i18n>
-			</ui-switch>
-			<captcha
-				v-if="meta.enableRecaptcha"
-				ref="recaptcha"
-				v-model="reCaptchaResponse"
-				class="captcha"
-				provider="grecaptcha"
-				:sitekey="meta.recaptchaSiteKey"
-			/>
-			<captcha
-				v-if="meta.enableHcaptcha"
-				ref="hcaptcha"
-				v-model="hCaptchaResponse"
-				class="captcha"
-				provider="hcaptcha"
-				:sitekey="meta.hcaptchaSiteKey"
-			/>
-			<ui-button
-				type="submit"
-				:disabled="
-					submitting ||
+<form
+	class="mk-signup"
+	:autocomplete="Math.random()"
+	@submit.prevent="onSubmit"
+>
+	<template v-if="meta">
+		<uiInput
+			v-if="meta.disableRegistration"
+			v-model="invitationCode"
+			type="text"
+			:autocomplete="Math.random()"
+			spellcheck="false"
+			required
+			styl="fill"
+		>
+			<span>{{ i18n.t("invitation-code") }}</span>
+			<template #prefix><fa icon="id-card-alt" /></template>
+			<template #desc>
+				{{i18n
+					.t('invitation-info')}}
+			</template>
+		</uiInput>
+		<uiInput
+			v-model="username"
+			type="text"
+			pattern="^[a-zA-Z0-9_]{1,20}$"
+			:autocomplete="Math.random()"
+			spellcheck="false"
+			required
+			styl="fill"
+			@input="onChangeUsername"
+		>
+			<span>{{ i18n.t("username") }}</span>
+			<template #prefix>@</template>
+			<template #suffix>@{{ unicodeHost }}</template>
+			<template #desc>
+				<span v-if="usernameState == 'wait'" style="color: #999"
+				><fa icon="spinner" pulse fixed-width />
+					{{ i18n.t("checking") }}</span
+				>
+				<span v-if="usernameState == 'ok'" style="color: #3cb7b5"
+				><fa icon="check" fixed-width /> {{ i18n.t("available") }}</span
+				>
+				<span v-if="usernameState == 'unavailable'" style="color: #ff1161"
+				><fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("unavailable") }}</span
+				>
+				<span v-if="usernameState == 'error'" style="color: #ff1161"
+				><fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("error") }}</span
+				>
+				<span v-if="usernameState == 'invalid-format'" style="color: #ff1161"
+				><fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("invalid-format") }}</span
+				>
+				<span v-if="usernameState == 'min-range'" style="color: #ff1161"
+				><fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("too-short") }}</span
+				>
+				<span v-if="usernameState == 'max-range'" style="color: #ff1161"
+				><fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("too-long") }}</span
+				>
+			</template>
+		</uiInput>
+		<uiInput
+			v-model="password"
+			type="password"
+			:autocomplete="Math.random()"
+			required
+			:with-password-meter="true"
+			styl="fill"
+			@input="onChangePassword"
+		>
+			<span>{{ i18n.t("password") }}</span>
+			<template #prefix><fa icon="lock" /></template>
+			<template #desc>
+				<p v-if="passwordStrength == 'low'" style="color: #ff1161">
+					<fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("weak-password") }}
+				</p>
+				<p v-if="passwordStrength == 'medium'" style="color: #3cb7b5">
+					<fa icon="check" fixed-width /> {{ i18n.t("normal-password") }}
+				</p>
+				<p v-if="passwordStrength == 'high'" style="color: #3cb7b5">
+					<fa icon="check" fixed-width /> {{ i18n.t("strong-password") }}
+				</p>
+			</template>
+		</uiInput>
+		<uiInput
+			v-model="retypedPassword"
+			type="password"
+			:autocomplete="Math.random()"
+			required
+			styl="fill"
+			@input="onChangePasswordRetype"
+		>
+			<span>{{ i18n.t("password") }} ({{ i18n.t("retype") }})</span>
+			<template #prefix><fa icon="lock" /></template>
+			<template #desc>
+				<p v-if="passwordRetypeState == 'match'" style="color: #3cb7b5">
+					<fa icon="check" fixed-width /> {{ i18n.t("password-matched") }}
+				</p>
+				<p v-if="passwordRetypeState == 'not-match'" style="color: #ff1161">
+					<fa icon="exclamation-triangle" fixed-width />
+					{{ i18n.t("password-not-matched") }}
+				</p>
+			</template>
+		</uiInput>
+		<ui-switch v-if="meta.ToSUrl" v-model="ToSAgreement">
+			<i18n path="agree-to">
+				<a :href="meta.ToSUrl" target="_blank">{{ i18n.t("tos") }}</a>
+			</i18n>
+		</ui-switch>
+		<captcha
+			v-if="meta.enableRecaptcha"
+			ref="recaptcha"
+			v-model="reCaptchaResponse"
+			class="captcha"
+			provider="grecaptcha"
+			:sitekey="meta.recaptchaSiteKey"
+		/>
+		<captcha
+			v-if="meta.enableHcaptcha"
+			ref="hcaptcha"
+			v-model="hCaptchaResponse"
+			class="captcha"
+			provider="hcaptcha"
+			:sitekey="meta.hcaptchaSiteKey"
+		/>
+		<ui-button
+			type="submit"
+			:disabled="
+				submitting ||
 					!(meta.ToSUrl ? ToSAgreement : true) ||
 					passwordRetypeState == 'not-match'
-				"
-				>{{ i18n.t("create") }}</ui-button
-			>
-		</template>
-	</form>
+			"
+		>{{ i18n.t("create") }}</ui-button
+		>
+	</template>
+</form>
 </template>
 
 <!-- 
