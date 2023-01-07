@@ -17,7 +17,7 @@ workspace:
             "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
         - name: "Clone Git Project"
           command: |
-            git clone git@github.com:TeamBlackCrystal/ayuskey.git
+            git clone git@git.lab.teamblackcrystal.com:blackcrystal/ayuskey.git
             git checkout develop
           continue-on-error: true
           directory: /home/coder/work/teamblackcrystal
