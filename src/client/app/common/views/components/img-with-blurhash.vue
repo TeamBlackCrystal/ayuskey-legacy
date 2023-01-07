@@ -1,6 +1,6 @@
 <template>
-<div class="xubzgfgb" :class="{ cover }" :title="title">
-	<canvas v-if="!loaded" ref="canvas" :width="size" :height="size" :title="title"/>
+<div class="xubzgfgb" :title="title">
+	<canvas ref="canvas" :width="size" :height="size" :title="title" v-if="!loaded"/>
 	<img v-if="src" :src="src" :title="title" :alt="alt" @load="onLoad"/>
 </div>
 </template>
@@ -14,11 +14,11 @@ export default defineComponent({
 		src: {
 			type: String,
 			required: false,
-			default: null,
+			default: null
 		},
 		hash: {
 			type: String,
-			required: true,
+			required: true
 		},
 		alt: {
 			type: String,
@@ -35,11 +35,6 @@ export default defineComponent({
 			required: false,
 			default: 64,
 		},
-		cover: {
-			type: Boolean,
-			required: false,
-			default: true,
-		},
 	},
 
 	data() {
@@ -49,12 +44,11 @@ export default defineComponent({
 	},
 
 	mounted() {
-		this.draw();
+		if (this.hash) { this.draw(); }
 	},
 
 	methods: {
 		draw() {
-			if (this.hash == null) return;
 			const pixels = decode(this.hash, this.size, this.size);
 			const ctx = (this.$refs.canvas as HTMLCanvasElement).getContext('2d');
 			const imageData = ctx!.createImageData(this.size, this.size);
@@ -69,32 +63,19 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.xubzgfgb {
-	position: relative;
-	width: 100%;
-	height: 100%;
+<style lang="stylus" scoped>
+.xubzgfgb
+	width 100%
+	height 100%
 
-	> canvas,
-	> img {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
+	> canvas
+		width 100%
+		height 100%
+		object-fit contain
 
-	> canvas {
-		position: absolute;
-		object-fit: cover;
-	}
+	> img
+		width 100%
+		height 100%
+		object-fit contain
 
-	> img {
-		object-fit: contain;
-	}
-
-	&.cover {
-		> img {
-			object-fit: cover;
-		}
-	}
-}
 </style>
