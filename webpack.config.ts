@@ -8,7 +8,7 @@ import chalk from 'chalk';
 import { execSync } from 'child_process';
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackBar = require('webpackbar');
-const TerserPlugin = require('terser-webpack-plugin');
+import TerserPlugin from 'terser-webpack-plugin';
 
 class WebpackOnBuildPlugin {
 	constructor(readonly callback: (stats: any) => void) {
@@ -231,7 +231,7 @@ module.exports = {
 	},
 	optimization: {
 		minimizer: [new TerserPlugin({
-			parallel: 1
+			minify: TerserPlugin.swcMinify,
 		})]
 	},
 	// FIXME
