@@ -106,4 +106,10 @@ async function unFollow(follower: User, followee: User) {
 		const content = renderActivity(renderUndo(renderFollow(follower, followee), follower));
 		deliver(follower, content, followee.inbox);
 	}
+
+	// リモートからフォローを受けていたらReject送信
+	if (Users.isRemoteUser(follower) && Users.isLocalUser(followee)) {
+		const content = renderActivity(renderReject(renderFollow(follower, followee), followee));
+		deliver(followee, content, follower.inbox);
+	}
 }
