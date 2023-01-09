@@ -158,7 +158,7 @@ export default defineComponent({
 			vm.$once('chosen', emoji => {
 				this.react(emoji);
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				vm.close();
 			});
 		},

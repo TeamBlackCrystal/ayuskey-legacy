@@ -126,7 +126,7 @@ export default defineComponent({
 			length: 50,
 		});
 
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			connection.dispose();
 			this.inChart.destroy();
 			this.outChart.destroy();

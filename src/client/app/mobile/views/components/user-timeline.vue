@@ -28,7 +28,7 @@ export default Vue.extend({
 
 	created() {
 		this.$root.$on('warp', this.warp);
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			this.$root.$off('warp', this.warp);
 		});
 	},

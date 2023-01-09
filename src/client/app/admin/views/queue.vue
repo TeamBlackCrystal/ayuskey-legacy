@@ -113,7 +113,7 @@ export default Vue.extend({
 			length: this.chartLimit,
 		});
 
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			this.connection.dispose();
 		});
 	},

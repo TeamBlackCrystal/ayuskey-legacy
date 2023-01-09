@@ -113,7 +113,7 @@ export default defineComponent({
 				source: this.$refs.menu,
 				user: this.user,
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				w.destroyDom();
 			});
 		},

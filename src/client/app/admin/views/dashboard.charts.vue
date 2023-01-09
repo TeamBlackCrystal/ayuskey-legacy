@@ -146,7 +146,7 @@ export default Vue.extend({
 		this.render();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.chartInstance.destroy();
 	},
 

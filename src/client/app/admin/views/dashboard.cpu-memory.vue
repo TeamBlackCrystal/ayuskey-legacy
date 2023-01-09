@@ -114,7 +114,7 @@ export default Vue.extend({
 		this.memChart.render();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('stats', this.onStats);
 		this.connection.off('statsLog', this.onStatsLog);
 

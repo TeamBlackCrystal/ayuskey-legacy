@@ -51,7 +51,7 @@ export default defineComponent({
 	mounted() {
 		document.addEventListener('keydown', this.onDocumentKeydown);
 		this.$root.$on('warp', this.warp);
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			this.$root.$off('warp', this.warp);
 			document.removeEventListener('keydown', this.onDocumentKeydown);
 		});

@@ -49,7 +49,7 @@ export default Vue.extend({
 
 		this.browser.$on('change-selection', this.onBrowserChangeSelection);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.browser.$off('change-selection', this.onBrowserChangeSelection);
 	},
 	methods: {
