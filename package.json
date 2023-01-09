@@ -26,6 +26,7 @@
 		"build-gulp": "gulp build",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
+		"dev:clean": "run-s clean build dev",
 		"gulpstart": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-s gulp start",
 		"watch-webpack": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && webpack --watch",
 		"gulp": "gulp build",
