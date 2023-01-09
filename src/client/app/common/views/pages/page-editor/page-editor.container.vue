@@ -25,12 +25,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import i18n from '../../../../i18n';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('pages'),
 
 	props: {
