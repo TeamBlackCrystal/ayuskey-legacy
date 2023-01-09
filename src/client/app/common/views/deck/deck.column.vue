@@ -28,14 +28,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import Menu from '../../../common/views/components/menu.vue';
 import { countIf } from '../../../../../prelude/array';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faWindowMaximize } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('deck'),
 
 	inject: {

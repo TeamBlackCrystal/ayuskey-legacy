@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import * as sound from '../../scripts/sound';
 import XNotification from './deck.notification.vue';
@@ -34,7 +34,7 @@ import * as config from '../../../config';
 
 const displayLimit = 20;
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 
 	components: {
