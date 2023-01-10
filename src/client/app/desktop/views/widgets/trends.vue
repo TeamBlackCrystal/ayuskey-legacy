@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
-import i18n from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 import { acct, userPage } from '../../../common/views/filters/v12/user';
 import notePage from '../../../common/views/filters/v12/note';
 
@@ -32,12 +32,12 @@ const widgets = define({
 
 export default defineComponent({
 	extends: widgets,
-	i18n: i18n('desktop/views/widgets/trends.vue'),
 	data() {
 		return {
 			note: null,
 			fetching: true,
 			offset: 0,
+			i18n: _i18n('desktop/views/widgets/trends.vue'),
 		};
 	},
 	mounted() {
