@@ -50,7 +50,8 @@ import i18n from '../../../i18n';
 import { apiUrl, host } from '../../../config';
 import { toUnicode } from 'punycode';
 import { hexifyAB, byteify } from '../../scripts/2fa';
-import { $i } from '../../../account';
+import { ayuskeyApi } from '../../../api';
+import { assertIsSuccess } from 'strictcat/built/rpc'
 
 export default defineComponent({
 	i18n: i18n('common/views/components/signin.vue'),
@@ -88,10 +89,13 @@ export default defineComponent({
 
 	methods: {
 		onUsernameChange() {
-			this.$root.api('users/show', {
-				username: this.username,
+			ayuskeyApi.call('POST', '/users/show', {
+				body: {
+					username: this.username,
+				}
 			}).then(user => {
-				this.user = user;
+				assertIsSuccess(user)
+				this.user = user.data;
 			}, () => {
 				this.user = null;
 			});

@@ -4,7 +4,7 @@
 
 	<section class="esokaraujimuwfttfzgocmutcihewscl">
 		<div class="header" :style="bannerStyle">
-			<mk-avatar class="avatar" :user="$store.state.i" :disable-preview="true" :disable-link="true"/>
+			<mk-avatar class="avatar" :user="store.i" :disable-preview="true" :disable-link="true"/>
 		</div>
 
 		<ui-form :disabled="saving">
@@ -149,6 +149,7 @@ import langmap from 'langmap';
 import { unique } from '../../../../../../prelude/array';
 import { faDownload, faUpload, faUnlockAlt, faBoxes, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { useStore } from '../../../../store';
 
 export default defineComponent({
 	i18n: i18n('common/views/components/profile-editor.vue'),
@@ -190,6 +191,7 @@ export default defineComponent({
 			avatarUploading: false,
 			bannerUploading: false,
 			exportTarget: 'notes',
+			store: useStore(),
 			faDownload, faUpload, faSave, faEnvelope, faUnlockAlt, faBoxes, faCogs,
 		};
 	},

@@ -1,87 +1,125 @@
 <script setup lang="ts">
-import { defineAsyncComponent, Ref, ref } from "vue";
-import { toUnicode } from "punycode";
+import { defineAsyncComponent, Ref, ref } from 'vue';
+import { toUnicode } from 'punycode';
 
-import { host, url } from "../../../config";
-import { i18n as _i18n } from "../../../i18n";
-import { api } from "../../../api";
+import { host } from '../../../config';
+import { i18n as _i18n } from '../../../i18n';
+import { api } from '../../../api';
+import { api as _api } from '../../../os';
 
-import uiInput from "./ui/input.vue";
-import { LiteInstanceMetadata } from "ayuskey.js/built/entities";
-const captcha = defineAsyncComponent(() => import('./captcha.vue').then(x => x.default))
+import uiInput from './ui/input.vue';
+import { LiteInstanceMetadata } from 'ayuskey.js/built/entities';
+const captcha = defineAsyncComponent(() => import('./captcha.vue').then(x => x.default));
 
-const getPasswordStrength = require("syuilo-password-strength");
-const i18n = _i18n("common/views/components/signup.vue");
+const getPasswordStrength = require('syuilo-password-strength');
+const i18n = _i18n('common/views/components/signup.vue');
 const unicodeHost = toUnicode(host);
-const username = ref("");
-const password = ref("");
-const retypedPassword = ref("");
-const invitationCode = "";
-const usernameState = ref("");
-const passwordStrength = ref("");
+const username = ref('');
+const password = ref('');
+const retypedPassword = ref('');
+const invitationCode = '';
+const usernameState = ref('');
+const passwordStrength = ref('');
 const passwordRetypeState = ref(null);
 const meta: Ref<LiteInstanceMetadata> = ref({} as LiteInstanceMetadata);
-const submitting = false;
+const submitting = ref(false);
 const ToSAgreement = false;
 const reCaptchaResponse = null;
 const hCaptchaResponse = null;
 
-api.request("meta", {}).then((res) => {
+const hcaptchaRef = ref<HTMLElement>();
+const recaptchaRef = ref<HTMLElement>();
+
+api.request('meta', {}).then((res) => {
 	meta.value = res;
 });
 
-function onChangeUsername() {
-	if (username.value === "") {
+function onSubmit() {
+	if (submitting.value) return;
+	submitting.value = true;
+
+	_api('signup', {
+		username: username.value,
+		password: password.value,
+		invitationCode: invitationCode,
+		'hcaptcha-response': hCaptchaResponse,
+		'g-recaptcha-response': reCaptchaResponse,
+	}).then(() => {
+		_api('signin', {
+			username: username.value,
+			password: password.value,
+		}).then(res => {
+			localStorage.setItem('i', res.i);
+			document.cookie = `token=${res.i}; path=/; max-age=31536000`; // bull dashboardの認証とかで使う
+			location.href = '/';
+		});
+	}).catch(() => {
+		submitting.value = false;
+		hcaptchaRef.value.reset?.(); // TODO: 今後どこにresetがあるか探す
+		recaptchaRef.value.reset?.();
+
+		this.$root.dialog({
+			type: 'error',
+			text: i18n.t('some-error'),
+		});
+	});
+}
+
+function onChangeUsername(value) {
+	username.value = value;
+	if (username.value === '') {
 		usernameState.value = null;
 		return;
 	}
 
 	const err = !username.value.match(/^[a-zA-Z0-9_]+$/)
-		? "invalid-format"
+		? 'invalid-format'
 		: username.value.length < 1
-		? "min-range"
-		: username.value.length > 20
-		? "max-range"
-		: null;
+			? 'min-range'
+			: username.value.length > 20
+				? 'max-range'
+				: null;
 
 	if (err) {
 		usernameState.value = err;
 		return;
 	}
 
-	usernameState.value = "wait";
+	usernameState.value = 'wait';
 
 	api
-		.request("username/available", {
+		.request('username/available', {
 			params: { username: username.value },
 		})
 		.then((result) => {
-			usernameState.value = result.available ? "ok" : "unavailable";
+			usernameState.value = result.available ? 'ok' : 'unavailable';
 		})
 		.catch((err) => {
-			usernameState.value = "error";
+			usernameState.value = 'error';
 		});
 }
 
-function onChangePassword() {
-	if (password.value === "") {
-		passwordStrength.value = "";
+function onChangePassword(value) {
+	password.value = value;
+	if (password.value === '') {
+		passwordStrength.value = '';
 		return;
 	}
 
 	const strength = getPasswordStrength(password);
 	passwordStrength.value =
-		strength > 0.7 ? "high" : strength > 0.3 ? "medium" : "low";
+		strength > 0.7 ? 'high' : strength > 0.3 ? 'medium' : 'low';
 }
 
-function onChangePasswordRetype() {
-	if (retypedPassword.value === "") {
+function onChangePasswordRetype(value) {
+	retypedPassword.value = value;
+	if (retypedPassword.value === '') {
 		passwordRetypeState.value = null;
 		return;
 	}
-	console.log("ここ2", retypedPassword, password);
+	console.log('ここ2', retypedPassword, password);
 	passwordRetypeState.value =
-		password.value === retypedPassword.value ? "match" : "not-match";
+		password.value === retypedPassword.value ? 'match' : 'not-match';
 }
 </script>
 
@@ -96,8 +134,7 @@ function onChangePasswordRetype() {
 			v-if="meta.disableRegistration"
 			v-model="invitationCode"
 			type="text"
-			:autocomplete="Math.random()"
-			spellcheck="false"
+			:spellcheck="false"
 			required
 			styl="fill"
 		>
@@ -109,14 +146,14 @@ function onChangePasswordRetype() {
 			</template>
 		</uiInput>
 		<uiInput
-			v-model="username"
+			:model-value="username"
 			type="text"
 			pattern="^[a-zA-Z0-9_]{1,20}$"
-			:autocomplete="Math.random()"
-			spellcheck="false"
+			autocomplete="username"
+			:spellcheck="false"
 			required
 			styl="fill"
-			@input="onChangeUsername"
+			@update:model-value="onChangeUsername"
 		>
 			<span>{{ i18n.t("username") }}</span>
 			<template #prefix>@</template>
@@ -152,13 +189,13 @@ function onChangePasswordRetype() {
 			</template>
 		</uiInput>
 		<uiInput
-			v-model="password"
+			:model-value="password"
 			type="password"
-			:autocomplete="Math.random()"
+			autocomplete="new-password"
 			required
 			:with-password-meter="true"
 			styl="fill"
-			@input="onChangePassword"
+			@update:model-value="onChangePassword"
 		>
 			<span>{{ i18n.t("password") }}</span>
 			<template #prefix><fa icon="lock" /></template>
@@ -176,12 +213,12 @@ function onChangePasswordRetype() {
 			</template>
 		</uiInput>
 		<uiInput
-			v-model="retypedPassword"
+			:model-value="retypedPassword"
 			type="password"
-			:autocomplete="Math.random()"
+			autocomplete="current-password"
 			required
 			styl="fill"
-			@input="onChangePasswordRetype"
+			@update:model-value="onChangePasswordRetype"
 		>
 			<span>{{ i18n.t("password") }} ({{ i18n.t("retype") }})</span>
 			<template #prefix><fa icon="lock" /></template>
@@ -202,7 +239,7 @@ function onChangePasswordRetype() {
 		</ui-switch>
 		<captcha
 			v-if="meta.enableRecaptcha"
-			ref="recaptcha"
+			ref="recaptchaRef"
 			v-model="reCaptchaResponse"
 			class="captcha"
 			provider="grecaptcha"
@@ -210,7 +247,7 @@ function onChangePasswordRetype() {
 		/>
 		<captcha
 			v-if="meta.enableHcaptcha"
-			ref="hcaptcha"
+			ref="hcaptchaRef"
 			v-model="hCaptchaResponse"
 			class="captcha"
 			provider="hcaptcha"

@@ -3,13 +3,13 @@ import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
 import { createPinia, defineStore } from 'pinia';
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 import MiOS from './mios';
 import { erase } from '../../prelude/array';
 import getNoteSummary from '../../misc/get-note-summary';
 import { Theme } from './theme';
-import { UserDetailed } from 'ayuskey.js/built/entities';
+import { User as UserDetailed } from 'ayuskey.js/built/schema';
 
 const defaultSettings = {
 	keepCw: false,
@@ -45,7 +45,18 @@ const defaultSettings = {
 	uploadFolder: null,
 	pastedFileName: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
 	pasteDialog: false,
-	reactions: ['like', 'love', 'laugh', 'hmm', 'surprise', 'congrats', 'angry', 'confused', 'rip', 'pudding'],
+	reactions: [
+		'like',
+		'love',
+		'laugh',
+		'hmm',
+		'surprise',
+		'congrats',
+		'angry',
+		'confused',
+		'rip',
+		'pudding',
+	],
 };
 
 const defaultDeviceSettings = {
@@ -99,16 +110,22 @@ const defaultDeviceSettings = {
 	recentEmojis: [],
 };
 
-export const pinia = createPinia().use(piniaPluginPersistedstate)
+export const pinia = createPinia().use(piniaPluginPersistedstate);
+
+export type ClientUserDetaield = UserDetailed & {
+	emailVerified?: boolean;
+};
 
 export const useIStore = defineStore('i', {
-	state: () => (null as UserDetailed | null),
+	state: () => {
+		return {} as ClientUserDetaield;
+	},
 	persist: {
-		storage: localStorage
-	}
-})
+		key: 'persist_i',
+	},
+});
 
-export const useDeviceStore = 	defineStore('device', {
+export const useDeviceStore = defineStore('device', {
 	state: () => ({
 		homeProfile: 'Default',
 		mobileHomeProfile: 'Default',
@@ -158,11 +175,9 @@ export const useDeviceStore = 	defineStore('device', {
 		roomUseOrthographicCamera: true,
 		activeEmojiCategoryName: undefined,
 		recentEmojis: [],
-		}),
-	persist: {
-		storage: localStorage,
-	}
-})
+	}),
+	persist: true,
+});
 
 export const useSettingsStore = defineStore('settings', {
 	state: () => ({
@@ -199,456 +214,484 @@ export const useSettingsStore = defineStore('settings', {
 		uploadFolder: null,
 		pastedFileName: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
 		pasteDialog: false,
-		reactions: ['like', 'love', 'laugh', 'hmm', 'surprise', 'congrats', 'angry', 'confused', 'rip', 'pudding'],
+		reactions: [
+			'like',
+			'love',
+			'laugh',
+			'hmm',
+			'surprise',
+			'congrats',
+			'angry',
+			'confused',
+			'rip',
+			'pudding',
+		],
 	}),
-	persist: {
-		storage: localStorage
-	}
-})
+	persist: true,
+});
 
 export const useStore = () => {
 	return {
 		i: useIStore(),
 		device: useDeviceStore(),
 		settings: useSettingsStore(),
-	}
-}
+	};
+};
 
-export default (os: MiOS) => createStore({
-	plugins: [createPersistedState({
-		paths: ['i', 'device', 'settings'],
-	})],
+export default (os: MiOS) =>
+	createStore({
+		plugins: [
+			createPersistedState({
+				paths: ['i', 'device', 'settings'],
+			}),
+		],
 
-	state: {
-		i: null,
-		indicate: false,
-		uiHeaderHeight: 0,
-		behindNotes: [],
-	},
-
-	getters: {
-		isSignedIn: state => state.i != null,
-
-		home: state => state.settings.homeProfiles[state.device.homeProfile],
-
-		mobileHome: state => state.settings.mobileHomeProfiles[state.device.mobileHomeProfile],
-
-		deck: state => state.settings.deckProfiles[state.device.deckProfile],
-	},
-
-	mutations: {
-		updateI(state, x) {
-			state.i = x;
+		state: {
+			i: null,
+			indicate: false,
+			uiHeaderHeight: 0,
+			behindNotes: [],
 		},
 
-		updateIKeyValue(state, x) {
-			state.i[x.key] = x.value;
+		getters: {
+			isSignedIn: (state) => state.i != null,
+
+			home: (state) => state.settings.homeProfiles[state.device.homeProfile],
+
+			mobileHome: (state) =>
+				state.settings.mobileHomeProfiles[state.device.mobileHomeProfile],
+
+			deck: (state) => state.settings.deckProfiles[state.device.deckProfile],
 		},
 
-		indicate(state, x) {
-			state.indicate = x;
-		},
+		mutations: {
+			updateI(state, x) {
+				state.i = x;
+			},
 
-		setUiHeaderHeight(state, height) {
-			state.uiHeaderHeight = height;
-		},
+			updateIKeyValue(state, x) {
+				state.i[x.key] = x.value;
+			},
 
-		pushBehindNote(state, note) {
-			if (note.userId === state.i.id) return;
-			if (state.behindNotes.some(n => n.id === note.id)) return;
-			state.behindNotes.push(note);
-			document.title = `(${state.behindNotes.length}) ${getNoteSummary(note)}`;
-		},
+			indicate(state, x) {
+				state.indicate = x;
+			},
 
-		clearBehindNotes(state) {
-			state.behindNotes = [];
-			document.title = os.instanceName;
-		},
+			setUiHeaderHeight(state, height) {
+				state.uiHeaderHeight = height;
+			},
 
-		setHome(state, data) {
-			Vue.set(state.settings.homeProfiles, state.device.homeProfile, data);
-			os.store.dispatch('settings/updateHomeProfile');
-		},
+			pushBehindNote(state, note) {
+				if (note.userId === state.i.id) return;
+				if (state.behindNotes.some((n) => n.id === note.id)) return;
+				state.behindNotes.push(note);
+				document.title = `(${state.behindNotes.length}) ${getNoteSummary(
+					note,
+				)}`;
+			},
 
-		setDeck(state, data) {
-			Vue.set(state.settings.deckProfiles, state.device.deckProfile, data);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+			clearBehindNotes(state) {
+				state.behindNotes = [];
+				document.title = os.instanceName;
+			},
 
-		addHomeWidget(state, widget) {
-			state.settings.homeProfiles[state.device.homeProfile].unshift(widget);
-			os.store.dispatch('settings/updateHomeProfile');
-		},
+			setHome(state, data) {
+				Vue.set(state.settings.homeProfiles, state.device.homeProfile, data);
+				os.store.dispatch('settings/updateHomeProfile');
+			},
 
-		setMobileHome(state, data) {
-			Vue.set(state.settings.mobileHomeProfiles, state.device.mobileHomeProfile, data);
-			os.store.dispatch('settings/updateMobileHomeProfile');
-		},
+			setDeck(state, data) {
+				Vue.set(state.settings.deckProfiles, state.device.deckProfile, data);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
 
-		updateWidget(state, x) {
-			let w;
+			addHomeWidget(state, widget) {
+				state.settings.homeProfiles[state.device.homeProfile].unshift(widget);
+				os.store.dispatch('settings/updateHomeProfile');
+			},
 
-			//#region Desktop home
-			const home = state.settings.homeProfiles[state.device.homeProfile];
-			if (home) {
-				w = home.find(w => w.id == x.id);
-				if (w) {
-					w.data = x.data;
-					os.store.dispatch('settings/updateHomeProfile');
-				}
-			}
-			//#endregion
+			setMobileHome(state, data) {
+				Vue.set(
+					state.settings.mobileHomeProfiles,
+					state.device.mobileHomeProfile,
+					data,
+				);
+				os.store.dispatch('settings/updateMobileHomeProfile');
+			},
 
-			//#region Mobile home
-			const mobileHome = state.settings.mobileHomeProfiles[state.device.mobileHomeProfile];
-			if (mobileHome) {
-				w = mobileHome.find(w => w.id == x.id);
-				if (w) {
-					w.data = x.data;
-					os.store.dispatch('settings/updateMobileHomeProfile');
-				}
-			}
-			//#endregion
-		},
+			updateWidget(state, x) {
+				let w;
 
-		addMobileHomeWidget(state, widget) {
-			state.settings.mobileHomeProfiles[state.device.mobileHomeProfile].unshift(widget);
-			os.store.dispatch('settings/updateMobileHomeProfile');
-		},
-
-		removeMobileHomeWidget(state, widget) {
-			Vue.set('state.settings.mobileHomeProfiles', state.device.mobileHomeProfile, state.settings.mobileHomeProfiles[state.device.mobileHomeProfile].filter(w => w.id != widget.id));
-			os.store.dispatch('settings/updateMobileHomeProfile');
-		},
-
-		addDeckColumn(state, column) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			if (column.name == undefined) column.name = null;
-			deck.columns.push(column);
-			deck.layout.push([column.id]);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		removeDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.columns = deck.columns.filter(c => c.id != id);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		changeTemporaryColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-
-			// ドラッグ先の縦位置
-			const x = deck.layout.findIndex(ids => ids.indexOf(id) != -1);
-			const leftEdge = x === 0;
-			const rightEdge = x === deck.layout.length - 1;
-
-			// 左端固定以外から左端に移動したら左端固定にする
-			if (state.device.deckTemporaryColumnPosition !== 'left' && leftEdge) {
-				state.device.deckTemporaryColumnPosition = 'left';
-				state.device.deckTemporaryColumnIndex = 1;
-				return;
-			}
-
-			// 右端固定以外から右端に移動したら右端固定にする
-			if (state.device.deckTemporaryColumnPosition !== 'right' && rightEdge) {
-				state.device.deckTemporaryColumnPosition = 'right';
-				state.device.deckTemporaryColumnIndex = 1;
-				return;
-			}
-
-			// 左端固定から移動した
-			if (leftEdge) {
-				state.device.deckTemporaryColumnPosition = 'specify';
-				state.device.deckTemporaryColumnIndex = x + 1;
-				return;
-			}
-
-			// 右端固定から移動した
-			if (rightEdge) {
-				state.device.deckTemporaryColumnPosition = 'specify';
-				state.device.deckTemporaryColumnIndex = x;
-				return;
-			}
-
-			// 中程から移動した
-			if (x < state.device.deckTemporaryColumnIndex) {
-				state.device.deckTemporaryColumnPosition = 'specify';
-				state.device.deckTemporaryColumnIndex = x;
-			} else {
-				state.device.deckTemporaryColumnPosition = 'specify';
-				state.device.deckTemporaryColumnIndex = x + 1;
-			}
-		},
-
-		swapDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const a = x.a;
-			const b = x.b;
-			const aX = deck.layout.findIndex(ids => ids.indexOf(a) != -1);
-			const aY = deck.layout[aX].findIndex(id => id == a);
-			const bX = deck.layout.findIndex(ids => ids.indexOf(b) != -1);
-			const bY = deck.layout[bX].findIndex(id => id == b);
-			deck.layout[aX][aY] = b;
-			deck.layout[bX][bY] = a;
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapLeftDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.layout.some((ids, i) => {
-				if (ids.indexOf(id) != -1) {
-					const left = deck.layout[i - 1];
-					if (left) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//state.deck.layout[i - 1] = state.deck.layout[i];
-						//state.deck.layout[i] = left;
-						deck.layout.splice(i - 1, 1, deck.layout[i]);
-						deck.layout.splice(i, 1, left);
+				//#region Desktop home
+				const home = state.settings.homeProfiles[state.device.homeProfile];
+				if (home) {
+					w = home.find((w) => w.id == x.id);
+					if (w) {
+						w.data = x.data;
+						os.store.dispatch('settings/updateHomeProfile');
 					}
-					return true;
 				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+				//#endregion
 
-		swapRightDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.layout.some((ids, i) => {
-				if (ids.indexOf(id) != -1) {
-					const right = deck.layout[i + 1];
-					if (right) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//state.deck.layout[i + 1] = state.deck.layout[i];
-						//state.deck.layout[i] = right;
-						deck.layout.splice(i + 1, 1, deck.layout[i]);
-						deck.layout.splice(i, 1, right);
+				//#region Mobile home
+				const mobileHome =
+					state.settings.mobileHomeProfiles[state.device.mobileHomeProfile];
+				if (mobileHome) {
+					w = mobileHome.find((w) => w.id == x.id);
+					if (w) {
+						w.data = x.data;
+						os.store.dispatch('settings/updateMobileHomeProfile');
 					}
-					return true;
 				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+				//#endregion
+			},
 
-		swapUpDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const ids = deck.layout.find(ids => ids.indexOf(id) != -1);
-			ids.some((x, i) => {
-				if (x == id) {
-					const up = ids[i - 1];
-					if (up) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//ids[i - 1] = id;
-						//ids[i] = up;
-						ids.splice(i - 1, 1, id);
-						ids.splice(i, 1, up);
-					}
-					return true;
+			addMobileHomeWidget(state, widget) {
+				state.settings.mobileHomeProfiles[
+					state.device.mobileHomeProfile
+				].unshift(widget);
+				os.store.dispatch('settings/updateMobileHomeProfile');
+			},
+
+			removeMobileHomeWidget(state, widget) {
+				Vue.set(
+					'state.settings.mobileHomeProfiles',
+					state.device.mobileHomeProfile,
+					state.settings.mobileHomeProfiles[
+						state.device.mobileHomeProfile
+					].filter((w) => w.id != widget.id),
+				);
+				os.store.dispatch('settings/updateMobileHomeProfile');
+			},
+
+			addDeckColumn(state, column) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				if (column.name == undefined) column.name = null;
+				deck.columns.push(column);
+				deck.layout.push([column.id]);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			removeDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				deck.columns = deck.columns.filter((c) => c.id != id);
+				deck.layout = deck.layout.map((ids) => erase(id, ids));
+				deck.layout = deck.layout.filter((ids) => ids.length > 0);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			changeTemporaryColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+
+				// ドラッグ先の縦位置
+				const x = deck.layout.findIndex((ids) => ids.indexOf(id) != -1);
+				const leftEdge = x === 0;
+				const rightEdge = x === deck.layout.length - 1;
+
+				// 左端固定以外から左端に移動したら左端固定にする
+				if (state.device.deckTemporaryColumnPosition !== 'left' && leftEdge) {
+					state.device.deckTemporaryColumnPosition = 'left';
+					state.device.deckTemporaryColumnIndex = 1;
+					return;
 				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
 
-		swapDownDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const ids = deck.layout.find(ids => ids.indexOf(id) != -1);
-			ids.some((x, i) => {
-				if (x == id) {
-					const down = ids[i + 1];
-					if (down) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//ids[i + 1] = id;
-						//ids[i] = down;
-						ids.splice(i + 1, 1, id);
-						ids.splice(i, 1, down);
-					}
-					return true;
+				// 右端固定以外から右端に移動したら右端固定にする
+				if (state.device.deckTemporaryColumnPosition !== 'right' && rightEdge) {
+					state.device.deckTemporaryColumnPosition = 'right';
+					state.device.deckTemporaryColumnIndex = 1;
+					return;
 				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
 
-		stackLeftDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const i = deck.layout.findIndex(ids => ids.indexOf(id) != -1);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			const left = deck.layout[i - 1];
-			if (left) deck.layout[i - 1].push(id);
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+				// 左端固定から移動した
+				if (leftEdge) {
+					state.device.deckTemporaryColumnPosition = 'specify';
+					state.device.deckTemporaryColumnIndex = x + 1;
+					return;
+				}
 
-		popRightDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const i = deck.layout.findIndex(ids => ids.indexOf(id) != -1);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			deck.layout.splice(i + 1, 0, [id]);
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+				// 右端固定から移動した
+				if (rightEdge) {
+					state.device.deckTemporaryColumnPosition = 'specify';
+					state.device.deckTemporaryColumnIndex = x;
+					return;
+				}
 
-		addDeckWidget(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.widgets.unshift(x.widget);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+				// 中程から移動した
+				if (x < state.device.deckTemporaryColumnIndex) {
+					state.device.deckTemporaryColumnPosition = 'specify';
+					state.device.deckTemporaryColumnIndex = x;
+				} else {
+					state.device.deckTemporaryColumnPosition = 'specify';
+					state.device.deckTemporaryColumnIndex = x + 1;
+				}
+			},
 
-		removeDeckWidget(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.widgets = column.widgets.filter(w => w.id != x.widget.id);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
+			swapDeckColumn(state, x) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const a = x.a;
+				const b = x.b;
+				const aX = deck.layout.findIndex((ids) => ids.indexOf(a) != -1);
+				const aY = deck.layout[aX].findIndex((id) => id == a);
+				const bX = deck.layout.findIndex((ids) => ids.indexOf(b) != -1);
+				const bY = deck.layout[bX].findIndex((id) => id == b);
+				deck.layout[aX][aY] = b;
+				deck.layout[bX][bY] = a;
+				os.store.dispatch('settings/updateDeckProfile');
+			},
 
-		renameDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.name = x.name;
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		updateDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			let column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column = x;
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-	},
-
-	actions: {
-		login(ctx, i) {
-			ctx.commit('updateI', i);
-			ctx.dispatch('settings/merge', i.clientData);
-		},
-
-		logout(ctx) {
-			ctx.commit('updateI', null);
-			document.cookie = 'i=; path=/';
-			document.cookie = 'i=; path=/i/settings';
-			document.cookie = `i=; domain=${document.location.hostname}; path=/`;
-			localStorage.removeItem('i');
-		},
-
-		mergeMe(ctx, me) {
-			for (const [key, value] of Object.entries(me)) {
-				ctx.commit('updateIKeyValue', { key, value });
-			}
-
-			if (me.clientData) {
-				ctx.dispatch('settings/merge', me.clientData);
-			}
-		},
-	},
-
-	modules: {
-		device: {
-			namespaced: true,
-
-			state: defaultDeviceSettings,
-
-			mutations: {
-				overwrite(state, x) {
-					for (const k of Object.keys(state)) {
-						if (x[k] === undefined) delete state[k];
+			swapLeftDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				deck.layout.some((ids, i) => {
+					if (ids.indexOf(id) != -1) {
+						const left = deck.layout[i - 1];
+						if (left) {
+							// https://vuejs.org/v2/guide/list.html#Caveats
+							//state.deck.layout[i - 1] = state.deck.layout[i];
+							//state.deck.layout[i] = left;
+							deck.layout.splice(i - 1, 1, deck.layout[i]);
+							deck.layout.splice(i, 1, left);
+						}
+						return true;
 					}
-					for (const k of Object.keys(x)) {
-						state[k] = x[k];
+				});
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			swapRightDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				deck.layout.some((ids, i) => {
+					if (ids.indexOf(id) != -1) {
+						const right = deck.layout[i + 1];
+						if (right) {
+							// https://vuejs.org/v2/guide/list.html#Caveats
+							//state.deck.layout[i + 1] = state.deck.layout[i];
+							//state.deck.layout[i] = right;
+							deck.layout.splice(i + 1, 1, deck.layout[i]);
+							deck.layout.splice(i, 1, right);
+						}
+						return true;
 					}
-				},
+				});
+				os.store.dispatch('settings/updateDeckProfile');
+			},
 
-				set(state, x: { key: string; value: any }) {
-					state[x.key] = x.value;
-				},
+			swapUpDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const ids = deck.layout.find((ids) => ids.indexOf(id) != -1);
+				ids.some((x, i) => {
+					if (x == id) {
+						const up = ids[i - 1];
+						if (up) {
+							// https://vuejs.org/v2/guide/list.html#Caveats
+							//ids[i - 1] = id;
+							//ids[i] = up;
+							ids.splice(i - 1, 1, id);
+							ids.splice(i, 1, up);
+						}
+						return true;
+					}
+				});
+				os.store.dispatch('settings/updateDeckProfile');
+			},
 
-				setTl(state, x) {
-					state.tl = {
-						src: x.src,
-						arg: x.arg,
-					};
-				},
+			swapDownDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const ids = deck.layout.find((ids) => ids.indexOf(id) != -1);
+				ids.some((x, i) => {
+					if (x == id) {
+						const down = ids[i + 1];
+						if (down) {
+							// https://vuejs.org/v2/guide/list.html#Caveats
+							//ids[i + 1] = id;
+							//ids[i] = down;
+							ids.splice(i + 1, 1, id);
+							ids.splice(i, 1, down);
+						}
+						return true;
+					}
+				});
+				os.store.dispatch('settings/updateDeckProfile');
+			},
 
-				setVisibility(state, visibility) {
-					state.visibility = visibility;
-				},
+			stackLeftDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const i = deck.layout.findIndex((ids) => ids.indexOf(id) != -1);
+				deck.layout = deck.layout.map((ids) => erase(id, ids));
+				const left = deck.layout[i - 1];
+				if (left) deck.layout[i - 1].push(id);
+				deck.layout = deck.layout.filter((ids) => ids.length > 0);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			popRightDeckColumn(state, id) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const i = deck.layout.findIndex((ids) => ids.indexOf(id) != -1);
+				deck.layout = deck.layout.map((ids) => erase(id, ids));
+				deck.layout.splice(i + 1, 0, [id]);
+				deck.layout = deck.layout.filter((ids) => ids.length > 0);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			addDeckWidget(state, x) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const column = deck.columns.find((c) => c.id == x.id);
+				if (column == null) return;
+				column.widgets.unshift(x.widget);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			removeDeckWidget(state, x) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const column = deck.columns.find((c) => c.id == x.id);
+				if (column == null) return;
+				column.widgets = column.widgets.filter((w) => w.id != x.widget.id);
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			renameDeckColumn(state, x) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				const column = deck.columns.find((c) => c.id == x.id);
+				if (column == null) return;
+				column.name = x.name;
+				os.store.dispatch('settings/updateDeckProfile');
+			},
+
+			updateDeckColumn(state, x) {
+				const deck = state.settings.deckProfiles[state.device.deckProfile];
+				let column = deck.columns.find((c) => c.id == x.id);
+				if (column == null) return;
+				column = x;
+				os.store.dispatch('settings/updateDeckProfile');
 			},
 		},
 
-		settings: {
-			namespaced: true,
+		actions: {
+			login(ctx, i) {
+				ctx.commit('updateI', i);
+				ctx.dispatch('settings/merge', i.clientData);
+			},
 
-			state: defaultSettings,
+			logout(ctx) {
+				ctx.commit('updateI', null);
+				document.cookie = 'i=; path=/';
+				document.cookie = 'i=; path=/i/settings';
+				document.cookie = `i=; domain=${document.location.hostname}; path=/`;
+				localStorage.removeItem('i');
+			},
 
-			mutations: {
-				set(state, x: { key: string; value: any }) {
-					nestedProperty.set(state, x.key, x.value);
+			mergeMe(ctx, me) {
+				for (const [key, value] of Object.entries(me)) {
+					ctx.commit('updateIKeyValue', { key, value });
+				}
+
+				if (me.clientData) {
+					ctx.dispatch('settings/merge', me.clientData);
+				}
+			},
+		},
+
+		modules: {
+			device: {
+				namespaced: true,
+
+				state: defaultDeviceSettings,
+
+				mutations: {
+					overwrite(state, x) {
+						for (const k of Object.keys(state)) {
+							if (x[k] === undefined) delete state[k];
+						}
+						for (const k of Object.keys(x)) {
+							state[k] = x[k];
+						}
+					},
+
+					set(state, x: { key: string; value: any }) {
+						state[x.key] = x.value;
+					},
+
+					setTl(state, x) {
+						state.tl = {
+							src: x.src,
+							arg: x.arg,
+						};
+					},
+
+					setVisibility(state, visibility) {
+						state.visibility = visibility;
+					},
 				},
 			},
 
-			actions: {
-				merge(ctx, settings) {
-					if (settings == null) return;
-					for (const [key, value] of Object.entries(settings)) {
-						ctx.commit('set', { key, value });
-					}
+			settings: {
+				namespaced: true,
+
+				state: defaultSettings,
+
+				mutations: {
+					set(state, x: { key: string; value: any }) {
+						nestedProperty.set(state, x.key, x.value);
+					},
 				},
 
-				set(ctx, x) {
-					ctx.commit('set', x);
+				actions: {
+					merge(ctx, settings) {
+						if (settings == null) return;
+						for (const [key, value] of Object.entries(settings)) {
+							ctx.commit('set', { key, value });
+						}
+					},
 
-					if (ctx.rootGetters.isSignedIn) {
-						os.api('i/update-client-setting', {
-							name: x.key,
-							value: x.value,
+					set(ctx, x) {
+						ctx.commit('set', x);
+
+						if (ctx.rootGetters.isSignedIn) {
+							os.api('i/update-client-setting', {
+								name: x.key,
+								value: x.value,
+							});
+						}
+					},
+
+					updateHomeProfile(ctx) {
+						const profiles = ctx.state.homeProfiles;
+						ctx.commit('set', {
+							key: 'homeProfiles',
+							value: profiles,
 						});
-					}
-				},
+						os.api('i/update-client-setting', {
+							name: 'homeProfiles',
+							value: profiles,
+						});
+					},
 
-				updateHomeProfile(ctx) {
-					const profiles = ctx.state.homeProfiles;
-					ctx.commit('set', {
-						key: 'homeProfiles',
-						value: profiles,
-					});
-					os.api('i/update-client-setting', {
-						name: 'homeProfiles',
-						value: profiles,
-					});
-				},
+					updateMobileHomeProfile(ctx) {
+						const profiles = ctx.state.mobileHomeProfiles;
+						ctx.commit('set', {
+							key: 'mobileHomeProfiles',
+							value: profiles,
+						});
+						os.api('i/update-client-setting', {
+							name: 'mobileHomeProfiles',
+							value: profiles,
+						});
+					},
 
-				updateMobileHomeProfile(ctx) {
-					const profiles = ctx.state.mobileHomeProfiles;
-					ctx.commit('set', {
-						key: 'mobileHomeProfiles',
-						value: profiles,
-					});
-					os.api('i/update-client-setting', {
-						name: 'mobileHomeProfiles',
-						value: profiles,
-					});
-				},
-
-				updateDeckProfile(ctx) {
-					const profiles = ctx.state.deckProfiles;
-					ctx.commit('set', {
-						key: 'deckProfiles',
-						value: profiles,
-					});
-					os.api('i/update-client-setting', {
-						name: 'deckProfiles',
-						value: profiles,
-					});
+					updateDeckProfile(ctx) {
+						const profiles = ctx.state.deckProfiles;
+						ctx.commit('set', {
+							key: 'deckProfiles',
+							value: profiles,
+						});
+						os.api('i/update-client-setting', {
+							name: 'deckProfiles',
+							value: profiles,
+						});
+					},
 				},
 			},
 		},
-	},
-});
+	});
 
 // TODO: 他のタブと永続化されたstateを同期
 
@@ -669,12 +712,15 @@ export class ColdDeviceStorage {
 		sound_channel: { type: 'syuilo/square-pico', volume: 1 },
 		sound_reversiPutBlack: { type: 'syuilo/kick', volume: 0.3 },
 		sound_reversiPutWhite: { type: 'syuilo/snare', volume: 0.3 },
-		mascot_widget_url: 'https://teamblackcrystal.github.io/mascot-web/?scale=1.5&y=1.1&eyeY=100',
+		mascot_widget_url:
+			'https://teamblackcrystal.github.io/mascot-web/?scale=1.5&y=1.1&eyeY=100',
 	};
 
 	public static watchers = [];
 
-	public static get<T extends keyof typeof ColdDeviceStorage.default>(key: T): typeof ColdDeviceStorage.default[T] {
+	public static get<T extends keyof typeof ColdDeviceStorage.default>(
+		key: T,
+	): typeof ColdDeviceStorage.default[T] {
 		// TODO: indexedDBにする
 		//       ただしその際はnullチェックではなくキー存在チェックにしないとダメ
 		//       (indexedDBはnullを保存できるため、ユーザーが意図してnullを格納した可能性がある)
@@ -686,7 +732,10 @@ export class ColdDeviceStorage {
 		}
 	}
 
-	public static set<T extends keyof typeof ColdDeviceStorage.default>(key: T, value: typeof ColdDeviceStorage.default[T]): void {
+	public static set<T extends keyof typeof ColdDeviceStorage.default>(
+		key: T,
+		value: typeof ColdDeviceStorage.default[T],
+	): void {
 		localStorage.setItem(PREFIX + key, JSON.stringify(value));
 
 		for (const watcher of this.watchers) {
@@ -703,7 +752,7 @@ export class ColdDeviceStorage {
 		const v = ColdDeviceStorage.get(key);
 		const r = ref(v);
 		// TODO: このままではwatcherがリークするので開放する方法を考える
-		this.watch(key, v => {
+		this.watch(key, (v) => {
 			r.value = v;
 		});
 		return r;
@@ -713,7 +762,9 @@ export class ColdDeviceStorage {
 	 * 特定のキーの、簡易的なgetter/setterを作ります
 	 * 主にvue場で設定コントロールのmodelとして使う用
 	 */
-	public static makeGetterSetter<K extends keyof typeof ColdDeviceStorage.default>(key: K) {
+	public static makeGetterSetter<
+		K extends keyof typeof ColdDeviceStorage.default
+	>(key: K) {
 		// TODO: VueのcustomRef使うと良い感じになるかも
 		const valueRef = ColdDeviceStorage.ref(key);
 		return {
