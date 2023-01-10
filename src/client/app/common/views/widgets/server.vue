@@ -1,10 +1,10 @@
 <template>
 <div class="mkw-server">
 	<ui-container :show-header="props.design == 0" :naked="props.design == 2">
-		<template #header><fa icon="server"/>{{ $t('title') }}</template>
-		<template #func><button :title="$t('toggle')" @click="toggle"><fa icon="sort"/></button></template>
+		<template #header><fa icon="server"/>{{ i18n.t('title') }}</template>
+		<template #func><button :title="i18n.t('toggle')" @click="toggle"><fa icon="sort"/></button></template>
 
-		<p v-if="fetching" :class="$style.fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+		<p v-if="fetching" :class="$style.fetching"><fa icon="spinner" pulse fixed-width/>{{ i18n.t('@.loading') }}<mk-ellipsis/></p>
 		<template v-if="!fetching">
 			<x-cpu-memory v-show="props.view == 0" :connection="connection"/>
 			<x-cpu v-show="props.view == 1" :connection="connection" :meta="meta"/>
@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
-import i18n from '../../../i18n';
+import {i18n as _i18n} from '../../../i18n';
 import XCpuMemory from './server.cpu-memory.vue';
 import XCpu from './server.cpu.vue';
 import XMemory from './server.memory.vue';
@@ -39,7 +39,6 @@ const widgets = define({
 export default defineComponent({
 	extends: widgets,
 
-	i18n: i18n('common/views/widgets/server.vue'),
 
 	components: {
 		XCpuMemory,
@@ -54,6 +53,8 @@ export default defineComponent({
 			fetching: true,
 			meta: null,
 			connection: null,
+			i18n: _i18n('common/views/widgets/server.vue'),
+
 		};
 	},
 	mounted() {

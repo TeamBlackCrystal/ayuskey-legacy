@@ -7,14 +7,19 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-export default define({
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+
+const widgets = define({
 	name: 'activity',
 	props: () => ({
 		design: 0,
 		view: 0,
 	}),
-}).extend({
+})
+
+export default defineComponent({
+	extends: widgets,
 	methods: {
 		func() {
 			if (this.props.design == 2) {

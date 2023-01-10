@@ -5,7 +5,7 @@
 		<template #func><button title="設定" @click="setting"><fa icon="cog"/></button></template>
 
 		<div class="mkw-rss--body" :data-mobile="platform == 'mobile'">
-			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ i18n.t('@.loading') }}<mk-ellipsis/></p>
 			<div v-else class="feed">
 				<a v-for="item in items" :href="item.link" rel="nofollow noopener" target="_blank" :title="item.title">{{ item.title }}</a>
 			</div>
@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
-import i18n from '../../../i18n';
+import {i18n as _i18n} from '../../../i18n';
 
 const widget = define({
 	name: 'rss',
@@ -29,12 +29,12 @@ const widget = define({
 
 export default defineComponent({
 	extends: widget,
-	i18n: i18n(),
 	data() {
 		return {
 			items: [],
 			fetching: true,
 			clock: null,
+			i18n: _i18n()
 		};
 	},
 	mounted() {
