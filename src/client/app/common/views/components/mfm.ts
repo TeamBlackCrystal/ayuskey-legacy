@@ -284,10 +284,8 @@ export default defineComponent({
 							}, genEl(token.children));
 							*/
 							return [h(MkSparkle, {
-								props: {
-									count,
-									speed,
-								},
+								count,
+								speed,
 							}, genEl(token.children))];
 						}
 					}
@@ -479,10 +477,8 @@ export default defineComponent({
 				case 'mention': {
 					return [h(MkMention, {
 						key: Math.random(),
-						props: {
-							host: (token.node.props.host == null && this.author && this.author.host != null ? this.author.host : token.node.props.host) || host,
-							username: token.node.props.username,
-						},
+						host: (token.node.props.host == null && this.author && this.author.host != null ? this.author.host : token.node.props.host) || host,
+						username: token.node.props.username,
 					})];
 				}
 
@@ -582,9 +578,7 @@ export default defineComponent({
 					//const MkGoogle = () => import('./google.vue').then(m => m.default);
 					return [h(MkGoogle, {
 						key: Math.random(),
-						props: {
-							q: token.node.props.query,
-						},
+						q: token.node.props.query,
 					})];
 				}
 
