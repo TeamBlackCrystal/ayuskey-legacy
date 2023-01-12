@@ -38,7 +38,7 @@
 	},
 	"resolutions": {
 		"lodash": "^4.17.21",
-		"css": "npm:@adobe/css-tools@4.0.1"
+		"css": "npm:@adobe/css-tools@4.0.2"
 	},
 	"dependencies": {
 		"@ayuskey/summaly": "2.5.0-rei0784.4",
