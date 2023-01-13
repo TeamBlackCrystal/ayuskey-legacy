@@ -168,7 +168,7 @@ specifiers:
   nested-property: 4.0.0
   node-fetch: 2.6.7
   node-gyp: 9.3.1
-  nodemailer: 6.8.0
+  nodemailer: 6.9.0
   npm-run-all: 4.1.5
   nprogress: 0.2.0
   oauth: 0.10.0
@@ -356,7 +356,7 @@ dependencies:
   multer: 1.4.4-lts.1
   nested-property: 4.0.0
   node-fetch: 2.6.7
-  nodemailer: 6.8.0
+  nodemailer: 6.9.0
   nprogress: 0.2.0
   oauth: 0.10.0
   object-assign-deep: 0.4.0
@@ -8522,8 +8522,8 @@ packages:
   /node-releases/2.0.6:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
 
-  /nodemailer/6.8.0:
-    resolution: {integrity: sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==}
+  /nodemailer/6.9.0:
+    resolution: {integrity: sha512-jFaCEGTeT3E/m/5R2MHWiyQH3pSARECRUDM+1hokOYc3lQAAG7ASuy+2jIsYVf+RVa9zePopSQwKNVFH8DKUpA==}
     engines: {node: '>=6.0.0'}
     dev: false
 
