@@ -285,7 +285,7 @@
 		"eslint": "8.31.0",
 		"eslint-config-prettier": "8.6.0",
 		"eslint-import-resolver-node": "0.3.7",
-		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-import": "2.27.4",
 		"eslint-plugin-vue": "9.8.0",
 		"form-data": "4.0.0",
 		"node-gyp": "9.3.1",
