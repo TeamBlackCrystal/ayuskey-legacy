@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   lodash: ^4.17.21
-  css: npm:@adobe/css-tools@4.0.1
+  css: npm:@adobe/css-tools@4.0.2
 
 specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
@@ -524,6 +524,10 @@ packages:
 
   /@adobe/css-tools/4.0.1:
     resolution: {integrity: sha512-+u76oB43nOHrF4DDWRLWDCtci7f3QJoEBigemIdIeTi1ODqjx6Tad9NCVnPRwewWlKkVab5PlK8DCtPTyX7S8g==}
+    dev: false
+
+  /@adobe/css-tools/4.0.2:
+    resolution: {integrity: sha512-Fx6tYjk2wKUgLi8uMANZr8GNZx05u44ArIJldn9VxLvolzlJVgHbTUCbwhMd6bcYky178+WUSxPHO3DAtGLWpw==}
     dev: false
 
   /@ayuskey/summaly/2.5.0-rei0784.4:
@@ -4099,7 +4103,7 @@ packages:
   /css-parse/2.0.0:
     resolution: {integrity: sha512-UNIFik2RgSbiTwIW1IsFwXWn6vs+bYdq83LKTSOsx7NJR7WII9dxewkHLltfTLVppoUApHV0118a4RZRI9FLwA==}
     dependencies:
-      css: /@adobe/css-tools/4.0.1
+      css: /@adobe/css-tools/4.0.2
     dev: false
 
   /css-select-base-adapter/0.1.1:
