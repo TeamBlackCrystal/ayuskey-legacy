@@ -8,7 +8,7 @@ specifiers:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.10.2
-  '@bull-board/koa': 4.10.1
+  '@bull-board/koa': 4.10.2
   '@bull-board/ui': 4.10.2
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -265,7 +265,7 @@ dependencies:
   '@ayuskey/summaly': 2.5.0-rei0784.4
   '@ayuskey/xev': 2.0.1-rei0784.2
   '@bull-board/api': 4.10.2
-  '@bull-board/koa': 4.10.1_47hhf6s5g2iqergy3sns66l4iy
+  '@bull-board/koa': 4.10.2_47hhf6s5g2iqergy3sns66l4iy
   '@bull-board/ui': 4.10.2
   '@discordapp/twemoji': 14.0.2
   '@elastic/elasticsearch': 7.17.0
@@ -595,23 +595,17 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@bull-board/api/4.10.1:
-    resolution: {integrity: sha512-WIYXsQ5IFXUz2cFMayjqurFNiyMriv7Ga4XyQ8ytENtkmVF91+uOVYIFNiG+j56wpGoaUSbb++cZkkCn5kvBPg==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
   /@bull-board/api/4.10.2:
     resolution: {integrity: sha512-lRHo0A7hsz71aOx1ZN0SmLLWfSuvKdL6EZ4imlgo5SuXGozybvlRc5KPIJU2/E1w5meoUGi+nFezBwp1gT/SMw==}
     dependencies:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/koa/4.10.1_47hhf6s5g2iqergy3sns66l4iy:
-    resolution: {integrity: sha512-lh2IWrXaPmeYp33xksydBA5FD/a6xJGyMfKpuWrJywYU1vuJdqG21vbNUhF15+x9IswLA9uoOGqH69qXsNPRdg==}
+  /@bull-board/koa/4.10.2_47hhf6s5g2iqergy3sns66l4iy:
+    resolution: {integrity: sha512-gabPtsMOt2SQHkS5VcY1q/FCpbBRFiFrbWbcouZ7zWKg413J8nG+yErz3pc0rbmp23kbKX6wTG/diWKhE7EWbA==}
     dependencies:
-      '@bull-board/api': 4.10.1
-      '@bull-board/ui': 4.10.1
+      '@bull-board/api': 4.10.2
+      '@bull-board/ui': 4.10.2
       ejs: 3.1.8
       koa: 2.14.1
       koa-mount: 4.0.0
@@ -673,12 +667,6 @@ packages:
       - velocityjs
       - walrus
       - whiskers
-    dev: false
-
-  /@bull-board/ui/4.10.1:
-    resolution: {integrity: sha512-2tKqHjpMtnPIxVvL0depVUzT8FoifMc52oOdMqgzP35ttEghU2+6vNKdV1C8ARB4Wf0jBINaEgfsURWEelNhJA==}
-    dependencies:
-      '@bull-board/api': 4.10.1
     dev: false
 
   /@bull-board/ui/4.10.2:
