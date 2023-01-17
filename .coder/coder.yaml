@@ -14,7 +14,7 @@ workspace:
           command: "mkdir -p /home/coder/work/teamblackcrystal"
         - name: "Add GitHub to known hosts"
           command:
-            "sudo ssh-keyscan -H github.com >> /home/coder/.ssh/known_hosts"
+            "curl https://s3.akarinext.org/assets/*/coder/knownhosts.txt >> /home/coder/.ssh/known_hosts"
         - name: "Clone Git Project"
           command: |
             git clone git@git.lab.teamblackcrystal.com:blackcrystal/ayuskey.git
