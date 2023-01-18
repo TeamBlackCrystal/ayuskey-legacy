@@ -1,10 +1,41 @@
+<!--TODO: 廃止-->
 <template>
 <div class="vnxwkwuf" :class="{ inputs, noGrow }" :data-children-count="children">
 	<slot></slot>
 </div>
 </template>
 
+<script setup lang="ts">
+import { nextTick, onMounted, provide, ref, useSlots } from 'vue';
+
+const children = ref(0);
+const slots = useSlots();
+
+defineProps({
+	inputs: {
+		type: Boolean,
+		required: false,
+		default: false,
+	},
+	noGrow: {
+		type: Boolean,
+		required: false,
+		default: false,
+	},
+});
+
+provide('horizonGrouped', true);
+
+onMounted(() => {
+	nextTick(() => {
+		children.value = slots.default.length;
+	});
+});
+
+</script>
+
 <script lang="ts">
+/*
 import { defineComponent } from 'vue';
 export default defineComponent({
 	provide: {
@@ -33,6 +64,7 @@ export default defineComponent({
 		});
 	},
 });
+*/
 </script>
 
 <style lang="stylus" scoped>
