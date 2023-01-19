@@ -245,7 +245,7 @@ specifiers:
   vue-js-modal: 1.3.35
   vue-loader: 15.10.1
   vue-marquee-text-component: 1.2.0
-  vue-router: 3.6.5
+  vue-router: 4.1.6
   vue-sequential-entrance: 1.1.3
   vue-style-loader: 4.1.3
   vue-svg-inline-loader: 2.1.5
@@ -426,7 +426,7 @@ dependencies:
   vue-js-modal: 1.3.35_vue@2.7.14
   vue-loader: 15.10.1_tsfug3gcfx3bh4ebn3d5jqepiy
   vue-marquee-text-component: 1.2.0
-  vue-router: 3.6.5_vue@2.7.14
+  vue-router: 4.1.6_vue@2.7.14
   vue-sequential-entrance: 1.1.3
   vue-style-loader: 4.1.3
   vue-svg-inline-loader: 2.1.5
@@ -1840,6 +1840,10 @@ packages:
       - velocityjs
       - walrus
       - whiskers
+    dev: false
+
+  /@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
     dev: false
 
   /@webassemblyjs/ast/1.11.1:
@@ -12404,11 +12408,12 @@ packages:
       vue: 2.7.14
     dev: false
 
-  /vue-router/3.6.5_vue@2.7.14:
-    resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
+  /vue-router/4.1.6_vue@2.7.14:
+    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
     peerDependencies:
-      vue: ^2
+      vue: ^3.2.0
     dependencies:
+      '@vue/devtools-api': 6.4.5
       vue: 2.7.14
     dev: false
 
