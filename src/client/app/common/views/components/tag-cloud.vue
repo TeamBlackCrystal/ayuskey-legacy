@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
-import * as VueWordCloud from 'vuewordcloud';
+import * as VueWordCloud from '@ayuskey/vuewordcloud';
 
 export default defineComponent({
 	i18n: i18n('common/views/components/tag-cloud.vue'),
