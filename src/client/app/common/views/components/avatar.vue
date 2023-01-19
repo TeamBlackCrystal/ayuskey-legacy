@@ -31,6 +31,7 @@ export default defineComponent({
 			default: false,
 		},
 	},
+	emits: ['click'],
 	computed: {
 		lightmode(): boolean {
 			return this.$store.state.device.lightmode;
