@@ -230,7 +230,7 @@ import { LiteInstanceMetadata, Stats } from "ayuskey.js/built/entities";
 
 import { api } from "../../../api";
 import { i18n as _i18n } from "../../../i18n";
-import { useDeviceStore } from "../../../store";
+import { useDeviceStore } from "../../../stores/device";
 import { host, copyright } from "../../../config";
 import { concat } from "../../../../../prelude/array";
 import number from "../../../common/views/filters/v12/number";

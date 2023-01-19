@@ -32,7 +32,7 @@ import { i18n as _i18n } from '../../../i18n';
 import updateAvatar from '../../api/update-avatar';
 import updateBanner from '../../api/update-banner';
 import { acct, userPage } from '../../../common/views/filters/v12/user';
-import { useStore } from '../../../store';
+import { useStore } from '../../../stores';
 
 const widgets = define({
 	name: 'profile',

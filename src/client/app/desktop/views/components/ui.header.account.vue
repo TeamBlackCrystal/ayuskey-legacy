@@ -109,13 +109,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {i18n as _i18n} from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 // import MkSettingsWindow from './settings-window.vue';
 import MkDriveWindow from './drive-window.vue';
 import contains from '../../../common/scripts/contains';
 import { faHome, faColumns, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons';
-import { useStore } from '../../../store';
+import { useStore } from '../../../stores';
 
 export default defineComponent({
 	data() {
@@ -138,10 +138,10 @@ export default defineComponent({
 		this.close();
 	},
 	mounted() {
-		if (this.store.device.useBlur == false) {
+		if (this.store.device.useBlur === false) {
 			return;
 		}
-		if (this.store.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
+		if (this.store.device.darkmode === true) { // ダークテーマが有効の場合のみblurを強化
 			this.blurStrength = 2;
 		} else {
 			this.blurStrength = 0.3;
@@ -163,9 +163,9 @@ export default defineComponent({
 				el.removeEventListener('mousedown', this.onMousedown);
 			}
 		},
-		onMousedown(e) {
-			e.preventDefault();
-			if (!contains(this.$el, e.target) && this.$el != e.target) this.close();
+		onMousedown(ev) {
+			ev.preventDefault();
+			if (!contains(this.$el, ev.target) && this.$el !== ev.target) this.close();
 			return false;
 		},
 		drive() {
