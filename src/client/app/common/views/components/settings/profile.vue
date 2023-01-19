@@ -1,6 +1,6 @@
 <template>
 <ui-card>
-	<template #title><fa icon="user"/> {{ $t('title') }}</template>
+	<template #title><fa icon="user"/> {{ i18n.t('title') }}</template>
 
 	<section class="esokaraujimuwfttfzgocmutcihewscl">
 		<div class="header" :style="bannerStyle">
@@ -9,132 +9,132 @@
 
 		<ui-form :disabled="saving">
 			<ui-input v-model="name" :max="30">
-				<span>{{ $t('name') }}</span>
+				<span>{{ i18n.t('name') }}</span>
 			</ui-input>
 
 			<ui-input v-model="username" readonly>
-				<span>{{ $t('account') }}</span>
+				<span>{{ i18n.t('account') }}</span>
 				<template #prefix>@</template>
 				<template #suffix>@{{ host }}</template>
 			</ui-input>
 
 			<ui-input v-model="location">
-				<span>{{ $t('location') }}</span>
+				<span>{{ i18n.t('location') }}</span>
 				<template #prefix><fa icon="map-marker-alt"/></template>
 			</ui-input>
 
 			<ui-input v-model="birthday" type="date">
-				<template #title>{{ $t('birthday') }}</template>
+				<template #title>{{ i18n.t('birthday') }}</template>
 				<template #prefix><fa icon="birthday-cake"/></template>
 			</ui-input>
 
 			<ui-textarea v-model="description" :max="500">
-				<span>{{ $t('description') }}</span>
-				<template #desc>{{ $t('you-can-include-hashtags') }}</template>
+				<span>{{ i18n.t('description') }}</span>
+				<template #desc>{{ i18n.t('you-can-include-hashtags') }}</template>
 			</ui-textarea>
 
 			<ui-select v-model="lang">
-				<template #label>{{ $t('language') }}</template>
+				<template #label>{{ i18n.t('language') }}</template>
 				<template #icon><fa icon="language"/></template>
 				<option v-for="lang in unique(Object.values(langmap).map(x => x.nativeName)).map(name => Object.keys(langmap).find(k => langmap[k].nativeName == name))" :key="lang" :value="lang">{{ langmap[lang].nativeName }}</option>
 			</ui-select>
 
 			<ui-input type="file" @change="onAvatarChange">
-				<span>{{ $t('avatar') }}</span>
+				<span>{{ i18n.t('avatar') }}</span>
 				<template #icon><fa icon="image"/></template>
-				<template v-if="avatarUploading" #desc>{{ $t('uploading') }}<mk-ellipsis/></template>
+				<template v-if="avatarUploading" #desc>{{ i18n.t('uploading') }}<mk-ellipsis/></template>
 			</ui-input>
 
 			<ui-input type="file" @change="onBannerChange">
-				<span>{{ $t('banner') }}</span>
+				<span>{{ i18n.t('banner') }}</span>
 				<template #icon><fa icon="image"/></template>
-				<template v-if="bannerUploading" #desc>{{ $t('uploading') }}<mk-ellipsis/></template>
+				<template v-if="bannerUploading" #desc>{{ i18n.t('uploading') }}<mk-ellipsis/></template>
 			</ui-input>
 
 			<div class="fields">
-				<header>{{ $t('profile-metadata') }}</header>
+				<header>{{ i18n.t('profile-metadata') }}</header>
 				<ui-horizon-group>
-					<ui-input v-model="fieldName0">{{ $t('metadata-label') }}</ui-input>
-					<ui-input v-model="fieldValue0">{{ $t('metadata-content') }}</ui-input>
+					<ui-input v-model="fieldName0">{{ i18n.t('metadata-label') }}</ui-input>
+					<ui-input v-model="fieldValue0">{{ i18n.t('metadata-content') }}</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group>
-					<ui-input v-model="fieldName1">{{ $t('metadata-label') }}</ui-input>
-					<ui-input v-model="fieldValue1">{{ $t('metadata-content') }}</ui-input>
+					<ui-input v-model="fieldName1">{{ i18n.t('metadata-label') }}</ui-input>
+					<ui-input v-model="fieldValue1">{{ i18n.t('metadata-content') }}</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group>
-					<ui-input v-model="fieldName2">{{ $t('metadata-label') }}</ui-input>
-					<ui-input v-model="fieldValue2">{{ $t('metadata-content') }}</ui-input>
+					<ui-input v-model="fieldName2">{{ i18n.t('metadata-label') }}</ui-input>
+					<ui-input v-model="fieldValue2">{{ i18n.t('metadata-content') }}</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group>
-					<ui-input v-model="fieldName3">{{ $t('metadata-label') }}</ui-input>
-					<ui-input v-model="fieldValue3">{{ $t('metadata-content') }}</ui-input>
+					<ui-input v-model="fieldName3">{{ i18n.t('metadata-label') }}</ui-input>
+					<ui-input v-model="fieldValue3">{{ i18n.t('metadata-content') }}</ui-input>
 				</ui-horizon-group>
 			</div>
 
-			<ui-button @click="save(true)"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="save(true)"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</ui-form>
 	</section>
 
 	<section>
-		<header><fa :icon="faCogs"/> {{ $t('advanced') }}</header>
+		<header><fa :icon="faCogs"/> {{ i18n.t('advanced') }}</header>
 
 		<div>
-			<ui-switch v-model="isCat" @change="save(false)">{{ $t('is-cat') }}</ui-switch>
-			<ui-switch v-model="isLady" @change="save(false)">{{ $t('is-lady') }}</ui-switch>
-			<ui-switch v-model="isBot" @change="save(false)">{{ $t('is-bot') }}</ui-switch>
-			<ui-switch v-model="alwaysMarkNsfw">{{ $t('@._settings.always-mark-nsfw') }}</ui-switch>
+			<ui-switch v-model="isCat" @change="save(false)">{{ i18n.t('is-cat') }}</ui-switch>
+			<ui-switch v-model="isLady" @change="save(false)">{{ i18n.t('is-lady') }}</ui-switch>
+			<ui-switch v-model="isBot" @change="save(false)">{{ i18n.t('is-bot') }}</ui-switch>
+			<ui-switch v-model="alwaysMarkNsfw">{{ i18n.t('@._settings.always-mark-nsfw') }}</ui-switch>
 		</div>
 	</section>
 
 	<section>
-		<header><fa :icon="faUnlockAlt"/> {{ $t('privacy') }}</header>
+		<header><fa :icon="faUnlockAlt"/> {{ i18n.t('privacy') }}</header>
 
 		<div>
-			<ui-switch v-model="isLocked" @change="save(false)">{{ $t('is-locked') }}</ui-switch>
-			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ $t('careful-bot') }}</ui-switch>
-			<ui-switch v-model="carefulMassive" :disabled="isLocked" @change="save(false)">{{ $t('careful-massive') }}</ui-switch>
-			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ $t('auto-accept-followed') }}</ui-switch>
-			<ui-switch v-model="hideOnlineStatus" @change="save(false)">{{ $t('hide-online-status') }}</ui-switch>
-			<ui-switch v-model="noCrawle" @change="save(false)">{{ $t('no-crawle') }}</ui-switch>
-			<ui-switch v-model="isExplorable" @change="save(false)">{{ $t('isExplorable') }}</ui-switch>
+			<ui-switch v-model="isLocked" @change="save(false)">{{ i18n.t('is-locked') }}</ui-switch>
+			<ui-switch v-model="carefulBot" :disabled="isLocked" @change="save(false)">{{ i18n.t('careful-bot') }}</ui-switch>
+			<ui-switch v-model="carefulMassive" :disabled="isLocked" @change="save(false)">{{ i18n.t('careful-massive') }}</ui-switch>
+			<ui-switch v-model="autoAcceptFollowed" :disabled="!isLocked && !carefulBot" @change="save(false)">{{ i18n.t('auto-accept-followed') }}</ui-switch>
+			<ui-switch v-model="hideOnlineStatus" @change="save(false)">{{ i18n.t('hide-online-status') }}</ui-switch>
+			<ui-switch v-model="noCrawle" @change="save(false)">{{ i18n.t('no-crawle') }}</ui-switch>
+			<ui-switch v-model="isExplorable" @change="save(false)">{{ i18n.t('isExplorable') }}</ui-switch>
 		</div>
 	</section>
 
 	<section v-if="enableEmail">
-		<header><fa :icon="faEnvelope"/> {{ $t('email') }}</header>
+		<header><fa :icon="faEnvelope"/> {{ i18n.t('email') }}</header>
 
 		<div>
 			<template v-if="$store.state.i.email != null">
-				<ui-info v-if="$store.state.i.emailVerified">{{ $t('email-verified') }}</ui-info>
-				<ui-info v-else warn>{{ $t('email-not-verified') }}</ui-info>
+				<ui-info v-if="$store.state.i.emailVerified">{{ i18n.t('email-verified') }}</ui-info>
+				<ui-info v-else warn>{{ i18n.t('email-not-verified') }}</ui-info>
 			</template>
-			<ui-input v-model="email" type="email"><span>{{ $t('email-address') }}</span></ui-input>
-			<ui-button :disabled="email === $store.state.i.email" @click="updateEmail()"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-input v-model="email" type="email"><span>{{ i18n.t('email-address') }}</span></ui-input>
+			<ui-button :disabled="email === $store.state.i.email" @click="updateEmail()"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</div>
 	</section>
 
 	<section>
-		<header><fa :icon="faBoxes"/> {{ $t('export-and-import') }}</header>
+		<header><fa :icon="faBoxes"/> {{ i18n.t('export-and-import') }}</header>
 
 		<div>
 			<ui-select v-model="exportTarget">
-				<option value="notes">{{ $t('export-targets.all-notes') }}</option>
-				<option value="following">{{ $t('export-targets.following-list') }}</option>
-				<option value="mute">{{ $t('export-targets.mute-list') }}</option>
-				<option value="blocking">{{ $t('export-targets.blocking-list') }}</option>
-				<option value="user-lists">{{ $t('export-targets.user-lists') }}</option>
+				<option value="notes">{{ i18n.t('export-targets.all-notes') }}</option>
+				<option value="following">{{ i18n.t('export-targets.following-list') }}</option>
+				<option value="mute">{{ i18n.t('export-targets.mute-list') }}</option>
+				<option value="blocking">{{ i18n.t('export-targets.blocking-list') }}</option>
+				<option value="user-lists">{{ i18n.t('export-targets.user-lists') }}</option>
 			</ui-select>
 			<ui-horizon-group class="fit-bottom">
-				<ui-button @click="doExport()"><fa :icon="faDownload"/> {{ $t('export') }}</ui-button>
-				<ui-button :disabled="!['following', 'blocking', 'user-lists'].includes(exportTarget)" @click="doImport()"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
+				<ui-button @click="doExport()"><fa :icon="faDownload"/> {{ i18n.t('export') }}</ui-button>
+				<ui-button :disabled="!['following', 'blocking', 'user-lists'].includes(exportTarget)" @click="doImport()"><fa :icon="faUpload"/> {{ i18n.t('import') }}</ui-button>
 			</ui-horizon-group>
 		</div>
 	</section>
 
 	<section>
 		<details>
-			<summary>{{ $t('danger-zone') }}</summary>
-			<ui-button @click="deleteAccount()">{{ $t('delete-account') }}</ui-button>
+			<summary>{{ i18n.t('danger-zone') }}</summary>
+			<ui-button @click="deleteAccount()">{{ i18n.t('delete-account') }}</ui-button>
 		</details>
 	</section>
 </ui-card>
@@ -142,7 +142,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import i18n from '../../../../i18n';
+import { i18n as _i18n } from '../../../../i18n';
 import { apiUrl, host } from '../../../../config';
 import { toUnicode } from 'punycode';
 import langmap from 'langmap';
@@ -152,10 +152,9 @@ import { faSave, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { useStore } from '../../../../stores';
 
 export default defineComponent({
-	i18n: i18n('common/views/components/profile-editor.vue'),
-
 	data() {
 		return {
+			i18n: _i18n('common/views/components/profile-editor.vue'),
 			unique,
 			langmap,
 			host: toUnicode(host),
@@ -329,7 +328,7 @@ export default defineComponent({
 				if (notify) {
 					this.$root.dialog({
 						type: 'success',
-						text: this.$t('saved'),
+						text: this.i18n.t('saved'),
 					});
 				}
 			}).catch(err => {
@@ -338,21 +337,21 @@ export default defineComponent({
 					case 'f419f9f8-2f4d-46b1-9fb4-49d3a2fd7191':
 						this.$root.dialog({
 							type: 'error',
-							title: this.$t('unable-to-process'),
-							text: this.$t('avatar-not-an-image'),
+							title: this.i18n.t('unable-to-process'),
+							text: this.i18n.t('avatar-not-an-image'),
 						});
 						break;
 					case '75aedb19-2afd-4e6d-87fc-67941256fa60':
 						this.$root.dialog({
 							type: 'error',
-							title: this.$t('unable-to-process'),
-							text: this.$t('banner-not-an-image'),
+							title: this.i18n.t('unable-to-process'),
+							text: this.i18n.t('banner-not-an-image'),
 						});
 						break;
 					default:
 						this.$root.dialog({
 							type: 'error',
-							text: this.$t('unable-to-process'),
+							text: this.i18n.t('unable-to-process'),
 						});
 				}
 			});
@@ -360,7 +359,7 @@ export default defineComponent({
 
 		updateEmail() {
 			this.$root.dialog({
-				title: this.$t('@.enter-password'),
+				title: this.i18n.t('@.enter-password'),
 				input: {
 					type: 'password',
 				},
@@ -383,7 +382,7 @@ export default defineComponent({
 				null, {}).then(() => {
 				this.$root.dialog({
 					type: 'info',
-					text: this.$t('export-requested'),
+					text: this.i18n.t('export-requested'),
 				});
 			}).catch((e: any) => {
 				this.$root.dialog({
@@ -414,7 +413,7 @@ export default defineComponent({
 					}).then(() => {
 					this.$root.dialog({
 						type: 'info',
-						text: this.$t('import-requested'),
+						text: this.i18n.t('import-requested'),
 					});
 				}).catch((e: any) => {
 					this.$root.dialog({
@@ -432,7 +431,7 @@ export default defineComponent({
 
 		async deleteAccount() {
 			const { canceled: canceled, result: password } = await this.$root.dialog({
-				title: this.$t('enter-password'),
+				title: this.i18n.t('enter-password'),
 				input: {
 					type: 'password',
 				},
@@ -444,7 +443,7 @@ export default defineComponent({
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('account-deleted'),
+					text: this.i18n.t('account-deleted'),
 				});
 			});
 		},
