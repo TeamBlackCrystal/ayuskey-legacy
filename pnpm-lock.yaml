@@ -4,541 +4,560 @@ overrides:
   lodash: ^4.17.21
   css: npm:@adobe/css-tools@4.0.2
 
-specifiers:
-  '@ayuskey/summaly': 2.5.0-rei0784.4
-  '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.10.2
-  '@bull-board/koa': 4.10.2
-  '@bull-board/ui': 4.10.2
-  '@discordapp/twemoji': 14.0.2
-  '@elastic/elasticsearch': 7.17.0
-  '@fortawesome/fontawesome-svg-core': 6.2.1
-  '@fortawesome/free-brands-svg-icons': 6.2.1
-  '@fortawesome/free-regular-svg-icons': 6.2.1
-  '@fortawesome/free-solid-svg-icons': 6.2.1
-  '@fortawesome/vue-fontawesome': 3.0.2
-  '@koa/cors': 4.0.0
-  '@koa/multer': 3.0.0
-  '@koa/router': 8.0.8
-  '@popperjs/core': 2.11.6
-  '@redocly/openapi-core': 1.0.0-beta.120
-  '@swc/cli': 0.1.59
-  '@swc/core': 1.3.26
-  '@swc/helpers': 0.4.14
-  '@types/animejs': 3.1.6
-  '@types/bcryptjs': 2.4.2
-  '@types/dateformat': 3.0.1
-  '@types/double-ended-queue': 2.1.2
-  '@types/escape-regexp': 0.0.1
-  '@types/fluent-ffmpeg': 2.1.20
-  '@types/gulp': 4.0.10
-  '@types/gulp-mocha': 0.0.33
-  '@types/gulp-rename': 2.0.1
-  '@types/ioredis': 4.28.10
-  '@types/is-url': 1.2.30
-  '@types/js-yaml': 4.0.5
-  '@types/jsdom': 20.0.1
-  '@types/jsonld': 1.5.8
-  '@types/jsrsasign': 10.5.4
-  '@types/katex': 0.16.0
-  '@types/koa': 2.13.5
-  '@types/koa-bodyparser': 4.3.10
-  '@types/koa-cors': 0.0.2
-  '@types/koa-favicon': 2.0.21
-  '@types/koa-logger': 3.1.2
-  '@types/koa-mount': 4.0.2
-  '@types/koa-send': 4.1.3
-  '@types/koa-views': 2.0.4
-  '@types/koa__cors': 3.3.0
-  '@types/koa__multer': 2.0.4
-  '@types/koa__router': 8.0.11
-  '@types/lolex': 5.1.2
-  '@types/mocha': 10.0.1
-  '@types/node': 18.11.18
-  '@types/node-fetch': 2.6.2
-  '@types/nodemailer': 6.4.7
-  '@types/nprogress': 0.2.0
-  '@types/oauth': 0.9.1
-  '@types/parse5': 6.0.3
-  '@types/parsimmon': 1.10.6
-  '@types/portscanner': 2.1.1
-  '@types/pug': 2.0.6
-  '@types/qrcode': 1.5.0
-  '@types/random-seed': 0.3.3
-  '@types/ratelimiter': 3.4.4
-  '@types/rename': 1.0.4
-  '@types/request-stats': 3.0.0
-  '@types/rimraf': 3.0.2
-  '@types/seedrandom': 3.0.4
-  '@types/sharp': 0.31.1
-  '@types/showdown': 2.0.0
-  '@types/speakeasy': 2.0.7
-  '@types/three': 0.134.0
-  '@types/throttle-debounce': 4.0.0
-  '@types/tinycolor2': 1.4.3
-  '@types/tmp': 0.2.3
-  '@types/uuid': 8.3.4
-  '@types/web-push': 3.3.2
-  '@types/webpack': 5.28.0
-  '@types/webpack-stream': 3.2.12
-  '@types/websocket': 1.0.5
-  '@types/ws': 8.5.4
-  '@typescript-eslint/eslint-plugin': 5.48.1
-  '@typescript-eslint/parser': 5.48.1
-  '@vue/compat': 3.2.45
-  '@vue/compiler-sfc': 3.2.45
-  '@vue/runtime-dom': 3.2.45
-  abort-controller: 3.0.0
-  animejs: 3.2.1
-  apexcharts: 3.36.3
-  autobind-decorator: 2.4.0
-  autosize: 5.0.2
-  autwh: 0.1.0
-  aws-sdk: 2.1280.0
-  ayuskey.js: 1.0.0-rc.11
-  bcryptjs: 2.4.3
-  blurhash: 2.0.4
-  bootstrap: 5.2.3
-  bootstrap-vue-3: 0.5.1
-  broadcast-channel: 4.20.1
-  bull: 4.10.2
-  cacheable-lookup: 6.1.0
-  cafy: 15.2.1
-  cbor: 8.1.0
-  chalk: 4.1.2
-  cli-highlight: 2.1.11
-  commander: 4.1.1
-  concurrently: 7.6.0
-  content-disposition: 0.5.4
-  crc-32: 1.2.2
-  cropperjs: 1.5.13
-  cross-env: 7.0.3
-  css-loader: 6.7.3
-  cssnano: 5.1.14
-  dateformat: 4.6.3
-  diskusage: 1.1.3
-  double-ended-queue: 2.1.0-0
-  escape-regexp: 0.0.1
-  eslint: 8.31.0
-  eslint-config-prettier: 8.6.0
-  eslint-import-resolver-node: 0.3.7
-  eslint-plugin-import: 2.27.4
-  eslint-plugin-vue: 9.8.0
-  eventemitter3: 4.0.7
-  feed: 4.2.2
-  file-type: 16.5.4
-  fluent-ffmpeg: 2.1.2
-  form-data: 4.0.0
-  glob: 8.0.3
-  got: 11.8.6
-  gulp: 4.0.2
-  gulp-clean-css: 4.3.0
-  gulp-mocha: 8.0.0
-  gulp-rename: 2.0.0
-  gulp-replace: 1.1.4
-  gulp-stylus: 2.7.1
-  gulp-terser: 2.1.0
-  gulp-tslint: 8.1.4
-  hard-source-webpack-plugin: 0.13.1
-  highlight.js: 10.7.3
-  hpagent: 1.2.0
-  html-minifier: 4.0.0
-  http-signature: 1.3.6
-  insert-text-at-cursor: 0.3.0
-  ioredis: 4.28.5
-  ip-cidr: 3.0.11
-  is-svg: 4.3.2
-  js-yaml: 4.1.0
-  jsdom: 20.0.3
-  json5: 2.2.3
-  json5-loader: 4.0.1
-  jsonld: 6.0.0
-  jsrsasign: 10.6.1
-  katex: 0.16.4
-  koa: 2.14.1
-  koa-bodyparser: 4.3.0
-  koa-favicon: 2.1.0
-  koa-json-body: 5.3.0
-  koa-logger: 3.2.1
-  koa-mount: 4.0.0
-  koa-send: 5.0.1
-  koa-slow: 2.1.0
-  koa-views: 8.0.0
-  langmap: 0.0.16
-  loader-utils: 3.2.1
-  lodash: ^4.17.21
-  mocha: 10.2.0
-  moji: 0.5.1
-  ms: 2.1.3
-  multer: 1.4.4-lts.1
-  nested-property: 4.0.0
-  node-fetch: 2.6.8
-  node-gyp: 9.3.1
-  nodemailer: 6.9.0
-  npm-run-all: 4.1.5
-  nprogress: 0.2.0
-  oauth: 0.10.0
-  object-assign-deep: 0.4.0
-  os-utils: 0.0.14
-  parse5: 6.0.1
-  parsimmon: 1.18.1
-  pg: 8.8.0
-  photoswipe: 5.3.4
-  pinia: 2.0.27
-  pinia-plugin-persistedstate: 3.0.2
-  portscanner: 2.2.0
-  postcss: 8.4.21
-  postcss-loader: 7.0.2
-  prettier: 2.8.2
-  private-ip: 2.3.4
-  probe-image-size: 7.2.3
-  promise-limit: 2.7.0
-  promise-sequential: 1.1.1
-  pug: 3.0.2
-  punycode: 2.2.0
-  pureimage: 0.3.15
-  qrcode: 1.5.1
-  random-seed: 0.3.0
-  randomcolor: 0.6.2
-  ratelimiter: 3.4.1
-  reconnecting-websocket: 4.4.0
-  redis-lock: 0.1.4
-  reflect-metadata: 0.1.13
-  regenerator-runtime: 0.13.11
-  rename: 1.0.4
-  request-stats: 3.0.0
-  require-all: 3.0.0
-  rimraf: 3.0.2
-  rndstr: 1.0.0
-  sass: 1.55.0
-  sass-loader: 13.2.0
-  seedrandom: 3.0.5
-  sharp: 0.31.3
-  showdown: 2.1.0
-  showdown-highlightjs-extension: 0.1.2
-  sonic-channel: 1.3.0
-  speakeasy: 2.0.0
-  strictcat: 0.0.1-alpha.18
-  stringz: 2.1.0
-  stylus: 0.59.0
-  stylus-loader: 7.1.0
-  syslog-pro: git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2
-  systeminformation: 5.17.3
-  syuilo-password-strength: 0.0.1
-  terser-webpack-plugin: 5.3.6
-  textarea-caret: 3.1.0
-  three: 0.134.0
-  throttle-debounce: 4.0.1
-  tinycolor2: 1.4.2
-  tmp: 0.2.1
-  ts-loader: 9.4.2
-  ts-node: 10.9.1
-  tsc-alias: 1.8.2
-  tsc-progress: 1.0.4
-  tsconfig-paths: 4.1.2
-  tslint: 5.20.1
-  tslint-sonarts: 1.9.0
-  ttypescript: 1.5.15
-  typeorm: 0.2.44
-  typescript: 4.9.4
-  ulid: 2.3.0
-  url-loader: 4.1.1
-  uuid: 9.0.0
-  v-animate-css: 0.0.5
-  v-debounce: 0.1.2
-  vue: 3.2.45
-  vue-color: 2.8.1
-  vue-content-loading: 1.6.0
-  vue-cropperjs: 4.2.0
-  vue-eslint-parser: 9.1.0
-  vue-i18n: 8.28.2
-  vue-js-modal: 1.3.35
-  vue-loader: 17.0.1
-  vue-marquee-text-component: 2.0.1
-  vue-router: 4.1.6
-  vue-sequential-entrance: 1.1.3
-  vue-style-loader: 4.1.3
-  vue-svg-inline-loader: 2.1.5
-  vuedraggable: 2.24.3
-  vuewordcloud: 18.7.12
-  vuex: 4.1.0
-  vuex-persistedstate: 4.1.0
-  web-push: 3.5.0
-  webpack: 5.75.0
-  webpack-cli: 4.10.0
-  webpack-dev-server: 4.8.1
-  webpackbar: 5.0.2
-  websocket: 1.0.34
-  ws: 8.12.0
+importers:
 
-dependencies:
-  '@ayuskey/summaly': 2.5.0-rei0784.4
-  '@ayuskey/xev': 2.0.1-rei0784.2
-  '@bull-board/api': 4.10.2
-  '@bull-board/koa': 4.10.2_47hhf6s5g2iqergy3sns66l4iy
-  '@bull-board/ui': 4.10.2
-  '@discordapp/twemoji': 14.0.2
-  '@elastic/elasticsearch': 7.17.0
-  '@fortawesome/fontawesome-svg-core': 6.2.1
-  '@fortawesome/free-brands-svg-icons': 6.2.1
-  '@fortawesome/free-regular-svg-icons': 6.2.1
-  '@fortawesome/free-solid-svg-icons': 6.2.1
-  '@fortawesome/vue-fontawesome': 3.0.2_bd5ipvhrqmkjz6wvo6sgrei224
-  '@koa/cors': 4.0.0
-  '@koa/multer': 3.0.0_multer@1.4.4-lts.1
-  '@koa/router': 8.0.8
-  '@popperjs/core': 2.11.6
-  '@vue/compat': 3.2.45_vue@3.2.45
-  '@vue/compiler-sfc': 3.2.45
-  '@vue/runtime-dom': 3.2.45
-  abort-controller: 3.0.0
-  animejs: 3.2.1
-  apexcharts: 3.36.3
-  autobind-decorator: 2.4.0
-  autosize: 5.0.2
-  autwh: 0.1.0
-  aws-sdk: 2.1280.0
-  ayuskey.js: 1.0.0-rc.11
-  bcryptjs: 2.4.3
-  blurhash: 2.0.4
-  bootstrap: 5.2.3_@popperjs+core@2.11.6
-  bootstrap-vue-3: 0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi
-  broadcast-channel: 4.20.1
-  bull: 4.10.2
-  cacheable-lookup: 6.1.0
-  cafy: 15.2.1
-  cbor: 8.1.0
-  chalk: 4.1.2
-  cli-highlight: 2.1.11
-  commander: 4.1.1
-  concurrently: 7.6.0
-  content-disposition: 0.5.4
-  crc-32: 1.2.2
-  cropperjs: 1.5.13
-  cross-env: 7.0.3
-  css-loader: 6.7.3_webpack@5.75.0
-  cssnano: 5.1.14_postcss@8.4.21
-  dateformat: 4.6.3
-  diskusage: 1.1.3
-  double-ended-queue: 2.1.0-0
-  eventemitter3: 4.0.7
-  feed: 4.2.2
-  file-type: 16.5.4
-  fluent-ffmpeg: 2.1.2
-  glob: 8.0.3
-  got: 11.8.6
-  gulp: 4.0.2
-  gulp-clean-css: 4.3.0
-  gulp-mocha: 8.0.0_gulp@4.0.2
-  gulp-rename: 2.0.0
-  gulp-replace: 1.1.4
-  gulp-stylus: 2.7.1
-  gulp-terser: 2.1.0
-  gulp-tslint: 8.1.4_tslint@5.20.1
-  hard-source-webpack-plugin: 0.13.1_webpack@5.75.0
-  highlight.js: 10.7.3
-  hpagent: 1.2.0
-  html-minifier: 4.0.0
-  http-signature: 1.3.6
-  insert-text-at-cursor: 0.3.0
-  ioredis: 4.28.5
-  ip-cidr: 3.0.11
-  is-svg: 4.3.2
-  js-yaml: 4.1.0
-  jsdom: 20.0.3
-  json5: 2.2.3
-  json5-loader: 4.0.1_webpack@5.75.0
-  jsonld: 6.0.0
-  jsrsasign: 10.6.1
-  katex: 0.16.4
-  koa: 2.14.1
-  koa-bodyparser: 4.3.0
-  koa-favicon: 2.1.0
-  koa-json-body: 5.3.0
-  koa-logger: 3.2.1
-  koa-mount: 4.0.0
-  koa-send: 5.0.1
-  koa-slow: 2.1.0
-  koa-views: 8.0.0_47hhf6s5g2iqergy3sns66l4iy
-  langmap: 0.0.16
-  loader-utils: 3.2.1
-  lodash: 4.17.21
-  mocha: 10.2.0
-  moji: 0.5.1
-  ms: 2.1.3
-  multer: 1.4.4-lts.1
-  nested-property: 4.0.0
-  node-fetch: 2.6.8
-  nodemailer: 6.9.0
-  nprogress: 0.2.0
-  oauth: 0.10.0
-  object-assign-deep: 0.4.0
-  os-utils: 0.0.14
-  parse5: 6.0.1
-  parsimmon: 1.18.1
-  pg: 8.8.0
-  photoswipe: 5.3.4
-  pinia: 2.0.27_prq2uz4lho2pwp6irk4cfkrxwu
-  pinia-plugin-persistedstate: 3.0.2_pinia@2.0.27
-  portscanner: 2.2.0
-  postcss: 8.4.21
-  postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
-  private-ip: 2.3.4
-  probe-image-size: 7.2.3
-  promise-limit: 2.7.0
-  promise-sequential: 1.1.1
-  pug: 3.0.2
-  punycode: 2.2.0
-  pureimage: 0.3.15
-  qrcode: 1.5.1
-  random-seed: 0.3.0
-  randomcolor: 0.6.2
-  ratelimiter: 3.4.1
-  reconnecting-websocket: 4.4.0
-  redis-lock: 0.1.4
-  reflect-metadata: 0.1.13
-  rename: 1.0.4
-  request-stats: 3.0.0
-  require-all: 3.0.0
-  rimraf: 3.0.2
-  rndstr: 1.0.0
-  sass: 1.55.0
-  sass-loader: 13.2.0_sass@1.55.0+webpack@5.75.0
-  seedrandom: 3.0.5
-  sharp: 0.31.3
-  showdown: 2.1.0
-  showdown-highlightjs-extension: 0.1.2_showdown@2.1.0
-  sonic-channel: 1.3.0
-  speakeasy: 2.0.0
-  strictcat: 0.0.1-alpha.18
-  stringz: 2.1.0
-  stylus: 0.59.0
-  stylus-loader: 7.1.0_577zv5myo6oqbmxnic7hzxwylm
-  syslog-pro: github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7
-  systeminformation: 5.17.3
-  syuilo-password-strength: 0.0.1
-  terser-webpack-plugin: 5.3.6_v4imsvpumnwpgduroyqmpcfjiy
-  textarea-caret: 3.1.0
-  three: 0.134.0
-  throttle-debounce: 4.0.1
-  tinycolor2: 1.4.2
-  tmp: 0.2.1
-  ts-loader: 9.4.2_3fkjkrd3audxnith3e7fo4fnxi
-  ts-node: 10.9.1_fodzh64fuekdilycyvke2qmf2e
-  tsc-alias: 1.8.2
-  tsconfig-paths: 4.1.2
-  typeorm: 0.2.44_ioredis@4.28.5+pg@8.8.0
-  typescript: 4.9.4
-  ulid: 2.3.0
-  url-loader: 4.1.1_webpack@5.75.0
-  uuid: 9.0.0
-  v-animate-css: 0.0.5
-  v-debounce: 0.1.2
-  vue: 3.2.45
-  vue-color: 2.8.1
-  vue-content-loading: 1.6.0
-  vue-cropperjs: 4.2.0
-  vue-i18n: 8.28.2_vue@3.2.45
-  vue-js-modal: 1.3.35_vue@3.2.45
-  vue-loader: 17.0.1_ceoavo7i67lvjzxxtqa4yhrx7m
-  vue-marquee-text-component: 2.0.1
-  vue-router: 4.1.6_vue@3.2.45
-  vue-sequential-entrance: 1.1.3
-  vue-style-loader: 4.1.3
-  vue-svg-inline-loader: 2.1.5
-  vuedraggable: 2.24.3
-  vuewordcloud: 18.7.12_vue@3.2.45
-  vuex: 4.1.0_vue@3.2.45
-  vuex-persistedstate: 4.1.0_vuex@4.1.0
-  web-push: 3.5.0
-  webpack: 5.75.0_5ywm6mmjljxluibnnkxbzvl3qe
-  webpack-cli: 4.10.0_5fmukicmy7xum63bf7rhrqg3im
-  websocket: 1.0.34
-  ws: 8.12.0
+  .:
+    specifiers:
+      '@ayuskey/summaly': 2.5.0-rei0784.4
+      '@ayuskey/vuewordcloud': workspace:19.0.0
+      '@ayuskey/xev': 2.0.1-rei0784.2
+      '@bull-board/api': 4.10.2
+      '@bull-board/koa': 4.10.2
+      '@bull-board/ui': 4.10.2
+      '@discordapp/twemoji': 14.0.2
+      '@elastic/elasticsearch': 7.17.0
+      '@fortawesome/fontawesome-svg-core': 6.2.1
+      '@fortawesome/free-brands-svg-icons': 6.2.1
+      '@fortawesome/free-regular-svg-icons': 6.2.1
+      '@fortawesome/free-solid-svg-icons': 6.2.1
+      '@fortawesome/vue-fontawesome': 3.0.2
+      '@koa/cors': 4.0.0
+      '@koa/multer': 3.0.0
+      '@koa/router': 8.0.8
+      '@popperjs/core': 2.11.6
+      '@redocly/openapi-core': 1.0.0-beta.120
+      '@swc/cli': 0.1.59
+      '@swc/core': 1.3.26
+      '@swc/helpers': 0.4.14
+      '@types/animejs': 3.1.6
+      '@types/bcryptjs': 2.4.2
+      '@types/dateformat': 3.0.1
+      '@types/double-ended-queue': 2.1.2
+      '@types/escape-regexp': 0.0.1
+      '@types/fluent-ffmpeg': 2.1.20
+      '@types/gulp': 4.0.10
+      '@types/gulp-mocha': 0.0.33
+      '@types/gulp-rename': 2.0.1
+      '@types/ioredis': 4.28.10
+      '@types/is-url': 1.2.30
+      '@types/js-yaml': 4.0.5
+      '@types/jsdom': 20.0.1
+      '@types/jsonld': 1.5.8
+      '@types/jsrsasign': 10.5.4
+      '@types/katex': 0.16.0
+      '@types/koa': 2.13.5
+      '@types/koa-bodyparser': 4.3.10
+      '@types/koa-cors': 0.0.2
+      '@types/koa-favicon': 2.0.21
+      '@types/koa-logger': 3.1.2
+      '@types/koa-mount': 4.0.2
+      '@types/koa-send': 4.1.3
+      '@types/koa-views': 2.0.4
+      '@types/koa__cors': 3.3.0
+      '@types/koa__multer': 2.0.4
+      '@types/koa__router': 8.0.11
+      '@types/lolex': 5.1.2
+      '@types/mocha': 10.0.1
+      '@types/node': 18.11.18
+      '@types/node-fetch': 2.6.2
+      '@types/nodemailer': 6.4.7
+      '@types/nprogress': 0.2.0
+      '@types/oauth': 0.9.1
+      '@types/parse5': 6.0.3
+      '@types/parsimmon': 1.10.6
+      '@types/portscanner': 2.1.1
+      '@types/pug': 2.0.6
+      '@types/qrcode': 1.5.0
+      '@types/random-seed': 0.3.3
+      '@types/ratelimiter': 3.4.4
+      '@types/rename': 1.0.4
+      '@types/request-stats': 3.0.0
+      '@types/rimraf': 3.0.2
+      '@types/seedrandom': 3.0.4
+      '@types/sharp': 0.31.1
+      '@types/showdown': 2.0.0
+      '@types/speakeasy': 2.0.7
+      '@types/three': 0.134.0
+      '@types/throttle-debounce': 4.0.0
+      '@types/tinycolor2': 1.4.3
+      '@types/tmp': 0.2.3
+      '@types/uuid': 8.3.4
+      '@types/web-push': 3.3.2
+      '@types/webpack': 5.28.0
+      '@types/webpack-stream': 3.2.12
+      '@types/websocket': 1.0.5
+      '@types/ws': 8.5.4
+      '@typescript-eslint/eslint-plugin': 5.48.1
+      '@typescript-eslint/parser': 5.48.1
+      '@vue/compat': 3.2.45
+      '@vue/compiler-sfc': 3.2.45
+      '@vue/runtime-dom': 3.2.45
+      abort-controller: 3.0.0
+      animejs: 3.2.1
+      apexcharts: 3.36.3
+      autobind-decorator: 2.4.0
+      autosize: 5.0.2
+      autwh: 0.1.0
+      aws-sdk: 2.1280.0
+      ayuskey.js: 1.0.0-rc.11
+      bcryptjs: 2.4.3
+      blurhash: 2.0.4
+      bootstrap: 5.2.3
+      bootstrap-vue-3: 0.5.1
+      broadcast-channel: 4.20.1
+      bull: 4.10.2
+      cacheable-lookup: 6.1.0
+      cafy: 15.2.1
+      cbor: 8.1.0
+      chalk: 4.1.2
+      cli-highlight: 2.1.11
+      commander: 4.1.1
+      concurrently: 7.6.0
+      content-disposition: 0.5.4
+      crc-32: 1.2.2
+      cropperjs: 1.5.13
+      cross-env: 7.0.3
+      css-loader: 6.7.3
+      cssnano: 5.1.14
+      dateformat: 4.6.3
+      diskusage: 1.1.3
+      double-ended-queue: 2.1.0-0
+      escape-regexp: 0.0.1
+      eslint: 8.31.0
+      eslint-config-prettier: 8.6.0
+      eslint-import-resolver-node: 0.3.7
+      eslint-plugin-import: 2.27.4
+      eslint-plugin-vue: 9.8.0
+      eventemitter3: 4.0.7
+      feed: 4.2.2
+      file-type: 16.5.4
+      fluent-ffmpeg: 2.1.2
+      form-data: 4.0.0
+      glob: 8.0.3
+      got: 11.8.6
+      gulp: 4.0.2
+      gulp-clean-css: 4.3.0
+      gulp-mocha: 8.0.0
+      gulp-rename: 2.0.0
+      gulp-replace: 1.1.4
+      gulp-stylus: 2.7.1
+      gulp-terser: 2.1.0
+      gulp-tslint: 8.1.4
+      hard-source-webpack-plugin: 0.13.1
+      highlight.js: 10.7.3
+      hpagent: 1.2.0
+      html-minifier: 4.0.0
+      http-signature: 1.3.6
+      insert-text-at-cursor: 0.3.0
+      ioredis: 4.28.5
+      ip-cidr: 3.0.11
+      is-svg: 4.3.2
+      js-yaml: 4.1.0
+      jsdom: 20.0.3
+      json5: 2.2.3
+      json5-loader: 4.0.1
+      jsonld: 6.0.0
+      jsrsasign: 10.6.1
+      katex: 0.16.4
+      koa: 2.14.1
+      koa-bodyparser: 4.3.0
+      koa-favicon: 2.1.0
+      koa-json-body: 5.3.0
+      koa-logger: 3.2.1
+      koa-mount: 4.0.0
+      koa-send: 5.0.1
+      koa-slow: 2.1.0
+      koa-views: 8.0.0
+      langmap: 0.0.16
+      loader-utils: 3.2.1
+      lodash: ^4.17.21
+      mocha: 10.2.0
+      moji: 0.5.1
+      ms: 2.1.3
+      multer: 1.4.4-lts.1
+      nested-property: 4.0.0
+      node-fetch: 2.6.8
+      node-gyp: 9.3.1
+      nodemailer: 6.9.0
+      npm-run-all: 4.1.5
+      nprogress: 0.2.0
+      oauth: 0.10.0
+      object-assign-deep: 0.4.0
+      os-utils: 0.0.14
+      parse5: 6.0.1
+      parsimmon: 1.18.1
+      pg: 8.8.0
+      photoswipe: 5.3.4
+      pinia: 2.0.27
+      pinia-plugin-persistedstate: 3.0.2
+      portscanner: 2.2.0
+      postcss: 8.4.21
+      postcss-loader: 7.0.2
+      prettier: 2.8.2
+      private-ip: 2.3.4
+      probe-image-size: 7.2.3
+      promise-limit: 2.7.0
+      promise-sequential: 1.1.1
+      pug: 3.0.2
+      punycode: 2.2.0
+      pureimage: 0.3.15
+      qrcode: 1.5.1
+      random-seed: 0.3.0
+      randomcolor: 0.6.2
+      ratelimiter: 3.4.1
+      reconnecting-websocket: 4.4.0
+      redis-lock: 0.1.4
+      reflect-metadata: 0.1.13
+      regenerator-runtime: 0.13.11
+      rename: 1.0.4
+      request-stats: 3.0.0
+      require-all: 3.0.0
+      rimraf: 3.0.2
+      rndstr: 1.0.0
+      sass: 1.55.0
+      sass-loader: 13.2.0
+      seedrandom: 3.0.5
+      sharp: 0.31.3
+      showdown: 2.1.0
+      showdown-highlightjs-extension: 0.1.2
+      sonic-channel: 1.3.0
+      speakeasy: 2.0.0
+      strictcat: 0.0.1-alpha.18
+      stringz: 2.1.0
+      stylus: 0.59.0
+      stylus-loader: 7.1.0
+      syslog-pro: git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2
+      systeminformation: 5.17.3
+      syuilo-password-strength: 0.0.1
+      terser-webpack-plugin: 5.3.6
+      textarea-caret: 3.1.0
+      three: 0.134.0
+      throttle-debounce: 4.0.1
+      tinycolor2: 1.4.2
+      tmp: 0.2.1
+      ts-loader: 9.4.2
+      ts-node: 10.9.1
+      tsc-alias: 1.8.2
+      tsc-progress: 1.0.4
+      tsconfig-paths: 4.1.2
+      tslint: 5.20.1
+      tslint-sonarts: 1.9.0
+      ttypescript: 1.5.15
+      typeorm: 0.2.44
+      typescript: 4.9.4
+      ulid: 2.3.0
+      url-loader: 4.1.1
+      uuid: 9.0.0
+      v-animate-css: 0.0.5
+      v-debounce: 0.1.2
+      vue: 3.2.45
+      vue-color: 2.8.1
+      vue-content-loading: 1.6.0
+      vue-cropperjs: 4.2.0
+      vue-eslint-parser: 9.1.0
+      vue-i18n: 8.28.2
+      vue-js-modal: 1.3.35
+      vue-loader: 17.0.1
+      vue-marquee-text-component: 2.0.1
+      vue-router: 4.1.6
+      vue-sequential-entrance: 1.1.3
+      vue-style-loader: 4.1.3
+      vue-svg-inline-loader: 2.1.5
+      vuedraggable: 2.24.3
+      vuex: 4.1.0
+      vuex-persistedstate: 4.1.0
+      web-push: 3.5.0
+      webpack: 5.75.0
+      webpack-cli: 4.10.0
+      webpack-dev-server: 4.8.1
+      webpackbar: 5.0.2
+      websocket: 1.0.34
+      ws: 8.12.0
+    dependencies:
+      '@ayuskey/summaly': 2.5.0-rei0784.4
+      '@ayuskey/vuewordcloud': link:lib/vuewordcloud
+      '@ayuskey/xev': 2.0.1-rei0784.2
+      '@bull-board/api': 4.10.2
+      '@bull-board/koa': 4.10.2_47hhf6s5g2iqergy3sns66l4iy
+      '@bull-board/ui': 4.10.2
+      '@discordapp/twemoji': 14.0.2
+      '@elastic/elasticsearch': 7.17.0
+      '@fortawesome/fontawesome-svg-core': 6.2.1
+      '@fortawesome/free-brands-svg-icons': 6.2.1
+      '@fortawesome/free-regular-svg-icons': 6.2.1
+      '@fortawesome/free-solid-svg-icons': 6.2.1
+      '@fortawesome/vue-fontawesome': 3.0.2_bd5ipvhrqmkjz6wvo6sgrei224
+      '@koa/cors': 4.0.0
+      '@koa/multer': 3.0.0_multer@1.4.4-lts.1
+      '@koa/router': 8.0.8
+      '@popperjs/core': 2.11.6
+      '@vue/compat': 3.2.45_vue@3.2.45
+      '@vue/compiler-sfc': 3.2.45
+      '@vue/runtime-dom': 3.2.45
+      abort-controller: 3.0.0
+      animejs: 3.2.1
+      apexcharts: 3.36.3
+      autobind-decorator: 2.4.0
+      autosize: 5.0.2
+      autwh: 0.1.0
+      aws-sdk: 2.1280.0
+      ayuskey.js: 1.0.0-rc.11
+      bcryptjs: 2.4.3
+      blurhash: 2.0.4
+      bootstrap: 5.2.3_@popperjs+core@2.11.6
+      bootstrap-vue-3: 0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi
+      broadcast-channel: 4.20.1
+      bull: 4.10.2
+      cacheable-lookup: 6.1.0
+      cafy: 15.2.1
+      cbor: 8.1.0
+      chalk: 4.1.2
+      cli-highlight: 2.1.11
+      commander: 4.1.1
+      concurrently: 7.6.0
+      content-disposition: 0.5.4
+      crc-32: 1.2.2
+      cropperjs: 1.5.13
+      cross-env: 7.0.3
+      css-loader: 6.7.3_webpack@5.75.0
+      cssnano: 5.1.14_postcss@8.4.21
+      dateformat: 4.6.3
+      diskusage: 1.1.3
+      double-ended-queue: 2.1.0-0
+      eventemitter3: 4.0.7
+      feed: 4.2.2
+      file-type: 16.5.4
+      fluent-ffmpeg: 2.1.2
+      glob: 8.0.3
+      got: 11.8.6
+      gulp: 4.0.2
+      gulp-clean-css: 4.3.0
+      gulp-mocha: 8.0.0_gulp@4.0.2
+      gulp-rename: 2.0.0
+      gulp-replace: 1.1.4
+      gulp-stylus: 2.7.1
+      gulp-terser: 2.1.0
+      gulp-tslint: 8.1.4_tslint@5.20.1
+      hard-source-webpack-plugin: 0.13.1_webpack@5.75.0
+      highlight.js: 10.7.3
+      hpagent: 1.2.0
+      html-minifier: 4.0.0
+      http-signature: 1.3.6
+      insert-text-at-cursor: 0.3.0
+      ioredis: 4.28.5
+      ip-cidr: 3.0.11
+      is-svg: 4.3.2
+      js-yaml: 4.1.0
+      jsdom: 20.0.3
+      json5: 2.2.3
+      json5-loader: 4.0.1_webpack@5.75.0
+      jsonld: 6.0.0
+      jsrsasign: 10.6.1
+      katex: 0.16.4
+      koa: 2.14.1
+      koa-bodyparser: 4.3.0
+      koa-favicon: 2.1.0
+      koa-json-body: 5.3.0
+      koa-logger: 3.2.1
+      koa-mount: 4.0.0
+      koa-send: 5.0.1
+      koa-slow: 2.1.0
+      koa-views: 8.0.0_47hhf6s5g2iqergy3sns66l4iy
+      langmap: 0.0.16
+      loader-utils: 3.2.1
+      lodash: 4.17.21
+      mocha: 10.2.0
+      moji: 0.5.1
+      ms: 2.1.3
+      multer: 1.4.4-lts.1
+      nested-property: 4.0.0
+      node-fetch: 2.6.8
+      nodemailer: 6.9.0
+      nprogress: 0.2.0
+      oauth: 0.10.0
+      object-assign-deep: 0.4.0
+      os-utils: 0.0.14
+      parse5: 6.0.1
+      parsimmon: 1.18.1
+      pg: 8.8.0
+      photoswipe: 5.3.4
+      pinia: 2.0.27_prq2uz4lho2pwp6irk4cfkrxwu
+      pinia-plugin-persistedstate: 3.0.2_pinia@2.0.27
+      portscanner: 2.2.0
+      postcss: 8.4.21
+      postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
+      private-ip: 2.3.4
+      probe-image-size: 7.2.3
+      promise-limit: 2.7.0
+      promise-sequential: 1.1.1
+      pug: 3.0.2
+      punycode: 2.2.0
+      pureimage: 0.3.15
+      qrcode: 1.5.1
+      random-seed: 0.3.0
+      randomcolor: 0.6.2
+      ratelimiter: 3.4.1
+      reconnecting-websocket: 4.4.0
+      redis-lock: 0.1.4
+      reflect-metadata: 0.1.13
+      rename: 1.0.4
+      request-stats: 3.0.0
+      require-all: 3.0.0
+      rimraf: 3.0.2
+      rndstr: 1.0.0
+      sass: 1.55.0
+      sass-loader: 13.2.0_sass@1.55.0+webpack@5.75.0
+      seedrandom: 3.0.5
+      sharp: 0.31.3
+      showdown: 2.1.0
+      showdown-highlightjs-extension: 0.1.2_showdown@2.1.0
+      sonic-channel: 1.3.0
+      speakeasy: 2.0.0
+      strictcat: 0.0.1-alpha.18
+      stringz: 2.1.0
+      stylus: 0.59.0
+      stylus-loader: 7.1.0_577zv5myo6oqbmxnic7hzxwylm
+      syslog-pro: github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7
+      systeminformation: 5.17.3
+      syuilo-password-strength: 0.0.1
+      terser-webpack-plugin: 5.3.6_v4imsvpumnwpgduroyqmpcfjiy
+      textarea-caret: 3.1.0
+      three: 0.134.0
+      throttle-debounce: 4.0.1
+      tinycolor2: 1.4.2
+      tmp: 0.2.1
+      ts-loader: 9.4.2_3fkjkrd3audxnith3e7fo4fnxi
+      ts-node: 10.9.1_fodzh64fuekdilycyvke2qmf2e
+      tsc-alias: 1.8.2
+      tsconfig-paths: 4.1.2
+      typeorm: 0.2.44_ioredis@4.28.5+pg@8.8.0
+      typescript: 4.9.4
+      ulid: 2.3.0
+      url-loader: 4.1.1_webpack@5.75.0
+      uuid: 9.0.0
+      v-animate-css: 0.0.5
+      v-debounce: 0.1.2
+      vue: 3.2.45
+      vue-color: 2.8.1
+      vue-content-loading: 1.6.0
+      vue-cropperjs: 4.2.0
+      vue-i18n: 8.28.2_vue@3.2.45
+      vue-js-modal: 1.3.35_vue@3.2.45
+      vue-loader: 17.0.1_ceoavo7i67lvjzxxtqa4yhrx7m
+      vue-marquee-text-component: 2.0.1
+      vue-router: 4.1.6_vue@3.2.45
+      vue-sequential-entrance: 1.1.3
+      vue-style-loader: 4.1.3
+      vue-svg-inline-loader: 2.1.5
+      vuedraggable: 2.24.3
+      vuex: 4.1.0_vue@3.2.45
+      vuex-persistedstate: 4.1.0_vuex@4.1.0
+      web-push: 3.5.0
+      webpack: 5.75.0_5ywm6mmjljxluibnnkxbzvl3qe
+      webpack-cli: 4.10.0_5fmukicmy7xum63bf7rhrqg3im
+      websocket: 1.0.34
+      ws: 8.12.0
+    devDependencies:
+      '@redocly/openapi-core': 1.0.0-beta.120
+      '@swc/cli': 0.1.59_@swc+core@1.3.26
+      '@swc/core': 1.3.26
+      '@swc/helpers': 0.4.14
+      '@types/animejs': 3.1.6
+      '@types/bcryptjs': 2.4.2
+      '@types/dateformat': 3.0.1
+      '@types/double-ended-queue': 2.1.2
+      '@types/escape-regexp': 0.0.1
+      '@types/fluent-ffmpeg': 2.1.20
+      '@types/gulp': 4.0.10
+      '@types/gulp-mocha': 0.0.33
+      '@types/gulp-rename': 2.0.1
+      '@types/ioredis': 4.28.10
+      '@types/is-url': 1.2.30
+      '@types/js-yaml': 4.0.5
+      '@types/jsdom': 20.0.1
+      '@types/jsonld': 1.5.8
+      '@types/jsrsasign': 10.5.4
+      '@types/katex': 0.16.0
+      '@types/koa': 2.13.5
+      '@types/koa-bodyparser': 4.3.10
+      '@types/koa-cors': 0.0.2
+      '@types/koa-favicon': 2.0.21
+      '@types/koa-logger': 3.1.2
+      '@types/koa-mount': 4.0.2
+      '@types/koa-send': 4.1.3
+      '@types/koa-views': 2.0.4
+      '@types/koa__cors': 3.3.0
+      '@types/koa__multer': 2.0.4
+      '@types/koa__router': 8.0.11
+      '@types/lolex': 5.1.2
+      '@types/mocha': 10.0.1
+      '@types/node': 18.11.18
+      '@types/node-fetch': 2.6.2
+      '@types/nodemailer': 6.4.7
+      '@types/nprogress': 0.2.0
+      '@types/oauth': 0.9.1
+      '@types/parse5': 6.0.3
+      '@types/parsimmon': 1.10.6
+      '@types/portscanner': 2.1.1
+      '@types/pug': 2.0.6
+      '@types/qrcode': 1.5.0
+      '@types/random-seed': 0.3.3
+      '@types/ratelimiter': 3.4.4
+      '@types/rename': 1.0.4
+      '@types/request-stats': 3.0.0
+      '@types/rimraf': 3.0.2
+      '@types/seedrandom': 3.0.4
+      '@types/sharp': 0.31.1
+      '@types/showdown': 2.0.0
+      '@types/speakeasy': 2.0.7
+      '@types/three': 0.134.0
+      '@types/throttle-debounce': 4.0.0
+      '@types/tinycolor2': 1.4.3
+      '@types/tmp': 0.2.3
+      '@types/uuid': 8.3.4
+      '@types/web-push': 3.3.2
+      '@types/webpack': 5.28.0_5ywm6mmjljxluibnnkxbzvl3qe
+      '@types/webpack-stream': 3.2.12
+      '@types/websocket': 1.0.5
+      '@types/ws': 8.5.4
+      '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
+      '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
+      escape-regexp: 0.0.1
+      eslint: 8.31.0
+      eslint-config-prettier: 8.6.0_eslint@8.31.0
+      eslint-import-resolver-node: 0.3.7
+      eslint-plugin-import: 2.27.4_qdjeohovcytra7xto5vgmxssaq
+      eslint-plugin-vue: 9.8.0_eslint@8.31.0
+      form-data: 4.0.0
+      node-gyp: 9.3.1
+      npm-run-all: 4.1.5
+      prettier: 2.8.2
+      regenerator-runtime: 0.13.11
+      tsc-progress: 1.0.4_typescript@4.9.4
+      tslint: 5.20.1_typescript@4.9.4
+      tslint-sonarts: 1.9.0_vdotgri4olwiwbb4wwy7z6kbsq
+      ttypescript: 1.5.15_z6wznmtyb6ovnulj6iujpct7um
+      vue-eslint-parser: 9.1.0_eslint@8.31.0
+      webpack-dev-server: 4.8.1_pda42hcaj7d62cr262fr632kue
+      webpackbar: 5.0.2_webpack@5.75.0
 
-devDependencies:
-  '@redocly/openapi-core': 1.0.0-beta.120
-  '@swc/cli': 0.1.59_@swc+core@1.3.26
-  '@swc/core': 1.3.26
-  '@swc/helpers': 0.4.14
-  '@types/animejs': 3.1.6
-  '@types/bcryptjs': 2.4.2
-  '@types/dateformat': 3.0.1
-  '@types/double-ended-queue': 2.1.2
-  '@types/escape-regexp': 0.0.1
-  '@types/fluent-ffmpeg': 2.1.20
-  '@types/gulp': 4.0.10
-  '@types/gulp-mocha': 0.0.33
-  '@types/gulp-rename': 2.0.1
-  '@types/ioredis': 4.28.10
-  '@types/is-url': 1.2.30
-  '@types/js-yaml': 4.0.5
-  '@types/jsdom': 20.0.1
-  '@types/jsonld': 1.5.8
-  '@types/jsrsasign': 10.5.4
-  '@types/katex': 0.16.0
-  '@types/koa': 2.13.5
-  '@types/koa-bodyparser': 4.3.10
-  '@types/koa-cors': 0.0.2
-  '@types/koa-favicon': 2.0.21
-  '@types/koa-logger': 3.1.2
-  '@types/koa-mount': 4.0.2
-  '@types/koa-send': 4.1.3
-  '@types/koa-views': 2.0.4
-  '@types/koa__cors': 3.3.0
-  '@types/koa__multer': 2.0.4
-  '@types/koa__router': 8.0.11
-  '@types/lolex': 5.1.2
-  '@types/mocha': 10.0.1
-  '@types/node': 18.11.18
-  '@types/node-fetch': 2.6.2
-  '@types/nodemailer': 6.4.7
-  '@types/nprogress': 0.2.0
-  '@types/oauth': 0.9.1
-  '@types/parse5': 6.0.3
-  '@types/parsimmon': 1.10.6
-  '@types/portscanner': 2.1.1
-  '@types/pug': 2.0.6
-  '@types/qrcode': 1.5.0
-  '@types/random-seed': 0.3.3
-  '@types/ratelimiter': 3.4.4
-  '@types/rename': 1.0.4
-  '@types/request-stats': 3.0.0
-  '@types/rimraf': 3.0.2
-  '@types/seedrandom': 3.0.4
-  '@types/sharp': 0.31.1
-  '@types/showdown': 2.0.0
-  '@types/speakeasy': 2.0.7
-  '@types/three': 0.134.0
-  '@types/throttle-debounce': 4.0.0
-  '@types/tinycolor2': 1.4.3
-  '@types/tmp': 0.2.3
-  '@types/uuid': 8.3.4
-  '@types/web-push': 3.3.2
-  '@types/webpack': 5.28.0_5ywm6mmjljxluibnnkxbzvl3qe
-  '@types/webpack-stream': 3.2.12
-  '@types/websocket': 1.0.5
-  '@types/ws': 8.5.4
-  '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
-  '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
-  escape-regexp: 0.0.1
-  eslint: 8.31.0
-  eslint-config-prettier: 8.6.0_eslint@8.31.0
-  eslint-import-resolver-node: 0.3.7
-  eslint-plugin-import: 2.27.4_qdjeohovcytra7xto5vgmxssaq
-  eslint-plugin-vue: 9.8.0_eslint@8.31.0
-  form-data: 4.0.0
-  node-gyp: 9.3.1
-  npm-run-all: 4.1.5
-  prettier: 2.8.2
-  regenerator-runtime: 0.13.11
-  tsc-progress: 1.0.4_typescript@4.9.4
-  tslint: 5.20.1_typescript@4.9.4
-  tslint-sonarts: 1.9.0_vdotgri4olwiwbb4wwy7z6kbsq
-  ttypescript: 1.5.15_z6wznmtyb6ovnulj6iujpct7um
-  vue-eslint-parser: 9.1.0_eslint@8.31.0
-  webpack-dev-server: 4.8.1_pda42hcaj7d62cr262fr632kue
-  webpackbar: 5.0.2_webpack@5.75.0
+  lib/vuewordcloud:
+    specifiers:
+      '@rollup/plugin-buble': 1.0.1
+      '@rollup/plugin-node-resolve': 15.0.1
+      '@rollup/plugin-terser': 0.3.0
+      eslint: 8.32.0
+      eslint-config-seregpie: 1.2.1
+      rollup: 3.10.0
+      rollup-plugin-serve: 2.0.2
+    devDependencies:
+      '@rollup/plugin-buble': 1.0.1_rollup@3.10.0
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.0
+      '@rollup/plugin-terser': 0.3.0_rollup@3.10.0
+      eslint: 8.32.0
+      eslint-config-seregpie: 1.2.1_eslint@8.32.0
+      rollup: 3.10.0
+      rollup-plugin-serve: 2.0.2
 
 packages:
 
@@ -727,14 +746,6 @@ packages:
       chalk: 2.4.2
       js-tokens: 4.0.0
 
-  /@babel/parser/7.19.4:
-    resolution: {integrity: sha512-qpVT7gtuOLjWeDTKLkJ6sryqLliBaFpAtGeqw5cs5giLldvh+Ch0plqnUMKoVAUS6ZEueQQiZV+p5pxtPitEsA==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/types': 7.19.4
-    dev: false
-
   /@babel/parser/7.20.7:
     resolution: {integrity: sha512-T3Z9oHybU+0vZlY9CiDSJQTD5ZapcW18ZctFMi0MOAl/4BjFF4ul7NVSARLdbGO5vDqy9eQiGTV0LtKfvCYvcg==}
     engines: {node: '>=6.0.0'}
@@ -780,15 +791,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@babel/types/7.19.4:
-    resolution: {integrity: sha512-M5LK7nAeS6+9j7hAq+b3fQs+pNfUtTGq+yFFfHnauFA8zQtLRfmuipmsKDKKLuyG+wC8ABW43A153YNawNTEtw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.19.4
-      '@babel/helper-validator-identifier': 7.19.1
-      to-fast-properties: 2.0.0
     dev: false
 
   /@babel/types/7.20.7:
@@ -1255,6 +1257,54 @@ packages:
       - encoding
     dev: true
 
+  /@rollup/plugin-buble/1.0.1_rollup@3.10.0:
+    resolution: {integrity: sha512-4srowx9TM2C2m5qDz72E9eOY7jC2Z0R5jw27tYanm1tEwi22Bl1Sh0ccubGIF3v30wmXWiH0dpvwO7+F5cPiWg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.10.0
+      '@types/buble': 0.19.2
+      buble: 0.20.0
+      rollup: 3.10.0
+    dev: true
+
+  /@rollup/plugin-node-resolve/15.0.1_rollup@3.10.0:
+    resolution: {integrity: sha512-ReY88T7JhJjeRVbfCyNj+NXAG3IIsVMsX9b5/9jC98dRP8/yxlZdz7mHZbHk5zHr24wZZICS5AcXsFZAXYUQEg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.10.0
+      '@types/resolve': 1.20.2
+      deepmerge: 4.2.2
+      is-builtin-module: 3.2.0
+      is-module: 1.0.0
+      resolve: 1.22.1
+      rollup: 3.10.0
+    dev: true
+
+  /@rollup/plugin-terser/0.3.0_rollup@3.10.0:
+    resolution: {integrity: sha512-mYTkNW9KjOscS/3QWU5LfOKsR3/fAAVDaqcAe2TZ7ng6pN46f+C7FOZbITuIW/neA+PhcjoKl7yMyB3XcmA4gw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.x || ^3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 3.10.0
+      serialize-javascript: 6.0.0
+      smob: 0.0.6
+      terser: 5.16.1
+    dev: true
+
   /@rollup/pluginutils/5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
@@ -1268,6 +1318,21 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: false
+
+  /@rollup/pluginutils/5.0.2_rollup@3.10.0:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+      rollup: 3.10.0
+    dev: true
 
   /@sindresorhus/is/0.7.0:
     resolution: {integrity: sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==}
@@ -1461,6 +1526,12 @@ packages:
     dependencies:
       '@types/node': 18.11.18
 
+  /@types/buble/0.19.2:
+    resolution: {integrity: sha512-uUD8zIfXMKThmFkahTXDGI3CthFH1kMg2dOm3KLi4GlC5cbARA64bEcUMbbWdWdE73eoc/iBB9PiTMqH0dNS2Q==}
+    dependencies:
+      magic-string: 0.25.9
+    dev: true
+
   /@types/cacheable-request/6.0.2:
     resolution: {integrity: sha512-B3xVo+dlKM6nnKTcmm5ZtY/OL8bOAOd2Olee9M1zft65ox50OzjEHW91sDiU9j6cvW8Ejg1/Qkf4xd2kugApUA==}
     dependencies:
@@ -1508,12 +1579,12 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.6
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.6:
     resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
 
   /@types/estree/0.0.51:
@@ -1521,7 +1592,6 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
-    dev: false
 
   /@types/expect/1.20.4:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
@@ -1825,6 +1895,10 @@ packages:
     resolution: {integrity: sha512-POsDF7nETH8up49iBNvbZuO0pEk9F+TG0rXCkvjxCClcOS99xfF+mKmJteYlwKYpuRKkixzysKlL8rwN1hU2lw==}
     dependencies:
       '@types/node': 18.11.18
+    dev: true
+
+  /@types/resolve/1.20.2:
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
     dev: true
 
   /@types/responselike/1.0.0:
@@ -2148,7 +2222,7 @@ packages:
     peerDependencies:
       vue: 3.2.45
     dependencies:
-      '@babel/parser': 7.19.4
+      '@babel/parser': 7.20.7
       estree-walker: 2.0.2
       source-map: 0.6.1
       vue: 3.2.45
@@ -2157,7 +2231,7 @@ packages:
   /@vue/compiler-core/3.2.45:
     resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
     dependencies:
-      '@babel/parser': 7.19.4
+      '@babel/parser': 7.20.7
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
       source-map: 0.6.1
@@ -2173,7 +2247,7 @@ packages:
   /@vue/compiler-sfc/2.7.14:
     resolution: {integrity: sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==}
     dependencies:
-      '@babel/parser': 7.19.4
+      '@babel/parser': 7.20.7
       postcss: 8.4.21
       source-map: 0.6.1
     dev: false
@@ -2181,7 +2255,7 @@ packages:
   /@vue/compiler-sfc/3.2.45:
     resolution: {integrity: sha512-1jXDuWah1ggsnSAOGsec8cFjT/K6TMZ0sPL3o3d84Ft2AYZi2jWJgRMjw4iaK0rBfA89L5gw427H4n1RZQBu6Q==}
     dependencies:
-      '@babel/parser': 7.19.4
+      '@babel/parser': 7.20.7
       '@vue/compiler-core': 3.2.45
       '@vue/compiler-dom': 3.2.45
       '@vue/compiler-ssr': 3.2.45
@@ -2207,7 +2281,7 @@ packages:
   /@vue/reactivity-transform/3.2.45:
     resolution: {integrity: sha512-BHVmzYAvM7vcU5WmuYqXpwaBHjsS8T63jlKGWVtHxAHIoMIlmaMyurUSEs1Zcg46M4AYT5MtB1U274/2aNzjJQ==}
     dependencies:
-      '@babel/parser': 7.19.4
+      '@babel/parser': 7.20.7
       '@vue/compiler-core': 3.2.45
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
@@ -2440,6 +2514,15 @@ packages:
       when: 3.7.8
     dev: false
 
+  /acorn-dynamic-import/4.0.0_acorn@6.4.2:
+    resolution: {integrity: sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==}
+    deprecated: This is probably built in to whatever tool you're using. If you still need it... idk
+    peerDependencies:
+      acorn: ^6.0.0
+    dependencies:
+      acorn: 6.4.2
+    dev: true
+
   /acorn-globals/7.0.1:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==}
     dependencies:
@@ -2454,6 +2537,14 @@ packages:
     dependencies:
       acorn: 8.8.0
 
+  /acorn-jsx/5.3.2_acorn@6.4.2:
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 6.4.2
+    dev: true
+
   /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -2465,6 +2556,12 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
+
+  /acorn/6.4.2:
+    resolution: {integrity: sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
 
   /acorn/7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -2980,7 +3077,7 @@ packages:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
     engines: {node: '>= 10.0.0'}
     dependencies:
-      '@babel/types': 7.19.4
+      '@babel/types': 7.20.7
     dev: false
 
   /bach/1.2.0:
@@ -3239,6 +3336,19 @@ packages:
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
 
+  /buble/0.20.0:
+    resolution: {integrity: sha512-/1gnaMQE8xvd5qsNBl+iTuyjJ9XxeaVxAMF86dQ4EyxFJOZtsgOS8Ra+7WHgZTam5IFDtt4BguN0sH0tVTKrOw==}
+    hasBin: true
+    dependencies:
+      acorn: 6.4.2
+      acorn-dynamic-import: 4.0.0_acorn@6.4.2
+      acorn-jsx: 5.3.2_acorn@6.4.2
+      chalk: 2.4.2
+      magic-string: 0.25.9
+      minimist: 1.2.7
+      regexpu-core: 4.5.4
+    dev: true
+
   /buffer-alloc-unsafe/1.1.0:
     resolution: {integrity: sha512-TEM2iMIEQdJ2yjPJoSIsldnleVaAk1oW3DBVUykyOLsEsFmEc9kn+SFFPz+gl54KQNxlDnAwCXosOS9Okx2xAg==}
     dev: true
@@ -3307,6 +3417,11 @@ packages:
   /builtin-modules/1.1.1:
     resolution: {integrity: sha512-wxXCdllwGhI2kCC0MnvTGYTMvnVZTvqgypkiTI8Pa5tcz2i6VqsqwYGgqwXji+4RgCzms6EajE4IxiUH6HH8nQ==}
     engines: {node: '>=0.10.0'}
+
+  /builtin-modules/3.3.0:
+    resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
+    engines: {node: '>=6'}
+    dev: true
 
   /bull/4.10.2:
     resolution: {integrity: sha512-xa65xtWjQsLqYU/eNaXxq9VRG8xd6qNsQEjR7yjYuae05xKrzbVMVj2QgrYsTMmSs/vsqJjHqHSRRiW1+IkGXQ==}
@@ -4321,8 +4436,8 @@ packages:
   /constantinople/4.0.1:
     resolution: {integrity: sha512-vCrqcSIq4//Gx74TXXCGnHpulY1dskqLTFGDmhrGxzeXL8lF8kvXv6mpNWlJj1uD4DW23D4ljAqbY4RRaaUZIw==}
     dependencies:
-      '@babel/parser': 7.19.4
-      '@babel/types': 7.19.4
+      '@babel/parser': 7.20.7
+      '@babel/types': 7.20.7
     dev: false
 
   /content-disposition/0.5.4:
@@ -4850,7 +4965,6 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /default-compare/1.0.0:
     resolution: {integrity: sha512-QWfXlM0EkAbqOCbD/6HjdwT19j7WCkMyiRhWilc4H9/5h/RzTF9gv5LYh1+CmDV5d1rki6KAWLtQale0xt20eQ==}
@@ -5387,6 +5501,14 @@ packages:
       eslint: 8.31.0
     dev: true
 
+  /eslint-config-seregpie/1.2.1_eslint@8.32.0:
+    resolution: {integrity: sha512-haWG7bIvtRGwXyyixkNTQzYsYdBSvdPi5xPIR8foIE/fvbEuh/8L0mcQnjZK+gEHHzPHmYJ0mWeBSDhe2PV3WA==}
+    peerDependencies:
+      eslint: ^8
+    dependencies:
+      eslint: 8.32.0
+    dev: true
+
   /eslint-import-resolver-node/0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
@@ -5502,6 +5624,16 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
+  /eslint-utils/3.0.0_eslint@8.32.0:
+    resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
+    engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
+    peerDependencies:
+      eslint: '>=5'
+    dependencies:
+      eslint: 8.32.0
+      eslint-visitor-keys: 2.1.0
+    dev: true
+
   /eslint-visitor-keys/2.1.0:
     resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
     engines: {node: '>=10'}
@@ -5529,6 +5661,54 @@ packages:
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.1
       eslint-utils: 3.0.0_eslint@8.31.0
+      eslint-visitor-keys: 3.3.0
+      espree: 9.4.0
+      esquery: 1.4.0
+      esutils: 2.0.3
+      fast-deep-equal: 3.1.3
+      file-entry-cache: 6.0.1
+      find-up: 5.0.0
+      glob-parent: 6.0.2
+      globals: 13.19.0
+      grapheme-splitter: 1.0.4
+      ignore: 5.2.0
+      import-fresh: 3.3.0
+      imurmurhash: 0.1.4
+      is-glob: 4.0.3
+      is-path-inside: 3.0.3
+      js-sdsl: 4.1.5
+      js-yaml: 4.1.0
+      json-stable-stringify-without-jsonify: 1.0.1
+      levn: 0.4.1
+      lodash.merge: 4.6.2
+      minimatch: 3.1.2
+      natural-compare: 1.4.0
+      optionator: 0.9.1
+      regexpp: 3.2.0
+      strip-ansi: 6.0.1
+      strip-json-comments: 3.1.1
+      text-table: 0.2.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint/8.32.0:
+    resolution: {integrity: sha512-nETVXpnthqKPFyuY2FNjz/bEd6nbosRgKbkgS/y1C7LJop96gYHWpiguLecMHQ2XCPxn77DS0P+68WzG6vkZSQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      '@eslint/eslintrc': 1.4.1
+      '@humanwhocodes/config-array': 0.11.8
+      '@humanwhocodes/module-importer': 1.0.1
+      '@nodelib/fs.walk': 1.2.8
+      ajv: 6.12.6
+      chalk: 4.1.2
+      cross-spawn: 7.0.3
+      debug: 4.3.4
+      doctrine: 3.0.0
+      escape-string-regexp: 4.0.0
+      eslint-scope: 7.1.1
+      eslint-utils: 3.0.0_eslint@8.32.0
       eslint-visitor-keys: 3.3.0
       espree: 9.4.0
       esquery: 1.4.0
@@ -5597,7 +5777,6 @@ packages:
 
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
-    dev: false
 
   /estree-walker/3.0.2:
     resolution: {integrity: sha512-C03BvXCQIH/po+PNPONx/zSM9ziPr9weX8xNhYb/IJtdJ9z+L4z9VKPTB+UTHdmhnIopA2kc419ueyVyHVktwA==}
@@ -7319,6 +7498,13 @@ packages:
     resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
     dev: false
 
+  /is-builtin-module/3.2.0:
+    resolution: {integrity: sha512-phDA4oSGt7vl1n5tJvTWooWWAsXLY+2xCnxNqvKhGEzujg+A43wPlPOyDg3C8XQHN+6k/JTQWJ/j0dQh/qr+Hw==}
+    engines: {node: '>=6'}
+    dependencies:
+      builtin-modules: 3.3.0
+    dev: true
+
   /is-callable/1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -7439,6 +7625,10 @@ packages:
 
   /is-lambda/1.0.1:
     resolution: {integrity: sha512-z7CMFGNrENq5iFB9Bqo64Xk6Y9sg+epq1myIcdHaGnbMTYOxvzsEtdYqQUylB7LxfkvgrrjP32T6Ywciio9UIQ==}
+    dev: true
+
+  /is-module/1.0.0:
+    resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
     dev: true
 
   /is-natural-number/4.0.1:
@@ -7802,6 +7992,11 @@ packages:
       - supports-color
       - utf-8-validate
     dev: false
+
+  /jsesc/0.5.0:
+    resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}
+    hasBin: true
+    dev: true
 
   /jsesc/2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
@@ -8701,7 +8896,6 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
-    dev: false
 
   /magic-string/0.26.7:
     resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
@@ -8889,6 +9083,12 @@ packages:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
     engines: {node: '>=4'}
     hasBin: true
+
+  /mime/3.0.0:
+    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dev: true
 
   /mimic-fn/2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
@@ -9622,6 +9822,11 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  /opener/1.5.2:
+    resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
+    hasBin: true
+    dev: true
 
   /opentype.js/0.4.11:
     resolution: {integrity: sha512-GthxucX/6aftfLdeU5Ho7o7zmQcC8uVtqdcelVq12X++ndxwBZG8Xb5rFEKT7nEcWDD2P1x+TNuJ70jtj1Mbpw==}
@@ -11066,6 +11271,17 @@ packages:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
     dev: false
 
+  /regenerate-unicode-properties/8.2.0:
+    resolution: {integrity: sha512-F9DjY1vKLo/tPePDycuH3dn9H1OTPIkVD9Kz4LODu+F2C75mgjAJ7x/gwy6ZcSNRAAkhNlJSOHRe8k3p+K9WhA==}
+    engines: {node: '>=4'}
+    dependencies:
+      regenerate: 1.4.2
+    dev: true
+
+  /regenerate/1.4.2:
+    resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
+    dev: true
+
   /regenerator-runtime/0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
 
@@ -11088,6 +11304,29 @@ packages:
   /regexpp/3.2.0:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /regexpu-core/4.5.4:
+    resolution: {integrity: sha512-BtizvGtFQKGPUcTy56o3nk1bGRp4SZOTYrDtGNlqCQufptV5IkkLN6Emw+yunAJjzf+C9FQFtvq7IoA3+oMYHQ==}
+    engines: {node: '>=4'}
+    dependencies:
+      regenerate: 1.4.2
+      regenerate-unicode-properties: 8.2.0
+      regjsgen: 0.5.2
+      regjsparser: 0.6.9
+      unicode-match-property-ecmascript: 1.0.4
+      unicode-match-property-value-ecmascript: 1.2.0
+    dev: true
+
+  /regjsgen/0.5.2:
+    resolution: {integrity: sha512-OFFT3MfrH90xIW8OOSyUrk6QHD5E9JOTeGodiJeBS3J6IwlgzJMNE/1bZklWz5oTg+9dCMyEetclvCVXOPoN3A==}
+    dev: true
+
+  /regjsparser/0.6.9:
+    resolution: {integrity: sha512-ZqbNRz1SNjLAiYuwY0zoXW8Ne675IX5q+YHioAGbCw4X96Mjl2+dcX9B2ciaeyYjViDAfvIjFpQjJgLttTEERQ==}
+    hasBin: true
+    dependencies:
+      jsesc: 0.5.0
     dev: true
 
   /relateurl/0.2.7:
@@ -11304,6 +11543,21 @@ packages:
       rangestr: 0.0.1
       seedrandom: 2.4.2
     dev: false
+
+  /rollup-plugin-serve/2.0.2:
+    resolution: {integrity: sha512-ALqyTbPhlf7FZ5RzlbDvMYvbKuCHWginJkTo6dMsbgji/a78IbsXox+pC83HENdkTRz8OXrTj+aShp3+3ratpg==}
+    dependencies:
+      mime: 3.0.0
+      opener: 1.5.2
+    dev: true
+
+  /rollup/3.10.0:
+    resolution: {integrity: sha512-JmRYz44NjC1MjVF2VKxc0M1a97vn+cDxeqWmnwyAF4FvpjK8YFdHpaqvQB+3IxCvX05vJxKZkoMDU8TShhmJVA==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -11675,6 +11929,10 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: true
 
+  /smob/0.0.6:
+    resolution: {integrity: sha512-V21+XeNni+tTyiST1MHsa84AQhT1aFZipzPpOFAVB8DkHzwJyjjAmt9bgwnuZiZWnIbMo2duE29wybxv/7HWUw==}
+    dev: true
+
   /snapdragon-node/2.1.1:
     resolution: {integrity: sha512-O27l4xaMYt/RSQ5TR3vpWCAB5Kb/czIcqUFOM/C4fYcLnbZUc1PkjTAMjof2pBWaSTwOUd6qUHcFGVGj7aIwnw==}
     engines: {node: '>=0.10.0'}
@@ -11809,7 +12067,6 @@ packages:
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     deprecated: Please use @jridgewell/sourcemap-codec instead
-    dev: false
 
   /sparkles/1.0.1:
     resolution: {integrity: sha512-dSO0DDYUahUt/0/pD/Is3VIm5TGJjludZ0HVymmhYF6eNA53PVLhnUk0znSYbH8IYBuJdCE+1luR22jNLMaQdw==}
@@ -13000,6 +13257,29 @@ packages:
       busboy: 1.6.0
     dev: false
 
+  /unicode-canonical-property-names-ecmascript/1.0.4:
+    resolution: {integrity: sha512-jDrNnXWHd4oHiTZnx/ZG7gtUTVp+gCcTTKr8L0HjlwphROEW3+Him+IpvC+xcJEFegapiMZyZe02CyuOnRmbnQ==}
+    engines: {node: '>=4'}
+    dev: true
+
+  /unicode-match-property-ecmascript/1.0.4:
+    resolution: {integrity: sha512-L4Qoh15vTfntsn4P1zqnHulG0LdXgjSO035fEpdtp6YxXhMT51Q6vgM5lYdG/5X3MjS+k/Y9Xw4SFCY9IkR0rg==}
+    engines: {node: '>=4'}
+    dependencies:
+      unicode-canonical-property-names-ecmascript: 1.0.4
+      unicode-property-aliases-ecmascript: 1.1.0
+    dev: true
+
+  /unicode-match-property-value-ecmascript/1.2.0:
+    resolution: {integrity: sha512-wjuQHGQVofmSJv1uVISKLE5zO2rNGzM/KCYZch/QQvez7C1hUhBIuZ701fYXExuufJFMPhv2SyL8CyoIfMLbIQ==}
+    engines: {node: '>=4'}
+    dev: true
+
+  /unicode-property-aliases-ecmascript/1.1.0:
+    resolution: {integrity: sha512-PqSoPh/pWetQ2phoj5RLiaqIk4kCNwoV3CI+LfGmWLKI3rE3kl1h59XpX2BjgDrmbxD9ARtQobPGU1SguCYuQg==}
+    engines: {node: '>=4'}
+    dev: true
+
   /unimport/1.2.0:
     resolution: {integrity: sha512-yMok/ubppurBE7Png1QH70Om96AxIoWCcfdxW3J/pziozShMc1UGpPgWpSckfo9ndAO5M74yNnRDdLAZy/gWQg==}
     dependencies:
@@ -13483,14 +13763,6 @@ packages:
       sortablejs: 1.10.2
     dev: false
 
-  /vuewordcloud/18.7.12_vue@3.2.45:
-    resolution: {integrity: sha512-0oqqI47bGj+PxHSFrFe+8EAj1Vwb2lXj0EYFz9a1PO7CuGDCPjxdYKOPN4TlWuXYsstZX8lQTVRkCPEjE55PiA==}
-    peerDependencies:
-      vue: ^2.6.11
-    dependencies:
-      vue: 3.2.45
-    dev: false
-
   /vuex-persistedstate/4.1.0_vuex@4.1.0:
     resolution: {integrity: sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
@@ -13851,8 +14123,8 @@ packages:
     resolution: {integrity: sha512-RNGKj82nUPg3g5ygxkQl0R937xLyho1J24ItRCBTr/m1YnZkzJy1hUiHUJrc/VlsDQzsCnInEGSg3bci0Lmd4w==}
     engines: {node: '>= 10.0.0'}
     dependencies:
-      '@babel/parser': 7.19.4
-      '@babel/types': 7.19.4
+      '@babel/parser': 7.20.7
+      '@babel/types': 7.20.7
       assert-never: 1.2.1
       babel-walk: 3.0.0-canary-5
     dev: false
