@@ -116,7 +116,7 @@ specifiers:
   eslint: 8.31.0
   eslint-config-prettier: 8.6.0
   eslint-import-resolver-node: 0.3.7
-  eslint-plugin-import: 2.27.4
+  eslint-plugin-import: 2.27.5
   eslint-plugin-vue: 9.8.0
   eventemitter3: 4.0.7
   feed: 4.2.2
@@ -506,7 +506,7 @@ devDependencies:
   eslint: 8.31.0
   eslint-config-prettier: 8.6.0_eslint@8.31.0
   eslint-import-resolver-node: 0.3.7
-  eslint-plugin-import: 2.27.4_oa6nn542mmm7vqt7omjryoishq
+  eslint-plugin-import: 2.27.5_oa6nn542mmm7vqt7omjryoishq
   eslint-plugin-vue: 9.8.0_eslint@8.31.0
   form-data: 4.0.0
   node-gyp: 9.3.1
@@ -4943,8 +4943,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.4_oa6nn542mmm7vqt7omjryoishq:
-    resolution: {integrity: sha512-Z1jVt1EGKia1X9CnBCkpAOhWy8FgQ7OmJ/IblEkT82yrFU/xJaxwujaTzLWqigewwynRQ9mmHfX9MtAfhxm0sA==}
+  /eslint-plugin-import/2.27.5_oa6nn542mmm7vqt7omjryoishq:
+    resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
