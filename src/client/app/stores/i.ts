@@ -1,11 +1,8 @@
-import { User as UserDetailed } from 'ayuskey.js/built/schema';
 import { defineStore } from 'pinia';
+import { Me } from '../api.schema';
 
-export type ClientUserDetaield = UserDetailed & {
-	emailVerified?: boolean;
-	bannerUrl?: string
-	pendingReceivedFollowRequestsCount: number
-
+export type ClientUserDetaield = Me & {
+	lang: string
 };
 
 export const useIStore = defineStore('i', {
