@@ -7,11 +7,25 @@
 		<slot></slot>
 	</div>
 	<mk-stream-indicator v-if="$store.getters.isSignedIn"/>
+	<!--TODO: コンポーネントに切り分ける-->
+	<div class="ver">
+		<p>
+			<fa :icon="faCodeCommit" class="fa-fw"/>
+			<span>app: {{ version.replace('11.37.1-rei0784-', '') }}</span>
+		</p>
+		<p>
+			<fa :icon="faVuejs" class="fa-fw"/>
+			<span>vue: {{ vueVersion }}</span>
+		</p>
+	</div>
 </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, version as vueVersion } from 'vue';
+import { faCodeCommit } from '@fortawesome/free-solid-svg-icons';
+import { faVuejs } from '@fortawesome/free-brands-svg-icons';
+import { version } from '../../../config';
 import XHeader from './ui.header.vue';
 import XSidebar from './ui.sidebar.vue';
 
@@ -24,6 +38,9 @@ export default defineComponent({
 	data() {
 		return {
 			zenMode: false,
+			version,
+			vueVersion,
+			faCodeCommit, faVuejs,
 		};
 	},
 
@@ -104,5 +121,25 @@ export default defineComponent({
 
 	> .content.zen
 		padding 0 !important
+	
+	> .ver
+		pointer-events none
+		position fixed
+		z-index 16284
+		bottom 8px
+		right 8px
+		margin 0
+		padding 6px 12px
+		font-size 0.9em
+		color #fff
+		background rgba(#000, 0.8)
+		border-radius 4px
+
+		> p
+			display block
+			margin 0
+
+			> [data-icon]
+				margin-right 0.25em
 
 </style>
