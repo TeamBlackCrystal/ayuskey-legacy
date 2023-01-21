@@ -1,20 +1,23 @@
 <template>
 <form class="wlvfdpkp" @submit.prevent="onSubmit">
 	<i><fa icon="search"/></i>
-	<input v-model="q" v-autocomplete="{ model: 'q' }" type="search" :placeholder="$t('placeholder')"/>
+	<input v-model="q" v-autocomplete="{ model: 'q' }" type="search" :placeholder="i18n.t('placeholder')"/>
 	<div class="result"></div>
 </form>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import i18n from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 import { search } from '../../../common/scripts/search';
 
 export default defineComponent({
-	i18n: i18n('desktop/views/components/ui.header.search.vue'),
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
+			i18n: _i18n('desktop/views/components/ui.header.search.vue'),
 			q: '',
 			wait: false,
 		};

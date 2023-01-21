@@ -1,7 +1,7 @@
 <template>
 <div class="header" :style="style">
 	<div v-if="pendingApiRequestsCount > 0" id="wait"></div>
-	<p v-if="env != 'production'" class="warn">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
+	<p v-if="env != 'production'" class="warn">{{ i18n.t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
 	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="main">
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import i18n from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 import { env } from '../../../config';
 
 import XNav from './ui.header.nav.vue';
@@ -43,7 +43,9 @@ import XMessaging from './ui.header.messaging.vue';
 import { pendingApiRequestsCount } from '../../../api';
 
 export default defineComponent({
-	i18n: i18n(),
+	compatConfig: {
+		MODE: 3,
+	},
 	components: {
 		XNav,
 		XSearch,
@@ -56,6 +58,7 @@ export default defineComponent({
 
 	data() {
 		return {
+			i18n: _i18n(),
 			pendingApiRequestsCount: pendingApiRequestsCount,
 			env: env,
 		};

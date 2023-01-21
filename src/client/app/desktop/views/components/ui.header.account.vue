@@ -118,6 +118,9 @@ import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons
 import { useStore } from '../../../stores';
 
 export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
 			store: useStore(),
@@ -176,10 +179,10 @@ export default defineComponent({
 			this.$root.signout();
 		},
 		dark() {
-			this.store.device.darkmode = !this.store.device.darkmode
+			this.store.device.darkmode = !this.store.device.darkmode;
 		},
 		toggleDeckMode() {
-			this.store.device.deckMode = !this.store.device.deckMode
+			this.store.device.deckMode = !this.store.device.deckMode;
 			location.replace('/');
 		},
 	},

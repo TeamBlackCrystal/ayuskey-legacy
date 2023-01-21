@@ -384,7 +384,7 @@ export default defineComponent({
 	transition: all 0.2s ease;
 }
 
-.slide-left-enter, .slide-left-leave-to {
+.slide-left-enter-from, .slide-left-leave-to {
 	transform: translateX(-16px);
 	opacity: 0;
 }
@@ -394,7 +394,7 @@ export default defineComponent({
 	transition: all 0.2s ease;
 }
 
-.slide-right-enter, .slide-right-leave-to {
+.slide-right-enter-from, .slide-right-leave-to {
 	transform: translateX(16px);
 	opacity: 0;
 }
