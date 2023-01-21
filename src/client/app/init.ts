@@ -176,6 +176,7 @@ import { useStore } from './stores';
 import { pinia } from './stores/pinia';
 import { api, ayuskeyApi } from './api';
 import { $i } from './account';
+import { AYUX } from './stores/ayux';
 
 library.add(
 	faRetweet,
@@ -451,11 +452,14 @@ export default (
 			app.use(router);
 			app.use(pinia);
 			//#region theme
+			const ayux = AYUX();
+			ayux.setAllDefault();
 			const store = useStore();
 			ayuskeyApi.call('POST', '/i').then((res) => {
 				if (res.type === 'failed') {
 					throw new Error(JSON.stringify(res.data));
 				}
+				ayux.set('i', res.data);
 				store.i.$patch(res.data);
 			});
 			store.device.$subscribe((mutation, state) => {
