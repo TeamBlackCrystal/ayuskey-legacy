@@ -52,6 +52,8 @@ import uiModal from './ui/modal.vue';
 import formButton from './ui/form/button.vue';
 import formRadio from './ui/form/radio.vue';
 
+import MkLoading from "./from-v12/MkLoading.vue"
+
 export default function(app: App) {
 	app.component('Mfm', misskeyFlavoredMarkdown);
 	app.component('MkDummy', dummy);
@@ -104,4 +106,6 @@ export default function(app: App) {
 	app.component('UiModal', uiModal);
 	app.component('FormButton', formButton);
 	app.component('FormRadio', formRadio);
+
+	app.component("MkLoading", MkLoading);
 }
