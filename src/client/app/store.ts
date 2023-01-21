@@ -57,7 +57,7 @@ const defaultSettings = {
 	],
 };
 
-const defaultDeviceSettings = {
+export const defaultDeviceSettings = {
 	homeProfile: 'Default',
 	mobileHomeProfile: 'Default',
 	deckProfile: 'Default',
