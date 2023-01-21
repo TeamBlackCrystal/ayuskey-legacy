@@ -2,8 +2,8 @@
  * Desktop Client
  */
 
-import Vue, { App } from 'vue';
-import VueRouter, { createRouter, createWebHistory } from 'vue-router';
+import { App } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
 // Style
 import './style.styl';
@@ -211,7 +211,7 @@ init(async (launch, os) => {
 	desktopMixin(app);
 
 	// Register directives
-	desktopDirectives(app);
+	//desktopDirectives(app);
 
 	// Register components
 	desktopComponents(app);

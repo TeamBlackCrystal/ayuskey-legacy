@@ -143,6 +143,8 @@ export function claimZIndex(priority: keyof typeof zIndexes = 'low'): number {
 export async function popup(component: Component, props: Record<string, any>, events = {}, disposeEvent?: string) {
 	markRaw(component);
 
+	console.log(props)
+
 	const id = ++popupIdCount;
 	const dispose = () => {
 		// このsetTimeoutが無いと挙動がおかしくなる(autocompleteが閉じなくなる)。Vueのバグ？
@@ -159,6 +161,7 @@ export async function popup(component: Component, props: Record<string, any>, ev
 		} : events,
 		id,
 	};
+	console.log(state)
 
 	popups.value.push(state);
 
