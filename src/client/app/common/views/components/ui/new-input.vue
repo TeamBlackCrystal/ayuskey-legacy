@@ -1,5 +1,5 @@
 <template>
-	<div class="ui-input" :class="[{ focused, filled, inline, disabled }, styl]">
+	<div class="ui-input" :class="[{ focused, inline, disabled }, styl]">
 		<div ref="icon" class="icon"><slot name="icon"></slot></div>
 		<div class="input">
 			<div
@@ -8,20 +8,20 @@
 				class="password-meter"
 				:data-strength="passwordStrength"
 			>
-				<div ref="passwordMetar" class="value"></div>
+				<div ref="passwordMetarRef" class="value"></div>
 			</div>
 			<span ref="label" class="label"><slot></slot></span>
 			<span ref="title" class="title">
 				<slot name="title"></slot>
 				<span v-if="invalid" class="warning"
 					><fa :icon="['fa', 'exclamation-circle']" />{{
-						$refs.input.validationMessage
+						inputRef.validationMessage
 					}}</span
 				>
 			</span>
 			<div ref="prefix" class="prefix"><slot name="prefix"></slot></div>
 			<template v-if="type != 'file'">
-				<input
+				<!-- <input
 					v-if="debounce"
 					ref="input"
 					v-model.lazy="v"
@@ -39,10 +39,9 @@
 					@blur="focused = false"
 					@keydown="$emit('keydown', $event)"
 					@change="$emit('change', $event)"
-				/>
+				/> -->
 				<input
-					v-else
-					ref="input"
+					ref="inputRef"
 					v-model="v"
 					:type="type"
 					:disabled="disabled"
@@ -56,31 +55,20 @@
 					@focus="focused = true"
 					@blur="focused = false"
 					@keydown="$emit('keydown', $event)"
-					@change="$emit('change', $event)"
 				/>
 				<datalist v-if="datalist" :id="id">
 					<option v-for="data in datalist" :value="data" />
 				</datalist>
-			</template>
-			<template v-else>
-				<input
-					ref="input"
-					type="text"
-					:value="filePlaceholder"
-					readonly
-					@click="chooseFile"
-				/>
-				<input ref="file" type="file" :value="value" @change="onChangeFile" />
 			</template>
 			<div ref="suffix" class="suffix"><slot name="suffix"></slot></div>
 		</div>
 		<div v-if="withPasswordToggle" class="toggle">
 			<a @click="togglePassword">
 				<span v-if="type == 'password'"
-					><fa :icon="['fa', 'eye']" /> {{ $t("@.show-password") }}</span
+					><fa :icon="['fa', 'eye']" /> {{ i18n.t("@.show-password") }}</span
 				>
 				<span v-if="type != 'password'"
-					><fa :icon="['far', 'eye-slash']" /> {{ $t("@.hide-password") }}</span
+					><fa :icon="['far', 'eye-slash']" /> {{ i18n.t("@.hide-password") }}</span
 				>
 			</a>
 		</div>
@@ -88,202 +76,110 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import debounce from "v-debounce";
+<script setup lang="ts">
+// import debounce from "v-debounce";
+import { nextTick, onMounted, ref, shallowRef, toRefs, watch } from "vue";
+import { useInterval } from "../../../scripts/use-interval";
+import { i18n as _i18n } from "../../../../i18n";
+const i18n = _i18n()
 const getPasswordStrength = require("syuilo-password-strength");
+const props = withDefaults(defineProps<{
+	modelValue: string | number,
+	type?: string,
+	required?: boolean,
+	readonly?: boolean,
+	disabled?: boolean,
+	pattern?: string,
+	placeholder?: string,
+	autofocus?: boolean,
+	autocomplete?: string,
+	spellcheck?: boolean,
+	debounce?: boolean,
+	withPasswordMeter?: boolean
+	withPasswordToggle?: boolean,
+	styl?: string,
+	datalist?: Array<any>,
+	inline?:  boolean,
+		
+}>(), {
+	autofocus: false,
+	withPasswordMeter: false,
+	withPasswordToggle: false,
+})
 
-export default defineComponent({
-	directives: {
-		debounce,
-	},
-	inject: {
-		horizonGrouped: {
-			default: false,
-		},
-	},
-	props: {
-		value: {
-			required: false,
-		},
-		type: {
-			type: String,
-			required: false,
-		},
-		required: {
-			type: Boolean,
-			required: false,
-		},
-		readonly: {
-			type: Boolean,
-			required: false,
-		},
-		disabled: {
-			type: Boolean,
-			required: false,
-		},
-		pattern: {
-			type: String,
-			required: false,
-		},
-		placeholder: {
-			type: String,
-			required: false,
-		},
-		autofocus: {
-			type: Boolean,
-			required: false,
-			default: false,
-		},
-		autocomplete: {
-			type: String,
-			required: false,
-		},
-		spellcheck: {
-			type: Boolean,
-			required: false,
-		},
-		debounce: {
-			required: false,
-		},
-		withPasswordMeter: {
-			type: Boolean,
-			required: false,
-			default: false,
-		},
-		withPasswordToggle: {
-			type: Boolean,
-			required: false,
-			default: false,
-		},
-		datalist: {
-			type: Array,
-			required: false,
-		},
-		inline: {
-			type: Boolean,
-			required: false,
-			default(): boolean {
-				return this.horizonGrouped;
-			},
-		},
-		styl: {
-			type: String,
-			required: false,
-			default: "line",
-		},
-	},
-	data() {
-		return {
-			v: this.value,
-			focused: false,
-			invalid: false,
-			passwordStrength: "",
-			id: Math.random().toString(),
-		};
-	},
-	computed: {
-		filled(): boolean {
-			return this.v !== "" && this.v != null;
-		},
-		filePlaceholder(): string {
-			if (this.type != "file") return null;
-			if (this.v == null) return null;
+const emit = defineEmits<{
+	(ev: 'change', _ev: KeyboardEvent): void;
+	(ev: 'keydown', _ev: KeyboardEvent): void;
+	(ev: 'enter'): void;
+	(ev: 'update:modelValue', value: string | number): void;
+}>();
 
-			if (typeof this.v === "string") return this.v;
 
-			if (Array.isArray(this.v)) {
-				return this.v.map((file) => file.name).join(", ");
-			} else {
-				return this.v.name;
-			}
-		},
-	},
-	watch: {
-		value(v) {
-			this.v = v;
-		},
-		v(v) {
-			if (this.type === "number") {
-				this.$emit("input", parseInt(v, 10));
-			} else {
-				this.$emit("input", v);
-			}
+const { modelValue, type, withPasswordMeter, autofocus } = toRefs(props);
+const v = ref<string | number>(props.modelValue)
+const focused = ref<boolean>(false)
+const invalid = ref<boolean>(false)
+const passwordStrength = ref<string>('')
+const id = ref<string>(Math.random().toString())
 
-			if (this.withPasswordMeter) {
-				if (v == "") {
-					this.passwordStrength = "";
-					return;
-				}
+const inputRef = shallowRef<HTMLInputElement>()
+const suffixEl = shallowRef<HTMLElement>()
+const prefixEl = shallowRef<HTMLElement>()
+const passwordMetarRef = shallowRef<HTMLElement>()
 
-				const strength = getPasswordStrength(v);
-				this.passwordStrength =
-					strength > 0.7 ? "high" : strength > 0.3 ? "medium" : "low";
-				(this.$refs.passwordMetar as any).style.width = `${strength * 100}%`;
-			}
 
-			this.invalid = this.$refs.input.validity.badInput;
-		},
-	},
-	mounted() {
-		if (this.autofocus) {
-			this.$nextTick(() => {
-				this.$refs.input.focus();
-			});
+watch(modelValue, (newValue) => {
+	console.log('watch,modelValue', newValue)
+	v.value = newValue
+})
+
+watch(v, () => {
+	if (type.value === 'number' && typeof v.value === 'string') {
+		emit('update:modelValue', parseFloat(v.value))
+	} else {
+		emit('update:modelValue', v.value)
+	}
+
+	if (withPasswordMeter.value) {
+		if (v.value === '') {
+			passwordStrength.value = ''
+			return
 		}
 
-		this.$nextTick(() => {
-			// このコンポーネントが作成された時、非表示状態である場合がある
-			// 非表示状態だと要素の幅などは0になってしまうので、定期的に計算する
-			const clock = setInterval(() => {
-				if (this.$refs.prefix) {
-					this.$refs.label.style.left =
-						this.$refs.prefix.offsetLeft + this.$refs.prefix.offsetWidth + "px";
-					if (this.$refs.prefix.offsetWidth) {
-						this.$refs.input.style.paddingLeft =
-							this.$refs.prefix.offsetWidth + "px";
-					}
-				}
-				if (this.$refs.suffix) {
-					if (this.$refs.suffix.offsetWidth) {
-						this.$refs.input.style.paddingRight =
-							this.$refs.suffix.offsetWidth + "px";
-					}
-				}
-			}, 100);
+		const strength = getPasswordStrength(v.value)
+		passwordStrength.value = strength > 0.7 ? "high" : strength > 0.3 ? "medium" : "low";
+		passwordMetarRef.value.style.width = `${strength * 100}%`;
+	}
+	invalid.value = inputRef.value.validity.badInput
+})
 
-			this.$once("hook:beforeDestroy", () => {
-				clearInterval(clock);
-			});
-		});
+const togglePassword = (): void => {
+	type.value  = type.value === 'password' ? 'text' : 'password'
+}
 
-		this.$on("keydown", (e: KeyboardEvent) => {
-			if (e.code == "Enter") {
-				this.$emit("enter");
-			}
-		});
-	},
-	methods: {
-		focus() {
-			this.$refs.input.focus();
-		},
-		togglePassword() {
-			if (this.type === "password") {
-				this.type = "text";
-			} else {
-				this.type = "password";
-			}
-		},
-		chooseFile() {
-			this.$refs.file.click();
-		},
-		onChangeFile() {
-			this.v = Array.from((this.$refs.file as any).files);
-			this.$emit("input", this.v);
-			this.$emit("change", this.v);
-		},
-	},
+useInterval(() => {
+	if (prefixEl.value) {
+		if (prefixEl.value.offsetWidth) {
+			inputRef.value.style.paddingLeft = prefixEl.value.offsetWidth + 'px';
+		}
+	}
+	if (suffixEl.value) {
+		if (suffixEl.value.offsetWidth) {
+			inputRef.value.style.paddingRight = suffixEl.value.offsetWidth + 'px';
+		}
+	}
+}, 100, {
+	immediate: true,
+	afterMounted: true,
 });
+onMounted(() => {
+	nextTick(() => {
+		if (autofocus.value) {
+			focus();
+		}
+	});
+});
+
 </script>
 
 <style lang="stylus" scoped>

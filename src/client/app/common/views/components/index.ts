@@ -36,6 +36,7 @@ import welcomeTimeline from './welcome-timeline.vue';
 import userList from './user-list.vue';
 import frac from './frac.vue';
 import uiInput from './ui/input.vue';
+import NewUiInput from './ui/new-input.vue';
 import uiButton from './ui/button.vue';
 import uiHorizonGroup from './ui/horizon-group.vue';
 import uiCard from './ui/card.vue';
@@ -91,6 +92,7 @@ export default function(app: App) {
 	app.component('MkUserList', userList);
 	app.component('MkFrac', frac);
 	app.component('UiInput', uiInput);
+	app.component('NewUiInput', NewUiInput);
 	app.component('UiButton', uiButton);
 	app.component('UiHorizonGroup', uiHorizonGroup);
 	app.component('UiCard', uiCard);
