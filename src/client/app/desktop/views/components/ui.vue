@@ -9,6 +9,7 @@
 	<mk-stream-indicator v-if="$store.getters.isSignedIn"/>
 	<!--TODO: コンポーネントに切り分ける-->
 	<div class="ver">
+		<p>Ayuskey on Vue3</p>
 		<p>
 			<fa :icon="faCodeCommit" class="fa-fw"/>
 			<span>app: {{ version.replace('11.37.1-rei0784-', '') }}</span>

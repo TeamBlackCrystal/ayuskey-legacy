@@ -2,6 +2,8 @@
 <div class="header" :style="style">
 	<div v-if="pendingApiRequestsCount > 0" id="wait"></div>
 	<p v-if="env != 'production'" class="warn">{{ i18n.t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
+	<!--TODO: いい感じに-->
+	<p class="warn"><mfm text="<marquee>Avoid using your system in a production environment./本番環境で使用しないでください。</marquee>" /></p>
 	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="main">
