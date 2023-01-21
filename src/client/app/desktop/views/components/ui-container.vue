@@ -1,8 +1,8 @@
 <template>
-<div class="kedshtep" :class="{ naked, inNakedDeckColumn, shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }">
+<div class="kedshtep" :class="{ naked, inNakedDeckColumn, shadow: device.useShadow, round: device.roundedCorners }">
 	<header v-if="showHeader" :class="{ bodyTogglable }" @click="toggleContent(!showBody)">
 		<div class="title"><slot name="header"></slot></div>
-		<slot name="func"></slot>
+		<div class="containerButton"><slot name="func"></slot></div>
 		<button v-if="bodyTogglable">
 			<template v-if="showBody"><fa icon="angle-up"/></template>
 			<template v-else><fa icon="angle-down"/></template>
@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { AYUX } from '../../../stores/ayux';
 export default defineComponent({
 	inject: {
 		inNakedDeckColumn: {
@@ -43,6 +44,7 @@ export default defineComponent({
 	data() {
 		return {
 			showBody: this.expanded,
+			device: AYUX().get('device'),
 		};
 	},
 	methods: {
@@ -91,13 +93,13 @@ export default defineComponent({
 				color var(--faceHeaderText)
 				box-shadow 0 var(--lineWidth) rgba(#000, 0.07)
 
-				> [data-icon]
+				> [data-icon] /** TODO: vue3だと反応しない可能性 */
 					margin-right 6px
 
 				&:empty
 					display none
 
-			> button
+			> .containerButton
 				position absolute
 				z-index 2
 				top 0
