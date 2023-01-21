@@ -1,6 +1,6 @@
-import $ from "cafy";
-import { EntityRepository, Repository, In, Not } from "typeorm";
-import { User, ILocalUser, IRemoteUser } from "../entities/user";
+import $ from 'cafy';
+import { EntityRepository, Repository, In, Not } from 'typeorm';
+import { User, ILocalUser, IRemoteUser } from '../entities/user';
 import {
 	Emojis,
 	Notes,
@@ -24,20 +24,20 @@ import {
 	Antennas,
 	AntennaNotes,
 	ChannelFollowings,
-} from "..";
-import { ensure } from "../../prelude/ensure";
-import config from "../../config";
-import { Packed } from "../../misc/schema";
-import { awaitAll } from "../../prelude/await-all";
-import { toPunyNullable } from "../../misc/convert-host";
-import { Emoji } from "../entities/emoji";
-import { getAntennas } from "../../misc/antenna-cache";
-import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from "@/const";
-import { onlineStateTypes } from "@/types";
+} from '..';
+import { ensure } from '../../prelude/ensure';
+import config from '../../config';
+import { Packed } from '../../misc/schema';
+import { awaitAll } from '../../prelude/await-all';
+import { toPunyNullable } from '../../misc/convert-host';
+import { Emoji } from '../entities/emoji';
+import { getAntennas } from '../../misc/antenna-cache';
+import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
+import { onlineStateTypes } from '@/types';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-	public async getRelation(me: User["id"], target: User["id"]) {
+	public async getRelation(me: User['id'], target: User['id']) {
 		const [
 			following1,
 			following2,
@@ -90,7 +90,7 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public async getHasUnreadMessagingMessage(
-		userId: User["id"]
+		userId: User['id'],
 	): Promise<boolean> {
 		const mute = await Mutings.find({
 			muterId: userId,
@@ -100,14 +100,14 @@ export class UserRepository extends Repository<User> {
 
 		const groupQs = Promise.all(
 			joinings.map((j) =>
-				MessagingMessages.createQueryBuilder("message")
-					.where("message.groupId = :groupId", { groupId: j.userGroupId })
-					.andWhere("message.userId != :userId", { userId: userId })
-					.andWhere("NOT (:userId = ANY(message.reads))", { userId: userId })
-					.andWhere("message.createdAt > :joinedAt", { joinedAt: j.createdAt }) // 自分が加入する前の会話については、未読扱いしない
+				MessagingMessages.createQueryBuilder('message')
+					.where('message.groupId = :groupId', { groupId: j.userGroupId })
+					.andWhere('message.userId != :userId', { userId: userId })
+					.andWhere('NOT (:userId = ANY(message.reads))', { userId: userId })
+					.andWhere('message.createdAt > :joinedAt', { joinedAt: j.createdAt }) // 自分が加入する前の会話については、未読扱いしない
 					.getOne()
-					.then((x) => x != null)
-			)
+					.then((x) => x != null),
+			),
 		);
 
 		const [withUser, withGroups] = await Promise.all([
@@ -127,7 +127,7 @@ export class UserRepository extends Repository<User> {
 		return withUser || withGroups.some((x) => x);
 	}
 
-	public async getHasUnreadAnnouncement(userId: User["id"]): Promise<boolean> {
+	public async getHasUnreadAnnouncement(userId: User['id']): Promise<boolean> {
 		const reads = await AnnouncementReads.find({
 			userId: userId,
 		});
@@ -135,43 +135,43 @@ export class UserRepository extends Repository<User> {
 		const count = await Announcements.count(
 			reads.length > 0
 				? {
-						id: Not(In(reads.map((read) => read.announcementId))),
+					id: Not(In(reads.map((read) => read.announcementId))),
 				  }
-				: {}
+				: {},
 		);
 
 		return count > 0;
 	}
 
-	public async getHasUnreadAntenna(userId: User["id"]): Promise<boolean> {
+	public async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
 		const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
 
 		const unread =
 			myAntennas.length > 0
 				? await AntennaNotes.findOne({
-						antennaId: In(myAntennas.map((x) => x.id)),
-						read: false,
+					antennaId: In(myAntennas.map((x) => x.id)),
+					read: false,
 				  })
 				: null;
 
 		return unread != null;
 	}
 
-	public async getHasUnreadChannel(userId: User["id"]): Promise<boolean> {
+	public async getHasUnreadChannel(userId: User['id']): Promise<boolean> {
 		const channels = await ChannelFollowings.find({ followerId: userId });
 
 		const unread =
 			channels.length > 0
 				? await NoteUnreads.findOne({
-						userId: userId,
-						noteChannelId: In(channels.map((x) => x.id)),
+					userId: userId,
+					noteChannelId: In(channels.map((x) => x.id)),
 				  })
 				: null;
 
 		return unread != null;
 	}
 
-	public async getHasUnreadNotification(userId: User["id"]): Promise<boolean> {
+	public async getHasUnreadNotification(userId: User['id']): Promise<boolean> {
 		const mute = await Mutings.find({
 			muterId: userId,
 		});
@@ -192,7 +192,7 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public async getHasPendingReceivedFollowRequest(
-		userId: User["id"]
+		userId: User['id'],
 	): Promise<boolean> {
 		const count = await FollowRequests.count({
 			followeeId: userId,
@@ -202,14 +202,14 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public getOnlineStatus(user: User): string {
-		if (user.hideOnlineStatus == null) return "unknown";
-		if (user.lastActiveDate == null) return "unknown";
+		if (user.hideOnlineStatus == null) return 'unknown';
+		if (user.lastActiveDate == null) return 'unknown';
 		const elapsed = Date.now() - user.lastActiveDate.getTime();
 		return elapsed < USER_ONLINE_THRESHOLD
-			? "online"
+			? 'online'
 			: elapsed < USER_ACTIVE_THRESHOLD
-			? "active"
-			: "offline";
+				? 'active'
+				: 'offline';
 	}
 
 	// 何とかしたい
@@ -225,8 +225,8 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public async pack(
-		src: User["id"] | User,
-		me?: User["id"] | User | null | undefined,
+		src: User['id'] | User,
+		me?: User['id'] | User | null | undefined,
 		options?: {
 			detail?: boolean;
 			includeSecrets?: boolean;
@@ -235,31 +235,29 @@ export class UserRepository extends Repository<User> {
 			_hint_?: {
 				emojis: Emoji[] | null;
 			};
-		}
-	): Promise<Packed<"User">> {
+		},
+	): Promise<Packed<'User'>> {
 		const opts = Object.assign(
 			{
 				detail: false,
 				includeSecrets: false,
 			},
-			options
+			options,
 		);
 
 		let user: User;
 
-		if (typeof src === "object") {
+		if (typeof src === 'object') {
 			user = src;
-			if (src.avatar === undefined && src.avatarId)
-				src.avatar = (await DriveFiles.findOne(src.avatarId)) || null;
-			if (src.banner === undefined && src.bannerId)
-				src.banner = (await DriveFiles.findOne(src.bannerId)) || null;
+			if (src.avatar === undefined && src.avatarId) src.avatar = (await DriveFiles.findOne(src.avatarId)) || null;
+			if (src.banner === undefined && src.bannerId) src.banner = (await DriveFiles.findOne(src.bannerId)) || null;
 		} else {
 			user = await this.findOneOrFail(src, {
-				relations: ["avatar", "banner"],
+				relations: ['avatar', 'banner'],
 			});
 		}
 
-		const meId = me ? (typeof me === "string" ? me : me.id) : null;
+		const meId = me ? (typeof me === 'string' ? me : me.id) : null;
 
 		const relation =
 			meId && meId !== user.id && opts.detail
@@ -267,8 +265,8 @@ export class UserRepository extends Repository<User> {
 				: null;
 		const pins = opts.detail
 			? await UserNotePinings.find({
-					where: { userId: user.id },
-					order: { id: "DESC" },
+				where: { userId: user.id },
+				order: { id: 'DESC' },
 			  })
 			: [];
 		const profile = opts.detail
@@ -282,7 +280,7 @@ export class UserRepository extends Repository<User> {
 			if (options?._hint_?.emojis) {
 				for (const name of user.emojis) {
 					const matched = options._hint_.emojis.find(
-						(x) => x.name === name && x.host === user.host
+						(x) => x.name === name && x.host === user.host,
 					);
 					if (matched) {
 						emojis.push(matched);
@@ -300,7 +298,7 @@ export class UserRepository extends Repository<User> {
 						name: In(user.emojis),
 						host: user.host,
 					},
-					select: ["name", "host", "url", "aliases"],
+					select: ['name', 'host', 'url', 'aliases'],
 				});
 			}
 		}
@@ -324,17 +322,17 @@ export class UserRepository extends Repository<User> {
 			isPremium: user.isPremium || falsy,
 			instance: user.host
 				? Instances.findOne({ host: user.host }).then((instance) =>
-						instance
-							? {
-									host: toPunyNullable(user.host),
-									name: instance.name,
-									softwareName: instance.softwareName,
-									softwareVersion: instance.softwareVersion,
-									iconUrl: instance.iconUrl,
-									faviconUrl: instance.faviconUrl,
-									themeColor: instance.themeColor,
+					instance
+						? {
+							host: toPunyNullable(user.host),
+							name: instance.name,
+							softwareName: instance.softwareName,
+							softwareVersion: instance.softwareVersion,
+							iconUrl: instance.iconUrl,
+							faviconUrl: instance.faviconUrl,
+							themeColor: instance.themeColor,
 							  }
-							: undefined
+						: undefined,
 				  )
 				: undefined,
 
@@ -343,14 +341,14 @@ export class UserRepository extends Repository<User> {
 
 			...(opts.includeHasUnreadNotes
 				? {
-						hasUnreadSpecifiedNotes: NoteUnreads.count({
-							where: { userId: user.id, isSpecified: true },
-							take: 1,
-						}).then((count) => count > 0),
-						hasUnreadMentions: NoteUnreads.count({
-							where: { userId: user.id },
-							take: 1,
-						}).then((count) => count > 0),
+					hasUnreadSpecifiedNotes: NoteUnreads.count({
+						where: { userId: user.id, isSpecified: true },
+						take: 1,
+					}).then((count) => count > 0),
+					hasUnreadMentions: NoteUnreads.count({
+						where: { userId: user.id },
+						take: 1,
+					}).then((count) => count > 0),
 				  }
 				: {}),
 
@@ -358,131 +356,131 @@ export class UserRepository extends Repository<User> {
 
 			...(opts.detail
 				? {
-						url: profile?.url,
-						uri: user.uri,
-						createdAt: user.createdAt.toISOString(),
-						updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
-						bannerUrl: user.banner
-							? DriveFiles.getPublicUrl(user.banner, false)
-							: null,
-						bannerBlurhash: user.avatar?.blurhash || null,
-						bannerColor: null, // 後方互換性のため
-						isLocked: user.isLocked,
-						isModerator: user.isModerator || falsy,
-						isSilenced: user.isSilenced || falsy,
-						isSuspended: user.isSuspended || falsy,
-						description: profile?.description,
-						location: profile?.location,
-						birthday: profile?.birthday,
-						fields: profile?.fields,
-						followersCount: user.followersCount,
-						followingCount: user.followingCount,
-						notesCount: user.notesCount,
-						pinnedNoteIds: pins.map((pin) => pin.noteId),
-						pinnedNotes: Notes.packMany(
-							pins.map((pin) => pin.noteId),
-							meId,
-							{
-								detail: true,
-							}
-						),
-						pinnedPageId: profile?.pinnedPageId,
-						pinnedPage: profile?.pinnedPageId
-							? Pages.pack(profile.pinnedPageId, meId)
-							: null,
-						twoFactorEnabled: profile?.twoFactorEnabled,
-						usePasswordLessLogin: profile?.usePasswordLessLogin,
-						securityKeys: profile?.twoFactorEnabled
-							? UserSecurityKeys.count({
-									userId: user.id,
+					url: profile?.url,
+					uri: user.uri,
+					createdAt: user.createdAt.toISOString(),
+					updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
+					bannerUrl: user.banner
+						? DriveFiles.getPublicUrl(user.banner, false)
+						: null,
+					bannerBlurhash: user.avatar?.blurhash || null,
+					bannerColor: null, // 後方互換性のため
+					isLocked: user.isLocked,
+					isModerator: user.isModerator || falsy,
+					isSilenced: user.isSilenced || falsy,
+					isSuspended: user.isSuspended || falsy,
+					description: profile?.description,
+					location: profile?.location,
+					birthday: profile?.birthday,
+					fields: profile?.fields,
+					followersCount: user.followersCount,
+					followingCount: user.followingCount,
+					notesCount: user.notesCount,
+					pinnedNoteIds: pins.map((pin) => pin.noteId),
+					pinnedNotes: Notes.packMany(
+						pins.map((pin) => pin.noteId),
+						meId,
+						{
+							detail: true,
+						},
+					),
+					pinnedPageId: profile?.pinnedPageId,
+					pinnedPage: profile?.pinnedPageId
+						? Pages.pack(profile.pinnedPageId, meId)
+						: null,
+					twoFactorEnabled: profile?.twoFactorEnabled,
+					usePasswordLessLogin: profile?.usePasswordLessLogin,
+					securityKeys: profile?.twoFactorEnabled
+						? UserSecurityKeys.count({
+							userId: user.id,
 							  }).then((result) => result >= 1)
-							: false,
-						twitter: profile?.twitter
-							? {
-									id: profile.twitterUserId,
-									screenName: profile.twitterScreenName,
+						: false,
+					twitter: profile?.twitter
+						? {
+							id: profile.twitterUserId,
+							screenName: profile.twitterScreenName,
 							  }
-							: null,
-						github: profile?.github
-							? {
-									id: profile.githubId,
-									login: profile.githubLogin,
+						: null,
+					github: profile?.github
+						? {
+							id: profile.githubId,
+							login: profile.githubLogin,
 							  }
-							: null,
-						discord: profile?.discord
-							? {
-									id: profile.discordId,
-									username: profile.discordUsername,
-									discriminator: profile.discordDiscriminator,
+						: null,
+					discord: profile?.discord
+						? {
+							id: profile.discordId,
+							username: profile.discordUsername,
+							discriminator: profile.discordDiscriminator,
 							  }
-							: null,
-						movedToUserId: user.movedToUserId,
-						movedToUser: user.movedToUserId
-							? Users.pack(user.movedToUserId)
-							: null,
+						: null,
+					movedToUserId: user.movedToUserId,
+					movedToUser: user.movedToUserId
+						? Users.pack(user.movedToUserId)
+						: null,
 				  }
 				: {}),
 
 			...(opts.detail && meId === user.id
 				? {
-						avatarId: user.avatarId,
-						bannerId: user.bannerId,
-						autoWatch: profile?.autoWatch,
-						alwaysMarkNsfw: profile?.alwaysMarkNsfw,
-						carefulBot: profile?.carefulBot,
-						carefulMassive: profile?.carefulMassive,
-						autoAcceptFollowed: profile?.autoAcceptFollowed,
-						hasUnreadSpecifiedNotes: NoteUnreads.count({
-							where: { userId: user.id, isSpecified: true },
-							take: 1,
-						}).then((count) => count > 0),
-						hasUnreadMentions: NoteUnreads.count({
-							where: { userId: user.id, isMentioned: true },
-							take: 1,
-						}).then((count) => count > 0),
-						noCrawle: profile?.noCrawle,
-						isExplorable: user.isExplorable,
-						isDeleted: user.isDeleted,
-						hideOnlineStatus: user.hideOnlineStatus,
-						hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
-						hasUnreadAntenna: this.getHasUnreadAntenna(user.id),
-						hasUnreadChannel: this.getHasUnreadChannel(user.id),
-						hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(
-							user.id
-						),
-						hasUnreadNotification: this.getHasUnreadNotification(user.id),
-						pendingReceivedFollowRequestsCount:
+					avatarId: user.avatarId,
+					bannerId: user.bannerId,
+					autoWatch: profile?.autoWatch,
+					alwaysMarkNsfw: profile?.alwaysMarkNsfw,
+					carefulBot: profile?.carefulBot,
+					carefulMassive: profile?.carefulMassive,
+					autoAcceptFollowed: profile?.autoAcceptFollowed,
+					hasUnreadSpecifiedNotes: NoteUnreads.count({
+						where: { userId: user.id, isSpecified: true },
+						take: 1,
+					}).then((count) => count > 0),
+					hasUnreadMentions: NoteUnreads.count({
+						where: { userId: user.id, isMentioned: true },
+						take: 1,
+					}).then((count) => count > 0),
+					noCrawle: profile?.noCrawle,
+					isExplorable: user.isExplorable,
+					isDeleted: user.isDeleted,
+					hideOnlineStatus: user.hideOnlineStatus,
+					hasUnreadAnnouncement: this.getHasUnreadAnnouncement(user.id),
+					hasUnreadAntenna: this.getHasUnreadAntenna(user.id),
+					hasUnreadChannel: this.getHasUnreadChannel(user.id),
+					hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(
+						user.id,
+					),
+					hasUnreadNotification: this.getHasUnreadNotification(user.id),
+					pendingReceivedFollowRequestsCount:
 							this.getHasPendingReceivedFollowRequest(user.id),
-						mutingNotificationTypes: profile?.mutingNotificationTypes,
+					mutingNotificationTypes: profile?.mutingNotificationTypes,
 				  }
 				: {}),
 
 			...(opts.includeSecrets
 				? {
-						clientData: profile?.clientData,
-						email: profile?.email,
-						emailVerified: profile?.emailVerified,
-						securityKeysList: profile?.twoFactorEnabled
-							? UserSecurityKeys.find({
-									where: {
-										userId: user.id,
-									},
-									select: ["id", "name", "lastUsed"],
+					clientData: profile?.clientData,
+					email: profile?.email,
+					emailVerified: profile?.emailVerified,
+					securityKeysList: profile?.twoFactorEnabled
+						? UserSecurityKeys.find({
+							where: {
+								userId: user.id,
+							},
+							select: ['id', 'name', 'lastUsed'],
 							  })
-							: [],
+						: [],
 				  }
 				: {}),
 
 			...(relation
 				? {
-						isFollowing: relation.isFollowing,
-						isFollowed: relation.isFollowed,
-						hasPendingFollowRequestFromYou:
+					isFollowing: relation.isFollowing,
+					isFollowed: relation.isFollowed,
+					hasPendingFollowRequestFromYou:
 							relation.hasPendingFollowRequestFromYou,
-						hasPendingFollowRequestToYou: relation.hasPendingFollowRequestToYou,
-						isBlocking: relation.isBlocking,
-						isBlocked: relation.isBlocked,
-						isMuted: relation.isMuted,
+					hasPendingFollowRequestToYou: relation.hasPendingFollowRequestToYou,
+					isBlocking: relation.isBlocking,
+					isBlocked: relation.isBlocked,
+					isMuted: relation.isMuted,
 				  }
 				: {}),
 		};
@@ -491,14 +489,14 @@ export class UserRepository extends Repository<User> {
 	}
 
 	public packMany(
-		users: (User["id"] | User)[],
-		me?: User["id"] | User | null | undefined,
+		users: (User['id'] | User)[],
+		me?: User['id'] | User | null | undefined,
 		options?: {
 			detail?: boolean;
 			includeSecrets?: boolean;
 			// TODO: remove
 			includeHasUnreadNotes?: boolean;
-		}
+		},
 	) {
 		return Promise.all(users.map((u) => this.pack(u, me, options)));
 	}
@@ -522,128 +520,128 @@ export class UserRepository extends Repository<User> {
 }
 
 export const packedUserSchema = {
-	type: "object" as const,
+	type: 'object' as const,
 	nullable: false as const,
 	optional: false as const,
 	properties: {
 		id: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: false as const,
 			optional: false as const,
-			format: "id",
-			description: "The unique identifier for this User.",
-			example: "xxxxxxxxxx",
+			format: 'id',
+			description: 'The unique identifier for this User.',
+			example: 'xxxxxxxxxx',
 		},
 		name: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: false as const,
-			description: "The name of the user, as they’ve defined it.",
-			example: "藍",
+			description: 'The name of the user, as they’ve defined it.',
+			example: '藍',
 		},
 		onlineStatus: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: false as const,
 			optional: false as const,
 			enum: [...onlineStateTypes],
-			description: "ユーザーの状態",
-			example: "online",
+			description: 'ユーザーの状態',
+			example: 'online',
 		},
 		username: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: false as const,
 			optional: false as const,
 			description:
-				"The screen name, handle, or alias that this user identifies themselves with.",
-			example: "ai",
+				'The screen name, handle, or alias that this user identifies themselves with.',
+			example: 'ai',
 		},
 		host: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: false as const,
-			example: "misskey.example.com",
+			example: 'misskey.example.com',
 		},
 		avatarUrl: {
-			type: "string" as const,
-			format: "url",
+			type: 'string' as const,
+			format: 'url',
 			nullable: true as const,
 			optional: false as const,
 		},
 		avatarBlurhash: {
-			type: "any" as const,
+			type: 'any' as const,
 			nullable: true as const,
 			optional: false as const,
 		},
 		avatarColor: {
-			type: "any" as const,
+			type: 'any' as const,
 			nullable: true as const,
 			optional: false as const,
 			default: null,
 		},
 		isAdmin: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			default: false,
-			description: "Whether this account is the admin.",
+			description: 'Whether this account is the admin.',
 		},
 		isModerator: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			default: false,
-			description: "Whether this account is a moderator.",
+			description: 'Whether this account is a moderator.',
 		},
 		isVerified: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		isBot: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
-			description: "Whether this account is a bot.",
+			description: 'Whether this account is a bot.',
 		},
 		isCat: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
-			description: "Whether this account is a cat.",
+			description: 'Whether this account is a cat.',
 		},
 		isLady: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
-			description: "Whether this account is a Lady.",
+			description: 'Whether this account is a Lady.',
 		},
 		emojis: {
-			type: "any" as const,
+			type: 'any' as const,
 			nullable: true as const,
 			optional: false as const,
 			properties: {
 				name: {
-					type: "string" as const,
+					type: 'string' as const,
 					nullable: false as const,
 					optional: false as const,
 				},
 				host: {
-					type: "string" as const,
+					type: 'string' as const,
 					nullable: true as const,
 					optional: false as const,
 				},
 				url: {
-					type: "string" as const,
+					type: 'string' as const,
 					nullable: false as const,
 					optional: false as const,
-					format: "url",
+					format: 'url',
 				},
 				aliases: {
-					type: "array" as const,
+					type: 'array' as const,
 					nullable: false as const,
 					optional: false as const,
 					items: {
-						type: "string" as const,
+						type: 'string' as const,
 						nullable: false as const,
 						optional: false as const,
 					},
@@ -651,86 +649,86 @@ export const packedUserSchema = {
 			},
 		},
 		url: {
-			type: "string" as const,
-			format: "url",
+			type: 'string' as const,
+			format: 'url',
 			nullable: true as const,
 			optional: true as const,
 		},
 		createdAt: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: false as const,
 			optional: true as const,
-			format: "date-time",
-			description: "The date that the user account was created on Misskey.",
+			format: 'date-time',
+			description: 'The date that the user account was created on Misskey.',
 		},
 		updatedAt: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
-			format: "date-time",
+			format: 'date-time',
 		},
 		bannerUrl: {
-			type: "string" as const,
-			format: "url",
+			type: 'string' as const,
+			format: 'url',
 			nullable: true as const,
 			optional: true as const,
 		},
 		bannerBlurhash: {
-			type: "any" as const,
+			type: 'any' as const,
 			nullable: true as const,
 			optional: true as const,
 		},
 		bannerColor: {
-			type: "any" as const,
+			type: 'any' as const,
 			nullable: true as const,
 			optional: true as const,
 			default: null,
 		},
 		isLocked: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		isSuspended: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			example: false,
 		},
 		description: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
-			description: "The user-defined UTF-8 string describing their account.",
-			example: "Hi masters, I am Ai!",
+			description: 'The user-defined UTF-8 string describing their account.',
+			example: 'Hi masters, I am Ai!',
 		},
 		location: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
 		},
 		birthday: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
-			example: "2018-03-12",
+			example: '2018-03-12',
 		},
 		fields: {
-			type: "array" as const,
+			type: 'array' as const,
 			nullable: false as const,
 			optional: true as const,
 			items: {
-				type: "object" as const,
+				type: 'object' as const,
 				nullable: false as const,
 				optional: false as const,
 				properties: {
 					name: {
-						type: "string" as const,
+						type: 'string' as const,
 						nullable: false as const,
 						optional: false as const,
 					},
 					value: {
-						type: "string" as const,
+						type: 'string' as const,
 						nullable: false as const,
 						optional: false as const,
 					},
@@ -739,149 +737,149 @@ export const packedUserSchema = {
 			},
 		},
 		followersCount: {
-			type: "number" as const,
+			type: 'number' as const,
 			nullable: false as const,
 			optional: true as const,
-			description: "The number of followers this account currently has.",
+			description: 'The number of followers this account currently has.',
 		},
 		followingCount: {
-			type: "number" as const,
+			type: 'number' as const,
 			nullable: false as const,
 			optional: true as const,
-			description: "The number of users this account is following.",
+			description: 'The number of users this account is following.',
 		},
 		notesCount: {
-			type: "number" as const,
+			type: 'number' as const,
 			nullable: false as const,
 			optional: true as const,
 			description:
-				"The number of Notes (including renotes) issued by the user.",
+				'The number of Notes (including renotes) issued by the user.',
 		},
 		pinnedNoteIds: {
-			type: "array" as const,
+			type: 'array' as const,
 			nullable: false as const,
 			optional: true as const,
 			items: {
-				type: "string" as const,
+				type: 'string' as const,
 				nullable: false as const,
 				optional: false as const,
-				format: "id",
+				format: 'id',
 			},
 		},
 		pinnedNotes: {
-			type: "array" as const,
+			type: 'array' as const,
 			nullable: false as const,
 			optional: true as const,
 			items: {
-				type: "object" as const,
+				type: 'object' as const,
 				nullable: false as const,
 				optional: false as const,
-				ref: "Note" as const,
+				ref: 'Note' as const,
 			},
 		},
 		pinnedPageId: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
 		},
 		pinnedPage: {
-			type: "object" as const,
+			type: 'object' as const,
 			nullable: true as const,
 			optional: true as const,
-			ref: "Page" as const,
+			ref: 'Page' as const,
 		},
 		twoFactorEnabled: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			default: false,
 		},
 		usePasswordLessLogin: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			default: false,
 		},
 		securityKeys: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 			default: false,
 		},
 		avatarId: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
-			format: "id",
+			format: 'id',
 		},
 		bannerId: {
-			type: "string" as const,
+			type: 'string' as const,
 			nullable: true as const,
 			optional: true as const,
-			format: "id",
+			format: 'id',
 		},
 		autoWatch: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		injectFeaturedNote: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		alwaysMarkNsfw: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		carefulBot: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		autoAcceptFollowed: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadSpecifiedNotes: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadMentions: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadAnnouncement: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadAntenna: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadChannel: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadMessagingMessage: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasUnreadNotification: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		hasPendingReceivedFollowRequest: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			nullable: false as const,
 			optional: true as const,
 		} /*
@@ -894,44 +892,89 @@ export const packedUserSchema = {
 			nullable: false as const, optional: true as const
 		},*/,
 		mutingNotificationTypes: {
-			type: "array" as const,
+			type: 'array' as const,
 			nullable: false as const,
 			optional: true as const,
 		},
 		isFollowing: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		hasPendingFollowRequestFromYou: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		hasPendingFollowRequestToYou: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		isFollowed: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		isBlocking: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		isBlocked: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
 		},
 		isMuted: {
-			type: "boolean" as const,
+			type: 'boolean' as const,
 			optional: true as const,
 			nullable: false as const,
+		},
+	},
+};
+
+export const packedMeSchema = {
+	nullable: packedUserSchema.nullable,
+	optional: packedUserSchema.optional,
+	type: packedUserSchema.type,
+	properties: {
+		...packedUserSchema.properties,
+
+		emailVerified: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		pendingReceivedFollowRequestsCount: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		carefulMassive: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		noCrawle: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		isExplorable: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		hideOnlineStatus: {
+			type: 'boolean' as const,
+			optional: true as const,
+			nullable: true as const,
+		},
+		email: {
+			type: 'string' as const,
+			optional: true as const,
+			nullable: true as const,
 		},
 	},
 };

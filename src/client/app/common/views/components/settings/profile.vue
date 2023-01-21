@@ -4,7 +4,7 @@
 
 	<section class="esokaraujimuwfttfzgocmutcihewscl">
 		<div class="header" :style="bannerStyle">
-			<mk-avatar class="avatar" :user="store.i" :disable-preview="true" :disable-link="true"/>
+			<mk-avatar class="avatar" :user="i" :disable-preview="true" :disable-link="true"/>
 		</div>
 
 		<ui-form :disabled="saving">
@@ -104,12 +104,12 @@
 		<header><fa :icon="faEnvelope"/> {{ i18n.t('email') }}</header>
 
 		<div>
-			<template v-if="$store.state.i.email != null">
-				<ui-info v-if="$store.state.i.emailVerified">{{ i18n.t('email-verified') }}</ui-info>
+			<template v-if="i.email != null">
+				<ui-info v-if="i.emailVerified">{{ i18n.t('email-verified') }}</ui-info>
 				<ui-info v-else warn>{{ i18n.t('email-not-verified') }}</ui-info>
 			</template>
 			<ui-input v-model="email" type="email"><span>{{ i18n.t('email-address') }}</span></ui-input>
-			<ui-button :disabled="email === $store.state.i.email" @click="updateEmail()"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
+			<ui-button :disabled="email === i.email" @click="updateEmail()"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</div>
 	</section>
 
@@ -149,7 +149,8 @@ import langmap from 'langmap';
 import { unique } from '../../../../../../prelude/array';
 import { faDownload, faUpload, faUnlockAlt, faBoxes, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { useStore } from '../../../../stores';
+import { AYUX } from '../../../../stores/ayux';
+import { $i } from '../../../../account';
 
 export default defineComponent({
 	data() {
@@ -190,22 +191,22 @@ export default defineComponent({
 			avatarUploading: false,
 			bannerUploading: false,
 			exportTarget: 'notes',
-			store: useStore(),
+			i: AYUX().get('i'),
 			faDownload, faUpload, faSave, faEnvelope, faUnlockAlt, faBoxes, faCogs,
 		};
 	},
 
 	computed: {
 		alwaysMarkNsfw: {
-			get() { return this.$store.state.i.alwaysMarkNsfw; },
+			get() { return this.i.alwaysMarkNsfw; },
 			set(value) { this.$root.api('i/update', { alwaysMarkNsfw: value }); },
 		},
 
 		bannerStyle(): any {
-			if (this.$store.state.i.bannerUrl == null) return {};
+			if (this.i.bannerUrl == null) return {};
 			return {
-				backgroundColor: this.$store.state.i.bannerColor,
-				backgroundImage: `url(${ this.$store.state.i.bannerUrl })`,
+				backgroundColor: this.i.bannerColor,
+				backgroundImage: `url(${ this.i.bannerUrl })`,
 			};
 		},
 	},
@@ -214,34 +215,34 @@ export default defineComponent({
 		this.$root.getMeta().then(meta => {
 			this.enableEmail = meta.enableEmail;
 		});
-		this.email = this.$store.state.i.email;
-		this.name = this.$store.state.i.name;
-		this.username = this.$store.state.i.username;
-		this.location = this.$store.state.i.location;
-		this.description = this.$store.state.i.description;
-		this.lang = this.$store.state.i.lang;
-		this.birthday = this.$store.state.i.birthday;
-		this.avatarId = this.$store.state.i.avatarId;
-		this.bannerId = this.$store.state.i.bannerId;
-		this.isCat = this.$store.state.i.isCat;
-		this.isLady = this.$store.state.i.isLady;
-		this.isBot = this.$store.state.i.isBot;
-		this.isLocked = this.$store.state.i.isLocked;
-		this.carefulBot = this.$store.state.i.carefulBot;
-		this.carefulMassive = this.$store.state.i.carefulMassive;
-		this.autoAcceptFollowed = this.$store.state.i.autoAcceptFollowed;
-		this.noCrawle = this.$store.state.i.noCrawle;
-		this.isExplorable = this.$store.state.i.isExplorable;
-		this.hideOnlineStatus = this.$store.state.i.hideOnlineStatus;
+		this.email = this.i.email;
+		this.name = this.i.name;
+		this.username = this.i.username;
+		this.location = this.i.location;
+		this.description = this.i.description;
+		this.lang = this.i.lang;
+		this.birthday = this.i.birthday;
+		this.avatarId = this.i.avatarId;
+		this.bannerId = this.i.bannerId;
+		this.isCat = this.i.isCat;
+		this.isLady = this.i.isLady;
+		this.isBot = this.i.isBot;
+		this.isLocked = this.i.isLocked;
+		this.carefulBot = this.i.carefulBot;
+		this.carefulMassive = this.i.carefulMassive;
+		this.autoAcceptFollowed = this.i.autoAcceptFollowed;
+		this.noCrawle = this.i.noCrawle;
+		this.isExplorable = this.i.isExplorable;
+		this.hideOnlineStatus = this.i.hideOnlineStatus;
 
-		this.fieldName0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].name : null;
-		this.fieldValue0 = this.$store.state.i.fields[0] ? this.$store.state.i.fields[0].value : null;
-		this.fieldName1 = this.$store.state.i.fields[1] ? this.$store.state.i.fields[1].name : null;
-		this.fieldValue1 = this.$store.state.i.fields[1] ? this.$store.state.i.fields[1].value : null;
-		this.fieldName2 = this.$store.state.i.fields[2] ? this.$store.state.i.fields[2].name : null;
-		this.fieldValue2 = this.$store.state.i.fields[2] ? this.$store.state.i.fields[2].value : null;
-		this.fieldName3 = this.$store.state.i.fields[3] ? this.$store.state.i.fields[3].name : null;
-		this.fieldValue3 = this.$store.state.i.fields[3] ? this.$store.state.i.fields[3].value : null;
+		this.fieldName0 = this.i.fields[0] ? this.i.fields[0].name : null;
+		this.fieldValue0 = this.i.fields[0] ? this.i.fields[0].value : null;
+		this.fieldName1 = this.i.fields[1] ? this.i.fields[1].name : null;
+		this.fieldValue1 = this.i.fields[1] ? this.i.fields[1].value : null;
+		this.fieldName2 = this.i.fields[2] ? this.i.fields[2].name : null;
+		this.fieldValue2 = this.i.fields[2] ? this.i.fields[2].value : null;
+		this.fieldName3 = this.i.fields[3] ? this.i.fields[3].name : null;
+		this.fieldValue3 = this.i.fields[3] ? this.i.fields[3].value : null;
 	},
 
 	methods: {
@@ -250,7 +251,7 @@ export default defineComponent({
 
 			const data = new FormData();
 			data.append('file', file);
-			data.append('i', this.$store.state.i.token);
+			data.append('i', $i.token);
 
 			fetch(apiUrl + '/drive/files/create', {
 				method: 'POST',
@@ -261,7 +262,7 @@ export default defineComponent({
 					this.avatarId = f.id;
 					this.avatarUploading = false;
 				})
-				.catch(e => {
+				.catch(err => {
 					this.avatarUploading = false;
 					alert('%18n:@upload-failed%');
 				});
@@ -272,7 +273,7 @@ export default defineComponent({
 
 			const data = new FormData();
 			data.append('file', file);
-			data.append('i', this.$store.state.i.token);
+			data.append('i', $i.token);
 
 			fetch(apiUrl + '/drive/files/create', {
 				method: 'POST',
@@ -283,7 +284,7 @@ export default defineComponent({
 					this.bannerId = f.id;
 					this.bannerUploading = false;
 				})
-				.catch(e => {
+				.catch(err => {
 					this.bannerUploading = false;
 					alert('%18n:@upload-failed%');
 				});
@@ -320,10 +321,10 @@ export default defineComponent({
 				hideOnlineStatus: !!this.hideOnlineStatus,
 			}).then(i => {
 				this.saving = false;
-				this.$store.state.i.avatarId = i.avatarId;
-				this.$store.state.i.avatarUrl = i.avatarUrl;
-				this.$store.state.i.bannerId = i.bannerId;
-				this.$store.state.i.bannerUrl = i.bannerUrl;
+				this.i.avatarId = i.avatarId;
+				this.i.avatarUrl = i.avatarUrl;
+				this.i.bannerId = i.bannerId;
+				this.i.bannerUrl = i.bannerUrl;
 
 				if (notify) {
 					this.$root.dialog({

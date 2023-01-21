@@ -1,8 +1,12 @@
-import * as Ayuskey from "ayuskey.js";
-import { ref } from "vue";
-import { $i, $token } from "./account";
-import * as config from "./config";
-import { promiseDialog, alert } from "./os";
+import * as Ayuskey from 'ayuskey.js';
+import { ref } from 'vue';
+import { $i, $token } from './account';
+import * as config from './config';
+import { promiseDialog, alert } from './os';
+import { apiClient } from 'strictcat';
+import { Schema } from './api.schema';
+
+export const betaApi = apiClient<Schema>(`${config.url}/api`, { contentType: 'application/json', sharedBody: { i: $token } });
 
 export const ayuskeyApi = Ayuskey.api.ayuskeyClient({
 	origin: `${config.url}/api`,
@@ -20,7 +24,7 @@ export const apiWithDialog = ((
 	options: {
 		data?: Record<string, any>;
 		token?: string | null | undefined;
-	} = { data: {}, token: null }
+	} = { data: {}, token: null },
 ) => {
 	// TODO: いいかんじにしたい
 	const params = options.data;
@@ -28,8 +32,8 @@ export const apiWithDialog = ((
 	const promise = api.request(endpoint, { params, i });
 	promiseDialog(promise, null, (err) => {
 		alert({
-			type: "error",
-			text: err.message + "\n" + (err as any).id,
+			type: 'error',
+			text: err.message + '\n' + (err as any).id,
 		});
 	});
 

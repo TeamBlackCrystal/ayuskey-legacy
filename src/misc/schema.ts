@@ -1,5 +1,5 @@
 import { SimpleObj, SimpleSchema } from './simple-schema';
-import { packedUserSchema } from '@/models/repositories/user';
+import { packedMeSchema, packedUserSchema } from '@/models/repositories/user';
 import { packedNoteSchema } from '@/models/repositories/note';
 import { packedUserListSchema } from '@/models/repositories/user-list';
 import { packedAppSchema } from '@/models/repositories/app';
@@ -27,6 +27,7 @@ import { packedReversiMatchingSchema } from '@/models/repositories/games/reversi
 
 export const refs = {
 	User: packedUserSchema,
+	Me: packedMeSchema,
 	UserList: packedUserListSchema,
 	UserGroup: packedUserGroupSchema,
 	App: packedAppSchema,
