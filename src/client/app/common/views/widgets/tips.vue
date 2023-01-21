@@ -26,7 +26,6 @@ export default defineComponent({
 		};
 	},
 	created() {
-		console.log(this.i18n.t('tips-line1'))
 		this.tips = [
 			this.i18n.t('tips-line1'),
 			this.i18n.t('tips-line2'),
