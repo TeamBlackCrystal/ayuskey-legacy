@@ -1,6 +1,6 @@
-import { defaultDeviceSettings } from "../store";
-import { TDeviceStore } from "./device";
-import { ClientUserDetaield } from "./i";
+import { defaultDeviceSettings } from '../store';
+import { TDeviceStore } from './device';
+import { ClientUserDetaield } from './i';
 
 type TAyuxStore = {
 	i: ClientUserDetaield | null,
@@ -46,4 +46,12 @@ export const AYUX = () => {
 	};
 
 	return { get, del, set, allClear, setAllDefault };
+};
+
+export const useAyuxSnapShot = (): TAyuxStore => {
+	const ayux = AYUX();
+	return {
+		i: ayux.get('i'),
+		device: ayux.get('device'),
+	};
 };
