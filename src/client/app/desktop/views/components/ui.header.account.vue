@@ -1,14 +1,14 @@
 <template>
 <div v-hotkey.global="keymap" class="account">
 	<button class="header" :data-active="isOpen" @click="toggle">
-		<span class="username">{{ store.i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
-		<mk-avatar class="avatar" :user="store.i"/>
+		<span class="username">{{ i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
+		<mk-avatar class="avatar" :user="i"/>
 	</button>
 	<transition name="zoom-in-top">
 		<div v-if="isOpen" class="menu" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 			<ul>
 				<li>
-					<router-link :to="`/@${ store.i.username }`">
+					<router-link :to="`/@${ i.username }`">
 						<i><fa icon="user" fixed-width/></i>
 						<span>{{ i18n.t('profile') }}</span>
 						<i><fa icon="angle-right"/></i>
@@ -52,12 +52,12 @@
 				<li>
 					<router-link to="/i/follow-requests">
 						<i><fa :icon="['far', 'envelope']" fixed-width/></i>
-						<span>{{ i18n.t('follow-requests') }}<i v-if="$store.state.i.pendingReceivedFollowRequestsCount">{{ i18n.t(`follow-request-${$store.state.i.pendingReceivedFollowRequestsCount}`) }}</i></span>
+						<span>{{ i18n.t('follow-requests') }}<i v-if="i.pendingReceivedFollowRequestsCount">{{ i18n.t(`follow-request-${i.pendingReceivedFollowRequestsCount}`) }}</i></span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="`/@${ store.i.username }/room`">
+					<router-link :to="`/@${ i.username }/room`">
 						<i><fa :icon="faDoorOpen" fixed-width/></i>
 						<span>{{ i18n.t('room') }}</span>
 						<i><fa icon="angle-right"/></i>
@@ -72,7 +72,7 @@
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
-				<li v-if="store.i.isAdmin || store.i.isModerator">
+				<li v-if="i.isAdmin || i.isModerator">
 					<a href="/admin">
 						<i><fa icon="terminal" fixed-width/></i>
 						<span>{{ i18n.t('admin') }}</span>
@@ -116,6 +116,7 @@ import contains from '../../../common/scripts/contains';
 import { faHome, faColumns, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons';
 import { useStore } from '../../../stores';
+import { AYUX } from '../../../stores/ayux';
 
 export default defineComponent({
 	compatConfig: {
@@ -123,6 +124,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
+			i: AYUX().get('i'),
 			store: useStore(),
 			i18n: _i18n('desktop/views/components/ui.header.account.vue'),
 			isOpen: false,

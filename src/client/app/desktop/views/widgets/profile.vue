@@ -8,18 +8,18 @@
 		>
 			<div
 				class="banner"
-				:style="store.i.bannerUrl ? `background-image: url(${store.i.bannerUrl})` : ''"
+				:style="i.bannerUrl ? `background-image: url(${i.bannerUrl})` : ''"
 				:title="i18n.t('update-banner')"
 				@click="updateBanner()"
 			></div>
 			<mk-avatar
-				class="avatar" :user="store.i"
+				class="avatar" :user="i"
 				:disable-link="true"
 				:title="i18n.t('update-avatar')"
 				@click="updateAvatar()"
 			/>
-			<router-link class="name" :to="userPage(store.i)"><mk-user-name :user="store.i"/></router-link>
-			<p class="username">@{{ acct(store.i) }}</p>
+			<router-link class="name" :to="userPage(i)"><mk-user-name :user="i"/></router-link>
+			<p class="username">@{{ acct(i) }}</p>
 		</div>
 	</ui-container>
 </div>
@@ -33,6 +33,7 @@ import updateAvatar from '../../api/update-avatar';
 import updateBanner from '../../api/update-banner';
 import { acct, userPage } from '../../../common/views/filters/v12/user';
 import { useStore } from '../../../stores';
+import { AYUX } from '../../../stores/ayux';
 
 const widgets = define({
 	name: 'profile',
@@ -46,7 +47,7 @@ export default defineComponent({
 	data () {
 		return {
 			i18n: _i18n('desktop/views/widgets/profile.vue'),
-			store: useStore(),
+			i: AYUX().get('i'),
 		};
 	},
 	methods: {

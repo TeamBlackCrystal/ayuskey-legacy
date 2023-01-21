@@ -1,6 +1,57 @@
 import { defineStore } from 'pinia';
 import { Theme } from '../theme';
 
+export type TDeviceStore = {
+	homeProfile: string,
+	mobileHomeProfile: string,
+	deckProfile: string,
+	deckMode: boolean,
+	deckColumnAlign: string,
+	deckColumnWidth: string,
+	useBlur: boolean,
+	useShadow: boolean,
+	deckTemporaryColumnPosition: string,
+	deckTemporaryColumnIndex: number,
+	roundedCorners: boolean,
+	reduceMotion: boolean,
+	darkmode: boolean,
+	darkTheme: string,
+	lightTheme: string,
+	lineWidth: number,
+	fontSize: number,
+	themes: Theme[],
+	enableSounds: boolean,
+	enableSoundsInTimeline: boolean,
+	enableSoundsInNotifications: boolean,
+	//soundVolume: 0.5,
+	mediaVolume: number,
+	enableQueueJammed: boolean,
+	enableSpeech: boolean,
+	lang: null,
+	appTypeForce: string,
+	debug: boolean,
+	showAdvancedSettings: boolean,
+	lightmode: boolean,
+	loadRawImages: boolean,
+	alwaysShowNsfw: boolean,
+	postStyle: string,
+	navbar: string,
+	mobileNotificationPosition: string,
+	useOsDefaultEmojis: boolean,
+	disableShowingAnimatedImages: boolean,
+	useAbsoluteTime: boolean,
+	expandUsersPhotos: boolean,
+	expandUsersActivity: boolean,
+	showPostPreview: boolean,
+	enableMobileQuickNotificationView: boolean,
+	instanceTicker: string, // none, remote, always
+	hasDisconnectedAction: string, // nothing, notify, reload
+	roomGraphicsQuality: string,
+	roomUseOrthographicCamera: boolean,
+	activeEmojiCategoryName: undefined,
+	recentEmojis: [],
+}
+
 export const useDeviceStore = defineStore('device', {
 	state: () => ({
 		homeProfile: 'Default',
