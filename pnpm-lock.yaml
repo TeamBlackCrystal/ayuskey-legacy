@@ -188,7 +188,7 @@ importers:
       parsimmon: 1.18.1
       pg: 8.8.0
       photoswipe: 5.3.4
-      pinia: 2.0.27
+      pinia: 2.0.29
       pinia-plugin-persistedstate: 3.0.2
       portscanner: 2.2.0
       postcss: 8.4.21
@@ -381,8 +381,8 @@ importers:
       parsimmon: 1.18.1
       pg: 8.8.0
       photoswipe: 5.3.4
-      pinia: 2.0.27_prq2uz4lho2pwp6irk4cfkrxwu
-      pinia-plugin-persistedstate: 3.0.2_pinia@2.0.27
+      pinia: 2.0.29_prq2uz4lho2pwp6irk4cfkrxwu
+      pinia-plugin-persistedstate: 3.0.2_pinia@2.0.29
       portscanner: 2.2.0
       postcss: 8.4.21
       postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
@@ -10231,16 +10231,16 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  /pinia-plugin-persistedstate/3.0.2_pinia@2.0.27:
+  /pinia-plugin-persistedstate/3.0.2_pinia@2.0.29:
     resolution: {integrity: sha512-84vPyUhPA/8Pr+1mT1ioNb2d8z4tvdgYRqMQf8xyauOVBKjo0ZcRBwPQBV7ZAJG43Kwar43nXG2jU+ZMvAFFRQ==}
     peerDependencies:
       pinia: ^2.0.0
     dependencies:
-      pinia: 2.0.27_prq2uz4lho2pwp6irk4cfkrxwu
+      pinia: 2.0.29_prq2uz4lho2pwp6irk4cfkrxwu
     dev: false
 
-  /pinia/2.0.27_prq2uz4lho2pwp6irk4cfkrxwu:
-    resolution: {integrity: sha512-nOnXP0OFeL8R4WjAHsterU+11vptda643gH02xKNtSCDPiRzVfRYodOLihLDoa0gL1KKuQKV+KOzEgdt3YvqEw==}
+  /pinia/2.0.29_prq2uz4lho2pwp6irk4cfkrxwu:
+    resolution: {integrity: sha512-5z/KpFecq/cIgfeTnulJXldiLcTITRkTe3N58RKYSj0Pc1EdR6oyCdnf5A9jLoVwBqX5LtHhd0kGlpzWvk9oiQ==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
