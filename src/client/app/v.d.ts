@@ -3,12 +3,18 @@
 import { ComponentCustomProperties } from 'vue';
 import { Store } from 'vuex';
 
-declare module '@vue/runtime-dom' {
+declare module 'vue' {
   import { CompatVue } from 'vue';
   const Vue: CompatVue;
   export default Vue;
   // eslint-disable-next-line vue/prefer-import-from-vue
-  export * from '@vue/runtime-dom';
+  export * from 'vue';
+}
+
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue';
+  const component: DefineComponent<{}, {}, any>;
+  export default component;
 }
 
 declare module '@vue/runtime-core' {
