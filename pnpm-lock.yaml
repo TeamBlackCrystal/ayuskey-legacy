@@ -545,7 +545,7 @@ importers:
     specifiers:
       '@rollup/plugin-buble': 1.0.2
       '@rollup/plugin-node-resolve': 15.0.1
-      '@rollup/plugin-terser': 0.3.0
+      '@rollup/plugin-terser': 0.4.0
       eslint: 8.32.0
       eslint-config-seregpie: 1.2.1
       rollup: 3.10.1
@@ -553,7 +553,7 @@ importers:
     devDependencies:
       '@rollup/plugin-buble': 1.0.2_rollup@3.10.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.1
-      '@rollup/plugin-terser': 0.3.0_rollup@3.10.1
+      '@rollup/plugin-terser': 0.4.0_rollup@3.10.1
       eslint: 8.32.0
       eslint-config-seregpie: 1.2.1_eslint@8.32.0
       rollup: 3.10.1
@@ -1307,8 +1307,8 @@ packages:
       rollup: 3.10.1
     dev: true
 
-  /@rollup/plugin-terser/0.3.0_rollup@3.10.1:
-    resolution: {integrity: sha512-mYTkNW9KjOscS/3QWU5LfOKsR3/fAAVDaqcAe2TZ7ng6pN46f+C7FOZbITuIW/neA+PhcjoKl7yMyB3XcmA4gw==}
+  /@rollup/plugin-terser/0.4.0_rollup@3.10.1:
+    resolution: {integrity: sha512-Ipcf3LPNerey1q9ZMjiaWHlNPEHNU/B5/uh9zXLltfEQ1lVSLLeZSgAtTPWGyw8Ip1guOeq+mDtdOlEj/wNxQw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.x || ^3.x
