@@ -86,14 +86,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../i18n';
 import parseAcct from '../../../../misc/acct/parse';
 import { faCertificate, faUsers, faTerminal, faSearch, faKey, faSync, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSnowflake, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import XUser from './users.user.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('admin/views/users.vue'),
 	components: {
 		XUser,

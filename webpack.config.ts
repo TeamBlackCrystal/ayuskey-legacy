@@ -54,8 +54,8 @@ module.exports = {
 		dev: './src/client/app/dev/script.ts',
 		/*
 		auth: './src/client/app/auth/script.ts',
-		admin: './src/client/app/admin/script.ts',
 		*/
+		admin: './src/client/app/admin/script.ts',
 		sw: './src/client/app/sw/sw.js'
 	},
 	module: {
@@ -72,7 +72,19 @@ module.exports = {
 						preserveWhitespace: false,
 						reactivityTransform: true,
 						compatConfig: {
-              MODE: 2
+							MODE: 2,
+							/*
+              MODE: 3,
+							GLOBAL_MOUNT: true,
+							GLOBAL_EXTEND: true,
+							INSTANCE_SET: true,
+							INSTANCE_DELETE: true,
+							INSTANCE_EVENT_EMITTER: true,
+							INSTANCE_CHILDREN: true,
+							INSTANCE_LISTENERS: true,
+							INSTANCE_DESTROY: true,
+							OPTIONS_BEFORE_DESTROY: true
+							*/
             }
 					}
 				}

@@ -1,37 +1,37 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa icon="plus"/> {{ $t('add-relay') }}</template>
+		<template #title><fa icon="plus"/> {{ i18n.t('add-relay') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-input v-model="inbox">
-					<span>{{ $t('inbox') }}</span>
+					<span>{{ i18n.t('inbox') }}</span>
 				</ui-input>
 			</ui-horizon-group>
-			<ui-button @click="add(inbox)">{{ $t('add') }}</ui-button>
+			<ui-button @click="add(inbox)">{{ i18n.t('add') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faProjectDiagram"/> {{ $t('added-relays') }}</template>
+		<template #title><fa :icon="faProjectDiagram"/> {{ i18n.t('added-relays') }}</template>
 		<section v-for="relay in relays" :key="relay.inbox" class="relayath">
 			<div>{{ relay.inbox }}</div>
-			<div>{{ $t(`status.${relay.status}`) }}</div>
-			<ui-button @click="remove(relay.inbox)">{{ $t('remove') }}</ui-button>
+			<div>{{ i18n.t(`status.${relay.status}`) }}</div>
+			<ui-button @click="remove(relay.inbox)">{{ i18n.t('remove') }}</ui-button>
 		</section>
 	</ui-card>
 </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
-	i18n: i18n('admin/views/relay.vue'),
+export default defineComponent({
 	data() {
 		return {
+			i18n: _i18n('admin/views/relay.vue'),
 			relays: [],
 			inbox: '',
 			faProjectDiagram,
