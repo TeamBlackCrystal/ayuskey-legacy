@@ -543,7 +543,7 @@ importers:
 
   lib/vuewordcloud:
     specifiers:
-      '@rollup/plugin-buble': 1.0.1
+      '@rollup/plugin-buble': 1.0.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.3.0
       eslint: 8.32.0
@@ -551,7 +551,7 @@ importers:
       rollup: 3.10.0
       rollup-plugin-serve: 2.0.2
     devDependencies:
-      '@rollup/plugin-buble': 1.0.1_rollup@3.10.0
+      '@rollup/plugin-buble': 1.0.2_rollup@3.10.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.0
       '@rollup/plugin-terser': 0.3.0_rollup@3.10.0
       eslint: 8.32.0
@@ -1274,8 +1274,8 @@ packages:
       - encoding
     dev: true
 
-  /@rollup/plugin-buble/1.0.1_rollup@3.10.0:
-    resolution: {integrity: sha512-4srowx9TM2C2m5qDz72E9eOY7jC2Z0R5jw27tYanm1tEwi22Bl1Sh0ccubGIF3v30wmXWiH0dpvwO7+F5cPiWg==}
+  /@rollup/plugin-buble/1.0.2_rollup@3.10.0:
+    resolution: {integrity: sha512-Hz9+AigRWwS93vmorrVrhyG9SdSCZAkBDx614w09iFQYFUAP2HmdUrQyZsb1WO2n+iDvPFznrTE16la+eGNcEQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0
