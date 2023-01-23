@@ -36,9 +36,9 @@ export default defineComponent({
 		document.removeEventListener('keydown', this.onDocumentKeydown);
 	},
 	methods: {
-		onDocumentKeydown(e) {
-			if (e.target.tagName != 'INPUT' && e.target.tagName != 'TEXTAREA') {
-				if (e.which == 84) { // t
+		onDocumentKeydown(ev) {
+			if (ev.target.tagName !== 'INPUT' && ev.target.tagName !== 'TEXTAREA') {
+				if (ev.which === 84) { // t
 					(this.$refs.timeline as any).focus();
 				}
 			}
