@@ -23,7 +23,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@rollup/plugin-buble": "1.0.1",
+		"@rollup/plugin-buble": "1.0.2",
 		"@rollup/plugin-node-resolve": "15.0.1",
 		"@rollup/plugin-terser": "0.3.0",
 		"eslint": "8.32.0",
