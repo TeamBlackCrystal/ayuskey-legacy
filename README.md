@@ -4,6 +4,9 @@ JA | [EN](README.en-US.md)
 
 <h1 align="center">Ayuskey</h1>
 
+# 本番環境に適さない不安定版です。
+このバージョンの代わりに[ここにブランチ名](#)をご利用ください。
+
 <div align="center">
 
 [![][e2e-badge]][e2e-link]

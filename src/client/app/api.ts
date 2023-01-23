@@ -29,6 +29,8 @@ export const apiWithDialog = ((
 	// TODO: いいかんじにしたい
 	const params = options.data;
 	const i = options.token;
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	const promise = api.request(endpoint, { params, i });
 	promiseDialog(promise, null, (err) => {
 		alert({

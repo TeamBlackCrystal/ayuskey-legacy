@@ -4,6 +4,7 @@ import { apiUrl } from './config';
 // TODO: 他のタブと永続化されたstateを同期
 
 type Account = {
+	username: string;
 	id: string;
 	token: string;
 	isModerator: boolean;

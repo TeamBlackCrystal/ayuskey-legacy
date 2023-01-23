@@ -7,7 +7,7 @@ import { Router } from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
-import SequentialEntrance from 'vue-sequential-entrance';
+import SequentialEntrance from 'vue3-sequential-entrance';
 import * as hljs from 'highlight.js';
 import 'highlight.js/styles/monokai.css';
 
@@ -324,7 +324,7 @@ Vue.use(VModal);
 Vue.use(VueHotkey);
 Vue.use(VueSize);
 Vue.use(VueI18n);
-Vue.use(SequentialEntrance);
+//Vue.use(SequentialEntrance);
 Vue.use(hljs.vuePlugin);
 
 // Register global filters
@@ -451,6 +451,7 @@ export default (
 			app.use(os.store);
 			app.use(router);
 			app.use(pinia);
+			app.use(SequentialEntrance)
 			//#region theme
 			const ayux = AYUX();
 			ayux.setAllDefault();
