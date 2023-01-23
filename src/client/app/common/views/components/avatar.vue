@@ -13,6 +13,9 @@ import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url'
 import { acct, userPage } from '../filters/v12/user';
 
 export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	props: {
 		user: {
 			type: Object,
@@ -69,8 +72,8 @@ export default defineComponent({
 						.padStart(6, '0')
 				: undefined;
 		},
-		onClick(e) {
-			this.$emit('click', e);
+		onClick(ev) {
+			this.$emit('click', ev);
 		},
 		acct, userPage,
 	},

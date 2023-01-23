@@ -35,6 +35,11 @@ onMounted(() => {
 </script>
 
 <script lang="ts">
+export default {
+	compatConfig: {
+		MODE: 3,
+	},
+};
 /*
 import { defineComponent } from 'vue';
 export default defineComponent({

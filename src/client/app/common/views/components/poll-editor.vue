@@ -59,6 +59,7 @@ import { formatDateTimeString } from '../../../../../misc/format-time-string';
 
 export default defineComponent({
 	i18n: i18n('common/views/components/poll-editor.vue'),
+	emits: ['updated'],
 	data() {
 		return {
 			choices: ['', ''],

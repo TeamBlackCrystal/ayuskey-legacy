@@ -1,10 +1,27 @@
+<template>
+<router-link v-if="url.startsWith('/')" v-user-preview="canonical" class="ldlomzub" :to="url">
+	<span v-if="isMe" class="me">{{ i18n.t('@.you') }}</span>
+	<img v-if="!isMe && avator != null" class="avator" :src="avator"/>
+	<span class="main">
+		<span class="username">@{{ username }}</span>
+		<span v-if="(host != localHost) || $store.state.settings.showFullAcct" class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
+	</span>
+</router-link>
+<a v-else class="ldlomzub" :href="url" target="_blank" rel="noopener">
+	<span class="main">
+		<span class="username">@{{ username }}</span>
+		<span class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
+	</span>
+</a>
+</template>
+
 <script setup lang="ts">
 import { toUnicode } from 'punycode';
 import { i18n as _i18n } from '../../../i18n';
 import { wellKnownServices } from '../../../../../well-known-services';
 import { host as localHost } from '../../../config';
 import { $i } from '../../../account';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const i18n = _i18n();
 
@@ -30,31 +47,18 @@ isMe.value = $i && (
 	`@${props.username}@${toUnicode(props.host)}` === `@${$i.username}@${toUnicode(localHost)}`.toLowerCase()
 );
 
-const avator = () => {
+const avator = computed(() => {
 	const ascii = `@${props.username}` + (props.host !== localHost ? `@${props.host}` : '');
 	return `/avatar/${ascii}`;
-};
-
+});
 </script>
 
-<template>
-<router-link v-if="url.startsWith('/')" v-user-preview="canonical" class="ldlomzub" :to="url">
-	<span v-if="isMe" class="me">{{ i18n.t('@.you') }}</span>
-	<img v-if="!isMe && avator != null" class="avator" :src="avator"/>
-	<span class="main">
-		<span class="username">@{{ username }}</span>
-		<span v-if="(host != localHost) || $store.state.settings.showFullAcct" class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
-	</span>
-</router-link>
-<a v-else class="ldlomzub" :href="url" target="_blank" rel="noopener">
-	<span class="main">
-		<span class="username">@{{ username }}</span>
-		<span class="host" :class="{ fade: $store.state.settings.contrastedAcct }">@{{ toUnicode(host) }}</span>
-	</span>
-</a>
-</template>
-
 <script lang="ts">
+export default {
+	compatConfig: {
+		MODE: 3,
+	},
+};
 /*
 import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
