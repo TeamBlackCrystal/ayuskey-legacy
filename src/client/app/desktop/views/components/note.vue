@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 
 import XSub from './note.sub.vue';
@@ -80,7 +80,7 @@ import XInstanceTicker from '../../../common/views/components/instance-ticker.vu
 import noteMixin from '../../../common/scripts/note-mixin';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/note.vue'),
 
 	components: {

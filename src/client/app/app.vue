@@ -2,31 +2,25 @@
 <router-view id="app" v-hotkey.global="keymap"></router-view>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import { url, lang } from './config';
+import { useStore } from './stores';
 
-export default defineComponent({
-	computed: {
-		keymap(): any {
-			return {
-				'h|slash': this.help,
-				'd': this.dark,
-			};
-		},
-	},
+const store = useStore();
 
-	methods: {
-		help() {
-			window.open(`${url}/docs/${lang}/keyboard-shortcut`, '_blank');
-		},
-
-		dark() {
-			this.$store.commit('device/set', {
-				key: 'darkmode',
-				value: !this.$store.state.device.darkmode,
-			});
-		},
-	},
+const keymap = computed(() => {
+	return {
+		'h|slash': help,
+		d: dark,
+	};
 });
+
+function help() {
+	window.open(`${url}/docs/${lang}/keyboard-shortcut`, '_blank');
+}
+
+function dark() {
+	store.device.darkmode = !store.device.darkmode;
+}
 </script>

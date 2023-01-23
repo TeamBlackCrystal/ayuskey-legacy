@@ -1,24 +1,28 @@
 <template>
 <div class="muteblockuser">
 	<div class="avatar-link">
-		<a :href="user | userPage(null, true)">
+		<a :href="userPage(user, null, true)">
 			<mk-avatar class="avatar" :user="user" :disable-link="true"/>
 		</a>
 	</div>
 	<div class="text">
 		<div><mk-user-name :user="user"/></div>
-		<div class="username">@{{ user | acct }}</div>
+		<div class="username">@{{ acct(user) }}</div>
 	</div>
 </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
+import { acct, userPage } from '../../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/mute-and-block.user.vue'),
 	props: ['user'],
+	methods: {
+		acct, userPage,
+	},
 });
 </script>
 

@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import Progress from '../../../common/scripts/loading';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/pages/tag.vue'),
 	computed: {
 		pagination() {
@@ -32,13 +32,13 @@ export default Vue.extend({
 		document.addEventListener('keydown', this.onDocumentKeydown);
 		Progress.start();
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		document.removeEventListener('keydown', this.onDocumentKeydown);
 	},
 	methods: {
-		onDocumentKeydown(e) {
-			if (e.target.tagName != 'INPUT' && e.target.tagName != 'TEXTAREA') {
-				if (e.which == 84) { // t
+		onDocumentKeydown(ev) {
+			if (ev.target.tagName !== 'INPUT' && ev.target.tagName !== 'TEXTAREA') {
+				if (ev.which === 84) { // t
 					(this.$refs.timeline as any).focus();
 				}
 			}

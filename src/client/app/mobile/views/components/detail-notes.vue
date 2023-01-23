@@ -2,8 +2,8 @@
 <div class="fdcvngpy">
 	<div v-if="!notes.length" class="no-highlight">{{$t('@.featured-none')}}</div>
 	<sequential-entrance animation="entranceFromTop" delay="25">
-		<template v-for="note in notes">
-			<mk-note-detail :key="note.id" class="post" :note="note"/>
+		<template v-for="note in notes" :key="note.id">
+			<mk-note-detail class="post" :note="note"/>
 		</template>
 	</sequential-entrance>
 	<ui-button v-if="more" @click="fetchMore()">{{ $t('@.load-more') }}</ui-button>

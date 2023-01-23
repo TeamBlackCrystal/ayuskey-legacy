@@ -18,10 +18,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import ApexCharts from 'apexcharts';
 
-export default Vue.extend({
+export default defineComponent({
 	props: ['connection'],
 
 	data() {
@@ -114,7 +114,7 @@ export default Vue.extend({
 		this.memChart.render();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('stats', this.onStats);
 		this.connection.off('statsLog', this.onStatsLog);
 

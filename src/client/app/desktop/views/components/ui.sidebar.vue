@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import MkDriveWindow from './drive-window.vue';
 import MkMessagingWindow from './messaging-window.vue';
@@ -81,7 +81,7 @@ import MkGameWindow from './game-window.vue';
 import contains from '../../../common/scripts/contains';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/ui.sidebar.vue'),
 	data() {
 		return {
@@ -112,7 +112,7 @@ export default Vue.extend({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection.dispose();
 		}
@@ -384,7 +384,7 @@ export default Vue.extend({
 	transition: all 0.2s ease;
 }
 
-.slide-left-enter, .slide-left-leave-to {
+.slide-left-enter-from, .slide-left-leave-to {
 	transform: translateX(-16px);
 	opacity: 0;
 }
@@ -394,7 +394,7 @@ export default Vue.extend({
 	transition: all 0.2s ease;
 }
 
-.slide-right-enter, .slide-right-leave-to {
+.slide-right-enter-from, .slide-right-leave-to {
 	transform: translateX(16px);
 	opacity: 0;
 }

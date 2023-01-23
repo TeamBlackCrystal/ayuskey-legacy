@@ -18,14 +18,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import XTimeline from './user.timeline.vue';
 import XPhotos from './user.photos.vue';
 import XActivity from '../../../../common/views/components/activity.vue';
 import XPage from '../../../../common/views/components/page/page.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		XTimeline,

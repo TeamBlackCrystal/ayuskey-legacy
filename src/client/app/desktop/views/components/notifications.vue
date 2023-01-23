@@ -1,27 +1,27 @@
 <template>
 <div class="mk-notifications">
 	<div v-if="fetching" class="placeholder">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10"  :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<div v-if="!empty" class="notifications">
 		<!-- トランジションを有効にするとなぜかメモリリークする -->
 		<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" name="mk-notifications" class="transition" tag="div">
-			<template v-for="(notification, i) in _notifications">
-				<div :key="notification.id" class="notification" :class="notification.type">
+			<template v-for="(notification, i) in _notifications" :key="notification.id">
+				<div class="notification" :class="notification.type">
 					<template v-if="notification.type == 'reaction'">
 						<mk-avatar class="avatar" :user="notification.user"/>
 						<div class="text">
 							<header>
 								<mk-reaction-icon :reaction="notification.reaction" :custom-emojis="notification.note.emojis" class="icon"/>
-								<router-link v-user-preview="notification.user.id" :to="notification.user | userPage" class="name">
+								<router-link v-user-preview="notification.user.id" :to="userPage(notification.user)" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+							<router-link class="note-ref" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 								<fa icon="quote-left"/>
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="true" :custom-emojis="notification.note.emojis"/>
 								<fa icon="quote-right"/>
@@ -34,12 +34,12 @@
 						<div class="text">
 							<header>
 								<fa icon="retweet" class="icon"/>
-								<router-link v-user-preview="notification.note.userId" :to="notification.note.user | userPage" class="name">
+								<router-link v-user-preview="notification.note.userId" :to="userPage(notification.note.user)" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note.renote)">
+							<router-link class="note-ref" :to="notePage(notification.note)" :title="getNoteSummary(notification.note.renote)">
 								<fa icon="quote-left"/>
 								<mfm :text="getNoteSummary(notification.note.renote)" :plain="true" :nowrap="true" :custom-emojis="notification.note.renote.emojis"/>
 								<fa icon="quote-right"/>
@@ -52,12 +52,12 @@
 						<div class="text">
 							<header>
 								<fa icon="quote-left" class="icon"/>
-								<router-link v-user-preview="notification.note.userId" :to="notification.note.user | userPage" class="name">
+								<router-link v-user-preview="notification.note.userId" :to="userPage(notification.note.user)" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+							<router-link class="note-preview" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
 						</div>
@@ -68,7 +68,7 @@
 						<div class="text">
 							<header>
 								<fa icon="user-plus" class="icon"/>
-								<router-link v-user-preview="notification.user.id" :to="notification.user | userPage" class="name">
+								<router-link v-user-preview="notification.user.id" :to="userPage(notification.user)" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
@@ -81,7 +81,7 @@
 						<div class="text">
 							<header>
 								<fa icon="user-clock" class="icon"/>
-								<router-link v-user-preview="notification.user.id" :to="notification.user | userPage" class="name">
+								<router-link v-user-preview="notification.user.id" :to="userPage(notification.user)" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
@@ -94,12 +94,12 @@
 						<div class="text">
 							<header>
 								<fa icon="reply" class="icon"/>
-								<router-link v-user-preview="notification.note.userId" :to="notification.note.user | userPage" class="name">
+								<router-link v-user-preview="notification.note.userId" :to="userPage(notification.note.user)" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+							<router-link class="note-preview" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
 						</div>
@@ -110,12 +110,12 @@
 						<div class="text">
 							<header>
 								<fa icon="at" class="icon"/>
-								<router-link v-user-preview="notification.note.userId" :to="notification.note.user | userPage" class="name">
+								<router-link v-user-preview="notification.note.userId" :to="userPage(notification.note.user)" class="name">
 									<mk-user-name :user="notification.note.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-preview" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+							<router-link class="note-preview" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :custom-emojis="notification.note.emojis"/>
 							</router-link>
 						</div>
@@ -126,12 +126,12 @@
 						<div class="text">
 							<header>
 								<fa icon="chart-pie" class="icon"/>
-								<router-link v-user-preview="notification.user.id" :to="notification.user | userPage" class="name">
+								<router-link v-user-preview="notification.user.id" :to="userPage(notification.user)" class="name">
 									<mk-user-name :user="notification.user"/>
 								</router-link>
 								<mk-time :time="notification.createdAt"/>
 							</header>
-							<router-link class="note-ref" :to="notification.note | notePage" :title="getNoteSummary(notification.note)">
+							<router-link class="note-ref" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 								<fa icon="quote-left"/>
 								<mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="true" :custom-emojis="notification.note.emojis"/>
 								<fa icon="quote-right"/>
@@ -140,7 +140,7 @@
 					</template>
 				</div>
 
-				<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" :key="notification.id + '-time'" class="date">
+				<p v-if="i != items.length - 1 && notification._date != _notifications[i + 1]._date" class="date">
 					<span><fa icon="angle-up"/>{{ notification._datetext }}</span>
 					<span><fa icon="angle-down"/>{{ _notifications[i + 1]._datetext }}</span>
 				</p>
@@ -156,13 +156,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import * as sound from '../../../common/scripts/sound';
 import getNoteSummary from '../../../../../misc/get-note-summary';
 import paging from '../../../common/scripts/paging';
+import { userPage } from '../../../common/views/filters/v12/user';
+import notePage from '../../../common/views/filters/v12/note';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/notifications.vue'),
 
 	mixins: [
@@ -215,7 +217,7 @@ export default Vue.extend({
 		this.connection.on('notification', this.onNotification);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 
@@ -233,6 +235,7 @@ export default Vue.extend({
 				sound.play('notification');
 			}
 		},
+		userPage, notePage,
 	},
 });
 </script>

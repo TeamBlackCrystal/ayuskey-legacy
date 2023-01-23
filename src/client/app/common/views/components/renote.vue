@@ -3,7 +3,7 @@
 	<mk-avatar class="avatar" :user="note.user"/>
 	<fa icon="retweet"/>
 	<i18n path="@.renoted-by" tag="span">
-		<router-link v-user-preview="note.userId" class="name" :to="note.user | userPage" place="user">
+		<router-link v-user-preview="note.userId" class="name" :to="userPage(note.user)" place="user">
 			<mk-user-name :user="note.user"/>
 		</router-link>
 	</i18n>
@@ -21,10 +21,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
+import { userPage } from '../filters/v12/user'; 
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	inject: {
 		narrow: {
@@ -37,6 +38,9 @@ export default Vue.extend({
 			required: true,
 		},
 	},
+	methods: {
+		userPage,
+	}
 });
 </script>
 

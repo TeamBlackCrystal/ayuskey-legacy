@@ -1,9 +1,9 @@
 <template>
 <div class="mkw-polls">
 	<ui-container :show-header="!props.compact">
-		<template #header><fa icon="chart-pie"/>{{ $t('title') }}</template>
+		<template #header><fa icon="chart-pie"/>{{ i18n.t('title') }}</template>
 		<template #func>
-			<button :title="$t('title')" @click="fetch">
+			<button :title="i18n.t('title')" @click="fetch">
 				<fa v-if="!fetching && more" icon="arrow-right"/>
 				<fa v-if="!fetching && !more" icon="sync"/>
 			</button>
@@ -11,36 +11,41 @@
 
 		<div class="mkw-polls--body">
 			<div v-if="!fetching && poll != null" class="poll">
-				<p v-if="poll.text"><router-link :to="poll | notePage">
+				<p v-if="poll.text"><router-link :to="notePage(poll)">
 					<mfm :text="poll.text" :author="poll.user" :custom-emojis="poll.emojis"/>
 				</router-link></p>
-				<p v-if="!poll.text"><router-link :to="poll | notePage"><fa icon="link"/></router-link></p>
+				<p v-if="!poll.text"><router-link :to="notePage(poll)"><fa icon="link"/></router-link></p>
 				<mk-poll :note="poll"/>
 			</div>
-			<p v-if="!fetching && poll == null" class="empty">{{ $t('nothing') }}</p>
-			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<p v-if="!fetching && poll == null" class="empty">{{ i18n.t('nothing') }}</p>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ i18n.t('@.loading') }}<mk-ellipsis/></p>
 		</div>
 	</ui-container>
 </div>
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+import { i18n as _i18n } from '../../../i18n';
+import notePage from '../../../common/views/filters/v12/note';
 
-export default define({
+const widgets = define({
 	name: 'polls',
 	props: () => ({
 		compact: false,
 	}),
-}).extend({
-	i18n: i18n('desktop/views/widgets/polls.vue'),
+});
+
+export default defineComponent({
+	extends: widgets,
 	data() {
 		return {
 			poll: null,
 			fetching: true,
 			more: true,
 			offset: 0,
+			i18n: _i18n('desktop/views/widgets/polls.vue')
 		};
 	},
 	mounted() {
@@ -75,6 +80,7 @@ export default define({
 				this.more = false;
 			});
 		},
+		notePage,
 	},
 });
 </script>

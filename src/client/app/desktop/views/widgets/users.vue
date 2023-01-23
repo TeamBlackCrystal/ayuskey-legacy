@@ -1,50 +1,55 @@
 <template>
 <div class="mkw-users">
 	<ui-container :show-header="!props.compact">
-		<template #header><fa icon="users"/>{{ $t('title') }}</template>
+		<template #header><fa icon="users"/>{{ i18n.t('title') }}</template>
 		<template #func>
-			<button :title="$t('title')" @click="refresh">
+			<button :title="i18n.t('title')" @click="refresh">
 				<fa v-if="!fetching && more" icon="arrow-right"/>
 				<fa v-if="!fetching && !more" icon="sync"/>
 			</button>
 		</template>
 
 		<div class="mkw-users--body">
-			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ $t('@.loading') }}<mk-ellipsis/></p>
+			<p v-if="fetching" class="fetching"><fa icon="spinner" pulse fixed-width/>{{ i18n.t('@.loading') }}<mk-ellipsis/></p>
 			<template v-else-if="users.length != 0">
 				<div v-for="_user in users" class="user">
 					<mk-avatar class="avatar" :user="_user"/>
 					<div class="body">
-						<router-link v-user-preview="_user.id" class="name" :to="_user | userPage"><mk-user-name :user="_user"/></router-link>
-						<p class="username">@{{ _user | acct }}</p>
+						<router-link v-user-preview="_user.id" class="name" :to="userPage(_user)"><mk-user-name :user="_user"/></router-link>
+						<p class="username">@{{ acct(_user) }}</p>
 					</div>
 				</div>
 			</template>
-			<p v-else class="empty">{{ $t('no-one') }}</p>
+			<p v-else class="empty">{{ i18n.t('no-one') }}</p>
 		</div>
 	</ui-container>
 </div>
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+import { i18n as _i18n } from '../../../i18n';
+import { acct, userPage } from '../../../common/views/filters/v12/user';
 
 const limit = 3;
 
-export default define({
+const widgets = define({
 	name: 'users',
 	props: () => ({
 		compact: false,
 	}),
-}).extend({
-	i18n: i18n('desktop/views/widgets/users.vue'),
+});
+
+export default defineComponent({
+	extends: widgets,
 	data() {
 		return {
 			users: [],
 			fetching: true,
 			more: true,
 			page: 0,
+			i18n: _i18n('desktop/views/widgets/users.vue'),
 		};
 	},
 	mounted() {
@@ -82,6 +87,7 @@ export default define({
 			}
 			this.fetch();
 		},
+		acct, userPage,
 	},
 });
 </script>

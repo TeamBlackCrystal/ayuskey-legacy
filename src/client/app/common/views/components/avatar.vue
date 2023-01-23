@@ -1,17 +1,21 @@
 <template>
-<span v-if="disableLink" v-once v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :title="user | acct" @click="onClick">
+<span v-if="disableLink" v-once v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :title="acct(user)" @click="onClick">
 	<img class="inner" :style="style" :src="url" decoding="async"/>
 </span>
-<router-link v-else v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :to="user | userPage" :title="user | acct" :target="target">
+<router-link v-else v-user-preview="disablePreview ? undefined : user.id" class="mk-avatar" :style="style" :class="{ cat }" :to="userPage(user)" :title="acct(user)" :target="target">
 	<img class="inner" :style="style" :src="url" decoding="async"/>
 </router-link>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
+import { acct, userPage } from '../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	props: {
 		user: {
 			type: Object,
@@ -30,6 +34,7 @@ export default Vue.extend({
 			default: false,
 		},
 	},
+	emits: ['click'],
 	computed: {
 		lightmode(): boolean {
 			return this.$store.state.device.lightmode;
@@ -67,9 +72,10 @@ export default Vue.extend({
 						.padStart(6, '0')
 				: undefined;
 		},
-		onClick(e) {
-			this.$emit('click', e);
+		onClick(ev) {
+			this.$emit('click', ev);
 		},
+		acct, userPage,
 	},
 });
 </script>

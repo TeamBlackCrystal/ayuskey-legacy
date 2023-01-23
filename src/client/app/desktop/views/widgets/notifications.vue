@@ -10,16 +10,20 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
-export default define({
+const widgets = define({
 	name: 'notifications',
 	props: () => ({
 		compact: false,
-		type: 'all'
-	})
-}).extend({
+		type: 'all',
+	}),
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n('desktop/views/widgets/notifications.vue'),
 	methods: {
 		settings() {
@@ -29,7 +33,7 @@ export default define({
 				select: {
 					items: ['all', 'follow', 'mention', 'reply', 'renote', 'quote', 'reaction', 'pollVote', 'receiveFollowRequest'].map(x => ({
 						value: x, text: this.$t('@.notification-types.' + x)
-					}))
+					})),
 					default: this.props.type,
 				},
 				showCancelButton: true

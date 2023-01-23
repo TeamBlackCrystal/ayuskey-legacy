@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XColumn from './deck.column.vue';
 import XAbout from '../../../common/views/pages/about.vue';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 
 	components: {

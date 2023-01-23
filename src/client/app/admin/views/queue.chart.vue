@@ -153,7 +153,7 @@ export default Vue.extend({
 		this.connection.on('stats', this.onStats);
 		this.connection.on('statsLog', this.onStatsLog);
 
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			if (this.chart) this.chart.destroy();
 		});
 	},

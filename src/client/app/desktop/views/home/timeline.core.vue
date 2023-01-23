@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/timeline.core.vue'),
 
 	props: {
@@ -52,7 +52,7 @@ export default Vue.extend({
 
 	created() {
 		this.$root.$on('warp', this.warp);
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			this.$root.$off('warp', this.warp);
 			this.connection.dispose();
 		});

@@ -3,14 +3,14 @@
 	<div>
 		<header>
 			<span><fa :icon="faInbox"/> In</span>
-			<span v-if="latestStats">{{ latestStats.inbox.activeSincePrevTick | number }} / {{ latestStats.inbox.delayed | number }}</span>
+			<span v-if="latestStats">{{ number(latestStats.inbox.activeSincePrevTick) }} / {{ number(latestStats.inbox.delayed) }}</span>
 		</header>
 		<div ref="in"></div>
 	</div>
 	<div>
 		<header>
 			<span><fa :icon="faPaperPlane"/> Out</span>
-			<span v-if="latestStats">{{ latestStats.deliver.activeSincePrevTick | number }} / {{ latestStats.deliver.delayed | number }}</span>
+			<span v-if="latestStats">{{ number(latestStats.deliver.activeSincePrevTick) }} / {{ number(latestStats.deliver.delayed) }}</span>
 		</header>
 		<div ref="out"></div>
 	</div>
@@ -18,14 +18,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faInbox } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import ApexCharts from 'apexcharts';
+import number from '../../common/views/filters/v12/number';
 
 const limit = 150;
 
-export default Vue.extend({
+export default defineComponent({
 	data() {
 		return {
 			stats: [],
@@ -129,7 +130,7 @@ export default Vue.extend({
 			length: limit,
 		});
 
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			connection.dispose();
 			this.inChart.destroy();
 			this.outChart.destroy();
@@ -147,6 +148,8 @@ export default Vue.extend({
 				this.onStats(stats);
 			}
 		},
+
+		number,
 	},
 });
 </script>

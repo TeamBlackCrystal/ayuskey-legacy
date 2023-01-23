@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 
 const eachMonthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -41,7 +41,7 @@ function isLeapYear(year) {
 	return !(year & (year % 25 ? 3 : 15));
 }
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/calendar.vue'),
 	props: {
 		design: {

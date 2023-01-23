@@ -19,17 +19,17 @@
 				</div>
 				<div v-show="announcements && announcements.length > 1" class="broadcast-nav">
 					<mk-frac class="broadcast-page" :value="i + 1" :total="announcements.length"/>
-					<ui-button class="broadcast-prev" :title="$t('next')" @click="prev"><fa :icon="faAngleLeft"/></ui-button>
-					<ui-button class="broadcast-next" :title="$t('prev')" @click="next"><fa :icon="faAngleRight"/></ui-button>
+					<ui-button class="broadcast-prev" :title="i18n.t('next')" @click="prev"><fa :icon="faAngleLeft"/></ui-button>
+					<ui-button class="broadcast-next" :title="i18n.t('prev')" @click="next"><fa :icon="faAngleRight"/></ui-button>
 				</div>
 			</div>
 			<div class="broadcast-right">
-				<p v-if="fetching" class="fetching">{{ $t('fetching') }}<mk-ellipsis/></p>
-				<h1 v-if="!fetching">{{ announcements.length == 0 ? $t('no-broadcasts') : announcements[i].title }}</h1>
+				<p v-if="fetching" class="fetching">{{ i18n.t('fetching') }}<mk-ellipsis/></p>
+				<h1 v-if="!fetching">{{ announcements.length == 0 ? i18n.t('no-broadcasts') : announcements[i].title }}</h1>
 				<p v-if="!fetching">
 					<mfm v-if="announcements.length != 0" :key="i" :text="announcements[i].text"/>
 					<img v-if="announcements.length != 0 && announcements[i].image" :src="announcements[i].image" alt="" style="display: block; max-height: 130px; max-width: 100%;"/>
-					<template v-if="announcements.length == 0">{{ $t('have-a-nice-day') }}</template>
+					<template v-if="announcements.length == 0">{{ i18n.t('have-a-nice-day') }}</template>
 				</p>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import i18n from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 
 const widget = define({
 	name: 'broadcast',
@@ -52,13 +52,13 @@ const widget = define({
 
 export default defineComponent({
 	extends: widget,
-	i18n: i18n('common/views/widgets/broadcast.vue'),
 	data() {
 		return {
 			i: 0,
 			fetching: true,
 			announcements: [],
 			faAngleLeft, faAngleRight,
+			i18n: _i18n('common/views/widgets/broadcast.vue'),
 		};
 	},
 	mounted() {

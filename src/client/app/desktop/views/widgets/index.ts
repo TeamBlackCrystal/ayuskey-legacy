@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { App } from 'vue';
 
 import wNotifications from './notifications.vue';
 import wTimemachine from './timemachine.vue';
@@ -10,12 +10,14 @@ import wMessaging from './messaging.vue';
 import wProfile from './profile.vue';
 import wCustomize from './customize.vue';
 
-Vue.component('MkwNotifications', wNotifications);
-Vue.component('MkwTimemachine', wTimemachine);
-Vue.component('MkwActivity', wActivity);
-Vue.component('MkwTrends', wTrends);
-Vue.component('MkwUsers', wUsers);
-Vue.component('MkwPolls', wPolls);
-Vue.component('MkwMessaging', wMessaging);
-Vue.component('MkwProfile', wProfile);
-Vue.component('MkwCustomize', wCustomize);
+export default function(app: App) {
+	app.component('MkwNotifications', wNotifications);
+	app.component('MkwTimemachine', wTimemachine);
+	app.component('MkwActivity', wActivity);
+	app.component('MkwTrends', wTrends);
+	app.component('MkwUsers', wUsers);
+	app.component('MkwPolls', wPolls);
+	app.component('MkwMessaging', wMessaging);
+	app.component('MkwProfile', wProfile);
+	app.component('MkwCustomize', wCustomize);
+}

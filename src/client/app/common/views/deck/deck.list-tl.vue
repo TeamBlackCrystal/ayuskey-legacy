@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import XNotes from './deck.notes.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		XNotes,
 	},
@@ -57,7 +57,7 @@ export default Vue.extend({
 		this.connection.on('userRemoved', this.onUserRemoved);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

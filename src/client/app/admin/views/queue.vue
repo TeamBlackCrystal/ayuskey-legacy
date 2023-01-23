@@ -1,50 +1,50 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faChartBar"/> {{ $t('title') }}</template>
+		<template #title><fa :icon="faChartBar"/> {{ i18n.t('title') }}</template>
 		<section>
-			<header><fa :icon="faPaperPlane"/> {{ $t('domains.deliver') }}</header>
+			<header><fa :icon="faPaperPlane"/> {{ i18n.t('domains.deliver') }}</header>
 			<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="deliver"/>
 		</section>
 		<section>
-			<header><fa :icon="faInbox"/> {{ $t('domains.inbox') }}</header>
+			<header><fa :icon="faInbox"/> {{ i18n.t('domains.inbox') }}</header>
 			<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="inbox"/>
 		</section>
 		<section>
 			<details>
-				<summary>{{ $t('other-queues') }}</summary>
+				<summary>{{ i18n.t('other-queues') }}</summary>
 				<section>
-					<header><fa :icon="faDatabase"/> {{ $t('domains.db') }}</header>
+					<header><fa :icon="faDatabase"/> {{ i18n.t('domains.db') }}</header>
 					<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="db"/>
 				</section>
 				<ui-hr/>
 				<section>
-					<header><fa :icon="faCloud"/> {{ $t('domains.objectStorage') }}</header>
+					<header><fa :icon="faCloud"/> {{ i18n.t('domains.objectStorage') }}</header>
 					<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="objectStorage"/>
 				</section>
 			</details>
 		</section>
 		<section>
-			<ui-button @click="removeAllJobs">{{ $t('remove-all-jobs') }}</ui-button>
+			<ui-button @click="removeAllJobs">{{ i18n.t('remove-all-jobs') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faTasks"/> {{ $t('jobs') }}</template>
+		<template #title><fa :icon="faTasks"/> {{ i18n.t('jobs') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-select v-model="domain">
-					<template #label>{{ $t('queue') }}</template>
-					<option value="deliver">{{ $t('domains.deliver') }}</option>
-					<option value="inbox">{{ $t('domains.inbox') }}</option>
-					<option value="db">{{ $t('domains.db') }}</option>
-					<option value="objectStorage">{{ $t('domains.objectStorage') }}</option>
+					<template #label>{{ i18n.t('queue') }}</template>
+					<option value="deliver">{{ i18n.t('domains.deliver') }}</option>
+					<option value="inbox">{{ i18n.t('domains.inbox') }}</option>
+					<option value="db">{{ i18n.t('domains.db') }}</option>
+					<option value="objectStorage">{{ i18n.t('domains.objectStorage') }}</option>
 				</ui-select>
 				<ui-select v-model="state">
-					<template #label>{{ $t('state') }}</template>
-					<option value="active">{{ $t('states.active') }}</option>
-					<option value="waiting">{{ $t('states.waiting') }}</option>
-					<option value="delayed">{{ $t('states.delayed') }}</option>
+					<template #label>{{ i18n.t('state') }}</template>
+					<option value="active">{{ i18n.t('states.active') }}</option>
+					<option value="waiting">{{ i18n.t('states.waiting') }}</option>
+					<option value="delayed">{{ i18n.t('states.delayed') }}</option>
 				</ui-select>
 			</ui-horizon-group>
 			<sequential-entrance animation="entranceFromTop" delay="25">
@@ -59,28 +59,30 @@
 					<span>{{ `(${job.attempts}/${job.maxAttempts}, ${Math.floor((jobsFetched - job.timestamp) / 1000 / 60)}min)` }}</span>
 				</div>
 			</sequential-entrance>
-			<ui-info v-if="jobs.length == jobsLimit">{{ $t('result-is-truncated', { n: jobsLimit }) }}</ui-info>
+			<ui-info v-if="jobs.length == jobsLimit">{{ i18n.t('result-is-truncated', { n: jobsLimit }) }}</ui-info>
 		</section>
 	</ui-card>
 </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faTasks, faInbox, faDatabase, faCloud } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane, faChartBar } from '@fortawesome/free-regular-svg-icons';
-import i18n from '../../i18n';
+import { i18n as _i18n } from '../../i18n';
 import XChart from './queue.chart.vue';
 
-export default Vue.extend({
-	i18n: i18n('admin/views/queue.vue'),
-
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	components: {
 		XChart,
 	},
 
 	data() {
 		return {
+			i18n: _i18n('admin/views/queue.vue'),
 			connection: null,
 			chartLimit: 200,
 			jobs: [],
@@ -113,7 +115,7 @@ export default Vue.extend({
 			length: this.chartLimit,
 		});
 
-		this.$once('hook:beforeDestroy', () => {
+		this.$once('hook:beforeUnmount', () => {
 			this.connection.dispose();
 		});
 	},

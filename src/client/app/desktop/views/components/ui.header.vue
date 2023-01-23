@@ -1,6 +1,9 @@
 <template>
 <div class="header" :style="style">
-	<p v-if="env != 'production'" class="warn">{{ $t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
+	<div v-if="pendingApiRequestsCount > 0" id="wait"></div>
+	<p v-if="env != 'production'" class="warn">{{ i18n.t('@.do-not-use-in-production') }} <a href="/assets/flush.html?force">Flush</a></p>
+	<!--TODO: いい感じに-->
+	<p class="warn"><mfm text="<marquee>Avoid using your system in a production environment./本番環境で使用しないでください。</marquee>" /></p>
 	<div ref="main" class="main">
 		<div class="backdrop" :class="{'blur': $store.state.device.useBlur}"></div>
 		<div class="main">
@@ -28,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../../i18n';
 import { env } from '../../../config';
 
 import XNav from './ui.header.nav.vue';
@@ -39,9 +42,12 @@ import XNotifications from './ui.header.notifications.vue';
 import XPost from './ui.header.post.vue';
 import XClock from './ui.header.clock.vue';
 import XMessaging from './ui.header.messaging.vue';
+import { pendingApiRequestsCount } from '../../../api';
 
-export default Vue.extend({
-	i18n: i18n(),
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	components: {
 		XNav,
 		XSearch,
@@ -54,6 +60,8 @@ export default Vue.extend({
 
 	data() {
 		return {
+			i18n: _i18n(),
+			pendingApiRequestsCount: pendingApiRequestsCount,
 			env: env,
 		};
 	},
@@ -87,6 +95,28 @@ export default Vue.extend({
 	top 0
 	z-index 1000
 	width 100%
+
+	> #wait {
+		display: block;
+		position: fixed;
+		z-index: 4000000;
+		top: 15px;
+		right: 15px;
+	
+		&:before {
+			content: "";
+			display: block;
+			width: 18px;
+			height: 18px;
+			box-sizing: border-box;
+			border: solid 2px transparent;
+			border-top-color: var(--primary);
+			border-left-color: var(--primary);
+			border-radius: 50%;
+			animation: progress-spinner 400ms linear infinite;
+		}
+	}
+	
 
 	> .warn
 		display block

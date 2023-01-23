@@ -8,36 +8,48 @@
 		>
 			<div
 				class="banner"
-				:style="$store.state.i.bannerUrl ? `background-image: url(${$store.state.i.bannerUrl})` : ''"
-				:title="$t('update-banner')"
+				:style="i.bannerUrl ? `background-image: url(${i.bannerUrl})` : ''"
+				:title="i18n.t('update-banner')"
 				@click="updateBanner()"
 			></div>
 			<mk-avatar
-				class="avatar" :user="$store.state.i"
+				class="avatar" :user="i"
 				:disable-link="true"
-				:title="$t('update-avatar')"
+				:title="i18n.t('update-avatar')"
 				@click="updateAvatar()"
 			/>
-			<router-link class="name" :to="$store.state.i | userPage"><mk-user-name :user="$store.state.i"/></router-link>
-			<p class="username">@{{ $store.state.i | acct }}</p>
+			<router-link class="name" :to="userPage(i)"><mk-user-name :user="i"/></router-link>
+			<p class="username">@{{ acct(i) }}</p>
 		</div>
 	</ui-container>
 </div>
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
+import { i18n as _i18n } from '../../../i18n';
 import updateAvatar from '../../api/update-avatar';
 import updateBanner from '../../api/update-banner';
+import { acct, userPage } from '../../../common/views/filters/v12/user';
+import { useStore } from '../../../stores';
+import { AYUX } from '../../../stores/ayux';
 
-export default define({
+const widgets = define({
 	name: 'profile',
 	props: () => ({
 		design: 0,
 	}),
-}).extend({
-	i18n: i18n('desktop/views/widgets/profile.vue'),
+});
+
+export default defineComponent({
+	extends: widgets,
+	data () {
+		return {
+			i18n: _i18n('desktop/views/widgets/profile.vue'),
+			i: AYUX().get('i'),
+		};
+	},
 	methods: {
 		func() {
 			if (this.props.design == 2) {
@@ -53,6 +65,7 @@ export default define({
 		updateBanner() {
 			updateBanner(this.$root)();
 		},
+		acct, userPage,
 	},
 });
 </script>

@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
-import * as VueWordCloud from 'vuewordcloud';
+import * as VueWordCloud from '@ayuskey/vuewordcloud';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/tag-cloud.vue'),
 	components: {
 		[VueWordCloud.name]: VueWordCloud,
@@ -38,7 +38,7 @@ export default Vue.extend({
 		this.fetch();
 		this.clock = setInterval(this.fetch, 1000 * 60);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

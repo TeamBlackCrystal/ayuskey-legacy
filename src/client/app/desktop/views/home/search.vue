@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import Progress from '../../../common/scripts/loading';
 import { genSearchQuery } from '../../../common/scripts/gen-search-query';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/pages/search.vue'),
 	data() {
 		return {
@@ -44,7 +44,7 @@ export default Vue.extend({
 		};
 		Progress.done();
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		document.removeEventListener('keydown', this.onDocumentKeydown);
 		window.removeEventListener('scroll', this.onScroll);
 	},

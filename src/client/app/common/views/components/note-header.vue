@@ -1,7 +1,7 @@
 <template>
 <header class="bvonvjxbwzaiskogyhbwgyxvcgserpmu">
 	<mk-avatar v-if="$store.state.device.postStyle == 'smart'" class="avatar" :user="note.user"/>
-	<router-link v-user-preview="note.user.id" class="name" :to="note.user | userPage">
+	<router-link v-user-preview="note.user.id" class="name" :to="userPage(note.user)">
 		<mk-user-name :user="note.user"/>
 	</router-link>
 	<span v-if="note.user.isPremium" class="is-premium"><fa icon="crown"/></span>
@@ -14,7 +14,7 @@
 	<div class="info">
 		<span v-if="note.app && !mini && $store.state.settings.showVia" class="app">via <b>{{ note.app.name }}</b></span>
 		<span v-if="note.viaMobile" class="mobile"><fa icon="mobile-alt"/></span>
-		<router-link class="created-at" :to="note | notePage">
+		<router-link class="created-at" :to="notePage(note)">
 			<mk-time :time="note.createdAt"/>
 		</router-link>
 		<x-visibility-icon class="visibility" :v="note.visibility" :local-only="note.localOnly" :copy-once="note.copyOnce"/>
@@ -24,12 +24,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
+import { userPage } from '../filters/v12/user';
+import notePage from '../filters/v12/note';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	components: {
 		XVisibilityIcon,
@@ -49,6 +51,9 @@ export default Vue.extend({
 		return {
 			faGlobeAmericas,
 		};
+	},
+	methods: {
+		userPage, notePage
 	},
 });
 </script>

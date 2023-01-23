@@ -2,8 +2,8 @@
 <div v-if="!fetching" class="ecsvsegy">
 	<div v-if="!notes.length" class="no-highlight">{{$t('@.featured-none')}}</div>
 	<sequential-entrance animation="entranceFromTop" delay="25">
-		<template v-for="note in notes">
-			<mk-note-detail :key="note.id" class="post" :note="note"/>
+		<template v-for="note in notes" :key="note.id">
+			<mk-note-detail class="post" :note="note"/>
 		</template>
 	</sequential-entrance>
 	<div v-if="more" class="more">
@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import paging from '../../../common/scripts/paging';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 
 	mixins: [

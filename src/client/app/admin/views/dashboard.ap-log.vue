@@ -22,10 +22,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faBolt, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	data() {
 		return {
 			logs: [],
@@ -44,7 +44,7 @@ export default Vue.extend({
 		});
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

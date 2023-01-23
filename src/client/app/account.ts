@@ -1,19 +1,16 @@
-import { reactive } from 'vue';
 import { apiUrl } from './config';
 //import { waiting } from './os';
-import { unisonReload } from './common/scripts/unison-reload';
 
 // TODO: 他のタブと永続化されたstateを同期
 
 type Account = {
+	username: string;
 	id: string;
 	token: string;
 	isModerator: boolean;
 	isAdmin: boolean;
 	isDeleted: boolean;
 };
-
-const data = localStorage.getItem('account');
 
 // TODO: 外部からはreadonlyに
 //export const $i = data ? reactive(JSON.parse(data) as Account) : null;
@@ -26,7 +23,7 @@ if (vuex) {
 	tmp = JSON.parse(vuex);
 }
 export const $i = tmp.i as Account;
-export const $token = tmp.i?.token ? tmp.i?.token : tmp.i;
+export const $token = tmp.i?.token ? tmp.i?.token : tmp.i
 //#endregion
 
 export function signout() {

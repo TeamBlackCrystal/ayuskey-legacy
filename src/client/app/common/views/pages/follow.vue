@@ -7,10 +7,10 @@
 		<div class="banner" :style="bannerStyle"></div>
 		<mk-avatar class="avatar" :user="user" :disable-preview="true"/>
 		<div class="body">
-			<router-link :to="user | userPage" class="name">
+			<router-link :to="userPage(user)" class="name">
 				<mk-user-name :user="user"/>
 			</router-link>
-			<span class="username">@{{ user | acct }}</span>
+			<span class="username">@{{ acct(user) }}</span>
 			<div class="description">
 				<mfm v-if="user.description" :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis"/>
 			</div>
@@ -34,12 +34,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import parseAcct from '../../../../../misc/acct/parse';
 import Progress from '../../../common/scripts/loading';
+import number from '../filters/v12/number';
+import { acct, userPage } from '../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/pages/follow.vue'),
 	data() {
 		return {
@@ -51,7 +53,7 @@ export default Vue.extend({
 
 	computed: {
 		myName(): string {
-			return Vue.filter('userName')(this.$store.state.i);
+			return number(this.$store.state.i);
 		},
 
 		bannerStyle(): any {
@@ -139,6 +141,8 @@ export default Vue.extend({
 				this.followWait = false;
 			}
 		},
+
+		number, acct, userPage,
 	},
 });
 </script>

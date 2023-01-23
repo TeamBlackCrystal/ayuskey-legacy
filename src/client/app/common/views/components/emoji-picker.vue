@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { emojilist } from '../../../../../misc/emojilist';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
@@ -85,7 +85,7 @@ import { faAsterisk, faLeaf, faUtensils, faFutbol, faCity, faDice, faGlobe, faHi
 import { faHeart, faFlag, faLaugh } from '@fortawesome/free-regular-svg-icons';
 import { groupByX } from '../../../../../prelude/array';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/emoji-picker.vue'),
 
 	data() {

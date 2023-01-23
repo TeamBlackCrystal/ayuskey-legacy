@@ -32,10 +32,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import * as tinycolor from 'tinycolor2';
 
-export default Vue.extend({
+export default defineComponent({
 	props: {
 		dark: {
 			type: Boolean,
@@ -123,7 +123,7 @@ export default Vue.extend({
 		update();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.enabled = false;
 	},
 

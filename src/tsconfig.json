@@ -49,5 +49,8 @@
 	],
 	"exclude": [
 		"./client/app/**/*.ts"
-	]
+	],
+	"ts-node": {
+		"swc": true
+	}
 }

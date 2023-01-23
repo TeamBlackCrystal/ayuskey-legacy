@@ -1,6 +1,6 @@
 <template>
 <div v-hotkey.global="keymap" class="notifications">
-	<button :data-active="isOpen" :title="$t('title')" @click="toggle">
+	<button :data-active="isOpen" :title="i18n.t('title')" @click="toggle">
 		<i class="bell"><fa :icon="['far', 'bell']"/></i>
 		<i v-if="hasUnreadNotification" class="circle"><fa icon="circle"/></i>
 	</button>
@@ -11,14 +11,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../../i18n';
 import contains from '../../../common/scripts/contains';
 
-export default Vue.extend({
-	i18n: i18n('desktop/views/components/ui.header.notifications.vue'),
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
+			i18n: _i18n('desktop/views/components/ui.header.notifications.vue'),
 			isOpen: false,
 		};
 	},

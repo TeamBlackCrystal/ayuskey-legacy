@@ -2,8 +2,8 @@
  * Desktop Client
  */
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { App } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
 // Style
 import './style.styl';
@@ -31,6 +31,10 @@ import MkChooseFolderFromDriveWindow from './views/components/choose-folder-from
 import MkHomeTimeline from './views/home/timeline.vue';
 import Notification from './views/components/ui-notification.vue';
 
+import desktopDirectives from './views/directives';
+import desktopComponents from './views/components';
+import desktopWidgets from './views/widgets';
+
 import { url } from '../config';
 import MiOS from '../mios';
 
@@ -38,100 +42,95 @@ import MiOS from '../mios';
  * init
  */
 init(async (launch, os) => {
-	Vue.mixin({
-		methods: {
-			$contextmenu(e, menu, opts?) {
-				const o = opts || {};
-				const vm = this.$root.new(Ctx, {
-					menu,
-					x: e.pageX - window.pageXOffset,
-					y: e.pageY - window.pageYOffset,
-				});
-				vm.$once('closed', () => {
-					if (o.closed) o.closed();
-				});
-			},
-
-			$post(opts) {
-				const o = opts || {};
-				if (o.renote) {
-					const vm = this.$root.new(RenoteFormWindow, {
-						note: o.renote,
-						animation: o.animation == null ? true : o.animation,
-					});
-					if (o.cb) vm.$once('closed', o.cb);
-				} else {
-					this.$root.newAsync(() => import('./views/components/post-form-window.vue').then(m => m.default), {
-						reply: o.reply,
-						airReply: o.airReply,
-						mention: o.mention,
-						animation: o.animation == null ? true : o.animation,
-						initialText: o.initialText,
-						instant: o.instant,
-						initialNote: o.initialNote,
-					}).then(vm => {
-						if (o.cb) vm.$once('closed', o.cb);
-					});
-				}
-			},
-
-			$chooseDriveFile(opts) {
-				return new Promise((res, rej) => {
+	function desktopMixin(app: App) {
+		app.mixin({
+			methods: {
+				$contextmenu(e, menu, opts?) {
 					const o = opts || {};
+					const vm = this.$root.new(Ctx, {
+						menu,
+						x: e.pageX - window.pageXOffset,
+						y: e.pageY - window.pageYOffset,
+					});
+					vm.$once('closed', () => {
+						if (o.closed) o.closed();
+					});
+				},
 
-					if (document.body.clientWidth > 800) {
-						const w = this.$root.new(MkChooseFileFromDriveWindow, {
+				$post(opts) {
+					const o = opts || {};
+					if (o.renote) {
+						const vm = this.$root.new(RenoteFormWindow, {
+							note: o.renote,
+							animation: o.animation == null ? true : o.animation,
+						});
+						if (o.cb) vm.$once('closed', o.cb);
+					} else {
+						this.$root.newAsync(() => import('./views/components/post-form-window.vue').then(m => m.default), {
+							reply: o.reply,
+							airReply: o.airReply,
+							mention: o.mention,
+							animation: o.animation == null ? true : o.animation,
+							initialText: o.initialText,
+							instant: o.instant,
+							initialNote: o.initialNote,
+						}).then(vm => {
+							if (o.cb) vm.$once('closed', o.cb);
+						});
+					}
+				},
+
+				$chooseDriveFile(opts) {
+					return new Promise((res, rej) => {
+						const o = opts || {};
+
+						if (document.body.clientWidth > 800) {
+							const w = this.$root.new(MkChooseFileFromDriveWindow, {
+								title: o.title,
+								type: o.type,
+								multiple: o.multiple,
+								initFolder: o.currentFolder,
+							});
+							w.$once('selected', file => {
+								res(file);
+							});
+						} else {
+							window['cb'] = file => {
+								res(file);
+							};
+
+							window.open(url + `/selectdrive?multiple=${o.multiple}`,
+								'choose_drive_window',
+								'height=500, width=800');
+						}
+					});
+				},
+
+				$chooseDriveFolder(opts) {
+					return new Promise((res, rej) => {
+						const o = opts || {};
+						const w = this.$root.new(MkChooseFolderFromDriveWindow, {
 							title: o.title,
-							type: o.type,
-							multiple: o.multiple,
 							initFolder: o.currentFolder,
 						});
-						w.$once('selected', file => {
-							res(file);
+						w.$once('selected', folder => {
+							res(folder);
 						});
-					} else {
-						window['cb'] = file => {
-							res(file);
-						};
-
-						window.open(url + `/selectdrive?multiple=${o.multiple}`,
-							'choose_drive_window',
-							'height=500, width=800');
-					}
-				});
-			},
-
-			$chooseDriveFolder(opts) {
-				return new Promise((res, rej) => {
-					const o = opts || {};
-					const w = this.$root.new(MkChooseFolderFromDriveWindow, {
-						title: o.title,
-						initFolder: o.currentFolder,
 					});
-					w.$once('selected', folder => {
-						res(folder);
+				},
+
+				$notify(message) {
+					this.$root.new(Notification, {
+						message,
 					});
-				});
+				},
 			},
-
-			$notify(message) {
-				this.$root.new(Notification, {
-					message,
-				});
-			},
-		},
-	});
-
-	// Register directives
-	require('./views/directives');
-
-	// Register components
-	require('./views/components');
-	require('./views/widgets');
+		});
+	}
 
 	// Init router
-	const router = new VueRouter({
-		mode: 'history',
+	const router = createRouter({
+		history: createWebHistory(),
 		routes: [
 			os.store.state.device.inDeckMode
 				? { path: '/', name: 'index', component: () => import('../common/views/deck/deck.vue').then(m => m.default), children: [
@@ -199,15 +198,24 @@ init(async (launch, os) => {
 			{ path: '/reset-password/:token', component: MkResetPassword, props: true },
 			{ path: '/deck', redirect: '/' },
 			{ path: '/flags', component: () => import('../common/views/pages/flags.vue').then(m => m.default) },
-			{ path: '*', component: MkNotFound },
+			{ path: '/:pathMatch(.*)*', component: MkNotFound },
 		],
 		scrollBehavior(to, from, savedPosition) {
-			return { x: 0, y: 0 };
+			return { left: 0, top: 0 };
 		},
 	});
 
 	// Launch the app
 	const [app, _] = launch(router);
+
+	desktopMixin(app);
+
+	// Register directives
+	//desktopDirectives(app);
+
+	// Register components
+	desktopComponents(app);
+	desktopWidgets(app);
 
 	/**
 	 * Init Notification

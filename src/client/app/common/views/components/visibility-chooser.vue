@@ -71,12 +71,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import XVisibilityIcon from './visibility-icon.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/visibility-chooser.vue'),
 	components: {
 		XVisibilityIcon,

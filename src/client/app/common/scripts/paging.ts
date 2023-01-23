@@ -54,7 +54,7 @@ export default (opts) => defineComponent({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		if (opts.captureWindowScroll) {
 			window.removeEventListener('scroll', this.onScroll);
 		} else if (opts.isContainer) {

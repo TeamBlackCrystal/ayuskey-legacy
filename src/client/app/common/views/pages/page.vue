@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { faStickyNote } from '@fortawesome/free-regular-svg-icons';
 import XPage from '../components/page/page.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		XPage,
 	},

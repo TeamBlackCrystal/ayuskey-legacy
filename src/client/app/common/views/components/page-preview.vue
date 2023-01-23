@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+import { userName } from '../filters/v12/user';
+
+defineProps({
+	page: {
+		type: Object,
+		required: true,
+	},
+});
+</script>
+
 <template>
 <router-link :to="`/@${page.user.username}/pages/${page.name}`" class="vhpxefrj" tabindex="-1">
 	<div v-if="page.eyeCatchingImage" class="thumbnail" :style="`background-image: url('${page.eyeCatchingImage.thumbnailUrl}')`"></div>
@@ -8,24 +19,11 @@
 		<p v-if="page.summary" :title="page.summary">{{ page.summary.length > 85 ? page.summary.slice(0, 85) + '…' : page.summary }}</p>
 		<footer>
 			<img class="icon" :src="page.user.avatarUrl"/>
-			<p>{{ page.user | userName }}</p>
+			<p>{{ userName(page.user) }}</p>
 		</footer>
 	</article>
 </router-link>
 </template>
-
-<script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
-	props: {
-		page: {
-			type: Object,
-			required: true,
-		},
-	},
-});
-</script>
 
 <style lang="stylus" scoped>
 .vhpxefrj

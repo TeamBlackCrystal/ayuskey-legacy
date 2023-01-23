@@ -1,7 +1,7 @@
 <template>
 <div class="xqnhankfuuilcwvhgsopeqncafzsquya">
 	<button v-if="selfNav" class="go-index" @click="goIndex"><fa icon="arrow-left"/></button>
-	<header><b><router-link :to="blackUser | userPage"><mk-user-name :user="blackUser"/></router-link></b>({{ $t('@.reversi.black') }}) vs <b><router-link :to="whiteUser | userPage"><mk-user-name :user="whiteUser"/></router-link></b>({{ $t('@.reversi.white') }})</header>
+	<header><b><router-link :to="userPage(blackUser)"><mk-user-name :user="blackUser"/></router-link></b>({{ $t('@.reversi.black') }}) vs <b><router-link :to="userPage(whiteUser)"><mk-user-name :user="whiteUser"/></router-link></b>({{ $t('@.reversi.white') }})</header>
 
 	<div style="overflow: hidden; line-height: 28px;">
 		<p v-if="!iAmPlayer && !game.isEnded" class="turn">
@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../../i18n';
 import * as sound from '../../../../scripts/sound';
 import * as CRC32 from 'crc-32';
@@ -88,8 +88,9 @@ import Reversi, { Color } from '../../../../../../../games/reversi/core';
 import { url } from '../../../../../config';
 import { faAngleDoubleLeft, faAngleLeft, faAngleRight, faAngleDoubleRight , faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
+import { userPage } from '../../../filters/v12/user';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/games/reversi/reversi.game.vue'),
 	props: {
 		initGame: {
@@ -216,7 +217,7 @@ export default Vue.extend({
 		this.connection.on('ended', this.onEnded);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('set', this.onSet);
 		this.connection.off('rescue', this.onRescue);
 		this.connection.off('ended', this.onEnded);
@@ -310,6 +311,8 @@ export default Vue.extend({
 		goIndex() {
 			this.$emit('go-index');
 		},
+
+		userPage,
 	},
 });
 </script>

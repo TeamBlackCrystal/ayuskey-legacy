@@ -36,5 +36,8 @@
 	"compileOnSave": false,
 	"include": [
 		"./**/*.ts"
-	]
+	],
+	"ts-node": {
+		"swc": true
+	}
 }

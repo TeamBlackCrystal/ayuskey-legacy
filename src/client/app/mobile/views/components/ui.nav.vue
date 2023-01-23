@@ -124,7 +124,7 @@ export default Vue.extend({
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection.dispose();
 		}

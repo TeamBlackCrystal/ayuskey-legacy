@@ -36,15 +36,19 @@
 </template>
 
 <script lang="ts">
-import define from '../../../common/define-widget';
+import { defineComponent } from 'vue';
+import define from '../../../common/define-widget-define-component';
 import i18n from '../../../i18n';
 
-export default define({
+const widgets = define({
 	name: 'calendar',
 	props: () => ({
 		design: 0,
 	}),
-}).extend({
+});
+
+export default defineComponent({
+	extends: widgets,
 	i18n: i18n('common/views/widgets/calendar.vue'),
 	data() {
 		return {
@@ -65,7 +69,7 @@ export default define({
 		this.tick();
 		this.clock = setInterval(this.tick, 1000);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

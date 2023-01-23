@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import XChart from './trends.chart.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/trends.vue'),
 	components: {
 		XChart,
@@ -36,7 +36,7 @@ export default Vue.extend({
 		this.fetch();
 		this.clock = setInterval(this.fetch, 1000 * 60);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

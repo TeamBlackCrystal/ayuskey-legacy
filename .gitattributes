@@ -5,3 +5,5 @@
 *.glb -diff -text
 *.blend -diff -text
 *.afdesign -diff -text
+
+lib/vuewordcloud/**/*.js -diff -text

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { query as urlQuery } from '../../../../../prelude/url';
 
 type II = {
@@ -22,7 +22,7 @@ type II = {
 	faviconUrl: '/favicon.ico';
 };
 
-export default Vue.extend({ 
+export default defineComponent({ 
 	props: ['instance'],
 	data() {
 		return {

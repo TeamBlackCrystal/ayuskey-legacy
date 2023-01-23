@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { url } from '../../../config';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/game-window.vue'),
 	components: {
 		XReversi: () => import('../../../common/views/components/games/reversi/reversi.vue').then(m => m.default),

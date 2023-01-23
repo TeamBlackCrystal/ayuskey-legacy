@@ -341,7 +341,7 @@ export default (opts) => ({
 			w.$once('chosen', v => {
 				this.applyVisibility(v);
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				w.close();
 			});
 		},
@@ -473,7 +473,7 @@ export default (opts) => ({
 			vm.$once('chosen', emoji => {
 				insertTextAtCursor(this.$refs.text, emoji);
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				vm.close();
 			});
 		},

@@ -1,37 +1,37 @@
 <template>
 <div class="qvgidhudpqhjttdhxubzuyrhyzgslujw">
 	<header>
-		<b><fa :icon="['far', 'chart-bar']"/> {{ $t('title') }}:</b>
+		<b><fa :icon="['far', 'chart-bar']"/> {{ i18n.t('title') }}:</b>
 		<select v-model="src">
-			<optgroup :label="$t('federation')">
-				<option value="federation-instances">{{ $t('charts.federation-instances') }}</option>
-				<option value="federation-instances-total">{{ $t('charts.federation-instances-total') }}</option>
+			<optgroup :label="i18n.t('federation')">
+				<option value="federation-instances">{{ i18n.t('charts.federation-instances') }}</option>
+				<option value="federation-instances-total">{{ i18n.t('charts.federation-instances-total') }}</option>
 			</optgroup>
-			<optgroup :label="$t('users')">
-				<option value="users">{{ $t('charts.users') }}</option>
-				<option value="users-total">{{ $t('charts.users-total') }}</option>
-				<option value="active-users">{{ $t('charts.active-users') }}</option>
+			<optgroup :label="i18n.t('users')">
+				<option value="users">{{ i18n.t('charts.users') }}</option>
+				<option value="users-total">{{ i18n.t('charts.users-total') }}</option>
+				<option value="active-users">{{ i18n.t('charts.active-users') }}</option>
 			</optgroup>
-			<optgroup :label="$t('notes')">
-				<option value="notes">{{ $t('charts.notes') }}</option>
-				<option value="local-notes">{{ $t('charts.local-notes') }}</option>
-				<option value="remote-notes">{{ $t('charts.remote-notes') }}</option>
-				<option value="notes-total">{{ $t('charts.notes-total') }}</option>
+			<optgroup :label="i18n.t('notes')">
+				<option value="notes">{{ i18n.t('charts.notes') }}</option>
+				<option value="local-notes">{{ i18n.t('charts.local-notes') }}</option>
+				<option value="remote-notes">{{ i18n.t('charts.remote-notes') }}</option>
+				<option value="notes-total">{{ i18n.t('charts.notes-total') }}</option>
 			</optgroup>
-			<optgroup :label="$t('drive')">
-				<option value="drive-files">{{ $t('charts.drive-files') }}</option>
-				<option value="drive-files-total">{{ $t('charts.drive-files-total') }}</option>
-				<option value="drive">{{ $t('charts.drive') }}</option>
-				<option value="drive-total">{{ $t('charts.drive-total') }}</option>
+			<optgroup :label="i18n.t('drive')">
+				<option value="drive-files">{{ i18n.t('charts.drive-files') }}</option>
+				<option value="drive-files-total">{{ i18n.t('charts.drive-files-total') }}</option>
+				<option value="drive">{{ i18n.t('charts.drive') }}</option>
+				<option value="drive-total">{{ i18n.t('charts.drive-total') }}</option>
 			</optgroup>
-			<optgroup :label="$t('network')">
-				<option value="network-requests">{{ $t('charts.network-requests') }}</option>
-				<option value="network-time">{{ $t('charts.network-time') }}</option>
-				<option value="network-usage">{{ $t('charts.network-usage') }}</option>
+			<optgroup :label="i18n.t('network')">
+				<option value="network-requests">{{ i18n.t('charts.network-requests') }}</option>
+				<option value="network-time">{{ i18n.t('charts.network-time') }}</option>
+				<option value="network-usage">{{ i18n.t('charts.network-usage') }}</option>
 			</optgroup>
 		</select>
 		<div>
-			<span :class="{ active: span == 'day' }" @click="span = 'day'">{{ $t('per-day') }}</span> | <span :class="{ active: span == 'hour' }" @click="span = 'hour'">{{ $t('per-hour') }}</span>
+			<span :class="{ active: span == 'day' }" @click="span = 'day'">{{ i18n.t('per-day') }}</span> | <span :class="{ active: span == 'hour' }" @click="span = 'hour'">{{ i18n.t('per-hour') }}</span>
 		</div>
 	</header>
 	<div ref="chart"></div>
@@ -39,20 +39,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import * as tinycolor from 'tinycolor2';
 import ApexCharts from 'apexcharts';
+import { api } from '../../os';
+import number from '../../common/views/filters/v12/number';
+import bytes from '../../common/views/filters/v12/bytes';
 
 const limit = 90;
 
 const sum = (...arr) => arr.reduce((r, a) => r.map((b, i) => a[i] + b));
 const negate = arr => arr.map(x => -x);
 
-export default Vue.extend({
-	i18n: i18n('admin/views/charts.vue'),
+export default defineComponent({
 	data() {
 		return {
+			i18n: _i18n('admin/views/charts.vue'),
 			chart: null,
 			src: 'notes',
 			span: 'hour',
@@ -61,6 +64,7 @@ export default Vue.extend({
 	},
 
 	computed: {
+		// eslint-disable-next-line vue/return-in-computed-property
 		data(): any {
 			if (this.chart == null) return null;
 			switch (this.src) {
@@ -85,8 +89,8 @@ export default Vue.extend({
 
 		stats(): any[] {
 			const stats =
-				this.span == 'day' ? this.chart.perDay :
-				this.span == 'hour' ? this.chart.perHour :
+				this.span === 'day' ? this.chart.perDay :
+				this.span === 'hour' ? this.chart.perHour :
 				null;
 
 			return stats;
@@ -107,19 +111,19 @@ export default Vue.extend({
 		this.now = new Date();
 
 		const [perHour, perDay] = await Promise.all([Promise.all([
-			this.$root.api('charts/federation', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/users', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/active-users', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/notes', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/drive', { limit: limit, span: 'hour' }),
-			this.$root.api('charts/network', { limit: limit, span: 'hour' }),
+			api('charts/federation', { limit: limit, span: 'hour' }),
+			api('charts/users', { limit: limit, span: 'hour' }),
+			api('charts/active-users', { limit: limit, span: 'hour' }),
+			api('charts/notes', { limit: limit, span: 'hour' }),
+			api('charts/drive', { limit: limit, span: 'hour' }),
+			api('charts/network', { limit: limit, span: 'hour' }),
 		]), Promise.all([
-			this.$root.api('charts/federation', { limit: limit, span: 'day' }),
-			this.$root.api('charts/users', { limit: limit, span: 'day' }),
-			this.$root.api('charts/active-users', { limit: limit, span: 'day' }),
-			this.$root.api('charts/notes', { limit: limit, span: 'day' }),
-			this.$root.api('charts/drive', { limit: limit, span: 'day' }),
-			this.$root.api('charts/network', { limit: limit, span: 'day' }),
+			api('charts/federation', { limit: limit, span: 'day' }),
+			api('charts/users', { limit: limit, span: 'day' }),
+			api('charts/active-users', { limit: limit, span: 'day' }),
+			api('charts/notes', { limit: limit, span: 'day' }),
+			api('charts/drive', { limit: limit, span: 'day' }),
+			api('charts/network', { limit: limit, span: 'day' }),
 		])]);
 
 		const chart = {
@@ -146,7 +150,7 @@ export default Vue.extend({
 		this.render();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.chartInstance.destroy();
 	},
 
@@ -213,7 +217,7 @@ export default Vue.extend({
 				},
 				yaxis: {
 					labels: {
-						formatter: this.data.bytes ? v => Vue.filter('bytes')(v, 0) : v => Vue.filter('number')(v),
+						formatter: this.data.bytes ? v => bytes(v, 0) : v => number(v),
 						style: {
 							color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
 						},

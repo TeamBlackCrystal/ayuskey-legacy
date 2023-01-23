@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/pages/selectdrive.vue'),
 	components: {
 		XDrive: () => import('../components/drive.vue').then(m => m.default),

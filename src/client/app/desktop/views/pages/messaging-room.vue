@@ -38,7 +38,7 @@ export default Vue.extend({
 
 		this.fetch();
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		document.documentElement.style.removeProperty('background');
 		document.documentElement.style.removeProperty('background-color'); // for safari's bug
 		this.unwatchDarkmode();

@@ -93,7 +93,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import XDraggable from 'vuedraggable';
 import { faICursor, faPlus, faMagic, faCog, faCode, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSave, faStickyNote, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
@@ -106,7 +106,7 @@ import { ASTypeChecker } from '../../../../../../misc/aiscript/type-checker';
 import { url } from '../../../../config';
 import { collectPageVars } from '../../../scripts/collect-page-vars';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('pages'),
 
 	components: {

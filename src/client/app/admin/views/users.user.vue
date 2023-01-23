@@ -27,12 +27,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../i18n';
 import { faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSnowflake } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('admin/views/users.vue'),
 	props: ['user', 'click'],
 	data() {

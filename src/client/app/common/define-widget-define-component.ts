@@ -5,6 +5,9 @@ export default function <T extends object>(data: {
 	props?: () => T;
 }) {
 	return defineComponent({
+		compatConfig: {
+			MODE: 3,
+		},
 		props: {
 			widget: {
 				type: Object,

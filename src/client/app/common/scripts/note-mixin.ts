@@ -211,7 +211,7 @@ export default (opts: Opts = {}) => ({
 				this.openingMenu = false;
 				this.focus();
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				w.destroyDom();
 			});
 		},

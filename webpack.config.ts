@@ -8,7 +8,7 @@ import chalk from 'chalk';
 import { execSync } from 'child_process';
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackBar = require('webpackbar');
-const TerserPlugin = require('terser-webpack-plugin');
+import TerserPlugin from 'terser-webpack-plugin';
 
 class WebpackOnBuildPlugin {
 	constructor(readonly callback: (stats: any) => void) {
@@ -49,10 +49,12 @@ const postcss = {
 module.exports = {
 	entry: {
 		desktop: './src/client/app/desktop/script.ts',
-		mobile: './src/client/app/mobile/script.ts',
+		//mobile: './src/client/app/mobile/script.ts',
 		// ↓Deprecated
 		dev: './src/client/app/dev/script.ts',
+		/*
 		auth: './src/client/app/auth/script.ts',
+		*/
 		admin: './src/client/app/admin/script.ts',
 		sw: './src/client/app/sw/sw.js'
 	},
@@ -67,7 +69,23 @@ module.exports = {
 					sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
 					cssSourceMap: false,
 					compilerOptions: {
-						preserveWhitespace: false
+						preserveWhitespace: false,
+						reactivityTransform: true,
+						compatConfig: {
+							MODE: 2,
+							/*
+              MODE: 3,
+							GLOBAL_MOUNT: true,
+							GLOBAL_EXTEND: true,
+							INSTANCE_SET: true,
+							INSTANCE_DELETE: true,
+							INSTANCE_EVENT_EMITTER: true,
+							INSTANCE_CHILDREN: true,
+							INSTANCE_LISTENERS: true,
+							INSTANCE_DESTROY: true,
+							OPTIONS_BEFORE_DESTROY: true
+							*/
+            }
 					}
 				}
 			}, {
@@ -187,7 +205,9 @@ module.exports = {
 			_VERSION_: JSON.stringify(version),
 			_CODENAME_: JSON.stringify(codename),
 			_LANGS_: JSON.stringify(Object.entries(locales).map(([k, v]: [string, any]) => [k, v && v.meta && v.meta.lang])),
-			_ENV_: JSON.stringify(process.env.NODE_ENV)
+			_ENV_: JSON.stringify(process.env.NODE_ENV),
+			__VUE_OPTIONS_API__: true,
+			__VUE_PROD_DEVTOOLS__: false,
 		}),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development')
@@ -214,7 +234,8 @@ module.exports = {
 		alias: {
 			'@client': __dirname + '/src/client/app',
 			'@': __dirname + '/src',
-			'const.styl': __dirname + '/src/client/const.styl'
+			'const.styl': __dirname + '/src/client/const.styl',
+			vue: '@vue/compat'
 		}
 	},
 	resolveLoader: {
@@ -222,9 +243,10 @@ module.exports = {
 	},
 	optimization: {
 		minimizer: [new TerserPlugin({
-			parallel: 1
+			minify: TerserPlugin.swcMinify,
 		})]
 	},
-	devtool: false, //'source-map',
+	// FIXME
+	devtool: 'source-map', //'source-map',
 	mode: isProduction ? 'production' : 'development'
 };

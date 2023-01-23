@@ -91,7 +91,7 @@ export default defineComponent({
 		}
 	},
 	
-	beforeDestroy() {
+	beforeUnmount() {
 		this.reset();
 	},
 	

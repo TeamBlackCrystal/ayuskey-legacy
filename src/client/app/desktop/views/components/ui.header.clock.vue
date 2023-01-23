@@ -14,9 +14,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
 			now: new Date(),
@@ -44,7 +47,7 @@ export default Vue.extend({
 		this.tick();
 		this.clock = setInterval(this.tick, 1000);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

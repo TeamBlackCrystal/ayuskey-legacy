@@ -3,11 +3,10 @@
  * Developer Center
  */
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import BootstrapVue from 'bootstrap-vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
 
 // Style
 import './style.styl';
@@ -21,27 +20,25 @@ import App from './views/app.vue';
 import ui from './views/ui.vue';
 import NotFound from '../common/views/pages/not-found.vue';
 
-Vue.use(BootstrapVue);
-
-Vue.component('MkUi', ui);
-
 /**
  * init
  */
 init(launch => {
 	// Init router
-	const router = new VueRouter({
-		mode: 'history',
-		base: '/dev/',
+	const router = createRouter({
+		history: createWebHistory('/dev/'),
 		routes: [
 			{ path: '/', component: Index },
 			{ path: '/apps', component: Apps },
 			{ path: '/app/new', component: AppNew },
 			{ path: '/app/:id', component: App },
-			{ path: '*', component: NotFound },
+			{ path: '/:pathMatch(.*)*', component: NotFound },
 		],
 	});
 
 	// Launch the app
-	launch(router);
+	const [app, _] = launch(router);
+
+	app.use(BootstrapVue3);
+	app.component('MkUi', ui);
 });

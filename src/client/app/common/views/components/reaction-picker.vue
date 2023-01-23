@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import { emojiRegex } from '../../../../../misc/emoji-regex';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/reaction-picker.vue'),
 	props: {
 		source: {
@@ -158,7 +158,7 @@ export default Vue.extend({
 			vm.$once('chosen', emoji => {
 				this.react(emoji);
 			});
-			this.$once('hook:beforeDestroy', () => {
+			this.$once('hook:beforeUnmount', () => {
 				vm.close();
 			});
 		},

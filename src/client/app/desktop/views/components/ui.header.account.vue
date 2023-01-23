@@ -1,65 +1,65 @@
 <template>
 <div v-hotkey.global="keymap" class="account">
 	<button class="header" :data-active="isOpen" @click="toggle">
-		<span class="username">{{ $store.state.i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
-		<mk-avatar class="avatar" :user="$store.state.i"/>
+		<span class="username">{{ i.username }}<template v-if="!isOpen"><fa icon="angle-down"/></template><template v-if="isOpen"><fa icon="angle-up"/></template></span>
+		<mk-avatar class="avatar" :user="i"/>
 	</button>
 	<transition name="zoom-in-top">
 		<div v-if="isOpen" class="menu" :style="{'backdrop-filter': `blur(${blurStrength}em)`}">
 			<ul>
 				<li>
-					<router-link :to="`/@${ $store.state.i.username }`">
+					<router-link :to="`/@${ i.username }`">
 						<i><fa icon="user" fixed-width/></i>
-						<span>{{ $t('profile') }}</span>
+						<span>{{ i18n.t('profile') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li @click="drive">
 					<p>
 						<i><fa icon="cloud" fixed-width/></i>
-						<span>{{ $t('@.drive') }}</span>
+						<span>{{ i18n.t('@.drive') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</p>
 				</li>
 				<li>
 					<router-link to="/i/favorites">
 						<i><fa icon="star" fixed-width/></i>
-						<span>{{ $t('@.favorites') }}</span>
+						<span>{{ i18n.t('@.favorites') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/i/lists">
 						<i><fa icon="list" fixed-width/></i>
-						<span>{{ $t('lists') }}</span>
+						<span>{{ i18n.t('lists') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/i/groups">
 						<i><fa :icon="faUsers" fixed-width/></i>
-						<span>{{ $t('groups') }}</span>
+						<span>{{ i18n.t('groups') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/i/pages">
 						<i><fa :icon="faStickyNote" fixed-width/></i>
-						<span>{{ $t('@.pages') }}</span>
+						<span>{{ i18n.t('@.pages') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/i/follow-requests">
 						<i><fa :icon="['far', 'envelope']" fixed-width/></i>
-						<span>{{ $t('follow-requests') }}<i v-if="$store.state.i.pendingReceivedFollowRequestsCount">{{ $t(`follow-request-${$store.state.i.pendingReceivedFollowRequestsCount}`) }}</i></span>
+						<span>{{ i18n.t('follow-requests') }}<i v-if="i.pendingReceivedFollowRequestsCount">{{ i18n.t(`follow-request-${i.pendingReceivedFollowRequestsCount}`) }}</i></span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="`/@${ $store.state.i.username }/room`">
+					<router-link :to="`/@${ i.username }/room`">
 						<i><fa :icon="faDoorOpen" fixed-width/></i>
-						<span>{{ $t('room') }}</span>
+						<span>{{ i18n.t('room') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
@@ -68,14 +68,14 @@
 				<li>
 					<router-link to="/i/settings">
 						<i><fa icon="cog" fixed-width/></i>
-						<span>{{ $t('@.settings') }}</span>
+						<span>{{ i18n.t('@.settings') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
-				<li v-if="$store.state.i.isAdmin || $store.state.i.isModerator">
+				<li v-if="i.isAdmin || i.isModerator">
 					<a href="/admin">
 						<i><fa icon="terminal" fixed-width/></i>
-						<span>{{ $t('admin') }}</span>
+						<span>{{ i18n.t('admin') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</a>
 				</li>
@@ -83,14 +83,14 @@
 			<ul>
 				<li @click="toggleDeckMode">
 					<p>
-						<template v-if="$store.state.device.inDeckMode"><i><fa :icon="faHome"/></i><span>{{ $t('@.home') }}</span></template>
-						<template v-else><i><fa :icon="faColumns"/></i><span>{{ $t('@.deck') }}</span></template>
+						<template v-if="store.device.deckMode"><i><fa :icon="faHome"/></i><span>{{ i18n.t('@.home') }}</span></template>
+						<template v-else><i><fa :icon="faColumns"/></i><span>{{ i18n.t('@.deck') }}</span></template>
 					</p>
 				</li>
 				<li @click="dark">
 					<p>
-						<template><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon"/></i></template>
-						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
+						<template><i><fa :icon="store.device.darkmode ? faSun : faMoon"/></i></template>
+						<span>{{ store.device.darkmode ? i18n.t('@.turn-off-darkmode') : i18n.t('@.turn-on-darkmode') }}</span>
 					</p>
 				</li>
 			</ul>
@@ -98,7 +98,7 @@
 				<li @click="signout">
 					<p class="signout">
 						<i><fa icon="power-off" fixed-width/></i>
-						<span>{{ $t('@.signout') }}</span>
+						<span>{{ i18n.t('@.signout') }}</span>
 					</p>
 				</li>
 			</ul>
@@ -108,18 +108,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../../i18n';
 // import MkSettingsWindow from './settings-window.vue';
 import MkDriveWindow from './drive-window.vue';
 import contains from '../../../common/scripts/contains';
 import { faHome, faColumns, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons';
+import { useStore } from '../../../stores';
+import { AYUX } from '../../../stores/ayux';
 
-export default Vue.extend({
-	i18n: i18n('desktop/views/components/ui.header.account.vue'),
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
+			i: AYUX().get('i'),
+			store: useStore(),
+			i18n: _i18n('desktop/views/components/ui.header.account.vue'),
 			isOpen: false,
 			blurStrength: 0,
 			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen,
@@ -132,14 +139,14 @@ export default Vue.extend({
 			};
 		},
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.close();
 	},
 	mounted() {
-		if (this.$store.state.device.useBlur == false) {
+		if (this.store.device.useBlur === false) {
 			return;
 		}
-		if (this.$store.state.device.darkmode == true) { // ダークテーマが有効の場合のみblurを強化
+		if (this.store.device.darkmode === true) { // ダークテーマが有効の場合のみblurを強化
 			this.blurStrength = 2;
 		} else {
 			this.blurStrength = 0.3;
@@ -161,9 +168,9 @@ export default Vue.extend({
 				el.removeEventListener('mousedown', this.onMousedown);
 			}
 		},
-		onMousedown(e) {
-			e.preventDefault();
-			if (!contains(this.$el, e.target) && this.$el != e.target) this.close();
+		onMousedown(ev) {
+			ev.preventDefault();
+			if (!contains(this.$el, ev.target) && this.$el !== ev.target) this.close();
 			return false;
 		},
 		drive() {
@@ -174,13 +181,10 @@ export default Vue.extend({
 			this.$root.signout();
 		},
 		dark() {
-			this.$store.commit('device/set', {
-				key: 'darkmode',
-				value: !this.$store.state.device.darkmode,
-			});
+			this.store.device.darkmode = !this.store.device.darkmode;
 		},
 		toggleDeckMode() {
-			this.$store.commit('device/set', { key: 'deckMode', value: !this.$store.state.device.inDeckMode });
+			this.store.device.deckMode = !this.store.device.deckMode;
 			location.replace('/');
 		},
 	},

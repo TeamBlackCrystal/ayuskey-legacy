@@ -115,13 +115,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../../../i18n';
 import * as maps from '../../../../../../../games/reversi/maps';
 import { faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/games/reversi/reversi.room.vue'),
 	props: ['game', 'connection'],
 
@@ -164,7 +164,7 @@ export default Vue.extend({
 		if (this.game.user2Id != this.$store.state.i.id && this.game.form2) this.form = this.game.form2;
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.off('changeAccepts', this.onChangeAccepts);
 		this.connection.off('updateSettings', this.onUpdateSettings);
 		this.connection.off('initForm', this.onInitForm);

@@ -5,12 +5,12 @@
 			<mk-avatar class="avatar" :user="note.user" target="_blank"/>
 			<div class="body">
 				<header>
-					<router-link v-user-preview="note.user.id" class="name" :to="note.user | userPage">
+					<router-link v-user-preview="note.user.id" class="name" :to="userPage(note.user)">
 						<mk-user-name :user="note.user"/>
 					</router-link>
-					<span class="username">@{{ note.user | acct }}</span>
+					<span class="username">@{{ acct(note.user) }}</span>
 					<div class="info">
-						<router-link class="created-at" :to="note | notePage">
+						<router-link class="created-at" :to="notePage(note)">
 							<mk-time :time="note.createdAt"/>
 						</router-link>
 					</div>
@@ -29,9 +29,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
+import { acct, userPage } from '../filters/v12/user';
+import notePage from '../filters/v12/note';
 
-export default Vue.extend({
+export default defineComponent({
 	props: {
 		max: {
 			type: Number,
@@ -57,7 +59,7 @@ export default Vue.extend({
 		this.connection.on('note', this.onNote);
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 
@@ -89,6 +91,8 @@ export default Vue.extend({
 
 			this.notes.unshift(note);
 		},
+
+		acct, userPage, notePage,
 	},
 });
 </script>

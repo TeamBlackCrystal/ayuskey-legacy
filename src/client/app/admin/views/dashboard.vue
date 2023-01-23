@@ -5,12 +5,12 @@
 		<p><b>Machine</b><span>{{ meta.machine }}</span></p>
 		<p><b>OS</b><span>{{ meta.os }}</span></p>
 		<p><b>Node</b><span>{{ meta.node }}</span></p>
-		<p>{{ $t('@.ai-chan-kawaii') }}</p>
+		<p>{{ i18n.t('@.ai-chan-kawaii') }}</p>
 	</header>
 
 	<marquee-text v-if="instances.length > 0" class="instances" :repeat="10" :duration="60">
 		<span v-for="instance in instances" class="instance">
-			<b :style="{ background: instance.bg }">{{ instance.host }}</b>{{ instance.notesCount | number }} / {{ instance.usersCount | number }}
+			<b :style="{ background: instance.bg }">{{ instance.host }}</b>{{ number(instance.notesCount) }} / {{ number(instance.usersCount) }}
 		</span>
 	</marquee-text>
 
@@ -19,12 +19,12 @@
 			<div>
 				<div><fa icon="user"/></div>
 				<div>
-					<span>{{ $t('accounts') }}</span>
-					<b>{{ stats.originalUsersCount | number }}</b>
+					<span>{{ i18n.t('accounts') }}</span>
+					<b>{{ number(stats.originalUsersCount) }}</b>
 				</div>
 			</div>
 			<div>
-				<span><fa icon="home"/> {{ $t('this-instance') }}</span>
+				<span><fa icon="home"/> {{ i18n.t('this-instance') }}</span>
 				<span @click="setChartSrc('users')"><fa :icon="['far', 'chart-bar']"/></span>
 			</div>
 		</div>
@@ -32,12 +32,12 @@
 			<div>
 				<div><fa icon="pencil-alt"/></div>
 				<div>
-					<span>{{ $t('notes') }}</span>
-					<b>{{ stats.originalNotesCount | number }}</b>
+					<span>{{ i18n.t('notes') }}</span>
+					<b>{{ number(stats.originalNotesCount) }}</b>
 				</div>
 			</div>
 			<div>
-				<span><fa icon="home"/> {{ $t('this-instance') }}</span>
+				<span><fa icon="home"/> {{ i18n.t('this-instance') }}</span>
 				<span @click="setChartSrc('notes')"><fa :icon="['far', 'chart-bar']"/></span>
 			</div>
 		</div>
@@ -45,12 +45,12 @@
 			<div>
 				<div><fa :icon="faDatabase"/></div>
 				<div>
-					<span>{{ $t('drive') }}</span>
-					<b>{{ stats.driveUsageLocal | bytes }}</b>
+					<span>{{ i18n.t('drive') }}</span>
+					<b>{{ bytes(stats.driveUsageLocal) }}</b>
 				</div>
 			</div>
 			<div>
-				<span><fa icon="home"/> {{ $t('this-instance') }}</span>
+				<span><fa icon="home"/> {{ i18n.t('this-instance') }}</span>
 				<span @click="setChartSrc('drive')"><fa :icon="['far', 'chart-bar']"/></span>
 			</div>
 		</div>
@@ -58,12 +58,12 @@
 			<div>
 				<div><fa :icon="['far', 'hdd']"/></div>
 				<div>
-					<span>{{ $t('instances') }}</span>
-					<b>{{ stats.instances | number }}</b>
+					<span>{{ i18n.t('instances') }}</span>
+					<b>{{ number(stats.instances) }}</b>
 				</div>
 			</div>
 			<div>
-				<span><fa icon="globe"/> {{ $t('federated') }}</span>
+				<span><fa icon="globe"/> {{ i18n.t('federated') }}</span>
 				<span @click="setChartSrc('federation-instances-total')"><fa :icon="['far', 'chart-bar']"/></span>
 			</div>
 		</div>
@@ -88,8 +88,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import XCpuMemory from './dashboard.cpu-memory.vue';
 import XQueue from './dashboard.queue-charts.vue';
 import XCharts from './dashboard.charts.vue';
@@ -97,10 +97,10 @@ import XApLog from './dashboard.ap-log.vue';
 import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import MarqueeText from 'vue-marquee-text-component';
 import randomColor from 'randomcolor';
+import number from '../../common/views/filters/v12/number';
+import bytes from '../../common/views/filters/v12/bytes';
 
-export default Vue.extend({
-	i18n: i18n('admin/views/dashboard.vue'),
-
+export default defineComponent({
 	components: {
 		XCpuMemory,
 		XQueue,
@@ -111,6 +111,7 @@ export default Vue.extend({
 
 	data() {
 		return {
+			i18n: _i18n('admin/views/dashboard.vue'),
 			stats: null,
 			connection: null,
 			meta: null,
@@ -141,7 +142,7 @@ export default Vue.extend({
 		});
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 
@@ -155,6 +156,8 @@ export default Vue.extend({
 				this.stats = stats;
 			});
 		},
+
+		number, bytes,
 	},
 });
 </script>

@@ -53,14 +53,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import XContainer from './page-editor.container.vue';
 import { faPencilAlt, faPlug } from '@fortawesome/free-solid-svg-icons';
 import { isLiteralBlock, funcDefs, blockDefs } from '../../../../../../misc/aiscript/index';
 import { v4 as uuid } from 'uuid';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('pages'),
 
 	components: {

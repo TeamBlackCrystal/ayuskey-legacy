@@ -4,7 +4,7 @@
 
 	<section v-if="!fetching" class="juakhbxthdewydyreaphkepoxgxvfogn">
 		<div class="meter"><div :style="meterStyle"></div></div>
-		<p>{{ $t('max') }}: <b>{{ capacity | bytes }}</b> {{ $t('in-use') }}: <b>{{ usage | bytes }}</b></p>
+		<p>{{ $t('max') }}: <b>{{ bytes(capacity) }}</b> {{ $t('in-use') }}: <b>{{ bytes(usage) }}</b></p>
 	</section>
 
 	<section>
@@ -21,12 +21,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { defineComponent } from 'vue';
 import i18n from '../../../../i18n';
 import * as tinycolor from 'tinycolor2';
 import ApexCharts from 'apexcharts';
+import bytes from '../../filters/v12/bytes';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('common/views/components/drive-settings.vue'),
 	data() {
 		return {
@@ -167,7 +168,7 @@ export default Vue.extend({
 					},
 					yaxis: {
 						labels: {
-							formatter: v => Vue.filter('bytes')(v, 0),
+							formatter: v => bytes(v, 0),
 							style: {
 								color: tinycolor(getComputedStyle(document.documentElement).getPropertyValue('--text')).toRgbString(),
 							},
@@ -185,6 +186,8 @@ export default Vue.extend({
 				this.uploadFolderName = folder ? folder.name : this.$t('@._settings.root');
 			});
 		},
+
+		bytes,
 	},
 });
 </script>

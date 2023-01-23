@@ -15,30 +15,30 @@
 			<img svg-inline src="../assets/header-icon.svg"/>
 		</div>
 		<div class="me">
-			<img class="avatar" :src="$store.state.i.avatarUrl" alt="avatar"/>
-			<p class="name"><mk-user-name :user="$store.state.i"/></p>
+			<img class="avatar" :src="i.avatarUrl" alt="avatar"/>
+			<p class="name"><mk-user-name :user="i"/></p>
 		</div>
 		<ul>
-			<li><router-link to="/dashboard" active-class="active"><fa icon="home" fixed-width/>{{ $t('dashboard') }}</router-link></li>
-			<li><router-link to="/instance" active-class="active"><fa icon="cog" fixed-width/>{{ $t('instance') }}</router-link></li>
-			<li><router-link to="/queue" active-class="active"><fa :icon="faTasks" fixed-width/>{{ $t('queue') }}</router-link></li>
-			<li><router-link to="/logs" active-class="active"><fa :icon="faStream" fixed-width/>{{ $t('logs') }}</router-link></li>
-			<li><router-link to="/db" active-class="active"><fa :icon="faDatabase" fixed-width/>{{ $t('db') }}</router-link></li>
-			<li><router-link to="/moderators" active-class="active"><fa :icon="faHeadset" fixed-width/>{{ $t('moderators') }}</router-link></li>
-			<li><router-link to="/users" active-class="active"><fa icon="users" fixed-width/>{{ $t('users') }}</router-link></li>
-			<li><router-link to="/drive" active-class="active"><fa icon="cloud" fixed-width/>{{ $t('@.drive') }}</router-link></li>
-			<li><router-link to="/federation" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }}</router-link></li>
-			<li><router-link to="/federation-classic" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }} (classic)</router-link></li>
-			<li><router-link to="/relays" active-class="active"><fa :icon="faProjectDiagram" fixed-width/>{{ $t('relays') }}</router-link></li>
-			<li><router-link to="/emoji" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }}</router-link></li>
-			<li><router-link to="/emoji-insider" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }} (insider)</router-link></li>
-			<li><router-link to="/announcements" active-class="active"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
-			<li><router-link to="/abuse" active-class="active"><fa :icon="faExclamationCircle" fixed-width/>{{ $t('abuse') }}</router-link></li>
+			<li><router-link to="/dashboard" active-class="active"><fa icon="home" :fixed-width="true"/>{{ i18n.t('dashboard') }}</router-link></li>
+			<li><router-link to="/instance" active-class="active"><fa icon="cog" :fixed-width="true"/>{{ i18n.t('instance') }}</router-link></li>
+			<li><router-link to="/queue" active-class="active"><fa :icon="faTasks" :fixed-width="true"/>{{ i18n.t('queue') }}</router-link></li>
+			<li><router-link to="/logs" active-class="active"><fa :icon="faStream" :fixed-width="true"/>{{ i18n.t('logs') }}</router-link></li>
+			<li><router-link to="/db" active-class="active"><fa :icon="faDatabase" :fixed-width="true"/>{{ i18n.t('db') }}</router-link></li>
+			<li><router-link to="/moderators" active-class="active"><fa :icon="faHeadset" :fixed-width="true"/>{{ i18n.t('moderators') }}</router-link></li>
+			<li><router-link to="/users" active-class="active"><fa icon="users" :fixed-width="true"/>{{ i18n.t('users') }}</router-link></li>
+			<li><router-link to="/drive" active-class="active"><fa icon="cloud" :fixed-width="true"/>{{ i18n.t('@.drive') }}</router-link></li>
+			<li><router-link to="/federation" active-class="active"><fa :icon="faGlobe" :fixed-width="true"/>{{ i18n.t('federation') }}</router-link></li>
+			<li><router-link to="/federation-classic" active-class="active"><fa :icon="faGlobe" :fixed-width="true"/>{{ i18n.t('federation') }} (classic)</router-link></li>
+			<li><router-link to="/relays" active-class="active"><fa :icon="faProjectDiagram" :fixed-width="true"/>{{ i18n.t('relays') }}</router-link></li>
+			<li><router-link to="/emoji" active-class="active"><fa :icon="faGrin" :fixed-width="true"/>{{ i18n.t('emoji') }}</router-link></li>
+			<li><router-link to="/emoji-insider" active-class="active"><fa :icon="faGrin" :fixed-width="true"/>{{ i18n.t('emoji') }} (insider)</router-link></li>
+			<li><router-link to="/announcements" active-class="active"><fa icon="broadcast-tower" :fixed-width="true"/>{{ i18n.t('announcements') }}</router-link></li>
+			<li><router-link to="/abuse" active-class="active"><fa :icon="faExclamationCircle" :fixed-width="true"/>{{ i18n.t('abuse') }}</router-link></li>
 		</ul>
 		<div class="back-to-misskey">
 			<!--邪道な気がするけど動くと思うからヨシ-->
-			<a href="/queue"><fa :icon="faChartLine"/> {{ $t('queue') }} {{ $t('dashboard') }}</a>
-			<a href="/"><fa :icon="faArrowLeft"/> {{ $t('back-to-misskey') }}</a>
+			<a href="/queue"><fa :icon="faChartLine"/> {{ i18n.t('queue') }} {{ i18n.t('dashboard') }}</a>
+			<a href="/"><fa :icon="faArrowLeft"/> {{ i18n.t('back-to-misskey') }}</a>
 		</div>
 		<div class="version">
 			<small>Misskey {{ version }}</small>
@@ -66,9 +66,54 @@
 </div>
 </template>
 
+<script setup lang="ts">
+import { computed, provide, ref } from 'vue';
+import { i18n as _i18n } from '../../i18n';
+import { version } from '../../config';
+import XDashboard from './dashboard.vue';
+import XInstance from './instance.vue';
+import XQueue from './queue.vue';
+import XLogs from './logs.vue';
+import XDb from './db.vue';
+import XModerators from './moderators.vue';
+import XEmoji from './emoji.vue';
+import XEmojiInsider from './emoji-insider.vue';
+import XAnnouncements from './announcements.vue';
+import XUsers from './users.vue';
+import XDrive from './drive.vue';
+import XAbuse from './abuse.vue';
+import XFederation from './federation.vue';
+import XFederationClassic from './federation-classic.vue';
+import XRelays from './relays.vue';
+
+import { faHeadset, faArrowLeft, faGlobe, faProjectDiagram, faExclamationCircle, faTasks, faStream, faDatabase, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faGrin } from '@fortawesome/free-regular-svg-icons';
+import { useRoute } from 'vue-router';
+import { AYUX } from '../../stores/ayux';
+
+const i = AYUX().get('i');
+
+// Detect the user agent
+const ua = navigator.userAgent.toLowerCase();
+const isMobile = /mobile|iphone|ipad|android/.test(ua);
+
+provide('isMobile', isMobile);
+
+const i18n = _i18n('admin/views/index.vue');
+
+const navOpend = ref<boolean>(!isMobile);
+
+const route = useRoute();
+
+const page = computed(() => {
+	return route.params.page;
+});
+</script>
+
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+/*
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import { version } from '../../config';
 import XDashboard from './dashboard.vue';
 import XInstance from './instance.vue';
@@ -93,8 +138,10 @@ import { faGrin } from '@fortawesome/free-regular-svg-icons';
 const ua = navigator.userAgent.toLowerCase();
 const isMobile = /mobile|iphone|ipad|android/.test(ua);
 
-export default Vue.extend({
-	i18n: i18n('admin/views/index.vue'),
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	components: {
 		XDashboard,
 		XInstance,
@@ -117,6 +164,7 @@ export default Vue.extend({
 	},
 	data() {
 		return {
+			i18n: _i18n('admin/views/index.vue'),
 			version,
 			isMobile,
 			navOpend: !isMobile,
@@ -138,6 +186,7 @@ export default Vue.extend({
 		},
 	},
 });
+*/
 </script>
 
 <style lang="stylus" scoped>

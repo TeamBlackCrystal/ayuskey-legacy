@@ -2,18 +2,18 @@
 <div class="nav">
 	<ul>
 		<li class="timeline" :class="{ active: $route.name == 'index' }" @click="goToTop">
-			<router-link to="/"><fa icon="home"/><p>{{ $t('@.timeline') }}</p></router-link>
+			<router-link to="/"><fa icon="home"/><p>{{ i18n.t('@.timeline') }}</p></router-link>
 		</li>
 		<li class="featured" :class="{ active: $route.name == 'featured' }">
-			<router-link to="/featured"><fa :icon="faNewspaper"/><p>{{ $t('@.featured-notes') }}</p></router-link>
+			<router-link to="/featured"><fa :icon="faNewspaper"/><p>{{ i18n.t('@.featured-notes') }}</p></router-link>
 		</li>
 		<li class="explore" :class="{ active: $route.name == 'explore' || $route.name == 'explore-tag' }">
-			<router-link to="/explore"><fa :icon="faHashtag"/><p>{{ $t('@.explore') }}</p></router-link>
+			<router-link to="/explore"><fa :icon="faHashtag"/><p>{{ i18n.t('@.explore') }}</p></router-link>
 		</li>
 		<li class="game">
 			<a @click="game">
 				<fa icon="gamepad"/>
-				<p>{{ $t('game') }}</p>
+				<p>{{ i18n.t('game') }}</p>
 				<template v-if="hasGameInvitations"><fa icon="circle"/></template>
 			</a>
 		</li>
@@ -22,15 +22,18 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../../i18n';
 import MkGameWindow from './game-window.vue';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
-	i18n: i18n('desktop/views/components/ui.header.nav.vue'),
+export default defineComponent({
+	compatConfig: {
+		MODE: 3,
+	},
 	data() {
 		return {
+			i18n: _i18n('desktop/views/components/ui.header.nav.vue'),
 			hasGameInvitations: false,
 			connection: null,
 			faNewspaper, faHashtag,
@@ -44,7 +47,7 @@ export default Vue.extend({
 			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection.dispose();
 		}

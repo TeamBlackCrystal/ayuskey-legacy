@@ -7,10 +7,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import XIntegration from './integrations.integration.vue';
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		XIntegration,
 	},

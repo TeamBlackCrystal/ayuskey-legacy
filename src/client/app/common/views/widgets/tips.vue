@@ -8,7 +8,7 @@
 import anime from 'animejs';
 import { defineComponent } from 'vue';
 import define from '../../../common/define-widget-define-component';
-import i18n from '../../../i18n';
+import { i18n as _i18n } from '../../../i18n';
 
 const widget = define({
 	name: 'tips',
@@ -16,37 +16,37 @@ const widget = define({
 
 export default defineComponent({
 	extends: widget,
-	i18n: i18n('common/views/widgets/tips.vue'),
 
 	data() {
 		return {
 			tips: [],
 			tip: null,
 			clock: null,
+			i18n: _i18n('common/views/widgets/tips.vue'),
 		};
 	},
 	created() {
 		this.tips = [
-			this.$t('tips-line1'),
-			this.$t('tips-line2'),
-			this.$t('tips-line3'),
-			this.$t('tips-line4'),
-			this.$t('tips-line5'),
-			this.$t('tips-line6'),
-			this.$t('tips-line7'),
-			this.$t('tips-line8'),
-			this.$t('tips-line9'),
-			this.$t('tips-line10'),
-			this.$t('tips-line11'),
-			this.$t('tips-line13'),
-			this.$t('tips-line14'),
-			this.$t('tips-line17'),
-			this.$t('tips-line19'),
-			this.$t('tips-line20'),
-			this.$t('tips-line21'),
-			this.$t('tips-line23'),
-			this.$t('tips-line24'),
-			this.$t('tips-line25'),
+			this.i18n.t('tips-line1'),
+			this.i18n.t('tips-line2'),
+			this.i18n.t('tips-line3'),
+			this.i18n.t('tips-line4'),
+			this.i18n.t('tips-line5'),
+			this.i18n.t('tips-line6'),
+			this.i18n.t('tips-line7'),
+			this.i18n.t('tips-line8'),
+			this.i18n.t('tips-line9'),
+			this.i18n.t('tips-line10'),
+			this.i18n.t('tips-line11'),
+			this.i18n.t('tips-line13'),
+			this.i18n.t('tips-line14'),
+			this.i18n.t('tips-line17'),
+			this.i18n.t('tips-line19'),
+			this.i18n.t('tips-line20'),
+			this.i18n.t('tips-line21'),
+			this.i18n.t('tips-line23'),
+			this.i18n.t('tips-line24'),
+			this.i18n.t('tips-line25'),
 		];
 	},
 	mounted() {
@@ -56,7 +56,7 @@ export default defineComponent({
 
 		this.clock = setInterval(this.change, 20000);
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		clearInterval(this.clock);
 	},
 	methods: {

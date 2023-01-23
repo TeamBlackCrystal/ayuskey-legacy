@@ -22,7 +22,7 @@
 		"allowSyntheticDefaultImports": true,
 		//"noImplicitThis":true,
     "typeRoots": [
-      "node_modules/@types",
+      "../../../node_modules/@types",
       "src/@types"
     ]
   },
@@ -32,6 +32,6 @@
 		"./**/*.vue"
   ],
 	"vueCompilerOptions": {
-    "target": 2.7
+    // "target": 2.7
   }
 }

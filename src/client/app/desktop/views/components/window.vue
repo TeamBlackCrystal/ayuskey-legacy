@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import anime from 'animejs';
 import contains from '../../../common/scripts/contains';
@@ -56,7 +56,7 @@ function dragClear(fn) {
 	window.removeEventListener('mouseup', dragClear);
 }
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('desktop/views/components/window.vue'),
 	props: {
 		isModal: {
@@ -129,7 +129,7 @@ export default Vue.extend({
 		}
 	},
 
-	destroyed() {
+	unmounted() {
 		// ウィンドウをウィンドウシステムから削除
 		this.$root.os.windows.remove(this);
 

@@ -10,12 +10,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import XNotes from './deck.notes.vue';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n('deck'),
 
 	components: {
@@ -100,7 +100,7 @@ export default Vue.extend({
 		});
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.connection.dispose();
 	},
 

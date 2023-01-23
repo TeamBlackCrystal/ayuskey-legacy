@@ -5,20 +5,19 @@
 	<mk-error v-if="error" @retry="init()"/>
 
 	<div v-if="fetching" class="placeholder">
-		<template v-for="i in 10">
-			<mk-note-skeleton :key="i"/>
+		<template v-for="i in 10" :key="i">
+			<mk-note-skeleton/>
 		</template>
 	</div>
 
 	<!-- トランジションを有効にするとなぜかメモリリークする -->
 	<component :is="!$store.state.device.reduceMotion ? 'transition-group' : 'div'" ref="notes" name="mk-notes" class="transition notes" tag="div">
-		<template v-for="(note, i) in _notes">
+		<template v-for="(note, i) in _notes" :key="note.id">
 			<mk-note
-				:key="note.id"
 				:note="note"
 				:compact="true"
 			/>
-			<p v-if="i != notes.length - 1 && note._date != _notes[i + 1]._date" :key="note.id + '_date'" class="date">
+			<p v-if="i != notes.length - 1 && note._date != _notes[i + 1]._date" class="date">
 				<span><fa icon="angle-up"/>{{ note._datetext }}</span>
 				<span><fa icon="angle-down"/>{{ _notes[i + 1]._datetext }}</span>
 			</p>
@@ -35,12 +34,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import shouldMuteNote from '../../../common/scripts/should-mute-note';
 import paging from '../../../common/scripts/paging';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 
 	inject: ['column', 'isScrollTop', 'count'],
@@ -96,7 +95,7 @@ export default Vue.extend({
 		this.init();
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.column.$off('top', this.onTop);
 		this.column.$off('bottom', this.onBottom);
 	},

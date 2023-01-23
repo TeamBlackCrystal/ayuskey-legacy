@@ -1,235 +1,235 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa icon="cog"/> {{ $t('instance') }}</template>
+		<template #title><fa icon="cog"/> {{ i18n.t('instance') }}</template>
 		<section class="fit-top">
-			<ui-input :value="host" readonly>{{ $t('host') }}</ui-input>
-			<ui-input v-model="name">{{ $t('instance-name') }}</ui-input>
-			<ui-textarea v-model="description">{{ $t('instance-description') }}</ui-textarea>
-			<ui-input v-model="iconUrl"><template #icon><fa icon="link"/></template>{{ $t('icon-url') }}</ui-input>
-			<ui-input v-model="mascotImageUrl"><template #icon><fa icon="link"/></template>{{ $t('logo-url') }}</ui-input>
-			<ui-input v-model="bannerUrl"><template #icon><fa icon="link"/></template>{{ $t('banner-url') }}</ui-input>
-			<ui-input v-model="ToSUrl"><template #icon><fa icon="link"/></template>{{ $t('tos-url') }}</ui-input>
+			<ui-input :value="host" readonly>{{ i18n.t('host') }}</ui-input>
+			<ui-input v-model="name">{{ i18n.t('instance-name') }}</ui-input>
+			<ui-textarea v-model="description">{{ i18n.t('instance-description') }}</ui-textarea>
+			<ui-input v-model="iconUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('icon-url') }}</ui-input>
+			<ui-input v-model="mascotImageUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('logo-url') }}</ui-input>
+			<ui-input v-model="bannerUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('banner-url') }}</ui-input>
+			<ui-input v-model="ToSUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('tos-url') }}</ui-input>
 			<details>
-				<summary>{{ $t('advanced-config') }}</summary>
-				<ui-input v-model="errorImageUrl"><template #icon><fa icon="link"/></template>{{ $t('error-image-url') }}</ui-input>
-				<ui-input v-model="languages"><template #icon><fa icon="language"/></template>{{ $t('languages') }}<template #desc>{{ $t('languages-desc') }}</template></ui-input>
-				<ui-input v-model="repositoryUrl"><template #icon><fa icon="link"/></template>{{ $t('repository-url') }}</ui-input>
-				<ui-input v-model="feedbackUrl"><template #icon><fa icon="link"/></template>{{ $t('feedback-url') }}</ui-input>
+				<summary>{{ i18n.t('advanced-config') }}</summary>
+				<ui-input v-model="errorImageUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('error-image-url') }}</ui-input>
+				<ui-input v-model="languages"><template #icon><fa icon="language"/></template>{{ i18n.t('languages') }}<template #desc>{{ i18n.t('languages-desc') }}</template></ui-input>
+				<ui-input v-model="repositoryUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('repository-url') }}</ui-input>
+				<ui-input v-model="feedbackUrl"><template #icon><fa icon="link"/></template>{{ i18n.t('feedback-url') }}</ui-input>
 			</details>
 		</section>
 		<section class="fit-bottom">
-			<header><fa :icon="faHeadset"/> {{ $t('maintainer-config') }}</header>
-			<ui-input v-model="maintainerName">{{ $t('maintainer-name') }}</ui-input>
-			<ui-input v-model="maintainerEmail" type="email"><template #icon><fa :icon="farEnvelope"/></template>{{ $t('maintainer-email') }}</ui-input>
+			<header><fa :icon="faHeadset"/> {{ i18n.t('maintainer-config') }}</header>
+			<ui-input v-model="maintainerName">{{ i18n.t('maintainer-name') }}</ui-input>
+			<ui-input v-model="maintainerEmail" type="email"><template #icon><fa :icon="farEnvelope"/></template>{{ i18n.t('maintainer-email') }}</ui-input>
 		</section>
 		<section>
-			<ui-switch v-model="disableRegistration">{{ $t('disable-registration') }}</ui-switch>
-			<ui-button v-if="disableRegistration" @click="invite">{{ $t('invite') }}</ui-button>
+			<ui-switch v-model="disableRegistration">{{ i18n.t('disable-registration') }}</ui-switch>
+			<ui-button v-if="disableRegistration" @click="invite">{{ i18n.t('invite') }}</ui-button>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faPencilAlt"/> {{ $t('note-and-tl') }}</template>
+		<template #title><fa :icon="faPencilAlt"/> {{ i18n.t('note-and-tl') }}</template>
 		<section class="fit-top fit-bottom">
-			<ui-input v-model="maxNoteTextLength">{{ $t('max-note-text-length') }}</ui-input>
+			<ui-input v-model="maxNoteTextLength">{{ i18n.t('max-note-text-length') }}</ui-input>
 		</section>
 		<section>
-			<ui-switch v-model="disableLocalTimeline">{{ $t('disable-local-timeline') }}</ui-switch>
-			<ui-switch v-model="disableGlobalTimeline">{{ $t('disable-global-timeline') }}</ui-switch>
-			<ui-info>{{ $t('disabling-timelines-info') }}</ui-info>
+			<ui-switch v-model="disableLocalTimeline">{{ i18n.t('disable-local-timeline') }}</ui-switch>
+			<ui-switch v-model="disableGlobalTimeline">{{ i18n.t('disable-global-timeline') }}</ui-switch>
+			<ui-info>{{ i18n.t('disabling-timelines-info') }}</ui-info>
 		</section>
 		<section>
-			<ui-switch v-model="enableEmojiReaction">{{ $t('enable-emoji-reaction') }}</ui-switch>
-			<ui-switch v-model="useStarForReactionFallback">{{ $t('use-star-for-reaction-fallback') }}</ui-switch>
+			<ui-switch v-model="enableEmojiReaction">{{ i18n.t('enable-emoji-reaction') }}</ui-switch>
+			<ui-switch v-model="useStarForReactionFallback">{{ i18n.t('use-star-for-reaction-fallback') }}</ui-switch>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa icon="cloud"/> {{ $t('drive-config') }}</template>
+		<template #title><fa icon="cloud"/> {{ i18n.t('drive-config') }}</template>
 		<section>
-			<ui-switch v-model="useObjectStorage">{{ $t('use-object-storage') }}</ui-switch>
+			<ui-switch v-model="useObjectStorage">{{ i18n.t('use-object-storage') }}</ui-switch>
 			<template v-if="useObjectStorage">
 				<ui-info>
 					<i18n path="object-storage-s3-info">
-						<a href="https://docs.aws.amazon.com/general/latest/gr/rande.html" target="_blank">{{ $t('object-storage-s3-info-here') }}</a>
+						<a href="https://docs.aws.amazon.com/general/latest/gr/rande.html" target="_blank">{{ i18n.t('object-storage-s3-info-here') }}</a>
 					</i18n>
 				</ui-info>
-				<ui-info>{{ $t('object-storage-gcs-info') }}</ui-info>
-				<ui-input v-model="objectStorageBaseUrl" :disabled="!useObjectStorage">{{ $t('object-storage-base-url') }}</ui-input>
+				<ui-info>{{ i18n.t('object-storage-gcs-info') }}</ui-info>
+				<ui-input v-model="objectStorageBaseUrl" :disabled="!useObjectStorage">{{ i18n.t('object-storage-base-url') }}</ui-input>
 				<ui-horizon-group inputs>
-					<ui-input v-model="objectStorageBucket" :disabled="!useObjectStorage">{{ $t('object-storage-bucket') }}</ui-input>
-					<ui-input v-model="objectStoragePrefix" :disabled="!useObjectStorage">{{ $t('object-storage-prefix') }}</ui-input>
+					<ui-input v-model="objectStorageBucket" :disabled="!useObjectStorage">{{ i18n.t('object-storage-bucket') }}</ui-input>
+					<ui-input v-model="objectStoragePrefix" :disabled="!useObjectStorage">{{ i18n.t('object-storage-prefix') }}</ui-input>
 				</ui-horizon-group>
-				<ui-input v-model="objectStorageEndpoint" :disabled="!useObjectStorage">{{ $t('object-storage-endpoint') }}</ui-input>
+				<ui-input v-model="objectStorageEndpoint" :disabled="!useObjectStorage">{{ i18n.t('object-storage-endpoint') }}</ui-input>
 				<ui-horizon-group inputs>
-					<ui-input v-model="objectStorageRegion" :disabled="!useObjectStorage">{{ $t('object-storage-region') }}</ui-input>
-					<ui-input v-model="objectStoragePort" type="number" :disabled="!useObjectStorage">{{ $t('object-storage-port') }}</ui-input>
+					<ui-input v-model="objectStorageRegion" :disabled="!useObjectStorage">{{ i18n.t('object-storage-region') }}</ui-input>
+					<ui-input v-model="objectStoragePort" type="number" :disabled="!useObjectStorage">{{ i18n.t('object-storage-port') }}</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
-					<ui-input v-model="objectStorageAccessKey" :disabled="!useObjectStorage"><template #icon><fa icon="key"/></template>{{ $t('object-storage-access-key') }}</ui-input>
-					<ui-input v-model="objectStorageSecretKey" :disabled="!useObjectStorage"><template #icon><fa icon="key"/></template>{{ $t('object-storage-secret-key') }}</ui-input>
+					<ui-input v-model="objectStorageAccessKey" :disabled="!useObjectStorage"><template #icon><fa icon="key"/></template>{{ i18n.t('object-storage-access-key') }}</ui-input>
+					<ui-input v-model="objectStorageSecretKey" :disabled="!useObjectStorage"><template #icon><fa icon="key"/></template>{{ i18n.t('object-storage-secret-key') }}</ui-input>
 				</ui-horizon-group>
-				<ui-switch v-model="objectStorageUseSSL" :disabled="!useObjectStorage">{{ $t('object-storage-use-ssl') }}</ui-switch>
-				<ui-switch v-model="objectStorageUseProxy" :disabled="!useObjectStorage">{{ $t('object-storage-use-proxy') }}</ui-switch>
-				<ui-switch v-model="objectStorageSetPublicRead" :disabled="!useObjectStorage">{{ $t('object-storage-set-public-read') }}</ui-switch>
-				<ui-switch v-model="objectStorageS3ForcePathStyle" :disabled="!useObjectStorage">{{ $t('object-storage-s3-force-path-style') }}</ui-switch>
+				<ui-switch v-model="objectStorageUseSSL" :disabled="!useObjectStorage">{{ i18n.t('object-storage-use-ssl') }}</ui-switch>
+				<ui-switch v-model="objectStorageUseProxy" :disabled="!useObjectStorage">{{ i18n.t('object-storage-use-proxy') }}</ui-switch>
+				<ui-switch v-model="objectStorageSetPublicRead" :disabled="!useObjectStorage">{{ i18n.t('object-storage-set-public-read') }}</ui-switch>
+				<ui-switch v-model="objectStorageS3ForcePathStyle" :disabled="!useObjectStorage">{{ i18n.t('object-storage-s3-force-path-style') }}</ui-switch>
 			</template>
 		</section>
 		<section>
-			<ui-switch v-model="cacheRemoteFiles">{{ $t('cache-remote-files') }}<template #desc>{{ $t('cache-remote-files-desc') }}</template></ui-switch>
-			<ui-switch v-model="proxyRemoteFiles">{{ $t('proxy-remote-files') }}<template #desc>{{ $t('proxy-remote-files-desc') }}</template></ui-switch>
+			<ui-switch v-model="cacheRemoteFiles">{{ i18n.t('cache-remote-files') }}<template #desc>{{ i18n.t('cache-remote-files-desc') }}</template></ui-switch>
+			<ui-switch v-model="proxyRemoteFiles">{{ i18n.t('proxy-remote-files') }}<template #desc>{{ i18n.t('proxy-remote-files-desc') }}</template></ui-switch>
 		</section>
 		<section class="fit-top fit-bottom">
-			<ui-input v-model="localDriveCapacityMb" type="number">{{ $t('local-drive-capacity-mb') }}<template #suffix>MB</template><template #desc>{{ $t('mb') }}</template></ui-input>
-			<ui-input v-model="remoteDriveCapacityMb" type="number" :disabled="!cacheRemoteFiles">{{ $t('remote-drive-capacity-mb') }}<template #suffix>MB</template><template #desc>{{ $t('mb') }}</template></ui-input>
+			<ui-input v-model="localDriveCapacityMb" type="number">{{ i18n.t('local-drive-capacity-mb') }}<template #suffix>MB</template><template #desc>{{ i18n.t('mb') }}</template></ui-input>
+			<ui-input v-model="remoteDriveCapacityMb" type="number" :disabled="!cacheRemoteFiles">{{ i18n.t('remote-drive-capacity-mb') }}<template #suffix>MB</template><template #desc>{{ i18n.t('mb') }}</template></ui-input>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faThumbtack"/> {{ $t('pinned-users') }}</template>
+		<template #title><fa :icon="faThumbtack"/> {{ i18n.t('pinned-users') }}</template>
 		<section class="fit-top">
 			<ui-textarea v-model="pinnedUsers">
-				<template #desc>{{ $t('pinned-users-info') }}</template>
+				<template #desc>{{ i18n.t('pinned-users-info') }}</template>
 			</ui-textarea>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faGhost"/> {{ $t('proxy-account-config') }}</template>
+		<template #title><fa :icon="faGhost"/> {{ i18n.t('proxy-account-config') }}</template>
 		<section>
-			<ui-info>{{ $t('proxy-account-info') }}</ui-info>
-			<ui-input v-model="proxyAccount"><template #prefix>@</template>{{ $t('proxy-account-username') }}<template #desc>{{ $t('proxy-account-username-desc') }}</template></ui-input>
-			<ui-info warn>{{ $t('proxy-account-warn') }}</ui-info>
+			<ui-info>{{ i18n.t('proxy-account-info') }}</ui-info>
+			<ui-input v-model="proxyAccount"><template #prefix>@</template>{{ i18n.t('proxy-account-username') }}<template #desc>{{ i18n.t('proxy-account-username-desc') }}</template></ui-input>
+			<ui-info warn>{{ i18n.t('proxy-account-warn') }}</ui-info>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="farEnvelope"/> {{ $t('email-config') }}</template>
+		<template #title><fa :icon="farEnvelope"/> {{ i18n.t('email-config') }}</template>
 		<section>
-			<ui-switch v-model="enableEmail">{{ $t('enable-email') }}<template #desc>{{ $t('email-config-info') }}</template></ui-switch>
+			<ui-switch v-model="enableEmail">{{ i18n.t('enable-email') }}<template #desc>{{ i18n.t('email-config-info') }}</template></ui-switch>
 			<template v-if="enableEmail">
-				<ui-input v-model="email" type="email" :disabled="!enableEmail">{{ $t('email') }}</ui-input>
+				<ui-input v-model="email" type="email" :disabled="!enableEmail">{{ i18n.t('email') }}</ui-input>
 				<ui-horizon-group inputs>
-					<ui-input v-model="smtpHost" :disabled="!enableEmail">{{ $t('smtp-host') }}</ui-input>
-					<ui-input v-model="smtpPort" type="number" :disabled="!enableEmail">{{ $t('smtp-port') }}</ui-input>
+					<ui-input v-model="smtpHost" :disabled="!enableEmail">{{ i18n.t('smtp-host') }}</ui-input>
+					<ui-input v-model="smtpPort" type="number" :disabled="!enableEmail">{{ i18n.t('smtp-port') }}</ui-input>
 				</ui-horizon-group>
-				<ui-switch v-model="smtpAuth">{{ $t('smtp-auth') }}</ui-switch>
+				<ui-switch v-model="smtpAuth">{{ i18n.t('smtp-auth') }}</ui-switch>
 				<ui-horizon-group inputs>
-					<ui-input v-model="smtpUser" :disabled="!enableEmail || !smtpAuth">{{ $t('smtp-user') }}</ui-input>
-					<ui-input v-model="smtpPass" type="password" :with-password-toggle="true" :disabled="!enableEmail || !smtpAuth">{{ $t('smtp-pass') }}</ui-input>
+					<ui-input v-model="smtpUser" :disabled="!enableEmail || !smtpAuth">{{ i18n.t('smtp-user') }}</ui-input>
+					<ui-input v-model="smtpPass" type="password" :with-password-toggle="true" :disabled="!enableEmail || !smtpAuth">{{ i18n.t('smtp-pass') }}</ui-input>
 				</ui-horizon-group>
-				<ui-switch v-model="smtpSecure" :disabled="!enableEmail">{{ $t('smtp-secure') }}<template #desc>{{ $t('smtp-secure-info') }}</template></ui-switch>
-				<ui-button @click="testEmail()">{{ $t('test-email') }}</ui-button>
+				<ui-switch v-model="smtpSecure" :disabled="!enableEmail">{{ i18n.t('smtp-secure') }}<template #desc>{{ i18n.t('smtp-secure-info') }}</template></ui-switch>
+				<ui-button @click="testEmail()">{{ i18n.t('test-email') }}</ui-button>
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faBolt"/> {{ $t('serviceworker-config') }}</template>
+		<template #title><fa :icon="faBolt"/> {{ i18n.t('serviceworker-config') }}</template>
 		<section>
-			<ui-switch v-model="enableServiceWorker">{{ $t('enable-serviceworker') }}<template #desc>{{ $t('serviceworker-info') }}</template></ui-switch>
+			<ui-switch v-model="enableServiceWorker">{{ i18n.t('enable-serviceworker') }}<template #desc>{{ i18n.t('serviceworker-info') }}</template></ui-switch>
 			<template v-if="enableServiceWorker">
-				<ui-info>{{ $t('vapid-info') }}<br><code>npm i web-push -g<br>web-push generate-vapid-keys</code><br>or<br><code>npx web-push generate-vapid-keys</code></ui-info>
+				<ui-info>{{ i18n.t('vapid-info') }}<br><code>npm i web-push -g<br>web-push generate-vapid-keys</code><br>or<br><code>npx web-push generate-vapid-keys</code></ui-info>
 				<ui-horizon-group inputs class="fit-bottom">
-					<ui-input v-model="swPublicKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ $t('vapid-publickey') }}</ui-input>
-					<ui-input v-model="swPrivateKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ $t('vapid-privatekey') }}</ui-input>
+					<ui-input v-model="swPublicKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ i18n.t('vapid-publickey') }}</ui-input>
+					<ui-input v-model="swPrivateKey" :disabled="!enableServiceWorker"><template #icon><fa icon="key"/></template>{{ i18n.t('vapid-privatekey') }}</ui-input>
 				</ui-horizon-group>
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faShieldAlt"/> {{ $t('recaptcha-config') }}</template>
+		<template #title><fa :icon="faShieldAlt"/> {{ i18n.t('recaptcha-config') }}</template>
 		<section :class="enableRecaptcha ? 'fit-bottom' : ''">
-			<ui-switch v-model="enableRecaptcha">{{ $t('enable-recaptcha') }}</ui-switch>
+			<ui-switch v-model="enableRecaptcha">{{ i18n.t('enable-recaptcha') }}</ui-switch>
 			<template v-if="enableRecaptcha">
-				<ui-info>{{ $t('recaptcha-info') }}</ui-info>
-				<ui-info warn>{{ $t('recaptcha-info2') }}</ui-info>
+				<ui-info>{{ i18n.t('recaptcha-info') }}</ui-info>
+				<ui-info warn>{{ i18n.t('recaptcha-info2') }}</ui-info>
 				<ui-horizon-group inputs>
-					<ui-input v-model="recaptchaSiteKey" :disabled="!enableRecaptcha"><template #icon><fa icon="key"/></template>{{ $t('recaptcha-site-key') }}</ui-input>
-					<ui-input v-model="recaptchaSecretKey" :disabled="!enableRecaptcha"><template #icon><fa icon="key"/></template>{{ $t('recaptcha-secret-key') }}</ui-input>
+					<ui-input v-model="recaptchaSiteKey" :disabled="!enableRecaptcha"><template #icon><fa icon="key"/></template>{{ i18n.t('recaptcha-site-key') }}</ui-input>
+					<ui-input v-model="recaptchaSecretKey" :disabled="!enableRecaptcha"><template #icon><fa icon="key"/></template>{{ i18n.t('recaptcha-secret-key') }}</ui-input>
 				</ui-horizon-group>
 			</template>
 		</section>
 		<section v-if="enableRecaptcha && recaptchaSiteKey">
-			<header>{{ $t('recaptcha-preview') }}</header>
+			<header>{{ i18n.t('recaptcha-preview') }}</header>
 			<div ref="recaptcha" :key="recaptchaSiteKey" style="margin: 16px 0 0 0;"></div>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faShieldAlt"/> {{ $t('external-service-integration-config') }}</template>
+		<template #title><fa :icon="faShieldAlt"/> {{ i18n.t('external-service-integration-config') }}</template>
 		<section>
-			<header><fa :icon="['fab', 'twitter']"/> {{ $t('twitter-integration-config') }}</header>
-			<ui-switch v-model="enableTwitterIntegration">{{ $t('enable-twitter-integration') }}</ui-switch>
+			<header><fa :icon="['fab', 'twitter']"/> {{ i18n.t('twitter-integration-config') }}</header>
+			<ui-switch v-model="enableTwitterIntegration">{{ i18n.t('enable-twitter-integration') }}</ui-switch>
 			<template v-if="enableTwitterIntegration">
 				<ui-horizon-group>
-					<ui-input v-model="twitterConsumerKey" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ $t('twitter-integration-consumer-key') }}</ui-input>
-					<ui-input v-model="twitterConsumerSecret" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ $t('twitter-integration-consumer-secret') }}</ui-input>
+					<ui-input v-model="twitterConsumerKey" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('twitter-integration-consumer-key') }}</ui-input>
+					<ui-input v-model="twitterConsumerSecret" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('twitter-integration-consumer-secret') }}</ui-input>
 				</ui-horizon-group>
-				<ui-info>{{ $t('twitter-integration-info', { url: `${url}/api/tw/cb` }) }}</ui-info>
+				<ui-info>{{ i18n.t('twitter-integration-info', { url: `${url}/api/tw/cb` }) }}</ui-info>
 			</template>
 		</section>
 		<section>
-			<header><fa :icon="['fab', 'github']"/> {{ $t('github-integration-config') }}</header>
-			<ui-switch v-model="enableGithubIntegration">{{ $t('enable-github-integration') }}</ui-switch>
+			<header><fa :icon="['fab', 'github']"/> {{ i18n.t('github-integration-config') }}</header>
+			<ui-switch v-model="enableGithubIntegration">{{ i18n.t('enable-github-integration') }}</ui-switch>
 			<template v-if="enableGithubIntegration">
 				<ui-horizon-group>
-					<ui-input v-model="githubClientId" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ $t('github-integration-client-id') }}</ui-input>
-					<ui-input v-model="githubClientSecret" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ $t('github-integration-client-secret') }}</ui-input>
+					<ui-input v-model="githubClientId" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('github-integration-client-id') }}</ui-input>
+					<ui-input v-model="githubClientSecret" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('github-integration-client-secret') }}</ui-input>
 				</ui-horizon-group>
-				<ui-info>{{ $t('github-integration-info', { url: `${url}/api/gh/cb` }) }}</ui-info>
+				<ui-info>{{ i18n.t('github-integration-info', { url: `${url}/api/gh/cb` }) }}</ui-info>
 			</template>
 		</section>
 		<section>
-			<header><fa :icon="['fab', 'discord']"/> {{ $t('discord-integration-config') }}</header>
-			<ui-switch v-model="enableDiscordIntegration">{{ $t('enable-discord-integration') }}</ui-switch>
+			<header><fa :icon="['fab', 'discord']"/> {{ i18n.t('discord-integration-config') }}</header>
+			<ui-switch v-model="enableDiscordIntegration">{{ i18n.t('enable-discord-integration') }}</ui-switch>
 			<template v-if="enableDiscordIntegration">
 				<ui-horizon-group>
-					<ui-input v-model="discordClientId" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ $t('discord-integration-client-id') }}</ui-input>
-					<ui-input v-model="discordClientSecret" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ $t('discord-integration-client-secret') }}</ui-input>
+					<ui-input v-model="discordClientId" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('discord-integration-client-id') }}</ui-input>
+					<ui-input v-model="discordClientSecret" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ i18n.t('discord-integration-client-secret') }}</ui-input>
 				</ui-horizon-group>
-				<ui-info>{{ $t('discord-integration-info', { url: `${url}/api/dc/cb` }) }}</ui-info>
+				<ui-info>{{ i18n.t('discord-integration-info', { url: `${url}/api/dc/cb` }) }}</ui-info>
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<details>
-		<summary style="color:var(--text);">{{ $t('advanced-config') }}</summary>
+		<summary style="color:var(--text);">{{ i18n.t('advanced-config') }}</summary>
 
 		<ui-card>
-			<template #title><fa :icon="faHashtag"/> {{ $t('hidden-tags') }}</template>
+			<template #title><fa :icon="faHashtag"/> {{ i18n.t('hidden-tags') }}</template>
 			<section class="fit-top">
 				<ui-textarea v-model="hiddenTags">
-					<template #desc>{{ $t('hidden-tags-info') }}</template>
+					<template #desc>{{ i18n.t('hidden-tags-info') }}</template>
 				</ui-textarea>
-				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 			</section>
 		</ui-card>
 
@@ -239,7 +239,7 @@
 				<ui-input v-model="summalyProxy">URL</ui-input>
 			</section>
 			<section>
-				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ i18n.t('save') }}</ui-button>
 			</section>
 		</ui-card>
 	</details>
@@ -247,18 +247,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import { url, host } from '../../config';
 import { toUnicode } from 'punycode';
 import { faHeadset, faShieldAlt, faGhost, faUserPlus, faBolt, faThumbtack, faPencilAlt, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope as farEnvelope, faSave } from '@fortawesome/free-regular-svg-icons';
 
-export default Vue.extend({
-	i18n: i18n('admin/views/instance.vue'),
+export default defineComponent({
+	compatConfig: {
+		MODE: 2,
+	},
 
 	data() {
 		return {
+			i18n: _i18n('admin/views/instance.vue'),
 			url,
 			host: toUnicode(host),
 			maintainerName: null,
@@ -521,7 +524,7 @@ export default Vue.extend({
 			}).then(() => {
 				this.$root.dialog({
 					type: 'success',
-					text: this.$t('saved'),
+					text: this.i18n.t('saved'),
 				});
 			}).catch(e => {
 				this.$root.dialog({

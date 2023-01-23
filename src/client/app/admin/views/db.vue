@@ -1,32 +1,32 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faDatabase"/> {{ $t('tables') }}</template>
+		<template #title><fa :icon="faDatabase"/> {{ i18n.t('tables') }}</template>
 		<section v-if="tables">
 			<div v-for="table in Object.keys(tables)"><b>{{ table }}</b> {{ tables[table].count | number }} {{ tables[table].size | bytes }}</div>
 		</section>
 		<section>
-			<header><fa :icon="faBroom"/> {{ $t('vacuum') }}</header>
-			<ui-info>{{ $t('vacuum-info') }}</ui-info>
+			<header><fa :icon="faBroom"/> {{ i18n.t('vacuum') }}</header>
+			<ui-info>{{ i18n.t('vacuum-info') }}</ui-info>
 			<ui-switch v-model="fullVacuum">FULL</ui-switch>
 			<ui-switch v-model="analyzeVacuum">ANALYZE</ui-switch>
-			<ui-button @click="vacuum()"><fa :icon="faBroom"/> {{ $t('vacuum') }}</ui-button>
-			<ui-info warn>{{ $t('vacuum-exclamation') }}</ui-info>
+			<ui-button @click="vacuum()"><fa :icon="faBroom"/> {{ i18n.t('vacuum') }}</ui-button>
+			<ui-info warn>{{ i18n.t('vacuum-exclamation') }}</ui-info>
 		</section>
 	</ui-card>
 </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import i18n from '../../i18n';
+import { defineComponent } from 'vue';
+import { i18n as _i18n } from '../../i18n';
 import { faDatabase, faBroom } from '@fortawesome/free-solid-svg-icons';
 
-export default Vue.extend({
-	i18n: i18n('admin/views/db.vue'),
+export default defineComponent({
 
 	data() {
 		return {
+			i18n: _i18n('admin/views/db.vue'),
 			tables: null,
 			fullVacuum: true,
 			analyzeVacuum: true,

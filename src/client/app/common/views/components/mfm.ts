@@ -1,4 +1,4 @@
-import Vue, { VNode , h } from 'vue';
+import { VNode , h, defineComponent } from 'vue';
 import { length } from 'stringz';
 import { MfmForest } from '../../../../../mfm/prelude';
 import { parse, parsePlain } from '../../../../../mfm/parse';
@@ -17,7 +17,8 @@ function sumTextsLength(ts: MfmForest): number {
 	return sum(textNodes.map(x => length(x.props.text)));
 }
 
-export default Vue.component('MisskeyFlavoredMarkdown', {
+//export default Vue.component('MisskeyFlavoredMarkdown', {
+export default defineComponent({
 	props: {
 		text: {
 			type: String,
@@ -283,10 +284,8 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 							}, genEl(token.children));
 							*/
 							return [h(MkSparkle, {
-								props: {
-									count,
-									speed,
-								},
+								count,
+								speed,
 							}, genEl(token.children))];
 						}
 					}
@@ -478,10 +477,8 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 				case 'mention': {
 					return [h(MkMention, {
 						key: Math.random(),
-						props: {
-							host: (token.node.props.host == null && this.author && this.author.host != null ? this.author.host : token.node.props.host) || host,
-							username: token.node.props.username,
-						},
+						host: (token.node.props.host == null && this.author && this.author.host != null ? this.author.host : token.node.props.host) || host,
+						username: token.node.props.username,
 					})];
 				}
 
@@ -581,9 +578,7 @@ export default Vue.component('MisskeyFlavoredMarkdown', {
 					//const MkGoogle = () => import('./google.vue').then(m => m.default);
 					return [h(MkGoogle, {
 						key: Math.random(),
-						props: {
-							q: token.node.props.query,
-						},
+						q: token.node.props.query,
 					})];
 				}
 

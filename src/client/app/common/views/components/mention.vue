@@ -1,6 +1,6 @@
 <template>
 <router-link v-if="url.startsWith('/')" v-user-preview="canonical" class="ldlomzub" :to="url">
-	<span v-if="isMe" class="me">{{ $t('@.you') }}</span>
+	<span v-if="isMe" class="me">{{ i18n.t('@.you') }}</span>
 	<img v-if="!isMe && avator != null" class="avator" :src="avator"/>
 	<span class="main">
 		<span class="username">@{{ username }}</span>
@@ -15,14 +15,58 @@
 </a>
 </template>
 
+<script setup lang="ts">
+import { toUnicode } from 'punycode';
+import { i18n as _i18n } from '../../../i18n';
+import { wellKnownServices } from '../../../../../well-known-services';
+import { host as localHost } from '../../../config';
+import { $i } from '../../../account';
+import { computed, ref } from 'vue';
+
+const i18n = _i18n();
+
+const props = defineProps<{
+	username: string;
+	host: string
+}>();
+
+const canonical = ref<string>('');
+const url = ref<string>('');
+const isMe = ref<boolean>(false);
+
+canonical.value = props.host === localHost ? `@${props.username}` : `@${props.username}@${toUnicode(props.host)}`;
+// TODO: いい感じにする(wellKnownServices)
+url.value = `/${canonical.value}`; /*() => {
+	const wellKnown = wellKnownServices.find(x => x[0] === props.host);
+	if (wellKnown) {
+		return wellKnown[1](props.username);
+	} else {
+	return `/${canonical}`;
+};*/
+isMe.value = $i && (
+	`@${props.username}@${toUnicode(props.host)}` === `@${$i.username}@${toUnicode(localHost)}`.toLowerCase()
+);
+
+const avator = computed(() => {
+	const ascii = `@${props.username}` + (props.host !== localHost ? `@${props.host}` : '');
+	return `/avatar/${ascii}`;
+});
+</script>
+
 <script lang="ts">
-import Vue from 'vue';
+export default {
+	compatConfig: {
+		MODE: 3,
+	},
+};
+/*
+import { defineComponent } from 'vue';
 import i18n from '../../../i18n';
 import { toUnicode } from 'punycode/';
 import { host as localHost } from '../../../config';
 import { wellKnownServices } from '../../../../../well-known-services';
 
-export default Vue.extend({
+export default defineComponent({
 	i18n: i18n(),
 	props: {
 		username: {
@@ -69,6 +113,7 @@ export default Vue.extend({
 		toUnicode,
 	},
 });
+*/
 </script>
 
 <style lang="stylus" scoped>

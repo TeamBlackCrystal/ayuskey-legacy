@@ -8,14 +8,13 @@
 </template>
 
 <script lang="ts">
-//import { defineComponent } from 'vue';
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import * as os from '@client/os';
 
 const sprite = new Image();
 sprite.src = '/static-assets/sparkle-spritesheet.png';
 
-export default Vue.extend({
+export default defineComponent({
 	props: {
 		count: {
 			type: Number,
@@ -45,7 +44,7 @@ export default Vue.extend({
 	updated() {
 		this.resize();
 	},
-	destroyed() {
+	unmounted() {
 		window.cancelAnimationFrame(this.anim);
 	},
 	methods: {
