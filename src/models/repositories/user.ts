@@ -34,6 +34,7 @@ import { Emoji } from '../entities/emoji';
 import { getAntennas } from '../../misc/antenna-cache';
 import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const';
 import { onlineStateTypes } from '@/types';
+import { sanitizeUrl } from '../../misc/sanitize-url';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -215,7 +216,7 @@ export class UserRepository extends Repository<User> {
 	// 何とかしたい
 	public getAvatarUrl(user: User): string {
 		if (user.avatar) {
-			const avatarUrl = DriveFiles.getPublicUrl(user.avatar, true);
+			const avatarUrl = sanitizeUrl(DriveFiles.getPublicUrl(user.avatar, true));
 			//起こりえないはずだけど、ts的に必要
 			if (avatarUrl == null) return `${config.url}/random-avatar/${user.id}`;
 			return avatarUrl;
@@ -356,12 +357,12 @@ export class UserRepository extends Repository<User> {
 
 			...(opts.detail
 				? {
-					url: profile?.url,
-					uri: user.uri,
+					url: sanitizeUrl(profile!.url),
+					uri: sanitizeUrl(user.uri),
 					createdAt: user.createdAt.toISOString(),
 					updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
 					bannerUrl: user.banner
-						? DriveFiles.getPublicUrl(user.banner, false)
+						? sanitizeUrl(DriveFiles.getPublicUrl(user.banner, false))
 						: null,
 					bannerBlurhash: user.avatar?.blurhash || null,
 					bannerColor: null, // 後方互換性のため

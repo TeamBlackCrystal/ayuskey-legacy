@@ -12,6 +12,7 @@ import { decodeReaction, convertLegacyReactions, convertLegacyReaction } from '.
 import parseAcct from '../../misc/acct/parse';
 import { resolveUser } from '../../remote/resolve-user';
 import { NoteReaction } from '../entities/note-reaction';
+import { sanitizeUrl } from '../../misc/sanitize-url';
 
 @EntityRepository(Note)
 export class NoteRepository extends Repository<Note> {
@@ -311,8 +312,8 @@ export class NoteRepository extends Repository<Note> {
 				name: channel.name,
 			} : undefined,
 			mentions: note.mentions.length > 0 ? note.mentions : undefined,
-			uri: note.uri || undefined,
-			url: note.url || undefined,
+			uri: sanitizeUrl(note.uri) || undefined,
+			url: sanitizeUrl(note.url) || undefined,
 			geo: note.geo || undefined,
 
 			...(opts.detail ? {
