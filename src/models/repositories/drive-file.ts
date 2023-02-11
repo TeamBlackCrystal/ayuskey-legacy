@@ -124,7 +124,7 @@ export class DriveFileRepository extends Repository<DriveFile> {
 			isSensitive: file.isSensitive,
 			blurhash: file.blurhash,
 			properties: file.properties,
-			url: opts.self ? file.url : (sanitizeUrl(this.getPublicUrl(file, false, meta)) ?? null),
+			url: sanitizeUrl(opts.self ? file.url : this.getPublicUrl(file, false, meta)) ?? null,
 			thumbnailUrl: sanitizeUrl(this.getPublicUrl(file, true, meta)) ?? null,
 			comment: file.comment,
 			folderId: file.folderId,
