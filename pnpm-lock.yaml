@@ -96,7 +96,7 @@ importers:
       animejs: 3.2.1
       apexcharts: 3.36.3
       autobind-decorator: 2.4.0
-      autosize: 5.0.2
+      autosize: 6.0.1
       autwh: 0.1.0
       aws-sdk: 2.1280.0
       ayuskey.js: 1.0.0-rc.11
@@ -298,7 +298,7 @@ importers:
       animejs: 3.2.1
       apexcharts: 3.36.3
       autobind-decorator: 2.4.0
-      autosize: 5.0.2
+      autosize: 6.0.1
       autwh: 0.1.0
       aws-sdk: 2.1280.0
       ayuskey.js: 1.0.0-rc.11
@@ -3050,8 +3050,8 @@ packages:
     engines: {node: '>=8.10', npm: '>=6.4.1'}
     dev: false
 
-  /autosize/5.0.2:
-    resolution: {integrity: sha512-FPVt5ynkqUAA9gcMZnJHka1XfQgr1WNd/yRfIjmj5WGmjua+u5Hl9hn8M2nU5CNy2bEIcj1ZUwXq7IOHsfZG9w==}
+  /autosize/6.0.1:
+    resolution: {integrity: sha512-f86EjiUKE6Xvczc4ioP1JBlWG7FKrE13qe/DxBCpe8GCipCq2nFw73aO8QEBKHfSbYGDN5eB9jXWKen7tspDqQ==}
     dev: false
 
   /autwh/0.1.0:
