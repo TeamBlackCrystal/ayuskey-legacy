@@ -227,7 +227,7 @@ importers:
       stylus: 0.59.0
       stylus-loader: 7.1.0
       syslog-pro: git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2
-      systeminformation: 5.17.4
+      systeminformation: 5.17.12
       syuilo-password-strength: 0.0.1
       terser-webpack-plugin: 5.3.6
       textarea-caret: 3.1.0
@@ -418,7 +418,7 @@ importers:
       stylus: 0.59.0
       stylus-loader: 7.1.0_577zv5myo6oqbmxnic7hzxwylm
       syslog-pro: github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7
-      systeminformation: 5.17.4
+      systeminformation: 5.17.12
       syuilo-password-strength: 0.0.1
       terser-webpack-plugin: 5.3.6_egnkx76lvgs4awhqscezhh53zy
       textarea-caret: 3.1.0
@@ -12515,8 +12515,8 @@ packages:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: false
 
-  /systeminformation/5.17.4:
-    resolution: {integrity: sha512-mEiIYrw7X5ABX8tJUgzbumQAuFQxNyHdZDz6+UtwNKUbKgIoZqLtug2z1spFB/LiXZne5tdPBJOlvVckbvfhiQ==}
+  /systeminformation/5.17.12:
+    resolution: {integrity: sha512-I3pfMW2vue53u+X08BNxaJieaHkRoMMKjWetY9lbYJeWFaeWPO6P4FkNc4XOCX8F9vbQ0HqQ25RJoz3U/B7liw==}
     engines: {node: '>=8.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
