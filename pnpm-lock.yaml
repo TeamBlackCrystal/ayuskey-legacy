@@ -101,7 +101,7 @@ importers:
       aws-sdk: 2.1280.0
       ayuskey.js: 1.0.0-rc.11
       bcryptjs: 2.4.3
-      blurhash: 2.0.4
+      blurhash: 2.0.5
       bootstrap: 5.2.3
       bootstrap-vue-3: 0.5.1
       broadcast-channel: 4.20.2
@@ -303,7 +303,7 @@ importers:
       aws-sdk: 2.1280.0
       ayuskey.js: 1.0.0-rc.11
       bcryptjs: 2.4.3
-      blurhash: 2.0.4
+      blurhash: 2.0.5
       bootstrap: 5.2.3_@popperjs+core@2.11.6
       bootstrap-vue-3: 0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi
       broadcast-channel: 4.20.2
@@ -3230,8 +3230,8 @@ packages:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
     dev: false
 
-  /blurhash/2.0.4:
-    resolution: {integrity: sha512-r/As72u2FbucLoK5NTegM/GucxJc3d8GvHc4ngo13IO/nt2HU4gONxNLq1XPN6EM/V8Y9URIa7PcSz2RZu553A==}
+  /blurhash/2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
     dev: false
 
   /bn.js/4.12.0:
