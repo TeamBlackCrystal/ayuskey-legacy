@@ -150,7 +150,7 @@
 		"parsimmon": "1.18.1",
 		"pg": "8.8.0",
 		"photoswipe": "5.3.4",
-		"pinia": "2.0.29",
+		"pinia": "2.0.32",
 		"pinia-plugin-persistedstate": "3.0.2",
 		"portscanner": "2.2.0",
 		"postcss": "8.4.21",
