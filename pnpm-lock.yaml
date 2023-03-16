@@ -11,7 +11,7 @@ importers:
       '@ayuskey/summaly': 2.5.0-rei0784.4
       '@ayuskey/vuewordcloud': workspace:19.0.0
       '@ayuskey/xev': 2.0.1-rei0784.2
-      '@bull-board/api': 4.11.0
+      '@bull-board/api': 4.12.1
       '@bull-board/koa': 4.11.0
       '@bull-board/ui': 4.12.1
       '@discordapp/twemoji': 14.0.2
@@ -277,7 +277,7 @@ importers:
       '@ayuskey/summaly': 2.5.0-rei0784.4
       '@ayuskey/vuewordcloud': link:lib/vuewordcloud
       '@ayuskey/xev': 2.0.1-rei0784.2
-      '@bull-board/api': 4.11.0
+      '@bull-board/api': 4.12.1
       '@bull-board/koa': 4.11.0_47hhf6s5g2iqergy3sns66l4iy
       '@bull-board/ui': 4.12.1
       '@discordapp/twemoji': 14.0.2
