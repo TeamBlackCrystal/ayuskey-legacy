@@ -105,7 +105,7 @@ importers:
       bootstrap: 5.2.3
       bootstrap-vue-3: 0.5.1
       broadcast-channel: 4.20.2
-      bull: 4.10.2
+      bull: 4.10.4
       cacheable-lookup: 6.1.0
       cafy: 15.2.1
       cbor: 8.1.0
@@ -307,7 +307,7 @@ importers:
       bootstrap: 5.2.3_@popperjs+core@2.11.6
       bootstrap-vue-3: 0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi
       broadcast-channel: 4.20.2
-      bull: 4.10.2
+      bull: 4.10.4
       cacheable-lookup: 6.1.0
       cafy: 15.2.1
       cbor: 8.1.0
@@ -3458,8 +3458,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bull/4.10.2:
-    resolution: {integrity: sha512-xa65xtWjQsLqYU/eNaXxq9VRG8xd6qNsQEjR7yjYuae05xKrzbVMVj2QgrYsTMmSs/vsqJjHqHSRRiW1+IkGXQ==}
+  /bull/4.10.4:
+    resolution: {integrity: sha512-o9m/7HjS/Or3vqRd59evBlWCXd9Lp+ALppKseoSKHaykK46SmRjAilX98PgmOz1yeVaurt8D5UtvEt4bUjM3eA==}
     engines: {node: '>=12'}
     dependencies:
       cron-parser: 4.6.0
@@ -3468,7 +3468,6 @@ packages:
       ioredis: 5.2.4
       lodash: 4.17.21
       msgpackr: 1.7.2
-      p-timeout: 3.2.0
       semver: 7.3.8
       uuid: 8.3.2
     transitivePeerDependencies:

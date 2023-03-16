@@ -76,7 +76,7 @@
 		"bootstrap": "5.2.3",
 		"bootstrap-vue-3": "0.5.1",
 		"broadcast-channel": "4.20.2",
-		"bull": "4.10.2",
+		"bull": "4.10.4",
 		"cacheable-lookup": "6.1.0",
 		"cafy": "15.2.1",
 		"cbor": "8.1.0",
