@@ -27,7 +27,7 @@ services:
 
   db:
     restart: always
-    image: postgres:11.18-alpine
+    image: postgres:11.19-alpine
     networks:
       - internal_network
     env_file:
