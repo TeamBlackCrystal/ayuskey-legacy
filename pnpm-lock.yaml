@@ -13,7 +13,7 @@ importers:
       '@ayuskey/xev': 2.0.1-rei0784.2
       '@bull-board/api': 4.12.1
       '@bull-board/koa': 4.11.0
-      '@bull-board/ui': 4.12.1
+      '@bull-board/ui': 4.12.2
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@fortawesome/fontawesome-svg-core': 6.3.0
@@ -279,7 +279,7 @@ importers:
       '@ayuskey/xev': 2.0.1-rei0784.2
       '@bull-board/api': 4.12.1
       '@bull-board/koa': 4.11.0_47hhf6s5g2iqergy3sns66l4iy
-      '@bull-board/ui': 4.12.1
+      '@bull-board/ui': 4.12.2
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@fortawesome/fontawesome-svg-core': 6.3.0
@@ -831,6 +831,12 @@ packages:
       redis-info: 3.1.0
     dev: false
 
+  /@bull-board/api/4.12.2:
+    resolution: {integrity: sha512-efF8K1pvfEEft2ELQwCBe/a225vHufCjM2hfcyvmIG/SUX6TlKQFUFZ1+KV0wenD9wxvUVb5wxUu6on+HrZiVg==}
+    dependencies:
+      redis-info: 3.1.0
+    dev: false
+
   /@bull-board/koa/4.11.0_47hhf6s5g2iqergy3sns66l4iy:
     resolution: {integrity: sha512-R3O3CpHAHcfidA7lAv9rIJpuUxiOLNYZ/wM1fcVUbLdDcgDxNAkF/zx1KXo2oN4lriGydvwYrAlRCdDHELH8jw==}
     dependencies:
@@ -905,10 +911,10 @@ packages:
       '@bull-board/api': 4.11.0
     dev: false
 
-  /@bull-board/ui/4.12.1:
-    resolution: {integrity: sha512-nNTjxitLEre+UdZjwMHwlKKGxpg3OV/Sf7dNOlhJYoRjO7aYPb63M+BfGVrYgupk3V73Q0qvl1emtsnF/qz/Wg==}
+  /@bull-board/ui/4.12.2:
+    resolution: {integrity: sha512-jB/OOEhg+DUL6ssmtQYTK+iYd3iy68bbozOp+q2xVUC4V7zeFmYF25sIApYFTNfbjuUMesAVOiX4u0gNEo/J7w==}
     dependencies:
-      '@bull-board/api': 4.12.1
+      '@bull-board/api': 4.12.2
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
