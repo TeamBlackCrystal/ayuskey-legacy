@@ -192,7 +192,7 @@ importers:
       pinia-plugin-persistedstate: 3.0.2
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.0.2
+      postcss-loader: 7.1.0
       prettier: 2.8.3
       private-ip: 2.3.4
       probe-image-size: 7.2.3
@@ -385,7 +385,7 @@ importers:
       pinia-plugin-persistedstate: 3.0.2_pinia@2.0.32
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
+      postcss-loader: 7.1.0_6jdsrmfenkuhhw3gx4zvjlznce
       private-ip: 2.3.4
       probe-image-size: 7.2.3
       promise-limit: 2.7.0
@@ -1871,10 +1871,6 @@ packages:
     dependencies:
       '@types/node': 18.14.2
     dev: true
-
-  /@types/parse-json/4.0.0:
-    resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
-    dev: false
 
   /@types/parse5/6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
@@ -4531,15 +4527,14 @@ packages:
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  /cosmiconfig/7.0.1:
-    resolution: {integrity: sha512-a1YWNUV2HwGimB7dU2s1wUMurNKjpx60HxBB6xUM8Re+2s1g1IIfJvFR0/iCF+XHdE0GMTKTuLR32UQff4TEyQ==}
-    engines: {node: '>=10'}
+  /cosmiconfig/8.1.0:
+    resolution: {integrity: sha512-0tLZ9URlPGU7JsKq0DQOQ3FoRsYX8xDZ7xMiATQfaiGMz7EHowNkbU9u1coAOmnh9p/1ySpm0RB3JNWRXM5GCg==}
+    engines: {node: '>=14'}
     dependencies:
-      '@types/parse-json': 4.0.0
       import-fresh: 3.3.0
+      js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
-      yaml: 1.10.2
     dev: false
 
   /crc-32/1.2.2:
@@ -8166,6 +8161,11 @@ packages:
     engines: {node: '>= 8'}
     dev: false
 
+  /klona/2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
+    dev: false
+
   /knitwork/1.0.0:
     resolution: {integrity: sha512-dWl0Dbjm6Xm+kDxhPQJsCBTxrJzuGl0aP9rhr+TG8D3l+GL90N8O8lYUi7dTSAN2uuDqCtNgb6aEuQH5wsiV8Q==}
     dev: false
@@ -10433,15 +10433,15 @@ packages:
       enhanced-resolve: 4.5.0
     dev: false
 
-  /postcss-loader/7.0.2_6jdsrmfenkuhhw3gx4zvjlznce:
-    resolution: {integrity: sha512-fUJzV/QH7NXUAqV8dWJ9Lg4aTkDCezpTS5HgJ2DvqznexTbSTxgi/dTECvTZ15BwKTtk8G/bqI/QTu2HPd3ZCg==}
+  /postcss-loader/7.1.0_6jdsrmfenkuhhw3gx4zvjlznce:
+    resolution: {integrity: sha512-vTD2DJ8vJD0Vr1WzMQkRZWRjcynGh3t7NeoLg+Sb1TeuK7etiZfL/ZwHbaVa3M+Qni7Lj/29voV9IggnIUjlIw==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
       webpack: ^5.0.0
     dependencies:
-      cosmiconfig: 7.0.1
-      klona: 2.0.5
+      cosmiconfig: 8.1.0
+      klona: 2.0.6
       postcss: 8.4.21
       semver: 7.3.8
       webpack: 5.75.0_ylxupyaqc4ozj72brfdfpoftg4
