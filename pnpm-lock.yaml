@@ -124,7 +124,7 @@ importers:
       double-ended-queue: 2.1.0-0
       escape-regexp: 0.0.1
       eslint: 8.32.0
-      eslint-config-prettier: 8.6.0
+      eslint-config-prettier: 8.8.0
       eslint-import-resolver-node: 0.3.7
       eslint-plugin-import: 2.27.5
       eslint-plugin-vue: 9.9.0
@@ -524,7 +524,7 @@ importers:
       '@typescript-eslint/parser': 5.54.0_7uibuqfxkfaozanbtbziikiqje
       escape-regexp: 0.0.1
       eslint: 8.32.0
-      eslint-config-prettier: 8.6.0_eslint@8.32.0
+      eslint-config-prettier: 8.8.0_eslint@8.32.0
       eslint-import-resolver-node: 0.3.7
       eslint-plugin-import: 2.27.5_op65hrlmg4esunydfgass5vyay
       eslint-plugin-vue: 9.9.0_eslint@8.32.0
@@ -5527,8 +5527,8 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /eslint-config-prettier/8.6.0_eslint@8.32.0:
-    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+  /eslint-config-prettier/8.8.0_eslint@8.32.0:
+    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
