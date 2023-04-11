@@ -1,4 +1,4 @@
-FROM node:18.14.2-alpine3.16 AS base
+FROM node:19.9.0-alpine3.16 AS base
 
 WORKDIR /misskey
 
