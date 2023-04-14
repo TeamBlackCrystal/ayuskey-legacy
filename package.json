@@ -49,7 +49,7 @@
 		"@bull-board/api": "4.12.2",
 		"@bull-board/koa": "4.11.0",
 		"@bull-board/ui": "5.0.0",
-		"@discordapp/twemoji": "14.0.2",
+		"@discordapp/twemoji": "14.1.2",
 		"@elastic/elasticsearch": "7.17.0",
 		"@fortawesome/fontawesome-svg-core": "6.3.0",
 		"@fortawesome/free-brands-svg-icons": "6.3.0",
