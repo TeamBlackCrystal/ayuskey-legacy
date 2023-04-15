@@ -215,7 +215,7 @@ importers:
       rimraf: 3.0.2
       rndstr: 1.0.0
       sass: 1.55.0
-      sass-loader: 13.2.0
+      sass-loader: 13.2.2
       seedrandom: 3.0.5
       sharp: 0.31.3
       showdown: 2.1.0
@@ -406,7 +406,7 @@ importers:
       rimraf: 3.0.2
       rndstr: 1.0.0
       sass: 1.55.0
-      sass-loader: 13.2.0_sass@1.55.0+webpack@5.79.0
+      sass-loader: 13.2.2_sass@1.55.0+webpack@5.79.0
       seedrandom: 3.0.5
       sharp: 0.31.3
       showdown: 2.1.0
@@ -11587,8 +11587,8 @@ packages:
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass-loader/13.2.0_sass@1.55.0+webpack@5.79.0:
-    resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
+  /sass-loader/13.2.2_sass@1.55.0+webpack@5.79.0:
+    resolution: {integrity: sha512-nrIdVAAte3B9icfBiGWvmMhT/D+eCDwnk+yA7VE/76dp/WkHX+i44Q/pfo71NYbwj0Ap+PGsn0ekOuU1WFJ2AA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
@@ -11606,7 +11606,7 @@ packages:
       sass-embedded:
         optional: true
     dependencies:
-      klona: 2.0.5
+      klona: 2.0.6
       neo-async: 2.6.2
       sass: 1.55.0
       webpack: 5.79.0_ylxupyaqc4ozj72brfdfpoftg4
