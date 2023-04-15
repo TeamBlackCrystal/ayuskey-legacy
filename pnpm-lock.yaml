@@ -192,7 +192,7 @@ importers:
       pinia-plugin-persistedstate: 3.0.2
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.1.0
+      postcss-loader: 7.2.4
       prettier: 2.8.3
       private-ip: 2.3.4
       probe-image-size: 7.2.3
@@ -385,7 +385,7 @@ importers:
       pinia-plugin-persistedstate: 3.0.2_pinia@2.0.33
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.1.0_wqtg4krag6rpvkpxf4axpsljcq
+      postcss-loader: 7.2.4_ptt3vhejg6bxv5gbjedhowyp7i
       private-ip: 2.3.4
       probe-image-size: 7.2.3
       promise-limit: 2.7.0
@@ -4545,8 +4545,23 @@ packages:
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  /cosmiconfig/8.1.0:
-    resolution: {integrity: sha512-0tLZ9URlPGU7JsKq0DQOQ3FoRsYX8xDZ7xMiATQfaiGMz7EHowNkbU9u1coAOmnh9p/1ySpm0RB3JNWRXM5GCg==}
+  /cosmiconfig-typescript-loader/4.3.0_giqjcqy5zy7ri46oajdnizjope:
+    resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@types/node': '*'
+      cosmiconfig: '>=7'
+      ts-node: '>=10'
+      typescript: '>=3'
+    dependencies:
+      '@types/node': 18.14.2
+      cosmiconfig: 8.1.3
+      ts-node: 10.9.1_gskmqsovpo3gs2b3sfmdz7gpca
+      typescript: 4.9.4
+    dev: false
+
+  /cosmiconfig/8.1.3:
+    resolution: {integrity: sha512-/UkO2JKI18b5jVMJUp0lvKFMpa/Gye+ZgZjKD+DGEN9y7NRcf/nK1A0sp67ONmKtnDCNMS44E6jrk0Yc3bDuUw==}
     engines: {node: '>=14'}
     dependencies:
       import-fresh: 3.3.0
@@ -10451,18 +10466,30 @@ packages:
       enhanced-resolve: 4.5.0
     dev: false
 
-  /postcss-loader/7.1.0_wqtg4krag6rpvkpxf4axpsljcq:
-    resolution: {integrity: sha512-vTD2DJ8vJD0Vr1WzMQkRZWRjcynGh3t7NeoLg+Sb1TeuK7etiZfL/ZwHbaVa3M+Qni7Lj/29voV9IggnIUjlIw==}
+  /postcss-loader/7.2.4_ptt3vhejg6bxv5gbjedhowyp7i:
+    resolution: {integrity: sha512-F88rpxxNspo5hatIc+orYwZDtHFaVFOSIVAx+fBfJC1GmhWbVmPWtmg2gXKE1OxJbneOSGn8PWdIwsZFcruS+w==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
+      ts-node: '>=10'
+      typescript: '>=4'
       webpack: ^5.0.0
+    peerDependenciesMeta:
+      ts-node:
+        optional: true
+      typescript:
+        optional: true
     dependencies:
-      cosmiconfig: 8.1.0
+      cosmiconfig: 8.1.3
+      cosmiconfig-typescript-loader: 4.3.0_giqjcqy5zy7ri46oajdnizjope
       klona: 2.0.6
       postcss: 8.4.21
       semver: 7.3.8
+      ts-node: 10.9.1_gskmqsovpo3gs2b3sfmdz7gpca
+      typescript: 4.9.4
       webpack: 5.79.0_ylxupyaqc4ozj72brfdfpoftg4
+    transitivePeerDependencies:
+      - '@types/node'
     dev: false
 
   /postcss-merge-longhand/5.1.7_postcss@8.4.21:
