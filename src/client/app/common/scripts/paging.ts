@@ -144,7 +144,11 @@ export default (opts) => defineComponent({
 
 				// オーバーフローしたら古い投稿は捨てる
 				if (this.items.length >= opts.displayLimit) {
-					this.items = this.items.slice(0, opts.displayLimit);
+					// このやり方だとVue 3.2以降アニメーションが動かなくなる
+					//this.items = this.items.slice(0, opts.displayLimit);
+					while (this.items.length >= opts.displayLimit) {
+						this.items.pop();
+					}
 					this.more = true;
 				}
 			} else {
