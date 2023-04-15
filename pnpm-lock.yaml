@@ -200,7 +200,7 @@ importers:
       promise-sequential: 1.1.1
       pug: 3.0.2
       punycode: 2.3.0
-      pureimage: 0.3.15
+      pureimage: 0.3.17
       qrcode: 1.5.1
       random-seed: 0.3.0
       randomcolor: 0.6.2
@@ -392,7 +392,7 @@ importers:
       promise-sequential: 1.1.1
       pug: 3.0.2
       punycode: 2.3.0
-      pureimage: 0.3.15
+      pureimage: 0.3.17
       qrcode: 1.5.1
       random-seed: 0.3.0
       randomcolor: 0.6.2
@@ -11022,8 +11022,8 @@ packages:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
 
-  /pureimage/0.3.15:
-    resolution: {integrity: sha512-QpQYEV8nxVb84en7D0nKXwG0bdmwmlsSg9QnqxpEOExvUXdbmo6Lw/UoxSXD9z+ryvWDkgWqZsIM3iPCAh4dXg==}
+  /pureimage/0.3.17:
+    resolution: {integrity: sha512-JV4hfYF1BXxDwbSR8hjhVEhVTxwmAXos8uIXQ7Bw2eWrUEpLDJnQoQ8WLlWAO4TMGJ7mp9n6gvLKJ6MSaGUkXQ==}
     engines: {node: '>=0.8'}
     dependencies:
       jpeg-js: 0.4.4
