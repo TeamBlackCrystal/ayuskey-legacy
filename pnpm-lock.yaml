@@ -14,7 +14,7 @@ importers:
       '@bull-board/api': 4.12.2
       '@bull-board/koa': 4.11.0
       '@bull-board/ui': 5.0.0
-      '@discordapp/twemoji': 14.0.2
+      '@discordapp/twemoji': 14.1.2
       '@elastic/elasticsearch': 7.17.0
       '@fortawesome/fontawesome-svg-core': 6.4.0
       '@fortawesome/free-brands-svg-icons': 6.4.0
@@ -280,7 +280,7 @@ importers:
       '@bull-board/api': 4.12.2
       '@bull-board/koa': 4.11.0_47hhf6s5g2iqergy3sns66l4iy
       '@bull-board/ui': 5.0.0
-      '@discordapp/twemoji': 14.0.2
+      '@discordapp/twemoji': 14.1.2
       '@elastic/elasticsearch': 7.17.0
       '@fortawesome/fontawesome-svg-core': 6.4.0
       '@fortawesome/free-brands-svg-icons': 6.4.0
@@ -934,8 +934,8 @@ packages:
       - web-streams-polyfill
     dev: false
 
-  /@discordapp/twemoji/14.0.2:
-    resolution: {integrity: sha512-eYJpFsjViDTYwq3f6v+tRu8iRc+yLAeGrlh6kmNRvvC6rroUE2bMlBfEQ/WNh+2Q1FtSEFXpxzuQPOHzRzbAyA==}
+  /@discordapp/twemoji/14.1.2:
+    resolution: {integrity: sha512-Rkuu30/biwy8Zss0r5qfFvQzoQGPTHXzA7Y/MPMkCQqFd0WskoYvjfJRTz0iuZwUpMfrgbM8eakSsptCxmOqog==}
     dependencies:
       fs-extra: 8.1.0
       jsonfile: 5.0.0
