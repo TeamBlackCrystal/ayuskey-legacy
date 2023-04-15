@@ -237,7 +237,7 @@ importers:
       tmp: 0.2.1
       ts-loader: 9.4.2
       ts-node: 10.9.1
-      tsc-alias: 1.8.2
+      tsc-alias: 1.8.5
       tsc-progress: 1.0.4
       tsconfig-paths: 4.2.0
       tslint: 5.20.1
@@ -428,7 +428,7 @@ importers:
       tmp: 0.2.1
       ts-loader: 9.4.2_jflcamw5lswtt7u6jsjwbv554e
       ts-node: 10.9.1_gskmqsovpo3gs2b3sfmdz7gpca
-      tsc-alias: 1.8.2
+      tsc-alias: 1.8.5
       tsconfig-paths: 4.2.0
       typeorm: 0.2.44_ioredis@4.28.5+pg@8.10.0
       typescript: 4.9.4
@@ -821,12 +821,6 @@ packages:
 
   /@bull-board/api/4.11.0:
     resolution: {integrity: sha512-qFnG63s3BkaslsNnXYagEUcdeK9SijZTJ+I4vMU+OiZt9VlKh01X1KjNlqjF9guvWcjk+Rg8UOMm0fWwM6PK6g==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
-  /@bull-board/api/4.12.2:
-    resolution: {integrity: sha512-efF8K1pvfEEft2ELQwCBe/a225vHufCjM2hfcyvmIG/SUX6TlKQFUFZ1+KV0wenD9wxvUVb5wxUu6on+HrZiVg==}
     dependencies:
       redis-info: 3.1.0
     dev: false
@@ -12940,8 +12934,8 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  /tsc-alias/1.8.2:
-    resolution: {integrity: sha512-ukBkcNekOgwtnSWYLD5QsMX3yQWg7JviAs8zg3qJGgu4LGtY3tsV4G6vnqvOXIDkbC+XL9vbhObWSpRA5/6wbg==}
+  /tsc-alias/1.8.5:
+    resolution: {integrity: sha512-Y3ka0olwSRdbHPyX5kXhYY2aoBKuT53DFdeY+PpQUR4hg5M/b8eIRmC8dL4FBdd0wT366iWc6iDUUGe6QwI7mg==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
