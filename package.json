@@ -47,7 +47,7 @@
 		"@ayuskey/vuewordcloud": "workspace:19.0.0",
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "5.0.0",
-		"@bull-board/koa": "4.11.0",
+		"@bull-board/koa": "4.12.2",
 		"@bull-board/ui": "5.0.0",
 		"@discordapp/twemoji": "14.1.2",
 		"@elastic/elasticsearch": "7.17.0",
