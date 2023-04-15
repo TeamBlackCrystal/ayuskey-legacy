@@ -559,8 +559,8 @@ importers:
         version: 8.13.0
     devDependencies:
       '@redocly/openapi-core':
-        specifier: 1.0.0-beta.120
-        version: 1.0.0-beta.120
+        specifier: 1.0.0-beta.125
+        version: 1.0.0-beta.125
       '@swc/cli':
         specifier: 0.1.59
         version: 0.1.59(@swc/core@1.3.50)
@@ -1532,8 +1532,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /@redocly/openapi-core@1.0.0-beta.120:
-    resolution: {integrity: sha512-BvasunpVWm5O9F/mW6JmxUqat4XFU5zNnKJkMY6GJ9UYH2UxgKnGaMLWXKtbJEOBnMT12S/p9yeqrQHnk8rGhQ==}
+  /@redocly/openapi-core@1.0.0-beta.125:
+    resolution: {integrity: sha512-3kpvIP6nzqrXl59BXovm1aGcbqSJv37t9kjFxuEvsGZzVSUC8rGZl4tNEZ3Qfm+mbPs+XWDi/U43kf/u3bUCpw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@redocly/ajv': 8.11.0
