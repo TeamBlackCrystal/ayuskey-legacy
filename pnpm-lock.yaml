@@ -94,7 +94,7 @@ importers:
       '@vue/runtime-dom': 3.2.45
       abort-controller: 3.0.0
       animejs: 3.2.1
-      apexcharts: 3.37.1
+      apexcharts: 3.38.0
       autobind-decorator: 2.4.0
       autosize: 6.0.1
       autwh: 0.1.0
@@ -296,7 +296,7 @@ importers:
       '@vue/runtime-dom': 3.2.45
       abort-controller: 3.0.0
       animejs: 3.2.1
-      apexcharts: 3.37.1
+      apexcharts: 3.38.0
       autobind-decorator: 2.4.0
       autosize: 6.0.1
       autwh: 0.1.0
@@ -2784,8 +2784,8 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /apexcharts/3.37.1:
-    resolution: {integrity: sha512-fmQ5Updeb/LASl+S1+mIxXUFxzY0Fa7gexfCs4o+OPP9f2NEBNjvybOtPrah44N4roK7U5o5Jis906QeEQu0cA==}
+  /apexcharts/3.38.0:
+    resolution: {integrity: sha512-VLVdrPf5LD+a9THkPkxpdjWjPcjITsN/9C2Z1G4MYzhR31hR+Pe+DextbI0ZY220UAKnhBFLgKOtPOum1ArBWw==}
     dependencies:
       svg.draggable.js: 2.2.2
       svg.easing.js: 2.0.0
