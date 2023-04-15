@@ -12,7 +12,7 @@ importers:
       '@ayuskey/vuewordcloud': workspace:19.0.0
       '@ayuskey/xev': 2.0.1-rei0784.2
       '@bull-board/api': 5.0.0
-      '@bull-board/koa': 4.11.0
+      '@bull-board/koa': 5.0.0
       '@bull-board/ui': 5.0.0
       '@discordapp/twemoji': 14.1.2
       '@elastic/elasticsearch': 7.17.0
@@ -24,7 +24,7 @@ importers:
       '@koa/cors': 4.0.0
       '@koa/multer': 3.0.0
       '@koa/router': 8.0.8
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
       '@redocly/openapi-core': 1.0.0-beta.120
       '@swc/cli': 0.1.59
       '@swc/core': 1.3.28
@@ -94,7 +94,7 @@ importers:
       '@vue/runtime-dom': 3.2.45
       abort-controller: 3.0.0
       animejs: 3.2.1
-      apexcharts: 3.37.1
+      apexcharts: 3.38.0
       autobind-decorator: 2.4.0
       autosize: 6.0.1
       autwh: 0.1.0
@@ -192,7 +192,7 @@ importers:
       pinia-plugin-persistedstate: 3.0.2
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.1.0
+      postcss-loader: 7.2.4
       prettier: 2.8.3
       private-ip: 2.3.4
       probe-image-size: 7.2.3
@@ -200,7 +200,7 @@ importers:
       promise-sequential: 1.1.1
       pug: 3.0.2
       punycode: 2.3.0
-      pureimage: 0.3.15
+      pureimage: 0.3.17
       qrcode: 1.5.1
       random-seed: 0.3.0
       randomcolor: 0.6.2
@@ -278,7 +278,7 @@ importers:
       '@ayuskey/vuewordcloud': link:lib/vuewordcloud
       '@ayuskey/xev': 2.0.1-rei0784.2
       '@bull-board/api': 5.0.0
-      '@bull-board/koa': 4.11.0_47hhf6s5g2iqergy3sns66l4iy
+      '@bull-board/koa': 5.0.0_47hhf6s5g2iqergy3sns66l4iy
       '@bull-board/ui': 5.0.0
       '@discordapp/twemoji': 14.1.2
       '@elastic/elasticsearch': 7.17.0
@@ -290,13 +290,13 @@ importers:
       '@koa/cors': 4.0.0
       '@koa/multer': 3.0.0_multer@1.4.4-lts.1
       '@koa/router': 8.0.8
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
       '@vue/compat': 3.2.45_vue@3.2.45
       '@vue/compiler-sfc': 3.2.45
       '@vue/runtime-dom': 3.2.45
       abort-controller: 3.0.0
       animejs: 3.2.1
-      apexcharts: 3.37.1
+      apexcharts: 3.38.0
       autobind-decorator: 2.4.0
       autosize: 6.0.1
       autwh: 0.1.0
@@ -304,8 +304,8 @@ importers:
       ayuskey.js: 1.0.0-rc.11
       bcryptjs: 2.4.3
       blurhash: 2.0.5
-      bootstrap: 5.2.3_@popperjs+core@2.11.6
-      bootstrap-vue-3: 0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi
+      bootstrap: 5.2.3_@popperjs+core@2.11.7
+      bootstrap-vue-3: 0.5.1_akn74wwj22duklttbx5ex253n4
       broadcast-channel: 4.20.2
       bull: 4.10.4
       cacheable-lookup: 6.1.0
@@ -385,14 +385,14 @@ importers:
       pinia-plugin-persistedstate: 3.0.2_pinia@2.0.33
       portscanner: 2.2.0
       postcss: 8.4.21
-      postcss-loader: 7.1.0_wqtg4krag6rpvkpxf4axpsljcq
+      postcss-loader: 7.2.4_ptt3vhejg6bxv5gbjedhowyp7i
       private-ip: 2.3.4
       probe-image-size: 7.2.3
       promise-limit: 2.7.0
       promise-sequential: 1.1.1
       pug: 3.0.2
       punycode: 2.3.0
-      pureimage: 0.3.15
+      pureimage: 0.3.17
       qrcode: 1.5.1
       random-seed: 0.3.0
       randomcolor: 0.6.2
@@ -819,29 +819,17 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@bull-board/api/4.11.0:
-    resolution: {integrity: sha512-qFnG63s3BkaslsNnXYagEUcdeK9SijZTJ+I4vMU+OiZt9VlKh01X1KjNlqjF9guvWcjk+Rg8UOMm0fWwM6PK6g==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
-  /@bull-board/api/4.12.2:
-    resolution: {integrity: sha512-efF8K1pvfEEft2ELQwCBe/a225vHufCjM2hfcyvmIG/SUX6TlKQFUFZ1+KV0wenD9wxvUVb5wxUu6on+HrZiVg==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
   /@bull-board/api/5.0.0:
     resolution: {integrity: sha512-nOB8TUSeX8h2wgMxmPZwy0p3XqRX/DotR71M5FT5OS/bZCZIKRpEc36TIeKPimZli6voFyX+rsEqVhGenpIKUQ==}
     dependencies:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/koa/4.11.0_47hhf6s5g2iqergy3sns66l4iy:
-    resolution: {integrity: sha512-R3O3CpHAHcfidA7lAv9rIJpuUxiOLNYZ/wM1fcVUbLdDcgDxNAkF/zx1KXo2oN4lriGydvwYrAlRCdDHELH8jw==}
+  /@bull-board/koa/5.0.0_47hhf6s5g2iqergy3sns66l4iy:
+    resolution: {integrity: sha512-WlUWeKnLIzpUYs72l/XW/PTLPKKqVFzcyhOHglqS89jXNB84gsUHTXkVy6QlSxu3/Aze7lB2Z3IO8u6hhzqfaA==}
     dependencies:
-      '@bull-board/api': 4.11.0
-      '@bull-board/ui': 4.11.0
+      '@bull-board/api': 5.0.0
+      '@bull-board/ui': 5.0.0
       ejs: 3.1.8
       koa: 2.14.1
       koa-mount: 4.0.0
@@ -903,12 +891,6 @@ packages:
       - velocityjs
       - walrus
       - whiskers
-    dev: false
-
-  /@bull-board/ui/4.11.0:
-    resolution: {integrity: sha512-/Yb7x/3tWxysA2jRDQ89xEPnscvfGQdf4MmDRzWH5lDkVmL8b1HvZAQxLrHcxwB6y16oorQTf/1KbRZl0rJDHg==}
-    dependencies:
-      '@bull-board/api': 4.11.0
     dev: false
 
   /@bull-board/ui/5.0.0:
@@ -1276,8 +1258,8 @@ packages:
       - supports-color
     dev: false
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core/2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
   /@redocly/ajv/8.11.0:
@@ -2802,8 +2784,8 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /apexcharts/3.37.1:
-    resolution: {integrity: sha512-fmQ5Updeb/LASl+S1+mIxXUFxzY0Fa7gexfCs4o+OPP9f2NEBNjvybOtPrah44N4roK7U5o5Jis906QeEQu0cA==}
+  /apexcharts/3.38.0:
+    resolution: {integrity: sha512-VLVdrPf5LD+a9THkPkxpdjWjPcjITsN/9C2Z1G4MYzhR31hR+Pe+DextbI0ZY220UAKnhBFLgKOtPOum1ArBWw==}
     dependencies:
       svg.draggable.js: 2.2.2
       svg.easing.js: 2.0.0
@@ -3299,7 +3281,7 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  /bootstrap-vue-3/0.5.1_oqk4qlcdjoqdyjmg4lc7gcmfmi:
+  /bootstrap-vue-3/0.5.1_akn74wwj22duklttbx5ex253n4:
     resolution: {integrity: sha512-azgy+97Ih+TJvI1vJnqt4mptQ8Wvm3P8eKDvL9ZMGBWN/9k2ikU4Wx1OM0KNOZDcC4kyaWmC08n9cbaaShrkJg==}
     deprecated: This package is deprecated and the repo was moved to bootstrap-vue organization. For updates on this project go to bootstrap-vue. The new package is called bootstrap-vue-next. Thanks for your support!
     peerDependencies:
@@ -3308,9 +3290,9 @@ packages:
       vue: ^3.2.45
     dependencies:
       '@nuxt/kit': 3.0.0
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
       '@vueuse/core': 9.11.0_vue@3.2.45
-      bootstrap: 5.2.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.3_@popperjs+core@2.11.7
       vue: 3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -3318,12 +3300,12 @@ packages:
       - supports-color
     dev: false
 
-  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+  /bootstrap/5.2.3_@popperjs+core@2.11.7:
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
     dev: false
 
   /brace-expansion/1.1.11:
@@ -4545,8 +4527,23 @@ packages:
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  /cosmiconfig/8.1.0:
-    resolution: {integrity: sha512-0tLZ9URlPGU7JsKq0DQOQ3FoRsYX8xDZ7xMiATQfaiGMz7EHowNkbU9u1coAOmnh9p/1ySpm0RB3JNWRXM5GCg==}
+  /cosmiconfig-typescript-loader/4.3.0_giqjcqy5zy7ri46oajdnizjope:
+    resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@types/node': '*'
+      cosmiconfig: '>=7'
+      ts-node: '>=10'
+      typescript: '>=3'
+    dependencies:
+      '@types/node': 18.14.2
+      cosmiconfig: 8.1.3
+      ts-node: 10.9.1_gskmqsovpo3gs2b3sfmdz7gpca
+      typescript: 4.9.4
+    dev: false
+
+  /cosmiconfig/8.1.3:
+    resolution: {integrity: sha512-/UkO2JKI18b5jVMJUp0lvKFMpa/Gye+ZgZjKD+DGEN9y7NRcf/nK1A0sp67ONmKtnDCNMS44E6jrk0Yc3bDuUw==}
     engines: {node: '>=14'}
     dependencies:
       import-fresh: 3.3.0
@@ -10451,18 +10448,30 @@ packages:
       enhanced-resolve: 4.5.0
     dev: false
 
-  /postcss-loader/7.1.0_wqtg4krag6rpvkpxf4axpsljcq:
-    resolution: {integrity: sha512-vTD2DJ8vJD0Vr1WzMQkRZWRjcynGh3t7NeoLg+Sb1TeuK7etiZfL/ZwHbaVa3M+Qni7Lj/29voV9IggnIUjlIw==}
+  /postcss-loader/7.2.4_ptt3vhejg6bxv5gbjedhowyp7i:
+    resolution: {integrity: sha512-F88rpxxNspo5hatIc+orYwZDtHFaVFOSIVAx+fBfJC1GmhWbVmPWtmg2gXKE1OxJbneOSGn8PWdIwsZFcruS+w==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
+      ts-node: '>=10'
+      typescript: '>=4'
       webpack: ^5.0.0
+    peerDependenciesMeta:
+      ts-node:
+        optional: true
+      typescript:
+        optional: true
     dependencies:
-      cosmiconfig: 8.1.0
+      cosmiconfig: 8.1.3
+      cosmiconfig-typescript-loader: 4.3.0_giqjcqy5zy7ri46oajdnizjope
       klona: 2.0.6
       postcss: 8.4.21
       semver: 7.3.8
+      ts-node: 10.9.1_gskmqsovpo3gs2b3sfmdz7gpca
+      typescript: 4.9.4
       webpack: 5.79.0_ylxupyaqc4ozj72brfdfpoftg4
+    transitivePeerDependencies:
+      - '@types/node'
     dev: false
 
   /postcss-merge-longhand/5.1.7_postcss@8.4.21:
@@ -11013,8 +11022,8 @@ packages:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
 
-  /pureimage/0.3.15:
-    resolution: {integrity: sha512-QpQYEV8nxVb84en7D0nKXwG0bdmwmlsSg9QnqxpEOExvUXdbmo6Lw/UoxSXD9z+ryvWDkgWqZsIM3iPCAh4dXg==}
+  /pureimage/0.3.17:
+    resolution: {integrity: sha512-JV4hfYF1BXxDwbSR8hjhVEhVTxwmAXos8uIXQ7Bw2eWrUEpLDJnQoQ8WLlWAO4TMGJ7mp9n6gvLKJ6MSaGUkXQ==}
     engines: {node: '>=0.8'}
     dependencies:
       jpeg-js: 0.4.4

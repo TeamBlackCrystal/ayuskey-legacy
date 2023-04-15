@@ -280,5 +280,27 @@ npx ts-node ./node_modules/typeorm/cli.js migration:generate -n 変更の名前
 TypeScriptでjsonをimportすると、tscでコンパイルするときにそのjsonファイルも一緒にdistディレクトリに吐き出されてしまう。この挙動により、意図せずファイルの書き換えが発生することがあるので、jsonをimportするときは書き換えられても良いものかどうか確認すること。書き換えされて欲しくない場合は、importで読み込むのではなく、`fs.readFileSync`などの関数を使って読み込むようにすればよい。
 
 ## その他
+
+### 開発環境の作り方（Terraform & Docker）
+
+```bash
+git clone git@git.lab.teamblackcrystal.com:blackcrystal/ayuskey.git && ayuskey
+
+# configのコピー & 最小限の設定
+cp .config/example.yml .config/default.yml
+sed -i -e 's/url: https:\/\/example.tld\//url: http:\/\/localhost:3000/' .config/default.yml
+
+# Terraformを使ってPostgresやRedisを構築
+cd terraform
+terraform apply && cd -
+
+# 依存関係のインストール
+pnpm i && pnpm build && pnpm migrate
+
+# 開発サーバーを起動
+pnpm dev
+```
+
+
 ### HTMLのクラス名で follow という単語は使わない
 広告ブロッカーで誤ってブロックされる
