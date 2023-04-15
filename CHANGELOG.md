@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.37.1-rei0784-6.2.0] 2023-04-15
+
+### Fixed
+
+- 画像がNSFWの時に解除するまでなんかおかしい
+
+### Security
+
+- 様々な脆弱性を修正。即時更新を強く推奨します。
+  - CVE-2023-24810
+  - CVE-2023-24811
+  - CVE-2023-25154
+
 ## [11.37.1-rei0784-6.1.0] 2023-01-08
 
 ### Changed
@@ -379,7 +392,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker 環境において files をマウントするように
 - 内部的な修正をたくさん
 
-[unreleased]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-6.0.0...HEAD
+[unreleased]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-6.2.0...HEAD
+[11.37.1-rei0784-6.2.0]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-6.1.0...11.37.1-rei0784-6.2.0
 [11.37.1-rei0784-6.1.0]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-6.0.0...11.37.1-rei0784-6.1.0
 [11.37.1-rei0784-6.0.1]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-6.0.0...11.37.1-rei0784-6.0.1
 [11.37.1-rei0784-6.0.0]: https://github.com/TeamBlackCrystal/ayuskey/compare/11.37.1-rei0784-5.21.1...11.37.1-rei0784-6.0.0
