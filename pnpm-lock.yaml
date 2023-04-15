@@ -43,7 +43,7 @@ importers:
       '@types/js-yaml': 4.0.5
       '@types/jsdom': 20.0.1
       '@types/jsonld': 1.5.8
-      '@types/jsrsasign': 10.5.4
+      '@types/jsrsasign': 10.5.8
       '@types/katex': 0.16.0
       '@types/koa': 2.13.5
       '@types/koa-bodyparser': 4.3.10
@@ -157,7 +157,7 @@ importers:
       json5: 2.2.3
       json5-loader: 4.0.1
       jsonld: 6.0.0
-      jsrsasign: 10.6.1
+      jsrsasign: 10.8.2
       katex: 0.16.4
       koa: 2.14.1
       koa-bodyparser: 4.4.0
@@ -352,7 +352,7 @@ importers:
       json5: 2.2.3
       json5-loader: 4.0.1_webpack@5.76.2
       jsonld: 6.0.0
-      jsrsasign: 10.6.1
+      jsrsasign: 10.8.2
       katex: 0.16.4
       koa: 2.14.1
       koa-bodyparser: 4.4.0
@@ -476,7 +476,7 @@ importers:
       '@types/js-yaml': 4.0.5
       '@types/jsdom': 20.0.1
       '@types/jsonld': 1.5.8
-      '@types/jsrsasign': 10.5.4
+      '@types/jsrsasign': 10.5.8
       '@types/katex': 0.16.0
       '@types/koa': 2.13.5
       '@types/koa-bodyparser': 4.3.10
@@ -1755,8 +1755,8 @@ packages:
     resolution: {integrity: sha512-4l5t/jDnJpqZ+i7CLTTgPcT5BYXnAnwJupb07aAokPufCV0SjDHcwctUkSTuhIuSU9yHok+WOOngIGCtpL96gw==}
     dev: true
 
-  /@types/jsrsasign/10.5.4:
-    resolution: {integrity: sha512-05S2f4lGaWgCwFHsa3OEirc4VJf/sJRfhofzxUbuFbmm6NbffPXZrnJqquQAtS3g4C8Z0L9NHgW0znmtDxNoTQ==}
+  /@types/jsrsasign/10.5.8:
+    resolution: {integrity: sha512-1oZ3TbarAhKtKUpyrCIqXpbx3ZAfoSulleJs6/UzzyYty0ut+kjRX7zHLAaHwVIuw8CBjIymwW4J2LK944HoHQ==}
     dev: true
 
   /@types/katex/0.16.0:
@@ -8093,8 +8093,8 @@ packages:
       verror: 1.10.0
     dev: false
 
-  /jsrsasign/10.6.1:
-    resolution: {integrity: sha512-emiQ05haY9CRj1Ho/LiuCqr/+8RgJuWdiHYNglIg2Qjfz0n+pnUq9I2QHplXuOMO2EnAW1oCGC1++aU5VoWSlw==}
+  /jsrsasign/10.8.2:
+    resolution: {integrity: sha512-iKTMkVZxyXzvd+MYLxzPk5WFZ4jPX22TrO7fQ7vS1dfso30/jntH2EexW7+K1rn11F1GkiR9Q3ulF0FQxvNNRw==}
     dev: false
 
   /jstransformer/1.0.0:
