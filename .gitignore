@@ -1,3 +1,6 @@
+# Ayuskey@^7 dev
+/packages
+
 # Visual Studio Code
 /.vscode
 !/.vscode/extensions.json
