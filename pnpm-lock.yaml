@@ -127,7 +127,7 @@ importers:
       eslint-config-prettier: 8.8.0
       eslint-import-resolver-node: 0.3.7
       eslint-plugin-import: 2.27.5
-      eslint-plugin-vue: 9.9.0
+      eslint-plugin-vue: 9.11.0
       eventemitter3: 4.0.7
       feed: 4.2.2
       file-type: 16.5.4
@@ -527,7 +527,7 @@ importers:
       eslint-config-prettier: 8.8.0_eslint@8.32.0
       eslint-import-resolver-node: 0.3.7
       eslint-plugin-import: 2.27.5_wx367ngcdhqob6gjshqohn2fde
-      eslint-plugin-vue: 9.9.0_eslint@8.32.0
+      eslint-plugin-vue: 9.11.0_eslint@8.32.0
       form-data: 4.0.0
       node-gyp: 9.3.1
       npm-run-all: 4.1.5
@@ -825,12 +825,6 @@ packages:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/api/4.12.2:
-    resolution: {integrity: sha512-efF8K1pvfEEft2ELQwCBe/a225vHufCjM2hfcyvmIG/SUX6TlKQFUFZ1+KV0wenD9wxvUVb5wxUu6on+HrZiVg==}
-    dependencies:
-      redis-info: 3.1.0
-    dev: false
-
   /@bull-board/api/5.0.0:
     resolution: {integrity: sha512-nOB8TUSeX8h2wgMxmPZwy0p3XqRX/DotR71M5FT5OS/bZCZIKRpEc36TIeKPimZli6voFyX+rsEqVhGenpIKUQ==}
     dependencies:
@@ -959,8 +953,8 @@ packages:
       - supports-color
     dev: false
 
-  /@eslint-community/eslint-utils/4.2.0_eslint@8.32.0:
-    resolution: {integrity: sha512-gB8T4H4DEfX2IV9zGDJPOBgP1e/DbfCPDTtEqUMckpvzS1OYtva8JdFYBqMwYk7xAQ429WGF/UPqn8uQ//h2vQ==}
+  /@eslint-community/eslint-utils/4.4.0_eslint@8.32.0:
+    resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
@@ -2235,7 +2229,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      '@eslint-community/eslint-utils': 4.2.0_eslint@8.32.0
+      '@eslint-community/eslint-utils': 4.4.0_eslint@8.32.0
       '@types/json-schema': 7.0.11
       '@types/semver': 7.3.12
       '@typescript-eslint/scope-manager': 5.58.0
@@ -5628,14 +5622,14 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-vue/9.9.0_eslint@8.32.0:
-    resolution: {integrity: sha512-YbubS7eK0J7DCf0U2LxvVP7LMfs6rC6UltihIgval3azO3gyDwEGVgsCMe1TmDiEkl6GdMKfRpaME6QxIYtzDQ==}
+  /eslint-plugin-vue/9.11.0_eslint@8.32.0:
+    resolution: {integrity: sha512-bBCJAZnkBV7ATH4Z1E7CvN3nmtS4H7QUU3UBxPdo8WohRU+yHjnQRALpTbxMVcz0e4Mx3IyxIdP5HYODMxK9cQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
     dependencies:
+      '@eslint-community/eslint-utils': 4.4.0_eslint@8.32.0
       eslint: 8.32.0
-      eslint-utils: 3.0.0_eslint@8.32.0
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.0.10
