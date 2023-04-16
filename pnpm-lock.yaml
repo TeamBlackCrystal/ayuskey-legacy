@@ -586,8 +586,8 @@ importers:
         specifier: 0.0.1
         version: 0.0.1
       '@types/fluent-ffmpeg':
-        specifier: 2.1.20
-        version: 2.1.20
+        specifier: 2.1.21
+        version: 2.1.21
       '@types/gulp':
         specifier: 4.0.10
         version: 4.0.10
@@ -1911,8 +1911,8 @@ packages:
     resolution: {integrity: sha512-mQjDxyOM1Cpocd+vm1kZBP7smwKZ4TNokFeds9LV7OZibmPJFEzY3+xZMrKfUdNT71lv8GoCPD6upKwHxubClw==}
     dev: false
 
-  /@types/fluent-ffmpeg@2.1.20:
-    resolution: {integrity: sha512-B+OvhCdJ3LgEq2PhvWNOiB/EfwnXLElfMCgc4Z1K5zXgSfo9I6uGKwR/lqmNPFQuebNnes7re3gqkV77SyypLg==}
+  /@types/fluent-ffmpeg@2.1.21:
+    resolution: {integrity: sha512-+n3dy/Tegt6n+YwGZUiGq6i8Jrnt8+MoyPiW1L6J5EWUl7GSt18a/VyReecfCsvTTNBXNMIKOMHDstiQM8nJLA==}
     dependencies:
       '@types/node': 18.14.2
     dev: true
