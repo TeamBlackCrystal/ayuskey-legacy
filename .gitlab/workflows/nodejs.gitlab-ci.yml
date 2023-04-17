@@ -12,7 +12,8 @@ test:
   before_script:
     - apt-get update
     - apt-get install -y --no-install-recommends build-essential ffmpeg
-    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    #- curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@8
+    - curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.2.0 sh -
     - pnpm config set store-dir .pnpm-store
     - node devtools/diag-environment.js
     - cp .gitlab/config/test.yml .config
