@@ -75,8 +75,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1
       apexcharts:
-        specifier: 3.38.0
-        version: 3.38.0
+        specifier: 3.39.0
+        version: 3.39.0
       autobind-decorator:
         specifier: 2.4.0
         version: 2.4.0
@@ -3056,8 +3056,8 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /apexcharts@3.38.0:
-    resolution: {integrity: sha512-VLVdrPf5LD+a9THkPkxpdjWjPcjITsN/9C2Z1G4MYzhR31hR+Pe+DextbI0ZY220UAKnhBFLgKOtPOum1ArBWw==}
+  /apexcharts@3.39.0:
+    resolution: {integrity: sha512-GRvdTg+ZaD55P7/jxqEXpbdCMZQOaej9qE9f7zKkN/oWAbBuuE3mnSCi44UkGMS2X249uEOEXWx0A96jjP3lcA==}
     dependencies:
       svg.draggable.js: 2.2.2
       svg.easing.js: 2.0.0
