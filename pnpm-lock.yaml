@@ -489,8 +489,8 @@ dependencies:
     specifier: 9.0.0
     version: 9.0.0
   v-animate-css:
-    specifier: 0.0.5
-    version: 0.0.5
+    specifier: 1.0.1
+    version: 1.0.1
   v-debounce:
     specifier: 0.1.2
     version: 0.1.2
@@ -12979,8 +12979,8 @@ packages:
     hasBin: true
     dev: false
 
-  /v-animate-css@0.0.5:
-    resolution: {integrity: sha512-FML26yVYX3hCTWTKioTNAIXjaWIFWa1mSczb92cLkMYI9QI6uRacKx7QnBNB17IOFLFEv8mc14aawe2In/ba1w==}
+  /v-animate-css@1.0.1:
+    resolution: {integrity: sha512-XdD5nccjIcXpFr31dE9q7Nm/kK48f8Yjy1v1tShkpBAyR3i/s9efvy87gk/95fqhpbOKgKZHr+wn7hNPNP9POg==}
     dependencies:
       scrollmonitor: 1.2.11
     dev: false
