@@ -84,8 +84,8 @@ dependencies:
     specifier: 0.1.0
     version: 0.1.0
   aws-sdk:
-    specifier: 2.1359.0
-    version: 2.1359.0
+    specifier: 2.1363.0
+    version: 2.1363.0
   ayuskey.js:
     specifier: 1.0.0-rc.11
     version: 1.0.0-rc.11
@@ -3231,8 +3231,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-sdk@2.1359.0:
-    resolution: {integrity: sha512-uGNIU4czx8P0YITV8uhuLFhmyYvLWsFYINlHJX77/fea4VuTwcCGktYy2OEnrErp3FK9NHQvwXBxZCbY0lcxBg==}
+  /aws-sdk@2.1363.0:
+    resolution: {integrity: sha512-M2MZZXehgi/EMQv5GlzRkn3TlhoOYHg2cYdSAAqhjv67WaEG50MjaQy5vRvfN1i8XvB24aJFJ5pCrx69TaCaIg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
