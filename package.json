@@ -48,7 +48,7 @@
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "5.0.0",
 		"@bull-board/koa": "5.0.0",
-		"@bull-board/ui": "5.0.0",
+		"@bull-board/ui": "5.0.1",
 		"@discordapp/twemoji": "14.1.2",
 		"@elastic/elasticsearch": "7.17.0",
 		"@fortawesome/fontawesome-svg-core": "6.4.0",
