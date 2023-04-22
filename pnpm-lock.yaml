@@ -15,8 +15,8 @@ dependencies:
     specifier: 2.0.1-rei0784.2
     version: 2.0.1-rei0784.2
   '@bull-board/api':
-    specifier: 5.0.0
-    version: 5.0.0
+    specifier: 5.0.1
+    version: 5.0.1
   '@bull-board/koa':
     specifier: 5.0.0
     version: 5.0.0(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
