@@ -363,8 +363,8 @@ dependencies:
     specifier: 0.3.17
     version: 0.3.17
   qrcode:
-    specifier: 1.5.1
-    version: 1.5.1
+    specifier: 1.5.3
+    version: 1.5.3
   random-seed:
     specifier: 0.3.0
     version: 0.3.0
@@ -10604,8 +10604,8 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: false
 
-  /qrcode@1.5.1:
-    resolution: {integrity: sha512-nS8NJ1Z3md8uTjKtP+SGGhfqmTCs5flU/xR623oI0JX+Wepz9R8UrRVCTBTJm3qGw3rH6jJ6MUHjkDx15cxSSg==}
+  /qrcode@1.5.3:
+    resolution: {integrity: sha512-puyri6ApkEHYiVl4CFzo1tDkAZ+ATcnbJrJ6RiBM1Fhctdn/ix9MTE3hRph33omisEbC/2fcfemsseiKgBPKZg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dependencies:
