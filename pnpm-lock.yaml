@@ -240,8 +240,8 @@ dependencies:
     specifier: 6.0.0
     version: 6.0.0
   jsrsasign:
-    specifier: 10.8.2
-    version: 10.8.2
+    specifier: 10.8.3
+    version: 10.8.3
   katex:
     specifier: 0.16.4
     version: 0.16.4
@@ -7720,8 +7720,8 @@ packages:
       verror: 1.10.0
     dev: false
 
-  /jsrsasign@10.8.2:
-    resolution: {integrity: sha512-iKTMkVZxyXzvd+MYLxzPk5WFZ4jPX22TrO7fQ7vS1dfso30/jntH2EexW7+K1rn11F1GkiR9Q3ulF0FQxvNNRw==}
+  /jsrsasign@10.8.3:
+    resolution: {integrity: sha512-qo4fCYo/doi/JaheOBf5uJ36AkxXxom/C3sQD77uchpasr7CLQCojn2hY4ipO1ob9ypAQFxgV0yWJM0i5E7w/g==}
     dev: false
 
   /jstransformer@1.0.0:
