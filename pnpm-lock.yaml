@@ -4,834 +4,804 @@ overrides:
   lodash: ^4.17.21
   css: npm:@adobe/css-tools@4.2.0
 
-importers:
+dependencies:
+  '@ayuskey/summaly':
+    specifier: 2.5.0-rei0784.4
+    version: 2.5.0-rei0784.4
+  '@ayuskey/vuewordcloud':
+    specifier: workspace:19.0.0
+    version: link:lib/vuewordcloud
+  '@ayuskey/xev':
+    specifier: 2.0.1-rei0784.2
+    version: 2.0.1-rei0784.2
+  '@bull-board/api':
+    specifier: 5.0.0
+    version: 5.0.0
+  '@bull-board/koa':
+    specifier: 5.0.0
+    version: 5.0.0(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
+  '@bull-board/ui':
+    specifier: 5.0.0
+    version: 5.0.0
+  '@discordapp/twemoji':
+    specifier: 14.1.2
+    version: 14.1.2
+  '@elastic/elasticsearch':
+    specifier: 7.17.0
+    version: 7.17.0
+  '@fortawesome/fontawesome-svg-core':
+    specifier: 6.4.0
+    version: 6.4.0
+  '@fortawesome/free-brands-svg-icons':
+    specifier: 6.4.0
+    version: 6.4.0
+  '@fortawesome/free-regular-svg-icons':
+    specifier: 6.4.0
+    version: 6.4.0
+  '@fortawesome/free-solid-svg-icons':
+    specifier: 6.4.0
+    version: 6.4.0
+  '@fortawesome/vue-fontawesome':
+    specifier: 3.0.3
+    version: 3.0.3(@fortawesome/fontawesome-svg-core@6.4.0)(vue@3.2.47)
+  '@koa/cors':
+    specifier: 4.0.0
+    version: 4.0.0
+  '@koa/multer':
+    specifier: 3.0.0
+    version: 3.0.0(multer@1.4.4-lts.1)
+  '@koa/router':
+    specifier: 8.0.8
+    version: 8.0.8
+  '@popperjs/core':
+    specifier: 2.11.7
+    version: 2.11.7
+  '@vue/compat':
+    specifier: 3.2.47
+    version: 3.2.47(vue@3.2.47)
+  '@vue/compiler-sfc':
+    specifier: 3.2.47
+    version: 3.2.47
+  '@vue/runtime-dom':
+    specifier: 3.2.47
+    version: 3.2.47
+  abort-controller:
+    specifier: 3.0.0
+    version: 3.0.0
+  animejs:
+    specifier: 3.2.1
+    version: 3.2.1
+  apexcharts:
+    specifier: 3.39.0
+    version: 3.39.0
+  autobind-decorator:
+    specifier: 2.4.0
+    version: 2.4.0
+  autosize:
+    specifier: 6.0.1
+    version: 6.0.1
+  autwh:
+    specifier: 0.1.0
+    version: 0.1.0
+  aws-sdk:
+    specifier: 2.1359.0
+    version: 2.1359.0
+  ayuskey.js:
+    specifier: 1.0.0-rc.11
+    version: 1.0.0-rc.11
+  bcryptjs:
+    specifier: 2.4.3
+    version: 2.4.3
+  blurhash:
+    specifier: 2.0.5
+    version: 2.0.5
+  bootstrap:
+    specifier: 5.2.3
+    version: 5.2.3(@popperjs/core@2.11.7)
+  bootstrap-vue-3:
+    specifier: 0.5.1
+    version: 0.5.1(@popperjs/core@2.11.7)(bootstrap@5.2.3)(vue@3.2.47)
+  broadcast-channel:
+    specifier: 4.20.2
+    version: 4.20.2
+  bull:
+    specifier: 4.10.4
+    version: 4.10.4
+  cacheable-lookup:
+    specifier: 6.1.0
+    version: 6.1.0
+  cafy:
+    specifier: 15.2.1
+    version: 15.2.1
+  cbor:
+    specifier: 8.1.0
+    version: 8.1.0
+  chalk:
+    specifier: 4.1.2
+    version: 4.1.2
+  cli-highlight:
+    specifier: 2.1.11
+    version: 2.1.11
+  commander:
+    specifier: 4.1.1
+    version: 4.1.1
+  concurrently:
+    specifier: 7.6.0
+    version: 7.6.0
+  content-disposition:
+    specifier: 0.5.4
+    version: 0.5.4
+  crc-32:
+    specifier: 1.2.2
+    version: 1.2.2
+  cropperjs:
+    specifier: 1.5.13
+    version: 1.5.13
+  cross-env:
+    specifier: 7.0.3
+    version: 7.0.3
+  css-loader:
+    specifier: 6.7.3
+    version: 6.7.3(webpack@5.79.0)
+  cssnano:
+    specifier: 5.1.15
+    version: 5.1.15(postcss@8.4.22)
+  dateformat:
+    specifier: 4.6.3
+    version: 4.6.3
+  diskusage:
+    specifier: 1.1.3
+    version: 1.1.3
+  double-ended-queue:
+    specifier: 2.1.0-0
+    version: 2.1.0-0
+  eventemitter3:
+    specifier: 4.0.7
+    version: 4.0.7
+  feed:
+    specifier: 4.2.2
+    version: 4.2.2
+  file-type:
+    specifier: 16.5.4
+    version: 16.5.4
+  fluent-ffmpeg:
+    specifier: 2.1.2
+    version: 2.1.2
+  glob:
+    specifier: 8.0.3
+    version: 8.0.3
+  got:
+    specifier: 11.8.6
+    version: 11.8.6
+  gulp:
+    specifier: 4.0.2
+    version: 4.0.2
+  gulp-clean-css:
+    specifier: 4.3.0
+    version: 4.3.0
+  gulp-mocha:
+    specifier: 8.0.0
+    version: 8.0.0(gulp@4.0.2)
+  gulp-rename:
+    specifier: 2.0.0
+    version: 2.0.0
+  gulp-replace:
+    specifier: 1.1.4
+    version: 1.1.4
+  gulp-stylus:
+    specifier: 2.7.1
+    version: 2.7.1
+  gulp-terser:
+    specifier: 2.1.0
+    version: 2.1.0
+  gulp-tslint:
+    specifier: 8.1.4
+    version: 8.1.4(tslint@5.20.1)
+  hard-source-webpack-plugin:
+    specifier: 0.13.1
+    version: 0.13.1(webpack@5.79.0)
+  highlight.js:
+    specifier: 10.7.3
+    version: 10.7.3
+  hpagent:
+    specifier: 1.2.0
+    version: 1.2.0
+  html-minifier:
+    specifier: 4.0.0
+    version: 4.0.0
+  http-signature:
+    specifier: 1.3.6
+    version: 1.3.6
+  insert-text-at-cursor:
+    specifier: 0.3.0
+    version: 0.3.0
+  ioredis:
+    specifier: 4.28.5
+    version: 4.28.5
+  ip-cidr:
+    specifier: 3.1.0
+    version: 3.1.0
+  is-svg:
+    specifier: 4.4.0
+    version: 4.4.0
+  js-yaml:
+    specifier: 4.1.0
+    version: 4.1.0
+  jsdom:
+    specifier: 20.0.3
+    version: 20.0.3
+  json5:
+    specifier: 2.2.3
+    version: 2.2.3
+  json5-loader:
+    specifier: 4.0.1
+    version: 4.0.1(webpack@5.79.0)
+  jsonld:
+    specifier: 6.0.0
+    version: 6.0.0
+  jsrsasign:
+    specifier: 10.8.2
+    version: 10.8.2
+  katex:
+    specifier: 0.16.4
+    version: 0.16.4
+  koa:
+    specifier: 2.14.2
+    version: 2.14.2
+  koa-bodyparser:
+    specifier: 4.4.0
+    version: 4.4.0
+  koa-favicon:
+    specifier: 2.1.0
+    version: 2.1.0
+  koa-json-body:
+    specifier: 5.3.0
+    version: 5.3.0
+  koa-logger:
+    specifier: 3.2.1
+    version: 3.2.1
+  koa-mount:
+    specifier: 4.0.0
+    version: 4.0.0
+  koa-send:
+    specifier: 5.0.1
+    version: 5.0.1
+  koa-slow:
+    specifier: 2.1.0
+    version: 2.1.0
+  koa-views:
+    specifier: 8.0.0
+    version: 8.0.0(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
+  langmap:
+    specifier: 0.0.16
+    version: 0.0.16
+  loader-utils:
+    specifier: 3.2.1
+    version: 3.2.1
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
+  mocha:
+    specifier: 10.2.0
+    version: 10.2.0
+  moji:
+    specifier: 0.5.1
+    version: 0.5.1
+  ms:
+    specifier: 2.1.3
+    version: 2.1.3
+  multer:
+    specifier: 1.4.4-lts.1
+    version: 1.4.4-lts.1
+  nested-property:
+    specifier: 4.0.0
+    version: 4.0.0
+  node-fetch:
+    specifier: 2.6.9
+    version: 2.6.9
+  nodemailer:
+    specifier: 6.9.1
+    version: 6.9.1
+  nprogress:
+    specifier: 0.2.0
+    version: 0.2.0
+  oauth:
+    specifier: 0.10.0
+    version: 0.10.0
+  object-assign-deep:
+    specifier: 0.4.0
+    version: 0.4.0
+  os-utils:
+    specifier: 0.0.14
+    version: 0.0.14
+  parse5:
+    specifier: 6.0.1
+    version: 6.0.1
+  parsimmon:
+    specifier: 1.18.1
+    version: 1.18.1
+  pg:
+    specifier: 8.10.0
+    version: 8.10.0
+  photoswipe:
+    specifier: 5.3.7
+    version: 5.3.7
+  pinia:
+    specifier: 2.0.33
+    version: 2.0.33(typescript@4.9.4)(vue@3.2.47)
+  pinia-plugin-persistedstate:
+    specifier: 3.0.2
+    version: 3.0.2(pinia@2.0.33)
+  portscanner:
+    specifier: 2.2.0
+    version: 2.2.0
+  postcss:
+    specifier: 8.4.22
+    version: 8.4.22
+  postcss-loader:
+    specifier: 7.2.4
+    version: 7.2.4(@types/node@18.14.2)(postcss@8.4.22)(ts-node@10.9.1)(typescript@4.9.4)(webpack@5.79.0)
+  private-ip:
+    specifier: 2.3.4
+    version: 2.3.4
+  probe-image-size:
+    specifier: 7.2.3
+    version: 7.2.3
+  promise-limit:
+    specifier: 2.7.0
+    version: 2.7.0
+  promise-sequential:
+    specifier: 1.1.1
+    version: 1.1.1
+  pug:
+    specifier: 3.0.2
+    version: 3.0.2
+  punycode:
+    specifier: 2.3.0
+    version: 2.3.0
+  pureimage:
+    specifier: 0.3.17
+    version: 0.3.17
+  qrcode:
+    specifier: 1.5.1
+    version: 1.5.1
+  random-seed:
+    specifier: 0.3.0
+    version: 0.3.0
+  randomcolor:
+    specifier: 0.6.2
+    version: 0.6.2
+  ratelimiter:
+    specifier: 3.4.1
+    version: 3.4.1
+  reconnecting-websocket:
+    specifier: 4.4.0
+    version: 4.4.0
+  redis-lock:
+    specifier: 0.1.4
+    version: 0.1.4
+  reflect-metadata:
+    specifier: 0.1.13
+    version: 0.1.13
+  rename:
+    specifier: 1.0.4
+    version: 1.0.4
+  request-stats:
+    specifier: 3.0.0
+    version: 3.0.0
+  require-all:
+    specifier: 3.0.0
+    version: 3.0.0
+  rimraf:
+    specifier: 3.0.2
+    version: 3.0.2
+  rndstr:
+    specifier: 1.0.0
+    version: 1.0.0
+  sass:
+    specifier: 1.55.0
+    version: 1.55.0
+  sass-loader:
+    specifier: 13.2.2
+    version: 13.2.2(sass@1.55.0)(webpack@5.79.0)
+  seedrandom:
+    specifier: 3.0.5
+    version: 3.0.5
+  sharp:
+    specifier: 0.31.3
+    version: 0.31.3
+  showdown:
+    specifier: 2.1.0
+    version: 2.1.0
+  showdown-highlightjs-extension:
+    specifier: 0.1.2
+    version: 0.1.2(showdown@2.1.0)
+  sonic-channel:
+    specifier: 1.3.0
+    version: 1.3.0
+  speakeasy:
+    specifier: 2.0.0
+    version: 2.0.0
+  strictcat:
+    specifier: 0.0.1-alpha.20
+    version: 0.0.1-alpha.20
+  stringz:
+    specifier: 2.1.0
+    version: 2.1.0
+  stylus:
+    specifier: 0.59.0
+    version: 0.59.0
+  stylus-loader:
+    specifier: 7.1.0
+    version: 7.1.0(stylus@0.59.0)(webpack@5.79.0)
+  syslog-pro:
+    specifier: git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2
+    version: github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7
+  systeminformation:
+    specifier: 5.17.12
+    version: 5.17.12
+  syuilo-password-strength:
+    specifier: 0.0.1
+    version: 0.0.1
+  terser-webpack-plugin:
+    specifier: 5.3.6
+    version: 5.3.6(@swc/core@1.3.51)(webpack@5.79.0)
+  textarea-caret:
+    specifier: 3.1.0
+    version: 3.1.0
+  three:
+    specifier: 0.134.0
+    version: 0.134.0
+  throttle-debounce:
+    specifier: 4.0.1
+    version: 4.0.1
+  tinycolor2:
+    specifier: 1.4.2
+    version: 1.4.2
+  tmp:
+    specifier: 0.2.1
+    version: 0.2.1
+  ts-loader:
+    specifier: 9.4.2
+    version: 9.4.2(typescript@4.9.4)(webpack@5.79.0)
+  ts-node:
+    specifier: 10.9.1
+    version: 10.9.1(@swc/core@1.3.51)(@types/node@18.14.2)(typescript@4.9.4)
+  tsc-alias:
+    specifier: 1.8.5
+    version: 1.8.5
+  tsconfig-paths:
+    specifier: 4.2.0
+    version: 4.2.0
+  typeorm:
+    specifier: 0.2.44
+    version: 0.2.44(ioredis@4.28.5)(pg@8.10.0)
+  typescript:
+    specifier: 4.9.4
+    version: 4.9.4
+  ulid:
+    specifier: 2.3.0
+    version: 2.3.0
+  url-loader:
+    specifier: 4.1.1
+    version: 4.1.1(webpack@5.79.0)
+  uuid:
+    specifier: 9.0.0
+    version: 9.0.0
+  v-animate-css:
+    specifier: 0.0.5
+    version: 0.0.5
+  v-debounce:
+    specifier: 0.1.2
+    version: 0.1.2
+  vue:
+    specifier: 3.2.47
+    version: 3.2.47
+  vue-color:
+    specifier: 2.8.1
+    version: 2.8.1
+  vue-content-loading:
+    specifier: 1.6.0
+    version: 1.6.0
+  vue-cropperjs:
+    specifier: 4.2.0
+    version: 4.2.0
+  vue-i18n:
+    specifier: 8.28.2
+    version: 8.28.2(vue@3.2.47)
+  vue-js-modal:
+    specifier: 1.3.35
+    version: 1.3.35(vue@3.2.47)
+  vue-loader:
+    specifier: 17.0.1
+    version: 17.0.1(@vue/compiler-sfc@3.2.47)(vue@3.2.47)(webpack@5.79.0)
+  vue-marquee-text-component:
+    specifier: 2.0.1
+    version: 2.0.1
+  vue-router:
+    specifier: 4.1.6
+    version: 4.1.6(vue@3.2.47)
+  vue-style-loader:
+    specifier: 4.1.3
+    version: 4.1.3
+  vue-svg-inline-loader:
+    specifier: 2.1.5
+    version: 2.1.5
+  vue3-sequential-entrance:
+    specifier: 2.0.2
+    version: 2.0.2
+  vuedraggable:
+    specifier: 4.1.0
+    version: 4.1.0(vue@3.2.47)
+  vuex:
+    specifier: 4.1.0
+    version: 4.1.0(vue@3.2.47)
+  vuex-persistedstate:
+    specifier: 4.1.0
+    version: 4.1.0(vuex@4.1.0)
+  web-push:
+    specifier: 3.5.0
+    version: 3.5.0
+  webpack:
+    specifier: 5.79.0
+    version: 5.79.0(@swc/core@1.3.51)(webpack-cli@4.10.0)
+  webpack-cli:
+    specifier: 4.10.0
+    version: 4.10.0(webpack-dev-server@4.8.1)(webpack@5.79.0)
+  websocket:
+    specifier: 1.0.34
+    version: 1.0.34
+  ws:
+    specifier: 8.13.0
+    version: 8.13.0
 
-  .:
-    dependencies:
-      '@ayuskey/summaly':
-        specifier: 2.5.0-rei0784.4
-        version: 2.5.0-rei0784.4
-      '@ayuskey/vuewordcloud':
-        specifier: workspace:19.0.0
-        version: link:lib/vuewordcloud
-      '@ayuskey/xev':
-        specifier: 2.0.1-rei0784.2
-        version: 2.0.1-rei0784.2
-      '@bull-board/api':
-        specifier: 5.0.0
-        version: 5.0.0
-      '@bull-board/koa':
-        specifier: 5.0.0
-        version: 5.0.0(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
-      '@bull-board/ui':
-        specifier: 5.0.0
-        version: 5.0.0
-      '@discordapp/twemoji':
-        specifier: 14.1.2
-        version: 14.1.2
-      '@elastic/elasticsearch':
-        specifier: 7.17.0
-        version: 7.17.0
-      '@fortawesome/fontawesome-svg-core':
-        specifier: 6.4.0
-        version: 6.4.0
-      '@fortawesome/free-brands-svg-icons':
-        specifier: 6.4.0
-        version: 6.4.0
-      '@fortawesome/free-regular-svg-icons':
-        specifier: 6.4.0
-        version: 6.4.0
-      '@fortawesome/free-solid-svg-icons':
-        specifier: 6.4.0
-        version: 6.4.0
-      '@fortawesome/vue-fontawesome':
-        specifier: 3.0.3
-        version: 3.0.3(@fortawesome/fontawesome-svg-core@6.4.0)(vue@3.2.47)
-      '@koa/cors':
-        specifier: 4.0.0
-        version: 4.0.0
-      '@koa/multer':
-        specifier: 3.0.0
-        version: 3.0.0(multer@1.4.4-lts.1)
-      '@koa/router':
-        specifier: 8.0.8
-        version: 8.0.8
-      '@popperjs/core':
-        specifier: 2.11.7
-        version: 2.11.7
-      '@vue/compat':
-        specifier: 3.2.47
-        version: 3.2.47(vue@3.2.47)
-      '@vue/compiler-sfc':
-        specifier: 3.2.47
-        version: 3.2.47
-      '@vue/runtime-dom':
-        specifier: 3.2.47
-        version: 3.2.47
-      abort-controller:
-        specifier: 3.0.0
-        version: 3.0.0
-      animejs:
-        specifier: 3.2.1
-        version: 3.2.1
-      apexcharts:
-        specifier: 3.39.0
-        version: 3.39.0
-      autobind-decorator:
-        specifier: 2.4.0
-        version: 2.4.0
-      autosize:
-        specifier: 6.0.1
-        version: 6.0.1
-      autwh:
-        specifier: 0.1.0
-        version: 0.1.0
-      aws-sdk:
-        specifier: 2.1359.0
-        version: 2.1359.0
-      ayuskey.js:
-        specifier: 1.0.0-rc.11
-        version: 1.0.0-rc.11
-      bcryptjs:
-        specifier: 2.4.3
-        version: 2.4.3
-      blurhash:
-        specifier: 2.0.5
-        version: 2.0.5
-      bootstrap:
-        specifier: 5.2.3
-        version: 5.2.3(@popperjs/core@2.11.7)
-      bootstrap-vue-3:
-        specifier: 0.5.1
-        version: 0.5.1(@popperjs/core@2.11.7)(bootstrap@5.2.3)(vue@3.2.47)
-      broadcast-channel:
-        specifier: 4.20.2
-        version: 4.20.2
-      bull:
-        specifier: 4.10.4
-        version: 4.10.4
-      cacheable-lookup:
-        specifier: 6.1.0
-        version: 6.1.0
-      cafy:
-        specifier: 15.2.1
-        version: 15.2.1
-      cbor:
-        specifier: 8.1.0
-        version: 8.1.0
-      chalk:
-        specifier: 4.1.2
-        version: 4.1.2
-      cli-highlight:
-        specifier: 2.1.11
-        version: 2.1.11
-      commander:
-        specifier: 4.1.1
-        version: 4.1.1
-      concurrently:
-        specifier: 7.6.0
-        version: 7.6.0
-      content-disposition:
-        specifier: 0.5.4
-        version: 0.5.4
-      crc-32:
-        specifier: 1.2.2
-        version: 1.2.2
-      cropperjs:
-        specifier: 1.5.13
-        version: 1.5.13
-      cross-env:
-        specifier: 7.0.3
-        version: 7.0.3
-      css-loader:
-        specifier: 6.7.3
-        version: 6.7.3(webpack@5.79.0)
-      cssnano:
-        specifier: 5.1.15
-        version: 5.1.15(postcss@8.4.22)
-      dateformat:
-        specifier: 4.6.3
-        version: 4.6.3
-      diskusage:
-        specifier: 1.1.3
-        version: 1.1.3
-      double-ended-queue:
-        specifier: 2.1.0-0
-        version: 2.1.0-0
-      eventemitter3:
-        specifier: 4.0.7
-        version: 4.0.7
-      feed:
-        specifier: 4.2.2
-        version: 4.2.2
-      file-type:
-        specifier: 16.5.4
-        version: 16.5.4
-      fluent-ffmpeg:
-        specifier: 2.1.2
-        version: 2.1.2
-      glob:
-        specifier: 8.0.3
-        version: 8.0.3
-      got:
-        specifier: 11.8.6
-        version: 11.8.6
-      gulp:
-        specifier: 4.0.2
-        version: 4.0.2
-      gulp-clean-css:
-        specifier: 4.3.0
-        version: 4.3.0
-      gulp-mocha:
-        specifier: 8.0.0
-        version: 8.0.0(gulp@4.0.2)
-      gulp-rename:
-        specifier: 2.0.0
-        version: 2.0.0
-      gulp-replace:
-        specifier: 1.1.4
-        version: 1.1.4
-      gulp-stylus:
-        specifier: 2.7.1
-        version: 2.7.1
-      gulp-terser:
-        specifier: 2.1.0
-        version: 2.1.0
-      gulp-tslint:
-        specifier: 8.1.4
-        version: 8.1.4(tslint@5.20.1)
-      hard-source-webpack-plugin:
-        specifier: 0.13.1
-        version: 0.13.1(webpack@5.79.0)
-      highlight.js:
-        specifier: 10.7.3
-        version: 10.7.3
-      hpagent:
-        specifier: 1.2.0
-        version: 1.2.0
-      html-minifier:
-        specifier: 4.0.0
-        version: 4.0.0
-      http-signature:
-        specifier: 1.3.6
-        version: 1.3.6
-      insert-text-at-cursor:
-        specifier: 0.3.0
-        version: 0.3.0
-      ioredis:
-        specifier: 4.28.5
-        version: 4.28.5
-      ip-cidr:
-        specifier: 3.1.0
-        version: 3.1.0
-      is-svg:
-        specifier: 4.4.0
-        version: 4.4.0
-      js-yaml:
-        specifier: 4.1.0
-        version: 4.1.0
-      jsdom:
-        specifier: 20.0.3
-        version: 20.0.3
-      json5:
-        specifier: 2.2.3
-        version: 2.2.3
-      json5-loader:
-        specifier: 4.0.1
-        version: 4.0.1(webpack@5.79.0)
-      jsonld:
-        specifier: 6.0.0
-        version: 6.0.0
-      jsrsasign:
-        specifier: 10.8.2
-        version: 10.8.2
-      katex:
-        specifier: 0.16.4
-        version: 0.16.4
-      koa:
-        specifier: 2.14.2
-        version: 2.14.2
-      koa-bodyparser:
-        specifier: 4.4.0
-        version: 4.4.0
-      koa-favicon:
-        specifier: 2.1.0
-        version: 2.1.0
-      koa-json-body:
-        specifier: 5.3.0
-        version: 5.3.0
-      koa-logger:
-        specifier: 3.2.1
-        version: 3.2.1
-      koa-mount:
-        specifier: 4.0.0
-        version: 4.0.0
-      koa-send:
-        specifier: 5.0.1
-        version: 5.0.1
-      koa-slow:
-        specifier: 2.1.0
-        version: 2.1.0
-      koa-views:
-        specifier: 8.0.0
-        version: 8.0.0(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
-      langmap:
-        specifier: 0.0.16
-        version: 0.0.16
-      loader-utils:
-        specifier: 3.2.1
-        version: 3.2.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      mocha:
-        specifier: 10.2.0
-        version: 10.2.0
-      moji:
-        specifier: 0.5.1
-        version: 0.5.1
-      ms:
-        specifier: 2.1.3
-        version: 2.1.3
-      multer:
-        specifier: 1.4.4-lts.1
-        version: 1.4.4-lts.1
-      nested-property:
-        specifier: 4.0.0
-        version: 4.0.0
-      node-fetch:
-        specifier: 2.6.9
-        version: 2.6.9
-      nodemailer:
-        specifier: 6.9.1
-        version: 6.9.1
-      nprogress:
-        specifier: 0.2.0
-        version: 0.2.0
-      oauth:
-        specifier: 0.10.0
-        version: 0.10.0
-      object-assign-deep:
-        specifier: 0.4.0
-        version: 0.4.0
-      os-utils:
-        specifier: 0.0.14
-        version: 0.0.14
-      parse5:
-        specifier: 6.0.1
-        version: 6.0.1
-      parsimmon:
-        specifier: 1.18.1
-        version: 1.18.1
-      pg:
-        specifier: 8.10.0
-        version: 8.10.0
-      photoswipe:
-        specifier: 5.3.7
-        version: 5.3.7
-      pinia:
-        specifier: 2.0.33
-        version: 2.0.33(typescript@4.9.4)(vue@3.2.47)
-      pinia-plugin-persistedstate:
-        specifier: 3.0.2
-        version: 3.0.2(pinia@2.0.33)
-      portscanner:
-        specifier: 2.2.0
-        version: 2.2.0
-      postcss:
-        specifier: 8.4.22
-        version: 8.4.22
-      postcss-loader:
-        specifier: 7.2.4
-        version: 7.2.4(@types/node@18.14.2)(postcss@8.4.22)(ts-node@10.9.1)(typescript@4.9.4)(webpack@5.79.0)
-      private-ip:
-        specifier: 2.3.4
-        version: 2.3.4
-      probe-image-size:
-        specifier: 7.2.3
-        version: 7.2.3
-      promise-limit:
-        specifier: 2.7.0
-        version: 2.7.0
-      promise-sequential:
-        specifier: 1.1.1
-        version: 1.1.1
-      pug:
-        specifier: 3.0.2
-        version: 3.0.2
-      punycode:
-        specifier: 2.3.0
-        version: 2.3.0
-      pureimage:
-        specifier: 0.3.17
-        version: 0.3.17
-      qrcode:
-        specifier: 1.5.1
-        version: 1.5.1
-      random-seed:
-        specifier: 0.3.0
-        version: 0.3.0
-      randomcolor:
-        specifier: 0.6.2
-        version: 0.6.2
-      ratelimiter:
-        specifier: 3.4.1
-        version: 3.4.1
-      reconnecting-websocket:
-        specifier: 4.4.0
-        version: 4.4.0
-      redis-lock:
-        specifier: 0.1.4
-        version: 0.1.4
-      reflect-metadata:
-        specifier: 0.1.13
-        version: 0.1.13
-      rename:
-        specifier: 1.0.4
-        version: 1.0.4
-      request-stats:
-        specifier: 3.0.0
-        version: 3.0.0
-      require-all:
-        specifier: 3.0.0
-        version: 3.0.0
-      rimraf:
-        specifier: 3.0.2
-        version: 3.0.2
-      rndstr:
-        specifier: 1.0.0
-        version: 1.0.0
-      sass:
-        specifier: 1.55.0
-        version: 1.55.0
-      sass-loader:
-        specifier: 13.2.2
-        version: 13.2.2(sass@1.55.0)(webpack@5.79.0)
-      seedrandom:
-        specifier: 3.0.5
-        version: 3.0.5
-      sharp:
-        specifier: 0.31.3
-        version: 0.31.3
-      showdown:
-        specifier: 2.1.0
-        version: 2.1.0
-      showdown-highlightjs-extension:
-        specifier: 0.1.2
-        version: 0.1.2(showdown@2.1.0)
-      sonic-channel:
-        specifier: 1.3.0
-        version: 1.3.0
-      speakeasy:
-        specifier: 2.0.0
-        version: 2.0.0
-      strictcat:
-        specifier: 0.0.1-alpha.20
-        version: 0.0.1-alpha.20
-      stringz:
-        specifier: 2.1.0
-        version: 2.1.0
-      stylus:
-        specifier: 0.59.0
-        version: 0.59.0
-      stylus-loader:
-        specifier: 7.1.0
-        version: 7.1.0(stylus@0.59.0)(webpack@5.79.0)
-      syslog-pro:
-        specifier: git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2
-        version: github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7
-      systeminformation:
-        specifier: 5.17.12
-        version: 5.17.12
-      syuilo-password-strength:
-        specifier: 0.0.1
-        version: 0.0.1
-      terser-webpack-plugin:
-        specifier: 5.3.6
-        version: 5.3.6(@swc/core@1.3.51)(webpack@5.79.0)
-      textarea-caret:
-        specifier: 3.1.0
-        version: 3.1.0
-      three:
-        specifier: 0.134.0
-        version: 0.134.0
-      throttle-debounce:
-        specifier: 4.0.1
-        version: 4.0.1
-      tinycolor2:
-        specifier: 1.4.2
-        version: 1.4.2
-      tmp:
-        specifier: 0.2.1
-        version: 0.2.1
-      ts-loader:
-        specifier: 9.4.2
-        version: 9.4.2(typescript@4.9.4)(webpack@5.79.0)
-      ts-node:
-        specifier: 10.9.1
-        version: 10.9.1(@swc/core@1.3.51)(@types/node@18.14.2)(typescript@4.9.4)
-      tsc-alias:
-        specifier: 1.8.5
-        version: 1.8.5
-      tsconfig-paths:
-        specifier: 4.2.0
-        version: 4.2.0
-      typeorm:
-        specifier: 0.2.44
-        version: 0.2.44(ioredis@4.28.5)(pg@8.10.0)
-      typescript:
-        specifier: 4.9.4
-        version: 4.9.4
-      ulid:
-        specifier: 2.3.0
-        version: 2.3.0
-      url-loader:
-        specifier: 4.1.1
-        version: 4.1.1(webpack@5.79.0)
-      uuid:
-        specifier: 9.0.0
-        version: 9.0.0
-      v-animate-css:
-        specifier: 0.0.5
-        version: 0.0.5
-      v-debounce:
-        specifier: 0.1.2
-        version: 0.1.2
-      vue:
-        specifier: 3.2.47
-        version: 3.2.47
-      vue-color:
-        specifier: 2.8.1
-        version: 2.8.1
-      vue-content-loading:
-        specifier: 1.6.0
-        version: 1.6.0
-      vue-cropperjs:
-        specifier: 4.2.0
-        version: 4.2.0
-      vue-i18n:
-        specifier: 8.28.2
-        version: 8.28.2(vue@3.2.47)
-      vue-js-modal:
-        specifier: 1.3.35
-        version: 1.3.35(vue@3.2.47)
-      vue-loader:
-        specifier: 17.0.1
-        version: 17.0.1(@vue/compiler-sfc@3.2.47)(vue@3.2.47)(webpack@5.79.0)
-      vue-marquee-text-component:
-        specifier: 2.0.1
-        version: 2.0.1
-      vue-router:
-        specifier: 4.1.6
-        version: 4.1.6(vue@3.2.47)
-      vue-style-loader:
-        specifier: 4.1.3
-        version: 4.1.3
-      vue-svg-inline-loader:
-        specifier: 2.1.5
-        version: 2.1.5
-      vue3-sequential-entrance:
-        specifier: 2.0.2
-        version: 2.0.2
-      vuedraggable:
-        specifier: 4.1.0
-        version: 4.1.0(vue@3.2.47)
-      vuex:
-        specifier: 4.1.0
-        version: 4.1.0(vue@3.2.47)
-      vuex-persistedstate:
-        specifier: 4.1.0
-        version: 4.1.0(vuex@4.1.0)
-      web-push:
-        specifier: 3.5.0
-        version: 3.5.0
-      webpack:
-        specifier: 5.79.0
-        version: 5.79.0(@swc/core@1.3.51)(webpack-cli@4.10.0)
-      webpack-cli:
-        specifier: 4.10.0
-        version: 4.10.0(webpack-dev-server@4.8.1)(webpack@5.79.0)
-      websocket:
-        specifier: 1.0.34
-        version: 1.0.34
-      ws:
-        specifier: 8.13.0
-        version: 8.13.0
-    devDependencies:
-      '@redocly/openapi-core':
-        specifier: 1.0.0-beta.125
-        version: 1.0.0-beta.125
-      '@swc/cli':
-        specifier: 0.1.62
-        version: 0.1.62(@swc/core@1.3.51)
-      '@swc/core':
-        specifier: 1.3.51
-        version: 1.3.51(@swc/helpers@0.5.0)
-      '@swc/helpers':
-        specifier: 0.5.0
-        version: 0.5.0
-      '@types/animejs':
-        specifier: 3.1.6
-        version: 3.1.6
-      '@types/bcryptjs':
-        specifier: 2.4.2
-        version: 2.4.2
-      '@types/dateformat':
-        specifier: 3.0.1
-        version: 3.0.1
-      '@types/double-ended-queue':
-        specifier: 2.1.2
-        version: 2.1.2
-      '@types/escape-regexp':
-        specifier: 0.0.1
-        version: 0.0.1
-      '@types/fluent-ffmpeg':
-        specifier: 2.1.21
-        version: 2.1.21
-      '@types/gulp':
-        specifier: 4.0.10
-        version: 4.0.10
-      '@types/gulp-mocha':
-        specifier: 0.0.33
-        version: 0.0.33
-      '@types/gulp-rename':
-        specifier: 2.0.1
-        version: 2.0.1
-      '@types/ioredis':
-        specifier: 4.28.10
-        version: 4.28.10
-      '@types/is-url':
-        specifier: 1.2.30
-        version: 1.2.30
-      '@types/js-yaml':
-        specifier: 4.0.5
-        version: 4.0.5
-      '@types/jsdom':
-        specifier: 20.0.1
-        version: 20.0.1
-      '@types/jsonld':
-        specifier: 1.5.8
-        version: 1.5.8
-      '@types/jsrsasign':
-        specifier: 10.5.8
-        version: 10.5.8
-      '@types/katex':
-        specifier: 0.16.0
-        version: 0.16.0
-      '@types/koa':
-        specifier: 2.13.6
-        version: 2.13.6
-      '@types/koa-bodyparser':
-        specifier: 4.3.10
-        version: 4.3.10
-      '@types/koa-cors':
-        specifier: 0.0.2
-        version: 0.0.2
-      '@types/koa-favicon':
-        specifier: 2.0.21
-        version: 2.0.21
-      '@types/koa-logger':
-        specifier: 3.1.2
-        version: 3.1.2
-      '@types/koa-mount':
-        specifier: 4.0.2
-        version: 4.0.2
-      '@types/koa-send':
-        specifier: 4.1.3
-        version: 4.1.3
-      '@types/koa-views':
-        specifier: 2.0.4
-        version: 2.0.4
-      '@types/koa__cors':
-        specifier: 3.3.0
-        version: 3.3.0
-      '@types/koa__multer':
-        specifier: 2.0.4
-        version: 2.0.4
-      '@types/koa__router':
-        specifier: 8.0.11
-        version: 8.0.11
-      '@types/lolex':
-        specifier: 5.1.2
-        version: 5.1.2
-      '@types/mocha':
-        specifier: 10.0.1
-        version: 10.0.1
-      '@types/node':
-        specifier: 18.14.2
-        version: 18.14.2
-      '@types/node-fetch':
-        specifier: 2.6.3
-        version: 2.6.3
-      '@types/nodemailer':
-        specifier: 6.4.7
-        version: 6.4.7
-      '@types/nprogress':
-        specifier: 0.2.0
-        version: 0.2.0
-      '@types/oauth':
-        specifier: 0.9.1
-        version: 0.9.1
-      '@types/parse5':
-        specifier: 6.0.3
-        version: 6.0.3
-      '@types/parsimmon':
-        specifier: 1.10.6
-        version: 1.10.6
-      '@types/portscanner':
-        specifier: 2.1.1
-        version: 2.1.1
-      '@types/pug':
-        specifier: 2.0.6
-        version: 2.0.6
-      '@types/qrcode':
-        specifier: 1.5.0
-        version: 1.5.0
-      '@types/random-seed':
-        specifier: 0.3.3
-        version: 0.3.3
-      '@types/ratelimiter':
-        specifier: 3.4.4
-        version: 3.4.4
-      '@types/rename':
-        specifier: 1.0.4
-        version: 1.0.4
-      '@types/request-stats':
-        specifier: 3.0.0
-        version: 3.0.0
-      '@types/rimraf':
-        specifier: 3.0.2
-        version: 3.0.2
-      '@types/seedrandom':
-        specifier: 3.0.5
-        version: 3.0.5
-      '@types/sharp':
-        specifier: 0.31.1
-        version: 0.31.1
-      '@types/showdown':
-        specifier: 2.0.0
-        version: 2.0.0
-      '@types/speakeasy':
-        specifier: 2.0.7
-        version: 2.0.7
-      '@types/three':
-        specifier: 0.134.0
-        version: 0.134.0
-      '@types/throttle-debounce':
-        specifier: 4.0.0
-        version: 4.0.0
-      '@types/tinycolor2':
-        specifier: 1.4.3
-        version: 1.4.3
-      '@types/tmp':
-        specifier: 0.2.3
-        version: 0.2.3
-      '@types/uuid':
-        specifier: 8.3.4
-        version: 8.3.4
-      '@types/web-push':
-        specifier: 3.3.2
-        version: 3.3.2
-      '@types/webpack':
-        specifier: 5.28.1
-        version: 5.28.1(@swc/core@1.3.51)(webpack-cli@4.10.0)
-      '@types/webpack-stream':
-        specifier: 3.2.12
-        version: 3.2.12
-      '@types/websocket':
-        specifier: 1.0.5
-        version: 1.0.5
-      '@types/ws':
-        specifier: 8.5.4
-        version: 8.5.4
-      '@typescript-eslint/eslint-plugin':
-        specifier: 5.58.0
-        version: 5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)(typescript@4.9.4)
-      '@typescript-eslint/parser':
-        specifier: 5.58.0
-        version: 5.58.0(eslint@8.38.0)(typescript@4.9.4)
-      escape-regexp:
-        specifier: 0.0.1
-        version: 0.0.1
-      eslint:
-        specifier: 8.38.0
-        version: 8.38.0
-      eslint-config-prettier:
-        specifier: 8.8.0
-        version: 8.8.0(eslint@8.38.0)
-      eslint-import-resolver-node:
-        specifier: 0.3.7
-        version: 0.3.7
-      eslint-plugin-import:
-        specifier: 2.27.5
-        version: 2.27.5(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)
-      eslint-plugin-vue:
-        specifier: 9.11.0
-        version: 9.11.0(eslint@8.38.0)
-      form-data:
-        specifier: 4.0.0
-        version: 4.0.0
-      node-gyp:
-        specifier: 9.3.1
-        version: 9.3.1
-      npm-run-all:
-        specifier: 4.1.5
-        version: 4.1.5
-      prettier:
-        specifier: 2.8.7
-        version: 2.8.7
-      regenerator-runtime:
-        specifier: 0.13.11
-        version: 0.13.11
-      tsc-progress:
-        specifier: 1.0.4
-        version: 1.0.4(typescript@4.9.4)
-      tslint:
-        specifier: 5.20.1
-        version: 5.20.1(typescript@4.9.4)
-      tslint-sonarts:
-        specifier: 1.9.0
-        version: 1.9.0(tslint@5.20.1)(typescript@4.9.4)
-      ttypescript:
-        specifier: 1.5.15
-        version: 1.5.15(ts-node@10.9.1)(typescript@4.9.4)
-      vue-eslint-parser:
-        specifier: 9.1.1
-        version: 9.1.1(eslint@8.38.0)
-      webpack-dev-server:
-        specifier: 4.8.1
-        version: 4.8.1(webpack-cli@4.10.0)(webpack@5.79.0)
-      webpackbar:
-        specifier: 5.0.2
-        version: 5.0.2(webpack@5.79.0)
-
-  lib/vuewordcloud:
-    dependencies:
-      vue:
-        specifier: ^3.2.45
-        version: 3.2.45
-    devDependencies:
-      '@rollup/plugin-buble':
-        specifier: 1.0.2
-        version: 1.0.2(rollup@3.10.1)
-      '@rollup/plugin-node-resolve':
-        specifier: 15.0.1
-        version: 15.0.1(rollup@3.10.1)
-      '@rollup/plugin-terser':
-        specifier: 0.4.0
-        version: 0.4.0(rollup@3.10.1)
-      eslint:
-        specifier: 8.38.0
-        version: 8.38.0
-      eslint-config-seregpie:
-        specifier: 1.2.1
-        version: 1.2.1(eslint@8.38.0)
-      rollup:
-        specifier: 3.10.1
-        version: 3.10.1
-      rollup-plugin-serve:
-        specifier: 2.0.2
-        version: 2.0.2
+devDependencies:
+  '@redocly/openapi-core':
+    specifier: 1.0.0-beta.125
+    version: 1.0.0-beta.125
+  '@swc/cli':
+    specifier: 0.1.62
+    version: 0.1.62(@swc/core@1.3.51)
+  '@swc/core':
+    specifier: 1.3.51
+    version: 1.3.51(@swc/helpers@0.5.0)
+  '@swc/helpers':
+    specifier: 0.5.0
+    version: 0.5.0
+  '@types/animejs':
+    specifier: 3.1.6
+    version: 3.1.6
+  '@types/bcryptjs':
+    specifier: 2.4.2
+    version: 2.4.2
+  '@types/dateformat':
+    specifier: 3.0.1
+    version: 3.0.1
+  '@types/double-ended-queue':
+    specifier: 2.1.2
+    version: 2.1.2
+  '@types/escape-regexp':
+    specifier: 0.0.1
+    version: 0.0.1
+  '@types/fluent-ffmpeg':
+    specifier: 2.1.21
+    version: 2.1.21
+  '@types/gulp':
+    specifier: 4.0.10
+    version: 4.0.10
+  '@types/gulp-mocha':
+    specifier: 0.0.33
+    version: 0.0.33
+  '@types/gulp-rename':
+    specifier: 2.0.1
+    version: 2.0.1
+  '@types/ioredis':
+    specifier: 4.28.10
+    version: 4.28.10
+  '@types/is-url':
+    specifier: 1.2.30
+    version: 1.2.30
+  '@types/js-yaml':
+    specifier: 4.0.5
+    version: 4.0.5
+  '@types/jsdom':
+    specifier: 20.0.1
+    version: 20.0.1
+  '@types/jsonld':
+    specifier: 1.5.8
+    version: 1.5.8
+  '@types/jsrsasign':
+    specifier: 10.5.8
+    version: 10.5.8
+  '@types/katex':
+    specifier: 0.16.0
+    version: 0.16.0
+  '@types/koa':
+    specifier: 2.13.6
+    version: 2.13.6
+  '@types/koa-bodyparser':
+    specifier: 4.3.10
+    version: 4.3.10
+  '@types/koa-cors':
+    specifier: 0.0.2
+    version: 0.0.2
+  '@types/koa-favicon':
+    specifier: 2.0.21
+    version: 2.0.21
+  '@types/koa-logger':
+    specifier: 3.1.2
+    version: 3.1.2
+  '@types/koa-mount':
+    specifier: 4.0.2
+    version: 4.0.2
+  '@types/koa-send':
+    specifier: 4.1.3
+    version: 4.1.3
+  '@types/koa-views':
+    specifier: 2.0.4
+    version: 2.0.4
+  '@types/koa__cors':
+    specifier: 3.3.0
+    version: 3.3.0
+  '@types/koa__multer':
+    specifier: 2.0.4
+    version: 2.0.4
+  '@types/koa__router':
+    specifier: 8.0.11
+    version: 8.0.11
+  '@types/lolex':
+    specifier: 5.1.2
+    version: 5.1.2
+  '@types/mocha':
+    specifier: 10.0.1
+    version: 10.0.1
+  '@types/node':
+    specifier: 18.14.2
+    version: 18.14.2
+  '@types/node-fetch':
+    specifier: 2.6.3
+    version: 2.6.3
+  '@types/nodemailer':
+    specifier: 6.4.7
+    version: 6.4.7
+  '@types/nprogress':
+    specifier: 0.2.0
+    version: 0.2.0
+  '@types/oauth':
+    specifier: 0.9.1
+    version: 0.9.1
+  '@types/parse5':
+    specifier: 6.0.3
+    version: 6.0.3
+  '@types/parsimmon':
+    specifier: 1.10.6
+    version: 1.10.6
+  '@types/portscanner':
+    specifier: 2.1.1
+    version: 2.1.1
+  '@types/pug':
+    specifier: 2.0.6
+    version: 2.0.6
+  '@types/qrcode':
+    specifier: 1.5.0
+    version: 1.5.0
+  '@types/random-seed':
+    specifier: 0.3.3
+    version: 0.3.3
+  '@types/ratelimiter':
+    specifier: 3.4.4
+    version: 3.4.4
+  '@types/rename':
+    specifier: 1.0.4
+    version: 1.0.4
+  '@types/request-stats':
+    specifier: 3.0.0
+    version: 3.0.0
+  '@types/rimraf':
+    specifier: 3.0.2
+    version: 3.0.2
+  '@types/seedrandom':
+    specifier: 3.0.5
+    version: 3.0.5
+  '@types/sharp':
+    specifier: 0.31.1
+    version: 0.31.1
+  '@types/showdown':
+    specifier: 2.0.0
+    version: 2.0.0
+  '@types/speakeasy':
+    specifier: 2.0.7
+    version: 2.0.7
+  '@types/three':
+    specifier: 0.134.0
+    version: 0.134.0
+  '@types/throttle-debounce':
+    specifier: 4.0.0
+    version: 4.0.0
+  '@types/tinycolor2':
+    specifier: 1.4.3
+    version: 1.4.3
+  '@types/tmp':
+    specifier: 0.2.3
+    version: 0.2.3
+  '@types/uuid':
+    specifier: 8.3.4
+    version: 8.3.4
+  '@types/web-push':
+    specifier: 3.3.2
+    version: 3.3.2
+  '@types/webpack':
+    specifier: 5.28.1
+    version: 5.28.1(@swc/core@1.3.51)(webpack-cli@4.10.0)
+  '@types/webpack-stream':
+    specifier: 3.2.12
+    version: 3.2.12
+  '@types/websocket':
+    specifier: 1.0.5
+    version: 1.0.5
+  '@types/ws':
+    specifier: 8.5.4
+    version: 8.5.4
+  '@typescript-eslint/eslint-plugin':
+    specifier: 5.58.0
+    version: 5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)(typescript@4.9.4)
+  '@typescript-eslint/parser':
+    specifier: 5.58.0
+    version: 5.58.0(eslint@8.38.0)(typescript@4.9.4)
+  escape-regexp:
+    specifier: 0.0.1
+    version: 0.0.1
+  eslint:
+    specifier: 8.38.0
+    version: 8.38.0
+  eslint-config-prettier:
+    specifier: 8.8.0
+    version: 8.8.0(eslint@8.38.0)
+  eslint-import-resolver-node:
+    specifier: 0.3.7
+    version: 0.3.7
+  eslint-plugin-import:
+    specifier: 2.27.5
+    version: 2.27.5(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)
+  eslint-plugin-vue:
+    specifier: 9.11.0
+    version: 9.11.0(eslint@8.38.0)
+  form-data:
+    specifier: 4.0.0
+    version: 4.0.0
+  node-gyp:
+    specifier: 9.3.1
+    version: 9.3.1
+  npm-run-all:
+    specifier: 4.1.5
+    version: 4.1.5
+  prettier:
+    specifier: 2.8.7
+    version: 2.8.7
+  regenerator-runtime:
+    specifier: 0.13.11
+    version: 0.13.11
+  tsc-progress:
+    specifier: 1.0.4
+    version: 1.0.4(typescript@4.9.4)
+  tslint:
+    specifier: 5.20.1
+    version: 5.20.1(typescript@4.9.4)
+  tslint-sonarts:
+    specifier: 1.9.0
+    version: 1.9.0(tslint@5.20.1)(typescript@4.9.4)
+  ttypescript:
+    specifier: 1.5.15
+    version: 1.5.15(ts-node@10.9.1)(typescript@4.9.4)
+  vue-eslint-parser:
+    specifier: 9.1.1
+    version: 9.1.1(eslint@8.38.0)
+  webpack-dev-server:
+    specifier: 4.8.1
+    version: 4.8.1(webpack-cli@4.10.0)(webpack@5.79.0)
+  webpackbar:
+    specifier: 5.0.2
+    version: 5.0.2(webpack@5.79.0)
 
 packages:
 
@@ -1565,55 +1535,7 @@ packages:
       - encoding
     dev: true
 
-  /@rollup/plugin-buble@1.0.2(rollup@3.10.1):
-    resolution: {integrity: sha512-Hz9+AigRWwS93vmorrVrhyG9SdSCZAkBDx614w09iFQYFUAP2HmdUrQyZsb1WO2n+iDvPFznrTE16la+eGNcEQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.10.1)
-      '@types/buble': 0.19.2
-      buble: 0.20.0
-      rollup: 3.10.1
-    dev: true
-
-  /@rollup/plugin-node-resolve@15.0.1(rollup@3.10.1):
-    resolution: {integrity: sha512-ReY88T7JhJjeRVbfCyNj+NXAG3IIsVMsX9b5/9jC98dRP8/yxlZdz7mHZbHk5zHr24wZZICS5AcXsFZAXYUQEg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.78.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.10.1)
-      '@types/resolve': 1.20.2
-      deepmerge: 4.2.2
-      is-builtin-module: 3.2.0
-      is-module: 1.0.0
-      resolve: 1.22.1
-      rollup: 3.10.1
-    dev: true
-
-  /@rollup/plugin-terser@0.4.0(rollup@3.10.1):
-    resolution: {integrity: sha512-Ipcf3LPNerey1q9ZMjiaWHlNPEHNU/B5/uh9zXLltfEQ1lVSLLeZSgAtTPWGyw8Ip1guOeq+mDtdOlEj/wNxQw==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.x || ^3.x
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      rollup: 3.10.1
-      serialize-javascript: 6.0.0
-      smob: 0.0.6
-      terser: 5.15.1
-    dev: true
-
-  /@rollup/pluginutils@5.0.2(rollup@3.10.1):
+  /@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -1625,7 +1547,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.10.1
+    dev: false
 
   /@sindresorhus/is@4.6.0:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
@@ -1816,12 +1738,6 @@ packages:
     resolution: {integrity: sha512-p7ienRMiS41Nu2/igbJxxLDWrSZ0WxM8UQgCeO9KhoVF7cOVFkrKsiDr1EsJIla8vV3oEEjGcz11jc5yimhzZw==}
     dependencies:
       '@types/node': 18.14.2
-
-  /@types/buble@0.19.2:
-    resolution: {integrity: sha512-uUD8zIfXMKThmFkahTXDGI3CthFH1kMg2dOm3KLi4GlC5cbARA64bEcUMbbWdWdE73eoc/iBB9PiTMqH0dNS2Q==}
-    dependencies:
-      magic-string: 0.25.9
-    dev: true
 
   /@types/cacheable-request@6.0.2:
     resolution: {integrity: sha512-B3xVo+dlKM6nnKTcmm5ZtY/OL8bOAOd2Olee9M1zft65ox50OzjEHW91sDiU9j6cvW8Ejg1/Qkf4xd2kugApUA==}
@@ -2179,10 +2095,6 @@ packages:
       '@types/node': 18.14.2
     dev: true
 
-  /@types/resolve@1.20.2:
-    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
-    dev: true
-
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
@@ -2511,15 +2423,6 @@ packages:
       vue: 3.2.47
     dev: false
 
-  /@vue/compiler-core@3.2.45:
-    resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
-    dependencies:
-      '@babel/parser': 7.20.7
-      '@vue/shared': 3.2.45
-      estree-walker: 2.0.2
-      source-map: 0.6.1
-    dev: false
-
   /@vue/compiler-core@3.2.47:
     resolution: {integrity: sha512-p4D7FDnQb7+YJmO2iPEv0SQNeNzcbHdGByJDsT4lynf63AFkOTFN07HsiRSvjGo0QrxR/o3d0hUyNCUnBU2Tig==}
     dependencies:
@@ -2527,13 +2430,6 @@ packages:
       '@vue/shared': 3.2.47
       estree-walker: 2.0.2
       source-map: 0.6.1
-    dev: false
-
-  /@vue/compiler-dom@3.2.45:
-    resolution: {integrity: sha512-tyYeUEuKqqZO137WrZkpwfPCdiiIeXYCcJ8L4gWz9vqaxzIQRccTSwSWZ/Axx5YR2z+LvpUbmPNXxuBU45lyRw==}
-    dependencies:
-      '@vue/compiler-core': 3.2.45
-      '@vue/shared': 3.2.45
     dev: false
 
   /@vue/compiler-dom@3.2.47:
@@ -2551,21 +2447,6 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /@vue/compiler-sfc@3.2.45:
-    resolution: {integrity: sha512-1jXDuWah1ggsnSAOGsec8cFjT/K6TMZ0sPL3o3d84Ft2AYZi2jWJgRMjw4iaK0rBfA89L5gw427H4n1RZQBu6Q==}
-    dependencies:
-      '@babel/parser': 7.20.7
-      '@vue/compiler-core': 3.2.45
-      '@vue/compiler-dom': 3.2.45
-      '@vue/compiler-ssr': 3.2.45
-      '@vue/reactivity-transform': 3.2.45
-      '@vue/shared': 3.2.45
-      estree-walker: 2.0.2
-      magic-string: 0.25.9
-      postcss: 8.4.22
-      source-map: 0.6.1
-    dev: false
-
   /@vue/compiler-sfc@3.2.47:
     resolution: {integrity: sha512-rog05W+2IFfxjMcFw10tM9+f7i/+FFpZJJ5XHX72NP9eC2uRD+42M3pYcQqDXVYoj74kHMSEdQ/WmCjt8JFksQ==}
     dependencies:
@@ -2577,15 +2458,8 @@ packages:
       '@vue/shared': 3.2.47
       estree-walker: 2.0.2
       magic-string: 0.25.9
-      postcss: 8.4.21
+      postcss: 8.4.22
       source-map: 0.6.1
-    dev: false
-
-  /@vue/compiler-ssr@3.2.45:
-    resolution: {integrity: sha512-6BRaggEGqhWht3lt24CrIbQSRD5O07MTmd+LjAn5fJj568+R9eUD2F7wMQJjX859seSlrYog7sUtrZSd7feqrQ==}
-    dependencies:
-      '@vue/compiler-dom': 3.2.45
-      '@vue/shared': 3.2.45
     dev: false
 
   /@vue/compiler-ssr@3.2.47:
@@ -2603,16 +2477,6 @@ packages:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
     dev: false
 
-  /@vue/reactivity-transform@3.2.45:
-    resolution: {integrity: sha512-BHVmzYAvM7vcU5WmuYqXpwaBHjsS8T63jlKGWVtHxAHIoMIlmaMyurUSEs1Zcg46M4AYT5MtB1U274/2aNzjJQ==}
-    dependencies:
-      '@babel/parser': 7.20.7
-      '@vue/compiler-core': 3.2.45
-      '@vue/shared': 3.2.45
-      estree-walker: 2.0.2
-      magic-string: 0.25.9
-    dev: false
-
   /@vue/reactivity-transform@3.2.47:
     resolution: {integrity: sha512-m8lGXw8rdnPVVIdIFhf0LeQ/ixyHkH5plYuS83yop5n7ggVJU+z5v0zecwEnX7fa7HNLBhh2qngJJkxpwEEmYA==}
     dependencies:
@@ -2623,23 +2487,10 @@ packages:
       magic-string: 0.25.9
     dev: false
 
-  /@vue/reactivity@3.2.45:
-    resolution: {integrity: sha512-PRvhCcQcyEVohW0P8iQ7HDcIOXRjZfAsOds3N99X/Dzewy8TVhTCT4uXpAHfoKjVTJRA0O0K+6QNkDIZAxNi3A==}
-    dependencies:
-      '@vue/shared': 3.2.45
-    dev: false
-
   /@vue/reactivity@3.2.47:
     resolution: {integrity: sha512-7khqQ/75oyyg+N/e+iwV6lpy1f5wq759NdlS1fpAhFXa8VeAIKGgk2E/C4VF59lx5b+Ezs5fpp/5WsRYXQiKxQ==}
     dependencies:
       '@vue/shared': 3.2.47
-    dev: false
-
-  /@vue/runtime-core@3.2.45:
-    resolution: {integrity: sha512-gzJiTA3f74cgARptqzYswmoQx0fIA+gGYBfokYVhF8YSXjWTUA2SngRzZRku2HbGbjzB6LBYSbKGIaK8IW+s0A==}
-    dependencies:
-      '@vue/reactivity': 3.2.45
-      '@vue/shared': 3.2.45
     dev: false
 
   /@vue/runtime-core@3.2.47:
@@ -2647,14 +2498,6 @@ packages:
     dependencies:
       '@vue/reactivity': 3.2.47
       '@vue/shared': 3.2.47
-    dev: false
-
-  /@vue/runtime-dom@3.2.45:
-    resolution: {integrity: sha512-cy88YpfP5Ue2bDBbj75Cb4bIEZUMM/mAkDMfqDTpUYVgTf/kuQ2VQ8LebuZ8k6EudgH8pYhsGWHlY0lcxlvTwA==}
-    dependencies:
-      '@vue/runtime-core': 3.2.45
-      '@vue/shared': 3.2.45
-      csstype: 2.6.21
     dev: false
 
   /@vue/runtime-dom@3.2.47:
@@ -2665,16 +2508,6 @@ packages:
       csstype: 2.6.21
     dev: false
 
-  /@vue/server-renderer@3.2.45(vue@3.2.45):
-    resolution: {integrity: sha512-ebiMq7q24WBU1D6uhPK//2OTR1iRIyxjF5iVq/1a5I1SDMDyDu4Ts6fJaMnjrvD3MqnaiFkKQj+LKAgz5WIK3g==}
-    peerDependencies:
-      vue: 3.2.45
-    dependencies:
-      '@vue/compiler-ssr': 3.2.45
-      '@vue/shared': 3.2.45
-      vue: 3.2.45
-    dev: false
-
   /@vue/server-renderer@3.2.47(vue@3.2.47):
     resolution: {integrity: sha512-dN9gc1i8EvmP9RCzvneONXsKfBRgqFeFZLurmHOveL7oH6HiFXJw5OGu294n1nHc/HMgTy6LulU/tv5/A7f/LA==}
     peerDependencies:
@@ -2683,10 +2516,6 @@ packages:
       '@vue/compiler-ssr': 3.2.47
       '@vue/shared': 3.2.47
       vue: 3.2.47
-    dev: false
-
-  /@vue/shared@3.2.45:
-    resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: false
 
   /@vue/shared@3.2.47:
@@ -2884,15 +2713,6 @@ packages:
       when: 3.7.8
     dev: false
 
-  /acorn-dynamic-import@4.0.0(acorn@6.4.2):
-    resolution: {integrity: sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==}
-    deprecated: This is probably built in to whatever tool you're using. If you still need it... idk
-    peerDependencies:
-      acorn: ^6.0.0
-    dependencies:
-      acorn: 6.4.2
-    dev: true
-
   /acorn-globals@7.0.1:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==}
     dependencies:
@@ -2907,14 +2727,6 @@ packages:
     dependencies:
       acorn: 8.8.1
 
-  /acorn-jsx@5.3.2(acorn@6.4.2):
-    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 6.4.2
-    dev: true
-
   /acorn-jsx@5.3.2(acorn@8.8.1):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -2926,12 +2738,6 @@ packages:
   /acorn-walk@8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-
-  /acorn@6.4.2:
-    resolution: {integrity: sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-    dev: true
 
   /acorn@7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -3684,19 +3490,6 @@ packages:
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10(browserslist@4.21.4)
 
-  /buble@0.20.0:
-    resolution: {integrity: sha512-/1gnaMQE8xvd5qsNBl+iTuyjJ9XxeaVxAMF86dQ4EyxFJOZtsgOS8Ra+7WHgZTam5IFDtt4BguN0sH0tVTKrOw==}
-    hasBin: true
-    dependencies:
-      acorn: 6.4.2
-      acorn-dynamic-import: 4.0.0(acorn@6.4.2)
-      acorn-jsx: 5.3.2(acorn@6.4.2)
-      chalk: 2.4.2
-      magic-string: 0.25.9
-      minimist: 1.2.7
-      regexpu-core: 4.5.4
-    dev: true
-
   /buffer-equal-constant-time@1.0.1:
     resolution: {integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==}
     dev: false
@@ -3747,11 +3540,6 @@ packages:
   /builtin-modules@1.1.1:
     resolution: {integrity: sha512-wxXCdllwGhI2kCC0MnvTGYTMvnVZTvqgypkiTI8Pa5tcz2i6VqsqwYGgqwXji+4RgCzms6EajE4IxiUH6HH8nQ==}
     engines: {node: '>=0.10.0'}
-
-  /builtin-modules@3.3.0:
-    resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
-    engines: {node: '>=6'}
-    dev: true
 
   /bull@4.10.4:
     resolution: {integrity: sha512-o9m/7HjS/Or3vqRd59evBlWCXd9Lp+ALppKseoSKHaykK46SmRjAilX98PgmOz1yeVaurt8D5UtvEt4bUjM3eA==}
@@ -5036,6 +4824,7 @@ packages:
   /deepmerge@4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /default-compare@1.0.0:
     resolution: {integrity: sha512-QWfXlM0EkAbqOCbD/6HjdwT19j7WCkMyiRhWilc4H9/5h/RzTF9gv5LYh1+CmDV5d1rki6KAWLtQale0xt20eQ==}
@@ -5548,14 +5337,6 @@ packages:
       eslint: 8.38.0
     dev: true
 
-  /eslint-config-seregpie@1.2.1(eslint@8.38.0):
-    resolution: {integrity: sha512-haWG7bIvtRGwXyyixkNTQzYsYdBSvdPi5xPIR8foIE/fvbEuh/8L0mcQnjZK+gEHHzPHmYJ0mWeBSDhe2PV3WA==}
-    peerDependencies:
-      eslint: ^8
-    dependencies:
-      eslint: 8.38.0
-    dev: true
-
   /eslint-import-resolver-node@0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
@@ -5773,6 +5554,7 @@ packages:
 
   /estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+    dev: false
 
   /estree-walker@3.0.3:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
@@ -7379,13 +7161,6 @@ packages:
     resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
     dev: false
 
-  /is-builtin-module@3.2.0:
-    resolution: {integrity: sha512-phDA4oSGt7vl1n5tJvTWooWWAsXLY+2xCnxNqvKhGEzujg+A43wPlPOyDg3C8XQHN+6k/JTQWJ/j0dQh/qr+Hw==}
-    engines: {node: '>=6'}
-    dependencies:
-      builtin-modules: 3.3.0
-    dev: true
-
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -7506,10 +7281,6 @@ packages:
 
   /is-lambda@1.0.1:
     resolution: {integrity: sha512-z7CMFGNrENq5iFB9Bqo64Xk6Y9sg+epq1myIcdHaGnbMTYOxvzsEtdYqQUylB7LxfkvgrrjP32T6Ywciio9UIQ==}
-    dev: true
-
-  /is-module@1.0.0:
-    resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
     dev: true
 
   /is-negated-glob@1.0.0:
@@ -7852,11 +7623,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: false
-
-  /jsesc@0.5.0:
-    resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}
-    hasBin: true
-    dev: true
 
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
@@ -8738,6 +8504,7 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: false
 
   /magic-string@0.26.7:
     resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
@@ -8926,12 +8693,6 @@ packages:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
     engines: {node: '>=4'}
     hasBin: true
-
-  /mime@3.0.0:
-    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    dev: true
 
   /mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
@@ -9646,11 +9407,6 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
-
-  /opener@1.5.2:
-    resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
-    hasBin: true
-    dev: true
 
   /opentype.js@0.4.11:
     resolution: {integrity: sha512-GthxucX/6aftfLdeU5Ho7o7zmQcC8uVtqdcelVq12X++ndxwBZG8Xb5rFEKT7nEcWDD2P1x+TNuJ70jtj1Mbpw==}
@@ -11071,17 +10827,6 @@ packages:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
     dev: false
 
-  /regenerate-unicode-properties@8.2.0:
-    resolution: {integrity: sha512-F9DjY1vKLo/tPePDycuH3dn9H1OTPIkVD9Kz4LODu+F2C75mgjAJ7x/gwy6ZcSNRAAkhNlJSOHRe8k3p+K9WhA==}
-    engines: {node: '>=4'}
-    dependencies:
-      regenerate: 1.4.2
-    dev: true
-
-  /regenerate@1.4.2:
-    resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
-    dev: true
-
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
 
@@ -11100,29 +10845,6 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.1.4
       functions-have-names: 1.2.3
-
-  /regexpu-core@4.5.4:
-    resolution: {integrity: sha512-BtizvGtFQKGPUcTy56o3nk1bGRp4SZOTYrDtGNlqCQufptV5IkkLN6Emw+yunAJjzf+C9FQFtvq7IoA3+oMYHQ==}
-    engines: {node: '>=4'}
-    dependencies:
-      regenerate: 1.4.2
-      regenerate-unicode-properties: 8.2.0
-      regjsgen: 0.5.2
-      regjsparser: 0.6.9
-      unicode-match-property-ecmascript: 1.0.4
-      unicode-match-property-value-ecmascript: 1.2.0
-    dev: true
-
-  /regjsgen@0.5.2:
-    resolution: {integrity: sha512-OFFT3MfrH90xIW8OOSyUrk6QHD5E9JOTeGodiJeBS3J6IwlgzJMNE/1bZklWz5oTg+9dCMyEetclvCVXOPoN3A==}
-    dev: true
-
-  /regjsparser@0.6.9:
-    resolution: {integrity: sha512-ZqbNRz1SNjLAiYuwY0zoXW8Ne675IX5q+YHioAGbCw4X96Mjl2+dcX9B2ciaeyYjViDAfvIjFpQjJgLttTEERQ==}
-    hasBin: true
-    dependencies:
-      jsesc: 0.5.0
-    dev: true
 
   /relateurl@0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
@@ -11331,20 +11053,6 @@ packages:
       seedrandom: 2.4.2
     dev: false
 
-  /rollup-plugin-serve@2.0.2:
-    resolution: {integrity: sha512-ALqyTbPhlf7FZ5RzlbDvMYvbKuCHWginJkTo6dMsbgji/a78IbsXox+pC83HENdkTRz8OXrTj+aShp3+3ratpg==}
-    dependencies:
-      mime: 3.0.0
-      opener: 1.5.2
-    dev: true
-
-  /rollup@3.10.1:
-    resolution: {integrity: sha512-3Er+yel3bZbZX1g2kjVM+FW+RUWDxbG87fcqFM5/9HbPCTpbVp6JOLn7jlxnNlbu7s/N/uDA4EV/91E2gWnxzw==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -11538,6 +11246,7 @@ packages:
     resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
     dependencies:
       randombytes: 2.1.0
+    dev: false
 
   /serialize-javascript@6.0.1:
     resolution: {integrity: sha512-owoXEFjWRllis8/M1Q+Cw5k8ZH40e3zhp/ovX+Xr/vi1qj6QesbyXXViFbpNvWvPNAD62SutwEXavefrLJWj7w==}
@@ -11713,10 +11422,6 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: true
 
-  /smob@0.0.6:
-    resolution: {integrity: sha512-V21+XeNni+tTyiST1MHsa84AQhT1aFZipzPpOFAVB8DkHzwJyjjAmt9bgwnuZiZWnIbMo2duE29wybxv/7HWUw==}
-    dev: true
-
   /snapdragon-node@2.1.1:
     resolution: {integrity: sha512-O27l4xaMYt/RSQ5TR3vpWCAB5Kb/czIcqUFOM/C4fYcLnbZUc1PkjTAMjof2pBWaSTwOUd6qUHcFGVGj7aIwnw==}
     engines: {node: '>=0.10.0'}
@@ -11852,6 +11557,7 @@ packages:
   /sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     deprecated: Please use @jridgewell/sourcemap-codec instead
+    dev: false
 
   /sparkles@1.0.1:
     resolution: {integrity: sha512-dSO0DDYUahUt/0/pD/Is3VIm5TGJjludZ0HVymmhYF6eNA53PVLhnUk0znSYbH8IYBuJdCE+1luR22jNLMaQdw==}
@@ -12455,6 +12161,7 @@ packages:
       acorn: 8.8.1
       commander: 2.20.3
       source-map-support: 0.5.21
+    dev: false
 
   /terser@5.16.9:
     resolution: {integrity: sha512-HPa/FdTB9XGI2H1/keLFZHxl6WNvAI4YalHGtDQTlMnJcoqSab1UwL4l1hGEhs6/GmLHBZIg/YgB++jcbzoOEg==}
@@ -13052,33 +12759,10 @@ packages:
       busboy: 1.6.0
     dev: false
 
-  /unicode-canonical-property-names-ecmascript@1.0.4:
-    resolution: {integrity: sha512-jDrNnXWHd4oHiTZnx/ZG7gtUTVp+gCcTTKr8L0HjlwphROEW3+Him+IpvC+xcJEFegapiMZyZe02CyuOnRmbnQ==}
-    engines: {node: '>=4'}
-    dev: true
-
-  /unicode-match-property-ecmascript@1.0.4:
-    resolution: {integrity: sha512-L4Qoh15vTfntsn4P1zqnHulG0LdXgjSO035fEpdtp6YxXhMT51Q6vgM5lYdG/5X3MjS+k/Y9Xw4SFCY9IkR0rg==}
-    engines: {node: '>=4'}
-    dependencies:
-      unicode-canonical-property-names-ecmascript: 1.0.4
-      unicode-property-aliases-ecmascript: 1.1.0
-    dev: true
-
-  /unicode-match-property-value-ecmascript@1.2.0:
-    resolution: {integrity: sha512-wjuQHGQVofmSJv1uVISKLE5zO2rNGzM/KCYZch/QQvez7C1hUhBIuZ701fYXExuufJFMPhv2SyL8CyoIfMLbIQ==}
-    engines: {node: '>=4'}
-    dev: true
-
-  /unicode-property-aliases-ecmascript@1.1.0:
-    resolution: {integrity: sha512-PqSoPh/pWetQ2phoj5RLiaqIk4kCNwoV3CI+LfGmWLKI3rE3kl1h59XpX2BjgDrmbxD9ARtQobPGU1SguCYuQg==}
-    engines: {node: '>=4'}
-    dev: true
-
   /unimport@1.2.0:
     resolution: {integrity: sha512-yMok/ubppurBE7Png1QH70Om96AxIoWCcfdxW3J/pziozShMc1UGpPgWpSckfo9ndAO5M74yNnRDdLAZy/gWQg==}
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.10.1)
+      '@rollup/pluginutils': 5.0.2
       escape-string-regexp: 5.0.0
       fast-glob: 3.2.12
       local-pkg: 0.4.3
@@ -13528,16 +13212,6 @@ packages:
     dependencies:
       '@vue/compiler-sfc': 2.7.14
       csstype: 3.1.1
-    dev: false
-
-  /vue@3.2.45:
-    resolution: {integrity: sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==}
-    dependencies:
-      '@vue/compiler-dom': 3.2.45
-      '@vue/compiler-sfc': 3.2.45
-      '@vue/runtime-dom': 3.2.45
-      '@vue/server-renderer': 3.2.45(vue@3.2.45)
-      '@vue/shared': 3.2.45
     dev: false
 
   /vue@3.2.47:
