@@ -9,7 +9,7 @@ dependencies:
     specifier: 2.5.0-rei0784.4
     version: 2.5.0-rei0784.4
   '@ayuskey/vuewordcloud':
-    specifier: workspace:19.0.0
+    specifier: workspace:*
     version: link:lib/vuewordcloud
   '@ayuskey/xev':
     specifier: 2.0.1-rei0784.2

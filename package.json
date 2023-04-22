@@ -44,7 +44,7 @@
 	},
 	"dependencies": {
 		"@ayuskey/summaly": "2.5.0-rei0784.4",
-		"@ayuskey/vuewordcloud": "workspace:19.0.0",
+		"@ayuskey/vuewordcloud": "workspace:*",
 		"@ayuskey/xev": "2.0.1-rei0784.2",
 		"@bull-board/api": "5.0.0",
 		"@bull-board/koa": "5.0.0",
