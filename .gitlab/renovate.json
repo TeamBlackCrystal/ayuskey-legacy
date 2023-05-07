@@ -20,6 +20,11 @@
 		{
 			"matchManagers": ["docker-compose", "dockerfile"],
 			"addLabels": ["topic/Docker⚓"]
+		},
+		{
+			"matchManagers": ["npm"],
+			"matchPackagePatterns": ["bull-board"],
+			"groupName": "bull-board"
 		}
 	],
 	"regexManagers": [
