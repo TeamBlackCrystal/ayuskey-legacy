@@ -5,6 +5,7 @@ import { AyuskeyNextEntities } from "@/v13/models";
 import config from "@/config";
 import { User } from "@/models/entities/user";
 import { createPagination } from "./common";
+import { migrateUserKeypair } from "./userKeypair";
 import { migrateUserPublickey } from "./publickey";
 import { migrateUserSecurityKeys } from "./securityKey";
 import { migrateUser } from "./user";
@@ -28,6 +29,7 @@ async function migrateUsers(originalDb: Connection, nextDb: Connection) {
 		const users = await pagination.next();
 		for (const user of users) {
 			await migrateUser(originalDb, nextDb, user.id);
+			await migrateUserKeypair(originalDb, nextDb, user.id);
 			await migrateUserPublickey(originalDb, nextDb, user.id);
 			await migrateUserSecurityKeys(originalDb, nextDb, user.id);
 			await migrateBlockings(originalDb, nextDb, user.id);
