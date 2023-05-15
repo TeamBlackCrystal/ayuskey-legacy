@@ -17,6 +17,13 @@ export type Source = {
 		disableCache?: boolean;
 		extra?: { [x: string]: string };
 		pgroonga?: boolean;
+		nextDb: {
+			host: string;
+			port: number;
+			db: string;
+			user: string;
+			pass: string;
+		}
 	};
 	redis: {
 		path: string;
