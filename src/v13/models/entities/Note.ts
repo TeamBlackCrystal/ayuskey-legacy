@@ -1,10 +1,9 @@
 import { Entity, Index, JoinColumn, Column, PrimaryColumn, ManyToOne } from 'typeorm';
-import { User } from './user';
-import { App } from './app';
-import { DriveFile } from './drive-file';
 import { id } from '../id';
-
-import { Channel } from './channel';
+import { noteVisibilities } from '../../../types';
+import { User } from './User';
+import { Channel } from './Channel';
+import type { DriveFile } from './DriveFile';
 
 @Entity()
 @Index('IDX_NOTE_TAGS', { synchronize: false })
@@ -48,8 +47,15 @@ export class Note {
 	@JoinColumn()
 	public renote: Note | null;
 
+	@Index()
 	@Column('varchar', {
-		length: 10240, nullable: true,
+		length: 256, nullable: true,
+	})
+	public threadId: string | null;
+
+	// TODO: varcharにしたい
+	@Column('text', {
+		nullable: true,
 	})
 	public text: string | null;
 
@@ -62,18 +68,6 @@ export class Note {
 		length: 512, nullable: true,
 	})
 	public cw: string | null;
-
-	@Column({
-		...id(),
-		nullable: true,
-	})
-	public appId: App['id'] | null;  // 無くなってそう
-
-	@ManyToOne(type => App, {
-		onDelete: 'SET NULL',
-	})
-	@JoinColumn()
-	public app: App | null; // 無い
 
 	@Index()
 	@Column({
@@ -91,12 +85,12 @@ export class Note {
 	@Column('boolean', {
 		default: false,
 	})
-	public viaMobile: boolean;  // 無い
-
-	@Column('boolean', {
-		default: false,
-	})
 	public localOnly: boolean;
+
+	@Column('varchar', {
+		length: 64, nullable: true,
+	})
+	public reactionAcceptance: 'likeOnly' | 'likeOnlyForRemote' | null;
 
 	@Column('smallint', {
 		default: 0,
@@ -119,8 +113,8 @@ export class Note {
 	 * followers ... フォロワーのみ
 	 * specified ... visibleUserIds で指定したユーザーのみ
 	 */
-	@Column('enum', { enum: ['public', 'home', 'followers', 'specified'] })
-	public visibility: 'public' | 'home' | 'followers' | 'specified';
+	@Column('enum', { enum: noteVisibilities })
+	public visibility: typeof noteVisibilities[number];
 
 	@Index({ unique: true })
 	@Column('varchar', {
@@ -191,21 +185,16 @@ export class Note {
 	@Index()
 	@Column({
 		...id(),
-		nullable: true, default: null,
+		nullable: true,
 		comment: 'The ID of source channel.',
 	})
-	public channelId: Channel['id'] | null;  // 実質無いような物だから移行しない
+	public channelId: Channel['id'] | null;
 
 	@ManyToOne(type => Channel, {
 		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
-	public channel: Channel | null;  // 実質無いような物だから移行しない
-
-	@Column('jsonb', {
-		nullable: true, default: null,
-	})
-	public geo: any | null;  // 無くなった
+	public channel: Channel | null;
 
 	//#region Denormalized fields
 	@Index()

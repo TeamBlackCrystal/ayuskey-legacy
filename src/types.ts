@@ -22,3 +22,8 @@ export const noteVisibilities = [
 export const mutedNoteReasons = ["word", "manual", "spam", "other"] as const;
 
 export const onlineStateTypes = ["online", "active", "offline", "unknown"];
+
+export const ffVisibility = ['public', 'followers', 'private'] as const;
+
+
+export const obsoleteNotificationTypes = ['pollVote', 'groupInvited'] as const;

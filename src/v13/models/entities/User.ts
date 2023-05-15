@@ -1,6 +1,6 @@
 import { Entity, Column, Index, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
-import { DriveFile } from './drive-file';
 import { id } from '../id';
+import { DriveFile } from './DriveFile';
 
 @Entity()
 @Index(['usernameLower', 'host'], { unique: true })
@@ -51,7 +51,7 @@ export class User {
 	public usernameLower: string;
 
 	@Column('varchar', {
-		length: 512, nullable: true,
+		length: 128, nullable: true,
 		comment: 'The name of the User.',
 	})
 	public name: string | null;
@@ -68,18 +68,37 @@ export class User {
 	})
 	public followingCount: number;
 
+	@Column('varchar', {
+		length: 512,
+		nullable: true,
+		comment: 'The URI of the new account of the User',
+	})
+	public movedToUri: string | null;  // TODO:a
+
+	@Column('timestamp with time zone', {
+		nullable: true,
+		comment: 'When the user moved to another account',
+	})
+	public movedAt: Date | null;  // TODO:どうしようもできない
+
+	@Column('simple-array', {
+		nullable: true,
+		comment: 'URIs the user is known as too',
+	})
+	public alsoKnownAs: string[] | null;  // TODO:a
+
 	@Column('integer', {
 		default: 0,
 		comment: 'The count of notes.',
 	})
-	public notesCount: number;
+	public notesCount: number;  // done
 
 	@Column({
 		...id(),
 		nullable: true,
 		comment: 'The ID of avatar DriveFile.',
 	})
-	public avatarId: DriveFile['id'] | null;
+	public avatarId: DriveFile['id'] | null;  // done
 
 	@OneToOne(type => DriveFile, {
 		onDelete: 'SET NULL',
@@ -100,6 +119,26 @@ export class User {
 	@JoinColumn()
 	public banner: DriveFile | null;
 
+	@Column('varchar', {
+		length: 512, nullable: true,
+	})
+	public avatarUrl: string | null;
+
+	@Column('varchar', {
+		length: 512, nullable: true,
+	})
+	public bannerUrl: string | null;
+
+	@Column('varchar', {
+		length: 128, nullable: true,
+	})
+	public avatarBlurhash: string | null;
+
+	@Column('varchar', {
+		length: 128, nullable: true,
+	})
+	public bannerBlurhash: string | null;
+
 	@Index()
 	@Column('varchar', {
 		length: 128, array: true, default: '{}',
@@ -111,12 +150,6 @@ export class User {
 		comment: 'Whether the User is suspended.',
 	})
 	public isSuspended: boolean;
-
-	@Column('boolean', {
-		default: false,
-		comment: 'Whether the User is silenced.',
-	})
-	public isSilenced: boolean;  // policieになってる
 
 	@Column('boolean', {
 		default: false,
@@ -138,31 +171,9 @@ export class User {
 
 	@Column('boolean', {
 		default: false,
-		comment: 'Whether the User is a Lady.',
+		comment: 'Whether the User is the root.',
 	})
-	public isLady: boolean;  // TODO: あとでやる
-
-	@Column('boolean', {
-		default: false,
-		comment: 'Whether the User is the admin.',
-	})
-	public isAdmin: boolean;  // isRootになってる
-
-	@Column('boolean', {
-		default: false,
-		comment: 'Whether the User is a moderator.',
-	})
-	public isModerator: boolean;  // ロールになった
-
-	@Column('boolean', {
-		default: false,
-	})
-	public isVerified: boolean;  // ロールを代わりに使ってもらう
-
-	@Column('boolean', {
-		default: false,
-	})
-	public isPremium: boolean;  // ロールを代わりに使ってもらう
+	public isRoot: boolean;
 
 	@Index()
 	@Column('boolean', {
@@ -221,25 +232,18 @@ export class User {
 	})
 	public followersUri: string | null;
 
+	@Column('boolean', {
+		default: false,
+		comment: 'Whether to show users replying to other users in the timeline.',
+	})
+	public showTimelineReplies: boolean;
+
 	@Index({ unique: true })
 	@Column('char', {
 		length: 16, nullable: true, unique: true,
 		comment: 'The native access token of the User. It will be null if the origin of the user is local.',
 	})
 	public token: string | null;
-
-	@Column({
-		...id(),
-		nullable: true,
-		comment: 'Moved to user ID',
-	})
-	public movedToUserId: User['id'] | null;
-
-	@OneToOne(type => User, {
-		onDelete: 'SET NULL',
-	})
-	@JoinColumn()
-	public movedToUser: User | null;
 
 	constructor(data: Partial<User>) {
 		if (data == null) return;
@@ -250,10 +254,31 @@ export class User {
 	}
 }
 
-export interface ILocalUser extends User {
+export type LocalUser = User & {
 	host: null;
+	uri: null;
 }
 
-export interface IRemoteUser extends User {
-	host: string;
+export type PartialLocalUser = Partial<User> & {
+	id: User['id'];
+	host: null;
+	uri: null;
 }
+
+export type RemoteUser = User & {
+	host: string;
+	uri: string;
+}
+
+export type PartialRemoteUser = Partial<User> & {
+	id: User['id'];
+	host: string;
+	uri: string;
+}
+
+export const localUsernameSchema = { type: 'string', pattern: /^\w{1,20}$/.toString().slice(1, -1) } as const;
+export const passwordSchema = { type: 'string', minLength: 1 } as const;
+export const nameSchema = { type: 'string', minLength: 1, maxLength: 50 } as const;
+export const descriptionSchema = { type: 'string', minLength: 1, maxLength: 1500 } as const;
+export const locationSchema = { type: 'string', minLength: 1, maxLength: 50 } as const;
+export const birthdaySchema = { type: 'string', pattern: /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/.toString().slice(1, -1) } as const;

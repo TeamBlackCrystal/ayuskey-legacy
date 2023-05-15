@@ -13,7 +13,7 @@ export class Instance {
 	@Column('timestamp with time zone', {
 		comment: 'The caught date of the Instance.',
 	})
-	public caughtAt: Date;
+	public firstRetrievedAt: Date;
 
 	/**
 	 * ホスト
@@ -60,50 +60,12 @@ export class Instance {
 	public followersCount: number;
 
 	/**
-	 * ドライブ使用量
-	 */
-	@Column('bigint', {
-		default: 0,
-	})
-	public driveUsage: number;  // 無くなった (多分ポリシーになった)
-
-	/**
-	 * ドライブのファイル数
-	 */
-	@Column('integer', {
-		default: 0,
-	})
-	public driveFiles: number;  // 無くなった
-
-	/**
-	 * 直近のリクエスト送信日時
-	 */
-	@Column('timestamp with time zone', {
-		nullable: true,
-	})
-	public latestRequestSentAt: Date | null;  // 無くなった
-
-	/**
-	 * 直近のリクエスト送信時のHTTPステータスコード
-	 */
-	@Column('integer', {
-		nullable: true,
-	})
-	public latestStatus: number | null;   // 無くなった
-
-	/**
 	 * 直近のリクエスト受信日時
 	 */
 	@Column('timestamp with time zone', {
 		nullable: true,
 	})
 	public latestRequestReceivedAt: Date | null;
-
-	/**
-	 * このインスタンスと最後にやり取りした日時
-	 */
-	@Column('timestamp with time zone')
-	public lastCommunicatedAt: Date;  // 無くなった
 
 	/**
 	 * このインスタンスと不通かどうか
@@ -123,53 +85,53 @@ export class Instance {
 	public isSuspended: boolean;
 
 	@Column('varchar', {
-		length: 64, nullable: true, default: null,
+		length: 64, nullable: true,
 		comment: 'The software of the Instance.',
 	})
 	public softwareName: string | null;
 
 	@Column('varchar', {
-		length: 64, nullable: true, default: null,
+		length: 64, nullable: true,
 	})
 	public softwareVersion: string | null;
 
 	@Column('boolean', {
-		nullable: true, default: null,
+		nullable: true,
 	})
 	public openRegistrations: boolean | null;
 
 	@Column('varchar', {
-		length: 256, nullable: true, default: null,
+		length: 256, nullable: true,
 	})
 	public name: string | null;
 
 	@Column('varchar', {
-		length: 4096, nullable: true, default: null,
+		length: 4096, nullable: true,
 	})
 	public description: string | null;
 
 	@Column('varchar', {
-		length: 128, nullable: true, default: null,
+		length: 128, nullable: true,
 	})
 	public maintainerName: string | null;
 
 	@Column('varchar', {
-		length: 256, nullable: true, default: null,
+		length: 256, nullable: true,
 	})
 	public maintainerEmail: string | null;
 
 	@Column('varchar', {
-		length: 256, nullable: true, default: null,
+		length: 256, nullable: true,
 	})
 	public iconUrl: string | null;
 
 	@Column('varchar', {
-		length: 256, nullable: true, default: null,
+		length: 256, nullable: true,
 	})
 	public faviconUrl: string | null;
 
 	@Column('varchar', {
-		length: 64, nullable: true, default: null,
+		length: 64, nullable: true,
 	})
 	public themeColor: string | null;
 
