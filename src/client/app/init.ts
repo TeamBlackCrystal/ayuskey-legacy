@@ -319,7 +319,7 @@ library.add(
 
 //Vue.use(Vuex);
 //Vue.use(VueRouter);
-Vue.use(VAnimateCss);
+//Vue.use(VAnimateCss);
 Vue.use(VModal);
 Vue.use(VueHotkey);
 Vue.use(VueSize);
@@ -450,8 +450,9 @@ export default (
 
 			app.use(os.store);
 			app.use(router);
+			app.use(VAnimateCss);
 			app.use(pinia);
-			app.use(SequentialEntrance)
+			app.use(SequentialEntrance);
 			//#region theme
 			const ayux = AYUX();
 			ayux.setAllDefault();
