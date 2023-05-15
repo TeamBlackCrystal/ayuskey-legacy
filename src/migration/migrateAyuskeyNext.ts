@@ -22,6 +22,7 @@ import { hashtagQueue, queues } from "./jobqueue";
 import * as Router from "@koa/router";
 import * as Koa from "koa";
 import hashtagProcessor from "./processor/hashtag.processor";
+import { migrateMeta } from "./meta";
 
 async function migrateUsers(originalDb: Connection, nextDb: Connection) {
 	const pagination = createPagination(originalDb, User);
@@ -68,6 +69,7 @@ async function main(): Promise<any> {
 	app.use(router.routes()).use(router.allowedMethods());
 
 	await app.listen(3000, async () => {
+		await migrateMeta(originalDb, nextDb);
 		await migrateHashtags(originalDb, nextDb);
 		await migrateInstances(originalDb, nextDb);
 		await migrateUsers(originalDb, nextDb);
