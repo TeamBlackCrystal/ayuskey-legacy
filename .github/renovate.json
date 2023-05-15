@@ -20,6 +20,22 @@
 		{
 			"matchManagers": ["docker-compose", "dockerfile"],
 			"addLabels": ["topic/Docker⚓"]
+		},
+		{
+			"matchManagers": ["npm"],
+			"matchPackagePatterns": ["bull-board"],
+			"groupName": "bull-board"
+		}
+	],
+	"regexManagers": [
+		{
+			"description": "Update docker references in gitlab variables",
+			"fileMatch": ["\\.gitlab-ci\\.yml$"],
+			"matchStrings": [
+				"CI_RENOVATE_IMAGE[A-Z_]*\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+			],
+			"datasourceTemplate": "docker",
+			"versioningTemplate": "docker"
 		}
 	]
 }
