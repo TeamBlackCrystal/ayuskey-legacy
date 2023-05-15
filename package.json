@@ -57,7 +57,7 @@
 		"@fortawesome/free-solid-svg-icons": "6.4.0",
 		"@fortawesome/vue-fontawesome": "3.0.3",
 		"@koa/cors": "4.0.0",
-		"@koa/multer": "3.0.0",
+		"@koa/multer": "3.0.2",
 		"@koa/router": "8.0.8",
 		"@popperjs/core": "2.11.7",
 		"@vue/compat": "3.2.47",
