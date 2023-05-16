@@ -15,5 +15,7 @@ const queueRedisConf: Queue.QueueOptions = {
 };
 export const userKeypairQueue = new Queue("user keypair", queueRedisConf);
 export const hashtagQueue = new Queue("hashtag", queueRedisConf);
+export const instanceQueue = new Queue("instance", queueRedisConf);
+export const noteQueue = new Queue("note", queueRedisConf);
 
-export const queues = [userKeypairQueue, hashtagQueue];
+export const queues = [userKeypairQueue, hashtagQueue, instanceQueue, noteQueue];
