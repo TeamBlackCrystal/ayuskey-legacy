@@ -504,8 +504,8 @@ dependencies:
     specifier: 1.6.0
     version: 1.6.0
   vue-cropperjs:
-    specifier: 4.2.0
-    version: 4.2.0
+    specifier: 5.0.0
+    version: 5.0.0(vue@3.2.47)
   vue-i18n:
     specifier: 8.28.2
     version: 8.28.2(vue@3.2.47)
@@ -13125,10 +13125,13 @@ packages:
       vue: 2.7.14
     dev: false
 
-  /vue-cropperjs@4.2.0:
-    resolution: {integrity: sha512-dvwCBtjGMiznkNIK2GFd1SQm1x+wmtWg4g4t+NrJSPj/fpHnubXxAUOIvY7lMFeR2lawRLsigCaGZrcXCzuTKA==}
+  /vue-cropperjs@5.0.0(vue@3.2.47):
+    resolution: {integrity: sha512-RhnC8O33uRZNkn74aiHZwNHnBJOXWlS4P6gsRI0lw4cZlWjKSCywZI9oSI9POlIPI6OYv30jvnHMXGch85tw7w==}
+    peerDependencies:
+      vue: '>=3.0.0'
     dependencies:
       cropperjs: 1.5.13
+      vue: 3.2.47
     dev: false
 
   /vue-demi@0.13.11(vue@3.2.47):
