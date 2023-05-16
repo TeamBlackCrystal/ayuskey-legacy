@@ -43,7 +43,7 @@ export async function migrateHashtag(hashtagId: string) {
         attachedRemoteUserIds: hashtag.attachedRemoteUserIds,
         attachedRemoteUsersCount: hashtag.attachedRemoteUsersCount,
     });
-    console.log(`ハッシュタグ: ${hashtagId} の移行が完了しました`);
+    console.log(`hashtag: ${hashtagId} の移行が完了しました`);
 }
 
 export async function migrateHashtags(originalDb: Connection, nextDb: Connection) {
