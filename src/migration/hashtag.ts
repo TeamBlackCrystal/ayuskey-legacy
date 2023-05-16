@@ -14,10 +14,10 @@ export async function migrateHashtag(hashtagId: string) {
     const checkExists = await hashtagRepository.findOne({where: {id: hashtagId}});
     if (checkExists) {
         // 存在する場合はスキップ
-        console.log(`ハッシュタグ: ${checkExists.name}は移行済みです`);
+        console.log(`hashtag: ${hashtagId} は移行済みです`);
     }
     const hashtag = await originalHashtagRepository.findOne({where: {id: hashtagId}})
-    if (!hashtag) throw Error('ハッシュタグが見つかりません');
+    if (!hashtag) throw Error(`hashtag: ${hashtagId} が見つかりません`);
     const userIds = [
         ...hashtag.mentionedLocalUserIds,
         ...hashtag.attachedLocalUserIds,
@@ -43,7 +43,7 @@ export async function migrateHashtag(hashtagId: string) {
         attachedRemoteUserIds: hashtag.attachedRemoteUserIds,
         attachedRemoteUsersCount: hashtag.attachedRemoteUsersCount,
     });
-    console.log(`ハッシュタグ: ${hashtag.name}の移行が完了しました`);
+    console.log(`ハッシュタグ: ${hashtagId} の移行が完了しました`);
 }
 
 export async function migrateHashtags(originalDb: Connection, nextDb: Connection) {

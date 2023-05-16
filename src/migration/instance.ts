@@ -16,7 +16,7 @@ export async function migrateInstance(
 	if (checkExists) return;
 	const instance = await originalInstanceRepository.findOne({where: {id: instanceId}});
 
-	if (!instance) throw new Error("instance が見つかりません");
+	if (!instance) throw new Error(`instance: ${instanceId}`);
 	await instanceRepository.save({
 		id: instance.id,
 		host: instance.host,
@@ -40,7 +40,7 @@ export async function migrateInstance(
 		infoUpdatedAt: instance.infoUpdatedAt,
 		firstRetrievedAt: new Date(), // 現行のAyuskeyに存在しない為実行した日時を入れる
 	});
-	console.log(`インスタンス: ${instance.name}の移行が完了しました`);
+	console.log(`instance: ${instanceId} の移行が完了しました`);
 }
 
 export async function migrateInstances(	originalDb: Connection,

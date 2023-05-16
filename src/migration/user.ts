@@ -60,5 +60,5 @@ export async function migrateUser(
 	await userRepository.save(resultUser);
 
 	await migrateNote(originalDb, nextDb, resultUser.id);
-	console.log(`${user.username}@${user.host}の移行が完了しました`);
+	console.log(`User: ${userId} の移行が完了しました`);
 }

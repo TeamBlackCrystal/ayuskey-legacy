@@ -20,7 +20,7 @@ export async function migrateMuting(
 		where: { id: mutingId },
 	});
 
-	if (!muting) throw new Error("muting が見つかりません");
+	if (!muting) throw new Error(`muting: ${mutingId} が見つかりません`);
 	await migrateUser(originalDb, nextDb, muting.muteeId); // ミュート対象のユーザーが作成されてない可能性を考慮する
 
 	await mutingRepository.save({
@@ -29,7 +29,7 @@ export async function migrateMuting(
 		muteeId: muting.muteeId,
 		muterId: muting.muterId,
 	});
-	console.log(`ミュート: ${muting.muter?.username} => ${muting.mutee?.username} の移行が完了しました`);
+	console.log(`muting: ${muting.id} の移行が完了しました`);
 }
 
 export async function migrateMutings(

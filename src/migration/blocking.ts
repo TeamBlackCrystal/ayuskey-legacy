@@ -19,7 +19,7 @@ export async function migrateBlocking(
 	const blocking = await originalBlockingRepository.findOne({
 		where: { id: blockingId },
 	});
-	if (!blocking) throw new Error("blocking が見つかりません");
+	if (!blocking) throw new Error(`blocking: ${blockingId} が見つかりません`);
 	await migrateUser(originalDb, nextDb, blocking.blockeeId);
 	await blockingRepository.save({
 		id: blocking.id,
@@ -27,7 +27,7 @@ export async function migrateBlocking(
 		blockerId: blocking.blockerId,
 		createdAt: blocking.createdAt,
 	});
-    console.log(`ブロック: ${blocking.blocker?.username} => ${blocking.blockee?.username} の移行が完了しました`);
+    console.log(`blocking: ${blockingId} の移行が完了しました`);
 }
 
 export async function migrateBlockings(

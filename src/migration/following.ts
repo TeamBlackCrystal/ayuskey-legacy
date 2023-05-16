@@ -36,7 +36,7 @@ export async function migrateFollowing(
 		followeeInbox: following.followeeInbox,
 		followeeSharedInbox: following.followeeSharedInbox,
 	});
-	console.log(`フォロー: ${following.follower?.username} => ${following.followee?.username} の移行が完了しました`);
+	console.log(`following: ${following.id} の移行が完了しました`);
 
 }
 
