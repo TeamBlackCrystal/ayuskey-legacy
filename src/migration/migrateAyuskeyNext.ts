@@ -9,20 +9,18 @@ import { migrateUserKeypair } from "./userKeypair";
 import { migrateUserPublickey } from "./publickey";
 import { migrateUserSecurityKeys } from "./securityKey";
 import { migrateUser } from "./user";
-import { migrateHashtags } from "./hashtag";
 import { migrateBlockings } from "./blocking";
 import { migrateInstances } from "./instance";
 import { migrateMutings } from "./muting";
 import { migrateFollowings } from "./following";
-import { createBullBoard } from "@bull-board/api";
-import { BullAdapter } from "@bull-board/api/bullAdapter.js";
-import { KoaAdapter } from "@bull-board/koa";
 
-import { hashtagQueue, queues } from "./jobqueue";
-import * as Router from "@koa/router";
-import * as Koa from "koa";
+import { hashtagQueue, instanceQueue, noteQueue } from "./jobqueue";
 import hashtagProcessor from "./processor/hashtag.processor";
 import { migrateMeta } from "./meta";
+import {spawn} from "child_process";
+import instanceProcessor from "./processor/instance.processor";
+import { migrateHashtags } from "./hashtag";
+import noteProcessor from "./processor/note.processor";
 
 async function migrateUsers(originalDb: Connection, nextDb: Connection) {
 	const pagination = createPagination(originalDb, User);
@@ -54,27 +52,17 @@ async function main(): Promise<any> {
 		entities: AyuskeyNextEntities,
 	});
 
-	const app = new Koa();
-	const router = new Router();
-	const serverAdapter = new KoaAdapter();
+	const bullDashboardProc = spawn('node', ['./built/migration/bullDashboard.js'])
+
+	instanceQueue.process(instanceProcessor);
 	hashtagQueue.process(hashtagProcessor);
+	noteQueue.process(noteProcessor);
 
-	// @ts-ignore
-	createBullBoard({
-		queues: queues.map((q) => new BullAdapter(q)),
-		serverAdapter,
-	});
-	serverAdapter.setBasePath("/ui");
-	await app.use(serverAdapter.registerPlugin());
-	app.use(router.routes()).use(router.allowedMethods());
+	await migrateMeta(originalDb, nextDb);  // 並列するまでもない
 
-	await app.listen(3000, async () => {
-		await migrateMeta(originalDb, nextDb);
-		await migrateHashtags(originalDb, nextDb);
-		await migrateInstances(originalDb, nextDb);
-		await migrateUsers(originalDb, nextDb);
-		console.log(`Worker ${process.pid} is listening on port 3000`);
-	});
+	await migrateInstances(originalDb, nextDb);
+	await migrateHashtags(originalDb, nextDb)
+	await migrateUsers(originalDb, nextDb);
 }
 
 main().catch((e) => {

@@ -1,20 +1,23 @@
-import { Connection } from "typeorm";
+import { Connection, getConnection } from "typeorm";
 import { Instance } from "@/models/entities/instance";
 import { Instance as v13Instance } from "@/v13/models";
 import { createPagination } from "./common";
+import { instanceQueue } from "./jobqueue";
 
-export async function migrateInstance(
-	originalDb: Connection,
-	nextDb: Connection,
-	instanceId: string
-) {
+export async function migrateInstance(instanceId: string) {
+	const originalDb = getConnection();
+	const nextDb = getConnection("nextDb");
 	const instanceRepository = nextDb.getRepository(v13Instance);
 	const originalInstanceRepository = originalDb.getRepository(Instance);
 
-	const checkExists = await instanceRepository.findOne({where: {id: instanceId}});
+	const checkExists = await instanceRepository.findOne({
+		where: { id: instanceId },
+	});
 
 	if (checkExists) return;
-	const instance = await originalInstanceRepository.findOne({where: {id: instanceId}});
+	const instance = await originalInstanceRepository.findOne({
+		where: { id: instanceId },
+	});
 
 	if (!instance) throw new Error(`instance: ${instanceId}`);
 	await instanceRepository.save({
@@ -43,15 +46,17 @@ export async function migrateInstance(
 	console.log(`instance: ${instanceId} の移行が完了しました`);
 }
 
-export async function migrateInstances(	originalDb: Connection,
-	nextDb: Connection) {
+export async function migrateInstances(
+	originalDb: Connection,
+	nextDb: Connection
+) {
 	const pagination = await createPagination(originalDb, Instance);
 
 	while (true) {
-        const instances = await pagination.next();
-        for (const instance of instances) {
-            await migrateInstance(originalDb, nextDb, instance.id)
-        }
-        if (instances.length < 100) break;  // 100以下になったら止める
-    }
+		const instances = await pagination.next();
+		for (const instance of instances) {
+			instanceQueue.add({instanceId: instance.id});
+		}
+		if (instances.length < 100) break; // 100以下になったら止める
+	}
 }
