@@ -1,21 +1,19 @@
 import { Meta } from "@/models/entities/meta";
 import { Meta as v13Meta } from "@/v13/models";
 import { Connection } from "typeorm";
-import { migrateUser } from "./user";
 
 export async function migrateMeta(originalDb: Connection, nextDb: Connection) {
     const metaRepository = nextDb.getRepository(v13Meta);
     const originalMetaRepository = originalDb.getRepository(Meta);
 
-    const meta = await metaRepository.findOne()
+    const checkExists = await metaRepository.findOne()
     const originalMeta = await originalMetaRepository.findOne()
     
-    if (!meta) throw Error('metaが見つからないよー')
+    if (checkExists) return
     if (!originalMeta) throw Error('移行元が壊れてるかも〜')
 
-    if (meta.preservedUsernames) return;
 
-    if (meta.proxyAccountId) await migrateUser(originalDb, nextDb, meta.proxyAccountId)
+    // if (originalMeta.proxyAccount) await migrateUser(originalDb, nextDb, originalMeta.proxyAccount)
 
     await metaRepository.save({
         id: originalMeta.id,
@@ -37,7 +35,7 @@ export async function migrateMeta(originalDb: Connection, nextDb: Connection) {
         errorImageUrl: originalMeta.errorImageUrl,
         iconUrl: originalMeta.iconUrl,
         cacheRemoteFiles: originalMeta.cacheRemoteFiles,
-        proxyAccountId: originalMeta.proxyAccount,
+        // proxyAccountId: originalMeta.proxyAccount,  proxyAccountに入ってるの ユーザー名だから移行できない(このマイグレーションの仕組み的に)やる必要性も感じない
         // proxyAccountは要らない
         // emailRequiredForSignupはない
         // enableHcaptchaはない
