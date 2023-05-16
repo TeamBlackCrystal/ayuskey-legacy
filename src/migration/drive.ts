@@ -10,42 +10,70 @@ import {
 export async function migrateDriveFile(
 	originalDb: Connection,
 	nextDb: Connection,
-	userId: string
+	driveFileId: string,
+	useFile?: DriveFile
 ) {
 	const driveFileRepository = nextDb.getRepository(v13DriveFile);
-	await driveFileRepository.find();
+	const originalDriveFileRepository = originalDb.getRepository(DriveFile);
 
+	const checkExists = await driveFileRepository.findOne({
+		where: { id: driveFileId },
+	});
+	if (checkExists) {
+		console.log(`DriveFile: ${driveFileId} は移行済みです`);
+		return;
+	}
+
+	let file: DriveFile;
+	if (useFile) {
+		file = useFile;
+	} else {
+		const result = await originalDriveFileRepository.findOne({
+			where: { id: driveFileId },
+		});
+		if (!result) throw Error(`DriveFile: ${driveFileId} が見つかりません`);
+		file = result;
+	}
+
+	await driveFileRepository.save({
+		id: file.id,
+		createdAt: file.createdAt,
+		userId: file.userId,
+		userHost: file.user?.host,
+		md5: file.md5,
+		name: file.name,
+		type: file.type,
+		size: file.size,
+		comment: file.comment,
+		blurhash: file.blurhash,
+		properties: file.properties,
+		storedInternal: file.storedInternal,
+		url: file.url,
+		thumbnailUrl: file.thumbnailUrl,
+		webpublicUrl: file.webpublicUrl,
+		accessKey: file.accessKey,
+		thumbnailAccessKey: file.thumbnailAccessKey,
+		webpublicAccessKey: file.webpublicAccessKey,
+		uri: file.url,
+		src: file.src,
+		folderId: file.folderId,
+		isSensitive: file.isSensitive,
+		isLink: file.isLink,
+	});
+}
+
+export async function migrateDriveFiles(
+	originalDb: Connection,
+	nextDb: Connection,
+	userId: string
+) {
 	const pagination = createPagination(originalDb, DriveFile, {
 		where: { userId },
 	});
 	while (true) {
 		const files = await pagination.next();
 		for (const file of files) {
-			await driveFileRepository.save({
-				id: file.id,
-				createdAt: file.createdAt,
-				userId,
-				userHost: file.user?.host,
-				md5: file.md5,
-				name: file.name,
-				type: file.type,
-				size: file.size,
-				comment: file.comment,
-				blurhash: file.blurhash,
-				properties: file.properties,
-				storedInternal: file.storedInternal,
-				url: file.url,
-				thumbnailUrl: file.thumbnailUrl,
-				webpublicUrl: file.webpublicUrl,
-				accessKey: file.accessKey,
-				thumbnailAccessKey: file.thumbnailAccessKey,
-				webpublicAccessKey: file.webpublicAccessKey,
-				uri: file.url,
-				src: file.src,
-				folderId: file.folderId,
-				isSensitive: file.isSensitive,
-				isLink: file.isLink,
-			});
+			await migrateDriveFile(originalDb, nextDb, file.id, file);
 		}
 		if (files.length < 100) break; // 100以下になったら止める
 	}
