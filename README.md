@@ -4,7 +4,78 @@ JA | [EN](README.en-US.md)
 
 <h1 align="center">Ayuskey</h1>
 
-# 本番環境に適さない不安定版です。
+# このプロジェクトは今後保守されなくなります
+
+このプロジェクトには多くの技術的負債があり、また依存関係を更新するうえで更にそれらが悪化するという考えのもとv11ベースでの開発を終了する予定です。
+今後の開発はv13ベースになり、[のリポジトリ](https://github.com/teamblackcrystal/ayuskey-next)で行われます。移行についてはスクリプトを作成中なのでお待ちください。
+
+## 移行について
+
+Ayuskey V12FE用に作成されていた本来v11には存在しないテーブルなどは移行の対象外になります。
+現在まだ本番環境での最終テストが行えるレベルではないので、実際の実行方法は後日記述します。
+
+### 対象外のテーブル
+
+- antenna
+- games
+- channel-following
+- user-group-invite
+- app
+- channel-note-pining
+- moderation-log
+- user-group-joining
+- attestation-challenge
+- note-watching
+- user-group
+- clip-note
+- notification
+- log
+- messaging-message
+- clip
+
+### 移行対象のテーブル
+
+- abuse-user-report
+- drive-file
+- meta
+- note
+- page
+- registry-item
+- user-list
+- user
+- access-token
+- drive-folder
+- hashtag
+- note-unread
+- password-reset-request
+- relay
+- user-note-pinings
+- announcement-read
+- emoji
+- instance
+- muting
+- poll
+- signin
+- user-profile
+- announcement
+- auth-session
+- following
+- note-favorite
+- poll-vote
+- sw-subscription
+- user-keypair
+- user-publickey
+- antenna-note
+- blocking
+- follow-request
+- note-reaction
+- page-like
+- registration-tick
+- used-username
+- user-list-joining
+- user-security-key
+
+## 本番環境に適さない不安定版です。
 このバージョンの代わりに[develop-lts](https://lab.teamblackcrystal.com/blackcrystal/ayuskey/-/tree/develop-lts)をご利用ください。
 
 <div align="center">
