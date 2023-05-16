@@ -16,8 +16,10 @@ export async function migrateUserKeypair(
 	const userKeypair = await originalUserKeypairRepository.findOne({
 		where: { userId },
 	});
-	console.log(userId);
-	if (!userKeypair) throw Error("ユーザーキーペアが見つからない");
+	if (!userKeypair) {
+		console.log(`Userkeypair: ${userId} のキーペアが見つかりませんでした`);
+		return
+	}
 
 	if (checkExists) return;
 
