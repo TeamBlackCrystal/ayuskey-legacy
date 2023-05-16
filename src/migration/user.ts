@@ -1,8 +1,8 @@
 import { User } from "@/models/entities/user";
 import { User as v13User } from "@/v13/models";
 import { Connection } from "typeorm";
-import { migrateDriveFile, migrateDriveFolder } from "./drive";
-import { migrateNote } from "./note";
+import { migrateDriveFile, migrateDriveFiles, migrateDriveFolder } from "./drive";
+import { migrateNotes } from "./note";
 
 export async function migrateUser(
 	originalDb: Connection,
@@ -54,11 +54,19 @@ export async function migrateUser(
 	}
 
 	await migrateDriveFolder(originalDb, nextDb, resultUser.id);
-	await migrateDriveFile(originalDb, nextDb, resultUser.id);
+	await migrateDriveFiles(originalDb, nextDb, resultUser.id);
+	
+	const requiredFileIds = []  // migrateDriveFilesだとおそらくユーザーに関連付けされてない場合があり、アバターやバナー等の移行時エラーが出ることがあるからその対策
+	if (user.avatarId) requiredFileIds.push(user.avatarId);
+	if (user.bannerId) requiredFileIds.push(user.bannerId);
+
+	for (const fileId of requiredFileIds) {
+		await migrateDriveFile(originalDb, nextDb, fileId)
+	}
 	resultUser.avatarId = user.avatarId;
 	resultUser.bannerId = user.bannerId;
 	await userRepository.save(resultUser);
 
-	await migrateNote(originalDb, nextDb, resultUser.id);
+	await migrateNotes(originalDb, nextDb, resultUser.id);
 	console.log(`User: ${userId} の移行が完了しました`);
 }
