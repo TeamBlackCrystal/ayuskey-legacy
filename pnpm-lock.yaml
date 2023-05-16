@@ -378,8 +378,8 @@ dependencies:
     specifier: 4.4.0
     version: 4.4.0
   redis-lock:
-    specifier: 0.1.4
-    version: 0.1.4
+    specifier: 1.0.0
+    version: 1.0.0
   reflect-metadata:
     specifier: 0.1.13
     version: 0.1.13
@@ -10830,9 +10830,9 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /redis-lock@0.1.4:
-    resolution: {integrity: sha512-7/+zu86XVQfJVx1nHTzux5reglDiyUCDwmW7TSlvVezfhH2YLc/Rc8NE0ejQG+8/0lwKzm29/u/4+ogKeLosiA==}
-    engines: {node: '>=0.6'}
+  /redis-lock@1.0.0:
+    resolution: {integrity: sha512-zfI+Il36jXwRT/W8SBsG132Bc2yp3tMuf3KTGjSzXimadI17NEGBvb/KrDkCuAC2hzVxW5uR5ns/rxuqiWeV3Q==}
+    engines: {node: '>=12'}
     dev: false
 
   /redis-parser@3.0.0:
