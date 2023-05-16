@@ -23,10 +23,9 @@ export async function migrateUserKeypair(
 
 	await userKeypairRepository.save({
 		userId: userKeypair.userId,
-		user: userKeypair.user,
 		publicKey: userKeypair.publicKey,
-		private: userKeypair.privateKey,
+		privateKey: userKeypair.privateKey,
 	});
 
-	console.log(`id: ${userId}の移行が完了しました`);
+	console.log(`Userkeypair: ${userId} の移行が完了しました`);
 }
