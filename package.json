@@ -205,7 +205,7 @@
 		"url-loader": "4.1.1",
 		"uuid": "9.0.0",
 		"v-animate-css": "1.0.1",
-		"v-debounce": "0.1.2",
+		"v-debounce": "0.2.0",
 		"vue": "3.2.47",
 		"vue-color": "2.8.1",
 		"vue-content-loading": "1.6.0",
