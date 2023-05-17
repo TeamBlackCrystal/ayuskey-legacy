@@ -13,8 +13,8 @@ devDependencies:
     specifier: 15.0.2
     version: 15.0.2(rollup@3.10.1)
   '@rollup/plugin-terser':
-    specifier: 0.4.0
-    version: 0.4.0(rollup@3.10.1)
+    specifier: 0.4.3
+    version: 0.4.3(rollup@3.10.1)
   eslint:
     specifier: 8.39.0
     version: 8.39.0
@@ -209,8 +209,8 @@ packages:
       rollup: 3.10.1
     dev: true
 
-  /@rollup/plugin-terser@0.4.0(rollup@3.10.1):
-    resolution: {integrity: sha512-Ipcf3LPNerey1q9ZMjiaWHlNPEHNU/B5/uh9zXLltfEQ1lVSLLeZSgAtTPWGyw8Ip1guOeq+mDtdOlEj/wNxQw==}
+  /@rollup/plugin-terser@0.4.3(rollup@3.10.1):
+    resolution: {integrity: sha512-EF0oejTMtkyhrkwCdg0HJ0IpkcaVg1MMSf2olHb2Jp+1mnLM04OhjpJWGma4HobiDTF0WCyViWuvadyE9ch2XA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.x || ^3.x
@@ -220,8 +220,8 @@ packages:
     dependencies:
       rollup: 3.10.1
       serialize-javascript: 6.0.1
-      smob: 0.0.6
-      terser: 5.17.1
+      smob: 1.0.0
+      terser: 5.17.4
     dev: true
 
   /@rollup/pluginutils@5.0.2(rollup@3.10.1):
@@ -1102,8 +1102,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /smob@0.0.6:
-    resolution: {integrity: sha512-V21+XeNni+tTyiST1MHsa84AQhT1aFZipzPpOFAVB8DkHzwJyjjAmt9bgwnuZiZWnIbMo2duE29wybxv/7HWUw==}
+  /smob@1.0.0:
+    resolution: {integrity: sha512-fnePEPpgGjAdBDk0nV7L9jcStbbcUsKS5TC+RYambCSU9Dm1k2rqDivdg5LBRVWF/NXe0Rq8yfnKKQI08kSXIg==}
     dev: true
 
   /source-map-js@1.0.2:
@@ -1157,8 +1157,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /terser@5.17.1:
-    resolution: {integrity: sha512-hVl35zClmpisy6oaoKALOpS0rDYLxRFLHhRuDlEGTKey9qHjS1w9GMORjuwIMt70Wan4lwsLYyWDVnWgF+KUEw==}
+  /terser@5.17.4:
+    resolution: {integrity: sha512-jcEKZw6UPrgugz/0Tuk/PVyLAPfMBJf5clnGueo45wTweoV8yh7Q7PEkhkJ5uuUbC7zAxEcG3tqNr1bstkQ8nw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
