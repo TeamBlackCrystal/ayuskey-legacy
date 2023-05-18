@@ -189,7 +189,7 @@
 		"syslog-pro": "git+https://github.com/misskey-dev/SyslogPro#0.2.9-misskey.2",
 		"systeminformation": "5.17.12",
 		"syuilo-password-strength": "0.0.1",
-		"terser-webpack-plugin": "5.3.6",
+		"terser-webpack-plugin": "5.3.9",
 		"textarea-caret": "3.1.0",
 		"three": "0.134.0",
 		"throttle-debounce": "4.0.1",
