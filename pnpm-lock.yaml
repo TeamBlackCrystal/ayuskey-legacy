@@ -27,8 +27,8 @@ dependencies:
     specifier: 14.1.2
     version: 14.1.2
   '@elastic/elasticsearch':
-    specifier: 7.17.0
-    version: 7.17.0
+    specifier: 8.8.0
+    version: 8.8.0
   '@fortawesome/fontawesome-svg-core':
     specifier: 6.4.0
     version: 6.4.0
@@ -1159,14 +1159,26 @@ packages:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
 
-  /@elastic/elasticsearch@7.17.0:
-    resolution: {integrity: sha512-5QLPCjd0uLmLj1lSuKSThjNpq39f6NmlTy9ROLFwG5gjyTgpwSqufDeYG/Fm43Xs05uF7WcscoO7eguI3HuuYA==}
-    engines: {node: '>=12'}
+  /@elastic/elasticsearch@8.8.0:
+    resolution: {integrity: sha512-IOydHcLpg9tDcLpikDrN5hx7LADEmkgHswgqTcCYXKS3FVIrfs3Rc6ALu7WU45Qe/JH0xhmwJkWVjsAk6C/nBg==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@elastic/transport': 8.3.1
+      tslib: 2.4.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@elastic/transport@8.3.1:
+    resolution: {integrity: sha512-jv/Yp2VLvv5tSMEOF8iGrtL2YsYHbpf4s+nDsItxUTLFTzuJGpnsB/xBlfsoT2kAYEnWHiSJuqrbRcpXEI/SEQ==}
+    engines: {node: '>=14'}
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
-      hpagent: 0.1.2
+      hpagent: 1.2.0
       ms: 2.1.3
       secure-json-parse: 2.5.0
+      tslib: 2.4.0
+      undici: 5.11.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6743,10 +6755,6 @@ packages:
       obuf: 1.1.2
       readable-stream: 2.3.7
       wbuf: 1.7.3
-
-  /hpagent@0.1.2:
-    resolution: {integrity: sha512-ePqFXHtSQWAFXYmj+JtOTHr84iNrII4/QRlAAPPE+zqnKy4xJo7Ie1Y4kC7AdB+LxLxSTTzBMASsEcy0q8YyvQ==}
-    dev: false
 
   /hpagent@1.2.0:
     resolution: {integrity: sha512-A91dYTeIB6NoXG+PxTQpCCDDnfHsW9kc06Lvpu1TEe9gnd6ZFeiBoRO9JvzEv6xK7EX97/dUE8g/vBMTqTS3CA==}

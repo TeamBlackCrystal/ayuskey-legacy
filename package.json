@@ -50,7 +50,7 @@
 		"@bull-board/koa": "5.1.2",
 		"@bull-board/ui": "5.1.2",
 		"@discordapp/twemoji": "14.1.2",
-		"@elastic/elasticsearch": "7.17.0",
+		"@elastic/elasticsearch": "8.8.0",
 		"@fortawesome/fontawesome-svg-core": "6.4.0",
 		"@fortawesome/free-brands-svg-icons": "6.4.0",
 		"@fortawesome/free-regular-svg-icons": "6.4.0",
