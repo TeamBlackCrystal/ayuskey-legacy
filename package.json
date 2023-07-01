@@ -307,7 +307,7 @@
 		"tslint": "5.20.1",
 		"tslint-sonarts": "1.9.0",
 		"ttypescript": "1.5.15",
-		"vue-eslint-parser": "9.1.1",
+		"vue-eslint-parser": "9.3.1",
 		"webpack-dev-server": "4.8.1",
 		"webpackbar": "5.0.2"
 	},
