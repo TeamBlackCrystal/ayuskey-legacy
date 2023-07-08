@@ -342,8 +342,8 @@ dependencies:
     specifier: 7.2.4
     version: 7.2.4(@types/node@18.15.13)(postcss@8.4.23)(ts-node@10.9.1)(typescript@4.9.4)(webpack@5.80.0)
   private-ip:
-    specifier: 2.3.4
-    version: 2.3.4
+    specifier: 3.0.1
+    version: 3.0.1
   probe-image-size:
     specifier: 7.2.3
     version: 7.2.3
@@ -1127,6 +1127,10 @@ packages:
     resolution: {integrity: sha512-DXXbKA4NLo5D19Vssrg4pPFaFjXVzjFN0ht4GVuoJQejy7t/RVrWzZCjdyVuSiOFTlG3SyB39zW5a95Q5EXUTg==}
     dependencies:
       '@bull-board/api': 5.1.2(@bull-board/ui@5.1.2)
+    dev: false
+
+  /@chainsafe/is-ip@2.0.1:
+    resolution: {integrity: sha512-nqSJ8u2a1Rv9FYbyI8qpDhTYujaKEyLknNrTejLYoSWmdeg+2WB7R6BZqPZYfrJzDxVi3rl6ZQuoaEvpKRZWgQ==}
     dev: false
 
   /@cspotcode/source-map-support@0.8.1:
@@ -7102,6 +7106,11 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /ip-regex@5.0.0:
+    resolution: {integrity: sha512-fOCG6lhoKKakwv+C6KdsOnGvgXnmgfmp0myi3bcNwj3qfwPAxRKWEuFhvEFF7ceYIz6+1jRZ+yguLFAmUNPEfw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
   /ip@2.0.0:
     resolution: {integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==}
     dev: true
@@ -7113,6 +7122,11 @@ packages:
   /ipaddr.js@2.0.1:
     resolution: {integrity: sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng==}
     engines: {node: '>= 10'}
+
+  /ipaddr.js@2.1.0:
+    resolution: {integrity: sha512-LlbxQ7xKzfBusov6UMi4MFpEg0m+mAm9xyNGEduwXMEDuf4WfzB/RZwMVYEd7IKGvh4IUkEXYxtAVu9T3OelJQ==}
+    engines: {node: '>= 10'}
+    dev: false
 
   /is-absolute@1.0.0:
     resolution: {integrity: sha512-dOWoqflvcydARa360Gvv18DZ/gRuHKi2NU/wU5X1ZFzdYfH29nkiNZsF3mp4OJ3H4yo9Mx8A/uAGNzpzPN3yBA==}
@@ -10413,8 +10427,18 @@ packages:
     resolution: {integrity: sha512-ts/YFVwfBeLq61f9+KsOhXW6RH0wvY0gU50R6QZYzgFhggyyLK6WDFeYdjfi/HMnBm2hecLvsR3PB3JcRxDk+A==}
     dependencies:
       ip-regex: 4.3.0
-      ipaddr.js: 2.0.1
+      ipaddr.js: 2.1.0
       is-ip: 3.1.0
+      netmask: 2.0.2
+    dev: false
+
+  /private-ip@3.0.1:
+    resolution: {integrity: sha512-Ezc16ANuhSHmWAE6lbXUKburNzGpR0J5X0Zh5Um/PZ/s57Fp+HYqYe6BYPH2QbqKr/5WebfzJQ1jq6Kj5dbRmA==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      '@chainsafe/is-ip': 2.0.1
+      ip-regex: 5.0.0
+      ipaddr.js: 2.1.0
       netmask: 2.0.2
     dev: false
 
