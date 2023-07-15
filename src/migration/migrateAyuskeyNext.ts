@@ -30,6 +30,8 @@ import { migrateSwSubscriptions } from "./SwSubscription";
 import { migratePolls } from "./Poll";
 import { migrateUserListJoinings } from "./UserListJoining";
 import { migrateAnnouncements } from "./Announcement";
+import { migrateInstances } from "./instance";
+import { migrateHashtags } from "./hashtag";
 
 
 
@@ -66,8 +68,8 @@ async function main(): Promise<any> {
 	await migrateUsedUsernames(originalDb, nextDb)
 	await migrateMeta(originalDb, nextDb);  // 並列するまでもない
 	
-	// await migrateInstances(originalDb, nextDb);
-	// await migrateHashtags(originalDb, nextDb)
+	await migrateInstances(originalDb, nextDb);
+	await migrateHashtags(originalDb, nextDb)
 	await migrateUserLists(originalDb, nextDb);
 	await migrateUserListJoinings();
 	await migrateRegistryItems(originalDb, nextDb);
