@@ -1,19 +1,21 @@
 import { Note } from "@/models/entities/note";
 import { Note as v13Note } from "@/v13/models";
 import { Connection, getConnection } from "typeorm";
-import { createPagination } from "./common";
-import { migrateUser } from "./user";
+import { createPagination, logger } from "./common";
+import { createUser } from "./user";
 import { migrateNoteReactions } from "./NoteReaction";
 import { noteQueue } from "./jobqueue";
+import { migrateNoteUnreads } from "./NoteUnread";
+import { migrateNoteFavorites } from "./NoteFavorite";
 
-export async function migrateNote(noteId: string) {
+export async function migrateNote(noteId: string, useNote?: Note) {
 	const originalDb = getConnection();
 	const nextDb = getConnection("nextDb");
 	const noteRepository = nextDb.getRepository(v13Note);
 	const originalNoteRepository = originalDb.getRepository(Note);
 
 	async function save(note: Note) {
-		await migrateUser(originalDb, nextDb, note.userId); // ユーザー作る前にもしかするとノート作成が来る可能性があるから
+		await createUser({userId: note.userId}); // ユーザー作る前にもしかするとノート作成が来る可能性があるから
 		await noteRepository.save({
 			id: note.id,
 			createdAt: note.createdAt,
@@ -46,7 +48,9 @@ export async function migrateNote(noteId: string) {
 			renoteUserHost: note.renoteUserHost,
 		});
 		await migrateNoteReactions(originalDb, nextDb, note.id);
-		console.log(`note: ${note.id} の移行が完了しました`);
+		await migrateNoteUnreads(originalDb, nextDb, note.id);
+		await migrateNoteFavorites(note.id);
+		logger.succ(`Note: ${note.id} の移行が完了しました`);
 	}
 
 	async function checkReply(replyId: string) {
@@ -54,7 +58,7 @@ export async function migrateNote(noteId: string) {
 		if (!checkExistsReply) {
 			// 無いなら作成
 			const result = await originalNoteRepository.findOne(replyId);
-			if (!result) throw Error(`note:reply: ${replyId} が見つかりません`);
+			if (!result) throw Error(`Note:reply: ${replyId} が見つかりません`);
 			if (result.replyId) {
 				// 親の親みたいなことがあるので、再帰的に確認して上から順に作る
 				await checkReply(result.replyId);
@@ -68,7 +72,7 @@ export async function migrateNote(noteId: string) {
 		if (!checkExistsReply) {
 			// 無いなら作成
 			const result = await originalNoteRepository.findOne(renoteId);
-			if (!result) throw Error(`note:renote: ${renoteId} が見つかりません`);
+			if (!result) throw Error(`Note:renote: ${renoteId} が見つかりません`);
 			if (result.renoteId) {
 				// 親の親みたいなことがあるので、再帰的に確認して上から順に作る
 				await checkRenoteId(result.renoteId);
@@ -77,9 +81,16 @@ export async function migrateNote(noteId: string) {
 			await save(result); // parentを作成する
 		}
 	}
+	let note: Note
+	if (useNote) {
+		note = useNote
+	} else {
+		const result = await originalNoteRepository.findOne({ where: { id: noteId } });
+		if (!result) throw Error(`Note: ${noteId} が見つかりません`);
+		note = result
+	}
 
-	const note = await originalNoteRepository.findOne({ where: { id: noteId } });
-	if (!note) throw Error(`note: ${noteId} が見つかりません`);
+	
 	const checkExists = await noteRepository.findOne(note.id); // 既にノートが移行済みか確認
 	if (checkExists) return; // 移行済みならスキップする
 
@@ -95,12 +106,18 @@ export async function migrateNotes(
 	userId: string
 ) {
 	const pagination = createPagination(originalDb, Note, { where: { userId } });
+	const noteRepository = nextDb.getRepository(v13Note);
 
 	while (true) {
 		const notes = await pagination.next();
 		for (const note of notes) {
-			noteQueue.add({ noteId: note.id });
+			const checkExists =  await noteRepository.findOne({where: {id: note.id}})
+			if (checkExists) {
+				logger.info(`Note: ${note.id} は移行済みです`)
+				continue
+			}
+			noteQueue.add({ noteId: note.id, note });
 		}
-		if (notes.length < 100) break; // 100以下になったら止める
+		if (notes.length === 0) break; // 100以下になったら止める
 	}
 }

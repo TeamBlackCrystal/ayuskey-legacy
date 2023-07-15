@@ -13,8 +13,6 @@ export async function migrateMeta(originalDb: Connection, nextDb: Connection) {
     if (!originalMeta) throw Error('移行元が壊れてるかも〜')
 
 
-    // if (originalMeta.proxyAccount) await migrateUser(originalDb, nextDb, originalMeta.proxyAccount)
-
     await metaRepository.save({
         id: originalMeta.id,
         name: originalMeta.name,

@@ -1,7 +1,7 @@
 import { Connection, getConnection } from "typeorm";
 import { Instance } from "@/models/entities/instance";
 import { Instance as v13Instance } from "@/v13/models";
-import { createPagination } from "./common";
+import { createPagination, logger } from "./common";
 import { instanceQueue } from "./jobqueue";
 
 export async function migrateInstance(instanceId: string) {
@@ -14,12 +14,14 @@ export async function migrateInstance(instanceId: string) {
 		where: { id: instanceId },
 	});
 
-	if (checkExists) return;
+	if (checkExists) {
+		logger.info(`Instance: ${instanceId} は移行済みです`)
+	};
 	const instance = await originalInstanceRepository.findOne({
 		where: { id: instanceId },
 	});
 
-	if (!instance) throw new Error(`instance: ${instanceId}`);
+	if (!instance) throw new Error(`Instance: ${instanceId}`);
 	await instanceRepository.save({
 		id: instance.id,
 		host: instance.host,
@@ -43,7 +45,7 @@ export async function migrateInstance(instanceId: string) {
 		infoUpdatedAt: instance.infoUpdatedAt,
 		firstRetrievedAt: new Date(), // 現行のAyuskeyに存在しない為実行した日時を入れる
 	});
-	console.log(`instance: ${instanceId} の移行が完了しました`);
+	logger.succ(`Instance: ${instanceId} の移行が完了しました`);
 }
 
 export async function migrateInstances(
@@ -51,12 +53,19 @@ export async function migrateInstances(
 	nextDb: Connection
 ) {
 	const pagination = await createPagination(originalDb, Instance);
+	const instanceRepository = nextDb.getRepository(v13Instance);
 
 	while (true) {
 		const instances = await pagination.next();
 		for (const instance of instances) {
+			const checkExists = await instanceRepository.findOne({where: {id: instance.id}})
+			if (checkExists) {
+				logger.info(`Instance: ${instance.id} は移行済みです`)
+				continue
+			}
+
 			instanceQueue.add({instanceId: instance.id});
 		}
-		if (instances.length < 100) break; // 100以下になったら止める
+		if (instances.length === 0) break; // 100以下になったら止める
 	}
 }

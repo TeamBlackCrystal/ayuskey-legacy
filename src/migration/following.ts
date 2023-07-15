@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { Following } from "@/models/entities/following";
 import { Following as v13Following } from "@/v13/models";
-import { migrateUser } from "./user";
-import { createPagination } from "./common";
+import { createUser } from "./user";
+import { createPagination, logger } from "./common";
 
 export async function migrateFollowing(
 	originalDb: Connection,
@@ -19,10 +19,9 @@ export async function migrateFollowing(
 	const following = await originalFollowingRepository.findOne({
 		where: { id: followingId },
 	});
-
-	if (!following || !following.followee)
-		throw new Error("following もしくは following.followee が見つかりません");
-	await migrateUser(originalDb, nextDb, following.followee.id);
+	if (!following || !following.followeeId)
+		throw new Error(`Following: ${followingId} が見つかりません`);
+	await createUser({userId: following.followeeId});
 
 	await followingRepository.save({
 		id: following.id,
@@ -36,7 +35,7 @@ export async function migrateFollowing(
 		followeeInbox: following.followeeInbox,
 		followeeSharedInbox: following.followeeSharedInbox,
 	});
-	console.log(`following: ${following.id} の移行が完了しました`);
+	logger.succ(`following: ${following.id} の移行が完了しました`);
 
 }
 
@@ -54,6 +53,6 @@ export async function migrateFollowings(
 		for (const follower of followers) {
 			await migrateFollowing(originalDb, nextDb, follower.id);
 		}
-		if (followers.length < 100) break; // 100以下になったら止める
+		if (followers.length === 0) break; // 100以下になったら止める
 	}
 }

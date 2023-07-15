@@ -15,13 +15,13 @@ export class AbuseUserReport {
 
 	@Index()
 	@Column(id())
-	public targetUserId: User['id'];
+	public targetUserId: User['id'];  // ない 多分userId?
 
 	@ManyToOne(type => User, {
 		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
-	public targetUser: User | null;
+	public targetUser: User | null;  // ない
 
 	@Index()
 	@Column(id())
@@ -37,24 +37,24 @@ export class AbuseUserReport {
 		...id(),
 		nullable: true,
 	})
-	public assigneeId: User['id'] | null;
+	public assigneeId: User['id'] | null;  // ない
 
 	@ManyToOne(type => User, {
 		onDelete: 'SET NULL',
 	})
 	@JoinColumn()
-	public assignee: User | null;
+	public assignee: User | null;  // ない
 
 	@Index()
 	@Column('boolean', {
 		default: false,
 	})
-	public resolved: boolean;
+	public resolved: boolean;  // ない
 
 	@Column('boolean', {
 		default: false,
 	})
-	public forwarded: boolean;
+	public forwarded: boolean; //ない
 
 	@Column('varchar', {
 		length: 2048,
@@ -67,13 +67,13 @@ export class AbuseUserReport {
 		length: 128, nullable: true,
 		comment: '[Denormalized]',
 	})
-	public targetUserHost: string | null;
+	public targetUserHost: string | null; //ない
 
 	@Index()
 	@Column('varchar', {
 		length: 128, nullable: true,
 		comment: '[Denormalized]',
 	})
-	public reporterHost: string | null;
+	public reporterHost: string | null; //ない
 	//#endregion
 }

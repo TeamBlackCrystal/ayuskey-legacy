@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { Blocking } from "@/models/entities/blocking";
 import { Blocking as v13Blocking } from "@/v13/models";
-import { migrateUser } from "./user";
-import { createPagination } from "./common";
+import { createUser } from "./user";
+import { createPagination, logger } from "./common";
 
 export async function migrateBlocking(
 	originalDb: Connection,
@@ -20,14 +20,14 @@ export async function migrateBlocking(
 		where: { id: blockingId },
 	});
 	if (!blocking) throw new Error(`blocking: ${blockingId} が見つかりません`);
-	await migrateUser(originalDb, nextDb, blocking.blockeeId);
+	await createUser({userId: blocking.blockeeId});
 	await blockingRepository.save({
 		id: blocking.id,
 		blockeeId: blocking.blockeeId,
 		blockerId: blocking.blockerId,
 		createdAt: blocking.createdAt,
 	});
-    console.log(`blocking: ${blockingId} の移行が完了しました`);
+    logger.succ(`blocking: ${blockingId} の移行が完了しました`);
 }
 
 export async function migrateBlockings(
@@ -44,6 +44,6 @@ export async function migrateBlockings(
 		for (const blocking of blockings) {
 			await migrateBlocking(originalDb, nextDb, blocking.id);
 		}
-		if (blockings.length < 100) break; // 100以下になったら止める
+		if (blockings.length === 0) break; // 100以下になったら止める
 	}
 }

@@ -20,7 +20,6 @@ Ayuskey V12FE用に作成されていた本来v11には存在しないテーブ�
 - games
 - channel-following
 - user-group-invite
-- app
 - channel-note-pining
 - moderation-log
 - user-group-joining
@@ -34,7 +33,7 @@ Ayuskey V12FE用に作成されていた本来v11には存在しないテーブ�
 - clip
 
 ### 移行対象のテーブル
-
+- app
 - abuse-user-report
 - drive-file
 - meta

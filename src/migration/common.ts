@@ -1,3 +1,4 @@
+import Logger from "@/services/logger";
 import type { Connection, EntityTarget, FindManyOptions } from "typeorm";
 
 export function createPagination<Entity>(originalDb: Connection, entity: EntityTarget<Entity>, options?: FindManyOptions<EntityTarget<Entity>>) {
@@ -11,3 +12,5 @@ export function createPagination<Entity>(originalDb: Connection, entity: EntityT
     }
     return { next }
 }
+
+export const logger = new Logger('MigrateAyuskeyNext')

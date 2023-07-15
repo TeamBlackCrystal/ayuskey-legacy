@@ -9,3 +9,18 @@ export function truncate(input: string | undefined, size: number): string | unde
 		return substring(input, 0, size);
 	}
 }
+
+
+export function precisionTruncate(input: string, maxLength: number) {
+	if (input.length <= maxLength) {
+	  return input;
+	}
+  
+	const trimmedString = input.substring(0, maxLength);
+	const lastSpaceIndex = trimmedString.lastIndexOf(' ');
+  
+	const finalString = lastSpaceIndex !== -1 ? trimmedString.substring(0, lastSpaceIndex) : trimmedString;
+  
+	return finalString;
+  }
+  

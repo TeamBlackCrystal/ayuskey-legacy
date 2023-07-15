@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { NoteReaction } from "@/models/entities/note-reaction";
 import { NoteReaction as v13NoteReaction } from "@/v13/models";
-import { migrateUser } from "./user";
-import { createPagination } from "./common";
+import { createUser } from "./user";
+import { createPagination, logger } from "./common";
 import { migrateNote } from "./note";
 
 export async function migrateNoteReaction(
@@ -24,7 +24,7 @@ export async function migrateNoteReaction(
 	if (!noteReaction)
 		throw new Error(`NoteReaction: ${noteReactionId} が見つかりません`);
 
-    await migrateUser(originalDb, nextDb, noteReaction.userId);
+    await createUser({userId: noteReaction.userId});
 	await migrateNote(noteReaction.noteId)
 	await noteReactionRepository.save({
 		id: noteReaction.id,
@@ -33,7 +33,7 @@ export async function migrateNoteReaction(
 		noteId: noteReaction.noteId,
 		reaction: noteReaction.reaction
 	});
-	console.log(`NoteReaction: ${noteReaction.id} の移行が完了しました`);
+	logger.succ(`NoteReaction: ${noteReaction.id} の移行が完了しました`);
 
 }
 
@@ -49,6 +49,6 @@ export async function migrateNoteReactions(
 		for (const noteReaction of noteReactions) {
 			await migrateNoteReaction(originalDb, nextDb, noteReaction.id);
 		}
-		if (noteReactions.length < 100) break; // 100以下になったら止める
+		if (noteReactions.length === 0) break; // 100以下になったら止める
 	}
 }

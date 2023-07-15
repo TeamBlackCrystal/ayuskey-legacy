@@ -1,18 +1,29 @@
 import { DriveFolder } from "@/models/entities/drive-folder";
 import { DriveFile } from "@/models/entities/drive-file";
-import { createPagination } from "./common";
-import { Connection } from "typeorm";
+import { createPagination, logger } from "./common";
+import { Connection, getConnection } from "typeorm";
 import {
 	DriveFolder as v13DriveFolder,
 	DriveFile as v13DriveFile,
 } from "@/v13/models";
+import { driveFileQueue } from "./jobqueue";
+import { createUser } from "./user";
+import { LRUCache } from "lru-cache";
+
+const driveFileCache = new LRUCache<string, v13DriveFile>({
+	max: 1000
+})
 
 export async function migrateDriveFile(
-	originalDb: Connection,
-	nextDb: Connection,
 	driveFileId: string,
-	useFile?: DriveFile
+	useFile?: DriveFile,
 ) {
+	const cacheKey = `migrateDriveFile${driveFileId}`
+	const cacheResult = driveFileCache.get(cacheKey)
+	if (cacheResult) return cacheResult;
+
+	const originalDb = getConnection();
+	const nextDb = getConnection("nextDb");
 	const driveFileRepository = nextDb.getRepository(v13DriveFile);
 	const originalDriveFileRepository = originalDb.getRepository(DriveFile);
 
@@ -20,7 +31,7 @@ export async function migrateDriveFile(
 		where: { id: driveFileId },
 	});
 	if (checkExists) {
-		console.log(`DriveFile: ${driveFileId} は移行済みです`);
+		logger.info(`DriveFile: ${driveFileId} は移行済みです`);
 		return;
 	}
 
@@ -35,7 +46,10 @@ export async function migrateDriveFile(
 		file = result;
 	}
 
-	await driveFileRepository.save({
+	if (file.folderId) await migrateDriveFolder(originalDb, nextDb, file.folderId);
+	if (file.userId) await createUser({userId: file.userId})  // ユーザーその物しか作成しない。migrateUsersであとでその他の情報は作成される
+
+	const createdDriveFile = await driveFileRepository.save({
 		id: file.id,
 		createdAt: file.createdAt,
 		userId: file.userId,
@@ -60,6 +74,8 @@ export async function migrateDriveFile(
 		isSensitive: file.isSensitive,
 		isLink: file.isLink,
 	});
+	driveFileCache.set(cacheKey, createdDriveFile);
+	return createdDriveFile
 }
 
 export async function migrateDriveFiles(
@@ -73,23 +89,23 @@ export async function migrateDriveFiles(
 	while (true) {
 		const files = await pagination.next();
 		for (const file of files) {
-			await migrateDriveFile(originalDb, nextDb, file.id, file);
+			driveFileQueue.add({ driveFileId: file.id, useFile: file });
 		}
-		if (files.length < 100) break; // 100以下になったら止める
+		if (files.length === 0) break; // 100以下になったら止める
 	}
 }
 
 export async function migrateDriveFolder(
 	originalDb: Connection,
 	nextDb: Connection,
-	userId: string
+	folderId: string,
+	useFolder?: DriveFolder
 ) {
-	const driveFolderRepository = nextDb.getRepository(v13DriveFolder);
 	const originalDriveFolderRepository = originalDb.getRepository(DriveFolder);
-	const pagination = createPagination(originalDb, DriveFolder, {
-		where: { userId },
-	});
+	const driveFolderRepository = nextDb.getRepository(v13DriveFolder);
+
 	async function save(folder: DriveFolder) {
+		if (folder.userId) await createUser({userId: folder.userId})
 		return await driveFolderRepository.save({
 			createdAt: folder.createdAt,
 			id: folder.id,
@@ -112,14 +128,43 @@ export async function migrateDriveFolder(
 			await save(result); // parentを作成する
 		}
 	}
+
+	let folder: DriveFolder;
+
+	if (useFolder) {
+		folder = useFolder;
+	} else {
+		const result = await originalDriveFolderRepository.findOne({
+			where: { id: folderId },
+		});
+		if (!result)
+			throw new Error(
+				`DriveFolder: ${folderId} フォルダが見つかりませんでした`
+			);
+		folder = result;
+	}
+
+	if (folder.parentId) await checkParent(folder.parentId); // 親フォルダを再帰的に検索し、無い場合は追加する
+	await save(folder);
+}
+
+export async function migrateDriveFolders(
+	originalDb: Connection,
+	nextDb: Connection,
+	userId: string
+) {
+	const driveFolderRepository = nextDb.getRepository(v13DriveFolder);
+	const pagination = createPagination(originalDb, DriveFolder, {
+		where: { userId },
+	});
+
 	while (true) {
 		const folders = await pagination.next();
 		for (const folder of folders) {
 			const checkExists = await driveFolderRepository.findOne(folder.id); // 既に移行済みか確認
 			if (checkExists) continue; // 移行済みならスキップする
-			if (folder.parentId) await checkParent(folder.parentId); // 親フォルダを再帰的に検索し、無い場合は追加する
-			await save(folder);
+			await migrateDriveFolder(originalDb, nextDb, folder.id, folder);
 		}
-		if (folders.length < 100) break; // 100以下になったら止める
+		if (folders.length === 0) break; // 100以下になったら止める
 	}
 }

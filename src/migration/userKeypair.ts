@@ -1,6 +1,7 @@
 import { UserKeypair } from "@/models/entities/user-keypair";
 import { UserKeypair as v13UserKeypair } from "@/v13/models";
 import { Connection } from "typeorm";
+import { logger } from "./common";
 
 export async function migrateUserKeypair(
 	originalDb: Connection,
@@ -17,11 +18,14 @@ export async function migrateUserKeypair(
 		where: { userId },
 	});
 	if (!userKeypair) {
-		console.log(`Userkeypair: ${userId} のキーペアが見つかりませんでした`);
+		logger.warn(`Userkeypair: ${userId} のキーペアが見つかりませんでした`);
 		return
 	}
 
-	if (checkExists) return;
+	if (checkExists) {
+		logger.info(`Userkeypair: ${userId} のキーペアは移行済みです`)
+		return
+	};
 
 	await userKeypairRepository.save({
 		userId: userKeypair.userId,
@@ -29,5 +33,5 @@ export async function migrateUserKeypair(
 		privateKey: userKeypair.privateKey,
 	});
 
-	console.log(`Userkeypair: ${userId} の移行が完了しました`);
+	logger.succ(`Userkeypair: ${userId} の移行が完了しました`);
 }

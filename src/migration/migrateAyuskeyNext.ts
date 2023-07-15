@@ -1,43 +1,37 @@
-import { Connection, createConnection } from "typeorm";
+import { createConnection } from "typeorm";
 import { initDb } from "../db/postgre";
 
 import { AyuskeyNextEntities } from "@/v13/models";
-import config from "@/config";
-import { User } from "@/models/entities/user";
-import { createPagination } from "./common";
-import { migrateUserKeypair } from "./userKeypair";
-import { migrateUserPublickey } from "./publickey";
-import { migrateUserSecurityKeys } from "./securityKey";
-import { migrateUser } from "./user";
-import { migrateBlockings } from "./blocking";
-import { migrateInstances } from "./instance";
-import { migrateMutings } from "./muting";
-import { migrateFollowings } from "./following";
 
-import { hashtagQueue, instanceQueue, noteQueue } from "./jobqueue";
-import hashtagProcessor from "./processor/hashtag.processor";
+import config from "@/config";
+
+
+
 import { migrateMeta } from "./meta";
 import {spawn} from "child_process";
-import instanceProcessor from "./processor/instance.processor";
-import { migrateHashtags } from "./hashtag";
-import noteProcessor from "./processor/note.processor";
+import { migrateUsedUsernames } from "./UsedUsername";
 
-async function migrateUsers(originalDb: Connection, nextDb: Connection) {
-	const pagination = createPagination(originalDb, User);
-	while (true) {
-		const users = await pagination.next();
-		for (const user of users) {
-			await migrateUser(originalDb, nextDb, user.id);
-			await migrateUserKeypair(originalDb, nextDb, user.id);
-			await migrateUserPublickey(originalDb, nextDb, user.id);
-			await migrateUserSecurityKeys(originalDb, nextDb, user.id);
-			await migrateBlockings(originalDb, nextDb, user.id);
-			await migrateMutings(originalDb, nextDb, user.id);
-			await migrateFollowings(originalDb, nextDb, user.id);
-		}
-		if (users.length < 100) break; // 100以下になったら止める
-	}
-}
+import { driveFileQueue, hashtagQueue, instanceQueue, noteQueue, usedUsernameQueue, userAfterHookQueue, userQueue } from "./jobqueue";
+import hashtagProcessor from "./processor/hashtag.processor";
+import instanceProcessor from "./processor/instance.processor";
+import noteProcessor from "./processor/note.processor";
+import usedUsernameProcessor from "./processor/usedUsername.processor";
+
+import driveFileProcessor from "./processor/driveFile.processor";
+import userProcessor from "./processor/user.processor";
+import userAfterHookProcessor from "./processor/userAfterHook.processor";
+import { migrateUsers } from "./user";
+import { migrateRelaies } from "./Relay";
+import { migrateApps } from "./App";
+import { migrateAbuseUserReports } from "./AbuseUserReport";
+import { migrateRegistryItems } from "./RegistryItem";
+import { migrateUserLists } from "./UserList";
+import { migrateSwSubscriptions } from "./SwSubscription";
+import { migratePolls } from "./Poll";
+import { migrateUserListJoinings } from "./UserListJoining";
+import { migrateAnnouncements } from "./Announcement";
+
+
 
 async function main(): Promise<any> {
 	const originalDb = await initDb();
@@ -52,17 +46,41 @@ async function main(): Promise<any> {
 		entities: AyuskeyNextEntities,
 	});
 
-	const bullDashboardProc = spawn('node', ['./built/migration/bullDashboard.js'])
-
 	instanceQueue.process(instanceProcessor);
 	hashtagQueue.process(hashtagProcessor);
 	noteQueue.process(noteProcessor);
+	usedUsernameQueue.process(usedUsernameProcessor)
+	driveFileQueue.process(driveFileProcessor)
+	userQueue.process(userProcessor)
+	userAfterHookQueue.process(userAfterHookProcessor)
 
+	const bullDashboardProc = spawn('node', ['./built/migration/bullDashboard.js'])
+
+	bullDashboardProc.stdout.on('message', (data) => {
+		console.log(data)
+	})
+
+
+	await migrateAnnouncements()
+	await migrateRelaies(originalDb, nextDb)
+	await migrateUsedUsernames(originalDb, nextDb)
 	await migrateMeta(originalDb, nextDb);  // 並列するまでもない
-
-	await migrateInstances(originalDb, nextDb);
-	await migrateHashtags(originalDb, nextDb)
+	
+	// await migrateInstances(originalDb, nextDb);
+	// await migrateHashtags(originalDb, nextDb)
+	await migrateUserLists(originalDb, nextDb);
+	await migrateUserListJoinings();
+	await migrateRegistryItems(originalDb, nextDb);
+	await migrateAbuseUserReports(originalDb, nextDb);
+	await migrateApps(originalDb, nextDb);
+	await migratePolls()
+	await migrateSwSubscriptions();
 	await migrateUsers(originalDb, nextDb);
+	
+	process.on("SIGINT", () => {
+		bullDashboardProc.kill();
+		process.exit(0);
+	});
 }
 
 main().catch((e) => {

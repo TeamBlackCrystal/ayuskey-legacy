@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { Muting } from "@/models/entities/muting";
 import { Muting as v13Muting } from "@/v13/models";
-import { migrateUser } from "./user";
-import { createPagination } from "./common";
+import { createUser } from "./user";
+import { createPagination, logger } from "./common";
 
 export async function migrateMuting(
 	originalDb: Connection,
@@ -21,7 +21,7 @@ export async function migrateMuting(
 	});
 
 	if (!muting) throw new Error(`muting: ${mutingId} が見つかりません`);
-	await migrateUser(originalDb, nextDb, muting.muteeId); // ミュート対象のユーザーが作成されてない可能性を考慮する
+	await createUser({userId: muting.muteeId}); // ミュート対象のユーザーが作成されてない可能性を考慮する
 
 	await mutingRepository.save({
 		id: mutingId,
@@ -29,7 +29,7 @@ export async function migrateMuting(
 		muteeId: muting.muteeId,
 		muterId: muting.muterId,
 	});
-	console.log(`muting: ${muting.id} の移行が完了しました`);
+	logger.succ(`muting: ${muting.id} の移行が完了しました`);
 }
 
 export async function migrateMutings(
@@ -46,6 +46,6 @@ export async function migrateMutings(
 		for (const muting of mutings) {
 			await migrateMuting(originalDb, nextDb, muting.id);
 		}
-		if (mutings.length < 100) break; // 100以下になったら止める
+		if (mutings.length === 0) break; // 100以下になったら止める
 	}
 }

@@ -5,6 +5,7 @@ import { createBullBoard } from "@bull-board/api";
 import { BullAdapter } from "@bull-board/api/bullAdapter.js";
 import { queues } from "./jobqueue";
 
+
 async function main() {
     const app = new Koa();
 	const router = new Router();
@@ -23,6 +24,7 @@ async function main() {
 
 		console.log(`Worker ${process.pid} is listening on port 3000`);
 	});
+
 
 }
 

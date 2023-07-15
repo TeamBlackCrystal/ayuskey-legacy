@@ -9,13 +9,16 @@ const queueRedisConf: Queue.QueueOptions = {
 	},
 	prefix: "ayuskey_next",
 	limiter: {
-		max: 100000,
-		duration: 100,
+		max: 100,
+		duration: 1000,
 	},
 };
-export const userKeypairQueue = new Queue("user keypair", queueRedisConf);
 export const hashtagQueue = new Queue("hashtag", queueRedisConf);
 export const instanceQueue = new Queue("instance", queueRedisConf);
 export const noteQueue = new Queue("note", queueRedisConf);
+export const usedUsernameQueue = new Queue("used username", queueRedisConf);
+export const driveFileQueue = new Queue("drive file", queueRedisConf);
+export const userQueue = new Queue("user", queueRedisConf);
+export const userAfterHookQueue = new Queue("user after hook", queueRedisConf);
 
-export const queues = [userKeypairQueue, hashtagQueue, instanceQueue, noteQueue];
+export const queues = [hashtagQueue, instanceQueue, noteQueue, usedUsernameQueue, driveFileQueue, userQueue, userAfterHookQueue];

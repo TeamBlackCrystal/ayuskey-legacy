@@ -1,11 +1,11 @@
 import { Connection, getConnection } from "typeorm";
-import { createPagination } from "./common";
+import { createPagination, logger } from "./common";
 import { Hashtag as v13Hashtag } from "@/v13/models"
-import { migrateUser } from "./user";
+import { createUser } from "./user";
 import { Hashtag } from "@/models/entities/hashtag";
 import { hashtagQueue } from "./jobqueue";
 
-export async function migrateHashtag(hashtagId: string) {
+export async function migrateHashtag(hashtagId: string, useHashtag?: Hashtag) {
     const originalDb = getConnection()
     const nextDb = getConnection('nextDb')
     const hashtagRepository = nextDb.getRepository(v13Hashtag);
@@ -14,18 +14,25 @@ export async function migrateHashtag(hashtagId: string) {
     const checkExists = await hashtagRepository.findOne({where: {id: hashtagId}});
     if (checkExists) {
         // 存在する場合はスキップ
-        console.log(`hashtag: ${hashtagId} は移行済みです`);
+        logger.info(`hashtag: ${hashtagId} は移行済みです`);
+        return
     }
-    const hashtag = await originalHashtagRepository.findOne({where: {id: hashtagId}})
-    if (!hashtag) throw Error(`hashtag: ${hashtagId} が見つかりません`);
+    let hashtag: Hashtag
+    if (useHashtag) {
+        hashtag = useHashtag
+    } {
+        const result = await originalHashtagRepository.findOne({where: {id: hashtagId}})
+        if (!result) throw Error(`hashtag: ${hashtagId} が見つかりません`);
+        hashtag = result
+
+    }
     const userIds = [
         ...hashtag.mentionedLocalUserIds,
-        ...hashtag.attachedLocalUserIds,
     ];
 
     for (const userId of userIds) {
             // 先にユーザーを作成する
-            await migrateUser(originalDb, nextDb, userId)
+            await createUser({userId: userId})
         };
     await hashtagRepository.save({
         id: hashtag.id,
@@ -43,20 +50,24 @@ export async function migrateHashtag(hashtagId: string) {
         attachedRemoteUserIds: hashtag.attachedRemoteUserIds,
         attachedRemoteUsersCount: hashtag.attachedRemoteUsersCount,
     });
-    console.log(`hashtag: ${hashtagId} の移行が完了しました`);
+    logger.succ(`hashtag: ${hashtagId} の移行が完了しました`);
 }
 
 export async function migrateHashtags(originalDb: Connection, nextDb: Connection) {
     const pagination = createPagination(originalDb, Hashtag);
     const hashtagRepository = nextDb.getRepository(v13Hashtag);
-
+    let count = 0
     while (true) {
         const hashtags = await pagination.next();
         for (const hashtag of hashtags) {
+            count++
             const checkExists = await hashtagRepository.findOne({where: {id: hashtag.id}});
-            if (checkExists) continue
-            hashtagQueue.add({hashtagId: hashtag.id})
+            if (checkExists) {
+                logger.info(`Hashtag: ${hashtag.id} は移行済みです ${count}`)
+                continue
+            }
+            hashtagQueue.add({hashtagId: hashtag.id, useHashtag: hashtag})
         }
-        if (hashtags.length < 100) break; // 100以下になったら止める
+		if (hashtags.length === 0) break; // 100以下になったら止める
     }
 }

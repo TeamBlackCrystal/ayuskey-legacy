@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { UserSecurityKey } from "@/models/entities/user-security-key";
 import { UserSecurityKey as v13UserSecurityKey } from "@/v13/models";
-import { createPagination } from "./common";
+import { createPagination, logger } from "./common";
 
 export async function migrateUserSecurityKey(
 	originalDb: Connection,
@@ -27,7 +27,7 @@ export async function migrateUserSecurityKey(
 		publicKey: userSecurityKey.publicKey,
 		userId: userSecurityKey.userId,
 	});
-	console.log(`ユーザーセキュリティキー: ${userSecurityKey.id} の移行が完了しました`);
+	logger.succ(`ユーザーセキュリティキー: ${userSecurityKey.id} の移行が完了しました`);
 }
 
 export async function migrateUserSecurityKeys(
@@ -44,6 +44,6 @@ export async function migrateUserSecurityKeys(
 		for (const userSecurityKey of userSecurityKeys) {
 			await migrateUserSecurityKey(originalDb, nextDb, userSecurityKey.id);
 		}
-		if (userSecurityKeys.length < 100) break; // 100以下になったら止める
+		if (userSecurityKeys.length === 0) break; // 100以下になったら止める
 	}
 }
