@@ -151,7 +151,7 @@
 		"os-utils": "0.0.14",
 		"parse5": "6.0.1",
 		"parsimmon": "1.18.1",
-		"pg": "8.10.0",
+		"pg": "8.11.3",
 		"photoswipe": "5.3.7",
 		"pinia": "2.0.35",
 		"pinia-plugin-persistedstate": "3.0.2",
