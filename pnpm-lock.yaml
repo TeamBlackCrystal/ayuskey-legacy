@@ -686,8 +686,8 @@ devDependencies:
     specifier: 2.0.6
     version: 2.0.6
   '@types/qrcode':
-    specifier: 1.5.0
-    version: 1.5.0
+    specifier: 1.5.2
+    version: 1.5.2
   '@types/random-seed':
     specifier: 0.3.3
     version: 0.3.3
@@ -2071,8 +2071,8 @@ packages:
     resolution: {integrity: sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==}
     dev: false
 
-  /@types/qrcode@1.5.0:
-    resolution: {integrity: sha512-x5ilHXRxUPIMfjtM+1vf/GPTRWZ81nqscursm5gMznJeK9M0YnZ1c3bEvRLQ0zSSgedLx1J6MGL231ObQGGhaA==}
+  /@types/qrcode@1.5.2:
+    resolution: {integrity: sha512-W4KDz75m7rJjFbyCctzCtRzZUj+PrUHV+YjqDp50sSRezTbrtEAIq2iTzC6lISARl3qw+8IlcCyljdcVJE0Wug==}
     dependencies:
       '@types/node': 18.15.13
     dev: true
