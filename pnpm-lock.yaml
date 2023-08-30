@@ -653,8 +653,8 @@ devDependencies:
     specifier: 8.0.11
     version: 8.0.11
   '@types/lolex':
-    specifier: 5.1.2
-    version: 5.1.2
+    specifier: 5.1.4
+    version: 5.1.4
   '@types/mocha':
     specifier: 10.0.1
     version: 10.0.1
@@ -2006,8 +2006,8 @@ packages:
       '@types/koa': 2.13.6
     dev: true
 
-  /@types/lolex@5.1.2:
-    resolution: {integrity: sha512-ZmfpBbjp2obo1dKm2l57tL/yVAVfDryHX/6nsivGQ1Gd86Ylu6GFNdxH69kUmYWmmO+Yedq9i7m0/obFww4XiQ==}
+  /@types/lolex@5.1.4:
+    resolution: {integrity: sha512-3+ObDpTE83hBilkGYJAJx8BH7EAb9prGLsouhPT0kn3gBANef9EvS73yZFy8CnsieS6iI54hfCxnqJUDXU67TQ==}
     dev: true
 
   /@types/mime@3.0.1:
