@@ -650,8 +650,8 @@ devDependencies:
     specifier: 2.0.4
     version: 2.0.4
   '@types/koa__router':
-    specifier: 8.0.11
-    version: 8.0.11
+    specifier: 12.0.1
+    version: 12.0.1
   '@types/lolex':
     specifier: 5.1.2
     version: 5.1.2
@@ -2000,8 +2000,8 @@ packages:
       '@types/koa': 2.13.6
     dev: true
 
-  /@types/koa__router@8.0.11:
-    resolution: {integrity: sha512-WXgKWpBsbS14kzmzD9LeFapOIa678h7zvUHxDwXwSx4ETKXhXLVUAToX6jZ/U7EihM7qwyD9W/BZvB0MRu7MTQ==}
+  /@types/koa__router@12.0.1:
+    resolution: {integrity: sha512-uqV+v6pCsfLZwK+Ar6XavKSZ6Cbsgw12bCEX9L0IKHj81LTWXcrayxJWkLtez5vOMQlq+ax+lZcuCyh9CgxYGw==}
     dependencies:
       '@types/koa': 2.13.6
     dev: true
