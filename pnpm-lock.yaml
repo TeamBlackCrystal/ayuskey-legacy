@@ -611,8 +611,8 @@ devDependencies:
     specifier: 20.0.1
     version: 20.0.1
   '@types/jsonld':
-    specifier: 1.5.8
-    version: 1.5.8
+    specifier: 1.5.10
+    version: 1.5.10
   '@types/jsrsasign':
     specifier: 10.5.8
     version: 10.5.8
@@ -1909,8 +1909,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/jsonld@1.5.8:
-    resolution: {integrity: sha512-4l5t/jDnJpqZ+i7CLTTgPcT5BYXnAnwJupb07aAokPufCV0SjDHcwctUkSTuhIuSU9yHok+WOOngIGCtpL96gw==}
+  /@types/jsonld@1.5.10:
+    resolution: {integrity: sha512-fEXxh7TnXYTPcbHb/p3bJ2V5CGpzwv7wCwQ4GsvyvbSufn8mVrCXNuw/L1WVFkBC9qUl4UgDA4LRV6B8SmAiEw==}
     dev: true
 
   /@types/jsrsasign@10.5.8:
