@@ -240,8 +240,8 @@ dependencies:
     specifier: 6.0.0
     version: 6.0.0
   jsrsasign:
-    specifier: 10.8.3
-    version: 10.8.3
+    specifier: 10.8.6
+    version: 10.8.6
   katex:
     specifier: 0.16.4
     version: 0.16.4
@@ -614,8 +614,8 @@ devDependencies:
     specifier: 1.5.8
     version: 1.5.8
   '@types/jsrsasign':
-    specifier: 10.5.8
-    version: 10.5.8
+    specifier: 10.5.9
+    version: 10.5.9
   '@types/katex':
     specifier: 0.16.0
     version: 0.16.0
@@ -1913,8 +1913,8 @@ packages:
     resolution: {integrity: sha512-4l5t/jDnJpqZ+i7CLTTgPcT5BYXnAnwJupb07aAokPufCV0SjDHcwctUkSTuhIuSU9yHok+WOOngIGCtpL96gw==}
     dev: true
 
-  /@types/jsrsasign@10.5.8:
-    resolution: {integrity: sha512-1oZ3TbarAhKtKUpyrCIqXpbx3ZAfoSulleJs6/UzzyYty0ut+kjRX7zHLAaHwVIuw8CBjIymwW4J2LK944HoHQ==}
+  /@types/jsrsasign@10.5.9:
+    resolution: {integrity: sha512-MTL0Glmvs7w1qspEsHkIt0MhvcEkWCY4gwaTneG6Mca+YsTGAl18flVYVWKELOZ0ECTLJ7LargBoIuUK3tqrWg==}
     dev: true
 
   /@types/katex@0.16.0:
@@ -7742,8 +7742,8 @@ packages:
       verror: 1.10.0
     dev: false
 
-  /jsrsasign@10.8.3:
-    resolution: {integrity: sha512-qo4fCYo/doi/JaheOBf5uJ36AkxXxom/C3sQD77uchpasr7CLQCojn2hY4ipO1ob9ypAQFxgV0yWJM0i5E7w/g==}
+  /jsrsasign@10.8.6:
+    resolution: {integrity: sha512-bQmbVtsfbgaKBTWCKiDCPlUPbdlRIK/FzSwT3BzIgZl/cU6TqXu6pZJsCI/dJVrZ9Gir5GC4woqw9shH/v7MBw==}
     dev: false
 
   /jstransformer@1.0.0:
