@@ -18,8 +18,8 @@ dependencies:
     specifier: 5.1.2
     version: 5.1.2(@bull-board/ui@5.1.2)
   '@bull-board/koa':
-    specifier: 5.1.2
-    version: 5.1.2(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
+    specifier: 5.8.4
+    version: 5.8.4(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2)
   '@bull-board/ui':
     specifier: 5.1.2
     version: 5.1.2
@@ -1058,11 +1058,20 @@ packages:
       redis-info: 3.1.0
     dev: false
 
-  /@bull-board/koa@5.1.2(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2):
-    resolution: {integrity: sha512-h926T3hESP8iO6juPDpkWflftC+D50MMbkeHFaCpn9va6/QSoooPmM4q6sEfAmvDByzxRmPvrzRnWoeu5rGUYg==}
+  /@bull-board/api@5.8.4(@bull-board/ui@5.8.4):
+    resolution: {integrity: sha512-uuB2ziEpMc6FrkqqRAqyqSh+yKx1ukTvxlgDenOimuLAiHlcPfhNLgYuYv3qzqWVaZdvUCLhiNqAvOdURoKT5A==}
+    peerDependencies:
+      '@bull-board/ui': 5.8.4
     dependencies:
-      '@bull-board/api': 5.1.2(@bull-board/ui@5.1.2)
-      '@bull-board/ui': 5.1.2
+      '@bull-board/ui': 5.8.4
+      redis-info: 3.1.0
+    dev: false
+
+  /@bull-board/koa@5.8.4(@types/koa@2.13.6)(lodash@4.17.21)(pug@3.0.2):
+    resolution: {integrity: sha512-dahAUAEum3tTW7zehGdBibuiQMDXJ46YquG7wP4eQztzw4yfKC7kJKCn5pwM2iBwVvkJnuDRYrYyTbZj2TDMCA==}
+    dependencies:
+      '@bull-board/api': 5.8.4(@bull-board/ui@5.8.4)
+      '@bull-board/ui': 5.8.4
       ejs: 3.1.8
       koa: 2.14.2
       koa-mount: 4.0.0
@@ -1130,6 +1139,12 @@ packages:
     resolution: {integrity: sha512-DXXbKA4NLo5D19Vssrg4pPFaFjXVzjFN0ht4GVuoJQejy7t/RVrWzZCjdyVuSiOFTlG3SyB39zW5a95Q5EXUTg==}
     dependencies:
       '@bull-board/api': 5.1.2(@bull-board/ui@5.1.2)
+    dev: false
+
+  /@bull-board/ui@5.8.4:
+    resolution: {integrity: sha512-OBCwelyO5aptZUanZOSiHCK46Y3dNsCXMj4XXF8rNKx0sg/BMZMZzINjlpsCkgNNM5Lxl51OM1eYLjzZREvaAQ==}
+    dependencies:
+      '@bull-board/api': 5.8.4(@bull-board/ui@5.8.4)
     dev: false
 
   /@cspotcode/source-map-support@0.8.1:
@@ -7930,6 +7945,7 @@ packages:
 
   /koa-views@7.0.2(@types/koa@2.13.6)(ejs@3.1.8)(lodash@4.17.21)(pug@3.0.2):
     resolution: {integrity: sha512-dvx3mdVeSVuIPEaKAoGbxLcenudvhl821xxyuRbcoA+bOJ2dvN8wlGjkLu0ZFMlkCscXZV6lzxy28rafeazI/w==}
+    deprecated: This package is deprecated, please use the new fork @ladjs/koa-views. Maintenance is supported by Forward Email at https://forwardemail.net ; follow/watch https://github.com/ladjs/koa-views for updates and release changelog
     peerDependencies:
       '@types/koa': ^2.13.1
     peerDependenciesMeta:
