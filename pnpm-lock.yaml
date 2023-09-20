@@ -593,8 +593,8 @@ devDependencies:
     specifier: 4.0.10
     version: 4.0.10
   '@types/gulp-mocha':
-    specifier: 0.0.33
-    version: 0.0.33
+    specifier: 0.0.35
+    version: 0.0.35
   '@types/gulp-rename':
     specifier: 2.0.1
     version: 2.0.1
@@ -1844,8 +1844,8 @@ packages:
       '@types/node': 18.15.13
     dev: true
 
-  /@types/gulp-mocha@0.0.33:
-    resolution: {integrity: sha512-NPObaXGsFZxG1wOA76XFS2g17EL6PjMLyZg0HGWBjdNlrXzWTiiUTJBj1zj2OKXOm7OOCHFEcjHxKSGnc3JjRg==}
+  /@types/gulp-mocha@0.0.35:
+    resolution: {integrity: sha512-zUVETcq4XsJbxzuTTx/h2LzUV2w4rqI/EZZc1UnIwMHzjYN8QR7ikk1xOlJTTi0QST2vp5tCi2e51bV/Io829w==}
     dependencies:
       '@types/mocha': 10.0.1
       '@types/node': 18.15.13
