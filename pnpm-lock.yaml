@@ -596,8 +596,8 @@ devDependencies:
     specifier: 0.0.33
     version: 0.0.33
   '@types/gulp-rename':
-    specifier: 2.0.1
-    version: 2.0.1
+    specifier: 2.0.3
+    version: 2.0.3
   '@types/ioredis':
     specifier: 4.28.10
     version: 4.28.10
@@ -1851,8 +1851,8 @@ packages:
       '@types/node': 18.15.13
     dev: true
 
-  /@types/gulp-rename@2.0.1:
-    resolution: {integrity: sha512-9ZjeS2RHEnmBmTcyi2+oeye3BgCsWhvi4uv3qCnAg8i6plOuRdaeNxjOves0ELysEXYLBl7bCl5fbVs7AZtgTA==}
+  /@types/gulp-rename@2.0.3:
+    resolution: {integrity: sha512-fmoJ8cVC+p3/6Ez173OYiAipsND++xgc6mpbFEPoL2iehbMrBGR/gW9L67Wo/OZh7tMvw+MqavR7hOpuRRnLQQ==}
     dependencies:
       '@types/node': 18.15.13
       '@types/vinyl': 2.0.6
