@@ -572,8 +572,8 @@ devDependencies:
     specifier: 0.5.0
     version: 0.5.0
   '@types/animejs':
-    specifier: 3.1.6
-    version: 3.1.6
+    specifier: 3.1.8
+    version: 3.1.8
   '@types/bcryptjs':
     specifier: 2.4.2
     version: 2.4.2
@@ -1726,8 +1726,8 @@ packages:
     dependencies:
       '@types/node': 18.15.13
 
-  /@types/animejs@3.1.6:
-    resolution: {integrity: sha512-jYlEdbVTOOLBz1mauqhrigFUFAGde2KCdO/99asxHpF+5zOdz/VjNKbnpNa0oNBhsDNFzmMvvE+V4C8ZkvJdKg==}
+  /@types/animejs@3.1.8:
+    resolution: {integrity: sha512-jBMAq/l14WKPrKGoSbeVBqT94BOwikQ6V3F63K/rduUE/HE/zQ6qFEhUoISyUm+Yg7qdRYbrToJ04mKHRtybtw==}
     dev: true
 
   /@types/bcryptjs@2.4.2:
