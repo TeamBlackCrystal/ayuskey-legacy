@@ -5,12 +5,12 @@ import { migrateDriveFile } from "./drive";
 import { logger } from "./common";
 import { userAfterHookQueue, userQueue } from "./jobqueue";
 import { createPagination } from "./common";
-import { precisionTruncate, truncate } from "@/misc/truncate";
+import { precisionTruncate } from "@/misc/truncate";
 import { migrateUserProfile } from "./UserProfile";
 import { LRUCache } from 'lru-cache'
 
 const cache = new LRUCache<string, v13User>({
-	max: 1000
+	max: 1500
 })
 
 /**
