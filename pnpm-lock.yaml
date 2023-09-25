@@ -710,8 +710,8 @@ devDependencies:
     specifier: 0.31.1
     version: 0.31.1
   '@types/showdown':
-    specifier: 2.0.0
-    version: 2.0.0
+    specifier: 2.0.2
+    version: 2.0.2
   '@types/speakeasy':
     specifier: 2.0.7
     version: 2.0.7
@@ -2141,8 +2141,8 @@ packages:
       '@types/node': 18.15.13
     dev: true
 
-  /@types/showdown@2.0.0:
-    resolution: {integrity: sha512-70xBJoLv+oXjB5PhtA8vo7erjLDp9/qqI63SRHm4REKrwuPOLs8HhXwlZJBJaB4kC18cCZ1UUZ6Fb/PLFW4TCA==}
+  /@types/showdown@2.0.2:
+    resolution: {integrity: sha512-0UnGnwRsiTojb5VGCkgbk3mKJpyAR2EPhalhHGY4/NCFwDyacqVmPWP7uV0mbXC4eh6n7lO3HPCpb2NP+B5NPQ==}
     dev: true
 
   /@types/sockjs@0.3.33:
