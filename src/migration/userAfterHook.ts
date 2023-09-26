@@ -11,6 +11,7 @@ import { migrateDriveFiles, migrateDriveFolders } from "./drive";
 import { getConnection } from "typeorm";
 import { migratePasswordResetRequests } from "./PassworResetRequest";
 import { migrateAuthSessions } from "./AuthSession";
+import { userAfterHookQueue } from "./jobqueue";
 
 export async function userAfterHook(user: User) {
     const originalDb = getConnection();
@@ -28,4 +29,8 @@ export async function userAfterHook(user: User) {
     await migrateSignins(originalDb, nextDb, user.id);
     await migratePasswordResetRequests(originalDb, nextDb, user.id);
     await migrateAuthSessions(originalDb, nextDb, user.id);
+
+    if (await userAfterHookQueue.getCompletedCount() > 1000) {
+        await userAfterHookQueue.clean(0, "completed");
+    }
 }
