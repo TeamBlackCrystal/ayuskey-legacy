@@ -63,7 +63,7 @@ export async function migrateHashtags(originalDb: Connection, nextDb: Connection
             count++
             const checkExists = await hashtagRepository.findOne({where: {id: hashtag.id}});
             if (checkExists) {
-                logger.info(`Hashtag: ${hashtag.id} は移行済みです ${count}`)
+                // logger.info(`Hashtag: ${hashtag.id} は移行済みです ${count}`)
                 continue
             }
             hashtagQueue.add({hashtagId: hashtag.id, useHashtag: hashtag})

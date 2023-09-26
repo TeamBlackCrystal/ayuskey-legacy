@@ -40,7 +40,7 @@ export async function createUser(options: {userId: string, useUser?: User}) {
 
 	if (checkExists) {
 		resultUser = checkExists;
-		logger.info(`User: ${options.userId} は既に移行済みです`);
+		// logger.info(`User: ${options.userId} は既に移行済みです`);
 	} else {
 		resultUser = await userRepository.save({
 			id: user.id,

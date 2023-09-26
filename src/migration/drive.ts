@@ -11,15 +11,15 @@ import { createUser } from "./user";
 import { LRUCache } from "lru-cache";
 
 const driveFileCache = new LRUCache<string, v13DriveFile>({
-	max: 1000
-})
+	max: 1000,
+});
 
 export async function migrateDriveFile(
 	driveFileId: string,
-	useFile?: DriveFile,
+	useFile?: DriveFile
 ) {
-	const cacheKey = `migrateDriveFile${driveFileId}`
-	const cacheResult = driveFileCache.get(cacheKey)
+	const cacheKey = `migrateDriveFile${driveFileId}`;
+	const cacheResult = driveFileCache.get(cacheKey);
 	if (cacheResult) return cacheResult;
 
 	const originalDb = getConnection();
@@ -46,8 +46,9 @@ export async function migrateDriveFile(
 		file = result;
 	}
 
-	if (file.folderId) await migrateDriveFolder(originalDb, nextDb, file.folderId);
-	if (file.userId) await createUser({userId: file.userId})  // ユーザーその物しか作成しない。migrateUsersであとでその他の情報は作成される
+	if (file.folderId)
+		await migrateDriveFolder(originalDb, nextDb, file.folderId);
+	if (file.userId) await createUser({ userId: file.userId }); // ユーザーその物しか作成しない。migrateUsersであとでその他の情報は作成される
 
 	const createdDriveFile = await driveFileRepository.save({
 		id: file.id,
@@ -75,7 +76,7 @@ export async function migrateDriveFile(
 		isLink: file.isLink,
 	});
 	driveFileCache.set(cacheKey, createdDriveFile);
-	return createdDriveFile
+	return createdDriveFile;
 }
 
 export async function migrateDriveFiles(
@@ -86,9 +87,16 @@ export async function migrateDriveFiles(
 	const pagination = createPagination(originalDb, DriveFile, {
 		where: { userId },
 	});
+	const driveFileRepository = nextDb.getRepository(v13DriveFile);
 	while (true) {
 		const files = await pagination.next();
 		for (const file of files) {
+			const checkExists = await driveFileRepository.findOne({
+				where: { id: file.id },
+			});
+			if (checkExists) {
+				continue;
+			}
 			driveFileQueue.add({ driveFileId: file.id, useFile: file });
 		}
 		if (files.length === 0) break; // 100以下になったら止める
@@ -105,7 +113,7 @@ export async function migrateDriveFolder(
 	const driveFolderRepository = nextDb.getRepository(v13DriveFolder);
 
 	async function save(folder: DriveFolder) {
-		if (folder.userId) await createUser({userId: folder.userId})
+		if (folder.userId) await createUser({ userId: folder.userId });
 		return await driveFolderRepository.save({
 			createdAt: folder.createdAt,
 			id: folder.id,

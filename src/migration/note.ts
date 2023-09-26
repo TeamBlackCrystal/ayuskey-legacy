@@ -50,6 +50,9 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 		await migrateNoteReactions(originalDb, nextDb, note.id);
 		await migrateNoteUnreads(originalDb, nextDb, note.id);
 		await migrateNoteFavorites(note.id);
+		if (await noteQueue.getCompletedCount() >  1000) {
+			await noteQueue.clean(0, 'completed')
+		}
 		logger.succ(`Note: ${note.id} の移行が完了しました`);
 	}
 
@@ -91,8 +94,8 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 	}
 
 	
-	const checkExists = await noteRepository.findOne(note.id); // 既にノートが移行済みか確認
-	if (checkExists) return; // 移行済みならスキップする
+	// const checkExists = await noteRepository.findOne(note.id); // 既にノートが移行済みか確認
+	// if (checkExists) return; // 移行済みならスキップする
 
 	if (note.replyId) await checkReply(note.replyId); // リプライが既に登録されてるか確認し、無いなら再帰的に作成する
 	if (note.renoteId) await checkRenoteId(note.renoteId); // renoteが既に登録されてるか確認し、無いなら再帰的に作成する
@@ -113,7 +116,7 @@ export async function migrateNotes(
 		for (const note of notes) {
 			const checkExists =  await noteRepository.findOne({where: {id: note.id}})
 			if (checkExists) {
-				logger.info(`Note: ${note.id} は移行済みです`)
+				// logger.info(`Note: ${note.id} は移行済みです`)
 				continue
 			}
 			noteQueue.add({ noteId: note.id, note });
