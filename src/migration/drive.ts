@@ -11,7 +11,8 @@ import { createUser } from "./user";
 import { LRUCache } from "lru-cache";
 
 const driveFileCache = new LRUCache<string, v13DriveFile>({
-	max: 1000,
+	max: 500,
+	ttl: 60 * 2 * 1000
 });
 
 export async function migrateDriveFile(

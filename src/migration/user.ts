@@ -10,7 +10,8 @@ import { migrateUserProfile } from "./UserProfile";
 import { LRUCache } from 'lru-cache'
 
 const cache = new LRUCache<string, v13User>({
-	max: 1500
+	max: 500,
+	ttl: 60 * 2 * 1000
 })
 
 /**
