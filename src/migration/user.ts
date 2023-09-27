@@ -7,22 +7,14 @@ import { userAfterHookQueue, userQueue } from "./jobqueue";
 import { createPagination } from "./common";
 import { precisionTruncate } from "@/misc/truncate";
 import { migrateUserProfile } from "./UserProfile";
-import { LRUCache } from 'lru-cache'
 
-const cache = new LRUCache<string, v13User>({
-	max: 500,
-	ttl: 60 * 2 * 1000
-})
 
 /**
  * 最小限のユーザーを作成します。 
 */
 export async function createUser(options: {userId: string, useUser?: User}) {
-	const cacheKey = `createUser${options.userId}`
 
 
-	const cacheResult = cache.get(cacheKey)
-	if (cacheResult) return cacheResult;  // キャッシュがあるならそれ返して終わり
 
 	const originalDb = getConnection();
 	const nextDb = getConnection("nextDb");
@@ -76,7 +68,6 @@ export async function createUser(options: {userId: string, useUser?: User}) {
 		});
 		logger.succ(`User: ${options.userId} の移行が完了しました`);
 	}
-	cache.set(cacheKey, resultUser)
 	return resultUser
 }
 

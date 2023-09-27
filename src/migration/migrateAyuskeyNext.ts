@@ -40,23 +40,7 @@ import { migrateInstances } from "./instance";
 import { migrateHashtags } from "./hashtag";
 import { Queue } from "bull";
 
-async function useCleanQueue(queue: Queue): Promise<void> {
-	async function cleanQueue(queue: Queue): Promise<void> {
-		try {
-			const removedCount = await queue.clean(0, "completed");
-			console.log(`削除されたジョブ数 (${queue.name}): ${removedCount}`);
-		} catch (error) {
-			console.error(
-				`ジョブのクリーンアップ中にエラーが発生しました (${queue.name}):`,
-				error
-			);
-		}
-	}
 
-	setTimeout(() => {
-		cleanQueue(queue);
-	}, 5 * 60 * 1000);
-}
 
 async function main(): Promise<any> {
 	const originalDb = await initDb();
@@ -79,8 +63,6 @@ async function main(): Promise<any> {
 	userQueue.process(userProcessor);
 	userAfterHookQueue.process(userAfterHookProcessor);
 
-	useCleanQueue(noteQueue);
-	useCleanQueue(userQueue);
 
 	const bullDashboardProc = spawn("node", [
 		"./built/migration/bullDashboard.js",

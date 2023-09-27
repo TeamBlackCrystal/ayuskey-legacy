@@ -8,20 +8,12 @@ import {
 } from "@/v13/models";
 import { driveFileQueue } from "./jobqueue";
 import { createUser } from "./user";
-import { LRUCache } from "lru-cache";
 
-const driveFileCache = new LRUCache<string, v13DriveFile>({
-	max: 500,
-	ttl: 60 * 2 * 1000
-});
 
 export async function migrateDriveFile(
 	driveFileId: string,
 	useFile?: DriveFile
 ) {
-	const cacheKey = `migrateDriveFile${driveFileId}`;
-	const cacheResult = driveFileCache.get(cacheKey);
-	if (cacheResult) return cacheResult;
 
 	const originalDb = getConnection();
 	const nextDb = getConnection("nextDb");
@@ -76,7 +68,6 @@ export async function migrateDriveFile(
 		isSensitive: file.isSensitive,
 		isLink: file.isLink,
 	});
-	driveFileCache.set(cacheKey, createdDriveFile);
 	return createdDriveFile;
 }
 
