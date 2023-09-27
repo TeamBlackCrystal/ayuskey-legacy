@@ -6,10 +6,7 @@ import { AyuskeyNextEntities } from "@/v13/models";
 import config from "@/config";
 
 import { migrateMeta } from "./meta";
-import { spawn } from "child_process";
 import { migrateUsedUsernames } from "./UsedUsername";
-
-
 
 import { migrateUsers } from "./user";
 import { migrateRelaies } from "./Relay";
@@ -23,8 +20,7 @@ import { migrateUserListJoinings } from "./UserListJoining";
 import { migrateAnnouncements } from "./Announcement";
 import { migrateInstances } from "./instance";
 import { migrateHashtags } from "./hashtag";
-
-
+import { logger } from "./common";
 
 async function main(): Promise<any> {
 	const originalDb = await initDb();
@@ -37,15 +33,6 @@ async function main(): Promise<any> {
 		password: config.db.nextDb.pass,
 		database: config.db.nextDb.db,
 		entities: AyuskeyNextEntities,
-	});
-
-
-	const bullDashboardProc = spawn("node", [
-		"./built/migration/bullDashboard.js",
-	]);
-
-	bullDashboardProc.stdout.on("message", (data) => {
-		console.log(data);
 	});
 
 	await migrateAnnouncements();
@@ -64,10 +51,8 @@ async function main(): Promise<any> {
 	await migrateSwSubscriptions();
 	await migrateUsers(originalDb, nextDb);
 
-	process.on("SIGINT", () => {
-		bullDashboardProc.kill();
-		process.exit(0);
-	});
+	logger.succ("ジョブの登録が完了しました")
+
 }
 
 main().catch((e) => {

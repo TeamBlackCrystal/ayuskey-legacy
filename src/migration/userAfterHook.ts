@@ -12,6 +12,7 @@ import { getConnection } from "typeorm";
 import { migratePasswordResetRequests } from "./PassworResetRequest";
 import { migrateAuthSessions } from "./AuthSession";
 import { userAfterHookQueue } from "./jobqueue";
+import { logger } from "./common";
 
 export async function userAfterHook(user: User) {
     const originalDb = getConnection();
@@ -33,5 +34,5 @@ export async function userAfterHook(user: User) {
     if (await userAfterHookQueue.getCompletedCount() > 1000) {
         await userAfterHookQueue.clean(0, "completed");
     }
-    console.info(`UserAfterHook: ${user.id} の処理が完了しました`);
+    logger.succ(`UserAfterHook: ${user.id} の処理が完了しました`);
 }

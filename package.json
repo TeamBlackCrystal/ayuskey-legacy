@@ -28,6 +28,7 @@
 		"build-gulp": "gulp build",
 		"export": "pnpm build-ts && node ./built/migration/migrateAyuskeyNext.js",
 		"worker": "node ./built/migration/worker.js",
+		"bull-board": "node ./built/migration/bullDashboard.js",
 		"next": "node ./built/migration/migrateAyuskeyNext.js",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
