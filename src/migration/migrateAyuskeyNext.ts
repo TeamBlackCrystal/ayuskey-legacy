@@ -9,23 +9,8 @@ import { migrateMeta } from "./meta";
 import { spawn } from "child_process";
 import { migrateUsedUsernames } from "./UsedUsername";
 
-import {
-	driveFileQueue,
-	hashtagQueue,
-	instanceQueue,
-	noteQueue,
-	usedUsernameQueue,
-	userAfterHookQueue,
-	userQueue,
-} from "./jobqueue";
-import hashtagProcessor from "./processor/hashtag.processor";
-import instanceProcessor from "./processor/instance.processor";
-import noteProcessor from "./processor/note.processor";
-import usedUsernameProcessor from "./processor/usedUsername.processor";
 
-import driveFileProcessor from "./processor/driveFile.processor";
-import userProcessor from "./processor/user.processor";
-import userAfterHookProcessor from "./processor/userAfterHook.processor";
+
 import { migrateUsers } from "./user";
 import { migrateRelaies } from "./Relay";
 import { migrateApps } from "./App";
@@ -38,7 +23,6 @@ import { migrateUserListJoinings } from "./UserListJoining";
 import { migrateAnnouncements } from "./Announcement";
 import { migrateInstances } from "./instance";
 import { migrateHashtags } from "./hashtag";
-import { Queue } from "bull";
 
 
 
@@ -54,14 +38,6 @@ async function main(): Promise<any> {
 		database: config.db.nextDb.db,
 		entities: AyuskeyNextEntities,
 	});
-
-	instanceQueue.process("./built/migration/processor/instance.processor.js");
-	hashtagQueue.process("./built/migration/processor/hashtag.processor.js");
-	noteQueue.process("./built/migration/processor/note.processor.js");
-	usedUsernameQueue.process("./built/migration/processor/usedUsername.processor.js");
-	driveFileQueue.process("./built/migration/processor/driveFile.processor.js");
-	userQueue.process("./built/migration/processor/user.processor.js");
-	userAfterHookQueue.process("./built/migration/processor/userAfterHook.processor.js");
 
 
 	const bullDashboardProc = spawn("node", [

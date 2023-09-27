@@ -33,4 +33,5 @@ export async function userAfterHook(user: User) {
     if (await userAfterHookQueue.getCompletedCount() > 1000) {
         await userAfterHookQueue.clean(0, "completed");
     }
+    console.info(`UserAfterHook: ${user.id} の処理が完了しました`);
 }
