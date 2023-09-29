@@ -68,6 +68,11 @@ export async function migrateDriveFile(
 		isSensitive: file.isSensitive,
 		isLink: file.isLink,
 	});
+
+	if (await driveFileQueue.getCompletedCount() > 1000) {
+		await driveFileQueue.clean(0, "completed");
+	}
+	logger.succ(`DriveFile: ${driveFileId} の移行が完了しました`);
 	return createdDriveFile;
 }
 
