@@ -9,7 +9,7 @@ const queueRedisConf: Queue.QueueOptions = {
 	},
 	prefix: "ayuskey_next",
 	limiter: {
-		max: 50,
+		max: 150,
 		duration: 1000,
 	},
 };
