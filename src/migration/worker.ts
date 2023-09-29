@@ -1,3 +1,4 @@
+import { initDb } from "@/db/postgre";
 import { logger } from "./common";
 import {
 	driveFileQueue,
@@ -16,34 +17,43 @@ import usedUsernameProcessor from "./processor/usedUsername.processor";
 import userProcessor from "./processor/user.processor";
 import userAfterHookProcessor from "./processor/userAfterHook.processor";
 
-instanceQueue.process(instanceProcessor);
-hashtagQueue.process(hashtagProcessor);
-noteQueue.process(noteProcessor);
-usedUsernameQueue.process(usedUsernameProcessor);
-driveFileQueue.process(driveFileProcessor);
-userQueue.process(userProcessor);
-userAfterHookQueue.process(userAfterHookProcessor);
+async function main() {
+    await initDb();
 
-instanceQueue.on('completed', (job) => {
-    logger.succ(`Instance: ${job.data.id} の処理が完了しました`);
-})
+	instanceQueue.process(instanceProcessor);
+	hashtagQueue.process(hashtagProcessor);
+	noteQueue.process(noteProcessor);
+	usedUsernameQueue.process(usedUsernameProcessor);
+	driveFileQueue.process(driveFileProcessor);
+	userQueue.process(userProcessor);
+	userAfterHookQueue.process(userAfterHookProcessor);
 
-noteQueue.on('completed', (job) => {
-    logger.succ(`Note: ${job.data.id} の処理が完了しました`);
-})
+	instanceQueue.on("completed", (job) => {
+		logger.succ(`Instance: ${job.data.id} の処理が完了しました`);
+	});
 
-hashtagQueue.on('completed', (job) => {
-    logger.succ(`Hashtag: ${job.data.id} の処理が完了しました`);
-})
+	noteQueue.on("completed", (job) => {
+		logger.succ(`Note: ${job.data.id} の処理が完了しました`);
+	});
 
-userQueue.on('completed', (job) => {
-    logger.succ(`User: ${job.data.id} の処理が完了しました`);
-})
+	hashtagQueue.on("completed", (job) => {
+		logger.succ(`Hashtag: ${job.data.id} の処理が完了しました`);
+	});
 
-usedUsernameQueue.on('completed', (job) => {
-    logger.succ(`UsedUsername: ${job.data.id} の処理が完了しました`);
-})
+	userQueue.on("completed", (job) => {
+		logger.succ(`User: ${job.data.id} の処理が完了しました`);
+	});
 
-userAfterHookQueue.on('completed', (job) => {
-    logger.succ(`UserAfterHook: ${job.data.id} の処理が完了しました`);
-})
+	usedUsernameQueue.on("completed", (job) => {
+		logger.succ(`UsedUsername: ${job.data.id} の処理が完了しました`);
+	});
+
+	userAfterHookQueue.on("completed", (job) => {
+		logger.succ(`UserAfterHook: ${job.data.id} の処理が完了しました`);
+	});
+}
+
+main().catch((e) => {
+	console.warn(e);
+	process.exit(1);
+});
