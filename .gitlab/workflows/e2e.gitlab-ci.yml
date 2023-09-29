@@ -1,6 +1,6 @@
 e2e:
   stage: test
-  image: node:18.16.0
+  image: node:20.8.0
   variables:
     POSTGRES_DB: test-misskey
     POSTGRES_HOST_AUTH_METHOD: trust
