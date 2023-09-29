@@ -30,6 +30,7 @@
 		"worker": "node ./built/migration/worker.js",
 		"bull-board": "node ./built/migration/bullDashboard.js",
 		"next": "node ./built/migration/migrateAyuskeyNext.js",
+		"clean-com": "node ./built/migration/clean-complete.js",
 		"webpack": "webpack",
 		"dev": "echo \"**コミットをしたら再起動が必要!!/Need to restart after a commit!!**\" && run-p watch-webpack gulpstart",
 		"dev:clean": "run-s clean build dev",
