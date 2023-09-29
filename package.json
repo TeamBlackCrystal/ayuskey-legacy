@@ -158,7 +158,7 @@
 		"pinia": "2.0.35",
 		"pinia-plugin-persistedstate": "3.0.2",
 		"portscanner": "2.2.0",
-		"postcss": "8.4.23",
+		"postcss": "8.4.31",
 		"postcss-loader": "7.2.4",
 		"private-ip": "2.3.4",
 		"probe-image-size": "7.2.3",
