@@ -16,9 +16,22 @@ import noteProcessor from "./processor/note.processor";
 import usedUsernameProcessor from "./processor/usedUsername.processor";
 import userProcessor from "./processor/user.processor";
 import userAfterHookProcessor from "./processor/userAfterHook.processor";
+import { createConnection } from "typeorm";
+import config from "@/config";
+import { AyuskeyNextEntities } from "@/v13/models";
 
 async function main() {
     await initDb();
+    await createConnection({
+		name: "nextDb",
+		type: "postgres",
+		host: config.db.nextDb.host,
+		port: config.db.nextDb.port,
+		username: config.db.nextDb.user,
+		password: config.db.nextDb.pass,
+		database: config.db.nextDb.db,
+		entities: AyuskeyNextEntities,
+	});
 
 	instanceQueue.process(instanceProcessor);
 	hashtagQueue.process(hashtagProcessor);
