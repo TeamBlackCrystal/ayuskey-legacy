@@ -28,6 +28,7 @@
 		"build-gulp": "gulp build",
 		"export": "pnpm build-ts && node ./built/migration/migrateAyuskeyNext.js",
 		"worker": "node ./built/migration/worker.js",
+		"drive-worker": "node ./built/migration/driveWorker.js",
 		"bnote-worker": "node ./built/migration/bNoteWorker.js",
 		"note-worker": "node ./built/migration/noteWorker.js",
 		"user-worker": "node ./built/migration/userAfterHookWorker.js",
