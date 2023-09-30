@@ -20,7 +20,7 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 		const isExists = await noteRepository.findOne({where: {id: note.id}}) === undefined ? false : true
 
 		if (isExists) return;
-
+		try { 
 		await noteRepository.save({
 			id: note.id,
 			createdAt: note.createdAt,
@@ -52,6 +52,9 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 			renoteUserId: note.renoteId,
 			renoteUserHost: note.renoteUserHost,
 		});
+	} catch (e) {
+		logger.warn(`Note: ${note.id} は既に移行済みでした`);
+	}
 		await migrateNoteReactions(originalDb, nextDb, note.id);
 		await migrateNoteUnreads(originalDb, nextDb, note.id);
 		await migrateNoteFavorites(note.id);

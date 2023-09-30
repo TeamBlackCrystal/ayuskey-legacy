@@ -26,6 +26,7 @@ export async function migrateNoteReaction(
 
     await createUser({userId: noteReaction.userId});
 	await migrateNote(noteReaction.noteId)
+	try {
 	await noteReactionRepository.save({
 		id: noteReaction.id,
         createdAt: noteReaction.createdAt,
@@ -33,6 +34,9 @@ export async function migrateNoteReaction(
 		noteId: noteReaction.noteId,
 		reaction: noteReaction.reaction
 	});
+} catch (e) {
+	logger.warn(`NoteReaction: ${noteReaction.id} は既に移行済みでした`)
+}
 	logger.succ(`NoteReaction: ${noteReaction.id} の移行が完了しました`);
 
 }
