@@ -33,7 +33,7 @@ async function main() {
 
 		noteQueue.process(noteProcessor);
 		noteQueue.on("completed", (job) => {
-			logger.succ(`Note: ${job.data.id} の処理が完了しました`);
+			logger.succ(`Note: ${job.data.note.id} の処理が完了しました`);
 		});
 	}
 }
