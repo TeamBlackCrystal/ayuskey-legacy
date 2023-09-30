@@ -14,8 +14,13 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 	const noteRepository = nextDb.getRepository(v13Note);
 	const originalNoteRepository = originalDb.getRepository(Note);
 
-	async function save(note: Note) {
+	async function save(note: Note, from: string = "") {
 		await createUser({userId: note.userId}); // ユーザー作る前にもしかするとノート作成が来る可能性があるから
+
+		const isExists = await noteRepository.findOne({where: {id: note.id}}) === undefined ? false : true
+
+		if (isExists) return;
+
 		await noteRepository.save({
 			id: note.id,
 			createdAt: note.createdAt,
@@ -98,9 +103,6 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 
 	if (note.replyId) await checkReply(note.replyId); // リプライが既に登録されてるか確認し、無いなら再帰的に作成する
 	if (note.renoteId) await checkRenoteId(note.renoteId); // renoteが既に登録されてるか確認し、無いなら再帰的に作成する
-
-	const checkExists = await noteRepository.findOne({where: {id: note.id}}); // 既にノートが移行済みか確認
-	if (checkExists) return; // 移行済みならスキップする
 
 	await save(note);
 }
