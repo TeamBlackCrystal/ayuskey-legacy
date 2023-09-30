@@ -5,7 +5,7 @@ import noteProcessor from "./processor/note.processor";
 const cluster = require('cluster');
 
 async function main() {
-	const numWorkers = 32;
+	const numWorkers = 128;
 
 	if (cluster.isPrimary) {
 		for (let i = 0; i < numWorkers; i++) {
