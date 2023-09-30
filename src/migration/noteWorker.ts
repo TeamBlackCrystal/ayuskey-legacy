@@ -9,7 +9,7 @@ import { AyuskeyNextEntities } from "@/v13/models";
 const cluster = require('cluster');
 
 async function main() {
-	const numWorkers = 16;
+	const numWorkers = 20;
 
 	if (cluster.isPrimary) {
 		for (let i = 0; i < numWorkers; i++) {
