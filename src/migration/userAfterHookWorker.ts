@@ -12,7 +12,17 @@ const cluster = require('cluster');
 
 async function main() {
 	const numWorkers = 16;
-
+	await initDb();
+	await createConnection({
+		name: "nextDb",
+		type: "postgres",
+		host: config.db.nextDb.host,
+		port: config.db.nextDb.port,
+		username: config.db.nextDb.user,
+		password: config.db.nextDb.pass,
+		database: config.db.nextDb.db,
+		entities: AyuskeyNextEntities,
+	});
 	if (cluster.isPrimary) {
 		for (let i = 0; i < numWorkers; i++) {
 			cluster.fork();
@@ -21,17 +31,7 @@ async function main() {
 			console.log(`worker ${worker.process.pid} died`);
 		});
 	} else {
-		await initDb();
-		await createConnection({
-			name: "nextDb",
-			type: "postgres",
-			host: config.db.nextDb.host,
-			port: config.db.nextDb.port,
-			username: config.db.nextDb.user,
-			password: config.db.nextDb.pass,
-			database: config.db.nextDb.db,
-			entities: AyuskeyNextEntities,
-		});
+
 		// userQueue.process(userProcessor);
 
 		// userQueue.on("completed", (job) => {
