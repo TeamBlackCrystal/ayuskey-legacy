@@ -1,11 +1,11 @@
 import { logger } from "./common";
 import { noteQueue } from "./jobqueue";
-import noteProcessor from "./processor/note.processor";
+
 
 const cluster = require('cluster');
 
 async function main() {
-	const numWorkers = 32;
+	const numWorkers = 64;
 
 	if (cluster.isPrimary) {
 		for (let i = 0; i < numWorkers; i++) {
@@ -17,12 +17,13 @@ async function main() {
 	} else {
 
 
-		noteQueue.process(noteProcessor);
+		noteQueue.process(__dirname + "/processor/note.processor.js");
 		noteQueue.on("completed", (job) => {
 			logger.succ(`Note: ${job.data.note.id} の処理が完了しました`);
 		});
 	}
 }
+
 
 main().catch((e) => {
 	console.warn(e);

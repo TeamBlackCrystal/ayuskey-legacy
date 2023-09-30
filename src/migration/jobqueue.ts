@@ -10,7 +10,7 @@ const queueRedisConf: Queue.QueueOptions = {
 	prefix: "ayuskey_next",
 	limiter: {
 		max: 1000,
-		duration: 1000,
+		duration: 500,
 	},
 };
 export const hashtagQueue = new Queue("hashtag", queueRedisConf);
