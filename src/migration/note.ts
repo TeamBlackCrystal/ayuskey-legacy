@@ -94,11 +94,13 @@ export async function migrateNote(noteId: string, useNote?: Note) {
 	}
 
 	
-	// const checkExists = await noteRepository.findOne(note.id); // 既にノートが移行済みか確認
-	// if (checkExists) return; // 移行済みならスキップする
+
 
 	if (note.replyId) await checkReply(note.replyId); // リプライが既に登録されてるか確認し、無いなら再帰的に作成する
 	if (note.renoteId) await checkRenoteId(note.renoteId); // renoteが既に登録されてるか確認し、無いなら再帰的に作成する
+
+	const checkExists = await noteRepository.findOne(note.id); // 既にノートが移行済みか確認
+	if (checkExists) return; // 移行済みならスキップする
 
 	await save(note);
 }
