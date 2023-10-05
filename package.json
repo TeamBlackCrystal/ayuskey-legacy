@@ -182,7 +182,7 @@
 		"rename": "1.0.4",
 		"request-stats": "3.0.0",
 		"require-all": "3.0.0",
-		"rimraf": "3.0.2",
+		"rimraf": "5.0.5",
 		"rndstr": "1.0.0",
 		"sass": "1.55.0",
 		"sass-loader": "13.2.2",
