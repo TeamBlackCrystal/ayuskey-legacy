@@ -477,8 +477,8 @@ dependencies:
     specifier: 4.2.0
     version: 4.2.0
   typeorm:
-    specifier: 0.2.44
-    version: 0.2.44(ioredis@4.28.5)(pg@8.10.0)
+    specifier: 0.3.17
+    version: 0.3.17(ioredis@4.28.5)(pg@8.10.0)(ts-node@10.9.1)
   typescript:
     specifier: 4.9.4
     version: 4.9.4
@@ -1559,8 +1559,8 @@ packages:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
 
-  /@sqltools/formatter@1.2.3:
-    resolution: {integrity: sha512-O3uyB/JbkAEMZaP3YqyHH7TMnex7tWyCbCI4EfJdOCoN6HIhqdJBWTM6aCCiWQ/5f5wxjgU735QAIpJbjDvmzg==}
+  /@sqltools/formatter@1.2.5:
+    resolution: {integrity: sha512-Uy0+khmZqUrUGm5dmMqVlnvufZRSK0FbYzVgp0UMstm+F5+W2/jnEEQyc9vo1ZR/E5ZI/B1WjjoTqBqwJL6Krw==}
     dev: false
 
   /@swc/cli@0.1.62(@swc/core@1.3.53):
@@ -2279,10 +2279,6 @@ packages:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
       '@types/node': 18.15.13
-
-  /@types/zen-observable@0.8.3:
-    resolution: {integrity: sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==}
-    dev: false
 
   /@typescript-eslint/eslint-plugin@5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.39.0)(typescript@4.9.4):
     resolution: {integrity: sha512-vxHvLhH0qgBd3/tW6/VccptSfc8FxPQIkmNTVLWcCOVqSBvqpnKkBTYrhcGlXfSnd78azwe+PsjYFj0X34/njA==}
@@ -5066,11 +5062,6 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dotenv@8.6.0:
-    resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
-    engines: {node: '>=10'}
-    dev: false
-
   /double-ended-queue@2.1.0-0:
     resolution: {integrity: sha512-+BNfZ+deCo8hMNpDqDnvT+c0XpJ5cUa6mqYq89bho2Ifze4URTqRkcwR399hWoTrTkbZ/XJYDgP6rc7pRgffEQ==}
     dev: false
@@ -6378,6 +6369,17 @@ packages:
       inherits: 2.0.4
       minimatch: 5.1.0
       once: 1.4.0
+
+  /glob@8.1.0:
+    resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 5.1.0
+      once: 1.4.0
+    dev: false
 
   /global-modules@1.0.0:
     resolution: {integrity: sha512-sKzpEkf11GpOFuw0Zzjzmt4B4UZwjOcG757PPvrfhxcLFbq0wpsgpOqxpxtxFiCG4DtG93M6XRVbF2oGdev7bg==}
@@ -8844,6 +8846,12 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  /mkdirp@2.1.6:
+    resolution: {integrity: sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: false
+
   /mlly@1.1.0:
     resolution: {integrity: sha512-cwzBrBfwGC1gYJyfcy8TcZU1f+dbH/T+TuOhtYP2wLv/Fb51/uV7HJQfBPtEupZ2ORLRU1EKFS/QfS3eo9+kBQ==}
     dependencies:
@@ -11088,7 +11096,7 @@ packages:
   /rxjs@7.5.7:
     resolution: {integrity: sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==}
     dependencies:
-      tslib: 2.4.0
+      tslib: 2.6.0
     dev: false
 
   /safe-buffer@5.1.2:
@@ -12500,6 +12508,10 @@ packages:
   /tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
+  /tslib@2.6.0:
+    resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
+    dev: false
+
   /tslint-sonarts@1.9.0(tslint@5.20.1)(typescript@4.9.4):
     resolution: {integrity: sha512-CJWt+IiYI8qggb2O/JPkS6CkC5DY1IcqRsm9EHJ+AxoWK70lvtP7jguochyNDMP2vIz/giGdWCfEM39x/I/Vnw==}
     engines: {node: '>=6'}
@@ -12634,26 +12646,31 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: false
 
-  /typeorm@0.2.44(ioredis@4.28.5)(pg@8.10.0):
-    resolution: {integrity: sha512-yFyb9Ts73vGaS/O06TvLpzvT5U/ngO31GeciNc0eoH7P1QcG8kVZdOy9FHJqkTeDmIljMRgWjbYUoMw53ZY7Xw==}
+  /typeorm@0.3.17(ioredis@4.28.5)(pg@8.10.0)(ts-node@10.9.1):
+    resolution: {integrity: sha512-UDjUEwIQalO9tWw9O2A4GU+sT3oyoUXheHJy4ft+RFdnRdQctdQ34L9SqE2p7LdwzafHx1maxT+bqXON+Qnmig==}
+    engines: {node: '>= 12.9.0'}
     hasBin: true
     peerDependencies:
-      '@sap/hana-client': ^2.11.14
-      better-sqlite3: ^7.1.2
+      '@google-cloud/spanner': ^5.18.0
+      '@sap/hana-client': ^2.12.25
+      better-sqlite3: ^7.1.2 || ^8.0.0
       hdb-pool: ^0.1.6
-      ioredis: ^4.28.3
-      mongodb: ^3.6.0
-      mssql: ^6.3.1
-      mysql2: ^2.2.5
+      ioredis: ^5.0.4
+      mongodb: ^5.2.0
+      mssql: ^9.1.1
+      mysql2: ^2.2.5 || ^3.0.1
       oracledb: ^5.1.0
       pg: ^8.5.1
       pg-native: ^3.0.0
       pg-query-stream: ^4.0.0
-      redis: ^3.1.1
+      redis: ^3.1.1 || ^4.0.0
       sql.js: ^1.4.0
-      sqlite3: ^5.0.2
+      sqlite3: ^5.0.3
+      ts-node: ^10.7.0
       typeorm-aurora-data-api-driver: ^2.0.0
     peerDependenciesMeta:
+      '@google-cloud/spanner':
+        optional: true
       '@sap/hana-client':
         optional: true
       better-sqlite3:
@@ -12682,28 +12699,29 @@ packages:
         optional: true
       sqlite3:
         optional: true
+      ts-node:
+        optional: true
       typeorm-aurora-data-api-driver:
         optional: true
     dependencies:
-      '@sqltools/formatter': 1.2.3
+      '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
       buffer: 6.0.3
       chalk: 4.1.2
       cli-highlight: 2.1.11
+      date-fns: 2.29.3
       debug: 4.3.4(supports-color@8.1.1)
-      dotenv: 8.6.0
-      glob: 7.2.3
+      dotenv: 16.0.3
+      glob: 8.1.0
       ioredis: 4.28.5
-      js-yaml: 4.1.0
-      mkdirp: 1.0.4
+      mkdirp: 2.1.6
       pg: 8.10.0
       reflect-metadata: 0.1.13
       sha.js: 2.4.11
-      tslib: 2.4.0
-      uuid: 8.3.2
-      xml2js: 0.4.23
-      yargs: 17.6.0
-      zen-observable-ts: 1.1.0
+      ts-node: 10.9.1(@swc/core@1.3.53)(@types/node@18.15.13)(typescript@4.9.4)
+      tslib: 2.6.0
+      uuid: 9.0.0
+      yargs: 17.7.2
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -13723,14 +13741,6 @@ packages:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
 
-  /xml2js@0.4.23:
-    resolution: {integrity: sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==}
-    engines: {node: '>=4.0.0'}
-    dependencies:
-      sax: 1.2.4
-      xmlbuilder: 11.0.1
-    dev: false
-
   /xml2js@0.5.0:
     resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
     engines: {node: '>=4.0.0'}
@@ -13873,6 +13883,19 @@ packages:
       yargs-parser: 21.1.1
     dev: false
 
+  /yargs@17.7.2:
+    resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
+    engines: {node: '>=12'}
+    dependencies:
+      cliui: 8.0.1
+      escalade: 3.1.1
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 21.1.1
+    dev: false
+
   /yargs@3.10.0:
     resolution: {integrity: sha512-QFzUah88GAGy9lyDKGBqZdkYApt63rCXYBGYnEP4xDJPXNqXXnBDACnbrXnViV6jRSqAePwrATi2i8mfYm4L1A==}
     dependencies:
@@ -13912,17 +13935,6 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  /zen-observable-ts@1.1.0:
-    resolution: {integrity: sha512-1h4zlLSqI2cRLPJUHJFL8bCWHhkpuXkF+dbGkRaWjgDIG26DmzyshUMrdV/rL3UnR+mhaX4fRq8LPouq0MYYIA==}
-    dependencies:
-      '@types/zen-observable': 0.8.3
-      zen-observable: 0.8.15
-    dev: false
-
-  /zen-observable@0.8.15:
-    resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
-    dev: false
 
   github.com/misskey-dev/SyslogPro/2772b33fa126784fc6e21377786471a918b22dc7:
     resolution: {tarball: https://codeload.github.com/misskey-dev/SyslogPro/tar.gz/2772b33fa126784fc6e21377786471a918b22dc7}
