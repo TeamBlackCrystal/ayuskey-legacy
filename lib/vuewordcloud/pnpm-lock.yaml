@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   vue:
     specifier: ^3.2.45
@@ -8,13 +12,13 @@ dependencies:
 devDependencies:
   '@rollup/plugin-buble':
     specifier: 1.0.2
-    version: 1.0.2(rollup@3.10.1)
+    version: 1.0.2(rollup@3.29.4)
   '@rollup/plugin-node-resolve':
     specifier: 15.0.2
-    version: 15.0.2(rollup@3.10.1)
+    version: 15.0.2(rollup@3.29.4)
   '@rollup/plugin-terser':
     specifier: 0.4.0
-    version: 0.4.0(rollup@3.10.1)
+    version: 0.4.0(rollup@3.29.4)
   eslint:
     specifier: 8.39.0
     version: 8.39.0
@@ -22,8 +26,8 @@ devDependencies:
     specifier: 1.2.1
     version: 1.2.1(eslint@8.39.0)
   rollup:
-    specifier: 3.10.1
-    version: 3.10.1
+    specifier: 3.29.4
+    version: 3.29.4
   rollup-plugin-serve:
     specifier: 2.0.2
     version: 2.0.2
@@ -176,7 +180,7 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@rollup/plugin-buble@1.0.2(rollup@3.10.1):
+  /@rollup/plugin-buble@1.0.2(rollup@3.29.4):
     resolution: {integrity: sha512-Hz9+AigRWwS93vmorrVrhyG9SdSCZAkBDx614w09iFQYFUAP2HmdUrQyZsb1WO2n+iDvPFznrTE16la+eGNcEQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -185,13 +189,13 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.10.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.29.4)
       '@types/buble': 0.19.2
       buble: 0.20.0
-      rollup: 3.10.1
+      rollup: 3.29.4
     dev: true
 
-  /@rollup/plugin-node-resolve@15.0.2(rollup@3.10.1):
+  /@rollup/plugin-node-resolve@15.0.2(rollup@3.29.4):
     resolution: {integrity: sha512-Y35fRGUjC3FaurG722uhUuG8YHOJRJQbI6/CkbRkdPotSpDj9NtIN85z1zrcyDcCQIW4qp5mgG72U+gJ0TAFEg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -200,16 +204,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.10.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.29.4)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.2
-      rollup: 3.10.1
+      rollup: 3.29.4
     dev: true
 
-  /@rollup/plugin-terser@0.4.0(rollup@3.10.1):
+  /@rollup/plugin-terser@0.4.0(rollup@3.29.4):
     resolution: {integrity: sha512-Ipcf3LPNerey1q9ZMjiaWHlNPEHNU/B5/uh9zXLltfEQ1lVSLLeZSgAtTPWGyw8Ip1guOeq+mDtdOlEj/wNxQw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -218,13 +222,13 @@ packages:
       rollup:
         optional: true
     dependencies:
-      rollup: 3.10.1
+      rollup: 3.29.4
       serialize-javascript: 6.0.1
       smob: 0.0.6
       terser: 5.17.1
     dev: true
 
-  /@rollup/pluginutils@5.0.2(rollup@3.10.1):
+  /@rollup/pluginutils@5.0.2(rollup@3.29.4):
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -236,7 +240,7 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.10.1
+      rollup: 3.29.4
     dev: true
 
   /@types/buble@0.19.2:
@@ -1066,8 +1070,8 @@ packages:
       opener: 1.5.2
     dev: true
 
-  /rollup@3.10.1:
-    resolution: {integrity: sha512-3Er+yel3bZbZX1g2kjVM+FW+RUWDxbG87fcqFM5/9HbPCTpbVp6JOLn7jlxnNlbu7s/N/uDA4EV/91E2gWnxzw==}
+  /rollup@3.29.4:
+    resolution: {integrity: sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
