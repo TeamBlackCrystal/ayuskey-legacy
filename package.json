@@ -68,7 +68,7 @@
 		"@koa/cors": "4.0.0",
 		"@koa/multer": "3.0.0",
 		"@koa/router": "8.0.8",
-		"@popperjs/core": "2.11.7",
+		"@popperjs/core": "2.11.8",
 		"@vue/compat": "3.2.47",
 		"@vue/compiler-sfc": "3.2.47",
 		"@vue/runtime-dom": "3.2.47",
