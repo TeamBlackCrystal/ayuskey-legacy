@@ -248,7 +248,7 @@
 		"@types/double-ended-queue": "2.1.2",
 		"@types/escape-regexp": "0.0.1",
 		"@types/fluent-ffmpeg": "2.1.21",
-		"@types/gulp": "4.0.10",
+		"@types/gulp": "4.0.14",
 		"@types/gulp-mocha": "0.0.33",
 		"@types/gulp-rename": "2.0.1",
 		"@types/ioredis": "4.28.10",
