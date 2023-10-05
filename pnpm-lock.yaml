@@ -114,8 +114,8 @@ dependencies:
     specifier: 15.2.1
     version: 15.2.1
   cbor:
-    specifier: 8.1.0
-    version: 8.1.0
+    specifier: 9.0.1
+    version: 9.0.1
   chalk:
     specifier: 4.1.2
     version: 4.1.2
@@ -3720,9 +3720,9 @@ packages:
     resolution: {integrity: sha512-0CNTVCLZggSh7bc5VkX5WWPWO+cyZbNd07IHIsSXLia/eAq+r836hgk+8BKoEh7949Mda87VUOitx5OddVj64A==}
     dev: false
 
-  /cbor@8.1.0:
-    resolution: {integrity: sha512-DwGjNW9omn6EwP70aXsn7FQJx5kO12tX0bZkaTjzdVFM6/7nhA4t0EENocKGx6D2Bch9PE2KzCUf5SceBdeijg==}
-    engines: {node: '>=12.19'}
+  /cbor@9.0.1:
+    resolution: {integrity: sha512-/TQOWyamDxvVIv+DY9cOLNuABkoyz8K/F3QE56539pGVYohx0+MEA1f4lChFTX79dBTBS7R1PF6ovH7G+VtBfQ==}
+    engines: {node: '>=16'}
     dependencies:
       nofilter: 3.1.0
     dev: false
