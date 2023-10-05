@@ -97,7 +97,7 @@
 		"crc-32": "1.2.2",
 		"cropperjs": "1.5.13",
 		"cross-env": "7.0.3",
-		"css-loader": "6.7.3",
+		"css-loader": "6.8.1",
 		"cssnano": "5.1.15",
 		"dateformat": "4.6.3",
 		"diskusage": "1.1.3",
