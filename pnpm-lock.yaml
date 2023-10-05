@@ -456,8 +456,8 @@ dependencies:
     specifier: 0.134.0
     version: 0.134.0
   throttle-debounce:
-    specifier: 4.0.1
-    version: 4.0.1
+    specifier: 5.0.0
+    version: 5.0.0
   tinycolor2:
     specifier: 1.4.2
     version: 1.4.2
@@ -719,8 +719,8 @@ devDependencies:
     specifier: 0.134.0
     version: 0.134.0
   '@types/throttle-debounce':
-    specifier: 4.0.0
-    version: 4.0.0
+    specifier: 5.0.0
+    version: 5.0.0
   '@types/tinycolor2':
     specifier: 1.4.3
     version: 1.4.3
@@ -2168,8 +2168,8 @@ packages:
     resolution: {integrity: sha512-4YB+99Rgqq27EjiYTItEoZtdjLnTh8W9LxowgpC9eWsjaQJIL4Kn/ZcUKAnW3gB/jS4hqGN8iqmid+RcUZDzpA==}
     dev: true
 
-  /@types/throttle-debounce@4.0.0:
-    resolution: {integrity: sha512-BZ1Y2nf1U3qj9MNWrlTG3+FWfFS8xfG2DA0ypiZ1pBUiO8WEvEjNTmQuecnYDtQvegRojeKh+iwNK2NjJ8a3YQ==}
+  /@types/throttle-debounce@5.0.0:
+    resolution: {integrity: sha512-Pb7k35iCGFcGPECoNE4DYp3Oyf2xcTd3FbFQxXUI9hEYKUl6YX+KLf7HrBmgVcD05nl50LIH6i+80js4iYmWbw==}
     dev: true
 
   /@types/tinycolor2@1.4.3:
@@ -12239,8 +12239,8 @@ packages:
     resolution: {integrity: sha512-LbBerg7GaSPjYtTOnu41AMp7tV6efUNR3p4Wk5NzkSsNTBuA5mDGOfwwZL1jhhVMLx9V20HolIUo0+U3AXehbg==}
     dev: false
 
-  /throttle-debounce@4.0.1:
-    resolution: {integrity: sha512-s3PedbXdZtr8v3J5Sxd5T/GmWG80BcK5GVpwDdvgEaUXsaMqQe4zxgmC4TA7B8luSDCPxo3CeSBS3F9rF1CZwg==}
+  /throttle-debounce@5.0.0:
+    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
     engines: {node: '>=12.22'}
     dev: false
 
