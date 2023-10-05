@@ -543,8 +543,8 @@ dependencies:
     specifier: 4.1.0
     version: 4.1.0(vuex@4.1.0)
   web-push:
-    specifier: 3.5.0
-    version: 3.5.0
+    specifier: 3.6.6
+    version: 3.6.6
   webpack:
     specifier: 5.80.0
     version: 5.80.0(@swc/core@1.3.53)(webpack-cli@4.10.0)
@@ -731,8 +731,8 @@ devDependencies:
     specifier: 8.3.4
     version: 8.3.4
   '@types/web-push':
-    specifier: 3.3.2
-    version: 3.3.2
+    specifier: 3.6.1
+    version: 3.6.1
   '@types/webpack':
     specifier: 5.28.1
     version: 5.28.1(@swc/core@1.3.53)(webpack-cli@4.10.0)
@@ -2224,8 +2224,8 @@ packages:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
     dev: false
 
-  /@types/web-push@3.3.2:
-    resolution: {integrity: sha512-JxWGVL/m7mWTIg4mRYO+A6s0jPmBkr4iJr39DqJpRJAc+jrPiEe1/asmkwerzRon8ZZDxaZJpsxpv0Z18Wo9gw==}
+  /@types/web-push@3.6.1:
+    resolution: {integrity: sha512-Zu6Iju7c4IlE8I8eEeFLYRb7XFqvHFmWWAYr1cmug9EX3c6CDarxIXWN/GO0sxjbJLkHPwozUzp6cLdXsrq7Ew==}
     dependencies:
       '@types/node': 18.15.13
     dev: true
@@ -2768,6 +2768,15 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+
+  /agent-base@7.1.0:
+    resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
+    engines: {node: '>= 14'}
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /agentkeepalive@4.2.1:
     resolution: {integrity: sha512-Zn4cw2NEqd+9fiSVWMscnjyQ1a8Yfoc5oBajLeo5w+YBHgDUcEBY2hS4YpTz6iN5f/2zQiktcuM6tS8x1p9dpA==}
@@ -6913,6 +6922,16 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+
+  /https-proxy-agent@7.0.2:
+    resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
+    engines: {node: '>= 14'}
+    dependencies:
+      agent-base: 7.1.0
+      debug: 4.3.4(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
@@ -13308,17 +13327,16 @@ packages:
     dependencies:
       minimalistic-assert: 1.0.1
 
-  /web-push@3.5.0:
-    resolution: {integrity: sha512-JC0V9hzKTqlDYJ+LTZUXtW7B175qwwaqzbbMSWDxHWxZvd3xY0C2rcotMGDavub2nAAFw+sXTsqR65/KY2A5AQ==}
-    engines: {node: '>= 6'}
+  /web-push@3.6.6:
+    resolution: {integrity: sha512-SyteEck9fiCskNmPxs/GFhJsZrIyLfRvjWNmcUwULLJyCU0f1oxo2sWTokXA1mDAq9vxk4e4gVcb/8agq73NkQ==}
+    engines: {node: '>= 16'}
     hasBin: true
     dependencies:
       asn1.js: 5.4.1
       http_ece: 1.1.0
-      https-proxy-agent: 5.0.1
+      https-proxy-agent: 7.0.2
       jws: 4.0.0
       minimist: 1.2.7
-      urlsafe-base64: 1.0.0
     transitivePeerDependencies:
       - supports-color
     dev: false
