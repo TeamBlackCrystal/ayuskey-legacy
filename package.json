@@ -311,7 +311,7 @@
 		"form-data": "4.0.0",
 		"node-gyp": "9.3.1",
 		"npm-run-all": "4.1.5",
-		"prettier": "2.8.7",
+		"prettier": "2.8.8",
 		"regenerator-runtime": "0.13.11",
 		"tsc-progress": "1.0.4",
 		"tslint": "5.20.1",
